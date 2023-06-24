@@ -1,0 +1,143 @@
+diff -r -u buggy/src/com/google/javascript/jscomp/type/ChainableReverseAbstractInterpreter.java inducing/src/com/google/javascript/jscomp/type/ChainableReverseAbstractInterpreter.java
+--- buggy/src/com/google/javascript/jscomp/type/ChainableReverseAbstractInterpreter.java	2023-06-12 11:34:18.966083712 +0800
++++ inducing/src/com/google/javascript/jscomp/type/ChainableReverseAbstractInterpreter.java	2023-06-12 11:34:19.082085833 +0800
+@@ -38,7 +38,6 @@
+ import com.google.javascript.rhino.jstype.JSTypeNative;
+ import com.google.javascript.rhino.jstype.JSTypeRegistry;
+ import com.google.javascript.rhino.jstype.ObjectType;
+-import com.google.javascript.rhino.jstype.ParameterizedType;
+ import com.google.javascript.rhino.jstype.StaticSlot;
+ import com.google.javascript.rhino.jstype.TemplateType;
+ import com.google.javascript.rhino.jstype.UnionType;
+@@ -252,11 +251,6 @@
+       }
+ 
+       @Override
+-      public JSType caseParameterizedType(ParameterizedType type) {
+-        return caseObjectType(type);
+-      }
+-
+-      @Override
+       public JSType caseTemplateType(TemplateType templateType) {
+         return caseObjectType(templateType);
+       }
+@@ -340,11 +334,6 @@
+       }
+ 
+       @Override
+-      public JSType caseParameterizedType(ParameterizedType type) {
+-        return caseObjectType(type);
+-      }
+-
+-      @Override
+       public JSType caseTemplateType(TemplateType templateType) {
+         return caseObjectType(templateType);
+       }
+@@ -418,11 +407,6 @@
+     }
+ 
+     @Override
+-    public JSType caseParameterizedType(ParameterizedType type) {
+-      return caseObjectType(type);
+-    }
+-
+-    @Override
+     public JSType caseTemplateType(TemplateType templateType) {
+       return caseObjectType(templateType);
+     }
+diff -r -u buggy/test/com/google/javascript/jscomp/TypeInferenceTest.java inducing/test/com/google/javascript/jscomp/TypeInferenceTest.java
+--- buggy/test/com/google/javascript/jscomp/TypeInferenceTest.java	2023-06-12 11:34:18.966083712 +0800
++++ inducing/test/com/google/javascript/jscomp/TypeInferenceTest.java	2023-06-12 11:34:19.082085833 +0800
+@@ -19,7 +19,6 @@
+ import static com.google.javascript.rhino.jstype.JSTypeNative.ALL_TYPE;
+ import static com.google.javascript.rhino.jstype.JSTypeNative.ARRAY_TYPE;
+ import static com.google.javascript.rhino.jstype.JSTypeNative.BOOLEAN_TYPE;
+-import static com.google.javascript.rhino.jstype.JSTypeNative.CHECKED_UNKNOWN_TYPE;
+ import static com.google.javascript.rhino.jstype.JSTypeNative.FUNCTION_INSTANCE_TYPE;
+ import static com.google.javascript.rhino.jstype.JSTypeNative.NULL_TYPE;
+ import static com.google.javascript.rhino.jstype.JSTypeNative.NUMBER_OBJECT_TYPE;
+@@ -43,7 +42,6 @@
+ import com.google.javascript.rhino.jstype.JSType;
+ import com.google.javascript.rhino.jstype.JSTypeNative;
+ import com.google.javascript.rhino.jstype.JSTypeRegistry;
+-import com.google.javascript.rhino.jstype.ObjectType;
+ import com.google.javascript.rhino.jstype.StaticSlot;
+ import com.google.javascript.rhino.testing.Asserts;
+ 
+@@ -59,8 +57,7 @@
+ 
+   private Compiler compiler;
+   private JSTypeRegistry registry;
+-  private Map<String, JSType> assumptions;
+-  private JSType assumedThisType;
++  private Map<String,JSType> assumptions;
+   private FlowScope returnScope;
+   private static final Map<String, AssertionFunctionSpec>
+       ASSERTION_FUNCTION_MAP = Maps.newHashMap();
+@@ -83,10 +80,6 @@
+     returnScope = null;
+   }
+ 
+-  private void assumingThisType(JSType type) {
+-    assumedThisType = type;
+-  }
+-
+   private void assuming(String name, JSType type) {
+     assumptions.put(name, type);
+   }
+@@ -97,11 +90,7 @@
+ 
+   private void inFunction(String js) {
+     // Parse the body of the function.
+-    String thisBlock = assumedThisType == null
+-        ? ""
+-        : "/** @this {" + assumedThisType + "} */";
+-    Node root = compiler.parseTestCode(
+-        "(" + thisBlock + " function() {" + js + "});");
++    Node root = compiler.parseTestCode("(function() {" + js + "});");
+     assertEquals("parsing error: " +
+         Joiner.on(", ").join(compiler.getErrors()),
+         0, compiler.getErrorCount());
+@@ -112,7 +101,7 @@
+     Scope assumedScope = scopeCreator.createScope(
+         n, scopeCreator.createScope(root, null));
+     for (Map.Entry<String,JSType> entry : assumptions.entrySet()) {
+-      assumedScope.declare(entry.getKey(), null, entry.getValue(), null, false);
++      assumedScope.declare(entry.getKey(), null, entry.getValue(), null);
+     }
+     // Create the control graph.
+     ControlFlowAnalysis cfa = new ControlFlowAnalysis(compiler, false, false);
+@@ -241,33 +230,6 @@
+     verify("y", createUnionType(OBJECT_TYPE, NUMBER_TYPE));
+   }
+ 
+-  public void testPropertyInference1() {
+-    ObjectType thisType = registry.createAnonymousObjectType();
+-    thisType.defineDeclaredProperty("foo",
+-        createUndefinableType(STRING_TYPE), null);
+-    assumingThisType(thisType);
+-    inFunction("var y = 1; if (this.foo) { y = this.foo; }");
+-    verify("y", createUnionType(NUMBER_TYPE, STRING_TYPE));
+-  }
+-
+-  public void testPropertyInference2() {
+-    ObjectType thisType = registry.createAnonymousObjectType();
+-    thisType.defineDeclaredProperty("foo",
+-        createUndefinableType(STRING_TYPE), null);
+-    assumingThisType(thisType);
+-    inFunction("var y = 1; this.foo = 'x'; y = this.foo;");
+-    verify("y", STRING_TYPE);
+-  }
+-
+-  public void testPropertyInference3() {
+-    ObjectType thisType = registry.createAnonymousObjectType();
+-    thisType.defineDeclaredProperty("foo",
+-        createUndefinableType(STRING_TYPE), null);
+-    assumingThisType(thisType);
+-    inFunction("var y = 1; this.foo = x; y = this.foo;");
+-    verify("y", CHECKED_UNKNOWN_TYPE);
+-  }
+-
+   public void testAssert1() {
+     JSType startType = createNullableType(OBJECT_TYPE);
+     assuming("x", startType);

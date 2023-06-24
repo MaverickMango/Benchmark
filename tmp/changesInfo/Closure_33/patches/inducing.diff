@@ -1,0 +1,81 @@
+diff --git a/src/com/google/javascript/jscomp/CheckAccessControls.java b/src/com/google/javascript/jscomp/CheckAccessControls.java
+index 412aa62..db5a6d9 100644
+--- a/src/com/google/javascript/jscomp/CheckAccessControls.java
++++ b/src/com/google/javascript/jscomp/CheckAccessControls.java
+@@ -47,7 +47,7 @@
+  *
+  * @author nicksantos@google.com (Nick Santos)
+  */
+-class CheckAccessControls implements ScopedCallback, CompilerPass {
++class CheckAccessControls implements ScopedCallback, HotSwapCompilerPass {
+ 
+   static final DiagnosticType DEPRECATED_NAME = DiagnosticType.disabled(
+       "JSC_DEPRECATED_VAR",
+@@ -119,10 +119,16 @@
+     this.initializedConstantProperties = HashMultimap.create();
+   }
+ 
++  @Override
+   public void process(Node externs, Node root) {
+     NodeTraversal.traverse(compiler, root, this);
+   }
+ 
++  @Override
++  public void hotSwapScript(Node scriptRoot, Scope globalScope) {
++    NodeTraversal.traverse(compiler, scriptRoot, this);
++  }
++
+   public void enterScope(NodeTraversal t) {
+     if (!t.inGlobalScope()) {
+       Node n = t.getScopeRoot();
+diff --git a/src/com/google/javascript/jscomp/DataFlowAnalysis.java b/src/com/google/javascript/jscomp/DataFlowAnalysis.java
+index 2f2cff3..670805f 100644
+--- a/src/com/google/javascript/jscomp/DataFlowAnalysis.java
++++ b/src/com/google/javascript/jscomp/DataFlowAnalysis.java
+@@ -247,7 +247,7 @@
+    */
+   protected void initialize() {
+     // TODO(user): Calling clear doesn't deallocate the memory in a
+-    // LinkedHashSet. Consider creating a new work set if we plan to repeatly
++    // LinkedHashSet. Consider creating a new work set if we plan to repeatedly
+     // call analyze.
+     orderedWorkSet.clear();
+     for (DiGraphNode<N, Branch> node : cfg.getDirectedGraphNodes()) {
+diff --git a/src/com/google/javascript/jscomp/DefaultPassConfig.java b/src/com/google/javascript/jscomp/DefaultPassConfig.java
+index 66459f1..73e9c77 100644
+--- a/src/com/google/javascript/jscomp/DefaultPassConfig.java
++++ b/src/com/google/javascript/jscomp/DefaultPassConfig.java
+@@ -1105,10 +1105,10 @@
+   };
+ 
+   /** Checks access controls. Depends on type-inference. */
+-  private final PassFactory checkAccessControls =
+-      new PassFactory("checkAccessControls", true) {
++  private final HotSwapPassFactory checkAccessControls =
++      new HotSwapPassFactory("checkAccessControls", true) {
+     @Override
+-    protected CompilerPass createInternal(AbstractCompiler compiler) {
++    protected HotSwapCompilerPass createInternal(AbstractCompiler compiler) {
+       return new CheckAccessControls(compiler);
+     }
+   };
+diff --git a/src/com/google/javascript/rhino/jstype/PrototypeObjectType.java b/src/com/google/javascript/rhino/jstype/PrototypeObjectType.java
+index e6f45be..b56a896 100644
+--- a/src/com/google/javascript/rhino/jstype/PrototypeObjectType.java
++++ b/src/com/google/javascript/rhino/jstype/PrototypeObjectType.java
+@@ -230,7 +230,14 @@
+     if (hasOwnDeclaredProperty(name)) {
+       return false;
+     }
+-    properties.put(name, new Property(type, inferred, inExterns, propertyNode));
++    Property newProp = new Property(type, inferred, inExterns, propertyNode);
++    Property oldProp = properties.get(name);
++    if (oldProp != null) {
++      // This is to keep previously inferred jsdoc info, e.g., in a
++      // replaceScript scenario.
++      newProp.docInfo = oldProp.docInfo;
++    }
++    properties.put(name, newProp);
+     return true;
+   }
+ 

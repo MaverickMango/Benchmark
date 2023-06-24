@@ -1,0 +1,41 @@
+diff -r -u buggy/src/main/java/org/apache/commons/math/linear/OpenMapRealMatrix.java inducing/src/main/java/org/apache/commons/math/linear/OpenMapRealMatrix.java
+--- buggy/src/main/java/org/apache/commons/math/linear/OpenMapRealMatrix.java	2023-06-12 11:34:47.782610085 +0800
++++ inducing/src/main/java/org/apache/commons/math/linear/OpenMapRealMatrix.java	2023-06-12 11:34:48.046614902 +0800
+@@ -24,7 +24,7 @@
+ /**
+  * Sparse matrix implementation based on an open addressed map.
+  *
+- * @version $Id$
++ * @version $Revision$ $Date$
+  * @since 2.0
+  */
+ public class OpenMapRealMatrix extends AbstractRealMatrix
+@@ -107,7 +107,8 @@
+ 
+     /** {@inheritDoc} */
+     @Override
+-    public OpenMapRealMatrix subtract(final RealMatrix m) {
++    public OpenMapRealMatrix subtract(final RealMatrix m)
++        throws IllegalArgumentException {
+         try {
+             return subtract((OpenMapRealMatrix) m);
+         } catch (ClassCastException cce) {
+@@ -140,7 +141,8 @@
+ 
+     /** {@inheritDoc} */
+     @Override
+-    public RealMatrix multiply(final RealMatrix m) {
++    public RealMatrix multiply(final RealMatrix m)
++        throws IllegalArgumentException {
+         try {
+             return multiply((OpenMapRealMatrix) m);
+         } catch (ClassCastException cce) {
+@@ -170,7 +172,7 @@
+      *
+      * @param m Matrix to postmultiply by.
+      * @return {@code this} * {@code m}.
+-     * @throws MatrixDimensionMismatchException
++     * @throws org.apache.commons.math.exception.MatrixDimensionMismatchException
+      * if the number of rows of {@code m} differ from the number of columns
+      * of this matrix.
+      */

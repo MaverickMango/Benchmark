@@ -1,0 +1,6 @@
+src/com/google/javascript/jscomp/parsing/JsDocInfoParser.java
+src/com/google/javascript/rhino/JSDocInfo.java
+src/com/google/javascript/rhino/JSDocInfoBuilder.java
+src/com/google/javascript/rhino/jstype/PrototypeObjectType.java
+test/com/google/javascript/jscomp/DisambiguatePropertiesTest.java
+test/com/google/javascript/jscomp/parsing/JsDocInfoParserTest.java

@@ -1,0 +1,378 @@
+diff --git a/CONTRIBUTORS b/CONTRIBUTORS
+index 9501433..e41f7ad 100644
+--- a/CONTRIBUTORS
++++ b/CONTRIBUTORS
+@@ -31,6 +31,7 @@
+ amattie [gmail.com] (Andrew Mattie)
+ chadkillingsworth [missouristate.edu] (Chad Killingsworth)
+ franck.routier [gmail.com] (Franck Routier)
++iliakan [gmail.com] (Ilya Kantor)
+ jaffathecake [gmail.com] (Jake Archibald)
+ k [ailis.de] (Klaus Reimer)
+ meacer [gmail.com] (Mustafa E. Acer)
+diff --git a/src/com/google/javascript/jscomp/NodeUtil.java b/src/com/google/javascript/jscomp/NodeUtil.java
+index 8425cd0..1e7a924 100644
+--- a/src/com/google/javascript/jscomp/NodeUtil.java
++++ b/src/com/google/javascript/jscomp/NodeUtil.java
+@@ -192,6 +192,7 @@
+     switch (n.getType()) {
+       case Token.TRUE:
+         return 1.0;
++
+       case Token.FALSE:
+       case Token.NULL:
+         return 0.0;
+@@ -214,7 +215,41 @@
+           return Double.POSITIVE_INFINITY;
+         }
+         return null;
++
++      case Token.NEG:
++        if (n.getChildCount() == 1 && n.getFirstChild().getType() == Token.NAME
++            && n.getFirstChild().getString().equals("Infinity")) {
++          return Double.NEGATIVE_INFINITY;
++        }
++        return null;
++
++      case Token.STRING:
++        // TODO(johnlenz): handle less common string conversion cases:
++        // '-infinity', etc.
++        String s = n.getString();
++
++        if (s.length() == 0) {
++          return 0.0;
++        }
++
++        if (s.length() > 2
++            && s.charAt(0) == '0'
++            && (s.charAt(1) == 'x' || s.charAt(1) == 'X')) {
++            // Attempt to convert hex numbers.
++          try {
++            return Double.valueOf(Integer.parseInt(s.substring(2), 16));
++          } catch (NumberFormatException e) {
++            return null;
++          }
++        }
++
++        try {
++          return Double.parseDouble(s);
++        } catch (NumberFormatException e) {
++          return null;
++        }
+     }
++
+     return null;
+   }
+ 
+@@ -982,6 +1017,96 @@
+   }
+ 
+   /**
++   * Returns true if the result of node evaluation is always a number
++   */
++  static boolean isNumericResult(Node n) {
++    switch (n.getType()) {
++      // NOTE: ADD is deliberately excluded as it may produce
++      // a string.
++      case Token.BITNOT:
++      case Token.BITOR:
++      case Token.BITXOR:
++      case Token.BITAND:
++      case Token.LSH:
++      case Token.RSH:
++      case Token.URSH:
++      case Token.SUB:
++      case Token.MUL:
++      case Token.MOD:
++      case Token.DIV:
++      case Token.INC:
++      case Token.DEC:
++      case Token.POS:
++      case Token.NEG:
++      case Token.NUMBER:
++        return true;
++      case Token.NAME:
++        String name = n.getString();
++        if (name.equals("NaN")) {
++          return true;
++        }
++        if (name.equals("Infinity")) {
++          return true;
++        }
++        return false;
++      default:
++        return false;
++    }
++  }
++
++  /**
++   * @return Whether the result of node evaluation is always a boolean
++   */
++  static boolean isBooleanResult(Node n) {
++    // TODO(johnlenz): Add a recursive option to recurse into
++    // AND, OR, HOOK, COMMA and ASSIGN, like "getExpressionBooleanValue".
++    switch (n.getType()) {
++      // Primitives
++      case Token.TRUE:
++      case Token.FALSE:
++      // Comparisons
++      case Token.EQ:
++      case Token.NE:
++      case Token.SHEQ:
++      case Token.SHNE:
++      case Token.LT:
++      case Token.GT:
++      case Token.LE:
++      case Token.GE:
++      // Queryies
++      case Token.IN:
++      case Token.INSTANCEOF:
++      // Inversion
++      case Token.NOT:
++        return true;
++      default:
++        return false;
++    }
++  }
++
++  static boolean isUndefined(Node n) {
++    switch (n.getType()) {
++      case Token.VOID:
++        return true;
++      case Token.NAME:
++        return n.getString().equals("undefined");
++    }
++    return false;
++  }
++
++  static boolean isNull(Node n) {
++    return n.getType() == Token.NULL;
++  }
++
++  /**
++   * @returns Whether the results is possibly a string.
++   */
++  static boolean mayBeString(Node n) {
++    return !isNumericResult(n) && !isBooleanResult(n)
++        && !isUndefined(n) && !isNull(n);
++  }
++
++  /**
+    * Returns true if the operator is associative.
+    * e.g. (a * b) * c = a * (b * c)
+    * Note: "+" is not associative because it is also the concatenation
+diff --git a/test/com/google/javascript/jscomp/NodeUtilTest.java b/test/com/google/javascript/jscomp/NodeUtilTest.java
+index c19b23a..c008cba 100644
+--- a/test/com/google/javascript/jscomp/NodeUtilTest.java
++++ b/test/com/google/javascript/jscomp/NodeUtilTest.java
+@@ -1293,4 +1293,210 @@
+     ImmutableSet<String> defines = ImmutableSet.of();
+     return NodeUtil.isValidDefineValue(value, defines);
+   }
++
++  public void testNumberValue() {
++    assertEquals(0.0, NodeUtil.getNumberValue(getNode("''")));
++    assertEquals(2.0, NodeUtil.getNumberValue(getNode("'+2'")));
++    assertEquals(-1.6, NodeUtil.getNumberValue(getNode("'-1.6'")));
++    assertEquals(16.0, NodeUtil.getNumberValue(getNode("'16'")));
++    assertEquals(12300.0, NodeUtil.getNumberValue(getNode("'123e2'")));
++    assertEquals(12300.0, NodeUtil.getNumberValue(getNode("'123E2'")));
++    assertEquals(1.23, NodeUtil.getNumberValue(getNode("'123e-2'")));
++    assertEquals(1.23, NodeUtil.getNumberValue(getNode("'123E-2'")));
++
++    assertEquals(16.0, NodeUtil.getNumberValue(getNode("'0x10'")), 16.0);
++    assertEquals(16.0, NodeUtil.getNumberValue(getNode("'0X10'")));
++    assertEquals(77.0, NodeUtil.getNumberValue(getNode("'077'")));
++    assertEquals(
++        Double.NEGATIVE_INFINITY,
++        NodeUtil.getNumberValue(getNode("'-Infinity'")));
++    assertEquals(
++        Double.POSITIVE_INFINITY,
++        NodeUtil.getNumberValue(getNode("'Infinity'")));
++    assertEquals(
++        null,
++        NodeUtil.getNumberValue(getNode("'-infinity'")));
++    assertEquals(null, NodeUtil.getNumberValue(getNode("'infinity'")));
++    assertEquals(Double.NaN, NodeUtil.getNumberValue(getNode("'NaN'")));
++    assertEquals(
++        null, NodeUtil.getNumberValue(getNode("'some unknown string'")));
++
++    assertEquals(
++        1.0, NodeUtil.getNumberValue(getNode("true")));
++    assertEquals(
++        0.0, NodeUtil.getNumberValue(getNode("false")));
++    assertEquals(
++        0.0, NodeUtil.getNumberValue(getNode("null")));
++    assertEquals(
++        Double.NaN, NodeUtil.getNumberValue(getNode("void 0")));
++    assertEquals(
++        Double.NaN, NodeUtil.getNumberValue(getNode("NaN")));
++    assertEquals(
++        Double.POSITIVE_INFINITY,
++        NodeUtil.getNumberValue(getNode("Infinity")));
++    assertEquals(
++        Double.NEGATIVE_INFINITY,
++        NodeUtil.getNumberValue(getNode("-Infinity")));
++    assertEquals(null, NodeUtil.getNumberValue(getNode("infinity")));
++    assertEquals(null, NodeUtil.getNumberValue(getNode("-infinity")));
++  }
++
++  public void testIsNumbericResult() {
++    assertTrue(NodeUtil.isNumericResult(getNode("1")));
++    assertFalse(NodeUtil.isNumericResult(getNode("true")));
++    assertTrue(NodeUtil.isNumericResult(getNode("+true")));
++    assertTrue(NodeUtil.isNumericResult(getNode("+1")));
++    assertTrue(NodeUtil.isNumericResult(getNode("-1")));
++    assertTrue(NodeUtil.isNumericResult(getNode("-Infinity")));
++    assertTrue(NodeUtil.isNumericResult(getNode("Infinity")));
++    assertTrue(NodeUtil.isNumericResult(getNode("NaN")));
++    assertFalse(NodeUtil.isNumericResult(getNode("undefined")));
++    assertFalse(NodeUtil.isNumericResult(getNode("void 0")));
++
++    assertTrue(NodeUtil.isNumericResult(getNode("a << b")));
++    assertTrue(NodeUtil.isNumericResult(getNode("a >> b")));
++    assertTrue(NodeUtil.isNumericResult(getNode("a >>> b")));
++
++    assertFalse(NodeUtil.isNumericResult(getNode("a == b")));
++    assertFalse(NodeUtil.isNumericResult(getNode("a != b")));
++    assertFalse(NodeUtil.isNumericResult(getNode("a === b")));
++    assertFalse(NodeUtil.isNumericResult(getNode("a !== b")));
++    assertFalse(NodeUtil.isNumericResult(getNode("a < b")));
++    assertFalse(NodeUtil.isNumericResult(getNode("a > b")));
++    assertFalse(NodeUtil.isNumericResult(getNode("a <= b")));
++    assertFalse(NodeUtil.isNumericResult(getNode("a >= b")));
++    assertFalse(NodeUtil.isNumericResult(getNode("a in b")));
++    assertFalse(NodeUtil.isNumericResult(getNode("a instanceof b")));
++
++    assertFalse(NodeUtil.isNumericResult(getNode("'a'")));
++    assertFalse(NodeUtil.isNumericResult(getNode("'a'+b")));
++    assertFalse(NodeUtil.isNumericResult(getNode("a+'b'")));
++    assertFalse(NodeUtil.isNumericResult(getNode("a+b")));
++    assertFalse(NodeUtil.isNumericResult(getNode("a()")));
++    assertFalse(NodeUtil.isNumericResult(getNode("''.a")));
++    assertFalse(NodeUtil.isNumericResult(getNode("a.b")));
++    assertFalse(NodeUtil.isNumericResult(getNode("a.b()")));
++    assertFalse(NodeUtil.isNumericResult(getNode("a().b()")));
++    assertFalse(NodeUtil.isNumericResult(getNode("new a()")));
++    
++    // Definitely not numberic
++    assertFalse(NodeUtil.isNumericResult(getNode("([1,2])")));
++    assertFalse(NodeUtil.isNumericResult(getNode("({a:1})")));    
++
++    // These are number but aren't handled yet, "false" here means "unknown".
++    assertFalse(NodeUtil.isNumericResult(getNode("1 && 2")));
++    assertFalse(NodeUtil.isNumericResult(getNode("1 || 2")));
++    assertFalse(NodeUtil.isNumericResult(getNode("a ? 2 : 3")));
++    assertFalse(NodeUtil.isNumericResult(getNode("a,1")));
++    assertFalse(NodeUtil.isNumericResult(getNode("a=1")));
++  }
++  
++  public void testIsBooleanResult() {
++    assertFalse(NodeUtil.isBooleanResult(getNode("1")));
++    assertTrue(NodeUtil.isBooleanResult(getNode("true")));
++    assertFalse(NodeUtil.isBooleanResult(getNode("+true")));
++    assertFalse(NodeUtil.isBooleanResult(getNode("+1")));
++    assertFalse(NodeUtil.isBooleanResult(getNode("-1")));
++    assertFalse(NodeUtil.isBooleanResult(getNode("-Infinity")));
++    assertFalse(NodeUtil.isBooleanResult(getNode("Infinity")));
++    assertFalse(NodeUtil.isBooleanResult(getNode("NaN")));
++    assertFalse(NodeUtil.isBooleanResult(getNode("undefined")));
++    assertFalse(NodeUtil.isBooleanResult(getNode("void 0")));
++
++    assertFalse(NodeUtil.isBooleanResult(getNode("a << b")));
++    assertFalse(NodeUtil.isBooleanResult(getNode("a >> b")));
++    assertFalse(NodeUtil.isBooleanResult(getNode("a >>> b")));
++
++    assertTrue(NodeUtil.isBooleanResult(getNode("a == b")));
++    assertTrue(NodeUtil.isBooleanResult(getNode("a != b")));
++    assertTrue(NodeUtil.isBooleanResult(getNode("a === b")));
++    assertTrue(NodeUtil.isBooleanResult(getNode("a !== b")));
++    assertTrue(NodeUtil.isBooleanResult(getNode("a < b")));
++    assertTrue(NodeUtil.isBooleanResult(getNode("a > b")));
++    assertTrue(NodeUtil.isBooleanResult(getNode("a <= b")));
++    assertTrue(NodeUtil.isBooleanResult(getNode("a >= b")));
++    assertTrue(NodeUtil.isBooleanResult(getNode("a in b")));
++    assertTrue(NodeUtil.isBooleanResult(getNode("a instanceof b")));
++
++    assertFalse(NodeUtil.isBooleanResult(getNode("'a'")));
++    assertFalse(NodeUtil.isBooleanResult(getNode("'a'+b")));
++    assertFalse(NodeUtil.isBooleanResult(getNode("a+'b'")));
++    assertFalse(NodeUtil.isBooleanResult(getNode("a+b")));
++    assertFalse(NodeUtil.isBooleanResult(getNode("a()")));
++    assertFalse(NodeUtil.isBooleanResult(getNode("''.a")));
++    assertFalse(NodeUtil.isBooleanResult(getNode("a.b")));
++    assertFalse(NodeUtil.isBooleanResult(getNode("a.b()")));
++    assertFalse(NodeUtil.isBooleanResult(getNode("a().b()")));
++    assertFalse(NodeUtil.isBooleanResult(getNode("new a()")));
++    
++    // Definitely not boolean
++    assertFalse(NodeUtil.isBooleanResult(getNode("([true,false])")));
++    assertFalse(NodeUtil.isBooleanResult(getNode("({a:true})")));    
++
++    // These are boolean but aren't handled yet, "false" here means "unknown".
++    assertFalse(NodeUtil.isBooleanResult(getNode("true && false")));
++    assertFalse(NodeUtil.isBooleanResult(getNode("true || false")));
++    assertFalse(NodeUtil.isBooleanResult(getNode("a ? true : false")));
++    assertFalse(NodeUtil.isBooleanResult(getNode("a,true")));
++    assertFalse(NodeUtil.isBooleanResult(getNode("a=1")));
++  }  
++
++  public void testMayBeString() {
++    assertFalse(NodeUtil.mayBeString(getNode("1")));
++    assertFalse(NodeUtil.mayBeString(getNode("true")));
++    assertFalse(NodeUtil.mayBeString(getNode("+true")));
++    assertFalse(NodeUtil.mayBeString(getNode("+1")));
++    assertFalse(NodeUtil.mayBeString(getNode("-1")));
++    assertFalse(NodeUtil.mayBeString(getNode("-Infinity")));
++    assertFalse(NodeUtil.mayBeString(getNode("Infinity")));
++    assertFalse(NodeUtil.mayBeString(getNode("NaN")));
++    assertFalse(NodeUtil.mayBeString(getNode("undefined")));
++    assertFalse(NodeUtil.mayBeString(getNode("void 0")));
++    assertFalse(NodeUtil.mayBeString(getNode("null")));
++
++    assertFalse(NodeUtil.mayBeString(getNode("a << b")));
++    assertFalse(NodeUtil.mayBeString(getNode("a >> b")));
++    assertFalse(NodeUtil.mayBeString(getNode("a >>> b")));
++
++    assertFalse(NodeUtil.mayBeString(getNode("a == b")));
++    assertFalse(NodeUtil.mayBeString(getNode("a != b")));
++    assertFalse(NodeUtil.mayBeString(getNode("a === b")));
++    assertFalse(NodeUtil.mayBeString(getNode("a !== b")));
++    assertFalse(NodeUtil.mayBeString(getNode("a < b")));
++    assertFalse(NodeUtil.mayBeString(getNode("a > b")));
++    assertFalse(NodeUtil.mayBeString(getNode("a <= b")));
++    assertFalse(NodeUtil.mayBeString(getNode("a >= b")));
++    assertFalse(NodeUtil.mayBeString(getNode("a in b")));
++    assertFalse(NodeUtil.mayBeString(getNode("a instanceof b")));
++
++    assertTrue(NodeUtil.mayBeString(getNode("'a'")));
++    assertTrue(NodeUtil.mayBeString(getNode("'a'+b")));
++    assertTrue(NodeUtil.mayBeString(getNode("a+'b'")));
++    assertTrue(NodeUtil.mayBeString(getNode("a+b")));
++    assertTrue(NodeUtil.mayBeString(getNode("a()")));
++    assertTrue(NodeUtil.mayBeString(getNode("''.a")));
++    assertTrue(NodeUtil.mayBeString(getNode("a.b")));
++    assertTrue(NodeUtil.mayBeString(getNode("a.b()")));
++    assertTrue(NodeUtil.mayBeString(getNode("a().b()")));
++    assertTrue(NodeUtil.mayBeString(getNode("new a()")));
++
++    // These can't be strings but they aren't handled yet.
++    assertTrue(NodeUtil.mayBeString(getNode("1 && 2")));
++    assertTrue(NodeUtil.mayBeString(getNode("1 || 2")));
++    assertTrue(NodeUtil.mayBeString(getNode("1 ? 2 : 3")));
++    assertTrue(NodeUtil.mayBeString(getNode("1,2")));
++    assertTrue(NodeUtil.mayBeString(getNode("a=1")));
++    assertTrue(NodeUtil.mayBeString(getNode("1+1")));
++    assertTrue(NodeUtil.mayBeString(getNode("true+true")));
++    assertTrue(NodeUtil.mayBeString(getNode("null+null")));
++    assertTrue(NodeUtil.mayBeString(getNode("NaN+NaN")));
++
++    // These are not strings but they aren't primitives either
++    assertTrue(NodeUtil.mayBeString(getNode("([1,2])")));
++    assertTrue(NodeUtil.mayBeString(getNode("({a:1})")));
++    assertTrue(NodeUtil.mayBeString(getNode("({}+1)")));
++    assertTrue(NodeUtil.mayBeString(getNode("(1+{})")));
++    assertTrue(NodeUtil.mayBeString(getNode("([]+1)")));
++    assertTrue(NodeUtil.mayBeString(getNode("(1+[])")));
++  }
+ }

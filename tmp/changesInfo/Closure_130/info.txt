@@ -1,0 +1,31 @@
+{
+  "bugName": "Closure_130_buggy",
+  "bugId": "51",
+  "repo": {
+    "name": "tmp/Closure_130_buggy/.git"
+  },
+  "buggyCommit": {
+    "sha": "f322be0e576d5e2114cb59c0a6537197997b9c59",
+    "branchName": "HEAD",
+    "fullMessage": "\nDon\u0027t overwrite orginal names that have already been set on node.\n\nR\u003dacleung\nDELTA\u003d61  (54 added, 2 deleted, 5 changed)\n\n\nRevision created by MOE tool push_codebase.\nMOE_MIGRATION\u003d1372\n\n\ngit-svn-id: https://closure-compiler.googlecode.com/svn/trunk@1000 b0f006be-c8cd-11de-a2e8-8d36a3108c74\n",
+    "repoName": "tmp/Closure_130_buggy/.git"
+  },
+  "commitBeforeBuggy": {
+    "sha": "8c4a625cdec89e6b1fa452fbb73c6f8d4c56b701",
+    "branchName": "HEAD",
+    "fullMessage": "\nImplement ScopedAliases to record Aliases from goog.scope blocks.\nEasymock Dependency pulleded out for now to get the Changes working.  Will pull in and update tests as soon as dependency can be added to builds.\n\nR\u003dnicksantos\nDELTA\u003d206  (188 added, 2 deleted, 16 changed)\n\n\nRevision created by MOE tool push_codebase.\nMOE_MIGRATION\u003d1371\n\n\ngit-svn-id: https://closure-compiler.googlecode.com/svn/trunk@999 b0f006be-c8cd-11de-a2e8-8d36a3108c74\n",
+    "repoName": "tmp/Closure_130_buggy/.git"
+  },
+  "fixedCommit": {
+    "sha": "9fac3ccd2fa9e6137584f079db1a6f5962a65cf4",
+    "branchName": "HEAD",
+    "fullMessage": "Don\u0027t attempt to inline aliases of external names during collapse properties as all the sets can not be accounted for.\nFixes issue 931\n-------------\nCreated by MOE: http://code.google.com/p/moe-java\nMOE_MIGRATED_REVID\u003d43187988\n",
+    "repoName": "tmp/Closure_130_buggy/.git"
+  },
+  "commitBeforeFixing": {
+    "sha": "8a37f1089f62deaebc29fe5c8a22f48d04a6c8b1",
+    "branchName": "HEAD",
+    "fullMessage": "Update Guava used by closure compiler to newly released 14.0\n-------------\nCreated by MOE: http://code.google.com/p/moe-java\nMOE_MIGRATED_REVID\u003d43146905\n",
+    "repoName": "tmp/Closure_130_buggy/.git"
+  }
+}

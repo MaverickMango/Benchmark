@@ -1,0 +1,2122 @@
+diff -r -u original/src/com/google/javascript/jscomp/TypeCheck.java buggy/src/com/google/javascript/jscomp/TypeCheck.java
+--- original/src/com/google/javascript/jscomp/TypeCheck.java	2023-06-13 15:31:41.775093073 +0800
++++ buggy/src/com/google/javascript/jscomp/TypeCheck.java	2023-06-12 11:40:24.470807056 +0800
+@@ -43,6 +43,8 @@
+ import com.google.javascript.rhino.jstype.TernaryValue;
+ 
+ import java.util.Iterator;
++import java.util.Set;
++import java.util.HashMap;
+ 
+ /**
+  * <p>Checks the types of JS expressions against any declared type
+@@ -158,6 +160,12 @@
+           "a constructor can only extend objects " +
+           "and an interface can only extend interfaces");
+ 
++  static final DiagnosticType CONFLICTING_IMPLEMENTED_TYPE =
++    DiagnosticType.warning(
++        "JSC_CONFLICTING_IMPLEMENTED_TYPE",
++        "{0} cannot implement this type; " +
++        "an interface can only extend, but not implement interfaces");
++
+   static final DiagnosticType BAD_IMPLEMENTED_TYPE =
+       DiagnosticType.warning(
+           "JSC_IMPLEMENTS_NON_INTERFACE",
+@@ -182,14 +190,6 @@
+           "original: {2}\n" +
+           "override: {3}");
+ 
+-  static final DiagnosticType HIDDEN_INTERFACE_PROPERTY_MISMATCH =
+-      DiagnosticType.warning(
+-          "JSC_HIDDEN_INTERFACE_PROPERTY_MISMATCH",
+-          "mismatch of the {0} property type and the type " +
+-          "of the property it overrides from interface {1}\n" +
+-          "original: {2}\n" +
+-          "override: {3}");
+-
+   static final DiagnosticType UNKNOWN_OVERRIDE =
+       DiagnosticType.warning(
+           "JSC_UNKNOWN_OVERRIDE",
+@@ -220,6 +220,17 @@
+           "Illegal annotation on {0}. @implicitCast may only be used in " +
+           "externs.");
+ 
++  static final DiagnosticType INCOMPATIBLE_EXTENDED_PROPERTY_TYPE =
++      DiagnosticType.warning(
++          "JSC_INCOMPATIBLE_EXTENDED_PROPERTY_TYPE",
++          "Interface {0} has a property {1} with incompatible types in " +
++          "its super interfaces {2} and {3}");
++
++  static final DiagnosticType EXPECTED_THIS_TYPE =
++      DiagnosticType.warning(
++          "JSC_EXPECTED_THIS_TYPE",
++          "\"{0}\" must be called with a \"this\" type");
++
+   static final DiagnosticGroup ALL_DIAGNOSTICS = new DiagnosticGroup(
+       DETERMINISTIC_TEST,
+       DETERMINISTIC_TEST_NO_RESULT,
+@@ -236,17 +247,20 @@
+       INVALID_INTERFACE_MEMBER_DECLARATION,
+       INTERFACE_FUNCTION_NOT_EMPTY,
+       CONFLICTING_EXTENDED_TYPE,
++      CONFLICTING_IMPLEMENTED_TYPE,
+       BAD_IMPLEMENTED_TYPE,
+       HIDDEN_SUPERCLASS_PROPERTY,
+       HIDDEN_INTERFACE_PROPERTY,
+       HIDDEN_SUPERCLASS_PROPERTY_MISMATCH,
+-      HIDDEN_INTERFACE_PROPERTY_MISMATCH,
+       UNKNOWN_OVERRIDE,
+       INTERFACE_METHOD_OVERRIDE,
+       UNKNOWN_EXPR_TYPE,
+       UNRESOLVED_TYPE,
+       WRONG_ARGUMENT_COUNT,
+       ILLEGAL_IMPLICIT_CAST,
++      INCOMPATIBLE_EXTENDED_PROPERTY_TYPE,
++      EXPECTED_THIS_TYPE,
++      RhinoErrorReporter.TYPE_PARSE_ERROR,
+       TypedScopeCreator.UNKNOWN_LENDS,
+       TypedScopeCreator.LENDS_ON_NON_OBJECT,
+       TypedScopeCreator.CTOR_INITIALIZER,
+@@ -492,25 +506,25 @@
+         break;
+ 
+       case Token.NUMBER:
+-        if (n.getParent().getType() != Token.OBJECTLIT) {
+-          ensureTyped(t, n, NUMBER_TYPE);
+-        } else {
+-          typeable = false;
+-        }
+-        break;
+-
+-      case Token.ARRAYLIT:
+-        ensureTyped(t, n, ARRAY_TYPE);
++        ensureTyped(t, n, NUMBER_TYPE);
+         break;
+ 
+       case Token.STRING:
+-        if (n.getParent().getType() != Token.OBJECTLIT) {
++        // Object literal keys are handled with OBJECTLIT
++        if (!NodeUtil.isObjectLitKey(n, n.getParent())) {
+           ensureTyped(t, n, STRING_TYPE);
+-        } else {
+-          typeable = false;
+         }
+         break;
+ 
++      case Token.GET:
++      case Token.SET:
++        // Object literal keys are handled with OBJECTLIT
++        break;
++
++      case Token.ARRAYLIT:
++        ensureTyped(t, n, ARRAY_TYPE);
++        break;
++
+       case Token.REGEXP:
+         ensureTyped(t, n, REGEXP_TYPE);
+         break;
+@@ -774,6 +788,11 @@
+             ensureTyped(t, n);
+           }
+         }
++        if (n.getType() == Token.OBJECTLIT) {
++          for (Node key : n.children()) {
++            visitObjLitKey(t, key, n);
++          }
++        }
+         break;
+ 
+       default:
+@@ -927,6 +946,64 @@
+   }
+ 
+   /**
++   * Visits an object literal field definition <code>key : value</code>.
++   *
++   * If the <code>lvalue</code> is a prototype modification, we change the
++   * schema of the object type it is referring to.
++   *
++   * @param t the traversal
++   * @param key the assign node
++   */
++  private void visitObjLitKey(NodeTraversal t, Node key, Node objlit) {
++    // TODO(johnlenz): Validate get and set function declarations are valid
++    // as is the functions can have "extraneous" bits.
++
++    // For getter and setter property definitions the
++    // rvalue type != the property type.
++    Node rvalue = key.getFirstChild();
++    JSType rightType = NodeUtil.getObjectLitKeyTypeFromValueType(
++        key, getJSType(rvalue));
++    if (rightType == null) {
++      rightType = getNativeType(UNKNOWN_TYPE);
++    }
++
++    Node owner = objlit;
++
++    // Validate value is assignable to the key type.
++
++    JSType keyType = getJSType(key);
++    boolean valid = validator.expectCanAssignToPropertyOf(t, key,
++        rightType, keyType,
++        owner, NodeUtil.getObjectLitKeyName(key));
++    if (valid) {
++      ensureTyped(t, key, rightType);
++    } else {
++      ensureTyped(t, key);
++    }
++
++    // Validate that the key type is assignable to the object property type.
++    // This is necessary as the objlit may have been cast to a non-literal
++    // object type.
++    // TODO(johnlenz): consider introducing a CAST node to the AST (or
++    // perhaps a parentheses node).
++
++    JSType objlitType = getJSType(objlit);
++    ObjectType type = ObjectType.cast(
++        objlitType.restrictByNotNullOrUndefined());
++    if (type != null) {
++      String property = NodeUtil.getObjectLitKeyName(key);
++      if (type.hasProperty(property) &&
++          !type.isPropertyTypeInferred(property) &&
++          !propertyIsImplicitCast(type, property)) {
++        validator.expectCanAssignToPropertyOf(
++            t, key, keyType,
++            type.getPropertyType(property), owner, property);
++      }
++      return;
++    }
++  }
++
++  /**
+    * Returns true if any type in the chain has an implictCast annotation for
+    * the given property.
+    */
+@@ -958,11 +1035,20 @@
+     FunctionType superClass = ctorType.getSuperClassConstructor();
+     boolean superClassHasProperty = superClass != null &&
+         superClass.getPrototype().hasProperty(propertyName);
++    // For interface
++    boolean superInterfacesHasProperty = false;
++    if (ctorType.isInterface()) {
++      for (ObjectType interfaceType : ctorType.getExtendedInterfaces()) {
++        superInterfacesHasProperty =
++          superInterfacesHasProperty || interfaceType.hasProperty(propertyName);
++      }
++    }
+     boolean declaredOverride = info != null && info.isOverride();
+ 
+     boolean foundInterfaceProperty = false;
+     if (ctorType.isConstructor()) {
+-      for (JSType implementedInterface : ctorType.getImplementedInterfaces()) {
++      for (JSType implementedInterface :
++          ctorType.getAllImplementedInterfaces()) {
+         if (implementedInterface.isUnknownType() ||
+             implementedInterface.isEmptyType()) {
+           continue;
+@@ -981,21 +1067,11 @@
+               HIDDEN_INTERFACE_PROPERTY, propertyName,
+               interfaceType.getTopMostDefiningType(propertyName).toString()));
+         }
+-        // Check that it is ok
+-        if (interfaceHasProperty) {
+-          JSType interfacePropType =
+-              interfaceType.getPrototype().getPropertyType(propertyName);
+-          if (!propertyType.canAssignTo(interfacePropType)) {
+-            compiler.report(t.makeError(n,
+-                HIDDEN_INTERFACE_PROPERTY_MISMATCH, propertyName,
+-                interfaceType.getTopMostDefiningType(propertyName).toString(),
+-                interfacePropType.toString(), propertyType.toString()));
+-          }
+-        }
+       }
+     }
+ 
+-    if (!declaredOverride && !superClassHasProperty) {
++    if (!declaredOverride && !superClassHasProperty
++        && !superInterfacesHasProperty) {
+       // nothing to do here, it's just a plain new property
+       return;
+     }
+@@ -1025,6 +1101,23 @@
+                 propertyName, topInstanceType.toString(),
+                 superClassPropType.toString(), propertyType.toString()));
+       }
++    } else if (superInterfacesHasProperty) {
++      // there is an super interface property
++      for (ObjectType interfaceType : ctorType.getExtendedInterfaces()) {
++        if (interfaceType.hasProperty(propertyName)) {
++          JSType superPropertyType =
++            interfaceType.getPropertyType(propertyName);
++          if (!propertyType.canAssignTo(superPropertyType)) {
++            topInstanceType = interfaceType.getConstructor().
++                getTopMostDefiningType(propertyName);
++            compiler.report(
++                t.makeError(n, HIDDEN_SUPERCLASS_PROPERTY_MISMATCH,
++                    propertyName, topInstanceType.toString(),
++                    superPropertyType.toString(),
++                    propertyType.toString()));
++          }
++        }
++      }
+     } else if (!foundInterfaceProperty) {
+       // there is no superclass nor interface implementation
+       compiler.report(
+@@ -1335,6 +1428,42 @@
+   }
+ 
+   /**
++   * Check whether there's any property conflict for for a particular super
++   * interface
++   * @param t The node traversal object that supplies context
++   * @param n The node being visited
++   * @param functionName The function name being checked
++   * @param properties The property names in the super interfaces that have
++   * been visited
++   * @param currentProperties The property names in the super interface
++   * that have been visited
++   * @param interfaceType The super interface that is being visited
++   */
++  private void checkInterfaceConflictProperties(NodeTraversal t, Node n,
++      String functionName, HashMap<String, ObjectType> properties,
++      HashMap<String, ObjectType> currentProperties,
++      ObjectType interfaceType) {
++    Set<String> currentPropertyNames = interfaceType.getPropertyNames();
++    for (String name : currentPropertyNames) {
++      ObjectType oType = properties.get(name);
++      if (oType != null) {
++        if (!interfaceType.getPropertyType(name).isEquivalentTo(
++            oType.getPropertyType(name))) {
++          compiler.report(
++              t.makeError(n, INCOMPATIBLE_EXTENDED_PROPERTY_TYPE,
++                  functionName, name, oType.toString(),
++                  interfaceType.toString()));
++        }
++      }
++      currentProperties.put(name, interfaceType);
++    }
++    for (ObjectType iType : interfaceType.getCtorExtendedInterfaces()) {
++      checkInterfaceConflictProperties(t, n, functionName, properties,
++          currentProperties, iType);
++    }
++  }
++
++  /**
+    * Visits a {@link Token#FUNCTION} node.
+    *
+    * @param t The node traversal object that supplies context, such as the
+@@ -1342,40 +1471,65 @@
+    * @param n The node being visited.
+    */
+   private void visitFunction(NodeTraversal t, Node n) {
+-    JSDocInfo info = n.getJSDocInfo();
+-
+     FunctionType functionType = (FunctionType) n.getJSType();
+     String functionPrivateName = n.getFirstChild().getString();
+-    if (functionType.isInterface() || functionType.isConstructor()) {
++    if (functionType.isConstructor()) {
+       FunctionType baseConstructor = functionType.
+           getPrototype().getImplicitPrototype().getConstructor();
+       if (baseConstructor != null &&
+           baseConstructor != getNativeType(OBJECT_FUNCTION_TYPE) &&
+-          (baseConstructor.isConstructor() && functionType.isInterface() ||
+-           baseConstructor.isInterface() && functionType.isConstructor())) {
++          (baseConstructor.isInterface() && functionType.isConstructor())) {
+         compiler.report(
+             t.makeError(n, CONFLICTING_EXTENDED_TYPE, functionPrivateName));
+-      }
+-
+-      for (JSType baseInterface : functionType.getImplementedInterfaces()) {
+-        boolean badImplementedType = false;
+-        ObjectType baseInterfaceObj = ObjectType.cast(baseInterface);
+-        if (baseInterfaceObj != null) {
+-          FunctionType interfaceConstructor =
++      } else {
++        // All interfaces are properly implemented by a class
++        for (JSType baseInterface : functionType.getImplementedInterfaces()) {
++          boolean badImplementedType = false;
++          ObjectType baseInterfaceObj = ObjectType.cast(baseInterface);
++          if (baseInterfaceObj != null) {
++            FunctionType interfaceConstructor =
+               baseInterfaceObj.getConstructor();
+-          if (interfaceConstructor != null &&
+-              !interfaceConstructor.isInterface()) {
++            if (interfaceConstructor != null &&
++                !interfaceConstructor.isInterface()) {
++              badImplementedType = true;
++            }
++          } else {
+             badImplementedType = true;
+           }
+-        } else {
+-          badImplementedType = true;
+-        }
+-        if (badImplementedType) {
+-          report(t, n, BAD_IMPLEMENTED_TYPE, functionPrivateName);
++          if (badImplementedType) {
++            report(t, n, BAD_IMPLEMENTED_TYPE, functionPrivateName);
++          }
+         }
++        // check properties
++        validator.expectAllInterfaceProperties(t, n, functionType);
+       }
+-      if (functionType.isConstructor()) {
+-        validator.expectAllInterfacePropertiesImplemented(functionType);
++    } else if (functionType.isInterface()) {
++      // Interface must extend only interfaces
++      for (ObjectType extInterface : functionType.getExtendedInterfaces()) {
++        if (extInterface.getConstructor() != null
++            && !extInterface.getConstructor().isInterface()) {
++          compiler.report(
++              t.makeError(n, CONFLICTING_EXTENDED_TYPE, functionPrivateName));
++        }
++      }
++      // Interface cannot implement any interfaces
++      if (functionType.hasImplementedInterfaces()) {
++        compiler.report(t.makeError(n,
++            CONFLICTING_IMPLEMENTED_TYPE, functionPrivateName));
++      }
++      // Check whether the extended interfaces have any conflicts
++      if (functionType.getExtendedInterfacesCount() > 1) {
++        // Only check when extending more than one interfaces
++        HashMap<String, ObjectType> properties
++            = new HashMap<String, ObjectType>();
++        HashMap<String, ObjectType> currentProperties
++            = new HashMap<String, ObjectType>();
++        for (ObjectType interfaceType : functionType.getExtendedInterfaces()) {
++          currentProperties.clear();
++          checkInterfaceConflictProperties(t, n, functionPrivateName,
++              properties, currentProperties, interfaceType);
++          properties.putAll(currentProperties);
++        }
+       }
+     }
+   }
+@@ -1402,12 +1556,35 @@
+     if (childType instanceof FunctionType) {
+       FunctionType functionType = (FunctionType) childType;
+ 
+-      // Non-native constructors should never be called directly.
++      boolean isExtern = false;
++      JSDocInfo functionJSDocInfo = functionType.getJSDocInfo();
++      if(functionJSDocInfo != null) {
++        String sourceName = functionJSDocInfo.getSourceName();
++        CompilerInput functionSource = compiler.getInput(sourceName);
++        isExtern = functionSource.isExtern();
++      }
++
++      // Non-native constructors should not be called directly
++      // unless they specify a return type and are defined
++      // in an extern.
+       if (functionType.isConstructor() &&
+-          !functionType.isNativeObjectType()) {
++          !functionType.isNativeObjectType() &&
++          (functionType.getReturnType().isUnknownType() ||
++           functionType.getReturnType().isVoidType() ||
++           !isExtern)) {
+         report(t, n, CONSTRUCTOR_NOT_CALLABLE, childType.toString());
+       }
+ 
++      // Functions with explcit 'this' types must be called in a GETPROP
++      // or GETELEM.
++      if (functionType.isOrdinaryFunction() &&
++          !functionType.getTypeOfThis().isUnknownType() &&
++          !functionType.getTypeOfThis().isNativeObjectType() &&
++          !(child.getType() == Token.GETELEM ||
++            child.getType() == Token.GETPROP)) {
++        report(t, n, EXPECTED_THIS_TYPE, functionType.toString());
++      }
++
+       visitParameterList(t, n, functionType);
+       ensureTyped(t, n, functionType.getReturnType());
+     } else {
+diff -r -u original/test/com/google/javascript/jscomp/TypeCheckTest.java buggy/test/com/google/javascript/jscomp/TypeCheckTest.java
+--- original/test/com/google/javascript/jscomp/TypeCheckTest.java	2023-06-13 15:31:41.779093092 +0800
++++ buggy/test/com/google/javascript/jscomp/TypeCheckTest.java	2023-06-12 11:40:24.478806686 +0800
+@@ -372,8 +372,8 @@
+   }
+ 
+   public void testOptionalArgFunctionParamError() throws Exception {
+-    String expectedWarning = "Parse error. variable length argument must be " +
+-        "last";
++    String expectedWarning =
++        "Bad type annotation. variable length argument must be last";
+     testTypes("/** @param {function(...[number], number=)} a */" +
+               "function f(a) {};", expectedWarning, false);
+   }
+@@ -655,6 +655,169 @@
+         "return goog.isString(this.a) ? this.a : 'a'; }", null);
+   }
+ 
++  public void testQualifiedNameReduction5a() throws Exception {
++    testTypes("var x = {/** @type {string} */ a:'b' };\n" +
++        "/** @return {string} */ var f = function() {\n" +
++        "return x.a; }");
++  }
++
++  public void testQualifiedNameReduction5b() throws Exception {
++    testTypes(
++        "var x = {/** @type {number} */ a:12 };\n" +
++        "/** @return {string} */\n" +
++        "var f = function() {\n" +
++        "  return x.a;\n" +
++        "}",
++        "inconsistent return type\n" +
++        "found   : number\n" +
++        "required: string");
++  }
++
++  public void testQualifiedNameReduction5c() throws Exception {
++    testTypes(
++        "/** @return {string} */ var f = function() {\n" +
++        "var x = {/** @type {number} */ a:0 };\n" +
++        "return (x.a) ? (x.a) : 'a'; }",
++        "inconsistent return type\n" +
++        "found   : (number|string)\n" +
++        "required: string");
++  }
++
++  public void testQualifiedNameReduction6() throws Exception {
++    testTypes(
++        "/** @return {string} */ var f = function() {\n" +
++        "var x = {/** @return {string?} */ get a() {return 'a'}};\n" +
++        "return x.a ? x.a : 'a'; }");
++  }
++
++  public void testQualifiedNameReduction7() throws Exception {
++    testTypes(
++        "/** @return {string} */ var f = function() {\n" +
++        "var x = {/** @return {number} */ get a() {return 12}};\n" +
++        "return x.a; }",
++        "inconsistent return type\n" +
++        "found   : number\n" +
++        "required: string");
++  }
++
++  public void testQualifiedNameReduction7a() throws Exception {
++    // It would be nice to find a way to make this an error.
++    testTypes(
++        "/** @return {string} */ var f = function() {\n" +
++        "var x = {get a() {return 12}};\n" +
++        "return x.a; }");
++  }
++
++  public void testQualifiedNameReduction8() throws Exception {
++    testTypes(
++        "/** @return {string} */ var f = function() {\n" +
++        "var x = {get a() {return 'a'}};\n" +
++        "return x.a ? x.a : 'a'; }");
++  }
++
++  public void testQualifiedNameReduction9() throws Exception {
++    testTypes(
++        "/** @return {string} */ var f = function() {\n" +
++        "var x = { /** @param {string} b */ set a(b) {}};\n" +
++        "return x.a ? x.a : 'a'; }");
++  }
++
++  public void testQualifiedNameReduction10() throws Exception {
++    // TODO(johnlenz): separate setter property types from getter property
++    // types.
++    testTypes(
++        "/** @return {string} */ var f = function() {\n" +
++        "var x = { /** @param {number} b */ set a(b) {}};\n" +
++        "return x.a ? x.a : 'a'; }",
++        "inconsistent return type\n" +
++        "found   : (number|string)\n" +
++        "required: string");
++  }
++
++  public void testObjLitDef1a() throws Exception {
++    testTypes(
++        "var x = {/** @type {number} */ a:12 };\n" +
++        "x.a = 'a';",
++        "assignment to property a of x\n" +
++        "found   : string\n" +
++        "required: number");
++  }
++
++  public void testObjLitDef1b() throws Exception {
++    testTypes(
++        "function f(){" +
++          "var x = {/** @type {number} */ a:12 };\n" +
++          "x.a = 'a';" +
++        "};\n" +
++        "f();",
++        "assignment to property a of x\n" +
++        "found   : string\n" +
++        "required: number");
++  }
++
++  public void testObjLitDef2a() throws Exception {
++    testTypes(
++        "var x = {/** @param {number} b */ set a(b){} };\n" +
++        "x.a = 'a';",
++        "assignment to property a of x\n" +
++        "found   : string\n" +
++        "required: number");
++  }
++
++  public void testObjLitDef2b() throws Exception {
++    testTypes(
++        "function f(){" +
++          "var x = {/** @param {number} b */ set a(b){} };\n" +
++          "x.a = 'a';" +
++        "};\n" +
++        "f();",
++        "assignment to property a of x\n" +
++        "found   : string\n" +
++        "required: number");
++  }
++
++  public void testObjLitDef3a() throws Exception {
++    testTypes(
++        "/** @type {string} */ var y;\n" +
++        "var x = {/** @return {number} */ get a(){} };\n" +
++        "y = x.a;",
++        "assignment\n" +
++        "found   : number\n" +
++        "required: string");
++  }
++
++  public void testObjLitDef3b() throws Exception {
++    testTypes(
++      "/** @type {string} */ var y;\n" +
++        "function f(){" +
++          "var x = {/** @return {number} */ get a(){} };\n" +
++          "y = x.a;" +
++        "};\n" +
++        "f();",
++        "assignment\n" +
++        "found   : number\n" +
++        "required: string");
++  }
++
++  public void testObjLitDef4() throws Exception {
++    testTypes(
++        "var x = {" +
++          "/** @return {number} */ a:12 };\n",
++          "assignment to property a of {a: function (): number}\n" +
++          "found   : number\n" +
++          "required: function (): number");
++  }
++
++  public void testObjLitDef5() throws Exception {
++    testTypes(
++        "var x = {};\n" +
++        "/** @return {number} */ x.a = 12;\n",
++        "assignment to property a of x\n" +
++        "found   : number\n" +
++        "required: function (): number");
++  }
++
++
+   public void testInstanceOfReduction1() throws Exception {
+     testTypes("/** @constructor */ var T = function() {};\n" +
+         "/** @param {T|string} x\n@return {T} */\n" +
+@@ -1052,7 +1215,7 @@
+   }
+ 
+   public void testNumericComparison6() throws Exception {
+-    testTypes("/**@return void*/ function foo() { if (3 >= foo()) return; }",
++    testTypes("/**@return {void} */ function foo() { if (3 >= foo()) return; }",
+         "right side of numeric comparison\n" +
+         "found   : undefined\n" +
+         "required: number");
+@@ -1081,7 +1244,8 @@
+   }
+ 
+   public void testStringComparison6() throws Exception {
+-    testTypes("/**@return void*/ function foo() { if ('a' >= foo()) return; }",
++    testTypes("/**@return {void} */ " +
++        "function foo() { if ('a' >= foo()) return; }",
+         "right side of comparison\n" +
+         "found   : undefined\n" +
+         "required: string");
+@@ -1247,36 +1411,51 @@
+     // named function expressions create a binding in their body only
+     // the return is wrong but the assignment is ok since the type of b is ?
+     testTypes(
+-        "/** @return number */var a = function b(){ return b };",
++        "/** @return {number} */var a = function b(){ return b };",
+         "inconsistent return type\n" +
+         "found   : function (): number\n" +
+         "required: number");
+   }
+ 
++  public void testScoping12() throws Exception {
++    testTypes(
++        "/** @constructor */ function F() {}" +
++        "/** @type {number} */ F.prototype.bar = 3;" +
++        "/** @param {!F} f */ function g(f) {" +
++        "  /** @return {string} */" +
++        "  function h() {" +
++        "    return f.bar;" +
++        "  }" +
++        "}",
++        "inconsistent return type\n" +
++        "found   : number\n" +
++        "required: string");
++  }
++
+   public void testFunctionArguments1() throws Exception {
+     testFunctionType(
+-        "/** @param {number} a\n@return string */" +
++        "/** @param {number} a\n@return {string} */" +
+         "function f(a) {}",
+         "function (number): string");
+   }
+ 
+   public void testFunctionArguments2() throws Exception {
+     testFunctionType(
+-        "/** @param {number} opt_a\n@return string */" +
++        "/** @param {number} opt_a\n@return {string} */" +
+         "function f(opt_a) {}",
+         "function ((number|undefined)): string");
+   }
+ 
+   public void testFunctionArguments3() throws Exception {
+     testFunctionType(
+-        "/** @param {number} b\n@return string */" +
++        "/** @param {number} b\n@return {string} */" +
+         "function f(a,b) {}",
+         "function (?, number): string");
+   }
+ 
+   public void testFunctionArguments4() throws Exception {
+     testFunctionType(
+-        "/** @param {number} opt_a\n@return string */" +
++        "/** @param {number} opt_a\n@return {string} */" +
+         "function f(a,opt_a) {}",
+         "function (?, (number|undefined)): string");
+   }
+@@ -1295,7 +1474,7 @@
+ 
+   public void testFunctionArguments7() throws Exception {
+     testTypes(
+-        "/** @param {number} opt_a\n@return string */" +
++        "/** @param {number} opt_a\n@return {string} */" +
+         "function a(a,opt_a,var_args) {}");
+   }
+ 
+@@ -1331,13 +1510,13 @@
+   }
+ 
+   public void testFunctionArguments13() throws Exception {
+-    // verifying that the argument type have inferable types
++    // verifying that the argument type have non-inferrable types
+     testTypes(
+         "/** @return {boolean} */ function u() { return true; }" +
+-        "/** @param {boolean} b\n@return boolean */" +
++        "/** @param {boolean} b\n@return {?boolean} */" +
+         "function f(b) { if (u()) { b = null; } return b; }",
+-        "inconsistent return type\n" +
+-        "found   : (boolean|null)\n" +
++        "assignment\n" +
++        "found   : null\n" +
+         "required: boolean");
+   }
+ 
+@@ -1415,13 +1594,13 @@
+ 
+   public void testFunctionInference5() throws Exception {
+     testFunctionType(
+-        "/** @this Date\n@return string */function f(a) {}",
++        "/** @this Date\n@return {string} */function f(a) {}",
+         "function (this:Date, ?): string");
+   }
+ 
+   public void testFunctionInference6() throws Exception {
+     testFunctionType(
+-        "/** @this Date\n@return string */function f(opt_a) {}",
++        "/** @this Date\n@return {string} */function f(opt_a) {}",
+         "function (this:Date, ?): string");
+   }
+ 
+@@ -1445,7 +1624,7 @@
+ 
+   public void testFunctionInference10() throws Exception {
+     testFunctionType(
+-        "/** @this Date\n@param {boolean} b\n@return string */" +
++        "/** @this Date\n@param {boolean} b\n@return {string} */" +
+         "var f = function(a,b) {};",
+         "function (this:Date, ?, boolean): string");
+   }
+@@ -1453,7 +1632,7 @@
+   public void testFunctionInference11() throws Exception {
+     testFunctionType(
+         "var goog = {};" +
+-        "/** @return number*/goog.f = function(){};",
++        "/** @return {number}*/goog.f = function(){};",
+         "goog.f",
+         "function (): number");
+   }
+@@ -1682,7 +1861,7 @@
+ 
+   public void testAbstractMethodHandling5() throws Exception {
+     testTypes(
+-        "/** @type {Function} */ var abstractFn = function() {};" +
++        "/** @type {!Function} */ var abstractFn = function() {};" +
+         "/** @param {number} x */ var f = abstractFn;" +
+         "f('x');",
+         "actual parameter 1 of f does not match formal parameter\n" +
+@@ -1852,7 +2031,8 @@
+         "/** @param {number} x */ goog.foo = function(x) {};" +
+         "/** @param {number} x */ goog.foo = function(x) {};",
+         "variable goog.foo redefined with type function (number): undefined, " +
+-        "original definition at [testcode]:1 with type function (number): undefined");
++        "original definition at [testcode]:1 " +
++        "with type function (number): undefined");
+   }
+ 
+   public void testDuplicateStaticMethodDecl2() throws Exception {
+@@ -1964,11 +2144,15 @@
+   }
+ 
+   public void testDuplicateLocalVarDecl() throws Exception {
+-    testTypes(
++    testClosureTypesMultipleWarnings(
+         "/** @param {number} x */\n" +
+         "function f(x) { /** @type {string} */ var x = ''; }",
+-        "variable x redefined with type string, " +
+-        "original definition at [testcode]:2 with type number");
++        Lists.newArrayList(
++            "variable x redefined with type string, original definition" +
++            " at  [testcode] :2 with type number",
++            "initializing variable\n" +
++            "found   : string\n" +
++            "required: number"));
+   }
+ 
+   public void testStubFunctionDeclaration1() throws Exception {
+@@ -2032,13 +2216,10 @@
+   }
+ 
+   public void testStubFunctionDeclaration8() throws Exception {
+-    /** TODO(user): This is not exactly correct yet. The var
+-            itself is nullable. */
+     testFunctionType(
+         "/** @type {Function} */ var f = function() {}; ",
+         "f",
+-        createNullableType(U2U_CONSTRUCTOR_TYPE).
+-          restrictByNotNullOrUndefined().toString());
++        createNullableType(U2U_CONSTRUCTOR_TYPE).toString());
+   }
+ 
+   public void testStubFunctionDeclaration9() throws Exception {
+@@ -2326,6 +2507,29 @@
+         "right: boolean");
+   }
+ 
++  public void testDeleteOperator1() throws Exception {
++    testTypes(
++        "var x = {};" +
++        "/** @return {string} */ function f() { return delete x['a']; }",
++        "inconsistent return type\n" +
++        "found   : boolean\n" +
++        "required: string");
++  }
++
++  public void testDeleteOperator2() throws Exception {
++    testTypes(
++        "var obj = {};" +
++        "/** \n" +
++        " * @param {string} x\n" +
++        " * @return {Object} */ function f(x) { return obj; }" +
++        "/** @param {?number} x */ function g(x) {" +
++        "  if (x) { delete f(x)['a']; }" +
++        "}",
++        "actual parameter 1 of f does not match formal parameter\n" +
++        "found   : number\n" +
++        "required: string");
++  }
++
+   public void testEnumStaticMethod1() throws Exception {
+     testTypes(
+         "/** @enum */ var Foo = {AAA: 1};" +
+@@ -2607,6 +2811,16 @@
+         "required: number");
+   }
+ 
++  public void testEnum41() throws Exception {
++    testTypes(
++        "/** @enum {number} */ var MyEnum = {/** @const */ FOO: 1};" +
++        "/** @return {string} */" +
++        "function f() { return MyEnum.FOO; }",
++        "inconsistent return type\n" +
++        "found   : MyEnum.<number>\n" +
++        "required: string");
++  }
++
+   public void testAliasedEnum1() throws Exception {
+     testTypes(
+         "/** @enum */ var YourEnum = {FOO: 3};" +
+@@ -2716,15 +2930,6 @@
+         "required: string");
+   }
+ 
+-  public void testBackwardsTypedefUse5() throws Exception {
+-    testTypes(
+-        "/** @return {MyTypedef} */ function f() { return null; }" +
+-        "/** @type {string} */ var MyTypedef = goog.typedef;",
+-        "inconsistent return type\n" +
+-        "found   : null\n" +
+-        "required: string");
+-  }
+-
+   public void testBackwardsTypedefUse6() throws Exception {
+     testTypes(
+         "/** @return {goog.MyTypedef} */ function f() { return null; }" +
+@@ -2918,7 +3123,7 @@
+   public void testBadExtends1() throws Exception {
+     testTypes("/** @constructor */function base() {}\n" +
+         "/** @constructor\n * @extends {not_base} */function derived() {}\n",
+-        "Parse error. Unknown type not_base");
++        "Bad type annotation. Unknown type not_base");
+   }
+ 
+   public void testBadExtends2() throws Exception {
+@@ -2950,7 +3155,7 @@
+         "/** @constructor \n * @extends {Sub} */ function Sub2() {}" +
+         "/** @param {Sub} x */ function foo(x) {}" +
+         "foo(new Sub2());",
+-        "Parse error. Unknown type bad");
++        "Bad type annotation. Unknown type bad");
+   }
+ 
+   public void testLateExtends() throws Exception {
+@@ -3071,7 +3276,20 @@
+ 
+   public void testGoodImplements3() throws Exception {
+     testTypes("/** @interface */function Disposable() {}\n" +
+-        "/** @implements {Disposable}\n * @interface */function f() {}");
++        "/** @constructor \n @implements {Disposable} */function f() {}");
++  }
++
++  public void testGoodImplements4() throws Exception {
++    testTypes("var goog = {};" +
++        "/** @type {!Function} */" +
++        "goog.abstractMethod = function() {};" +
++        "/** @interface */\n" +
++        "goog.Disposable = goog.abstractMethod;" +
++        "goog.Disposable.prototype.dispose = goog.abstractMethod;" +
++        "/** @implements {goog.Disposable}\n * @constructor */" +
++        "goog.SubDisposable = function() {};" +
++        "/** @inheritDoc */ " +
++        "goog.SubDisposable.prototype.dispose = function() {};");
+   }
+ 
+   public void testBadImplements1() throws Exception {
+@@ -3081,7 +3299,7 @@
+         " * @implements {nonExistent}\n" +
+         " * @implements {Base2}\n" +
+         " */ function derived() {}",
+-        "Parse error. Unknown type nonExistent");
++        "Bad type annotation. Unknown type nonExistent");
+   }
+ 
+   public void testBadImplements2() throws Exception {
+@@ -3100,6 +3318,13 @@
+         "property method on interface Disposable is not implemented by type f");
+   }
+ 
++  public void testBadImplements4() throws Exception {
++    testTypes("/** @interface */function Disposable() {}\n" +
++        "/** @implements {Disposable}\n * @interface */function f() {}",
++        "f cannot implement this type; an interface can only extend, " +
++        "but not implement interfaces");
++  }
++
+   public void testInterfaceExtends() throws Exception {
+     testTypes("/** @interface */function A() {}\n" +
+         "/** @interface \n * @extends {A} */function B() {}\n" +
+@@ -3110,7 +3335,7 @@
+ 
+   public void testBadInterfaceExtends1() throws Exception {
+     testTypes("/** @interface \n * @extends {nonExistent} */function A() {}",
+-        "Parse error. Unknown type nonExistent");
++        "Bad type annotation. Unknown type nonExistent");
+   }
+ 
+   public void testBadInterfaceExtends2() throws Exception {
+@@ -3227,7 +3452,8 @@
+   public void testInterfaceAssignment8() throws Exception {
+     testTypes("/** @interface */var I = function() {};\n" +
+         "/** @type {I} */var i;\n" +
+-        "/** @type {Object} */var o = i;");
++        "/** @type {Object} */var o = i;\n" +
++        "new Object().prototype = i.prototype;");
+   }
+ 
+   public void testInterfaceAssignment9() throws Exception {
+@@ -3829,8 +4055,10 @@
+   public void testConstructorAlias8() throws Exception {
+     testTypes(
+         "var goog = {};" +
+-        "/**\n * @param {number} x \n * @constructor */ goog.Foo = function(x) {};" +
+-        "/**\n * @param {number} x \n * @constructor */ goog.FooAlias = goog.Foo;" +
++        "/**\n * @param {number} x \n * @constructor */ " +
++        "goog.Foo = function(x) {};" +
++        "/**\n * @param {number} x \n * @constructor */ " +
++        "goog.FooAlias = goog.Foo;" +
+         "/** @return {number} */ function foo() { " +
+         "  return new goog.FooAlias(1); }",
+         "inconsistent return type\n" +
+@@ -3841,7 +4069,8 @@
+   public void testConstructorAlias9() throws Exception {
+     testTypes(
+         "var goog = {};" +
+-        "/**\n * @param {number} x \n * @constructor */ goog.Foo = function(x) {};" +
++        "/**\n * @param {number} x \n * @constructor */ " +
++        "goog.Foo = function(x) {};" +
+         "/** @constructor */ goog.FooAlias = goog.Foo;" +
+         "/** @return {number} */ function foo() { " +
+         "  return new goog.FooAlias(1); }",
+@@ -3852,7 +4081,8 @@
+ 
+   public void testConstructorAlias10() throws Exception {
+     testTypes(
+-        "/**\n * @param {number} x \n * @constructor */ var Foo = function(x) {};" +
++        "/**\n * @param {number} x \n * @constructor */ " +
++        "var Foo = function(x) {};" +
+         "/** @constructor */ var FooAlias = Foo;" +
+         "/** @return {number} */ function foo() { " +
+         "  return new FooAlias(1); }",
+@@ -3963,7 +4193,7 @@
+ 
+   public void testReturn6() throws Exception {
+     testTypes(
+-        "/** @param {number} opt_a\n@return string */" +
++        "/** @param {number} opt_a\n@return {string} */" +
+         "function a(opt_a) { return opt_a }",
+         "inconsistent return type\n" +
+         "found   : (number|undefined)\n" +
+@@ -4198,7 +4428,8 @@
+   public void testThis1() throws Exception {
+     testTypes("var goog = {};" +
+         "/** @constructor */goog.A = function(){};" +
+-        "/** @return number */goog.A.prototype.n = function() { return this };",
++        "/** @return {number} */" +
++        "goog.A.prototype.n = function() { return this };",
+         "inconsistent return type\n" +
+         "found   : goog.A\n" +
+         "required: number");
+@@ -4209,7 +4440,7 @@
+         "/** @constructor */goog.A = function(){" +
+         "  this.foo = null;" +
+         "};" +
+-        "/** @return number */" +
++        "/** @return {number} */" +
+         "goog.A.prototype.n = function() { return this.foo };",
+         "inconsistent return type\n" +
+         "found   : null\n" +
+@@ -4229,7 +4460,7 @@
+         "/** @constructor */goog.A = function(){" +
+         "  /** @type {string?} */this.foo = null;" +
+         "};" +
+-        "/** @return number */goog.A.prototype.n = function() {" +
++        "/** @return {number} */goog.A.prototype.n = function() {" +
+         "  return this.foo };",
+         "inconsistent return type\n" +
+         "found   : (null|string)\n" +
+@@ -4237,7 +4468,7 @@
+   }
+ 
+   public void testThis5() throws Exception {
+-    testTypes("/** @this Date\n@return number*/function h() { return this }",
++    testTypes("/** @this Date\n@return {number}*/function h() { return this }",
+         "inconsistent return type\n" +
+         "found   : Date\n" +
+         "required: number");
+@@ -4245,7 +4476,7 @@
+ 
+   public void testThis6() throws Exception {
+     testTypes("var goog = {};" +
+-        "/** @constructor\n@return !Date */" +
++        "/** @constructor\n@return {!Date} */" +
+         "goog.A = function(){ return this };",
+         "inconsistent return type\n" +
+         "found   : goog.A\n" +
+@@ -4254,7 +4485,7 @@
+ 
+   public void testThis7() throws Exception {
+     testTypes("/** @constructor */function A(){};" +
+-        "/** @return number */A.prototype.n = function() { return this };",
++        "/** @return {number} */A.prototype.n = function() { return this };",
+         "inconsistent return type\n" +
+         "found   : A\n" +
+         "required: number");
+@@ -4264,7 +4495,7 @@
+     testTypes("/** @constructor */function A(){" +
+         "  /** @type {string?} */this.foo = null;" +
+         "};" +
+-        "/** @return number */A.prototype.n = function() {" +
++        "/** @return {number} */A.prototype.n = function() {" +
+         "  return this.foo };",
+         "inconsistent return type\n" +
+         "found   : (null|string)\n" +
+@@ -4303,6 +4534,45 @@
+         "required: number");
+   }
+ 
++  public void testThisTypeOfFunction1() throws Exception {
++    testTypes(
++        "/** @type {function(this:Object)} */ function f() {}" +
++        "f();");
++  }
++
++  public void testThisTypeOfFunction2() throws Exception {
++    testTypes(
++        "/** @constructor */ function F() {}" +
++        "/** @type {function(this:F)} */ function f() {}" +
++        "f();",
++        "\"function (this:F): ?\" must be called with a \"this\" type");
++  }
++
++  public void testThisTypeOfFunction3() throws Exception {
++    testTypes(
++        "/** @constructor */ function F() {}" +
++        "F.prototype.bar = function() {};" +
++        "var f = (new F()).bar; f();",
++        "\"function (this:F): undefined\" must be called with a \"this\" type");
++  }
++
++  public void testThisTypeOfFunction4() throws Exception {
++    testTypes(
++        "/** @constructor */ function F() {}" +
++        "F.prototype.moveTo = function(x, y) {};" +
++        "F.prototype.lineTo = function(x, y) {};" +
++        "function demo() {" +
++        "  var path = new F();" +
++        "  var points = [[1,1], [2,2]];" +
++        "  for (var i = 0; i < points.length; i++) {" +
++        "    (i == 0 ? path.moveTo : path.lineTo)(" +
++        "       points[i][0], points[i][1]);" +
++        "  }" +
++        "}",
++        "\"function (this:F, ?, ?): undefined\" " +
++        "must be called with a \"this\" type");
++  }
++
+   public void testGlobalThis1() throws Exception {
+     testTypes("/** @constructor */ function Window() {}" +
+         "/** @param {string} msg */ " +
+@@ -4315,11 +4585,21 @@
+   }
+ 
+   public void testGlobalThis2() throws Exception {
++    // this.alert = 3 doesn't count as a declaration, so this isn't a warning.
+     testTypes("/** @constructor */ function Bindow() {}" +
+         "/** @param {string} msg */ " +
+         "Bindow.prototype.alert = function(msg) {};" +
+         "this.alert = 3;" +
+-        "(new Bindow()).alert(this.alert)",
++        "(new Bindow()).alert(this.alert)");
++  }
++
++
++  public void testGlobalThis2b() throws Exception {
++    testTypes("/** @constructor */ function Bindow() {}" +
++        "/** @param {string} msg */ " +
++        "Bindow.prototype.alert = function(msg) {};" +
++        "/** @return {number} */ this.alert = function() { return 3; };" +
++        "(new Bindow()).alert(this.alert())",
+         "actual parameter 1 of Bindow.prototype.alert " +
+         "does not match formal parameter\n" +
+         "found   : number\n" +
+@@ -4331,7 +4611,7 @@
+         "/** @param {string} msg */ " +
+         "function alert(msg) {};" +
+         "this.alert(3);",
+-        "actual parameter 1 of this.alert " +
++        "actual parameter 1 of global this.alert " +
+         "does not match formal parameter\n" +
+         "found   : number\n" +
+         "required: string");
+@@ -4342,7 +4622,7 @@
+         "/** @param {string} msg */ " +
+         "var alert = function(msg) {};" +
+         "this.alert(3);",
+-        "actual parameter 1 of this.alert " +
++        "actual parameter 1 of global this.alert " +
+         "does not match formal parameter\n" +
+         "found   : number\n" +
+         "required: string");
+@@ -4355,7 +4635,7 @@
+         "  var alert = function(msg) {};" +
+         "}" +
+         "this.alert(3);",
+-        "Property alert never defined on this");
++        "Property alert never defined on global this");
+   }
+ 
+   public void testGlobalThis6() throws Exception {
+@@ -4367,6 +4647,35 @@
+         "this.alert(this.x);");
+   }
+ 
++  public void testGlobalThis7() throws Exception {
++    testTypes(
++        "/** @constructor */ function Window() {}" +
++        "/** @param {Window} msg */ " +
++        "var foo = function(msg) {};" +
++        "foo(this);");
++  }
++
++  public void testGlobalThis8() throws Exception {
++    testTypes(
++        "/** @constructor */ function Window() {}" +
++        "/** @param {number} msg */ " +
++        "var foo = function(msg) {};" +
++        "foo(this);",
++        "actual parameter 1 of foo does not match formal parameter\n" +
++        "found   : global this\n" +
++        "required: number");
++  }
++
++  public void testGlobalThis9() throws Exception {
++    testTypes(
++        // Window is not marked as a constructor, so the
++        // inheritance doesn't happen.
++        "function Window() {}" +
++        "Window.prototype.alert = function() {};" +
++        "this.alert();",
++        "Property alert never defined on global this");
++  }
++
+   public void testControlFlowRestrictsType1() throws Exception {
+     testTypes("/** @return {String?} */ function f() { return null; }" +
+         "/** @type {String?} */ var a = f();" +
+@@ -4639,7 +4948,8 @@
+              "Element.prototype.innerHTML;" +
+              "/** @constructor \n @extends Element */" +
+              "function DIVElement() {};",
+-             "(new DIVElement).innerHTML = new Array();", null, false);
++             "(new DIVElement).innerHTML = new Array();",
++             null, false);
+   }
+ 
+   public void testImplicitCastNotInExterns() throws Exception {
+@@ -4778,6 +5088,23 @@
+         "required: number");
+   }
+ 
++  public void testIssue301() throws Exception {
++    testTypes(
++        "Array.indexOf = function() {};" +
++        "var s = 'hello';" +
++        "alert(s.toLowerCase.indexOf('1'));",
++        "Property indexOf never defined on String.prototype.toLowerCase");
++  }
++
++  public void testIssue380() throws Exception {
++    testTypes(
++        "/** @type { function(string): {innerHTML: string} } */" +
++        "document.getElementById;" +
++        "var list = /** @type {!Array.<string>} */ ['hello', 'you'];\n" +
++        "list.push('?');\n" +
++        "document.getElementById('node').innerHTML = list.toString();");
++  }
++
+   /**
+    * Tests that the || operator is type checked correctly, that is of
+    * the type of the first argument or of the second argument. See
+@@ -4842,7 +5169,7 @@
+   public void testBug909000() throws Exception {
+     testTypes("/** @constructor */function A(){}\n" +
+         "/** @param {!A} a\n" +
+-        "@return boolean*/\n" +
++        "@return {boolean}*/\n" +
+         "function y(a) { return a }",
+         "inconsistent return type\n" +
+         "found   : A\n" +
+@@ -5006,7 +5333,7 @@
+   public void testScopedConstructors2() throws Exception {
+     testTypes(
+         "/** @param {Function} f */" +
+-        "function foo1(f) { " +
++        "function foo1(f) {" +
+         "  /** @param {Function} g */" +
+         "  f.prototype.bar = function(g) {};" +
+         "}");
+@@ -5117,7 +5444,7 @@
+         "})();" +
+         "/** @param {ns.Foo} x */ function f(x) {}" +
+         "f(new ns.Foo(true));",
+-        "Parse error. Unknown type ns.Foo");
++        "Bad type annotation. Unknown type ns.Foo");
+   }
+ 
+   public void testQualifiedNameInference9() throws Exception {
+@@ -5152,7 +5479,7 @@
+     Node n = parseAndTypeCheck(
+         "/** @constructor */function A() {}\n" +
+         "/** @constructor \n @extends A */ function B() {}\n" +
+-        "/** @return number */\n" +
++        "/** @return {number} */\n" +
+         "B.prototype.p = function() { return 1; }\n" +
+         "/** @param {A} a\n @param {B} b */\n" +
+         "function f(a, b) {\n" +
+@@ -5410,7 +5737,7 @@
+         "/** @type {some.unknown.type} */var f1;" +
+         "var f2 = opt_f || f1;" +
+         "f2();",
+-        "Parse error. Unknown type some.unknown.type");
++        "Bad type annotation. Unknown type some.unknown.type");
+   }
+ 
+   public void testCall4() throws Exception {
+@@ -5580,36 +5907,36 @@
+ 
+   public void testCast7() throws Exception {
+     testTypes("var x = /** @type {foo} */ (new Object());",
+-        "Parse error. Unknown type foo");
++        "Bad type annotation. Unknown type foo");
+   }
+ 
+   public void testCast8() throws Exception {
+     testTypes("function f() { return /** @type {foo} */ (new Object()); }",
+-        "Parse error. Unknown type foo");
++        "Bad type annotation. Unknown type foo");
+   }
+ 
+   public void testCast9() throws Exception {
+     testTypes("var foo = {};" +
+         "function f() { return /** @type {foo} */ (new Object()); }",
+-        "Parse error. Unknown type foo");
++        "Bad type annotation. Unknown type foo");
+   }
+ 
+   public void testCast10() throws Exception {
+     testTypes("var foo = function() {};" +
+         "function f() { return /** @type {foo} */ (new Object()); }",
+-        "Parse error. Unknown type foo");
++        "Bad type annotation. Unknown type foo");
+   }
+ 
+   public void testCast11() throws Exception {
+     testTypes("var goog = {}; goog.foo = {};" +
+         "function f() { return /** @type {goog.foo} */ (new Object()); }",
+-        "Parse error. Unknown type goog.foo");
++        "Bad type annotation. Unknown type goog.foo");
+   }
+ 
+   public void testCast12() throws Exception {
+     testTypes("var goog = {}; goog.foo = function() {};" +
+         "function f() { return /** @type {goog.foo} */ (new Object()); }",
+-        "Parse error. Unknown type goog.foo");
++        "Bad type annotation. Unknown type goog.foo");
+   }
+ 
+   public void testCast13() throws Exception {
+@@ -5619,7 +5946,7 @@
+         "goog.addDependency('zzz.js', ['goog.foo'], []);" +
+         "goog.foo = function() {};" +
+         "function f() { return /** @type {goog.foo} */ (new Object()); }",
+-        "Parse error. Unknown type goog.foo");
++        "Bad type annotation. Unknown type goog.foo");
+   }
+ 
+   public void testCast14() throws Exception {
+@@ -5650,6 +5977,18 @@
+   }
+ 
+   public void testCast16() throws Exception {
++    // A type cast should not invalidate the checks on the members
++    testTypes(
++        "for (var i = 0; i < 10; i++) {" +
++          "var x = /** @type {Object|number} */ (" +
++          "  {/** @type {string} */ foo: 3});" +
++        "}",
++        "assignment to property foo of (Object|null|number)\n" +
++        "found   : number\n" +
++        "required: string");
++  }
++
++  public void testCast17() throws Exception {
+     // Mostly verifying that rhino actually understands these JsDocs.
+     testTypes("/** @constructor */ function Foo() {} \n" +
+         "/** @type {Foo} */ var x = /** @type {Foo} */ ({})");
+@@ -5675,7 +6014,7 @@
+         "* @return {boolean|undefined}\n" +
+         "*/\n" +
+         "function g(b) { return b ? true : undefined; }\n" +
+-        "/* @return {T} */\n" +
++        "/** @return {T} */\n" +
+         "function h() {\n" +
+         "return /** @type {T} */ (f(/** @type {boolean} */ (g(true))));\n" +
+         "}");
+@@ -5901,7 +6240,7 @@
+   }
+ 
+   public void testUnknownConstructorInstanceType1() throws Exception {
+-    testTypes("/** @return Array */ function g(f) { return new f(); }");
++    testTypes("/** @return {Array} */ function g(f) { return new f(); }");
+   }
+ 
+   public void testUnknownConstructorInstanceType2() throws Exception {
+@@ -6260,14 +6599,15 @@
+         "/** @constructor */function Super() {};" +
+         "Super.prototype.foo = function() { return 3; };" +
+         "/** @constructor\n @extends {Super} */function Sub() {};" +
+-        "/** @override\n @return number */Sub.prototype.foo =\n" +
++        "/** @override\n @return {number} */Sub.prototype.foo =\n" +
+         "function() { return 1; };");
+   }
+ 
+   public void testInheritanceCheck9_2() throws Exception {
+     testTypes(
+         "/** @constructor */function Super() {};" +
+-        "/** @return number */Super.prototype.foo = function() { return 1; };" +
++        "/** @return {number} */" +
++        "Super.prototype.foo = function() { return 1; };" +
+         "/** @constructor\n @extends {Super} */function Sub() {};" +
+         "/** @override */Sub.prototype.foo =\n" +
+         "function() {};");
+@@ -6276,9 +6616,10 @@
+   public void testInheritanceCheck9_3() throws Exception {
+     testTypes(
+         "/** @constructor */function Super() {};" +
+-        "/** @return number */Super.prototype.foo = function() { return 1; };" +
++        "/** @return {number} */" +
++        "Super.prototype.foo = function() { return 1; };" +
+         "/** @constructor\n @extends {Super} */function Sub() {};" +
+-        "/** @override\n @return string */Sub.prototype.foo =\n" +
++        "/** @override\n @return {string} */Sub.prototype.foo =\n" +
+         "function() { return \"some string\" };",
+         "mismatch of the foo property type and the type of the property it " +
+         "overrides from superclass Super\n" +
+@@ -6292,14 +6633,15 @@
+         "Root.prototype.foo = function() { return 3; };" +
+         "/** @constructor\n @extends {Root} */function Super() {};" +
+         "/** @constructor\n @extends {Super} */function Sub() {};" +
+-        "/** @override\n @return number */Sub.prototype.foo =\n" +
++        "/** @override\n @return {number} */Sub.prototype.foo =\n" +
+         "function() { return 1; };");
+   }
+ 
+   public void testInheritanceCheck10_2() throws Exception {
+     testTypes(
+         "/** @constructor */function Root() {};" +
+-        "/** @return number */Root.prototype.foo = function() { return 1; };" +
++        "/** @return {number} */" +
++        "Root.prototype.foo = function() { return 1; };" +
+         "/** @constructor\n @extends {Root} */function Super() {};" +
+         "/** @constructor\n @extends {Super} */function Sub() {};" +
+         "/** @override */Sub.prototype.foo =\n" +
+@@ -6309,10 +6651,11 @@
+   public void testInheritanceCheck10_3() throws Exception {
+     testTypes(
+         "/** @constructor */function Root() {};" +
+-        "/** @return number */Root.prototype.foo = function() { return 1; };" +
++        "/** @return {number} */" +
++        "Root.prototype.foo = function() { return 1; };" +
+         "/** @constructor\n @extends {Root} */function Super() {};" +
+         "/** @constructor\n @extends {Super} */function Sub() {};" +
+-        "/** @override\n @return string */Sub.prototype.foo =\n" +
++        "/** @override\n @return {string} */Sub.prototype.foo =\n" +
+         "function() { return \"some string\" };",
+         "mismatch of the foo property type and the type of the property it " +
+         "overrides from superclass Root\n" +
+@@ -6351,7 +6694,7 @@
+         "var goog = {};\n" +
+         "/** @constructor\n @extends {goog.Missing} */function Sub() {};" +
+         "/** @override */Sub.prototype.foo = function() {};",
+-        "Parse error. Unknown type goog.Missing");
++        "Bad type annotation. Unknown type goog.Missing");
+   }
+ 
+   public void testInheritanceCheck14() throws Exception {
+@@ -6361,7 +6704,7 @@
+         "goog.Super = function() {};\n" +
+         "/** @constructor\n @extends {goog.Super} */function Sub() {};" +
+         "/** @override */Sub.prototype.foo = function() {};",
+-        "Parse error. Unknown type goog.Missing");
++        "Bad type annotation. Unknown type goog.Missing");
+   }
+ 
+   // TODO(user): We should support this way of declaring properties as it is
+@@ -6436,9 +6779,9 @@
+   public void testInterfaceInheritanceCheck5() throws Exception {
+     testTypes(
+         "/** @interface */function Super() {};" +
+-        "/** @return string */Super.prototype.foo = function() {};" +
++        "/** @return {string} */Super.prototype.foo = function() {};" +
+         "/** @constructor\n @implements {Super} */function Sub() {};" +
+-        "/** @override\n @return number */Sub.prototype.foo =\n" +
++        "/** @override\n @return {number} */Sub.prototype.foo =\n" +
+         "function() { return 1; };",
+         "mismatch of the foo property type and the type of the property it " +
+         "overrides from interface Super\n" +
+@@ -6449,10 +6792,10 @@
+   public void testInterfaceInheritanceCheck6() throws Exception {
+     testTypes(
+         "/** @interface */function Root() {};" +
+-        "/** @return string */Root.prototype.foo = function() {};" +
++        "/** @return {string} */Root.prototype.foo = function() {};" +
+         "/** @interface\n @extends {Root} */function Super() {};" +
+         "/** @constructor\n @implements {Super} */function Sub() {};" +
+-        "/** @override\n @return number */Sub.prototype.foo =\n" +
++        "/** @override\n @return {number} */Sub.prototype.foo =\n" +
+         "function() { return 1; };",
+         "mismatch of the foo property type and the type of the property it " +
+         "overrides from interface Root\n" +
+@@ -6478,7 +6821,7 @@
+         "/** @constructor\n @implements {Super} */function Sub() {};" +
+         "/** @override */Sub.prototype.foo = function() {};",
+         new String[] {
+-          "Parse error. Unknown type Super",
++          "Bad type annotation. Unknown type Super",
+           "property foo not defined on any superclass of Sub"
+         });
+   }
+@@ -6506,13 +6849,39 @@
+         "/** @return {number} */ F.prototype.foo = function() {return 3; };" +
+         "/** @constructor \n * @extends {F} \n * @implements {I} */ " +
+         "function G() {}" +
+-        "/** @return {number} \n * @override */ G.prototype.bar = G.prototype.foo;" +
++        "/** @return {number} \n * @override */ " +
++        "G.prototype.bar = G.prototype.foo;" +
+         "/** @return {string} */ function f() { return new G().bar(); }",
+         "inconsistent return type\n" +
+         "found   : number\n" +
+         "required: string");
+   }
+ 
++  public void testInterfaceInheritanceCheck12() throws Exception {
++    testTypes(
++        "/** @interface */ function I() {};\n" +
++        "/** @type {string} */ I.prototype.foobar;\n" +
++        "/** \n * @constructor \n * @implements {I} */\n" +
++        "function C() {\n" +
++        "/** \n * @type {number} */ this.foobar = 2;};\n" +
++        "/** @type {I} */ \n var test = new C(); alert(test.foobar);",
++        "mismatch of the foobar property type and the type of the property" +
++        " it overrides from interface I\n" +
++        "original: string\n" +
++        "override: number");
++  }
++
++  public void testInterfaceInheritanceCheck13() throws Exception {
++    testTypes(
++        "function abstractMethod() {};\n" +
++        "/** @interface */var base = function() {};\n" +
++        "/** @extends {base} \n @interface */ var Int = function() {}\n" +
++        "/** @type {{bar : !Function}} */ var x; \n" +
++        "/** @type {!Function} */ base.prototype.bar = abstractMethod; \n" +
++        "/** @type {Int} */ foo;\n" +
++        "foo.bar();");
++  }
++
+   public void testInterfacePropertyNotImplemented() throws Exception {
+     testTypes(
+         "/** @interface */function Int() {};" +
+@@ -6581,6 +6950,73 @@
+         "required: boolean");
+   }
+ 
++  public void testObjectLiteralDeclaration3() throws Exception {
++    testTypes(
++        "/** @param {{foo: !Function}} x */ function f(x) {}" +
++        "f({foo: function() {}});");
++  }
++
++  public void testObjectLiteralDeclaration4() throws Exception {
++    testClosureTypesMultipleWarnings(
++        "var x = {" +
++        "  /** @param {boolean} x */ abc: function(x) {}" +
++        "};" +
++        "/**\n" +
++        " * @param {string} x\n" +
++        " * @suppress {duplicate}\n" +
++        " */ x.abc = function(x) {};",
++        Lists.newArrayList(
++            "variable x.abc redefined with type " +
++            "function (string): undefined, " +
++            "original definition at  [testcode] :1 with type " +
++            "function (boolean): undefined",
++            "assignment to property abc of x\n" +
++            "found   : function (string): undefined\n" +
++            "required: function (boolean): undefined"));
++  }
++
++  public void testObjectLiteralDeclaration5() throws Exception {
++    testTypes(
++        "var x = {" +
++        "  /** @param {boolean} x */ abc: function(x) {}" +
++        "};" +
++        "/**\n" +
++        " * @param {boolean} x\n" +
++        " * @suppress {duplicate}\n" +
++        " */ x.abc = function(x) {};");
++  }
++
++  public void testObjectLiteralDeclaration6() throws Exception {
++    testTypes(
++        "var x = {};" +
++        "/**\n" +
++        " * @param {boolean} x\n" +
++        " * @suppress {duplicate}\n" +
++        " */ x.abc = function(x) {};" +
++        "x = {" +
++        "  /**\n" +
++        "   * @param {boolean} x\n" +
++        "   * @suppress {duplicate}\n" +
++        "   */" +
++        "  abc: function(x) {}" +
++        "};");
++  }
++
++  public void testObjectLiteralDeclaration7() throws Exception {
++    testTypes(
++        "var x = {};" +
++        "/**\n" +
++        " * @type {function(boolean): undefined}\n" +
++        " */ x.abc = function(x) {};" +
++        "x = {" +
++        "  /**\n" +
++        "   * @param {boolean} x\n" +
++        "   * @suppress {duplicate}\n" +
++        "   */" +
++        "  abc: function(x) {}" +
++        "};");
++  }
++
+   public void testCallDateConstructorAsFunction() throws Exception {
+     // ECMA-262 15.9.2: When Date is called as a function rather than as a
+     // constructor, it returns a string.
+@@ -6736,6 +7172,19 @@
+         "override: string");
+   }
+ 
++  public void testDataPropertyOnInterface4() throws Exception {
++    testTypes("/** @interface */ function T() {};\n" +
++        "/** @type {number} */T.prototype.x;\n" +
++        "/** @constructor \n" +
++        " *  @implements {T} \n" +
++        " */\n" +
++        "function C() { /** @type {string} */ \n this.x = 'foo'; }\n",
++        "mismatch of the x property type and the type of the property it " +
++        "overrides from interface T\n" +
++        "original: number\n" +
++        "override: string");
++  }
++
+   public void testWarnDataPropertyOnInterface3() throws Exception {
+     testTypes("/** @interface */ u.T = function () {};\n" +
+         "/** @type {number} */u.T.prototype.x = 1;",
+@@ -7128,12 +7577,10 @@
+   public void testNoForwardTypeDeclaration() throws Exception {
+     testTypes(
+         "/** @param {MyType} x */ function f(x) {}",
+-        "Parse error. Unknown type MyType");
++        "Bad type annotation. Unknown type MyType");
+   }
+ 
+   public void testNoForwardTypeDeclarationAndNoBraces() throws Exception {
+-    // To better support third-party code, we do not warn when
+-    // there are no braces around an unknown type name.
+     testTypes("/** @return The result. */ function f() {}");
+   }
+ 
+@@ -7234,68 +7681,6 @@
+         "required: (MyType|null|number)");
+   }
+ 
+-  public void testMalformedOldTypeDef() throws Exception {
+-    testTypes(
+-        "var goog = {}; goog.typedef = true;" +
+-        "goog.Bar = goog.typedef",
+-        "Typedef for goog.Bar does not have any type information");
+-  }
+-
+-  public void testMalformedOldTypeDef2() throws Exception {
+-    testTypes(
+-        "var goog = {}; goog.typedef = true;" +
+-        "/** @typedef {boolean} */ goog.Bar = goog.typedef",
+-        "Typedef for goog.Bar does not have any type information");
+-  }
+-
+-  public void testDuplicateOldTypeDef() throws Exception {
+-    testTypes(
+-        "var goog = {}; goog.typedef = true;" +
+-        "/** @constructor */ goog.Bar = function() {};" +
+-        "/** @type {number} */ goog.Bar = goog.typedef",
+-        "variable goog.Bar redefined with type number, " +
+-        "original definition at [testcode]:1 " +
+-        "with type function (new:goog.Bar): undefined");
+-  }
+-
+-  public void testOldTypeDef1() throws Exception {
+-    testTypes(
+-        "var goog = {}; goog.typedef = true;" +
+-        "/** @type {number} */ goog.Bar = goog.typedef;" +
+-        "/** @param {goog.Bar} x */ function f(x) {}" +
+-        "f(3);");
+-  }
+-
+-  public void testOldTypeDef2() throws Exception {
+-    testTypes(
+-        "var goog = {}; goog.typedef = true;" +
+-        "/** @type {number} */ goog.Bar = goog.typedef;" +
+-        "/** @param {goog.Bar} x */ function f(x) {}" +
+-        "f('3');",
+-        "actual parameter 1 of f does not match formal parameter\n" +
+-        "found   : string\n" +
+-        "required: number");
+-  }
+-
+-  public void testOldTypeDef3() throws Exception {
+-    testTypes(
+-        "var goog = {}; goog.typedef = true;" +
+-        "/** @type {number} */ var Bar = goog.typedef;" +
+-        "/** @param {Bar} x */ function f(x) {}" +
+-        "f('3');",
+-        "actual parameter 1 of f does not match formal parameter\n" +
+-        "found   : string\n" +
+-        "required: number");
+-  }
+-
+-  public void testCircularOldTypeDef() throws Exception {
+-    testTypes(
+-        "var goog = {}; goog.typedef = true;" +
+-        "/** @type {number|Array.<goog.Bar>} */ goog.Bar = goog.typedef;" +
+-        "/** @param {goog.Bar} x */ function f(x) {}" +
+-        "f(3); f([3]); f([[3]]);");
+-  }
+-
+   public void testDuplicateTypeDef() throws Exception {
+     testTypes(
+         "var goog = {};" +
+@@ -7758,12 +8143,33 @@
+         "function g(x) { return x.isVisible; }");
+   }
+ 
++  public void testReflectObject1() throws Exception {
++    testClosureTypes(
++        "var goog = {}; goog.reflect = {}; " +
++        "goog.reflect.object = function(x, y){};" +
++        "/** @constructor */ function A() {}" +
++        "goog.reflect.object(A, {x: 3});",
++        null);
++  }
++
++  public void testReflectObject2() throws Exception {
++    testClosureTypes(
++        "var goog = {}; goog.reflect = {}; " +
++        "goog.reflect.object = function(x, y){};" +
++        "/** @param {string} x */ function f(x) {}" +
++        "/** @constructor */ function A() {}" +
++        "goog.reflect.object(A, {x: f(1 + 1)});",
++        "actual parameter 1 of f does not match formal parameter\n" +
++        "found   : number\n" +
++        "required: string");
++  }
++
+   public void testLends1() throws Exception {
+     testTypes(
+         "function extend(x, y) {}" +
+         "/** @constructor */ function Foo() {}" +
+         "extend(Foo, /** @lends */ ({bar: 1}));",
+-        "Parse error. missing object name in @lends tag");
++        "Bad type annotation. missing object name in @lends tag");
+   }
+ 
+   public void testLends2() throws Exception {
+@@ -7813,7 +8219,7 @@
+         "function extend(x, y) {}" +
+         "/** @constructor */ function Foo() {}" +
+         "extend(Foo, /** @lends {Foo.prototype|Foo} */ ({bar: 1}));",
+-        "Parse error. expected closing }");
++        "Bad type annotation. expected closing }");
+   }
+ 
+   public void testLends8() throws Exception {
+@@ -7830,8 +8236,8 @@
+         "/** @constructor */ function Foo() {}" +
+         "extend(Foo, /** @lends {!Foo} */ ({bar: 1}));",
+         Lists.newArrayList(
+-            "Parse error. expected closing }",
+-            "Parse error. missing object name in @lends tag"));
++            "Bad type annotation. expected closing }",
++            "Bad type annotation. missing object name in @lends tag"));
+   }
+ 
+   public void testDeclaredNativeTypeEquality() throws Exception {
+@@ -8052,6 +8458,198 @@
+         "/** @type { {impossibleProperty} } */ var y = new ActiveXObject();");
+   }
+ 
++  public void testRecordType1() throws Exception {
++    testTypes(
++        "/** @param {{prop: number}} x */" +
++        "function f(x) {}" +
++        "f({});",
++        "actual parameter 1 of f does not match formal parameter\n" +
++        "found   : {prop: (number|undefined)}\n" +
++        "required: {prop: number}");
++  }
++
++  public void testRecordType2() throws Exception {
++    testTypes(
++        "/** @param {{prop: (number|undefined)}} x */" +
++        "function f(x) {}" +
++        "f({});");
++  }
++
++  public void testRecordType3() throws Exception {
++    testTypes(
++        "/** @param {{prop: number}} x */" +
++        "function f(x) {}" +
++        "f({prop: 'x'});",
++        "actual parameter 1 of f does not match formal parameter\n" +
++        "found   : {prop: (number|string)}\n" +
++        "required: {prop: number}");
++  }
++
++  public void testRecordType4() throws Exception {
++    // Notice that we do not do flow-based inference on the object type:
++    // We don't try to prove that x.prop may not be string until x
++    // gets passed to g.
++    testClosureTypesMultipleWarnings(
++        "/** @param {{prop: (number|undefined)}} x */" +
++        "function f(x) {}" +
++        "/** @param {{prop: (string|undefined)}} x */" +
++        "function g(x) {}" +
++        "var x = {}; f(x); g(x);",
++        Lists.newArrayList(
++            "actual parameter 1 of f does not match formal parameter\n" +
++            "found   : {prop: (number|string|undefined)}\n" +
++            "required: {prop: (number|undefined)}",
++            "actual parameter 1 of g does not match formal parameter\n" +
++            "found   : {prop: (number|string|undefined)}\n" +
++            "required: {prop: (string|undefined)}"));
++  }
++
++  public void testRecordType5() throws Exception {
++    testTypes(
++        "/** @param {{prop: (number|undefined)}} x */" +
++        "function f(x) {}" +
++        "/** @param {{otherProp: (string|undefined)}} x */" +
++        "function g(x) {}" +
++        "var x = {}; f(x); g(x);");
++  }
++
++  public void testDuplicateRecordFields1() throws Exception {
++    testTypes("/**"
++         + "* @param {{x:string, x:number}} a"
++         + "*/"
++         + "function f(a) {};",
++         "Parse error. Duplicate record field x");
++  }
++
++  public void testDuplicateRecordFields2() throws Exception {
++    testTypes("/**"
++         + "* @param {{name:string,number:x,number:y}} a"
++         + " */"
++         + "function f(a) {};",
++         new String[] {"Bad type annotation. Unknown type x",
++           "Parse error. Duplicate record field number",
++           "Bad type annotation. Unknown type y"});
++  }
++
++  public void testMultipleExtendsInterface1() throws Exception {
++    testTypes("/** @interface */ function base1() {}\n"
++        + "/** @interface */ function base2() {}\n"
++        + "/** @interface\n"
++        + "* @extends {base1}\n"
++        + "* @extends {base2}\n"
++        + "*/\n"
++        + "function derived() {}");
++  }
++
++  public void testMultipleExtendsInterface2() throws Exception {
++    testTypes(
++        "/** @interface */function Int0() {};" +
++        "/** @interface */function Int1() {};" +
++        "/** @desc description */Int0.prototype.foo = function() {};" +
++        "/** @interface \n @extends {Int0} \n @extends {Int1} */" +
++        "function Int2() {};" +
++        "/** @constructor\n @implements {Int2} */function Foo() {};",
++        "property foo on interface Int0 is not implemented by type Foo");
++  }
++
++  public void testMultipleExtendsInterface3() throws Exception {
++    testTypes(
++        "/** @interface */function Int0() {};" +
++        "/** @interface */function Int1() {};" +
++        "/** @desc description */Int1.prototype.foo = function() {};" +
++        "/** @interface \n @extends {Int0} \n @extends {Int1} */" +
++        "function Int2() {};" +
++        "/** @constructor\n @implements {Int2} */function Foo() {};",
++        "property foo on interface Int1 is not implemented by type Foo");
++  }
++
++  public void testMultipleExtendsInterface4() throws Exception {
++    testTypes(
++        "/** @interface */function Int0() {};" +
++        "/** @interface */function Int1() {};" +
++        "/** @interface \n @extends {Int0} \n @extends {Int1} \n" +
++        " @extends {number} */" +
++        "function Int2() {};" +
++        "/** @constructor\n @implements {Int2} */function Foo() {};",
++        "Int2 @extends non-object type number");
++  }
++
++  public void testMultipleExtendsInterface5() throws Exception {
++    testTypes(
++        "/** @interface */function Int0() {};" +
++        "/** @constructor */function Int1() {};" +
++        "/** @desc description @ return {string} x */" +
++        "/** @interface \n @extends {Int0} \n @extends {Int1} */" +
++        "function Int2() {};",
++        "Int2 cannot extend this type; a constructor can only extend " +
++        "objects and an interface can only extend interfaces");
++  }
++
++  public void testMultipleExtendsInterface6() throws Exception {
++    testTypes(
++        "/** @interface */function Super1() {};" +
++        "/** @interface */function Super2() {};" +
++        "/** @param {number} bar */Super2.prototype.foo = function(bar) {};" +
++        "/** @interface\n @extends {Super1}\n " +
++        "@extends {Super2} */function Sub() {};" +
++        "/** @override\n @param {string} bar */Sub.prototype.foo =\n" +
++        "function(bar) {};",
++        "mismatch of the foo property type and the type of the property it " +
++        "overrides from superclass Super2\n" +
++        "original: function (this:Super2, number): undefined\n" +
++        "override: function (this:Sub, string): undefined");
++  }
++
++  public void testMultipleExtendsInterfaceAssignment() throws Exception {
++    testTypes("/** @interface */var I1 = function() {};\n" +
++        "/** @interface */ var I2 = function() {}\n" +
++        "/** @interface\n@extends {I1}\n@extends {I2}*/" +
++        "var I3 = function() {};\n" +
++        "/** @constructor\n@implements {I3}*/var T = function() {};\n" +
++        "var t = new T();\n" +
++         "/** @type {I1} */var i1 = t;\n" +
++         "/** @type {I2} */var i2 = t;\n" +
++         "/** @type {I3} */var i3 = t;\n" +
++         "i1 = i3;\n" +
++         "i2 = i3;\n");
++  }
++
++  public void testMultipleExtendsInterfaceParamPass() throws Exception {
++    testTypes("/** @interface */var I1 = function() {};\n" +
++        "/** @interface */ var I2 = function() {}\n" +
++        "/** @interface\n@extends {I1}\n@extends {I2}*/" +
++        "var I3 = function() {};\n" +
++        "/** @constructor\n@implements {I3}*/var T = function() {};\n" +
++        "var t = new T();\n" +
++        "/** @param x I1 \n@param y I2\n@param z I3*/function foo(x,y,z){};\n" +
++        "foo(t,t,t)\n");
++  }
++
++  public void testBadMultipleExtendsClass() throws Exception {
++    testTypes("/** @constructor */ function base1() {}\n"
++        + "/** @constructor */ function base2() {}\n"
++        + "/** @constructor\n"
++        + "* @extends {base1}\n"
++        + "* @extends {base2}\n"
++        + "*/\n"
++        + "function derived() {}",
++        "Bad type annotation. type annotation incompatible "
++        + "with other annotations");
++  }
++
++  public void testInterfaceExtendsResolution() throws Exception {
++    testTypes("/** @interface \n @extends {A} */ function B() {};\n" +
++        "/** @constructor \n @implements {B} */ function C() {};\n" +
++        "/** @interface */ function A() {};");
++  }
++
++  public void testPropertyCanBeDefinedInObject() throws Exception {
++    testTypes("/** @interface */ function I() {};" +
++        "I.prototype.bar = function() {};" +
++        "/** @type {Object} */ var foo;" +
++        "foo.bar();");
++  }
++
+   private void checkObjectType(ObjectType objectType, String propertyName,
+         JSType expectedType) {
+     assertTrue("Expected " + objectType.getReferenceName() +
+@@ -8063,6 +8661,164 @@
+         expectedType, objectType.getPropertyType(propertyName));
+   }
+ 
++  public void testExtendedInterfacePropertiesCompatibility1() throws Exception {
++    testTypes(
++        "/** @interface */function Int0() {};" +
++        "/** @interface */function Int1() {};" +
++        "/** @type {number} */" +
++        "Int0.prototype.foo;" +
++        "/** @type {string} */" +
++        "Int1.prototype.foo;" +
++        "/** @interface \n @extends {Int0} \n @extends {Int1} */" +
++        "function Int2() {};",
++        "Interface Int2 has a property foo with incompatible types in its " +
++        "super interfaces Int0 and Int1");
++  }
++
++  public void testExtendedInterfacePropertiesCompatibility2() throws Exception {
++    testTypes(
++        "/** @interface */function Int0() {};" +
++        "/** @interface */function Int1() {};" +
++        "/** @interface */function Int2() {};" +
++        "/** @type {number} */" +
++        "Int0.prototype.foo;" +
++        "/** @type {string} */" +
++        "Int1.prototype.foo;" +
++        "/** @type {Object} */" +
++        "Int2.prototype.foo;" +
++        "/** @interface \n @extends {Int0} \n @extends {Int1} \n" +
++        "@extends {Int2}*/" +
++        "function Int3() {};",
++        new String[] {
++            "Interface Int3 has a property foo with incompatible types in " +
++            "its super interfaces Int0 and Int1",
++            "Interface Int3 has a property foo with incompatible types in " +
++            "its super interfaces Int1 and Int2"
++        });
++  }
++
++  public void testExtendedInterfacePropertiesCompatibility3() throws Exception {
++    testTypes(
++        "/** @interface */function Int0() {};" +
++        "/** @interface */function Int1() {};" +
++        "/** @type {number} */" +
++        "Int0.prototype.foo;" +
++        "/** @type {string} */" +
++        "Int1.prototype.foo;" +
++        "/** @interface \n @extends {Int1} */ function Int2() {};" +
++        "/** @interface \n @extends {Int0} \n @extends {Int2} */" +
++        "function Int3() {};",
++        "Interface Int3 has a property foo with incompatible types in its " +
++        "super interfaces Int0 and Int1");
++  }
++
++  public void testExtendedInterfacePropertiesCompatibility4() throws Exception {
++    testTypes(
++        "/** @interface */function Int0() {};" +
++        "/** @interface \n @extends {Int0} */ function Int1() {};" +
++        "/** @type {number} */" +
++        "Int0.prototype.foo;" +
++        "/** @interface */function Int2() {};" +
++        "/** @interface \n @extends {Int2} */ function Int3() {};" +
++        "/** @type {string} */" +
++        "Int2.prototype.foo;" +
++        "/** @interface \n @extends {Int1} \n @extends {Int3} */" +
++        "function Int4() {};",
++        "Interface Int4 has a property foo with incompatible types in its " +
++        "super interfaces Int0 and Int2");
++  }
++
++  public void testExtendedInterfacePropertiesCompatibility5() throws Exception {
++    testTypes(
++        "/** @interface */function Int0() {};" +
++        "/** @interface */function Int1() {};" +
++        "/** @type {number} */" +
++        "Int0.prototype.foo;" +
++        "/** @type {string} */" +
++        "Int1.prototype.foo;" +
++        "/** @interface \n @extends {Int1} */ function Int2() {};" +
++        "/** @interface \n @extends {Int0} \n @extends {Int2} */" +
++        "function Int3() {};" +
++        "/** @interface */function Int4() {};" +
++        "/** @type {number} */" +
++        "Int4.prototype.foo;" +
++        "/** @interface \n @extends {Int3} \n @extends {Int4} */" +
++        "function Int5() {};",
++        new String[] {
++            "Interface Int3 has a property foo with incompatible types in its" +
++            " super interfaces Int0 and Int1",
++            "Interface Int5 has a property foo with incompatible types in its" +
++            " super interfaces Int1 and Int4"});
++  }
++
++  public void testExtendedInterfacePropertiesCompatibility6() throws Exception {
++    testTypes(
++        "/** @interface */function Int0() {};" +
++        "/** @interface */function Int1() {};" +
++        "/** @type {number} */" +
++        "Int0.prototype.foo;" +
++        "/** @type {string} */" +
++        "Int1.prototype.foo;" +
++        "/** @interface \n @extends {Int1} */ function Int2() {};" +
++        "/** @interface \n @extends {Int0} \n @extends {Int2} */" +
++        "function Int3() {};" +
++        "/** @interface */function Int4() {};" +
++        "/** @type {string} */" +
++        "Int4.prototype.foo;" +
++        "/** @interface \n @extends {Int3} \n @extends {Int4} */" +
++        "function Int5() {};",
++        "Interface Int3 has a property foo with incompatible types in its" +
++        " super interfaces Int0 and Int1");
++  }
++
++  public void testExtendedInterfacePropertiesCompatibility7() throws Exception {
++    testTypes(
++        "/** @interface */function Int0() {};" +
++        "/** @interface */function Int1() {};" +
++        "/** @type {number} */" +
++        "Int0.prototype.foo;" +
++        "/** @type {string} */" +
++        "Int1.prototype.foo;" +
++        "/** @interface \n @extends {Int1} */ function Int2() {};" +
++        "/** @interface \n @extends {Int0} \n @extends {Int2} */" +
++        "function Int3() {};" +
++        "/** @interface */function Int4() {};" +
++        "/** @type {Object} */" +
++        "Int4.prototype.foo;" +
++        "/** @interface \n @extends {Int3} \n @extends {Int4} */" +
++        "function Int5() {};",
++        new String[] {
++            "Interface Int3 has a property foo with incompatible types in its" +
++            " super interfaces Int0 and Int1",
++            "Interface Int5 has a property foo with incompatible types in its" +
++            " super interfaces Int1 and Int4"});
++  }
++
++  public void testExtendedInterfacePropertiesCompatibility8() throws Exception {
++    testTypes(
++        "/** @interface */function Int0() {};" +
++        "/** @interface */function Int1() {};" +
++        "/** @type {number} */" +
++        "Int0.prototype.foo;" +
++        "/** @type {string} */" +
++        "Int1.prototype.bar;" +
++        "/** @interface \n @extends {Int1} */ function Int2() {};" +
++        "/** @interface \n @extends {Int0} \n @extends {Int2} */" +
++        "function Int3() {};" +
++        "/** @interface */function Int4() {};" +
++        "/** @type {Object} */" +
++        "Int4.prototype.foo;" +
++        "/** @type {Null} */" +
++        "Int4.prototype.bar;" +
++        "/** @interface \n @extends {Int3} \n @extends {Int4} */" +
++        "function Int5() {};",
++        new String[] {
++            "Interface Int5 has a property bar with incompatible types in its" +
++            " super interfaces Int1 and Int4",
++            "Interface Int5 has a property foo with incompatible types in its" +
++            " super interfaces Int0 and Int4"});
++  }
++
+   private void testTypes(String js) throws Exception {
+     testTypes(js, (String) null);
+   }
+@@ -8114,7 +8870,10 @@
+           Joiner.on(", ").join(compiler.getWarnings()),
+           0, compiler.getWarningCount());
+     } else {
+-      assertEquals(descriptions.size(), compiler.getWarningCount());
++      assertEquals(
++          "unexpected warning(s) : " +
++          Joiner.on(", ").join(compiler.getWarnings()),
++          descriptions.size(), compiler.getWarningCount());
+       for (int i = 0; i < descriptions.size(); i++) {
+         assertEquals(descriptions.get(i),
+             compiler.getWarnings()[i].description);

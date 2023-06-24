@@ -1,0 +1,300 @@
+===
+insert-tree
+---
+ImportDeclaration [753,792]
+    QualifiedName: com.google.common.collect.Lists [760,791]
+to
+CompilationUnit [0,72249]
+at 3
+===
+insert-tree
+---
+ImportDeclaration [1438,1460]
+    QualifiedName: java.util.List [1445,1459]
+to
+CompilationUnit [0,72249]
+at 18
+===
+insert-tree
+---
+MethodDeclaration [34879,35730]
+    Modifier: private [34879,34886]
+    PrimitiveType: void [34887,34891]
+    SimpleName: checkExtendedTypes [34892,34910]
+    SingleVariableDeclaration [34911,34947]
+        ParameterizedType [34911,34933]
+            SimpleType [34911,34915]
+                SimpleName: List [34911,34915]
+            SimpleType [34916,34932]
+                SimpleName: ExtendedTypeInfo [34916,34932]
+        SimpleName: extendedTypes [34934,34947]
+    Block [34949,35730]
+        EnhancedForStatement [34955,35726]
+            SingleVariableDeclaration [34960,34985]
+                SimpleType [34960,34976]
+                    SimpleName: ExtendedTypeInfo [34960,34976]
+                SimpleName: typeInfo [34977,34985]
+            SimpleName: extendedTypes [34988,35001]
+            Block [35003,35726]
+                IfStatement [35074,35315]
+                    MethodInvocation [35078,35112]
+                        METHOD_INVOCATION_RECEIVER [35078,35090]
+                            SimpleName: jsdocBuilder [35078,35090]
+                        SimpleName: isInterfaceRecorded [35091,35110]
+                    Block [35114,35315]
+                        IfStatement [35124,35307]
+                            PrefixExpression [35128,35180]
+                                PREFIX_EXPRESSION_OPERATOR: ! [35128,35129]
+                                MethodInvocation [35129,35180]
+                                    METHOD_INVOCATION_RECEIVER [35129,35141]
+                                        SimpleName: jsdocBuilder [35129,35141]
+                                    SimpleName: recordExtendedInterface [35142,35165]
+                                    METHOD_INVOCATION_ARGUMENTS [35166,35179]
+                                        QualifiedName: typeInfo.type [35166,35179]
+                            Block [35182,35307]
+                                ExpressionStatement [35194,35297]
+                                    MethodInvocation [35194,35296]
+                                        METHOD_INVOCATION_RECEIVER [35194,35200]
+                                            SimpleName: parser [35194,35200]
+                                        SimpleName: addParserWarning [35201,35217]
+                                        METHOD_INVOCATION_ARGUMENTS [35218,35295]
+                                            StringLiteral: "msg.jsdoc.extends.duplicate" [35218,35247]
+                                            QualifiedName: typeInfo.lineno [35263,35278]
+                                            QualifiedName: typeInfo.charno [35280,35295]
+                IfStatement [35509,35720]
+                    InfixExpression [35513,35605]
+                        PrefixExpression [35513,35556]
+                            PREFIX_EXPRESSION_OPERATOR: ! [35513,35514]
+                            MethodInvocation [35514,35556]
+                                METHOD_INVOCATION_RECEIVER [35514,35526]
+                                    SimpleName: jsdocBuilder [35514,35526]
+                                SimpleName: recordBaseType [35527,35541]
+                                METHOD_INVOCATION_ARGUMENTS [35542,35555]
+                                    QualifiedName: typeInfo.type [35542,35555]
+                        INFIX_EXPRESSION_OPERATOR: && [35557,35559]
+                        PrefixExpression [35570,35605]
+                            PREFIX_EXPRESSION_OPERATOR: ! [35570,35571]
+                            MethodInvocation [35571,35605]
+                                METHOD_INVOCATION_RECEIVER [35571,35583]
+                                    SimpleName: jsdocBuilder [35571,35583]
+                                SimpleName: isInterfaceRecorded [35584,35603]
+                    Block [35607,35720]
+                        ExpressionStatement [35617,35712]
+                            MethodInvocation [35617,35711]
+                                METHOD_INVOCATION_RECEIVER [35617,35623]
+                                    SimpleName: parser [35617,35623]
+                                SimpleName: addTypeWarning [35624,35638]
+                                METHOD_INVOCATION_ARGUMENTS [35639,35710]
+                                    StringLiteral: "msg.jsdoc.incompat.type" [35639,35664]
+                                    QualifiedName: typeInfo.lineno [35678,35693]
+                                    QualifiedName: typeInfo.charno [35695,35710]
+to
+TypeDeclaration [1399,72248]
+at 24
+===
+insert-tree
+---
+TypeDeclaration [44368,44704]
+    Javadoc [44368,44417]
+        TagElement [44377,44411]
+            TextElement: Tuple for recording extended types [44377,44411]
+    Modifier: private [44420,44427]
+    Modifier: static [44428,44434]
+    TYPE_DECLARATION_KIND: class [44435,44440]
+    SimpleName: ExtendedTypeInfo [44441,44457]
+    FieldDeclaration [44464,44492]
+        Modifier: final [44464,44469]
+        SimpleType [44470,44486]
+            SimpleName: JSTypeExpression [44470,44486]
+        VariableDeclarationFragment [44487,44491]
+            SimpleName: type [44487,44491]
+    FieldDeclaration [44497,44514]
+        Modifier: final [44497,44502]
+        PrimitiveType: int [44503,44506]
+        VariableDeclarationFragment [44507,44513]
+            SimpleName: lineno [44507,44513]
+    FieldDeclaration [44519,44536]
+        Modifier: final [44519,44524]
+        PrimitiveType: int [44525,44528]
+        VariableDeclarationFragment [44529,44535]
+            SimpleName: charno [44529,44535]
+    MethodDeclaration [44542,44700]
+        Modifier: public [44542,44548]
+        SimpleName: ExtendedTypeInfo [44549,44565]
+        SingleVariableDeclaration [44566,44587]
+            SimpleType [44566,44582]
+                SimpleName: JSTypeExpression [44566,44582]
+            SimpleName: type [44583,44587]
+        SingleVariableDeclaration [44589,44599]
+            PrimitiveType: int [44589,44592]
+            SimpleName: lineno [44593,44599]
+        SingleVariableDeclaration [44601,44611]
+            PrimitiveType: int [44601,44604]
+            SimpleName: charno [44605,44611]
+        Block [44613,44700]
+            ExpressionStatement [44621,44638]
+                Assignment [44621,44637]
+                    FieldAccess [44621,44630]
+                        ThisExpression [44621,44625]
+                        SimpleName: type [44626,44630]
+                    ASSIGNMENT_OPERATOR: = [44631,44632]
+                    SimpleName: type [44633,44637]
+            ExpressionStatement [44645,44666]
+                Assignment [44645,44665]
+                    FieldAccess [44645,44656]
+                        ThisExpression [44645,44649]
+                        SimpleName: lineno [44650,44656]
+                    ASSIGNMENT_OPERATOR: = [44657,44658]
+                    SimpleName: lineno [44659,44665]
+            ExpressionStatement [44673,44694]
+                Assignment [44673,44693]
+                    FieldAccess [44673,44684]
+                        ThisExpression [44673,44677]
+                        SimpleName: charno [44678,44684]
+                    ASSIGNMENT_OPERATOR: = [44685,44686]
+                    SimpleName: charno [44687,44693]
+to
+TypeDeclaration [1399,72248]
+at 36
+===
+insert-tree
+---
+VariableDeclarationStatement [6063,6123]
+    ParameterizedType [6063,6085]
+        SimpleType [6063,6067]
+            SimpleName: List [6063,6067]
+        SimpleType [6068,6084]
+            SimpleName: ExtendedTypeInfo [6068,6084]
+    VariableDeclarationFragment [6086,6122]
+        SimpleName: extendedTypes [6086,6099]
+        MethodInvocation [6102,6122]
+            METHOD_INVOCATION_RECEIVER [6102,6107]
+                SimpleName: Lists [6102,6107]
+            SimpleName: newArrayList [6108,6120]
+to
+Block [5768,34665]
+at 6
+===
+insert-tree
+---
+ExpressionStatement [33992,34026]
+    MethodInvocation [33992,34025]
+        SimpleName: checkExtendedTypes [33992,34010]
+        METHOD_INVOCATION_ARGUMENTS [34011,34024]
+            SimpleName: extendedTypes [34011,34024]
+to
+SwitchStatement [6608,34612]
+at 6
+===
+insert-tree
+---
+ExpressionStatement [34275,34309]
+    MethodInvocation [34275,34308]
+        SimpleName: checkExtendedTypes [34275,34293]
+        METHOD_INVOCATION_ARGUMENTS [34294,34307]
+            SimpleName: extendedTypes [34294,34307]
+to
+SwitchStatement [6608,34612]
+at 11
+===
+insert-tree
+---
+ExpressionStatement [15344,15457]
+    MethodInvocation [15344,15456]
+        METHOD_INVOCATION_RECEIVER [15344,15357]
+            SimpleName: extendedTypes [15344,15357]
+        SimpleName: add [15358,15361]
+        METHOD_INVOCATION_ARGUMENTS [15362,15455]
+            ClassInstanceCreation [15362,15455]
+                SimpleType [15366,15382]
+                    SimpleName: ExtendedTypeInfo [15366,15382]
+                SimpleName: type [15410,15414]
+                MethodInvocation [15416,15434]
+                    METHOD_INVOCATION_RECEIVER [15416,15422]
+                        SimpleName: stream [15416,15422]
+                    SimpleName: getLineno [15423,15432]
+                MethodInvocation [15436,15454]
+                    METHOD_INVOCATION_RECEIVER [15436,15442]
+                        SimpleName: stream [15436,15442]
+                    SimpleName: getCharno [15443,15452]
+to
+Block [15128,15358]
+at 0
+===
+move-tree
+---
+ExpressionStatement [15218,15312]
+    MethodInvocation [15218,15311]
+        METHOD_INVOCATION_RECEIVER [15218,15224]
+            SimpleName: parser [15218,15224]
+        SimpleName: addTypeWarning [15225,15239]
+        METHOD_INVOCATION_ARGUMENTS [15269,15310]
+            StringLiteral: "msg.jsdoc.incompat.type" [15269,15294]
+            SimpleName: lineno [15296,15302]
+            SimpleName: charno [15304,15310]
+to
+Block [32786,32936]
+at 0
+===
+move-tree
+---
+ExpressionStatement [32814,32910]
+    MethodInvocation [32814,32909]
+        METHOD_INVOCATION_RECEIVER [32814,32820]
+            SimpleName: parser [32814,32820]
+        SimpleName: addTypeWarning [32821,32835]
+        METHOD_INVOCATION_ARGUMENTS [32867,32908]
+            StringLiteral: "msg.jsdoc.incompat.type" [32867,32892]
+            SimpleName: lineno [32894,32900]
+            SimpleName: charno [32902,32908]
+to
+Block [33062,33212]
+at 0
+===
+move-tree
+---
+ExpressionStatement [33090,33186]
+    MethodInvocation [33090,33185]
+        METHOD_INVOCATION_RECEIVER [33090,33096]
+            SimpleName: parser [33090,33096]
+        SimpleName: addTypeWarning [33097,33111]
+        METHOD_INVOCATION_ARGUMENTS [33143,33184]
+            StringLiteral: "msg.jsdoc.incompat.type" [33143,33168]
+            SimpleName: lineno [33170,33176]
+            SimpleName: charno [33178,33184]
+to
+Block [33344,33494]
+at 0
+===
+delete-tree
+---
+PrefixExpression [15156,15190]
+    PREFIX_EXPRESSION_OPERATOR: ! [15156,15157]
+    MethodInvocation [15157,15190]
+        METHOD_INVOCATION_RECEIVER [15157,15169]
+            SimpleName: jsdocBuilder [15157,15169]
+        SimpleName: recordBaseType [15170,15184]
+        METHOD_INVOCATION_ARGUMENTS [15185,15189]
+            SimpleName: type [15185,15189]
+===
+delete-node
+---
+Block [15192,15336]
+===
+===
+delete-node
+---
+IfStatement [15152,15336]
+===
+===
+delete-tree
+---
+ExpressionStatement [33372,33468]
+    MethodInvocation [33372,33467]
+        METHOD_INVOCATION_RECEIVER [33372,33378]
+            SimpleName: parser [33372,33378]
+        SimpleName: addTypeWarning [33379,33393]
+        METHOD_INVOCATION_ARGUMENTS [33425,33466]
+            StringLiteral: "msg.jsdoc.incompat.type" [33425,33450]
+            SimpleName: lineno [33452,33458]
+            SimpleName: charno [33460,33466]

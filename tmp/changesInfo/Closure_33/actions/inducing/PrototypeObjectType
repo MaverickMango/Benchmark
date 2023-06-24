@@ -1,0 +1,83 @@
+===
+insert-node
+---
+VariableDeclarationStatement [7613,7686]
+to
+Block [7541,7710]
+at 1
+===
+insert-tree
+---
+VariableDeclarationStatement [7691,7731]
+    SimpleType [7691,7699]
+        SimpleName: Property [7691,7699]
+    VariableDeclarationFragment [7700,7730]
+        SimpleName: oldProp [7700,7707]
+        MethodInvocation [7710,7730]
+            METHOD_INVOCATION_RECEIVER [7710,7720]
+                SimpleName: properties [7710,7720]
+            SimpleName: get [7721,7724]
+            METHOD_INVOCATION_ARGUMENTS [7725,7729]
+                SimpleName: name [7725,7729]
+to
+Block [7541,7710]
+at 2
+===
+insert-tree
+---
+IfStatement [7736,7906]
+    InfixExpression [7740,7755]
+        SimpleName: oldProp [7740,7747]
+        INFIX_EXPRESSION_OPERATOR: != [7748,7750]
+        NullLiteral [7751,7755]
+    Block [7757,7906]
+        ExpressionStatement [7866,7900]
+            Assignment [7866,7899]
+                QualifiedName: newProp.docInfo [7866,7881]
+                ASSIGNMENT_OPERATOR: = [7882,7883]
+                QualifiedName: oldProp.docInfo [7884,7899]
+to
+Block [7541,7710]
+at 3
+===
+insert-tree
+---
+SimpleType [7613,7621]
+    SimpleName: Property [7613,7621]
+to
+VariableDeclarationStatement [7613,7686]
+at 0
+===
+insert-node
+---
+VariableDeclarationFragment [7622,7685]
+to
+VariableDeclarationStatement [7613,7686]
+at 1
+===
+insert-node
+---
+SimpleName: newProp [7622,7629]
+to
+VariableDeclarationFragment [7622,7685]
+at 0
+===
+move-tree
+---
+ClassInstanceCreation [7634,7687]
+    SimpleType [7638,7646]
+        SimpleName: Property [7638,7646]
+    SimpleName: type [7647,7651]
+    SimpleName: inferred [7653,7661]
+    SimpleName: inExterns [7663,7672]
+    SimpleName: propertyNode [7674,7686]
+to
+VariableDeclarationFragment [7622,7685]
+at 1
+===
+insert-node
+---
+SimpleName: newProp [7932,7939]
+to
+METHOD_INVOCATION_ARGUMENTS [7628,7687]
+at 1

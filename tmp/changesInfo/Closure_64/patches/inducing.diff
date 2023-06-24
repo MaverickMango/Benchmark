@@ -1,0 +1,619 @@
+diff --git a/src/com/google/javascript/jscomp/AbstractCompiler.java b/src/com/google/javascript/jscomp/AbstractCompiler.java
+index f9a2e5d..c941be5 100644
+--- a/src/com/google/javascript/jscomp/AbstractCompiler.java
++++ b/src/com/google/javascript/jscomp/AbstractCompiler.java
+@@ -17,12 +17,16 @@
+ package com.google.javascript.jscomp;
+ 
+ import com.google.common.base.Supplier;
++import com.google.javascript.jscomp.ReferenceCollectingCallback.ReferenceCollection;
++import com.google.javascript.jscomp.ReferenceCollectingCallback.ReferenceMap;
++import com.google.javascript.jscomp.Scope.Var;
+ import com.google.javascript.jscomp.mozilla.rhino.ErrorReporter;
+ import com.google.javascript.jscomp.parsing.Config;
+ import com.google.javascript.rhino.Node;
+ import com.google.javascript.rhino.jstype.JSTypeRegistry;
+ 
+ import java.util.List;
++import java.util.Map;
+ 
+ /**
+  * An abstract compiler, to help remove the circular dependency of
+@@ -295,4 +299,29 @@
+    * Returns the root node of the AST, which includes both externs and source.
+    */
+   abstract Node getRoot();
++
++  // TODO(bashir) It would be good to extract a single dumb data object with
++  // only getters and setters that keeps all global information we keep for a
++  // compiler instance. Then move some of the functions of this class there.
++
++  /**
++   * Updates the list of references for variables in global scope.
++   *
++   * @param refMapPatch Maps each variable to all of its references; may contain
++   *     references collected from the whole AST or only a SCRIPT sub-tree.
++   * @param collectionRoot The root of sub-tree in which reference collection
++   *     has been done. This should either be a SCRIPT node (if collection is
++   *     done on a single file) or it is assumed that collection is on full AST.
++   */
++  abstract void updateGlobalVarReferences(Map<Var, ReferenceCollection>
++      refMapPatch, Node collectionRoot);
++
++  /**
++   * This can be used to get the list of all references to all global variables
++   * based on all previous calls to {@code updateGlobalVarReferences}.
++   *
++   * @return The reference collection map associated to global scope variable.
++   */
++  abstract ReferenceMap getGlobalVarReferences();
++
+ }
+diff --git a/src/com/google/javascript/jscomp/Compiler.java b/src/com/google/javascript/jscomp/Compiler.java
+index 58f487b..5f21761 100644
+--- a/src/com/google/javascript/jscomp/Compiler.java
++++ b/src/com/google/javascript/jscomp/Compiler.java
+@@ -24,6 +24,9 @@
+ import com.google.javascript.jscomp.CompilerOptions.DevMode;
+ import com.google.javascript.jscomp.CompilerOptions.LanguageMode;
+ import com.google.javascript.jscomp.CompilerOptions.TracerMode;
++import com.google.javascript.jscomp.ReferenceCollectingCallback.ReferenceCollection;
++import com.google.javascript.jscomp.ReferenceCollectingCallback.ReferenceMap;
++import com.google.javascript.jscomp.Scope.Var;
+ import com.google.javascript.jscomp.deps.SortedDependencies.CircularDependencyException;
+ import com.google.javascript.jscomp.deps.SortedDependencies.MissingProvideException;
+ import com.google.javascript.jscomp.mozilla.rhino.ErrorReporter;
+@@ -170,6 +173,8 @@
+ 
+   private final PrintStream outStream;
+ 
++  private GlobalVarReferenceMap globalRefMap = null;
++
+   /**
+    * Creates a Compiler that reports errors and warnings to its logger.
+    */
+@@ -1983,4 +1988,21 @@
+   void setHasRegExpGlobalReferences(boolean references) {
+     hasRegExpGlobalReferences = references;
+   }
++
++  @Override
++  void updateGlobalVarReferences(Map<Var, ReferenceCollection> refMapPatch,
++      Node collectionRoot) {
++    Preconditions.checkState(collectionRoot.getType() == Token.SCRIPT
++        || collectionRoot.getType() == Token.BLOCK);
++    if (globalRefMap == null) {
++      globalRefMap = new GlobalVarReferenceMap(getInputsInOrder());
++    }
++    globalRefMap.updateGlobalVarReferences(refMapPatch, collectionRoot);
++  }
++
++  @Override
++  ReferenceMap getGlobalVarReferences() {
++    return globalRefMap;
++  }
++
+ }
+diff --git a/src/com/google/javascript/jscomp/DefaultPassConfig.java b/src/com/google/javascript/jscomp/DefaultPassConfig.java
+index 8d687ea..e7705f1 100644
+--- a/src/com/google/javascript/jscomp/DefaultPassConfig.java
++++ b/src/com/google/javascript/jscomp/DefaultPassConfig.java
+@@ -991,10 +991,10 @@
+   };
+ 
+   /** Checks that references to variables look reasonable. */
+-  private final PassFactory checkVariableReferences =
+-      new PassFactory("checkVariableReferences", true) {
++  private final HotSwapPassFactory checkVariableReferences =
++      new HotSwapPassFactory("checkVariableReferences", true) {
+     @Override
+-    protected CompilerPass createInternal(AbstractCompiler compiler) {
++    protected HotSwapCompilerPass createInternal(AbstractCompiler compiler) {
+       return new VariableReferenceCheck(
+           compiler, options.aggressiveVarCheck);
+     }
+diff --git a/src/com/google/javascript/jscomp/GlobalVarReferenceMap.java b/src/com/google/javascript/jscomp/GlobalVarReferenceMap.java
+new file mode 100644
+index 0000000..fb39dff
+--- /dev/null
++++ b/src/com/google/javascript/jscomp/GlobalVarReferenceMap.java
+@@ -0,0 +1,198 @@
++/*
++ * Copyright 2011 The Closure Compiler Authors.
++ *
++ * Licensed under the Apache License, Version 2.0 (the "License");
++ * you may not use this file except in compliance with the License.
++ * You may obtain a copy of the License at
++ *
++ *     http://www.apache.org/licenses/LICENSE-2.0
++ *
++ * Unless required by applicable law or agreed to in writing, software
++ * distributed under the License is distributed on an "AS IS" BASIS,
++ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
++ * See the License for the specific language governing permissions and
++ * limitations under the License.
++ */
++
++package com.google.javascript.jscomp;
++
++import com.google.common.base.Preconditions;
++import com.google.common.collect.Lists;
++import com.google.common.collect.Maps;
++import com.google.javascript.jscomp.ReferenceCollectingCallback.Reference;
++import com.google.javascript.jscomp.ReferenceCollectingCallback.ReferenceCollection;
++import com.google.javascript.jscomp.ReferenceCollectingCallback.ReferenceMap;
++import com.google.javascript.jscomp.Scope.Var;
++import com.google.javascript.rhino.Node;
++import com.google.javascript.rhino.Token;
++
++import java.util.List;
++import java.util.Map;
++import java.util.Map.Entry;
++
++/**
++ * An implementation for {@code ReferenceMap} that is specific to global scope
++ * and can be used in different passes. In other words instead of relying on
++ * Var object it relies on the name of the variable. It also supports hot-swap
++ * update of reference map for a specific script.
++ *
++ * @see ReferenceCollectingCallback#exitScope(NodeTraversal)
++ *
++ * @author bashir@google.com (Bashir Sadjad)
++ */
++class GlobalVarReferenceMap implements ReferenceMap {
++
++  private Map<String, ReferenceCollection> refMap = null;
++
++  private final Map<String, Integer> inputOrder;
++
++  /**
++   * @param inputs The ordered list of all inputs for the compiler.
++   */
++  GlobalVarReferenceMap(List<CompilerInput> inputs) {
++    inputOrder = Maps.newHashMap();
++    int ind = 0;
++    for (CompilerInput input : inputs) {
++      inputOrder.put(input.getName(), ind);
++      ind++;
++    }
++  }
++
++  @Override
++  public ReferenceCollection getReferences(Var var) {
++    if (!var.isGlobal()) {
++      return null;
++    }
++    return refMap.get(var.getName());
++  }
++
++  /**
++   * Resets global var reference map with the new provide map.
++   *
++   * @param globalRefMap The reference map result of a
++   *     {@link ReferenceCollectingCallback} pass collected from the whole AST.
++   */
++  private void resetGlobalVarReferences(
++      Map<Var, ReferenceCollection> globalRefMap) {
++    refMap = Maps.newHashMap();
++    for (Entry<Var, ReferenceCollection> entry : globalRefMap.entrySet()) {
++      Var var = entry.getKey();
++      if (var.isGlobal()) {
++        refMap.put(var.getName(), entry.getValue());
++      }
++    }
++  }
++
++  /**
++   * Updates the internal reference map based on the provided parameters. If
++   * {@code scriptRoot} is not SCRIPT, it basically replaces the internal map
++   * with the new one, otherwise it replaces all the information associated to
++   * the given script.
++   *
++   * @param refMapPatch The reference map result of a
++   *     {@link ReferenceCollectingCallback} pass which might be collected from
++   *     the whole AST or just a sub-tree associated to a SCRIPT node.
++   * @param root AST sub-tree root on which reference collection was done.
++   */
++  void updateGlobalVarReferences(Map<Var, ReferenceCollection>
++      refMapPatch, Node root) {
++    if (refMap == null || root.getType() != Token.SCRIPT) {
++      resetGlobalVarReferences(refMapPatch);
++      return;
++    }
++    String sourceName = NodeUtil.getSourceName(root);
++    Preconditions.checkNotNull(sourceName);
++    // Note there are two assumptions here (i) the order of compiler inputs
++    // has not changed and (ii) all references are in the order they appear
++    // in AST (this is enforced in ReferenceCollectionCallback).
++    removeScriptReferences(sourceName);
++    for (Entry<Var, ReferenceCollection> entry : refMapPatch.entrySet()) {
++      Var var = entry.getKey();
++      if (var.isGlobal()) {
++        replaceReferences(var.getName(), sourceName, entry.getValue());
++      }
++    }
++  }
++
++  private void removeScriptReferences(String sourceName) {
++    // TODO(bashir): If this is too slow it is not too difficult to make it
++    // faster with keeping an index for variables accessed in sourceName.
++    for (ReferenceCollection collection : refMap.values()) {
++      if (collection == null) {
++        continue;
++      }
++      List<Reference> oldRefs = collection.references;
++      SourceRefRange range = findSourceRefRange(oldRefs, sourceName);
++      List<Reference> newRefs = Lists.newArrayList(range.refsBefore());
++      newRefs.addAll(range.refsAfter());
++      collection.references = newRefs;
++    }
++  }
++
++  private void replaceReferences(String varName, String sourceName,
++      ReferenceCollection newSourceCollection) {
++    ReferenceCollection combined = new ReferenceCollection();
++    List<Reference> combinedRefs = combined.references;
++    ReferenceCollection oldCollection = refMap.get(varName);
++    refMap.put(varName, combined);
++    if (oldCollection == null) {
++      combinedRefs.addAll(newSourceCollection.references);
++      return;
++    }
++    // otherwise replace previous references that are from sourceName
++    SourceRefRange range = findSourceRefRange(oldCollection.references,
++        sourceName);
++    combinedRefs.addAll(range.refsBefore());
++    combinedRefs.addAll(newSourceCollection.references);
++    combinedRefs.addAll(range.refsAfter());
++  }
++
++  /**
++   * Finds the range of references associated to {@code sourceName}. Note that
++   * even if there is no sourceName references the returned information can be
++   * used to decide where to insert new sourceName refs.
++   */
++  private SourceRefRange findSourceRefRange(List<Reference> refList,
++      String sourceName) {
++    // TODO(bashir): We can do binary search here, but since this is fast enough
++    // right now, we just do a linear search for simplicity.
++    int lastBefore = -1;
++    int firstAfter = refList.size();
++    int index = 0;
++    int sourceInputOrder = inputOrder.get(sourceName);
++    for (Reference ref : refList) {
++      int order = inputOrder.get(ref.getSourceName());
++      if (order < sourceInputOrder) {
++        lastBefore = index;
++      } else if (order > sourceInputOrder) {
++        firstAfter = index;
++        break;
++      }
++      index++;
++    }
++    return new SourceRefRange(refList, lastBefore, firstAfter);
++  }
++
++  private static class SourceRefRange {
++    private final int lastBefore;
++    private final int firstAfter;
++    private final List<Reference> refList;
++
++    SourceRefRange(List<Reference> refList, int lastBefore,
++        int firstAfter) {
++      this.lastBefore = Math.max(lastBefore, -1);
++      this.firstAfter = Math.min(firstAfter, refList.size());
++      this.refList = refList;
++    }
++
++    /** Note that the returned list is backed by {@code refList}! */
++    List<Reference> refsBefore() {
++      return refList.subList(0, lastBefore + 1);
++    }
++
++    /** Note that the returned list is backed by {@code refList}! */
++    List<Reference> refsAfter() {
++      return refList.subList(firstAfter, refList.size());
++    }
++  }
++}
+diff --git a/src/com/google/javascript/jscomp/InlineObjectLiterals.java b/src/com/google/javascript/jscomp/InlineObjectLiterals.java
+index 6b80072..6b03b87 100644
+--- a/src/com/google/javascript/jscomp/InlineObjectLiterals.java
++++ b/src/com/google/javascript/jscomp/InlineObjectLiterals.java
+@@ -25,6 +25,7 @@
+ import com.google.javascript.jscomp.ReferenceCollectingCallback.Behavior;
+ import com.google.javascript.jscomp.ReferenceCollectingCallback.Reference;
+ import com.google.javascript.jscomp.ReferenceCollectingCallback.ReferenceCollection;
++import com.google.javascript.jscomp.ReferenceCollectingCallback.ReferenceMap;
+ import com.google.javascript.jscomp.Scope.Var;
+ import com.google.javascript.rhino.Node;
+ import com.google.javascript.rhino.Token;
+@@ -80,8 +81,7 @@
+     private final Set<Var> staleVars = Sets.newHashSet();
+ 
+     @Override
+-    public void afterExitScope(NodeTraversal t,
+-        Map<Var, ReferenceCollection> referenceMap) {
++    public void afterExitScope(NodeTraversal t, ReferenceMap referenceMap) {
+       for (Iterator<Var> it = t.getScope().getVars(); it.hasNext();) {
+         Var v = it.next();
+ 
+@@ -89,7 +89,7 @@
+             continue;
+         }
+ 
+-        ReferenceCollection referenceInfo = referenceMap.get(v);
++        ReferenceCollection referenceInfo = referenceMap.getReferences(v);
+ 
+         if (isInlinableObject(referenceInfo.references)) {
+             // Blacklist the object itself, as well as any other values
+diff --git a/src/com/google/javascript/jscomp/InlineVariables.java b/src/com/google/javascript/jscomp/InlineVariables.java
+index 7d99778..98ba645 100644
+--- a/src/com/google/javascript/jscomp/InlineVariables.java
++++ b/src/com/google/javascript/jscomp/InlineVariables.java
+@@ -25,6 +25,7 @@
+ import com.google.javascript.jscomp.ReferenceCollectingCallback.Behavior;
+ import com.google.javascript.jscomp.ReferenceCollectingCallback.Reference;
+ import com.google.javascript.jscomp.ReferenceCollectingCallback.ReferenceCollection;
++import com.google.javascript.jscomp.ReferenceCollectingCallback.ReferenceMap;
+ import com.google.javascript.jscomp.Scope.Var;
+ import com.google.javascript.rhino.Node;
+ import com.google.javascript.rhino.Token;
+@@ -156,8 +157,7 @@
+     final Map<Node, AliasCandidate> aliasCandidates = Maps.newHashMap();
+ 
+     @Override
+-    public void afterExitScope(NodeTraversal t,
+-        Map<Var, ReferenceCollection> referenceMap) {
++    public void afterExitScope(NodeTraversal t, ReferenceMap referenceMap) {
+       collectAliasCandidates(t, referenceMap);
+       doInlinesForScope(t, referenceMap);
+     }
+@@ -167,11 +167,11 @@
+      * mark them as aliasing candidates.
+      */
+     private void collectAliasCandidates(NodeTraversal t,
+-        Map<Var, ReferenceCollection> referenceMap) {
++        ReferenceMap referenceMap) {
+       if (mode != Mode.CONSTANTS_ONLY) {
+         for (Iterator<Var> it = t.getScope().getVars(); it.hasNext();) {
+           Var v = it.next();
+-          ReferenceCollection referenceInfo = referenceMap.get(v);
++          ReferenceCollection referenceInfo = referenceMap.getReferences(v);
+ 
+           // NOTE(nicksantos): Don't handle variables that are never used.
+           // The tests are much easier to write if you don't, and there's
+@@ -193,15 +193,14 @@
+      * For all variables in this scope, see if they are only used once.
+      * If it looks safe to do so, inline them.
+      */
+-    private void doInlinesForScope(NodeTraversal t,
+-        Map<Var, ReferenceCollection> referenceMap) {
++    private void doInlinesForScope(NodeTraversal t, ReferenceMap referenceMap) {
+ 
+       boolean maybeModifiedArguments =
+           maybeEscapedOrModifiedArguments(t.getScope(), referenceMap);
+       for (Iterator<Var> it = t.getScope().getVars(); it.hasNext();) {
+         Var v = it.next();
+ 
+-        ReferenceCollection referenceInfo = referenceMap.get(v);
++        ReferenceCollection referenceInfo = referenceMap.getReferences(v);
+ 
+         // referenceInfo will be null if we're in constants-only mode
+         // and the variable is not a constant.
+@@ -225,10 +224,10 @@
+     }
+ 
+     private boolean maybeEscapedOrModifiedArguments(
+-        Scope scope, Map<Var, ReferenceCollection> referenceMap) {
++        Scope scope, ReferenceMap referenceMap) {
+       if (scope.isLocal()) {
+         Var arguments = scope.getArgumentsVar();
+-        ReferenceCollection refs = referenceMap.get(arguments);
++        ReferenceCollection refs = referenceMap.getReferences(arguments);
+         if (refs != null && !refs.references.isEmpty()) {
+           for (Reference ref : refs.references) {
+             Node refNode = ref.getNameNode();
+diff --git a/src/com/google/javascript/jscomp/ReferenceCollectingCallback.java b/src/com/google/javascript/jscomp/ReferenceCollectingCallback.java
+index 4c00d60..e2ea124 100644
+--- a/src/com/google/javascript/jscomp/ReferenceCollectingCallback.java
++++ b/src/com/google/javascript/jscomp/ReferenceCollectingCallback.java
+@@ -42,7 +42,8 @@
+  *
+  * @author kushal@google.com (Kushal Dave)
+  */
+-class ReferenceCollectingCallback implements ScopedCallback, CompilerPass {
++class ReferenceCollectingCallback implements ScopedCallback,
++    HotSwapCompilerPass {
+ 
+   /**
+    * Maps a given variable to a collection of references to that name. Note that
+@@ -96,11 +97,20 @@
+    * Convenience method for running this pass over a tree with this
+    * class as a callback.
+    */
++  @Override
+   public void process(Node externs, Node root) {
+     NodeTraversal.traverse(compiler, root, this);
+   }
+ 
+   /**
++   * Same as process but only runs on a part of AST associated to one script.
++   */
++  @Override
++  public void hotSwapScript(Node scriptRoot) {
++    NodeTraversal.traverse(compiler, scriptRoot, this);
++  }
++
++  /**
+    * Gets the variables that were referenced in this callback.
+    */
+   public Set<Var> getReferencedVariables() {
+@@ -151,7 +161,13 @@
+    */
+   public void exitScope(NodeTraversal t) {
+     blockStack.pop();
+-    behavior.afterExitScope(t, referenceMap);
++    if (t.getScope().isGlobal()) {
++      // Update global scope reference lists when we are done with it.
++      compiler.updateGlobalVarReferences(referenceMap, t.getScopeRoot());
++      behavior.afterExitScope(t, compiler.getGlobalVarReferences());
++    } else {
++      behavior.afterExitScope(t, new ReferenceMapWrapper(referenceMap));
++    }
+   }
+ 
+   /**
+@@ -213,6 +229,23 @@
+     referenceInfo.add(reference, t, v);
+   }
+ 
++  interface ReferenceMap {
++    ReferenceCollection getReferences(Var var);
++  }
++
++  private static class ReferenceMapWrapper implements ReferenceMap {
++    private final Map<Var, ReferenceCollection> referenceMap;
++
++    public ReferenceMapWrapper(Map<Var, ReferenceCollection> referenceMap) {
++      this.referenceMap = referenceMap;
++    }
++
++    @Override
++    public ReferenceCollection getReferences(Var var) {
++      return referenceMap.get(var);
++    }
++  }
++
+   /**
+    * Way for callers to add specific behavior during traversal that
+    * utilizes the built-up reference information.
+@@ -221,14 +254,12 @@
+     /**
+      * Called after we finish with a scope.
+      */
+-    void afterExitScope(NodeTraversal t,
+-        Map<Var, ReferenceCollection> referenceMap);
++    void afterExitScope(NodeTraversal t, ReferenceMap referenceMap);
+   }
+ 
+   static Behavior DO_NOTHING_BEHAVIOR = new Behavior() {
+     @Override
+-    public void afterExitScope(NodeTraversal t,
+-        Map<Var, ReferenceCollection> referenceMap) {}
++    public void afterExitScope(NodeTraversal t, ReferenceMap referenceMap) {}
+   };
+ 
+   /**
+@@ -597,6 +628,18 @@
+     }
+ 
+     /**
++     * Determines whether this block is equivalent to the very first block that
++     * is created when reference collection traversal enters global scope. Note
++     * that when traversing a single script in a hot-swap fashion a new instance
++     * of {@code BasicBlock} is created.
++     *
++     * @return true if this is global scope block.
++     */
++    boolean isGlobalScopeBlock() {
++      return getParent() == null;
++    }
++
++    /**
+      * Determines whether this block is guaranteed to begin executing before
+      * the given block does.
+      */
+@@ -612,7 +655,13 @@
+         }
+       }
+ 
+-      return currentBlock == this;
++      if (currentBlock == this) {
++        return true;
++      }
++      if (isGlobalScopeBlock() && thatBlock.isGlobalScopeBlock()) {
++        return true;
++      }
++      return false;
+     }
+   }
+ }
+diff --git a/src/com/google/javascript/jscomp/VariableReferenceCheck.java b/src/com/google/javascript/jscomp/VariableReferenceCheck.java
+index 90c39d1..558e57b 100644
+--- a/src/com/google/javascript/jscomp/VariableReferenceCheck.java
++++ b/src/com/google/javascript/jscomp/VariableReferenceCheck.java
+@@ -21,14 +21,13 @@
+ import com.google.javascript.jscomp.ReferenceCollectingCallback.BasicBlock;
+ import com.google.javascript.jscomp.ReferenceCollectingCallback.Behavior;
+ import com.google.javascript.jscomp.ReferenceCollectingCallback.Reference;
+-import com.google.javascript.jscomp.ReferenceCollectingCallback.ReferenceCollection;
++import com.google.javascript.jscomp.ReferenceCollectingCallback.ReferenceMap;
+ import com.google.javascript.jscomp.Scope.Var;
+ import com.google.javascript.rhino.Node;
+ import com.google.javascript.rhino.Token;
+ 
+ import java.util.Iterator;
+ import java.util.List;
+-import java.util.Map;
+ import java.util.Set;
+ 
+ /**
+@@ -39,7 +38,7 @@
+  *
+  * @author kushal@google.com (Kushal Dave)
+  */
+-class VariableReferenceCheck implements CompilerPass {
++class VariableReferenceCheck implements HotSwapCompilerPass {
+ 
+   static final DiagnosticType UNDECLARED_REFERENCE = DiagnosticType.warning(
+       "JSC_REFERENCE_BEFORE_DECLARE",
+@@ -53,12 +52,12 @@
+     DiagnosticType.disabled("AMBIGUOUS_FUNCTION_DECL",
+         "Ambiguous use of a named function: {0}.");
+ 
+-  private AbstractCompiler compiler;
+-  private CheckLevel checkLevel;
++  private final AbstractCompiler compiler;
++  private final CheckLevel checkLevel;
+ 
+   // NOTE(nicksantos): It's a lot faster to use a shared Set that
+   // we clear after each method call, because the Set never gets too big.
+-  private Set<BasicBlock> blocksWithDeclarations = Sets.newHashSet();
++  private final Set<BasicBlock> blocksWithDeclarations = Sets.newHashSet();
+ 
+   public VariableReferenceCheck(AbstractCompiler compiler,
+       CheckLevel checkLevel) {
+@@ -73,6 +72,13 @@
+     callback.process(externs, root);
+   }
+ 
++  @Override
++  public void hotSwapScript(Node scriptRoot) {
++    ReferenceCollectingCallback callback = new ReferenceCollectingCallback(
++        compiler, new ReferenceCheckingBehavior());
++    callback.hotSwapScript(scriptRoot);
++  }
++
+   /**
+    * Behavior that checks variables for redeclaration or early references
+    * just after they go out of scope.
+@@ -80,13 +86,15 @@
+   private class ReferenceCheckingBehavior implements Behavior {
+ 
+     @Override
+-    public void afterExitScope(NodeTraversal t,
+-        Map<Var, ReferenceCollection> referenceMap) {
++    public void afterExitScope(NodeTraversal t, ReferenceMap referenceMap) {
++      // TODO(bashir) In hot-swap version this means that for global scope we
++      // only go through all global variables accessed in the modified file not
++      // all global variables. This should be fixed.
+ 
+       // Check all vars after finishing a scope
+       for (Iterator<Var> it = t.getScope().getVars(); it.hasNext();) {
+         Var v = it.next();
+-        checkVar(t, v, referenceMap.get(v).references);
++        checkVar(t, v, referenceMap.getReferences(v).references);
+       }
+     }
+ 

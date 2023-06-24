@@ -1,0 +1,31 @@
+{
+  "bugName": "Math_13_buggy",
+  "bugId": "64",
+  "repo": {
+    "name": "tmp/Math_13_buggy/.git"
+  },
+  "buggyCommit": {
+    "sha": "2885ba16a28d13ebff189cf9885ca407dad2d69c",
+    "branchName": "HEAD",
+    "fullMessage": "MATH-887\nFirst steps to enhance encapsulation (goal is to remove the \"protected\"\nfields): used new API (MATH-874).\nReplaced explicit loops with matrix operations.\nDisabled a unit test that does not pass anymore.\n\n\ngit-svn-id: https://svn.apache.org/repos/asf/commons/proper/math/trunk@1406010 13f79535-47bb-0310-9956-ffa450edef68\n",
+    "repoName": "tmp/Math_13_buggy/.git"
+  },
+  "commitBeforeBuggy": {
+    "sha": "039842ee891f19c03a7a38743808dae029123c5d",
+    "branchName": "HEAD",
+    "fullMessage": "Typos.\n\n\ngit-svn-id: https://svn.apache.org/repos/asf/commons/proper/math/trunk@1406008 13f79535-47bb-0310-9956-ffa450edef68\n",
+    "repoName": "tmp/Math_13_buggy/.git"
+  },
+  "fixedCommit": {
+    "sha": "8079ea5b8d1366445da532906e43afa9291473cf",
+    "branchName": "HEAD",
+    "fullMessage": "MATH-924\nAvoid memory exhaustion for large number of unclorrelated observations.\n\n\ngit-svn-id: https://svn.apache.org/repos/asf/commons/proper/math/trunk@1426759 13f79535-47bb-0310-9956-ffa450edef68\n",
+    "repoName": "tmp/Math_13_buggy/.git"
+  },
+  "commitBeforeFixing": {
+    "sha": "a6b2e992e17cee0d4cb5a2da8242a20b8e5a8fc3",
+    "branchName": "HEAD",
+    "fullMessage": "MATH-924\nUsing a diagonal matrix to avoid exhausting memory.\n\n\ngit-svn-id: https://svn.apache.org/repos/asf/commons/proper/math/trunk@1426758 13f79535-47bb-0310-9956-ffa450edef68\n",
+    "repoName": "tmp/Math_13_buggy/.git"
+  }
+}

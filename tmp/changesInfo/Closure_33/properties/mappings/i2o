@@ -1,0 +1,4 @@
+M	src/com/google/javascript/jscomp/CheckAccessControls.java
+M	src/com/google/javascript/jscomp/DataFlowAnalysis.java
+M	src/com/google/javascript/jscomp/DefaultPassConfig.java
+M	src/com/google/javascript/rhino/jstype/PrototypeObjectType.java
