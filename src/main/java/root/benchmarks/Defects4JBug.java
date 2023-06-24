@@ -215,7 +215,7 @@ public class Defects4JBug implements GitAccess {
         boolean res = false;
         try {
             logger.debug("Switch to commit " + commitId);
-            gitAccess.checkout(repository, commitId);
+            gitAccess.checkoutf(workingDir, commitId);
             //todo: build.properties need to map to correct package?
             logger.debug("Output defects4j properties and config file...");
             res = writeD4JFiles(version);
@@ -273,10 +273,10 @@ public class Defects4JBug implements GitAccess {
 
             Map<String, String> properties = getProperties("/defects4j.build.properties");
             logger.info("Read failing tests and Exclude flaky/broken tests...");
-            rmBrokenTests(failing_tests, workingDir + "/" + properties.get("test.dir"));
+            rmBrokenTests(failing_tests, workingDir + File.separator + properties.get("test.dir"));
             logger.info("Add trigger tests...");
             String mappingFile = "tmp/changesInfo/" + proj + "_" + id + "/properties/mappings/f2i";
-            String methods = "/home/liumengjiao/Desktop/vbaprinfo/d4j_bug_info/failed_tests/" + proj.toLowerCase() + "/" + id + ".txt";
+            String methods = "/home/liumengjiao/Desktop/vbaprinfo/d4j_bug_info/failed_tests/" + proj.toLowerCase() + File.separator + id + ".txt";
             res &= addTest(repository, mappingFile, FileUtils.readEachLine(methods), fixingCommit, inducingCommit);
             if (res) {
                 logger.info("Commit Changes to get a " + version + " version...");
@@ -363,7 +363,7 @@ public class Defects4JBug implements GitAccess {
             String path = diff.getSrcPath();
             modifiedClasses.add(path);
             List<Action> actions = diff.editScript.asList();
-            String dir = filePath + "/actions/" + version + "/" + path.substring(path.lastIndexOf("/") + 1, path.indexOf("."));
+            String dir = filePath + "/actions/" + version + File.separator + path.substring(path.lastIndexOf(File.separator) + 1, path.indexOf("."));
             FileUtils.writeToFile(FileUtils.getStrOfIterable(actions, "\n").toString(), dir, false);
         }
         filePath = filePath + "/properties/modified_classes/" + version + ".txt";
@@ -381,7 +381,7 @@ public class Defects4JBug implements GitAccess {
             for (List<String> f2i :f2is) {
                 List<?> importDeclarations = new ArrayList<>();
                 List<MethodDeclaration> methodDeclarations = new ArrayList<>();
-                MethodDeclaration triggerTest = astManipulator.extractTest(FileUtils.readFileByChars(workingDir + "/" + f2i.get(1)), f2i.get(3)
+                MethodDeclaration triggerTest = astManipulator.extractTest(FileUtils.readFileByChars(workingDir + File.separator + f2i.get(1)), f2i.get(3)
                         , importDeclarations, methodDeclarations);
                 triggerTests.put(f2i, triggerTest);
                 imports.put(f2i, importDeclarations);
@@ -389,14 +389,24 @@ public class Defects4JBug implements GitAccess {
             }
             gitAccess.checkout(repository, inducingCommit);
             for (Map.Entry<List<String>, ASTNode> entry: triggerTests.entrySet()) {
-                String s = astManipulator.insertTest(FileUtils.readFileByChars(workingDir + "/" + entry.getKey().get(2)), entry.getValue()
+                String s = astManipulator.insertTest(FileUtils.readFileByChars(workingDir + File.separator + entry.getKey().get(2)), entry.getValue()
                         , mappingFile, imports.get(entry.getKey()), dependencies.get(entry.getKey()));
-                FileUtils.writeToFile(s, workingDir + "/" + entry.getKey().get(2), false);
+                FileUtils.writeToFile(s, workingDir + File.separator + entry.getKey().get(2), false);
             }
             return true;
         } catch (Exception e) {
             logger.error(e.getMessage());
         }
         return false;
+    }
+
+    public List<String> getFailingTests(String failingTestsPath) {
+        List<String> lines = FileUtils.readEachLine(workingDir + File.separator + failingTestsPath);
+        if (lines.isEmpty()) {
+            return lines;
+        }
+        List<String> failing_tests = lines.stream().filter(line -> line.startsWith("--- ")).collect(Collectors.toList());
+        failing_tests = failing_tests.stream().map(f -> f.split(" ")[1]).collect(Collectors.toList());
+        return failing_tests;
     }
 }

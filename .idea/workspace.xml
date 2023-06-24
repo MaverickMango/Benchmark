@@ -4,36 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="d0255cba-b34e-49dd-ac16-a0d0136257aa" name="Changes" comment="initial commit with utils files and test examples to get commits diffs with bears' bugs.">
-      <change afterPath="$PROJECT_DIR$/src/main/java/root/analysis/ASTManipulator.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/root/attempt/Defects4jBugsMain.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/root/attempt/ViewDiffTest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/root/bean/ChangeInfo.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/root/benchmarks/Defects4JBug.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/root/util/CommandSummary.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/root/util/GitAccess.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/root/util/GitTool.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/simplelogger.properties" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/java/attempt/Defects4jBugsMainTest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/resources/BugFixInfo.csv" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/resources/Defects4J.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+    <list default="true" id="d0255cba-b34e-49dd-ac16-a0d0136257aa" name="Changes" comment="add manipulations for defects4j">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/build.gradle" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/analysis/RefactoringMiner.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/root/analysis/RefactoringMiner.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/attempt/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/root/attempt/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/bean/AbstractBeanClazz.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/root/bean/AbstractBeanClazz.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/bean/BugFixCommit.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/root/bean/BugFixCommit.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/bean/CommitInfo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/root/bean/CommitInfo.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/bean/RepositoryInfo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/root/bean/RepositoryInfo.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/util/BearsBugsTools.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/root/benchmarks/BearsBugsUtils.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/util/ConfigurationProperties.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/root/util/ConfigurationProperties.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/util/FileUtils.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/root/util/FileUtils.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/util/GitTools.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/default.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/default.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/attempt/BearsBugsToolsTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/attempt/BearsBugsUtilsTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/attempt/RefactorMinerTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/attempt/RefactorMinerTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/root/attempt/Defects4jBugsMain.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/root/attempt/Defects4jBugsMain.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/root/benchmarks/Defects4JBug.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/root/benchmarks/Defects4JBug.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -108,8 +82,8 @@
     "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary": "JUnit5",
     "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5": "",
     "jdk.selected.JAVA_MODULE": "11",
-    "last_opened_file_path": "/home/liumengjiao/Desktop/CI/Benchmark/tmp/changesInfo/Math_53/cleaned/inducing",
-    "project.structure.last.edited": "Libraries",
+    "last_opened_file_path": "/home/liumengjiao/Desktop/CI/Benchmark/tmp/changesInfo/Math_26/properties/modified_classes/inducing",
+    "project.structure.last.edited": "Modules",
     "project.structure.proportion": "0.15",
     "project.structure.side.proportion": "0.5602576",
     "settings.editor.selected.configurable": "preferences.pluginManager"
@@ -117,21 +91,21 @@
 }]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/tmp/changesInfo/Math_53/cleaned/inducing" />
-      <recent name="$PROJECT_DIR$/tmp/changesInfo/Math_53/cleaned" />
-      <recent name="$PROJECT_DIR$/tmp/changesInfo/Math_53/cleaned/inducing/src" />
-      <recent name="$PROJECT_DIR$/tmp/changesInfo/Math_60/cleaned/inducing/src" />
-      <recent name="$PROJECT_DIR$/tmp/changesInfo/Math_60/properties/modified_classes/original/src" />
+      <recent name="$PROJECT_DIR$/tmp/changesInfo/Math_26/properties/modified_classes/inducing" />
+      <recent name="$PROJECT_DIR$/tmp/changesInfo/Math_26/cleaned/inducing/src/main/java/org/apache/commons/math/fraction" />
+      <recent name="$PROJECT_DIR$/tmp/changesInfo/Math_26/cleaned/inducing/src/main/java/org/apache/commons" />
+      <recent name="$PROJECT_DIR$/tmp/changesInfo/Math_26/cleaned/inducing/src/test/java/org/apache/commons/math/fraction" />
+      <recent name="$PROJECT_DIR$/tmp/changesInfo/Math_26/cleaned/inducing/src/test/java/org/apache/commons" />
     </key>
     <key name="CreateTestDialog.Recents.Supers">
       <recent name="" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/tmp/changesInfo/Math_53/cleaned/inducing/src/test/java/org/apache/commons/math/distribution" />
-      <recent name="$PROJECT_DIR$/tmp/changesInfo/Math_60/properties/modified_classes/original/src/test/org/apache/commons/math/distribution" />
-      <recent name="$PROJECT_DIR$/tmp/changesInfo/Math_53/properties/modified_classes/original/src/test/java/org/apache/commons/math/complex" />
-      <recent name="$PROJECT_DIR$/tmp/changesInfo/Math_45/cleaned/inducing/src/test/java/org/apache/commons/math/linear" />
-      <recent name="$PROJECT_DIR$/tmp/changesInfo/Math_42/cleaned/fixing/src/main/java/org/apache/commons/math/optimization/linear" />
+      <recent name="$PROJECT_DIR$/tmp/changesInfo/Time_11/cleaned/inducing/JodaTime" />
+      <recent name="$PROJECT_DIR$/tmp/changesInfo/Time_7/cleaned/fixing/JodaTime" />
+      <recent name="$PROJECT_DIR$/tmp/changesInfo/Time_7/cleaned/inducing/JodaTime" />
+      <recent name="$PROJECT_DIR$/tmp/changesInfo/Time_2/properties/modified_classes/inducing/src/main/java/org/joda/time/field" />
+      <recent name="$PROJECT_DIR$/tmp/changesInfo/Time_1/properties/modified_classes/fixing/src/test/java/org/joda/time" />
     </key>
     <key name="MoveMembersDialog.RECENTS_KEY">
       <recent name="util.BearsBugsTools" />
@@ -304,7 +278,14 @@
       <option name="project" value="LOCAL" />
       <updated>1684913659049</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="add manipulations for defects4j">
+      <created>1687588801486</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1687588801486</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -324,7 +305,8 @@
       <path value="$PROJECT_DIR$/tmp/refactoring-toy-example" />
     </ignored-roots>
     <MESSAGE value="initial commit with utils files and test examples to get commits diffs with bears' bugs." />
-    <option name="LAST_COMMIT_MESSAGE" value="initial commit with utils files and test examples to get commits diffs with bears' bugs." />
+    <MESSAGE value="add manipulations for defects4j" />
+    <option name="LAST_COMMIT_MESSAGE" value="add manipulations for defects4j" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

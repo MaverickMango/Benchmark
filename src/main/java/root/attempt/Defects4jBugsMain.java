@@ -31,7 +31,8 @@ public class Defects4jBugsMain implements GitAccess {
         logger.info("Starting find original commit...");
         //original wrong
         filter.put("Closure", new String[]{"12","19","30","52","59","60","66","68","75","76","80","82","85","90","99","118","131"});
-        filter.put("Math", new String[]{"12","13"});
+        filter.put("Math", new String[]{"12","13","26","45","46","48","60","74","88"});
+        filter.put("Time", new String[]{"23"});
         for (List<String> bug :d4jinfos) {
             String bugName = bug.get(2);
             String proj = bugName.split("_")[0];
@@ -44,16 +45,18 @@ public class Defects4jBugsMain implements GitAccess {
             boolean res = false;
             try {
                 Defects4JBug defects4JBug = new Defects4JBug(proj, id, "tmp/bugs/" + bugName);
+                if (proj.equals("Time")) {
+                    defects4JBug.setWorkingDir(defects4JBug.getWorkingDir() + "/JodaTime");
+                }
                 Repository repository = defects4JBug.getGitRepository("b");
                 res = defects4JBug.switchAndTest(repository, bug.get(6), "original");
                 if (!res) {
                     logger.info("---------- " + bugName + " failed in initial test.");
                     continue;
                 }
-                Map<String, String> properties = defects4JBug.getProperties("/defects4j.build.properties");
-                String failing_tests_path = defects4JBug.getWorkingDir() + "/failing_tests";
-                defects4JBug.rmBrokenTests(failing_tests_path, defects4JBug.getWorkingDir() + "/" + properties.get("test.dir"));
-                FileUtils.executeCommand(new String[]{"/bin/bash", "-c", "cp -r ../../changesInfo/" + proj + "_" + id + "/cleaned/inducing/ ./"}, defects4JBug.getWorkingDir(), 300, null);
+//                Map<String, String> properties = defects4JBug.getProperties("/defects4j.build.properties");
+//                defects4JBug.rmBrokenTests(failing_tests_path, defects4JBug.getWorkingDir() + "/" + properties.get("test.dir"));
+                FileUtils.executeCommand(new String[]{"/bin/bash", "-c", "cp -r ../../changesInfo/" + proj + "_" + id + "/cleaned/inducing/* ./"}, defects4JBug.getWorkingDir(), 300, null);
                 List<RevCommit> revsWalkOfAll = gitAccess.createRevsWalkOfAll(repository, false);
                 int i = 1;
                 for (; i < revsWalkOfAll.size(); i++) {
@@ -63,16 +66,20 @@ public class Defects4jBugsMain implements GitAccess {
                         logger.info("---------- " + bugName + " failed in continuous test.");
                         continue;
                     }
-                    properties = defects4JBug.getProperties("/defects4j.build.properties");
-                    failing_tests_path = defects4JBug.getWorkingDir() + "/failing_tests";
-                    defects4JBug.rmBrokenTests(failing_tests_path, defects4JBug.getWorkingDir() + "/" + properties.get("test.dir"));
+                    List<String> failingTests = defects4JBug.getFailingTests("failing_tests");
+//                    properties = defects4JBug.getProperties("/defects4j.build.properties");
+//                    defects4JBug.rmBrokenTests(failing_tests_path, defects4JBug.getWorkingDir() + "/" + properties.get("test.dir"));
+                    FileUtils.executeCommand(new String[]{"/bin/bash", "-c", "cp -r ../../changesInfo/" + proj + "_" + id + "/cleaned/inducing/* ./"}, defects4JBug.getWorkingDir(), 300, null);
                     res = defects4JBug.test();
-                    List<String> failing_tests = FileUtils.readEachLine(defects4JBug.getWorkingDir() + "/failing_tests");
-                    if (res && (failing_tests.isEmpty())) {
-                        FileUtils.writeToFile(bugName + "," + commit + "\n", args[0] + "/bug_original_commits", true);
+                    if (!res) {
+                        logger.info("---------- " + bugName + " failed after changing tests.");
+                        continue;
+                    }
+                    FileUtils.executeCommand(new String[]{"/bin/bash", "-c", "cp " + defects4JBug.getWorkingDir() + "/failing_tests" + " " + args[0] + "/" + proj + "/failing_tests/" + commit}, defects4JBug.getWorkingDir(), 300, null);
+                    List<String> failingTests_new = defects4JBug.getFailingTests("failing_tests");
+                    if (failingTests.size() == failingTests_new.size()) {
+                        FileUtils.writeToFile(bugName + "," + revsWalkOfAll.get(i - 1).getName() + "," + commit + "\n", args[0] + "/bug_original_commits", true);
                         break;
-                    } else {
-                        FileUtils.executeCommand(new String[]{"/bin/bash", "-c", "cp " + defects4JBug.getWorkingDir() + "/failing_tests" + " " + args[0] + "/" + proj + "/failing_tests/" + commit}, defects4JBug.getWorkingDir(), 300, null);
                     }
                 }
             } catch (Exception e) {
@@ -83,7 +90,9 @@ public class Defects4jBugsMain implements GitAccess {
         }
         logger.info("Starting find inducing commit...");
         //inducing wrong
+        filter.clear();
         filter.put("Closure", new String[]{"33","107","114","125","130","133"});
+        filter.put("Math", new String[]{"14","23","24"});
         for (List<String> bug :d4jinfos) {
             String bugName = bug.get(2);
             String proj = bugName.split("_")[0];
@@ -97,39 +106,43 @@ public class Defects4jBugsMain implements GitAccess {
             try {
                 Defects4JBug defects4JBug = new Defects4JBug(proj, id, "tmp/bugs/" + bugName);
                 Repository repository = defects4JBug.getGitRepository("b");
-                res = defects4JBug.switchAndTest(repository, bug.get(6), "original");
+                res = defects4JBug.switchAndTest(repository, bug.get(4), "buggy");
                 if (!res) {
                     logger.info("---------- " + bugName + " failed in initial test.");
                     continue;
                 }
-                Map<String, String> properties = defects4JBug.getProperties("/defects4j.build.properties");
-                String failing_tests_path = defects4JBug.getWorkingDir() + "/failing_tests";
-                List<String> failing_tests = FileUtils.readEachLine(failing_tests_path);
-                int size = 0;
-                if (!failing_tests.isEmpty()) {
-                    size = (int) failing_tests.stream().filter(line -> line.startsWith("---")).count();
-                }
-                defects4JBug.rmBrokenTests(failing_tests_path, defects4JBug.getWorkingDir() + "/" + properties.get("test.dir"));
+//                Map<String, String> properties = defects4JBug.getProperties("/defects4j.build.properties");
+//                String failing_tests_path = defects4JBug.getWorkingDir() + "/failing_tests";
+//                List<String> failing_tests = FileUtils.readEachLine(failing_tests_path);
+//                defects4JBug.rmBrokenTests(failing_tests_path, defects4JBug.getWorkingDir() + "/" + properties.get("test.dir"));
                 FileUtils.executeCommand(new String[]{"/bin/bash", "-c", "cp -r ../../changesInfo/" + proj + "_" + id + "/cleaned/inducing/ ./"}, defects4JBug.getWorkingDir(), 300, null);
-                List<RevCommit> revsWalkOfAll = gitAccess.createRevsWalkOfAll(repository, true);
-                int i = 1;
-                for (; i < revsWalkOfAll.size(); i++) {
+                List<RevCommit> revsWalkOfAll = gitAccess.createRevsWalkOfAll(repository, false);
+                List<RevCommit> collect = revsWalkOfAll.stream().filter(c -> c.getName().equals(bug.get(6))).collect(Collectors.toList());
+                int endIdx = revsWalkOfAll.size() - 1;
+                if (!collect.isEmpty()) {
+                    endIdx = revsWalkOfAll.indexOf(collect.get(0)) - 1;
+                }
+                for (int i = endIdx; i > 0; i--) {
                     String commit = revsWalkOfAll.get(i).getName();
                     res = defects4JBug.switchAndTest(repository, commit, "inducing");
                     if (!res) {
                         logger.info("---------- " + bugName + " failed in continuous test.");
                         continue;
                     }
-                    properties = defects4JBug.getProperties("/defects4j.build.properties");
-                    failing_tests_path = defects4JBug.getWorkingDir() + "/failing_tests";
-                    defects4JBug.rmBrokenTests(failing_tests_path, defects4JBug.getWorkingDir() + "/" + properties.get("test.dir"));
+                    List<String> failingTests = defects4JBug.getFailingTests("failing_tests");
+//                    properties = defects4JBug.getProperties("/defects4j.build.properties");
+//                    defects4JBug.rmBrokenTests(failing_tests_path, defects4JBug.getWorkingDir() + "/" + properties.get("test.dir"));
+                    FileUtils.executeCommand(new String[]{"/bin/bash", "-c", "cp -r ../../changesInfo/" + proj + "_" + id + "/cleaned/inducing/* ./"}, defects4JBug.getWorkingDir(), 300, null);
                     res = defects4JBug.test();
-                    failing_tests = FileUtils.readEachLine(defects4JBug.getWorkingDir() + "/failing_tests");
-                    if (res && (!failing_tests.isEmpty())) {
+                    if (!res) {
+                        logger.info("---------- " + bugName + " failed after changing tests.");
+                        continue;
+                    }
+                    FileUtils.executeCommand(new String[]{"/bin/bash", "-c", "cp " + defects4JBug.getWorkingDir() + "/failing_tests" + " " + args[0] + "/" + proj + "/failing_tests/" + commit}, defects4JBug.getWorkingDir(), 300, null);
+                    List<String> failingTests_new = defects4JBug.getFailingTests("failing_tests");
+                    if (failingTests.size() == failingTests_new.size()) {
                         FileUtils.writeToFile(bugName + "," + commit + "\n", args[0] + "/bug_inducing_commits", true);
                         break;
-                    } else {
-                        FileUtils.executeCommand(new String[]{"/bin/bash", "-c", "cp " + defects4JBug.getWorkingDir() + "/failing_tests" + " " + args[0] + "/" + proj + "/failing_tests/" + commit}, defects4JBug.getWorkingDir(), 300, null);
                     }
                 }
             } catch (Exception e) {
