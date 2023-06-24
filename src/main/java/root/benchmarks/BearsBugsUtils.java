@@ -1,21 +1,24 @@
-package util;
+package root.benchmarks;
 
-import bean.BugFixCommit;
-import bean.CommitInfo;
-import bean.RepositoryInfo;
+import root.bean.BugFixCommit;
+import root.bean.CommitInfo;
+import root.bean.RepositoryInfo;
 
 import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
+import org.eclipse.jgit.lib.Repository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import root.util.*;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
-public class BearsBugsTools {
+public class BearsBugsUtils implements GitAccess {
 
-    static Logger logger = LoggerFactory.getLogger(BearsBugsTools.class);
+    static Logger logger = LoggerFactory.getLogger(BearsBugsUtils.class);
 
     public static List<BugFixCommit> getBugsInfoFromJson(JsonArray jsonArray) {//from bears-bugs-json
         List<BugFixCommit> list = new ArrayList<>();
@@ -61,24 +64,32 @@ public class BearsBugsTools {
         return list;
     }
 
-    public static boolean checkBugOfBears(String bugId, String path2dir){
+    private static void checkout(String bugId, String path2dir){
         //python scripts/checkout_bug.py --bugId <bug ID> --workspace <path to folder to store Bears bugs>
-        String[] cmd = new String[]{"/bin/bash", "-c",
-                "python3 " + ConfigurationProperties.getProperty("bears-benchmark") + "scripts/" + "checkout_bug.py --bugId " + bugId + " --workspace " + path2dir};
-        try {
-            logger.info("Running command: " + String.join(" ", cmd));
-            List<String> res = FileUtils.execute(cmd);
-            logger.info("Command result: " + res);
-        } catch (Exception e) {
-            e.printStackTrace();
-            return false;
-        }
-        return true;
+        CommandSummary cs = new CommandSummary();
+        cs.append("python3", ConfigurationProperties.getProperty("bears-benchmark") + "scripts/" + "checkout_bug.py");
+        cs.append("--bugId", bugId);
+        cs.append("--workspace", path2dir);
+        String[] cmd = cs.flat();
+        FileUtils.executeCommand(cmd);
     }
 
     public static List<BugFixCommit> getBugInfo() {
         String bears_bugs_json_path = ConfigurationProperties.getProperty("bears-benchmark") + "/docs/data/bears-bugs.json";
         JsonArray jarray = FileUtils.readJsonFile(bears_bugs_json_path).getAsJsonArray();
         return getBugsInfoFromJson(jarray);
+    }
+
+    public static Repository getGitRepository(String path2dir, String bugId){
+        if (FileUtils.notExists(path2dir)) {
+            checkout(bugId, path2dir);
+        }
+        try {
+            return gitAccess.getGitRepository(new File(path2dir + "/.git"));
+        } catch (Exception e) {
+            logger.error("Can not get a git repository from " + path2dir);
+            e.printStackTrace();
+        }
+        return null;
     }
 }

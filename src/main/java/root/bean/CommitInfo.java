@@ -1,4 +1,4 @@
-package bean;
+package root.bean;
 
 public class CommitInfo extends AbstractBeanClazz{
     /*

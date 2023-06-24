@@ -4,32 +4,36 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="d0255cba-b34e-49dd-ac16-a0d0136257aa" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/gradle.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/build.gradle" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gradlew" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gradlew.bat" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/libs/DiffBenchmark-1.0-SNAPSHOT.jar" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/settings.gradle" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/analysis/RefactoringMiner.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/attempt/Main.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/bean/AbstractBeanClazz.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/bean/BugFixCommit.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/bean/CommitInfo.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/bean/RepositoryInfo.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/util/BearsBugsTools.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/util/ConfigurationProperties.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/util/FileUtils.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/util/GitTools.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/default.properties" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/java/attempt/BearsBugsToolsTest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/java/attempt/RefactorMinerTest.java" afterDir="false" />
+    <list default="true" id="d0255cba-b34e-49dd-ac16-a0d0136257aa" name="Changes" comment="initial commit with utils files and test examples to get commits diffs with bears' bugs.">
+      <change afterPath="$PROJECT_DIR$/src/main/java/root/analysis/ASTManipulator.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/root/attempt/Defects4jBugsMain.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/root/attempt/ViewDiffTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/root/bean/ChangeInfo.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/root/benchmarks/Defects4JBug.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/root/util/CommandSummary.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/root/util/GitAccess.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/root/util/GitTool.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/simplelogger.properties" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/attempt/Defects4jBugsMainTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/resources/BugFixInfo.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/resources/Defects4J.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/build.gradle" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/analysis/RefactoringMiner.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/root/analysis/RefactoringMiner.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/attempt/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/root/attempt/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/bean/AbstractBeanClazz.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/root/bean/AbstractBeanClazz.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/bean/BugFixCommit.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/root/bean/BugFixCommit.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/bean/CommitInfo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/root/bean/CommitInfo.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/bean/RepositoryInfo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/root/bean/RepositoryInfo.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/util/BearsBugsTools.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/root/benchmarks/BearsBugsUtils.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/util/ConfigurationProperties.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/root/util/ConfigurationProperties.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/util/FileUtils.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/root/util/FileUtils.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/util/GitTools.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/default.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/default.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/attempt/BearsBugsToolsTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/attempt/BearsBugsUtilsTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/attempt/RefactorMinerTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/attempt/RefactorMinerTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -76,6 +80,7 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="JUnit5 Test Class" />
+        <option value="Interface" />
         <option value="Class" />
       </list>
     </option>
@@ -87,7 +92,7 @@
     <option name="stateVersion" value="1" />
   </component>
   <component name="ProblemsViewState">
-    <option name="selectedTabId" value="CurrentFile" />
+    <option name="selectedTabId" value="ProjectErrors" />
   </component>
   <component name="ProjectId" id="2PzgmZBRteZb54lOhiY0sTIWzWB" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
@@ -95,51 +100,54 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
-    &quot;com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary&quot;: &quot;JUnit5&quot;,
-    &quot;com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5&quot;: &quot;&quot;,
-    &quot;last_opened_file_path&quot;: &quot;/usr/share/gradle-8.1.1/bin&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;Libraries&quot;,
-    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
-    &quot;project.structure.side.proportion&quot;: &quot;0.5602576&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;reference.settingsdialog.project.gradle&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary": "JUnit5",
+    "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5": "",
+    "jdk.selected.JAVA_MODULE": "11",
+    "last_opened_file_path": "/home/liumengjiao/Desktop/CI/Benchmark/tmp/changesInfo/Math_53/cleaned/inducing",
+    "project.structure.last.edited": "Libraries",
+    "project.structure.proportion": "0.15",
+    "project.structure.side.proportion": "0.5602576",
+    "settings.editor.selected.configurable": "preferences.pluginManager"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/libs" />
+      <recent name="$PROJECT_DIR$/tmp/changesInfo/Math_53/cleaned/inducing" />
+      <recent name="$PROJECT_DIR$/tmp/changesInfo/Math_53/cleaned" />
+      <recent name="$PROJECT_DIR$/tmp/changesInfo/Math_53/cleaned/inducing/src" />
+      <recent name="$PROJECT_DIR$/tmp/changesInfo/Math_60/cleaned/inducing/src" />
+      <recent name="$PROJECT_DIR$/tmp/changesInfo/Math_60/properties/modified_classes/original/src" />
     </key>
     <key name="CreateTestDialog.Recents.Supers">
       <recent name="" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/tmp/changesInfo/Math_53/cleaned/inducing/src/test/java/org/apache/commons/math/distribution" />
+      <recent name="$PROJECT_DIR$/tmp/changesInfo/Math_60/properties/modified_classes/original/src/test/org/apache/commons/math/distribution" />
+      <recent name="$PROJECT_DIR$/tmp/changesInfo/Math_53/properties/modified_classes/original/src/test/java/org/apache/commons/math/complex" />
+      <recent name="$PROJECT_DIR$/tmp/changesInfo/Math_45/cleaned/inducing/src/test/java/org/apache/commons/math/linear" />
+      <recent name="$PROJECT_DIR$/tmp/changesInfo/Math_42/cleaned/fixing/src/main/java/org/apache/commons/math/optimization/linear" />
+    </key>
+    <key name="MoveMembersDialog.RECENTS_KEY">
+      <recent name="util.BearsBugsTools" />
     </key>
     <key name="CreateTestDialog.RecentsKey">
       <recent name="attempt" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.Main">
-    <configuration name="BearsBugsTools" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="util.BearsBugsTools" />
+  <component name="RunManager" selected="Gradle.Defects4jBugsMainTest.testMain">
+    <configuration name="Defects4jBugsMain" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="root.attempt.Defects4jBugsMain" />
       <module name="Benchmark.main" />
+      <option name="PROGRAM_PARAMETERS" value="tmp/commits/" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="util.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="attempt.Main" />
-      <module name="Benchmark.main" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="util.*" />
+          <option name="PATTERN" value="root.attempt.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -170,7 +178,7 @@
       <DebugAllEnabled>false</DebugAllEnabled>
       <method v="2" />
     </configuration>
-    <configuration name="BearsBugsToolsTest.testCommits" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+    <configuration name="Defects4jBugsMainTest" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
         <option name="executionName" />
         <option name="externalProjectPath" value="$PROJECT_DIR$" />
@@ -183,7 +191,7 @@
           <list>
             <option value=":test" />
             <option value="--tests" />
-            <option value="&quot;attempt.BearsBugsToolsTest.testCommits&quot;" />
+            <option value="&quot;attempt.Defects4jBugsMainTest&quot;" />
           </list>
         </option>
         <option name="vmOptions" />
@@ -193,28 +201,7 @@
       <DebugAllEnabled>false</DebugAllEnabled>
       <method v="2" />
     </configuration>
-    <configuration name="Benchmark [build]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
-      <ExternalSystemSettings>
-        <option name="executionName" />
-        <option name="externalProjectPath" value="$PROJECT_DIR$" />
-        <option name="externalSystemIdString" value="GRADLE" />
-        <option name="scriptParameters" />
-        <option name="taskDescriptions">
-          <list />
-        </option>
-        <option name="taskNames">
-          <list>
-            <option value="build" />
-          </list>
-        </option>
-        <option name="vmOptions" />
-      </ExternalSystemSettings>
-      <ExternalSystemDebugServerProcess>true</ExternalSystemDebugServerProcess>
-      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
-      <DebugAllEnabled>false</DebugAllEnabled>
-      <method v="2" />
-    </configuration>
-    <configuration name="RefactorMinerTest.test" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+    <configuration name="Defects4jBugsMainTest.test" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
         <option name="executionName" />
         <option name="externalProjectPath" value="$PROJECT_DIR$" />
@@ -227,7 +214,53 @@
           <list>
             <option value=":test" />
             <option value="--tests" />
-            <option value="&quot;attempt.RefactorMinerTest.test&quot;" />
+            <option value="&quot;attempt.Defects4jBugsMainTest.test&quot;" />
+          </list>
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <ExternalSystemDebugServerProcess>false</ExternalSystemDebugServerProcess>
+      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
+      <DebugAllEnabled>false</DebugAllEnabled>
+      <method v="2" />
+    </configuration>
+    <configuration name="Defects4jBugsMainTest.testMain" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" value="" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value=":test" />
+            <option value="--tests" />
+            <option value="&quot;attempt.Defects4jBugsMainTest.testMain&quot;" />
+          </list>
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <ExternalSystemDebugServerProcess>false</ExternalSystemDebugServerProcess>
+      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
+      <DebugAllEnabled>false</DebugAllEnabled>
+      <method v="2" />
+    </configuration>
+    <configuration name="Defects4jBugsMainTest.testTest" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" value="" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value=":test" />
+            <option value="--tests" />
+            <option value="&quot;attempt.Defects4jBugsMainTest.testTest&quot;" />
           </list>
         </option>
         <option name="vmOptions" />
@@ -238,20 +271,20 @@
       <method v="2" />
     </configuration>
     <list>
-      <item itemvalue="Application.Main" />
-      <item itemvalue="Application.BearsBugsTools" />
+      <item itemvalue="Application.Defects4jBugsMain" />
       <item itemvalue="Gradle.BearsBugsToolsTest.test" />
-      <item itemvalue="Gradle.BearsBugsToolsTest.testCommits" />
-      <item itemvalue="Gradle.Benchmark [build]" />
-      <item itemvalue="Gradle.RefactorMinerTest.test" />
+      <item itemvalue="Gradle.Defects4jBugsMainTest.testMain" />
+      <item itemvalue="Gradle.Defects4jBugsMainTest.testTest" />
+      <item itemvalue="Gradle.Defects4jBugsMainTest" />
+      <item itemvalue="Gradle.Defects4jBugsMainTest.test" />
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="Application.Main" />
-        <item itemvalue="Gradle.RefactorMinerTest.test" />
-        <item itemvalue="Application.BearsBugsTools" />
-        <item itemvalue="Gradle.BearsBugsToolsTest.testCommits" />
-        <item itemvalue="Gradle.Benchmark [build]" />
+        <item itemvalue="Gradle.Defects4jBugsMainTest.testMain" />
+        <item itemvalue="Gradle.Defects4jBugsMainTest.testTest" />
+        <item itemvalue="Gradle.Defects4jBugsMainTest" />
+        <item itemvalue="Gradle.Defects4jBugsMainTest.test" />
+        <item itemvalue="Application.Defects4jBugsMain" />
       </list>
     </recent_temporary>
   </component>
@@ -264,6 +297,14 @@
       <option name="presentableId" value="Default" />
       <updated>1684465487007</updated>
     </task>
+    <task id="LOCAL-00001" summary="initial commit with utils files and test examples to get commits diffs with bears' bugs.">
+      <created>1684913659049</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1684913659049</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -277,13 +318,40 @@
       </map>
     </option>
   </component>
+  <component name="VcsManagerConfiguration">
+    <ignored-roots>
+      <path value="$PROJECT_DIR$/tmp/Bears-2" />
+      <path value="$PROJECT_DIR$/tmp/refactoring-toy-example" />
+    </ignored-roots>
+    <MESSAGE value="initial commit with utils files and test examples to get commits diffs with bears' bugs." />
+    <option name="LAST_COMMIT_MESSAGE" value="initial commit with utils files and test examples to get commits diffs with bears' bugs." />
+  </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/util/GitTools.java</url>
-          <line>42</line>
-          <option name="timeStamp" value="19" />
+          <url>jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.github.tsantalis/refactoring-miner/2.4.0/3c098097675026fd9b92fd04d127228077a18449/refactoring-miner-2.4.0-sources.jar!/org/refactoringminer/rm1/GitHistoryRefactoringMinerImpl.java</url>
+          <line>634</line>
+          <option name="timeStamp" value="9" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/root/analysis/ASTManipulator.java</url>
+          <line>106</line>
+          <option name="timeStamp" value="55" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/tmp/changesInfo/Closure_2/properties/modified_classes/inducing/test/com/google/javascript/jscomp/TypeCheckTest.java</url>
+          <line>11522</line>
+          <option name="timeStamp" value="61" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-method">
+          <url>file://$PROJECT_DIR$/tmp/changesInfo/Closure_120/properties/modified_classes/fixing/test/com/google/javascript/jscomp/InlineVariablesTest.java</url>
+          <line>1060</line>
+          <properties class="com.google.javascript.jscomp.InlineVariablesTest" method="testBug6598844">
+            <option name="EMULATED" value="true" />
+            <option name="WATCH_EXIT" value="false" />
+          </properties>
+          <option name="timeStamp" value="60" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

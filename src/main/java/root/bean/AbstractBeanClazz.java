@@ -1,6 +1,6 @@
-package bean;
+package root.bean;
 
-import util.FileUtils;
+import root.util.FileUtils;
 
 import java.lang.reflect.Field;
 import java.util.HashMap;
@@ -8,6 +8,12 @@ import java.util.Map;
 
 public abstract class AbstractBeanClazz {
 
+    /**
+     * Get all attributes as map with name and value
+     * @param instance the instance of a special class
+     * @return a map of attributes
+     * @param <T> a subclass extends AbstractBeanClazz
+     */
     public <T extends AbstractBeanClazz> Map<String, Object> getMembersMap(T instance) {
         Map<String, Object> map = new HashMap<>();
         try{

@@ -1,4 +1,4 @@
-package bean;
+package root.bean;
 
 public class BugFixCommit extends AbstractBeanClazz{
     private String bugName;
@@ -6,8 +6,17 @@ public class BugFixCommit extends AbstractBeanClazz{
     private String diff;
     private RepositoryInfo repo;
     private CommitInfo buggyCommit;
+    private CommitInfo commitBeforeBuggy;
     private CommitInfo fixedCommit;
+    private CommitInfo commitBeforeFixing;
     private String bugReport;
+
+    public BugFixCommit(String bugName, String bugId) {
+        this.bugName = bugName;
+        this.bugId = bugId;
+    }
+
+    public BugFixCommit() {}
 
     public String getBugName() {
         return bugName;
@@ -55,6 +64,22 @@ public class BugFixCommit extends AbstractBeanClazz{
 
     public void setFixedCommit(CommitInfo fixedCommit) {
         this.fixedCommit = fixedCommit;
+    }
+
+    public CommitInfo getCommitBeforeBuggy() {
+        return commitBeforeBuggy;
+    }
+
+    public void setCommitBeforeBuggy(CommitInfo commitBeforeBuggy) {
+        this.commitBeforeBuggy = commitBeforeBuggy;
+    }
+
+    public CommitInfo getCommitBeforeFixing() {
+        return commitBeforeFixing;
+    }
+
+    public void setCommitBeforeFixing(CommitInfo commitBeforeFixing) {
+        this.commitBeforeFixing = commitBeforeFixing;
     }
 
     public String getBugReport() {

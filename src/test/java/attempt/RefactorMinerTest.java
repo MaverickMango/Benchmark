@@ -9,20 +9,20 @@ import com.github.gumtreediff.matchers.Matcher;
 import com.github.gumtreediff.matchers.Matchers;
 import com.github.gumtreediff.tree.Tree;
 import org.eclipse.jgit.lib.Repository;
-import org.junit.Test;
+import org.junit.Ignore;
 import org.refactoringminer.api.GitHistoryRefactoringMiner;
 import org.refactoringminer.api.Refactoring;
 import org.refactoringminer.api.RefactoringHandler;
 import org.refactoringminer.astDiff.actions.ASTDiff;
 import org.refactoringminer.rm1.GitHistoryRefactoringMinerImpl;
-import util.GitTools;
+import root.util.GitAccess;
 
 import java.util.List;
 import java.util.Set;
 
-public class RefactorMinerTest {
-
-    @Test
+public class RefactorMinerTest implements GitAccess {
+    
+    @Ignore
     public void test() throws Exception {
         GitHistoryRefactoringMiner miner = new GitHistoryRefactoringMinerImpl();
 //        File dir1 = new File("D:\\IdeaProjects\\BugFixCommits\\tmp1");
@@ -36,7 +36,7 @@ public class RefactorMinerTest {
 //                }
 //            }
 //        });
-        Repository repo = GitTools.getGitRepository(
+        Repository repo = gitAccess.getGitRepository(
                 "tmp/refactoring-toy-example",
                 "https://github.com/danilofes/refactoring-toy-example.git"
         );

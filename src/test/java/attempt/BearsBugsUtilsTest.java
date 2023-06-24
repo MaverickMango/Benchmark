@@ -1,49 +1,39 @@
 package attempt;
 
-import analysis.RefactoringMiner;
-import bean.BugFixCommit;
+import root.analysis.RefactoringMiner;
+import root.bean.BugFixCommit;
 import com.github.gumtreediff.actions.model.Action;
 import org.eclipse.jgit.lib.Repository;
 import org.eclipse.jgit.revwalk.RevCommit;
-import org.junit.Ignore;
+import org.junit.Test;
 import org.refactoringminer.api.Refactoring;
 import org.refactoringminer.api.RefactoringHandler;
 import org.refactoringminer.astDiff.actions.ASTDiff;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import util.BearsBugsTools;
-import util.GitTools;
+import root.benchmarks.BearsBugsUtils;
+import root.util.GitAccess;
 
 import java.util.List;
 import java.util.Set;
 
 
-public class BearsBugsToolsTest {
-    static Logger logger = LoggerFactory.getLogger(BearsBugsToolsTest.class);
+public class BearsBugsUtilsTest implements GitAccess {
+    Logger logger = LoggerFactory.getLogger(BearsBugsUtilsTest.class);
 
-    @Ignore
-    public void testCheckout() {
-        //checkout a bug
-        String tmpPath = "/home/liumengjiao/Desktop/CI/Benchmark/tmp/";
-        BugFixCommit bug = BearsBugsTools.getBugInfo().get(1);
-        boolean res = BearsBugsTools.checkBugOfBears(bug.getBugId(), tmpPath);
-        assert res;
-    }
-
-    @Ignore
+    @Test
     public void testCommitsDiffs() throws Exception {
         //get repository infos of bears-[path2dir, url];
         String tmpPath = "/home/liumengjiao/Desktop/CI/Benchmark/tmp/";//cloned target directory
-        List<BugFixCommit> bugs = BearsBugsTools.getBugInfo();//get bears bugs info
+        List<BugFixCommit> bugs = BearsBugsUtils.getBugInfo();//get bears bugs info
         BugFixCommit bug = bugs.get(1);
         //get its repository
-        Repository repository = GitTools.getGitRepository(
+        Repository repository = BearsBugsUtils.getGitRepository(
                 tmpPath + bug.getBugId(),
-                bug.getBugId(),
-                bug.getRepo().getUrl(),
-                true
+                bug.getBugId()
         );
-        List<RevCommit> commits = GitTools.createRevsWalkToCurrentHEAD(repository);
+        assert repository != null;
+        List<RevCommit> commits = gitAccess.createRevsWalkOfAll(repository, false);
         assert commits != null;
         /* Bears has organized each bugs' commits as following:
             Commit #3 contains the version of the program with the bug
@@ -78,7 +68,7 @@ public class BearsBugsToolsTest {
                 }
             }
         });
-        logger.info("Finished!");
+        logger.debug("Finished!");
     }
 
 }

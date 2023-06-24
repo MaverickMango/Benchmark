@@ -1,4 +1,4 @@
-package bean;
+package root.bean;
 
 public class RepositoryInfo extends AbstractBeanClazz{
     /*
@@ -17,12 +17,16 @@ public class RepositoryInfo extends AbstractBeanClazz{
     private String name;
     private String url;
     private Boolean isFork;
-    private int pullRequestId;
+    private String pullRequestId;
     private Boolean isPullRequest;
     private String Original;
-    private long githubId;
+    private String githubId;
 
-    public RepositoryInfo(String name, String url, Boolean isFork, int pullRequestId, Boolean isPullRequest, long githubId) {
+    public RepositoryInfo(String name) {
+        this.name = name;
+    }
+
+    public RepositoryInfo(String name, String url, Boolean isFork, String pullRequestId, Boolean isPullRequest, String githubId) {
         this.name = name;
         this.url = url;
         this.isFork = isFork;
@@ -65,11 +69,11 @@ public class RepositoryInfo extends AbstractBeanClazz{
         isFork = fork;
     }
 
-    public int getPullRequestId() {
+    public String getPullRequestId() {
         return pullRequestId;
     }
 
-    public void setPullRequestId(int pullRequestId) {
+    public void setPullRequestId(String pullRequestId) {
         this.pullRequestId = pullRequestId;
     }
 
@@ -89,11 +93,11 @@ public class RepositoryInfo extends AbstractBeanClazz{
         Original = original;
     }
 
-    public long getGithubId() {
+    public String getGithubId() {
         return githubId;
     }
 
-    public void setGithubId(long githubId) {
+    public void setGithubId(String githubId) {
         this.githubId = githubId;
     }
 }
