@@ -5,10 +5,10 @@ public class BugFixCommit extends AbstractBeanClazz{
     private String bugId;
     private String diff;
     private RepositoryInfo repo;
-    private CommitInfo buggyCommit;
-    private CommitInfo commitBeforeBuggy;
+    private CommitInfo inducingCommit;
+    private CommitInfo originalCommit;
     private CommitInfo fixedCommit;
-    private CommitInfo commitBeforeFixing;
+    private CommitInfo buggyCommit;
     private String bugReport;
 
     public BugFixCommit(String bugName, String bugId) {
@@ -50,12 +50,12 @@ public class BugFixCommit extends AbstractBeanClazz{
         this.repo = repo;
     }
 
-    public CommitInfo getBuggyCommit() {
-        return buggyCommit;
+    public CommitInfo getInducingCommit() {
+        return inducingCommit;
     }
 
-    public void setBuggyCommit(CommitInfo buggyCommit) {
-        this.buggyCommit = buggyCommit;
+    public void setInducingCommit(CommitInfo inducingCommit) {
+        this.inducingCommit = inducingCommit;
     }
 
     public CommitInfo getFixedCommit() {
@@ -66,20 +66,20 @@ public class BugFixCommit extends AbstractBeanClazz{
         this.fixedCommit = fixedCommit;
     }
 
-    public CommitInfo getCommitBeforeBuggy() {
-        return commitBeforeBuggy;
+    public CommitInfo getOriginalCommit() {
+        return originalCommit;
     }
 
-    public void setCommitBeforeBuggy(CommitInfo commitBeforeBuggy) {
-        this.commitBeforeBuggy = commitBeforeBuggy;
+    public void setOriginalCommit(CommitInfo originalCommit) {
+        this.originalCommit = originalCommit;
     }
 
-    public CommitInfo getCommitBeforeFixing() {
-        return commitBeforeFixing;
+    public CommitInfo getBuggyCommit() {
+        return buggyCommit;
     }
 
-    public void setCommitBeforeFixing(CommitInfo commitBeforeFixing) {
-        this.commitBeforeFixing = commitBeforeFixing;
+    public void setBuggyCommit(CommitInfo buggyCommit) {
+        this.buggyCommit = buggyCommit;
     }
 
     public String getBugReport() {

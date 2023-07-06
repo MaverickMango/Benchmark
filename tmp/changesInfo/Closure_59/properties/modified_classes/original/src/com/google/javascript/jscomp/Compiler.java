@@ -253,22 +253,6 @@ public class Compiler extends AbstractCompiler {
       guards.add(new DiagnosticGroupWarningsGuard(
           DiagnosticGroups.CHECK_VARIABLES, CheckLevel.OFF));
     }
-
-    // DiagnosticGroups override the plain checkTypes option.
-    if (options.enables(DiagnosticGroups.CHECK_TYPES)) {
-      options.checkTypes = true;
-    } else if (options.disables(DiagnosticGroups.CHECK_TYPES)) {
-      options.checkTypes = false;
-    } else if (!options.checkTypes) {
-      // If DiagnosticGroups did not override the plain checkTypes
-      // option, and checkTypes is enabled, then turn off the
-      // parser type warnings.
-      guards.add(
-          new DiagnosticGroupWarningsGuard(
-              DiagnosticGroup.forType(
-                  RhinoErrorReporter.TYPE_PARSE_ERROR),
-              CheckLevel.OFF));
-    }
     this.warningsGuard = new ComposeWarningsGuard(guards);
   }
 
@@ -1443,9 +1427,6 @@ public class Compiler extends AbstractCompiler {
     builder.setLineBreak(options.lineBreak);
     builder.setSourceMap(sourceMap);
     builder.setSourceMapDetailLevel(options.sourceMapDetailLevel);
-    builder.setTagAsStrict(
-        options.getLanguageOut() == LanguageMode.ECMASCRIPT5_STRICT);
-    builder.setLineLengthThreshold(options.lineLengthThreshold);
 
     Charset charset = options.outputCharset != null ?
         Charset.forName(options.outputCharset) : null;
@@ -1646,11 +1627,7 @@ public class Compiler extends AbstractCompiler {
 
   @Override
   public boolean acceptEcmaScript5() {
-    return options.getLanguageIn() == LanguageMode.ECMASCRIPT5;
-  }
-
-  public LanguageMode languageMode() {
-    return options.getLanguageIn();
+    return options.languageIn == LanguageMode.ECMASCRIPT5;
   }
 
   @Override
@@ -1662,15 +1639,12 @@ public class Compiler extends AbstractCompiler {
   Config getParserConfig() {
     if (parserConfig == null) {
       Config.LanguageMode mode;
-      switch (options.getLanguageIn()) {
+      switch (options.languageIn) {
         case ECMASCRIPT3:
           mode = Config.LanguageMode.ECMASCRIPT3;
           break;
         case ECMASCRIPT5:
           mode = Config.LanguageMode.ECMASCRIPT5;
-          break;
-        case ECMASCRIPT5_STRICT:
-          mode = Config.LanguageMode.ECMASCRIPT5_STRICT;
           break;
         default:
           throw new IllegalStateException("unexpected language mode");

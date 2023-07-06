@@ -1,5 +1,7 @@
 package root.util;
 
+import org.eclipse.jgit.lib.AnyObjectId;
+import root.analysis.StringFilter;
 import root.bean.BugFixCommit;
 import root.bean.CommitInfo;
 import root.bean.RepositoryInfo;
@@ -169,21 +171,51 @@ public class GitTool extends GitServiceImpl {
         return null;
     }
 
+    public String getNextCommit(Repository repository, String commitId, boolean reverse){
+        try (Git git = new Git(repository)) {
+            List<RevCommit> revCommits = StreamSupport.stream(git.log().call()
+                            .spliterator(), false)
+                    .collect(Collectors.toList());//latest commit to the first one.
+            if (reverse)
+                Collections.reverse(revCommits);//from first to the end.
+            List<String> collect = revCommits.stream().map(AnyObjectId::getName).collect(Collectors.toList());
+            int i = collect.indexOf(commitId);
+            i = i + 1 >= collect.size() ? i - 1 : i;
+            return collect.get(i + 1);
+        } catch (Exception e) {
+            logger.error("Repository " + repository.getIdentifier() + " is not a Git repository or ERRORS occurred when walk its commits: " + e.getMessage());
+        }
+        return null;
+    }
+
+    public String getInitialCommit(Repository repository){
+        try (Git git = new Git(repository)) {
+            List<RevCommit> revCommits = StreamSupport.stream(git.log().call()
+                            .spliterator(), false)
+                    .collect(Collectors.toList());//latest commit to the first one.
+            Collections.reverse(revCommits);//from first to the end.
+            return revCommits.get(0).getName();
+        } catch (Exception e) {
+            logger.error("Repository " + repository.getIdentifier() + " is not a Git repository or ERRORS occurred when walk its commits: " + e.getMessage());
+        }
+        return null;
+    }
+
     public BugFixCommit getBugFixCommit(String bugName, String bugId, Repository repository, String inducingCommit, String fixedCommit) {
         BugFixCommit bugFixCommit = new BugFixCommit(bugName, bugId);
         bugFixCommit.setRepo(getRepositoryInfo(repository));
         RevCommit inducing = getCommit(repository, inducingCommit);
         assert inducing != null && inducing.getParentCount() != 0;
         RevCommit before = getCommit(repository, inducing.getParent(0).getName());
-        bugFixCommit.setBuggyCommit(getCommitInfo(repository, inducing));
+        bugFixCommit.setInducingCommit(getCommitInfo(repository, inducing));
         assert before != null;
-        bugFixCommit.setCommitBeforeBuggy(getCommitInfo(repository, before));
+        bugFixCommit.setOriginalCommit(getCommitInfo(repository, before));
         RevCommit fixed = getCommit(repository, fixedCommit);
         assert fixed != null && fixed.getParentCount() != 0;
         before = getCommit(repository, fixed.getParent(0).getName());
         bugFixCommit.setFixedCommit(getCommitInfo(repository, fixed));
         assert before != null;
-        bugFixCommit.setCommitBeforeFixing(getCommitInfo(repository, before));
+        bugFixCommit.setBuggyCommit(getCommitInfo(repository, before));
         return bugFixCommit;
     }
 
@@ -243,6 +275,28 @@ public class GitTool extends GitServiceImpl {
                 } catch (Exception e) {
                     logger.error(e.getMessage());
                 }
+            }
+        }
+        return null;
+    }
+
+    public String diffWithFilter(Repository repository, String srcCommit, String dstCommit, StringFilter filter) {
+        RevCommit oldCommit = getCommit(repository, srcCommit);
+        RevCommit newCommit = getCommit(repository, dstCommit);
+        if (oldCommit != null && newCommit != null) {
+            try (OutputStream outputStream = new ByteArrayOutputStream()) {
+                DiffFormatter diffFormatter = new DiffFormatter(outputStream);
+                diffFormatter.setRepository(repository);
+                List<DiffEntry> scan = diffFormatter.scan(oldCommit, newCommit);
+                for (DiffEntry entry : scan) {
+                    if (filter.canFilter(entry.getNewPath())) {
+                        continue;
+                    }
+                    diffFormatter.format(diffFormatter.toFileHeader(entry));
+                }
+                return outputStream.toString();
+            } catch (Exception e) {
+                logger.error(e.getMessage());
             }
         }
         return null;

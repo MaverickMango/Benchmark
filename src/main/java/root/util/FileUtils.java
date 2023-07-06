@@ -347,8 +347,9 @@ public class FileUtils {
         try {
             StringBuilder stringBuilder = new StringBuilder("Running command: ");
             stringBuilder.append(String.join(" ", cmd));
-            logger.debug(stringBuilder.toString());
+            logger.info(stringBuilder.toString());
             List<String> message = FileUtils.execute(cmd, null, defaultTimeoutSecond, null);
+            logger.info("Command result:\n" + FileUtils.getStrOfIterable(message, "\n"));
             message.remove(0);
             return message;
         } catch (Exception e) {
@@ -365,9 +366,9 @@ public class FileUtils {
             if (workingDir != null) {
                 stringBuilder.append(" in ").append(workingDir);
             }
-            logger.debug(stringBuilder.toString());
+            logger.info(stringBuilder.toString());
             List<String> message = FileUtils.execute(cmd, workingDir, timeSecond, env);
-            logger.debug("Command result:\n" + FileUtils.getStrOfIterable(message, "\n"));
+            logger.info("Command result:\n" + FileUtils.getStrOfIterable(message, "\n"));
             res = Integer.parseInt(message.get(0));
         } catch (Exception e) {
             e.printStackTrace();
@@ -375,7 +376,7 @@ public class FileUtils {
         return res;
     }
 
-    private static List<String> execute(String[] command, String workingDir, @NonNull Integer timeSecond, Map<String, String> env) {
+    public static List<String> execute(String[] command, String workingDir, @NonNull Integer timeSecond, Map<String, String> env) {
         Process process = null;
         int exit = -1;
         final List<String> message = new ArrayList<>();

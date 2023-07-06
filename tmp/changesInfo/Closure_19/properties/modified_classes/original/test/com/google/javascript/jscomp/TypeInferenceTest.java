@@ -30,20 +30,16 @@ import static com.google.javascript.rhino.jstype.JSTypeNative.UNKNOWN_TYPE;
 import static com.google.javascript.rhino.jstype.JSTypeNative.VOID_TYPE;
 
 import com.google.common.base.Joiner;
-import com.google.common.collect.ImmutableList;
 import com.google.common.collect.Maps;
 import com.google.javascript.jscomp.CodingConvention.AssertionFunctionSpec;
 import com.google.javascript.jscomp.CompilerOptions.LanguageMode;
 import com.google.javascript.jscomp.DataFlowAnalysis.BranchedFlowState;
-import com.google.javascript.jscomp.type.FlowScope;
-import com.google.javascript.jscomp.type.ReverseAbstractInterpreter;
 import com.google.javascript.rhino.Node;
 import com.google.javascript.rhino.jstype.EnumType;
 import com.google.javascript.rhino.jstype.JSType;
 import com.google.javascript.rhino.jstype.JSTypeNative;
 import com.google.javascript.rhino.jstype.JSTypeRegistry;
 import com.google.javascript.rhino.jstype.StaticSlot;
-import com.google.javascript.rhino.testing.Asserts;
 
 import junit.framework.TestCase;
 
@@ -72,7 +68,6 @@ public class TypeInferenceTest extends TestCase {
   public void setUp() {
     compiler = new Compiler();
     CompilerOptions options = new CompilerOptions();
-    options.setClosurePass(true);
     options.setLanguageIn(LanguageMode.ECMASCRIPT5);
     compiler.initOptions(options);
     registry = compiler.getTypeRegistry();
@@ -108,7 +103,8 @@ public class TypeInferenceTest extends TestCase {
     cfa.process(null, n);
     ControlFlowGraph<Node> cfg = cfa.getCfg();
     // Create a simple reverse abstract interpreter.
-    ReverseAbstractInterpreter rai = compiler.getReverseAbstractInterpreter();
+    ReverseAbstractInterpreter rai = new SemanticReverseAbstractInterpreter(
+        compiler.getCodingConvention(), registry);
     // Do the type inference by data-flow analysis.
     TypeInference dfa = new TypeInference(compiler, cfg, rai, assumedScope,
         ASSERTION_FUNCTION_MAP);
@@ -128,7 +124,7 @@ public class TypeInferenceTest extends TestCase {
   }
 
   private void verify(String name, JSType type) {
-    Asserts.assertTypeEquals(type, getType(name));
+    assertEquals(type, getType(name));
   }
 
   private void verify(String name, JSTypeNative type) {
@@ -212,12 +208,6 @@ public class TypeInferenceTest extends TestCase {
     verifySubtypeOf("y", OBJECT_TYPE);
   }
 
-  public void testIf1a() {
-    assuming("x", createNullableType(OBJECT_TYPE));
-    inFunction("var y = {}; if (x != null) { y = x; }");
-    verifySubtypeOf("y", OBJECT_TYPE);
-  }
-
   public void testIf2() {
     assuming("x", createNullableType(OBJECT_TYPE));
     inFunction("var y = x; if (x) { y = x; } else { y = {}; }");
@@ -234,14 +224,6 @@ public class TypeInferenceTest extends TestCase {
     JSType startType = createNullableType(OBJECT_TYPE);
     assuming("x", startType);
     inFunction("out1 = x; goog.asserts.assert(x); out2 = x;");
-    verify("out1", startType);
-    verify("out2", OBJECT_TYPE);
-  }
-
-  public void testAssert1a() {
-    JSType startType = createNullableType(OBJECT_TYPE);
-    assuming("x", startType);
-    inFunction("out1 = x; goog.asserts.assert(x !== null); out2 = x;");
     verify("out1", startType);
     verify("out2", OBJECT_TYPE);
   }
@@ -298,32 +280,6 @@ public class TypeInferenceTest extends TestCase {
     verify("out2", OBJECT_TYPE);
   }
 
-  public void testAssert8() {
-    JSType startType = createNullableType(OBJECT_TYPE);
-    assuming("x", startType);
-    inFunction("out1 = x; out2 = goog.asserts.assert(x != null);");
-    verify("out1", startType);
-    verify("out2", BOOLEAN_TYPE);
-  }
-
-  public void testAssert9() {
-    JSType startType = createNullableType(NUMBER_TYPE);
-    assuming("x", startType);
-    inFunction("out1 = x; out2 = goog.asserts.assert(y = x);");
-    verify("out1", startType);
-    verify("out2", NUMBER_TYPE);
-  }
-
-  public void testAssert10() {
-    JSType startType = createNullableType(OBJECT_TYPE);
-    assuming("x", startType);
-    assuming("y", startType);
-    inFunction("out1 = x; out2 = goog.asserts.assert(x && y); out3 = x;");
-    verify("out1", startType);
-    verify("out2", OBJECT_TYPE);
-    verify("out3", OBJECT_TYPE);
-  }
-
   public void testAssertNumber() {
     JSType startType = createNullableType(ALL_TYPE);
     assuming("x", startType);
@@ -338,15 +294,6 @@ public class TypeInferenceTest extends TestCase {
     assuming("x", startType);
     inFunction("goog.asserts.assertNumber(x + x); out1 = x;");
     verify("out1", startType);
-  }
-
-  public void testAssertNumber3() {
-    // Make sure it ignores expressions.
-    JSType startType = createNullableType(ALL_TYPE);
-    assuming("x", startType);
-    inFunction("out1 = x; out2 = goog.asserts.assertNumber(x + x);");
-    verify("out1", startType);
-    verify("out2", NUMBER_TYPE);
   }
 
   public void testAssertString() {
@@ -397,16 +344,6 @@ public class TypeInferenceTest extends TestCase {
     verify("out2", ARRAY_TYPE);
   }
 
-  public void testAssertObject5() {
-    JSType startType = createNullableType(ALL_TYPE);
-    assuming("x", startType);
-    inFunction(
-        "out1 = x;" +
-        "out2 = /** @type {!Array} */ (goog.asserts.assertObject(x));");
-    verify("out1", startType);
-    verify("out2", ARRAY_TYPE);
-  }
-
   public void testAssertArray() {
     JSType startType = createNullableType(ALL_TYPE);
     assuming("x", startType);
@@ -415,67 +352,12 @@ public class TypeInferenceTest extends TestCase {
     verifySubtypeOf("out2", ARRAY_TYPE);
   }
 
-  public void testAssertInstanceof1() {
+  public void testAssertInstanceof() {
     JSType startType = createNullableType(ALL_TYPE);
     assuming("x", startType);
     inFunction("out1 = x; goog.asserts.assertInstanceof(x); out2 = x;");
     verify("out1", startType);
-    verify("out2", OBJECT_TYPE);
-  }
-
-  public void testAssertInstanceof2() {
-    JSType startType = createNullableType(ALL_TYPE);
-    assuming("x", startType);
-    inFunction("out1 = x; goog.asserts.assertInstanceof(x, String); out2 = x;");
-    verify("out1", startType);
-    verify("out2", STRING_OBJECT_TYPE);
-  }
-
-  public void testAssertInstanceof3() {
-    JSType startType = registry.getNativeType(UNKNOWN_TYPE);
-    assuming("x", startType);
-    inFunction("out1 = x; goog.asserts.assertInstanceof(x, String); out2 = x;");
-    verify("out1", startType);
-    verify("out2", UNKNOWN_TYPE);
-  }
-
-  public void testAssertInstanceof4() {
-    JSType startType = registry.getNativeType(STRING_OBJECT_TYPE);
-    assuming("x", startType);
-    inFunction("out1 = x; goog.asserts.assertInstanceof(x, Object); out2 = x;");
-    verify("out1", startType);
-    verify("out2", STRING_OBJECT_TYPE);
-  }
-
-  public void testAssertInstanceof5() {
-    JSType startType = registry.getNativeType(ALL_TYPE);
-    assuming("x", startType);
-    inFunction(
-        "out1 = x; goog.asserts.assertInstanceof(x, String); var r = x;");
-    verify("out1", startType);
-    verify("x", STRING_OBJECT_TYPE);
-  }
-
-  public void testAssertWithIsDef() {
-    JSType startType = createNullableType(NUMBER_TYPE);
-    assuming("x", startType);
-    inFunction(
-        "out1 = x;" +
-        "goog.asserts.assert(goog.isDefAndNotNull(x));" +
-        "out2 = x;");
-    verify("out1", startType);
-    verify("out2", NUMBER_TYPE);
-  }
-
-  public void testAssertWithNotIsNull() {
-    JSType startType = createNullableType(NUMBER_TYPE);
-    assuming("x", startType);
-    inFunction(
-        "out1 = x;" +
-        "goog.asserts.assert(!goog.isNull(x));" +
-        "out2 = x;");
-    verify("out1", startType);
-    verify("out2", NUMBER_TYPE);
+    verifySubtypeOf("out2", OBJECT_TYPE);
   }
 
   public void testReturn1() {
@@ -797,21 +679,6 @@ public class TypeInferenceTest extends TestCase {
     verify("y", createNullableType(OBJECT_TYPE));
   }
 
-  public void testInstanceOf6() {
-    // Here we are using "instanceof" to restrict the unknown type to
-    // the type of the instance.  This has the following problems:
-    //   1) The type may actually be any sub-type
-    //   2) The type may implement any interface
-    // After the instanceof we will require casts for methods that require
-    // sub-type or unrelated interfaces which would not have been required
-    // before.
-    JSType startType = registry.getNativeType(UNKNOWN_TYPE);
-    assuming("x", startType);
-    inFunction("out1 = x; if (x instanceof String) out2 = x;");
-    verify("out1", startType);
-    verify("out2", STRING_OBJECT_TYPE);
-  }
-
   public void testFlattening() {
     for (int i = 0; i < LinkedFlowScope.MAX_DEPTH + 1; i++) {
       assuming("s" + i, ALL_TYPE);
@@ -916,46 +783,5 @@ public class TypeInferenceTest extends TestCase {
             "/** @param {number} b */ set a(b) {} };" +
             "var out = x.a;");
     verify("out", NUMBER_TYPE);
-  }
-
-  public void testCast1() {
-    inFunction("var x = /** @type {Object} */ (this);");
-    verify("x", createNullableType(OBJECT_TYPE));
-  }
-
-  public void testCast2() {
-    inFunction(
-        "/** @return {boolean} */" +
-        "Object.prototype.method = function() { return true; };" +
-        "var x = /** @type {Object} */ (this).method;");
-    verify(
-        "x",
-        registry.createFunctionType(
-            registry.getNativeObjectType(OBJECT_TYPE),
-            registry.getNativeType(BOOLEAN_TYPE),
-            ImmutableList.<JSType>of() /* params */));
-  }
-
-  public void testBackwardsInferenceCall() {
-    inFunction(
-        "/** @param {{foo: (number|undefined)}} x */" +
-        "function f(x) {}" +
-        "var y = {};" +
-        "f(y);");
-
-    assertEquals("{foo: (number|undefined)}", getType("y").toString());
-  }
-
-  public void testBackwardsInferenceNew() {
-    inFunction(
-        "/**\n" +
-        " * @constructor\n" +
-        " * @param {{foo: (number|undefined)}} x\n" +
-        " */" +
-        "function F(x) {}" +
-        "var y = {};" +
-        "new F(y);");
-
-    assertEquals("{foo: (number|undefined)}", getType("y").toString());
   }
 }

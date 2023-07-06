@@ -14,7 +14,9 @@
  * limitations under the License.
  */
 
-package com.google.javascript.jscomp.type;
+package com.google.javascript.jscomp;
+
+import com.google.common.base.Preconditions;
 
 import static com.google.javascript.rhino.jstype.JSTypeNative.ALL_TYPE;
 import static com.google.javascript.rhino.jstype.JSTypeNative.BOOLEAN_TYPE;
@@ -28,10 +30,6 @@ import static com.google.javascript.rhino.jstype.JSTypeNative.U2U_CONSTRUCTOR_TY
 import static com.google.javascript.rhino.jstype.JSTypeNative.UNKNOWN_TYPE;
 import static com.google.javascript.rhino.jstype.JSTypeNative.VOID_TYPE;
 
-import com.google.common.base.Preconditions;
-import com.google.javascript.jscomp.CodingConvention;
-import com.google.javascript.rhino.Node;
-import com.google.javascript.rhino.Token;
 import com.google.javascript.rhino.jstype.EnumElementType;
 import com.google.javascript.rhino.jstype.FunctionType;
 import com.google.javascript.rhino.jstype.JSType;
@@ -41,12 +39,14 @@ import com.google.javascript.rhino.jstype.ObjectType;
 import com.google.javascript.rhino.jstype.StaticSlot;
 import com.google.javascript.rhino.jstype.UnionType;
 import com.google.javascript.rhino.jstype.Visitor;
+import com.google.javascript.rhino.Node;
+import com.google.javascript.rhino.Token;
 
 /**
  * Chainable reverse abstract interpreter providing basic functionality.
  *
  */
-public abstract class ChainableReverseAbstractInterpreter
+abstract class ChainableReverseAbstractInterpreter
     implements ReverseAbstractInterpreter {
   protected final CodingConvention convention;
   final JSTypeRegistry typeRegistry;
@@ -57,7 +57,7 @@ public abstract class ChainableReverseAbstractInterpreter
    * Constructs an interpreter, which is the only link in a chain. Interpreters
    * can be appended using {@link #append}.
    */
-  public ChainableReverseAbstractInterpreter(CodingConvention convention,
+  ChainableReverseAbstractInterpreter(CodingConvention convention,
       JSTypeRegistry typeRegistry) {
     Preconditions.checkNotNull(convention);
     this.convention = convention;
@@ -74,7 +74,7 @@ public abstract class ChainableReverseAbstractInterpreter
    * @param lastLink a chainable interpreter, with no next link
    * @return the updated last link
    */
-  public ChainableReverseAbstractInterpreter append(
+  ChainableReverseAbstractInterpreter append(
       ChainableReverseAbstractInterpreter lastLink) {
     Preconditions.checkArgument(lastLink.nextLink == null);
     this.nextLink = lastLink;
@@ -85,7 +85,7 @@ public abstract class ChainableReverseAbstractInterpreter
   /**
    * Gets the first link of this chain.
    */
-  public ChainableReverseAbstractInterpreter getFirst() {
+  ChainableReverseAbstractInterpreter getFirst() {
     return firstLink;
   }
 
@@ -113,7 +113,7 @@ public abstract class ChainableReverseAbstractInterpreter
    * name whose type is capable of being refined.
    * @return The current type of the node if it can be refined, null otherwise.
    */
-  protected JSType getTypeIfRefinable(Node node, FlowScope scope) {
+  JSType getTypeIfRefinable(Node node, FlowScope scope) {
     switch (node.getType()) {
       case Token.NAME:
         StaticSlot<JSType> nameVar = scope.getSlot(node.getString());
@@ -590,14 +590,14 @@ public abstract class ChainableReverseAbstractInterpreter
   /**
    * Returns a version of type where undefined is not present.
    */
-  protected final JSType getRestrictedWithoutUndefined(JSType type) {
+  final JSType getRestrictedWithoutUndefined(JSType type) {
     return type == null ? null : type.visit(restrictUndefinedVisitor);
   }
 
   /**
    * Returns a version of type where null is not present.
    */
-  protected final JSType getRestrictedWithoutNull(JSType type) {
+  final JSType getRestrictedWithoutNull(JSType type) {
     return type == null ? null : type.visit(restrictNullVisitor);
   }
 

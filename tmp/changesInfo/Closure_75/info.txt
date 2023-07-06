@@ -1,31 +1,31 @@
 {
-  "bugName": "Closure_75_buggy",
-  "bugId": "31",
+  "bugName": "Closure_75",
+  "bugId": "0",
   "repo": {
-    "name": "tmp/Closure_75_buggy/.git"
+    "name": "tmp/bugs/Closure_75_buggy/.git"
   },
-  "buggyCommit": {
-    "sha": "70f817ae4f80ac11dd2dfe97babf5896c690fb48",
+  "inducingCommit": {
+    "sha": "bb877849306e221202b283f9b8eb3873d7bdc9ae",
     "branchName": "HEAD",
-    "fullMessage": "\nAdd basic getters and setters support to TypeInference.\n\nR\u003dnicksantos\nDELTA\u003d573  (533 added, 15 deleted, 25 changed)\n\n\nRevision created by MOE tool push_codebase.\nMOE_MIGRATION\u003d366\n\n\ngit-svn-id: https://closure-compiler.googlecode.com/svn/trunk@735 b0f006be-c8cd-11de-a2e8-8d36a3108c74\n",
-    "repoName": "tmp/Closure_75_buggy/.git"
+    "fullMessage": "\nMore constant folding tweaks.\n- Remove extraneous unary \"+\"\n- Convert number to integer for BIT ops (not shift)\n- reduce literals in numberic contexts\n\nR\u003dnicksantos\nDELTA\u003d275  (225 added, 30 deleted, 20 changed)\n\n\nRevision created by MOE tool push_codebase.\nMOE_MIGRATION\u003d319\n\n\ngit-svn-id: https://closure-compiler.googlecode.com/svn/trunk@712 b0f006be-c8cd-11de-a2e8-8d36a3108c74\n",
+    "repoName": "tmp/bugs/Closure_75_buggy/.git"
   },
-  "commitBeforeBuggy": {
-    "sha": "f52df3c6b84cee1fba6d7fba75c2a8f78ca8d743",
+  "originalCommit": {
+    "sha": "6e920f1a065c4bdc0762505028d57bb6ad223640",
     "branchName": "HEAD",
-    "fullMessage": "\non second thought, this seems like an easier way to migrate\neveryone over to the new API\n\nR\u003dpupius\nDELTA\u003d16  (16 added, 0 deleted, 0 changed)\n\n\nRevision created by MOE tool push_codebase.\nMOE_MIGRATION\u003d365\n\n\ngit-svn-id: https://closure-compiler.googlecode.com/svn/trunk@734 b0f006be-c8cd-11de-a2e8-8d36a3108c74\n",
-    "repoName": "tmp/Closure_75_buggy/.git"
+    "fullMessage": "Add Facebook Javascript Externs\n\ngit-svn-id: https://closure-compiler.googlecode.com/svn/trunk@708 b0f006be-c8cd-11de-a2e8-8d36a3108c74\n",
+    "repoName": "tmp/bugs/Closure_75_buggy/.git"
   },
   "fixedCommit": {
     "sha": "c6cc58a9bc617483366141386e047b085b4e83ff",
-    "branchName": "HEAD",
+    "branchName": "refs/heads/master",
     "fullMessage": "\nFix \"string-to-number\" conversions in the presense of verical tabs.\nFixes issue 395.\n\nR\u003dnicksantos\nDELTA\u003d20  (14 added, 1 deleted, 5 changed)\n\n\nRevision created by MOE tool push_codebase.\nMOE_MIGRATION\u003d1246\n\n\ngit-svn-id: https://closure-compiler.googlecode.com/svn/trunk@963 b0f006be-c8cd-11de-a2e8-8d36a3108c74\n",
-    "repoName": "tmp/Closure_75_buggy/.git"
+    "repoName": "tmp/bugs/Closure_75_buggy/.git"
   },
-  "commitBeforeFixing": {
+  "buggyCommit": {
     "sha": "31baadd1293c5ae7af05b3a06a1ba3a06403e4ed",
-    "branchName": "HEAD",
+    "branchName": "refs/heads/master",
     "fullMessage": "\nUnlike a normal call, a reference passed to JSCompiler_ObjectPropertyString must be considered a possible modification to the name itself, not a possible modification to an alias.\n\nThis fix unblocks the optimize parameters improvement.\n\nR\u003dnicksantos\nDELTA\u003d27  (27 added, 0 deleted, 0 changed)\n\n\nRevision created by MOE tool push_codebase.\nMOE_MIGRATION\u003d1245\n\n\ngit-svn-id: https://closure-compiler.googlecode.com/svn/trunk@962 b0f006be-c8cd-11de-a2e8-8d36a3108c74\n",
-    "repoName": "tmp/Closure_75_buggy/.git"
+    "repoName": "tmp/bugs/Closure_75_buggy/.git"
   }
 }

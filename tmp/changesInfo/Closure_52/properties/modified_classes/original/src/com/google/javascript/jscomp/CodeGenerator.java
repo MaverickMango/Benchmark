@@ -60,13 +60,6 @@ class CodeGenerator {
     this(consumer, null);
   }
 
-  /**
-   * Insert a ECMASCRIPT 5 strict annotation.
-   */
-  public void tagAsStrict() {
-    add("'use strict';");
-  }
-
   void add(String str) {
     cc.add(str);
   }
@@ -203,7 +196,7 @@ class CodeGenerator {
 
       case Token.ARRAYLIT:
         add("[");
-        addArrayList(first);
+        addArrayList(first, (int[]) n.getProp(Node.SKIP_INDEXES_PROP));
         add("]");
         break;
 
@@ -875,19 +868,27 @@ class CodeGenerator {
    * slot.
    * @param firstInList The first in the node list (chained through the next
    * property).
+   * @param skipIndexes If not null, then the array of skipped entries in the
+   * array.
    */
-  void addArrayList(Node firstInList) {
-    boolean lastWasEmpty = false;
+  void addArrayList(Node firstInList, int[] skipIndexes) {
+    int nextSlot = 0;
+    int nextSkipSlot = 0;
     for (Node n = firstInList; n != null; n = n.getNext()) {
+      while (skipIndexes != null && nextSkipSlot < skipIndexes.length) {
+        if (nextSlot == skipIndexes[nextSkipSlot]) {
+          cc.listSeparator();
+          nextSlot++;
+          nextSkipSlot++;
+        } else {
+          break;
+        }
+      }
       if (n != firstInList) {
         cc.listSeparator();
       }
       addExpr(n, 1);
-      lastWasEmpty = n.getType() == Token.EMPTY;
-    }
-
-    if (lastWasEmpty) {
-      cc.listSeparator();
+      nextSlot++;
     }
   }
 
@@ -963,7 +964,6 @@ class CodeGenerator {
     for (int i = 0; i < s.length(); i++) {
       char c = s.charAt(i);
       switch (c) {
-        case '\0': sb.append("\\0"); break;
         case '\n': sb.append("\\n"); break;
         case '\r': sb.append("\\r"); break;
         case '\t': sb.append("\\t"); break;

@@ -46,7 +46,7 @@ public class BearsBugsUtils implements GitAccess {
                             CommitInfo fixerBuild = FileUtils.json2Bean(commits.getAsJsonObject("fixerBuild").toString(), CommitInfo.class);
                             CommitInfo buggyBuild = FileUtils.json2Bean(commits.getAsJsonObject("buggyBuild").toString(), CommitInfo.class);
                             bugFixCommit.setFixedCommit(fixerBuild);
-                            bugFixCommit.setBuggyCommit(buggyBuild);
+                            bugFixCommit.setInducingCommit(buggyBuild);
                             break;
                         case "repository":
                             JsonObject repository = eachBugJson.getAsJsonObject(key);

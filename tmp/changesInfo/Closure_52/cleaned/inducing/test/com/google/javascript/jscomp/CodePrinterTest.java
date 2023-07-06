@@ -30,8 +30,7 @@ public class CodePrinterTest extends TestCase {
   static Node parse(String js, boolean checkTypes) {
     Compiler compiler = new Compiler();
     CompilerOptions options = new CompilerOptions();
-    // Allow getters and setters.
-    options.setLanguageIn(LanguageMode.ECMASCRIPT5);
+    options.languageIn = LanguageMode.ECMASCRIPT5; // Allow getters and setters.
     compiler.initOptions(options);
     Node n = compiler.parseTestCode(js);
 
@@ -80,20 +79,8 @@ public class CodePrinterTest extends TestCase {
       int lineThreshold, boolean outputTypes) {
     return new CodePrinter.Builder(parse(js, true)).setPrettyPrint(prettyprint)
         .setOutputTypes(outputTypes)
-        .setLineLengthThreshold(lineThreshold).setLineBreak(lineBreak)
-        .build();
+        .setLineLengthThreshold(lineThreshold).setLineBreak(lineBreak).build();
   }
-
-  String parsePrint(String js, boolean prettyprint, boolean lineBreak,
-                    int lineThreshold, boolean outputTypes,
-                    boolean tagAsStrict) {
-    return new CodePrinter.Builder(parse(js, true)).setPrettyPrint(prettyprint)
-        .setOutputTypes(outputTypes)
-        .setLineLengthThreshold(lineThreshold).setLineBreak(lineBreak)
-        .setTagAsStrict(tagAsStrict)
-        .build();
-  }
-
 
   String printNode(Node n) {
     return new CodePrinter.Builder(n).setLineLengthThreshold(
@@ -1162,25 +1149,6 @@ public class CodePrinterTest extends TestCase {
     assertPrint("var x = - (2);", "var x=-2");
   }
 
-  public void testStrict() {
-    String result = parsePrint("var x", false, false, 0, false, true);
-    assertEquals("'use strict';var x", result);
-  }
-
-  public void testArrayLiteral() {
-    assertPrint("var x = [,];","var x=[,]");
-    assertPrint("var x = [,,];","var x=[,,]");
-    assertPrint("var x = [,s,,];","var x=[,s,,]");
-    assertPrint("var x = [,s];","var x=[,s]");
-    assertPrint("var x = [s,];","var x=[s]");
-  }
-
-  public void testZero() {
-    assertPrint("var x ='\\0';", "var x=\"\\0\"");
-    assertPrint("var x ='\\x00';", "var x=\"\\0\"");
-    assertPrint("var x ='\\u0000';", "var x=\"\\0\"");
-  }
-
   public void testNumericKeys() {
     assertPrint("var x = {010: 1};", "var x={8:1}");
     assertPrint("var x = {'010': 1};", "var x={\"010\":1}");
@@ -1195,4 +1163,5 @@ public class CodePrinterTest extends TestCase {
     assertPrint("var x = {0.2: 1};", "var x={\"0.2\":1}");
     assertPrint("var x = {'0.2': 1};", "var x={\"0.2\":1}");
   }
+
 }

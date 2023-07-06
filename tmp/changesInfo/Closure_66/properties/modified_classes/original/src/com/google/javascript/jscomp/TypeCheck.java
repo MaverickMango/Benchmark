@@ -1,5 +1,5 @@
 /*
- * Copyright 2006 The Closure Compiler Authors.
+ * Copyright 2006 Google Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -48,6 +48,9 @@ import java.util.Iterator;
  * <p>Checks the types of JS expressions against any declared type
  * information.</p>
  *
+ *
+ *
+ * @author nicksantos@google.com (Nick Santos)
  */
 public class TypeCheck implements NodeTraversal.Callback, CompilerPass {
 
@@ -246,12 +249,7 @@ public class TypeCheck implements NodeTraversal.Callback, CompilerPass {
       UNKNOWN_EXPR_TYPE,
       UNRESOLVED_TYPE,
       WRONG_ARGUMENT_COUNT,
-      ILLEGAL_IMPLICIT_CAST,
-      TypedScopeCreator.UNKNOWN_LENDS,
-      TypedScopeCreator.LENDS_ON_NON_OBJECT,
-      TypedScopeCreator.CTOR_INITIALIZER,
-      TypedScopeCreator.IFACE_INITIALIZER,
-      FunctionTypeBuilder.THIS_TYPE_NON_OBJECT);
+      ILLEGAL_IMPLICIT_CAST);
 
   private final AbstractCompiler compiler;
   private final TypeValidator validator;
@@ -642,11 +640,11 @@ public class TypeCheck implements NodeTraversal.Callback, CompilerPass {
           // should match a string context.
           String message = "left side of comparison";
           validator.expectString(t, n, leftType, message);
-          validator.expectNotNullOrUndefined(
+          validator.expectNotVoid(
               t, n, leftType, message, getNativeType(STRING_TYPE));
           message = "right side of comparison";
           validator.expectString(t, n, rightType, message);
-          validator.expectNotNullOrUndefined(
+          validator.expectNotVoid(
               t, n, rightType, message, getNativeType(STRING_TYPE));
         }
         ensureTyped(t, n, BOOLEAN_TYPE);
@@ -949,9 +947,12 @@ public class TypeCheck implements NodeTraversal.Callback, CompilerPass {
   private void checkDeclaredPropertyInheritance(
       NodeTraversal t, Node n, FunctionType ctorType, String propertyName,
       JSDocInfo info, JSType propertyType) {
-    // If the supertype doesn't resolve correctly, we've warned about this
-    // already.
-    if (hasUnknownOrEmptySupertype(ctorType)) {
+    // TODO(user): We're not 100% confident that type-checking works,
+    // so we return quietly if the unknown type is a superclass of this type.
+    // Remove this check as we become more confident. We should flag a warning
+    // when the unknown type is on the inheritance chain, as it is likely
+    // because of a programmer error.
+    if (ctorType.hasUnknownSupertype()) {
       return;
     }
 
@@ -963,13 +964,11 @@ public class TypeCheck implements NodeTraversal.Callback, CompilerPass {
     boolean foundInterfaceProperty = false;
     if (ctorType.isConstructor()) {
       for (JSType implementedInterface : ctorType.getImplementedInterfaces()) {
-        if (implementedInterface.isUnknownType() ||
-            implementedInterface.isEmptyType()) {
+        if (implementedInterface.isUnknownType()) {
           continue;
         }
         FunctionType interfaceType =
             implementedInterface.toObjectType().getConstructor();
-        Preconditions.checkNotNull(interfaceType);
         boolean interfaceHasProperty =
             interfaceType.getPrototype().hasProperty(propertyName);
         foundInterfaceProperty = foundInterfaceProperty || interfaceHasProperty;
@@ -981,7 +980,10 @@ public class TypeCheck implements NodeTraversal.Callback, CompilerPass {
               HIDDEN_INTERFACE_PROPERTY, propertyName,
               interfaceType.getTopMostDefiningType(propertyName).toString()));
         }
-        // Check that it is ok
+        if (!declaredOverride) {
+          continue;
+        }
+        // @override is present and we have to check that it is ok
         if (interfaceHasProperty) {
           JSType interfacePropType =
               interfaceType.getPrototype().getPropertyType(propertyName);
@@ -1030,34 +1032,6 @@ public class TypeCheck implements NodeTraversal.Callback, CompilerPass {
       compiler.report(
           t.makeError(n, UNKNOWN_OVERRIDE,
               propertyName, ctorType.getInstanceType().toString()));
-    }
-  }
-
-  /**
-   * Given a constructor or an interface type, find out whether the unknown
-   * type is a supertype of the current type.
-   */
-  private static boolean hasUnknownOrEmptySupertype(FunctionType ctor) {
-    Preconditions.checkArgument(ctor.isConstructor() || ctor.isInterface());
-    Preconditions.checkArgument(!ctor.isUnknownType());
-
-    // The type system should notice inheritance cycles on its own
-    // and break the cycle.
-    while (true) {
-      ObjectType maybeSuperInstanceType =
-          ctor.getPrototype().getImplicitPrototype();
-      if (maybeSuperInstanceType == null) {
-        return false;
-      }
-      if (maybeSuperInstanceType.isUnknownType() ||
-          maybeSuperInstanceType.isEmptyType()) {
-        return true;
-      }
-      ctor = maybeSuperInstanceType.getConstructor();
-      if (ctor == null) {
-        return false;
-      }
-      Preconditions.checkState(ctor.isConstructor() || ctor.isInterface());
     }
   }
 
@@ -1180,8 +1154,8 @@ public class TypeCheck implements NodeTraversal.Callback, CompilerPass {
 
     // TODO(user): remove in favor of flagging every property access on
     // non-object.
-    if (!validator.expectNotNullOrUndefined(t, n, childType,
-            childType + " has no properties", getNativeType(OBJECT_TYPE))) {
+    if (!validator.expectNotVoid(t, n, childType,
+            "undefined has no properties", getNativeType(OBJECT_TYPE))) {
       ensureTyped(t, n);
       return;
     }
@@ -1429,17 +1403,9 @@ public class TypeCheck implements NodeTraversal.Callback, CompilerPass {
 
     Iterator<Node> parameters = functionType.getParameters().iterator();
     int ordinal = 0;
-    Node parameter = null;
-    Node argument = null;
-    while (arguments.hasNext() &&
-           (parameters.hasNext() ||
-            parameter != null && parameter.isVarArgs())) {
-      // If there are no parameters left in the list, then the while loop
-      // above implies that this must be a var_args function.
-      if (parameters.hasNext()) {
-        parameter = parameters.next();
-      }
-      argument = arguments.next();
+    while (arguments.hasNext() && parameters.hasNext()) {
+      Node parameter = parameters.next();
+      Node argument = arguments.next();
       ordinal++;
 
       validator.expectArgumentMatchesParameter(t, argument,
@@ -1587,14 +1553,17 @@ public class TypeCheck implements NodeTraversal.Callback, CompilerPass {
   private void checkEnumInitializer(
       NodeTraversal t, Node value, JSType primitiveType) {
     if (value.getType() == Token.OBJECTLIT) {
-      for (Node key = value.getFirstChild();
-           key != null; key = key.getNext()) {
-        Node propValue = key.getFirstChild();
-
+      // re-using value as the value of the object literal and advancing twice
+      value = value.getFirstChild();
+      value = (value == null) ? null : value.getNext();
+      while (value != null) {
         // the value's type must be assignable to the enum's primitive type
-        validator.expectCanAssignTo(
-            t, propValue, getJSType(propValue), primitiveType,
+        validator.expectCanAssignTo(t, value, getJSType(value), primitiveType,
             "element type must match enum's type");
+
+        // advancing twice
+        value = value.getNext();
+        value = (value == null) ? null : value.getNext();
       }
     } else if (value.getJSType() instanceof EnumType) {
       // TODO(user): Remove the instanceof check in favor

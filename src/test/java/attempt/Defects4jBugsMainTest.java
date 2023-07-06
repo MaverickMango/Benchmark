@@ -8,6 +8,8 @@ import org.eclipse.jgit.lib.Ref;
 import org.eclipse.jgit.revwalk.RevTag;
 import org.eclipse.jgit.revwalk.RevWalk;
 import root.analysis.ASTManipulator;
+import root.analysis.StringFilter;
+import root.bean.BugFixCommit;
 import root.benchmarks.Defects4JBug;
 import org.eclipse.jgit.lib.Repository;
 import org.eclipse.jgit.revwalk.RevCommit;
@@ -132,18 +134,47 @@ public class Defects4jBugsMainTest implements GitAccess {
     }
 
 
-    @Ignore
+    @Test
     public void testDiff() throws Exception {
-        Repository repo = defects4JBug.getGitRepository("b");
-        String diff = gitAccess.diff(repo, "fb47b96ab635d7cc6e9edefdddc46f1baf63b117");
-        System.out.println(diff == null ? "" : diff);
+        String bugName = "Math_45";
+        String bugInduingCommit = "eb1b2cfefa07149f078a81c8fb30bb826062b7c5";
+        String workingDir = "tmp/bugs/" + bugName + "_buggy";
+        Defects4JBug defects4JBug = new Defects4JBug("Math", "45",  workingDir);
+        Repository repository = defects4JBug.getGitRepository("b");
+        String bugFixingCommit = "bc4e9db01c2a03062965fa4bac65782376ab2287";
+        assert repository != null;
+        String fixingDiff = gitAccess.diff(repository, bugFixingCommit);
+        String inducingDiff = gitAccess.diff(repository, bugInduingCommit);
+        String fixingDiffDir = "tmp/changesInfo/" + bugName + "/patches/fixing.diff";
+        String inducingDiffDir = "tmp/changesInfo/" + bugName + "/patches/inducing.diff";
+        String changesInfoDir = "tmp/changesInfo/" + bugName + "/info.txt";
+        if (fixingDiff != null && inducingDiff != null) {
+            BugFixCommit bugFixCommit = gitAccess.getBugFixCommit(bugName, "0",
+                    repository, bugInduingCommit, bugFixingCommit);
+            FileUtils.writeToFile(bugFixCommit.toString(), changesInfoDir, false);
+            FileUtils.writeToFile(fixingDiff, fixingDiffDir, false);
+            FileUtils.writeToFile(inducingDiff, inducingDiffDir, false);
+        }
     }
 
-    @Ignore
-    public void testTag() throws Exception {
+    @Test
+    public void testFilter() throws Exception {
+        String bugName = "Math_45";
+        String workingDir = "tmp/bugs/" + bugName + "_buggy";
+        Defects4JBug defects4JBug = new Defects4JBug("Math", "45",  workingDir);
         Repository repository = defects4JBug.getGitRepository("b");
-        RevCommit revCommit = defects4JBug.getFixedCommit(repository);
-        assert !Objects.requireNonNull(revCommit).getAuthorIdent().getName().equals("defects4j");
+        String bugFixingCommit = "bc4e9db01c2a03062965fa4bac65782376ab2287";
+        StringFilter filter = new StringFilter(StringFilter.MATCHES);
+        filter.addPattern(".*Test.java$");
+        String clz = "org.apache.commons.math.linear.OpenMapRealMatrix";
+        StringBuilder pattern = new StringBuilder("^(?!.*(?:");
+        String s = clz.replaceAll("[.]", File.separator);
+        pattern.append(s).append("|");
+        pattern.replace(pattern.length() - 1, pattern.length(), ")");
+        pattern.append("\\.java$).*");
+        filter.addPattern(pattern.toString());
+        String nextCommit = gitAccess.getNextCommit(repository, bugFixingCommit, false);
+        String diff = gitAccess.diffWithFilter(defects4JBug.getGitRepository("buggy"), bugFixingCommit, nextCommit, filter);
     }
 
     @Test
