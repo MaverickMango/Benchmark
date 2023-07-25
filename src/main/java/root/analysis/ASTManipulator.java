@@ -90,10 +90,32 @@ public class ASTManipulator implements GitAccess {
         for (Object obj :types) {
             TypeDeclaration typeDeclaration = (TypeDeclaration) obj;
             ListRewrite listRewrite = rewriter.getListRewrite(typeDeclaration, TypeDeclaration.BODY_DECLARATIONS_PROPERTY);
+            List<MethodDeclaration> junitType = Arrays.stream(typeDeclaration.getMethods()).filter(o -> o.toString().startsWith("@Test")).collect(Collectors.toList());
+            if (junitType.isEmpty()) {
+                boolean junit4 = targetMethod.toString().startsWith("@Test");
+                if (junit4) {
+                    List<IExtendedModifier> modifiers = ((MethodDeclaration) targetMethod).modifiers();
+                    modifiers = modifiers.stream().filter(m ->m.isAnnotation()).collect(Collectors.toList());
+                    ASTRewrite rewriter2 = ASTRewrite.create(targetMethod.getAST());
+                    ListRewrite listRewrite2 = rewriter2.getListRewrite(targetMethod, MethodDeclaration.MODIFIERS2_PROPERTY);
+                    for (IExtendedModifier m: modifiers) {
+                        if (((Annotation) m).getTypeName().getFullyQualifiedName().startsWith("Test")) {
+                            listRewrite2.remove((ASTNode) m, null);
+                            SimpleName oldName = ((MethodDeclaration) targetMethod).getName();
+                            if (!oldName.toString().startsWith("test")) {
+                                Name newName = targetMethod.getAST().newName("test" + oldName.toString());
+                                rewriter2.replace(oldName, newName, null);
+                            }
+                        }
+                    }
+                    //todo apply the changes for rewriter2
+                }
+            }
             List<MethodDeclaration> methods = Arrays.stream(typeDeclaration.getMethods()).filter(o -> o.getName().toString().equals(((MethodDeclaration)targetMethod).getName().toString())).collect(Collectors.toList());
-            if (methods.isEmpty())
+            if (methods.isEmpty()) {
                 listRewrite.insertLast(targetMethod, null);
-            else {
+                break;
+            } else {
                 listRewrite.replace(methods.get(0), targetMethod, null);
             }
         }

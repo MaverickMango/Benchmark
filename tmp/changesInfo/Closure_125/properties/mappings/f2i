@@ -3,7 +3,7 @@ D	.gitignore
 M	CONTRIBUTORS
 M	README
 M	build.xml
-D	closure-compiler.pom
+M	closure-compiler.pom
 D	contrib/externs/angular.js
 D	contrib/externs/api/gadgets/google.container.js
 D	contrib/externs/api/gadgets/iframes.js
@@ -12,21 +12,17 @@ D	contrib/externs/api/gadgets/oauth2.js
 D	contrib/externs/api/gadgets/opensocial.js
 D	contrib/externs/api/gadgets/plusone.js
 D	contrib/externs/api/gadgets/shindig.js
-A	contrib/externs/api/maps/gmap2.js
 M	contrib/externs/chrome_extensions.js
 D	contrib/externs/facebook_javascript_sdk.js
 D	contrib/externs/fileapi_synchronous.js
 D	contrib/externs/fullscreen.js
 M	contrib/externs/google_analytics_api.js
-M	contrib/externs/google_loader_api.js
-D	contrib/externs/google_maps_api_v2.js
-A	contrib/externs/google_maps_api_v3.js
 D	contrib/externs/google_visualization_api.js
 D	contrib/externs/google_youtube_iframe.js
 D	contrib/externs/jasmine.js
 M	contrib/externs/jquery-1.3.2.externs.js
-D	contrib/externs/jquery-1.4.3.js
-D	contrib/externs/jquery-1.4.4.js
+R094	contrib/externs/jquery-1.4.3.js	contrib/externs/jquery-1.4.3.externs.js
+R094	contrib/externs/jquery-1.4.4.js	contrib/externs/jquery-1.4.4.externs.js
 D	contrib/externs/jquery-1.5.js
 D	contrib/externs/jquery-1.6.js
 D	contrib/externs/jquery-1.7.js
@@ -34,20 +30,20 @@ D	contrib/externs/jquery-1.8.js
 D	contrib/externs/jquery-1.9.js
 M	contrib/externs/json.js
 M	contrib/externs/maps/google_maps_api_v3.js
-R083	contrib/externs/maps/google_maps_api_v3_3.js	contrib/externs/maps/google_maps_api_v3_1.js
+R064	contrib/externs/maps/google_maps_api_v3_5.js	contrib/externs/maps/google_maps_api_v3_1.js
 D	contrib/externs/maps/google_maps_api_v3_10.js
 D	contrib/externs/maps/google_maps_api_v3_11.js
 D	contrib/externs/maps/google_maps_api_v3_12.js
 D	contrib/externs/maps/google_maps_api_v3_13.js
-R067	contrib/externs/maps/google_maps_api_v3_4.js	contrib/externs/maps/google_maps_api_v3_2.js
-D	contrib/externs/maps/google_maps_api_v3_5.js
+R070	contrib/externs/maps/google_maps_api_v3_4.js	contrib/externs/maps/google_maps_api_v3_2.js
+M	contrib/externs/maps/google_maps_api_v3_3.js
 D	contrib/externs/maps/google_maps_api_v3_6.js
 D	contrib/externs/maps/google_maps_api_v3_7.js
 D	contrib/externs/maps/google_maps_api_v3_8.js
 D	contrib/externs/maps/google_maps_api_v3_9.js
 D	contrib/externs/maps/google_maps_api_v3_exp.js
 D	contrib/externs/mediasource.js
-D	contrib/externs/silverlight.js
+R097	contrib/externs/silverlight.js	contrib/externs/silverlight
 D	contrib/externs/underscore-1.3.1.js
 D	contrib/externs/w3c_audio.js
 D	contrib/externs/w3c_eventsource.js
@@ -358,22 +354,14 @@ A	javadoc/overview-tree.html
 A	javadoc/package-list
 A	javadoc/resources/inherit.gif
 A	javadoc/serialized-form.html
-D	lib/ant-launcher.jar
-D	lib/ant.jar
-A	lib/ant_deploy.jar
-D	lib/args4j.jar
-A	lib/args4j_deploy.jar
-D	lib/caja-r4314.jar
-A	lib/guava-r06.jar
-D	lib/guava.jar
-A	lib/hamcrest-core-1.1.jar
+M	lib/ant-launcher.jar
+M	lib/ant.jar
+M	lib/args4j.jar
+M	lib/guava.jar
 D	lib/jarjar.jar
-M	lib/json.jar
-M	lib/jsr305.jar
 M	lib/junit.jar
 A	lib/libtrunk_rhino_parser_jarjared.jar
-A	lib/protobuf-java-2.3.0.jar
-D	lib/protobuf-java.jar
+M	lib/protobuf-java.jar
 D	lib/rhino/.cvsignore
 D	lib/rhino/LICENSE.txt
 D	lib/rhino/README.html
@@ -685,7 +673,6 @@ D	lib/rhino/xmlimplsrc/org/mozilla/javascript/xmlimpl/XmlProcessor.java
 D	src/com/google/debugging/sourcemap/Base64.java
 D	src/com/google/debugging/sourcemap/Base64VLQ.java
 D	src/com/google/debugging/sourcemap/FilePosition.java
-D	src/com/google/debugging/sourcemap/SourceMapConsumer.java
 D	src/com/google/debugging/sourcemap/SourceMapConsumerFactory.java
 D	src/com/google/debugging/sourcemap/SourceMapConsumerV1.java
 D	src/com/google/debugging/sourcemap/SourceMapConsumerV2.java
@@ -715,7 +702,6 @@ M	src/com/google/javascript/jscomp/AnalyzeNameReferences.java
 M	src/com/google/javascript/jscomp/AnalyzePrototypeProperties.java
 D	src/com/google/javascript/jscomp/AngularPass.java
 M	src/com/google/javascript/jscomp/AnonymousFunctionNamingCallback.java
-M	src/com/google/javascript/jscomp/AnonymousFunctionNamingPolicy.java
 M	src/com/google/javascript/jscomp/AstChangeProxy.java
 M	src/com/google/javascript/jscomp/AstParallelizer.java
 D	src/com/google/javascript/jscomp/AstValidator.java
@@ -723,14 +709,12 @@ M	src/com/google/javascript/jscomp/BasicErrorManager.java
 D	src/com/google/javascript/jscomp/ByPathWarningsGuard.java
 M	src/com/google/javascript/jscomp/CallGraph.java
 M	src/com/google/javascript/jscomp/ChainCalls.java
-R084	src/com/google/javascript/jscomp/type/ChainableReverseAbstractInterpreter.java	src/com/google/javascript/jscomp/ChainableReverseAbstractInterpreter.java
+R085	src/com/google/javascript/jscomp/type/ChainableReverseAbstractInterpreter.java	src/com/google/javascript/jscomp/ChainableReverseAbstractInterpreter.java
 M	src/com/google/javascript/jscomp/CheckAccessControls.java
 A	src/com/google/javascript/jscomp/CheckAccidentalSemicolon.java
 D	src/com/google/javascript/jscomp/CheckDebuggerStatement.java
 M	src/com/google/javascript/jscomp/CheckGlobalNames.java
 M	src/com/google/javascript/jscomp/CheckGlobalThis.java
-M	src/com/google/javascript/jscomp/CheckLevel.java
-M	src/com/google/javascript/jscomp/CheckLevelLegacy.java
 M	src/com/google/javascript/jscomp/CheckMissingGetCssName.java
 M	src/com/google/javascript/jscomp/CheckMissingReturn.java
 M	src/com/google/javascript/jscomp/CheckPathsBetweenNodes.java
@@ -744,7 +728,7 @@ D	src/com/google/javascript/jscomp/CleanupPasses.java
 M	src/com/google/javascript/jscomp/ClosureCodeRemoval.java
 M	src/com/google/javascript/jscomp/ClosureCodingConvention.java
 D	src/com/google/javascript/jscomp/ClosureOptimizePrimitives.java
-R084	src/com/google/javascript/jscomp/type/ClosureReverseAbstractInterpreter.java	src/com/google/javascript/jscomp/ClosureReverseAbstractInterpreter.java
+R085	src/com/google/javascript/jscomp/type/ClosureReverseAbstractInterpreter.java	src/com/google/javascript/jscomp/ClosureReverseAbstractInterpreter.java
 D	src/com/google/javascript/jscomp/ClosureRewriteClass.java
 M	src/com/google/javascript/jscomp/CoalesceVariableNames.java
 M	src/com/google/javascript/jscomp/CodeChangeHandler.java
@@ -762,7 +746,6 @@ M	src/com/google/javascript/jscomp/CompilationLevel.java
 M	src/com/google/javascript/jscomp/Compiler.java
 M	src/com/google/javascript/jscomp/CompilerInput.java
 M	src/com/google/javascript/jscomp/CompilerOptions.java
-M	src/com/google/javascript/jscomp/CompilerPass.java
 M	src/com/google/javascript/jscomp/ComposeWarningsGuard.java
 M	src/com/google/javascript/jscomp/ConcreteType.java
 M	src/com/google/javascript/jscomp/ConstCheck.java
@@ -774,13 +757,10 @@ M	src/com/google/javascript/jscomp/CreateSyntheticBlocks.java
 M	src/com/google/javascript/jscomp/CrossModuleCodeMotion.java
 M	src/com/google/javascript/jscomp/CrossModuleMethodMotion.java
 M	src/com/google/javascript/jscomp/CssRenamingMap.java
-M	src/com/google/javascript/jscomp/CustomPassExecutionTime.java
 M	src/com/google/javascript/jscomp/DataFlowAnalysis.java
 M	src/com/google/javascript/jscomp/DeadAssignmentsElimination.java
 A	src/com/google/javascript/jscomp/DefaultCodingConvention.java
 M	src/com/google/javascript/jscomp/DefaultPassConfig.java
-M	src/com/google/javascript/jscomp/DefinitionProvider.java
-M	src/com/google/javascript/jscomp/DefinitionSite.java
 M	src/com/google/javascript/jscomp/DefinitionsRemover.java
 M	src/com/google/javascript/jscomp/Denormalize.java
 D	src/com/google/javascript/jscomp/DependencyOptions.java
@@ -793,10 +773,8 @@ D	src/com/google/javascript/jscomp/DisambiguatePrivateProperties.java
 M	src/com/google/javascript/jscomp/DisambiguateProperties.java
 M	src/com/google/javascript/jscomp/DotFormatter.java
 D	src/com/google/javascript/jscomp/EmptyMessageBundle.java
-M	src/com/google/javascript/jscomp/ErrorFormat.java
 D	src/com/google/javascript/jscomp/ErrorHandler.java
 M	src/com/google/javascript/jscomp/ErrorManager.java
-M	src/com/google/javascript/jscomp/ErrorPass.java
 D	src/com/google/javascript/jscomp/ExpandJqueryAliases.java
 D	src/com/google/javascript/jscomp/ExploitAssigns.java
 M	src/com/google/javascript/jscomp/ExportTestFunctions.java
@@ -805,7 +783,7 @@ M	src/com/google/javascript/jscomp/ExternExportsPass.java
 M	src/com/google/javascript/jscomp/ExtractPrototypeMemberDeclarations.java
 D	src/com/google/javascript/jscomp/FieldCleanupPass.java
 M	src/com/google/javascript/jscomp/FindExportableNodes.java
-R086	src/com/google/javascript/jscomp/type/FlowScope.java	src/com/google/javascript/jscomp/FlowScope.java
+R088	src/com/google/javascript/jscomp/type/FlowScope.java	src/com/google/javascript/jscomp/FlowScope.java
 M	src/com/google/javascript/jscomp/FlowSensitiveInlineVariables.java
 D	src/com/google/javascript/jscomp/ForbiddenChange.java
 M	src/com/google/javascript/jscomp/FunctionArgumentInjector.java
@@ -828,9 +806,9 @@ M	src/com/google/javascript/jscomp/IgnoreCajaProperties.java
 M	src/com/google/javascript/jscomp/InferJSDocInfo.java
 M	src/com/google/javascript/jscomp/InlineCostEstimator.java
 M	src/com/google/javascript/jscomp/InlineFunctions.java
-R089	src/com/google/javascript/jscomp/InlineSimpleMethods.java	src/com/google/javascript/jscomp/InlineGetters.java
 D	src/com/google/javascript/jscomp/InlineObjectLiterals.java
 D	src/com/google/javascript/jscomp/InlineProperties.java
+M	src/com/google/javascript/jscomp/InlineSimpleMethods.java
 M	src/com/google/javascript/jscomp/InlineVariables.java
 M	src/com/google/javascript/jscomp/InstrumentFunctions.java
 D	src/com/google/javascript/jscomp/InstrumentMemoryAllocPass.java
@@ -847,7 +825,7 @@ M	src/com/google/javascript/jscomp/JsMessageDefinition.java
 M	src/com/google/javascript/jscomp/JsMessageExtractor.java
 M	src/com/google/javascript/jscomp/JsMessageVisitor.java
 D	src/com/google/javascript/jscomp/JvmMetrics.java
-R082	src/com/google/javascript/jscomp/graph/LatticeElement.java	src/com/google/javascript/jscomp/LatticeElement.java
+R089	src/com/google/javascript/jscomp/graph/LatticeElement.java	src/com/google/javascript/jscomp/LatticeElement.java
 M	src/com/google/javascript/jscomp/LightweightMessageFormatter.java
 M	src/com/google/javascript/jscomp/LineNumberCheck.java
 M	src/com/google/javascript/jscomp/LinkedFlowScope.java
@@ -859,7 +837,6 @@ M	src/com/google/javascript/jscomp/MarkNoSideEffectCalls.java
 M	src/com/google/javascript/jscomp/MaybeReachingVariableUse.java
 M	src/com/google/javascript/jscomp/MemoizedScopeCreator.java
 M	src/com/google/javascript/jscomp/MessageBundle.java
-M	src/com/google/javascript/jscomp/MessageFormatter.java
 M	src/com/google/javascript/jscomp/MethodCompilerPass.java
 M	src/com/google/javascript/jscomp/MinimizeExitPoints.java
 M	src/com/google/javascript/jscomp/MoveFunctionDeclarations.java
@@ -879,9 +856,9 @@ M	src/com/google/javascript/jscomp/Normalize.java
 M	src/com/google/javascript/jscomp/ObjectPropertyStringPostprocess.java
 M	src/com/google/javascript/jscomp/ObjectPropertyStringPreprocess.java
 M	src/com/google/javascript/jscomp/OptimizeArgumentsArray.java
-D	src/com/google/javascript/jscomp/OptimizeCalls.java
+M	src/com/google/javascript/jscomp/OptimizeCalls.java
 M	src/com/google/javascript/jscomp/OptimizeParameters.java
-D	src/com/google/javascript/jscomp/OptimizeReturns.java
+M	src/com/google/javascript/jscomp/OptimizeReturns.java
 A	src/com/google/javascript/jscomp/ParallelCompilerPass.java
 M	src/com/google/javascript/jscomp/PassConfig.java
 M	src/com/google/javascript/jscomp/PassFactory.java
@@ -896,21 +873,18 @@ D	src/com/google/javascript/jscomp/PeepholeSimplifyRegExp.java
 M	src/com/google/javascript/jscomp/PeepholeSubstituteAlternateSyntax.java
 M	src/com/google/javascript/jscomp/PerformanceTracker.java
 M	src/com/google/javascript/jscomp/PhaseOptimizer.java
-R053	src/com/google/javascript/jscomp/RecentChange.java	src/com/google/javascript/jscomp/Position.java
+R053	src/com/google/debugging/sourcemap/SourceMapConsumer.java	src/com/google/javascript/jscomp/Position.java
 M	src/com/google/javascript/jscomp/PrepareAst.java
 D	src/com/google/javascript/jscomp/PreprocessorSymbolTable.java
 M	src/com/google/javascript/jscomp/PrintStreamErrorManager.java
 M	src/com/google/javascript/jscomp/ProcessClosurePrimitives.java
 D	src/com/google/javascript/jscomp/ProcessCommonJSModules.java
 M	src/com/google/javascript/jscomp/ProcessDefines.java
-D	src/com/google/javascript/jscomp/ProcessTweaks.java
-M	src/com/google/javascript/jscomp/PropertyRenamingPolicy.java
+M	src/com/google/javascript/jscomp/ProcessTweaks.java
 M	src/com/google/javascript/jscomp/PureFunctionIdentifier.java
+D	src/com/google/javascript/jscomp/RecentChange.java
 M	src/com/google/javascript/jscomp/RecordFunctionInformation.java
 M	src/com/google/javascript/jscomp/ReferenceCollectingCallback.java
-M	src/com/google/javascript/jscomp/Region.java
-A	src/com/google/javascript/jscomp/RemoveConstantExpressions.java
-A	src/com/google/javascript/jscomp/RemoveConstantExpressionsParallel.java
 M	src/com/google/javascript/jscomp/RemoveTryCatch.java
 D	src/com/google/javascript/jscomp/RemoveUnusedClassProperties.java
 M	src/com/google/javascript/jscomp/RemoveUnusedNames.java
@@ -929,15 +903,13 @@ M	src/com/google/javascript/jscomp/ReplaceMessages.java
 D	src/com/google/javascript/jscomp/ReplaceMessagesForChrome.java
 M	src/com/google/javascript/jscomp/ReplaceStrings.java
 D	src/com/google/javascript/jscomp/RescopeGlobalSymbols.java
-M	src/com/google/javascript/jscomp/Result.java
-R091	src/com/google/javascript/jscomp/type/ReverseAbstractInterpreter.java	src/com/google/javascript/jscomp/ReverseAbstractInterpreter.java
+R094	src/com/google/javascript/jscomp/type/ReverseAbstractInterpreter.java	src/com/google/javascript/jscomp/ReverseAbstractInterpreter.java
 M	src/com/google/javascript/jscomp/RhinoErrorReporter.java
 M	src/com/google/javascript/jscomp/RuntimeTypeCheck.java
 M	src/com/google/javascript/jscomp/SanityCheck.java
 M	src/com/google/javascript/jscomp/Scope.java
-M	src/com/google/javascript/jscomp/ScopeCreator.java
 M	src/com/google/javascript/jscomp/ScopedAliases.java
-R078	src/com/google/javascript/jscomp/type/SemanticReverseAbstractInterpreter.java	src/com/google/javascript/jscomp/SemanticReverseAbstractInterpreter.java
+R079	src/com/google/javascript/jscomp/type/SemanticReverseAbstractInterpreter.java	src/com/google/javascript/jscomp/SemanticReverseAbstractInterpreter.java
 D	src/com/google/javascript/jscomp/ShadowVariables.java
 D	src/com/google/javascript/jscomp/ShadowVariables2.java
 M	src/com/google/javascript/jscomp/ShowByPathWarningsGuard.java
@@ -946,7 +918,6 @@ M	src/com/google/javascript/jscomp/SimpleDefinitionFinder.java
 M	src/com/google/javascript/jscomp/SimpleFunctionAliasAnalysis.java
 M	src/com/google/javascript/jscomp/SimpleRegion.java
 M	src/com/google/javascript/jscomp/SourceAst.java
-M	src/com/google/javascript/jscomp/SourceExcerptProvider.java
 M	src/com/google/javascript/jscomp/SourceFile.java
 M	src/com/google/javascript/jscomp/SourceInformationAnnotator.java
 M	src/com/google/javascript/jscomp/SourceMap.java
@@ -980,7 +951,6 @@ M	src/com/google/javascript/jscomp/VarCheck.java
 M	src/com/google/javascript/jscomp/VariableMap.java
 A	src/com/google/javascript/jscomp/VariableNameGenerator.java
 M	src/com/google/javascript/jscomp/VariableReferenceCheck.java
-M	src/com/google/javascript/jscomp/VariableRenamingPolicy.java
 A	src/com/google/javascript/jscomp/VariableShadowDeclarationCheck.java
 M	src/com/google/javascript/jscomp/VariableVisibilityAnalysis.java
 M	src/com/google/javascript/jscomp/VerboseMessageFormatter.java
@@ -991,54 +961,38 @@ D	src/com/google/javascript/jscomp/XtbMessageBundle.java
 M	src/com/google/javascript/jscomp/ant/AntErrorManager.java
 M	src/com/google/javascript/jscomp/ant/CompileTask.java
 D	src/com/google/javascript/jscomp/ant/Warning.java
-M	src/com/google/javascript/jscomp/deps/DependencyInfo.java
 M	src/com/google/javascript/jscomp/deps/DepsFileParser.java
 D	src/com/google/javascript/jscomp/deps/DepsGenerator.java
 M	src/com/google/javascript/jscomp/deps/JsFileLineParser.java
 M	src/com/google/javascript/jscomp/deps/JsFileParser.java
-D	src/com/google/javascript/jscomp/deps/JsFunctionParser.java
+M	src/com/google/javascript/jscomp/deps/JsFunctionParser.java
 D	src/com/google/javascript/jscomp/deps/PathUtil.java
 M	src/com/google/javascript/jscomp/deps/SimpleDependencyInfo.java
 M	src/com/google/javascript/jscomp/deps/SortedDependencies.java
-M	src/com/google/javascript/jscomp/graph/AdjacencyGraph.java
-M	src/com/google/javascript/jscomp/graph/Annotatable.java
-M	src/com/google/javascript/jscomp/graph/Annotation.java
-M	src/com/google/javascript/jscomp/graph/DiGraph.java
 M	src/com/google/javascript/jscomp/graph/FixedPointGraphTraversal.java
 M	src/com/google/javascript/jscomp/graph/Graph.java
 M	src/com/google/javascript/jscomp/graph/GraphColoring.java
-M	src/com/google/javascript/jscomp/graph/GraphNode.java
 D	src/com/google/javascript/jscomp/graph/GraphPruner.java
 M	src/com/google/javascript/jscomp/graph/GraphReachability.java
-M	src/com/google/javascript/jscomp/graph/GraphvizGraph.java
 M	src/com/google/javascript/jscomp/graph/LinkedDirectedGraph.java
 M	src/com/google/javascript/jscomp/graph/LinkedUndirectedGraph.java
 M	src/com/google/javascript/jscomp/graph/StandardUnionFind.java
-M	src/com/google/javascript/jscomp/graph/SubGraph.java
 M	src/com/google/javascript/jscomp/graph/UndiGraph.java
 M	src/com/google/javascript/jscomp/graph/UnionFind.java
 M	src/com/google/javascript/jscomp/instrumentation_template.proto
 D	src/com/google/javascript/jscomp/js/base.js
 M	src/com/google/javascript/jscomp/js/runtime_type_check.js
-D	src/com/google/javascript/jscomp/jsonml/ErrorLevel.java
-D	src/com/google/javascript/jscomp/jsonml/JsonML.java
-D	src/com/google/javascript/jscomp/jsonml/JsonMLAst.java
-D	src/com/google/javascript/jscomp/jsonml/JsonMLError.java
-D	src/com/google/javascript/jscomp/jsonml/JsonMLException.java
-D	src/com/google/javascript/jscomp/jsonml/JsonMLUtil.java
-D	src/com/google/javascript/jscomp/jsonml/NodeUtil.java
-D	src/com/google/javascript/jscomp/jsonml/Reader.java
-D	src/com/google/javascript/jscomp/jsonml/SecureCompiler.java
-D	src/com/google/javascript/jscomp/jsonml/TagAttr.java
-D	src/com/google/javascript/jscomp/jsonml/TagType.java
-D	src/com/google/javascript/jscomp/jsonml/Validator.java
-D	src/com/google/javascript/jscomp/jsonml/Writer.java
-D	src/com/google/javascript/jscomp/jsonml/package.html
+M	src/com/google/javascript/jscomp/jsonml/JsonML.java
+M	src/com/google/javascript/jscomp/jsonml/JsonMLAst.java
+M	src/com/google/javascript/jscomp/jsonml/JsonMLError.java
+M	src/com/google/javascript/jscomp/jsonml/NodeUtil.java
+M	src/com/google/javascript/jscomp/jsonml/Reader.java
+M	src/com/google/javascript/jscomp/jsonml/SecureCompiler.java
+M	src/com/google/javascript/jscomp/jsonml/Writer.java
 M	src/com/google/javascript/jscomp/parsing/Annotation.java
 M	src/com/google/javascript/jscomp/parsing/Config.java
 M	src/com/google/javascript/jscomp/parsing/IRFactory.java
 M	src/com/google/javascript/jscomp/parsing/JsDocInfoParser.java
-M	src/com/google/javascript/jscomp/parsing/JsDocToken.java
 M	src/com/google/javascript/jscomp/parsing/JsDocTokenStream.java
 M	src/com/google/javascript/jscomp/parsing/NullErrorReporter.java
 M	src/com/google/javascript/jscomp/parsing/ParserConfig.properties
@@ -1047,7 +1001,6 @@ M	src/com/google/javascript/jscomp/parsing/TypeSafeDispatcher.java
 D	src/com/google/javascript/jscomp/regex/CaseCanonicalize.java
 D	src/com/google/javascript/jscomp/regex/CharRanges.java
 D	src/com/google/javascript/jscomp/regex/RegExpTree.java
-M	src/com/google/javascript/jscomp/testing/SimpleSourceExcerptProvider.java
 M	src/com/google/javascript/jscomp/testing/TestErrorReporter.java
 D	src/com/google/javascript/jscomp/type/package.html
 D	src/com/google/javascript/jscomp/webservice/common/AbstractWebServiceException.java
@@ -1115,6 +1068,7 @@ M	src/com/google/javascript/rhino/jstype/RecordTypeBuilder.java
 D	src/com/google/javascript/rhino/jstype/RelationshipVisitor.java
 D	src/com/google/javascript/rhino/jstype/SimpleReference.java
 M	src/com/google/javascript/rhino/jstype/SimpleSlot.java
+D	src/com/google/javascript/rhino/jstype/SimpleSourceFile.java
 M	src/com/google/javascript/rhino/jstype/StaticScope.java
 M	src/com/google/javascript/rhino/jstype/StaticSlot.java
 D	src/com/google/javascript/rhino/jstype/StaticSourceFile.java
@@ -1152,9 +1106,7 @@ M	test/com/google/javascript/jscomp/AmbiguatePropertiesTest.java
 D	test/com/google/javascript/jscomp/AngularPassTest.java
 M	test/com/google/javascript/jscomp/AstParallelizerTest.java
 D	test/com/google/javascript/jscomp/AstValidatorTest.java
-M	test/com/google/javascript/jscomp/BasicErrorManagerTest.java
 M	test/com/google/javascript/jscomp/CallGraphTest.java
-M	test/com/google/javascript/jscomp/ChainCallsTest.java
 M	test/com/google/javascript/jscomp/CheckAccessControlsTest.java
 A	test/com/google/javascript/jscomp/CheckAccidentalSemicolonTest.java
 D	test/com/google/javascript/jscomp/CheckDebuggerStatementTest.java
@@ -1168,21 +1120,17 @@ M	test/com/google/javascript/jscomp/CheckRegExpTest.java
 M	test/com/google/javascript/jscomp/CheckRequiresForConstructorsTest.java
 M	test/com/google/javascript/jscomp/CheckSideEffectsTest.java
 D	test/com/google/javascript/jscomp/CheckSuspiciousCodeTest.java
-M	test/com/google/javascript/jscomp/CheckUnreachableCodeTest.java
 D	test/com/google/javascript/jscomp/CleanupPassesTest.java
-M	test/com/google/javascript/jscomp/ClosureCodeRemovalTest.java
 M	test/com/google/javascript/jscomp/ClosureCodingConventionTest.java
 D	test/com/google/javascript/jscomp/ClosureOptimizePrimitivesTest.java
 M	test/com/google/javascript/jscomp/ClosureReverseAbstractInterpreterTest.java
 D	test/com/google/javascript/jscomp/ClosureRewriteClassTest.java
 M	test/com/google/javascript/jscomp/CoalesceVariableNamesTest.java
 M	test/com/google/javascript/jscomp/CodePrinterTest.java
-M	test/com/google/javascript/jscomp/CollapseAnonymousFunctionsTest.java
 M	test/com/google/javascript/jscomp/CollapsePropertiesTest.java
 M	test/com/google/javascript/jscomp/CollapseVariableDeclarationsTest.java
 M	test/com/google/javascript/jscomp/CombinedCompilerPassTest.java
 M	test/com/google/javascript/jscomp/CommandLineRunnerTest.java
-M	test/com/google/javascript/jscomp/CompilerOptionsTest.java
 M	test/com/google/javascript/jscomp/CompilerTest.java
 M	test/com/google/javascript/jscomp/CompilerTestCase.java
 M	test/com/google/javascript/jscomp/CompilerTypeTestCase.java
@@ -1197,17 +1145,14 @@ M	test/com/google/javascript/jscomp/CrossModuleMethodMotionTest.java
 M	test/com/google/javascript/jscomp/DataFlowAnalysisTest.java
 M	test/com/google/javascript/jscomp/DeadAssignmentsEliminationTest.java
 M	test/com/google/javascript/jscomp/DefaultCodingConventionTest.java
-M	test/com/google/javascript/jscomp/DefinitionsRemoverTest.java
 M	test/com/google/javascript/jscomp/DenormalizeTest.java
 M	test/com/google/javascript/jscomp/DevirtualizePrototypeMethodsTest.java
-M	test/com/google/javascript/jscomp/DiagnosticGroupTest.java
 D	test/com/google/javascript/jscomp/DisambiguatePrivatePropertiesTest.java
 M	test/com/google/javascript/jscomp/DisambiguatePropertiesTest.java
-M	test/com/google/javascript/jscomp/DotFormatterTest.java
 D	test/com/google/javascript/jscomp/ExpandJqueryAliasesTest.java
 D	test/com/google/javascript/jscomp/ExploitAssignsTest.java
 M	test/com/google/javascript/jscomp/ExportTestFunctionsTest.java
-R081	test/com/google/javascript/jscomp/ExpressionDecomposerTest.java	test/com/google/javascript/jscomp/ExpresssionDecomposerTest.java
+M	test/com/google/javascript/jscomp/ExpressionDecomposerTest.java
 M	test/com/google/javascript/jscomp/ExternExportsPassTest.java
 M	test/com/google/javascript/jscomp/ExtractPrototypeMemberDeclarationsTest.java
 M	test/com/google/javascript/jscomp/FixedPointGraphTraversalTest.java
@@ -1226,16 +1171,14 @@ M	test/com/google/javascript/jscomp/GlobalNamespaceTest.java
 D	test/com/google/javascript/jscomp/GlobalVarReferenceMapTest.java
 M	test/com/google/javascript/jscomp/GoogleCodingConventionTest.java
 M	test/com/google/javascript/jscomp/GroupVariableDeclarationsTest.java
-M	test/com/google/javascript/jscomp/IgnoreCajaPropertiesTest.java
 M	test/com/google/javascript/jscomp/InferJSDocInfoTest.java
 M	test/com/google/javascript/jscomp/InlineCostEstimatorTest.java
 M	test/com/google/javascript/jscomp/InlineFunctionsTest.java
-R079	test/com/google/javascript/jscomp/InlineSimpleMethodsTest.java	test/com/google/javascript/jscomp/InlineGettersTest.java
 D	test/com/google/javascript/jscomp/InlineObjectLiteralsTest.java
 D	test/com/google/javascript/jscomp/InlinePropertiesTest.java
+M	test/com/google/javascript/jscomp/InlineSimpleMethodsTest.java
 M	test/com/google/javascript/jscomp/InlineVariablesConstantsTest.java
 M	test/com/google/javascript/jscomp/InlineVariablesTest.java
-M	test/com/google/javascript/jscomp/InstrumentFunctionsTest.java
 D	test/com/google/javascript/jscomp/InstrumentMemoryAllocPassTest.java
 D	test/com/google/javascript/jscomp/IntegrationTest.java
 D	test/com/google/javascript/jscomp/IntegrationTestCase.java
@@ -1243,7 +1186,6 @@ M	test/com/google/javascript/jscomp/JSCompilerSourceExcerptProviderTest.java
 M	test/com/google/javascript/jscomp/JSModuleGraphTest.java
 M	test/com/google/javascript/jscomp/JSModuleTest.java
 M	test/com/google/javascript/jscomp/JsMessageExtractorTest.java
-M	test/com/google/javascript/jscomp/JsMessageTest.java
 M	test/com/google/javascript/jscomp/JsMessageVisitorTest.java
 M	test/com/google/javascript/jscomp/LightweightMessageFormatterTest.java
 M	test/com/google/javascript/jscomp/LinkedFlowScopeTest.java
@@ -1254,7 +1196,6 @@ M	test/com/google/javascript/jscomp/MarkNoSideEffectCallsTest.java
 M	test/com/google/javascript/jscomp/MaybeReachingVariableUseTest.java
 M	test/com/google/javascript/jscomp/MemoizedScopeCreatorTest.java
 M	test/com/google/javascript/jscomp/MinimizeExitPointsTest.java
-M	test/com/google/javascript/jscomp/MoveFunctionDeclarationsTest.java
 D	test/com/google/javascript/jscomp/MultiPassTest.java
 M	test/com/google/javascript/jscomp/MustBeReachingVariableDefTest.java
 M	test/com/google/javascript/jscomp/NameAnalyzerTest.java
@@ -1264,12 +1205,11 @@ M	test/com/google/javascript/jscomp/NodeIteratorsTest.java
 M	test/com/google/javascript/jscomp/NodeTraversalTest.java
 M	test/com/google/javascript/jscomp/NodeUtilTest.java
 M	test/com/google/javascript/jscomp/NormalizeTest.java
-M	test/com/google/javascript/jscomp/ObjectPropertyStringPostprocessTest.java
 M	test/com/google/javascript/jscomp/ObjectPropertyStringPreprocessTest.java
 M	test/com/google/javascript/jscomp/OptimizeArgumentsArrayTest.java
 D	test/com/google/javascript/jscomp/OptimizeCallsTest.java
 M	test/com/google/javascript/jscomp/OptimizeParametersTest.java
-D	test/com/google/javascript/jscomp/OptimizeReturnsTest.java
+M	test/com/google/javascript/jscomp/OptimizeReturnsTest.java
 A	test/com/google/javascript/jscomp/ParallelCompilerPassTest.java
 D	test/com/google/javascript/jscomp/PeepholeCollectPropertyAssignmentsTest.java
 M	test/com/google/javascript/jscomp/PeepholeFoldConstantsTest.java
@@ -1286,11 +1226,9 @@ M	test/com/google/javascript/jscomp/PrepareAstTest.java
 M	test/com/google/javascript/jscomp/ProcessClosurePrimitivesTest.java
 D	test/com/google/javascript/jscomp/ProcessCommonJSModulesTest.java
 M	test/com/google/javascript/jscomp/ProcessDefinesTest.java
-D	test/com/google/javascript/jscomp/ProcessTweaksTest.java
+M	test/com/google/javascript/jscomp/ProcessTweaksTest.java
 M	test/com/google/javascript/jscomp/PureFunctionIdentifierTest.java
 M	test/com/google/javascript/jscomp/RecordFunctionInformationTest.java
-A	test/com/google/javascript/jscomp/RemoveConstantExpressionsParallelTest.java
-A	test/com/google/javascript/jscomp/RemoveConstantExpressionsTest.java
 M	test/com/google/javascript/jscomp/RemoveTryCatchTest.java
 D	test/com/google/javascript/jscomp/RemoveUnusedClassPropertiesTest.java
 M	test/com/google/javascript/jscomp/RemoveUnusedNamesTest.java
@@ -1347,23 +1285,19 @@ D	test/com/google/javascript/jscomp/XtbMessageBundleTest.java
 M	test/com/google/javascript/jscomp/deps/DepsFileParserTest.java
 M	test/com/google/javascript/jscomp/deps/JsFileLineParserTest.java
 M	test/com/google/javascript/jscomp/deps/JsFileParserTest.java
-D	test/com/google/javascript/jscomp/deps/JsFunctionParserTest.java
+M	test/com/google/javascript/jscomp/deps/JsFunctionParserTest.java
 M	test/com/google/javascript/jscomp/deps/SortedDependenciesTest.java
 M	test/com/google/javascript/jscomp/graph/GraphColoringTest.java
 D	test/com/google/javascript/jscomp/graph/GraphPrunerTest.java
-M	test/com/google/javascript/jscomp/graph/GraphReachabilityTest.java
 M	test/com/google/javascript/jscomp/graph/GraphTest.java
-M	test/com/google/javascript/jscomp/graph/StandardUnionFindTest.java
-D	test/com/google/javascript/jscomp/jsonml/JsonMLConversionTest.java
-D	test/com/google/javascript/jscomp/jsonml/JsonMLValidationTest.java
-D	test/com/google/javascript/jscomp/jsonml/SecureCompilerTest.java
+M	test/com/google/javascript/jscomp/jsonml/JsonMLConversionTest.java
+M	test/com/google/javascript/jscomp/jsonml/JsonMLValidationTest.java
 M	test/com/google/javascript/jscomp/parsing/IRFactoryTest.java
 M	test/com/google/javascript/jscomp/parsing/JsDocInfoParserTest.java
 M	test/com/google/javascript/jscomp/parsing/JsDocTokenStreamTest.java
 M	test/com/google/javascript/jscomp/parsing/ParserTest.java
 D	test/com/google/javascript/jscomp/regex/CharRangesTest.java
 M	test/com/google/javascript/jscomp/regtests/CompileEachLineOfProgramOutput.java
-R054	src/com/google/javascript/rhino/jstype/SimpleSourceFile.java	test/com/google/javascript/rhino/AllTests.java
 D	test/com/google/javascript/rhino/IRTest.java
 M	test/com/google/javascript/rhino/JSDocInfoTest.java
 M	test/com/google/javascript/rhino/NodeTest.java
@@ -1380,4 +1314,4 @@ D	test/com/google/javascript/rhino/jstype/RecordTypeTest.java
 D	test/com/google/javascript/rhino/jstype/TemplatizedTypeTest.java
 M	test/com/google/javascript/rhino/jstype/UnionTypeBuilderTest.java
 M	test/com/google/javascript/rhino/jstype/UnionTypeTest.java
-D	tools/maven-ant-tasks-2.1.3.jar
+R085	tools/maven-ant-tasks-2.1.3.jar	tools/maven-ant-tasks-2.1.1.jar

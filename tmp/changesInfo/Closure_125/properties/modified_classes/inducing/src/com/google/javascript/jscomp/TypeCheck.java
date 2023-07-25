@@ -1,5 +1,5 @@
 /*
- * Copyright 2006 Google Inc.
+ * Copyright 2006 The Closure Compiler Authors.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -246,7 +246,12 @@ public class TypeCheck implements NodeTraversal.Callback, CompilerPass {
       UNKNOWN_EXPR_TYPE,
       UNRESOLVED_TYPE,
       WRONG_ARGUMENT_COUNT,
-      ILLEGAL_IMPLICIT_CAST);
+      ILLEGAL_IMPLICIT_CAST,
+      TypedScopeCreator.UNKNOWN_LENDS,
+      TypedScopeCreator.LENDS_ON_NON_OBJECT,
+      TypedScopeCreator.CTOR_INITIALIZER,
+      TypedScopeCreator.IFACE_INITIALIZER,
+      FunctionTypeBuilder.THIS_TYPE_NON_OBJECT);
 
   private final AbstractCompiler compiler;
   private final TypeValidator validator;
@@ -637,11 +642,11 @@ public class TypeCheck implements NodeTraversal.Callback, CompilerPass {
           // should match a string context.
           String message = "left side of comparison";
           validator.expectString(t, n, leftType, message);
-          validator.expectNotVoid(
+          validator.expectNotNullOrUndefined(
               t, n, leftType, message, getNativeType(STRING_TYPE));
           message = "right side of comparison";
           validator.expectString(t, n, rightType, message);
-          validator.expectNotVoid(
+          validator.expectNotNullOrUndefined(
               t, n, rightType, message, getNativeType(STRING_TYPE));
         }
         ensureTyped(t, n, BOOLEAN_TYPE);
@@ -977,10 +982,7 @@ public class TypeCheck implements NodeTraversal.Callback, CompilerPass {
               HIDDEN_INTERFACE_PROPERTY, propertyName,
               interfaceType.getTopMostDefiningType(propertyName).toString()));
         }
-        if (!declaredOverride) {
-          continue;
-        }
-        // @override is present and we have to check that it is ok
+        // Check that it is ok
         if (interfaceHasProperty) {
           JSType interfacePropType =
               interfaceType.getPrototype().getPropertyType(propertyName);
@@ -1151,8 +1153,8 @@ public class TypeCheck implements NodeTraversal.Callback, CompilerPass {
 
     // TODO(user): remove in favor of flagging every property access on
     // non-object.
-    if (!validator.expectNotVoid(t, n, childType,
-            "undefined has no properties", getNativeType(OBJECT_TYPE))) {
+    if (!validator.expectNotNullOrUndefined(t, n, childType,
+            childType + " has no properties", getNativeType(OBJECT_TYPE))) {
       ensureTyped(t, n);
       return;
     }
@@ -1558,17 +1560,14 @@ public class TypeCheck implements NodeTraversal.Callback, CompilerPass {
   private void checkEnumInitializer(
       NodeTraversal t, Node value, JSType primitiveType) {
     if (value.getType() == Token.OBJECTLIT) {
-      // re-using value as the value of the object literal and advancing twice
-      value = value.getFirstChild();
-      value = (value == null) ? null : value.getNext();
-      while (value != null) {
-        // the value's type must be assignable to the enum's primitive type
-        validator.expectCanAssignTo(t, value, getJSType(value), primitiveType,
-            "element type must match enum's type");
+      for (Node key = value.getFirstChild();
+           key != null; key = key.getNext()) {
+        Node propValue = key.getFirstChild();
 
-        // advancing twice
-        value = value.getNext();
-        value = (value == null) ? null : value.getNext();
+        // the value's type must be assignable to the enum's primitive type
+        validator.expectCanAssignTo(
+            t, propValue, getJSType(propValue), primitiveType,
+            "element type must match enum's type");
       }
     } else if (value.getJSType() instanceof EnumType) {
       // TODO(user): Remove the instanceof check in favor

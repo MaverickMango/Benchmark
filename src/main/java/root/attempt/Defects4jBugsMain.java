@@ -21,28 +21,31 @@ public class Defects4jBugsMain implements GitAccess {
      *
      * @param args [0]: proj_bugs.csv [1]: target bug cloned directory [2]: bugfixinfo.csv [3]: path2changesInfo/
      */
-    public static void main(String[] args) {
+    public static void getFixing(String[] args) {
         List<String> proj_bugs = FileUtils.readEachLine(args[0]);
         List<List<String>> bugFixInfos = FileUtils.readCsv(args[2], true);
         Set<String> collect = bugFixInfos.stream().map(i -> i.get(2)).collect(Collectors.toSet());
         for (String proj_bug: proj_bugs) {
             String proj = proj_bug.split(":")[0];
+            if (!proj.equals("Codec"))
+                continue;
             String[] bugs = proj_bug.split(":")[1].split(",");
             for (String id :bugs) {
-                if (!FileUtils.notExists(args[3] + proj + "_" + id)){
-                    continue;
-                }
+//                if (!FileUtils.notExists(args[3] + proj + "_" + id)){
+//                    continue;
+//                }
                 String bugName = proj + "_" + id + "_buggy";
                 Defects4JBug defects4JBug = new Defects4JBug(proj, id, args[1] + bugName);
                 String fixingCommit = defects4JBug.getFixingCommit();
-                String startCommit = fixingCommit;
-                if (collect.contains(bugName)) {
-                    List<List<String>> bugInfo = bugFixInfos.stream().filter(i -> i.get(2).equals(bugName)).collect(Collectors.toList());
-                    if (!bugInfo.isEmpty()) {
-                        startCommit = bugInfo.get(0).get(6);
-                    }
-                }
-                boolean res = defects4JBug.findInducingCommit(fixingCommit, startCommit);
+//                String startCommit = fixingCommit;
+//                if (collect.contains(bugName)) {
+//                    List<List<String>> bugInfo = bugFixInfos.stream().filter(i -> i.get(2).equals(bugName)).collect(Collectors.toList());
+//                    if (!bugInfo.isEmpty()) {
+//                        startCommit = bugInfo.get(0).get(6);
+//                    }
+//                }
+//                boolean res = defects4JBug.findInducingCommit(fixingCommit, startCommit);
+                FileUtils.writeToFile(fixingCommit + "\n", "tmp/codec-d4j-fixing.txt", true);
                 logger.info("Finished processing " + bugName + "...");
             }
         }
@@ -52,7 +55,7 @@ public class Defects4jBugsMain implements GitAccess {
      *
      * @param args [0]:failing_tests store directory
      */
-    public static void find4Preprocessed(String[] args) {
+    public static void main(String[] args) {
         String filePath = args[1];//"src/test/resources/BugFixInfo.csv"
         List<List<String>> d4jinfos = FileUtils.readCsv(filePath, true);
         List<String> succeed = new ArrayList<>();
@@ -248,10 +251,12 @@ public class Defects4jBugsMain implements GitAccess {
         System.out.println(failed);
     }
 
-    public static void getMappings(String[] args) {
+    public static void getMappings(String[] args) {//
         String filePath = "src/test/resources/BugFixInfo.csv";
         List<List<String>> d4jinfos = FileUtils.readCsv(filePath, true);
         for (List<String> bug :d4jinfos) {
+            if (Integer.parseInt(bug.get(0)) <= 90)
+                continue;
             String bugName = bug.get(2);
             String proj = bugName.split("_")[0];
             String id = bugName.split("_")[1];
@@ -259,10 +264,10 @@ public class Defects4jBugsMain implements GitAccess {
             //                    continue;
             String bugFixingCommit = bug.get(3);
             String bugInduingCommit = bug.get(5);
-            Defects4JBug defects4JBug = new Defects4JBug(proj, id, "tmp/bugs/" + bugName);
+            Defects4JBug defects4JBug = new Defects4JBug(proj, id, "../bugs/" + bugName);
             Repository repository = defects4JBug.getGitRepository("b");
-            gitAccess.getFileStatDiffBetweenCommits(defects4JBug.getWorkingDir(), bug.get(4), bug.get(6)
-                    , "tmp/changesInfo/" + proj + "_" + id + "/properties/mappings/b2o");
+            gitAccess.getFileStatDiffBetweenCommits(defects4JBug.getWorkingDir(), bug.get(5), bug.get(6)
+                    , "tmp/changesInfo/" + proj + "_" + id + "/properties/mappings/i2o");
         }
     }
 
@@ -341,15 +346,17 @@ public class Defects4jBugsMain implements GitAccess {
     }
 
 
-    public static void getChangeInfo(String[] args) {
+    public static void getChangeInfo(String[] args) {//
         String filePath = "src/test/resources/BugFixInfo.csv";
         List<List<String>> d4jinfos = FileUtils.readCsv(filePath, true);
         for (List<String> bug : d4jinfos) {
+            if (Integer.parseInt(bug.get(0)) <= 90)
+                continue;
             String bugName = bug.get(2);
             String proj = bugName.split("_")[0];
             String id = bugName.split("_")[1];
             String bugInduingCommit = bug.get(5);
-            String workingDir = "tmp/bugs/" + bugName;
+            String workingDir = "../bugs/" + bugName;
             Defects4JBug defects4JBug = new Defects4JBug(proj, id, workingDir);
             Repository repository = defects4JBug.getGitRepository("b");
             String bugFixingCommit = bug.get(3);
@@ -360,29 +367,28 @@ public class Defects4jBugsMain implements GitAccess {
     }
 
 
-    public static void getDiffInfos(String[] args) {
-        String filePath = "src/test/resources/Defects4J.csv";
+    public static void getDiffInfos(String[] args) {//
+        String filePath = "src/test/resources/Another.csv";
         List<List<String>> d4jinfos = FileUtils.readCsv(filePath, true);
+        String bugInfoDir = "src/test/resources/BugFixInfo.csv";
+        StringBuilder stringBuilder = new StringBuilder();//"BugId,Derive,BugName,fixing_commit,fixing_before,inducing_commit,inducing_before\n"
         for (int i = 0; i < d4jinfos.size(); i ++) {
             List<String> bug = d4jinfos.get(i);
-            if (bug.get(0).equals("Chart"))
-                continue;
-            String bugName = bug.get(0) + "_" + bug.get(1) + "_buggy";
+            String bug_tag = bug.get(0) + "_" + bug.get(1);
+            String bugName = bug_tag + "_buggy";
             String bugInduingCommit = bug.get(2);
 //            if (FileUtils.isFileExist(diffDir))
 //                continue;
-            String workingDir = "tmp/bugs/" + bugName;
+            String workingDir = "../bugs/" + bugName;
             Defects4JBug defects4JBug = new Defects4JBug(bug.get(0), bug.get(1),  workingDir);
             Repository repository = defects4JBug.getGitRepository("b");
             String bugFixingCommit = defects4JBug.getFixingCommit();
             assert repository != null;
             String fixingDiff = gitAccess.diff(repository, bugFixingCommit);
             String inducingDiff = gitAccess.diff(repository, bugInduingCommit);
-            String fixingDiffDir = "tmp/changesInfo/" + bugName + "/patches/fixing.diff";
-            String inducingDiffDir = "tmp/changesInfo/" + bugName + "/patches/inducing.diff";
-            String bugInfoDir = "src/test/resources/BugFixInfo.csv";
-            String changesInfoDir = "tmp/changesInfo/" + bugName + "/info.txt";
-            StringBuilder stringBuilder = new StringBuilder("BugId,Derive,BugName,fixing_commit,fixing_before,inducing_commit,inducing_before\n");
+            String fixingDiffDir = "tmp/changesInfo/" + bug_tag + "/patches/fixing.diff";
+            String inducingDiffDir = "tmp/changesInfo/" + bug_tag + "/patches/inducing.diff";
+            String changesInfoDir = "tmp/changesInfo/" + bug_tag + "/info.txt";
             if (fixingDiff != null && inducingDiff != null) {
                 BugFixCommit bugFixCommit = gitAccess.getBugFixCommit(bugName, String.valueOf(i),
                                             repository, bugInduingCommit, bugFixingCommit);
@@ -397,8 +403,8 @@ public class Defects4jBugsMain implements GitAccess {
                         "," + gitAccess.getCommit(repository, bugInduingCommit).getParent(0).getName() + "\n";
                 stringBuilder.append(buginfo);
             }
-            FileUtils.writeToFile(stringBuilder.toString(), bugInfoDir, false);
         }
+        FileUtils.writeToFile(stringBuilder.toString(), bugInfoDir, true);
 
     }
 

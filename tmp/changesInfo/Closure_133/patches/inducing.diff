@@ -1,227 +1,252 @@
 diff --git a/src/com/google/javascript/jscomp/parsing/JsDocInfoParser.java b/src/com/google/javascript/jscomp/parsing/JsDocInfoParser.java
-index cb1e074..eaf708d 100644
+index 3bf7d47..4539ef5 100644
 --- a/src/com/google/javascript/jscomp/parsing/JsDocInfoParser.java
 +++ b/src/com/google/javascript/jscomp/parsing/JsDocInfoParser.java
-@@ -18,6 +18,7 @@
+@@ -714,30 +714,6 @@
+                   token = eatTokensUntilEOL();
+                   continue retry;
  
- import com.google.common.base.Preconditions;
- import com.google.common.collect.ImmutableSet;
-+import com.google.common.collect.Lists;
- import com.google.common.collect.Sets;
- import com.google.javascript.jscomp.mozilla.rhino.ErrorReporter;
- import com.google.javascript.jscomp.mozilla.rhino.ast.Comment;
-@@ -33,6 +34,7 @@
- import java.util.HashSet;
- import java.util.Map;
- import java.util.Set;
-+import java.util.List;
- 
- /**
-  * A parser for JSDoc comments.
-@@ -176,6 +178,8 @@
- 
-     JsDocToken token = next();
- 
-+    List<ExtendedTypeInfo> extendedTypes = Lists.newArrayList();
-+
-     // Always record that we have a comment.
-     if (jsdocBuilder.shouldParseDocumentation()) {
-       ExtractionInfo blockInfo = extractBlockComment(token);
-@@ -408,10 +412,9 @@
-                     type = createJSTypeExpression(typeNode);
- 
-                     if (annotation == Annotation.EXTENDS) {
--                      if (!jsdocBuilder.recordBaseType(type)) {
--                        parser.addTypeWarning(
--                            "msg.jsdoc.incompat.type", lineno, charno);
--                      }
-+                      // record the extended type, check later
-+                      extendedTypes.add(new ExtendedTypeInfo(
-+                          type, stream.getLineno(), stream.getCharno()));
-                     } else {
-                       Preconditions.checkState(
-                           annotation == Annotation.IMPLEMENTS);
-@@ -875,7 +878,7 @@
-           if (hasParsedFileOverviewDocInfo()) {
-             fileOverviewJSDocInfo = retrieveAndResetParsedJSDocInfo();
-           }
+-                case PRIVATE:
+-                  if (!jsdocBuilder.recordVisibility(Visibility.PRIVATE)) {
+-                    parser.addParserWarning("msg.jsdoc.visibility.private",
+-                        stream.getLineno(), stream.getCharno());
+-                  }
+-                  token = eatTokensUntilEOL();
+-                  continue retry;
 -
-+          checkExtendedTypes(extendedTypes);
-           return true;
+-                case PROTECTED:
+-                  if (!jsdocBuilder.recordVisibility(Visibility.PROTECTED)) {
+-                    parser.addParserWarning("msg.jsdoc.visibility.protected",
+-                        stream.getLineno(), stream.getCharno());
+-                  }
+-                  token = eatTokensUntilEOL();
+-                  continue retry;
+-
+-                case PUBLIC:
+-                  if (!jsdocBuilder.recordVisibility(Visibility.PUBLIC)) {
+-                    parser.addParserWarning("msg.jsdoc.visibility.public",
+-                        stream.getLineno(), stream.getCharno());
+-                  }
+-                  token = eatTokensUntilEOL();
+-                  continue retry;
+-
+                 case NO_SHADOW:
+                   if (!jsdocBuilder.recordNoShadow()) {
+                     parser.addParserWarning("msg.jsdoc.noshadow",
+@@ -841,6 +817,9 @@
  
-         case EOF:
-@@ -883,6 +886,7 @@
-           jsdocBuilder.build(null);
-           parser.addParserWarning("msg.unexpected.eof",
-               stream.getLineno(), stream.getCharno());
-+          checkExtendedTypes(extendedTypes);
-           return false;
+                 case DEFINE:
+                 case RETURN:
++                case PRIVATE:
++                case PROTECTED:
++                case PUBLIC:
+                 case THIS:
+                 case TYPE:
+                 case TYPEDEF:
+@@ -848,26 +827,45 @@
+                   charno = stream.getCharno();
  
-         case EOL:
-@@ -908,6 +912,27 @@
-     }
+                   Node typeNode = null;
+-                  if (!lookAheadForTypeAnnotation() &&
+-                      annotation == Annotation.RETURN) {
+-                    // If RETURN doesn't have a type annotation, record
+-                    // it as the unknown type.
+-                    typeNode = newNode(Token.QMARK);
+-                  } else {
++                  boolean hasType = lookAheadForTypeAnnotation();
++                  boolean isVisibilityAnnotation =
++                      (annotation == Annotation.PRIVATE ||
++                       annotation == Annotation.PROTECTED ||
++                       annotation == Annotation.PUBLIC);
++                  boolean canSkipTypeAnnotation =
++                      (isVisibilityAnnotation ||
++                       annotation == Annotation.RETURN);
++                  type = null;
++                  if (hasType || !canSkipTypeAnnotation) {
+                     skipEOLs();
+                     token = next();
+                     typeNode = parseAndRecordTypeNode(token);
++
++                    if (annotation == Annotation.THIS) {
++                      typeNode = wrapNode(Token.BANG, typeNode);
++                    }
++                    type = createJSTypeExpression(typeNode);
+                   }
+ 
+-                  if (annotation == Annotation.THIS) {
+-                    typeNode = wrapNode(Token.BANG, typeNode);
+-                  }
+-                  type = createJSTypeExpression(typeNode);
++                  // The error was reported during recursive descent
++                  // recovering parsing
++                  boolean hasError = type == null && !canSkipTypeAnnotation;
++                  if (!hasError) {
++                    // Record types for @type.
++                    // If the @private, @protected, or @public annotations
++                    // have a type attached, pretend that they actually wrote:
++                    // @type {type}\n@private
++                    // This will have some weird behavior in some cases
++                    // (for example, @private can now be used as a type-cast),
++                    // but should be mostly OK.
++                    if ((type != null && isVisibilityAnnotation)
++                        || annotation == Annotation.TYPE) {
++                      if (!jsdocBuilder.recordType(type)) {
++                        parser.addTypeWarning(
++                            "msg.jsdoc.incompat.type", lineno, charno);
++                      }
++                    }
+ 
+-                  if (type == null) {
+-                    // error reported during recursive descent
+-                    // recovering parsing
+-                  } else {
+                     switch (annotation) {
+                       case DEFINE:
+                         if (!jsdocBuilder.recordDefineType(type)) {
+@@ -876,7 +874,35 @@
+                         }
+                         break;
+ 
++                      case PRIVATE:
++                        if (!jsdocBuilder.recordVisibility(Visibility.PRIVATE)) {
++                          parser.addParserWarning(
++                              "msg.jsdoc.visibility.private",
++                              lineno, charno);
++                        }
++                        break;
++
++                      case PROTECTED:
++                        if (!jsdocBuilder.recordVisibility(Visibility.PROTECTED)) {
++                          parser.addParserWarning(
++                              "msg.jsdoc.visibility.protected",
++                              lineno, charno);
++                        }
++                        break;
++
++                      case PUBLIC:
++                        if (!jsdocBuilder.recordVisibility(Visibility.PUBLIC)) {
++                          parser.addParserWarning(
++                              "msg.jsdoc.visibility.public",
++                              lineno, charno);
++                        }
++                        break;
++
+                       case RETURN:
++                        if (type == null) {
++                          type = createJSTypeExpression(newNode(Token.QMARK));
++                        }
++
+                         if (!jsdocBuilder.recordReturnType(type)) {
+                           parser.addTypeWarning(
+                               "msg.jsdoc.incompat.type", lineno, charno);
+@@ -909,13 +935,6 @@
+                         }
+                         break;
+ 
+-                      case TYPE:
+-                        if (!jsdocBuilder.recordType(type)) {
+-                          parser.addTypeWarning(
+-                              "msg.jsdoc.incompat.type", lineno, charno);
+-                        }
+-                        break;
+-
+                       case TYPEDEF:
+                         if (!jsdocBuilder.recordTypedef(type)) {
+                           parser.addTypeWarning(
+diff --git a/src/com/google/javascript/rhino/Token.java b/src/com/google/javascript/rhino/Token.java
+index 41491b7..a4e6f2c 100644
+--- a/src/com/google/javascript/rhino/Token.java
++++ b/src/com/google/javascript/rhino/Token.java
+@@ -242,7 +242,6 @@
+           case ASSIGN_DIV:      return "ASSIGN_DIV";
+           case ASSIGN_MOD:      return "ASSIGN_MOD";
+           case HOOK:            return "HOOK";
+-          case COLON:           return "COLON";
+           case OR:              return "OR";
+           case AND:             return "AND";
+           case INC:             return "INC";
+@@ -279,6 +278,9 @@
+           case BANG:            return "BANG";
+           case VOID:            return "VOID";
+           case EQUALS:          return "EQUALS";
++          case LB:              return "LB";
++          case LC:              return "LC";
++          case COLON:           return "COLON";
+         }
+ 
+         // Token without name
+diff --git a/test/com/google/javascript/jscomp/TypeCheckTest.java b/test/com/google/javascript/jscomp/TypeCheckTest.java
+index 2d5a0c9..1446471 100644
+--- a/test/com/google/javascript/jscomp/TypeCheckTest.java
++++ b/test/com/google/javascript/jscomp/TypeCheckTest.java
+@@ -79,6 +79,14 @@
+         s.getVar("URIError").getType());
    }
  
-+  private void checkExtendedTypes(List<ExtendedTypeInfo> extendedTypes) {
-+    for (ExtendedTypeInfo typeInfo : extendedTypes) {
-+      // If interface, record the multiple extended interfaces
-+      if (jsdocBuilder.isInterfaceRecorded()) {
-+        if (!jsdocBuilder.recordExtendedInterface(typeInfo.type)) {
-+          parser.addParserWarning("msg.jsdoc.extends.duplicate",
-+              typeInfo.lineno, typeInfo.charno);
-+        }
-+      }
-+
-+      // For interfaces, still record the first extended type as base type
-+      // It's the temporary setting and will be changed when multiple
-+      // extends for interfaces are done
-+      if (!jsdocBuilder.recordBaseType(typeInfo.type) &&
-+          !jsdocBuilder.isInterfaceRecorded()) {
-+        parser.addTypeWarning("msg.jsdoc.incompat.type",
-+            typeInfo.lineno, typeInfo.charno);
-+      }
-+    }
++  public void testPrivateType() throws Exception {
++    testTypes(
++        "/** @private {number} */ var x = false;",
++        "initializing variable\n" +
++        "found   : boolean\n" +
++        "required: number");
 +  }
 +
-   /**
-    * Parse a {@code @suppress} tag of the form
-    * {@code @suppress&#123;warning1|warning2&#125;}.
-@@ -1207,6 +1232,21 @@
+   public void testTypeCheck1() throws Exception {
+     testTypes("/**@return {void}*/function foo(){ if (foo()) return; }");
+   }
+diff --git a/test/com/google/javascript/jscomp/parsing/JsDocInfoParserTest.java b/test/com/google/javascript/jscomp/parsing/JsDocInfoParserTest.java
+index 1dd31c1..ca22c0b 100644
+--- a/test/com/google/javascript/jscomp/parsing/JsDocInfoParserTest.java
++++ b/test/com/google/javascript/jscomp/parsing/JsDocInfoParserTest.java
+@@ -2526,6 +2526,51 @@
+           "type annotation incompatible with other annotations");
    }
  
-   /**
-+   * Tuple for recording extended types
-+   */
-+  private static class ExtendedTypeInfo {
-+    final JSTypeExpression type;
-+    final int lineno;
-+    final int charno;
-+
-+    public ExtendedTypeInfo(JSTypeExpression type, int lineno, int charno) {
-+      this.type = type;
-+      this.lineno = lineno;
-+      this.charno = charno;
-+    }
++  public void testTypeTagConflict21() throws Exception {
++    parse("/**\n" +
++          " * @private {string}\n" +
++          " * @type {number}\n" +
++          " */\n" +
++          "function DictDict() {}",
++          "Bad type annotation. " +
++          "type annotation incompatible with other annotations");
 +  }
 +
-+  /**
-    * Extracts the text found on the current line starting at token. Note that
-    * token = token.info; should be called after this method is used to update
-    * the token properly in the parser.
-diff --git a/src/com/google/javascript/rhino/JSDocInfo.java b/src/com/google/javascript/rhino/JSDocInfo.java
-index 74ae292..c4982e1 100644
---- a/src/com/google/javascript/rhino/JSDocInfo.java
-+++ b/src/com/google/javascript/rhino/JSDocInfo.java
-@@ -88,6 +88,7 @@
- 
-     // Function information
-     JSTypeExpression baseType = null;
-+    List<JSTypeExpression> extendedInterfaces = null;
-     List<JSTypeExpression> implementedInterfaces = null;
-     Map<String, JSTypeExpression> parameters = null;
-     List<JSTypeExpression> thrownTypes = null;
-@@ -1126,6 +1127,46 @@
-   }
- 
-   /**
-+   * Adds an extended interface (for interface only).
-+   * Returns whether the type was added.
-+   * if the type was already present in the list, it won't get added again.
-+   */
-+  boolean addExtendedInterface(JSTypeExpression type) {
-+    lazyInitInfo();
-+    if (info.extendedInterfaces == null) {
-+      info.extendedInterfaces = Lists.newArrayListWithCapacity(2);
-+    }
-+    if (info.extendedInterfaces.contains(type)) {
-+      return false;
-+    }
-+    info.extendedInterfaces.add(type);
-+    return true;
++  public void testTypeTagConflict22() throws Exception {
++    parse("/**\n" +
++          " * @protected {string}\n" +
++          " * @param {string} x\n" +
++          " */\n" +
++          "function DictDict(x) {}",
++          "Bad type annotation. " +
++          "type annotation incompatible with other annotations");
 +  }
 +
-+  /**
-+   * Returns the interfaces extended by an interface
-+   *
-+   * @return An immutable list of JSTypeExpression objects that can
-+   *    be resolved to types.
-+   */
-+  public List<JSTypeExpression> getExtendedInterfaces() {
-+    if (info == null || info.extendedInterfaces == null) {
-+      return ImmutableList.of();
-+    }
-+    return Collections.unmodifiableList(info.extendedInterfaces);
++  public void testTypeTagConflict23() throws Exception {
++    parse("/**\n" +
++          " * @public {string}\n" +
++          " * @return {string} x\n" +
++          " */\n" +
++          "function DictDict() {}",
++          "Bad type annotation. " +
++          "type annotation incompatible with other annotations");
 +  }
 +
-+  /**
-+   * Gets the number of extended interfaces specified
-+   */
-+  public int getExtendedInterfacesCount() {
-+    if (info == null || info.extendedInterfaces == null) {
-+      return 0;
-+    }
-+    return info.extendedInterfaces.size();
++  public void testPrivateType() throws Exception {
++    JSDocInfo jsdoc = parse("@private {string} */");
++    assertTypeEquals(STRING_TYPE, jsdoc.getType());
 +  }
 +
-+  /**
-    * Returns the deprecation reason or null if none specified.
-    */
-   public String getDeprecationReason() {
-@@ -1267,6 +1308,12 @@
-         nodes.add(info.baseType.getRoot());
-       }
- 
-+      if (info.extendedInterfaces != null) {
-+        for (JSTypeExpression interfaceType : info.extendedInterfaces) {
-+          nodes.add(interfaceType.getRoot());
-+        }
-+      }
-+
-       if (info.implementedInterfaces != null) {
-         for (JSTypeExpression interfaceType : info.implementedInterfaces) {
-           nodes.add(interfaceType.getRoot());
-diff --git a/src/com/google/javascript/rhino/JSDocInfoBuilder.java b/src/com/google/javascript/rhino/JSDocInfoBuilder.java
-index b3d50da..bfc8b18 100644
---- a/src/com/google/javascript/rhino/JSDocInfoBuilder.java
-+++ b/src/com/google/javascript/rhino/JSDocInfoBuilder.java
-@@ -845,6 +845,18 @@
-   }
- 
-   /**
-+   * Records an extended interface type.
-+   */
-+  public boolean recordExtendedInterface(JSTypeExpression interfaceType) {
-+    if (currentInfo.addExtendedInterface(interfaceType)) {
-+      populated = true;
-+      return true;
-+    } else {
-+      return false;
-+    }
++  public void testProtectedType() throws Exception {
++    JSDocInfo jsdoc = parse("@protected {string} */");
++    assertTypeEquals(STRING_TYPE, jsdoc.getType());
 +  }
 +
-+  /**
-    * Records that we're lending to another name.
-    */
-   public boolean recordLends(String name) {
-@@ -867,6 +879,7 @@
-         currentInfo.getParameterCount() > 0 ||
-         currentInfo.hasReturnType() ||
-         currentInfo.hasBaseType() ||
-+        currentInfo.getExtendedInterfacesCount() > 0 ||
-         currentInfo.getLendsName() != null ||
-         currentInfo.hasThisType() ||
-         hasAnySingletonTypeTags();
-diff --git a/src/com/google/javascript/rhino/jstype/PrototypeObjectType.java b/src/com/google/javascript/rhino/jstype/PrototypeObjectType.java
-index 69f6a5b..e6f45be 100644
---- a/src/com/google/javascript/rhino/jstype/PrototypeObjectType.java
-+++ b/src/com/google/javascript/rhino/jstype/PrototypeObjectType.java
-@@ -503,7 +503,8 @@
-     /**  The JSDocInfo for this property. */
-     private JSDocInfo docInfo = null;
- 
--    private Property(JSType type, boolean inferred, boolean inExterns, Node propertyNode) {
-+    private Property(JSType type, boolean inferred, boolean inExterns,
-+        Node propertyNode) {
-       this.type = type;
-       this.inferred = inferred;
-       this.inExterns = inExterns;
++  public void testPublicType() throws Exception {
++    JSDocInfo jsdoc = parse("@public {string} */");
++    assertTypeEquals(STRING_TYPE, jsdoc.getType());
++  }
++
+   public void testStableIdGeneratorConflict() throws Exception {
+     parse("/**\n" +
+           " * @stableIdGenerator\n" +

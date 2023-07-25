@@ -1,31 +1,31 @@
 {
   "bugName": "Closure_33_buggy",
-  "bugId": "18",
+  "bugId": "0",
   "repo": {
-    "name": "tmp/Closure_33_buggy/.git"
+    "name": "../bugs/Closure_33_buggy/.git"
   },
-  "buggyCommit": {
-    "sha": "091577d5000b2260452cdc79eacf54925de894a3",
+  "inducingCommit": {
+    "sha": "22784dc96c391b01692ce686eb93b9aa0ef74ede",
     "branchName": "HEAD",
-    "fullMessage": "\nMaking CheckAccessControls hot-swappable. This needed changes in defining\nproperties on PrototypeObjectType to keep previously inferred jsdoc info.\n\nR\u003dnicksantos\nDELTA\u003d57  (45 added, 2 deleted, 10 changed)\n\n\nRevision created by MOE tool push_codebase.\nMOE_MIGRATION\u003d1806\n\n\ngit-svn-id: https://closure-compiler.googlecode.com/svn/trunk@1070 b0f006be-c8cd-11de-a2e8-8d36a3108c74\n",
-    "repoName": "tmp/Closure_33_buggy/.git"
+    "fullMessage": "\npush reverse-inference into the type system\nfixes issue 669\n\nR\u003djohnlenz\nDELTA\u003d77  (62 added, 13 deleted, 2 changed)\n\n\nRevision created by MOE tool push_codebase.\nMOE_MIGRATION\u003d4306\n\n\ngit-svn-id: https://closure-compiler.googlecode.com/svn/trunk@1802 b0f006be-c8cd-11de-a2e8-8d36a3108c74\n",
+    "repoName": "../bugs/Closure_33_buggy/.git"
   },
-  "commitBeforeBuggy": {
-    "sha": "de306603cfe39c64672539af78bb74a10439e1b3",
+  "originalCommit": {
+    "sha": "7e3e1a667c866458cca12b7ade9965b4e6ddf3c0",
     "branchName": "HEAD",
-    "fullMessage": "\nWhen regenerating the global scope, grab the types of things\nthat were inferred in previous compiler passes, so that we\ndon\u0027t need to run type inference of the global scope again\n\nR\u003dbashir\nDELTA\u003d116  (77 added, 18 deleted, 21 changed)\n\n\nRevision created by MOE tool push_codebase.\nMOE_MIGRATION\u003d1805\n\n\ngit-svn-id: https://closure-compiler.googlecode.com/svn/trunk@1069 b0f006be-c8cd-11de-a2e8-8d36a3108c74\n",
-    "repoName": "tmp/Closure_33_buggy/.git"
+    "fullMessage": "\nexpand the diagnostic group api\n\nR\u003dmwr\nDELTA\u003d80  (56 added, 7 deleted, 17 changed)\n\n\nRevision created by MOE tool push_codebase.\nMOE_MIGRATION\u003d4298\n\n\ngit-svn-id: https://closure-compiler.googlecode.com/svn/trunk@1801 b0f006be-c8cd-11de-a2e8-8d36a3108c74\n",
+    "repoName": "../bugs/Closure_33_buggy/.git"
   },
   "fixedCommit": {
     "sha": "382422adae8e9f07fc23c94089c0ebe08a2174bc",
     "branchName": "HEAD",
     "fullMessage": "\nfix a bug in constraint-matching\nfixes issue 700\n\nR\u003djohnlenz\nDELTA\u003d50  (47 added, 0 deleted, 3 changed)\n\n\nRevision created by MOE tool push_codebase.\nMOE_MIGRATION\u003d4462\n\n\ngit-svn-id: https://closure-compiler.googlecode.com/svn/trunk@1858 b0f006be-c8cd-11de-a2e8-8d36a3108c74\n",
-    "repoName": "tmp/Closure_33_buggy/.git"
+    "repoName": "../bugs/Closure_33_buggy/.git"
   },
-  "commitBeforeFixing": {
+  "buggyCommit": {
     "sha": "24c113d396a1c3e175bf70fe572b496ff7a68144",
     "branchName": "HEAD",
     "fullMessage": "\nFor the SLASH_V prop that was added to Node, add a string value so\nit can be toString()\u0027ed correctly.\n\nR\u003dnicksantos\nDELTA\u003d1  (1 added, 0 deleted, 0 changed)\n\n\nRevision created by MOE tool push_codebase.\nMOE_MIGRATION\u003d4461\n\n\ngit-svn-id: https://closure-compiler.googlecode.com/svn/trunk@1857 b0f006be-c8cd-11de-a2e8-8d36a3108c74\n",
-    "repoName": "tmp/Closure_33_buggy/.git"
+    "repoName": "../bugs/Closure_33_buggy/.git"
   }
 }

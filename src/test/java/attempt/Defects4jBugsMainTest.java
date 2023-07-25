@@ -35,26 +35,28 @@ public class Defects4jBugsMainTest implements GitAccess {
         List<List<String>> d4jinfos = FileUtils.readCsv(filePath, true);
         List<String> failed = new ArrayList<>();
         for (List<String> bug :d4jinfos) {
-            String bugName = bug.get(2);
-            if (!bugName.startsWith("Closure_65_"))
+            if (Integer.parseInt(bug.get(0)) <= 90)
                 continue;
+            String bugName = bug.get(2);
             String proj = bugName.split("_")[0];
             String id = bugName.split("_")[1];
             String bugFixingCommit = bug.get(3);
             String bugInduingCommit = bug.get(5);
-            Defects4JBug defects4JBug = new Defects4JBug(proj, id, "tmp/bugs/" + bugName);
+            Defects4JBug defects4JBug = new Defects4JBug(proj, id, "../bugs/" + bugName);
             Repository repository = defects4JBug.getGitRepository("b");
             String patches = "tmp/changesInfo/" + proj + "_" + id + "/patches/";
             String modifiedClasses = "tmp/changesInfo/" + proj + "_" + id + "/properties/modified_classes/";
             String mappingFile = "tmp/changesInfo/" + proj + "_" + id + "/properties/mappings/b2o";
             String srcClasses = ConfigurationProperties.getProperty("defects4j") + "/framework/projects/" + proj + "/modified_classes/" + id + ".src";
-            String srcPatch = ConfigurationProperties.getProperty("defects4j") + "/framework/projects/" + proj + "/patches/" + id + ".test.patch";
+            String srcPatch = ConfigurationProperties.getProperty("defects4j") + "/framework/projects/" + proj + "/patches/" + id + ".src.patch";
+            String testPatch = ConfigurationProperties.getProperty("defects4j") + "/framework/projects/" + proj + "/patches/" + id + ".test.patch";
             String testMethods = "/home/liumengjiao/Desktop/vbaprinfo/d4j_bug_info/failed_tests/" + proj.toLowerCase() + "/" + id + ".txt";
 //            FileUtils.copy(new File(srcPatch), new File(patches));
+//            FileUtils.copy(new File(testPatch), new File(patches));
             try {
                 List<List<String>> b2oSrc = gitAccess.getF2i(mappingFile, FileUtils.readEachLine(srcClasses));
                 List<List<String>> f2iTest = gitAccess.getF2i(mappingFile, FileUtils.readEachLine(testMethods));
-                boolean checkoutf = gitAccess.checkoutf(defects4JBug.getWorkingDir(), bug.get(5));
+                boolean checkoutf = gitAccess.checkoutf(defects4JBug.getWorkingDir(), bug.get(6));
                 for (List<String> b2i : b2oSrc) {
                     FileUtils.copy(new File(defects4JBug.getWorkingDir() + "/" + b2i.get(2)), new File(modifiedClasses + "original/" + b2i.get(2)));
                 }
@@ -108,17 +110,20 @@ public class Defects4jBugsMainTest implements GitAccess {
 //        gitAccess.getFileStatDiffBetweenCommits(defects4JBug.getWorkingDir(), "c0b655ace5665c0cd32e3f5e5b46edad4d223125"
 //                , "711d6b94a120d413e9d8bd21bb26ec7d0aeecc39"
 //                , "tmp/changesInfo/Math_2/properties/mappings/f2i");
-        String[] f2i = gitAccess.getF2i("tmp/changesInfo/Math_50/properties/mappings/f2i", "org.apache.commons.math.analysis.solvers.RegulaFalsiSolverTest");
-        gitAccess.checkoutf(defects4JBug.getWorkingDir(), "39cf5e69259d7560d50553caf028f9229b721013");
-        ASTManipulator astManipulator = new ASTManipulator(8);
-        List<ImportDeclaration> importDeclarations = new ArrayList<>();
-        List<MethodDeclaration> methodDeclarations = new ArrayList<>();
-        ASTNode triggerTest = astManipulator.extractTest(FileUtils.readFileByChars(defects4JBug.getWorkingDir() + "/" + f2i[1]), "testIssue631"
-                                , importDeclarations, methodDeclarations);
-        gitAccess.checkoutf(defects4JBug.getWorkingDir(), "2f066a5b2d2fe8a00a251a3220b0d52446fe392d");
-        String s = astManipulator.insertTest(FileUtils.readFileByChars(defects4JBug.getWorkingDir() + "/" + f2i[2]), triggerTest
-                                , "tmp/changesInfo/Math_50/properties/mappings/f2i", importDeclarations, methodDeclarations);
-        FileUtils.writeToFile(s, defects4JBug.getWorkingDir() + "/" + f2i[2], false);
+        ArrayList<String> strings = new ArrayList<>();
+        strings.add("org.apache.commons.math.analysis.solvers.RegulaFalsiSolverTest::testIssue631");
+        defects4JBug.addTest(repo, "tmp/changesInfo/Math_50/properties/mappings/f2i", strings, defects4JBug.getFixingCommit(), "2f066a5b2d2fe8a00a251a3220b0d52446fe392d");
+//        String[] f2i = gitAccess.getF2i("tmp/changesInfo/Math_50/properties/mappings/f2i", "org.apache.commons.math.analysis.solvers.RegulaFalsiSolverTest");
+//        gitAccess.checkoutf(defects4JBug.getWorkingDir(), "39cf5e69259d7560d50553caf028f9229b721013");
+//        ASTManipulator astManipulator = new ASTManipulator(8);
+//        List<ImportDeclaration> importDeclarations = new ArrayList<>();
+//        List<MethodDeclaration> methodDeclarations = new ArrayList<>();
+//        ASTNode triggerTest = astManipulator.extractTest(FileUtils.readFileByChars(defects4JBug.getWorkingDir() + "/" + f2i[1]), "testIssue631"
+//                                , importDeclarations, methodDeclarations);
+//        gitAccess.checkoutf(defects4JBug.getWorkingDir(), "2f066a5b2d2fe8a00a251a3220b0d52446fe392d");
+//        String s = astManipulator.insertTest(FileUtils.readFileByChars(defects4JBug.getWorkingDir() + "/" + f2i[2]), triggerTest
+//                                , "tmp/changesInfo/Math_50/properties/mappings/f2i", importDeclarations, methodDeclarations);
+//        FileUtils.writeToFile(s, defects4JBug.getWorkingDir() + "/" + f2i[2], false);
     }
 
     @Test

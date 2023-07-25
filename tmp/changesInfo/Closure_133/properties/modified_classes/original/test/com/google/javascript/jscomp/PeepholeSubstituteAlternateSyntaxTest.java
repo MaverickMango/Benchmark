@@ -23,7 +23,7 @@ package com.google.javascript.jscomp;
  */
 public class PeepholeSubstituteAlternateSyntaxTest extends CompilerTestCase {
 
-  // Externs for builtin constructors
+  // Externs for built-in constructors
   // Needed for testFoldLiteralObjectConstructors(),
   // testFoldLiteralArrayConstructors() and testFoldRegExp...()
   private static final String FOLD_CONSTANTS_TEST_EXTERNS =
@@ -31,7 +31,7 @@ public class PeepholeSubstituteAlternateSyntaxTest extends CompilerTestCase {
       "var RegExp = function f(a){};\n" +
       "var Array = function f(a){};\n";
 
-  private boolean doCommaSplitting = true;
+  private boolean late = true;
 
   // TODO(user): Remove this when we no longer need to do string comparison.
   private PeepholeSubstituteAlternateSyntaxTest(boolean compareAsTree) {
@@ -44,16 +44,17 @@ public class PeepholeSubstituteAlternateSyntaxTest extends CompilerTestCase {
 
   @Override
   public void setUp() throws Exception {
-    doCommaSplitting = true;
+    late = true;
     super.setUp();
     enableLineNumberCheck(true);
+    disableNormalize();
   }
 
   @Override
   public CompilerPass getProcessor(final Compiler compiler) {
     CompilerPass peepholePass =
       new PeepholeOptimizationsPass(compiler,
-          new PeepholeSubstituteAlternateSyntax(doCommaSplitting));
+          new PeepholeSubstituteAlternateSyntax(late));
 
     return peepholePass;
   }
@@ -97,6 +98,7 @@ public class PeepholeSubstituteAlternateSyntaxTest extends CompilerTestCase {
 
   /** Check that removing blocks with 1 child works */
   public void testFoldOneChildBlocks() {
+    late = false;
     fold("function f(){if(x)a();x=3}",
         "function f(){x&&a();x=3}");
     fold("function f(){if(x){a()}x=3}",
@@ -176,18 +178,51 @@ public class PeepholeSubstituteAlternateSyntaxTest extends CompilerTestCase {
   public void testFoldReturns() {
     fold("function f(){if(x)return 1;else return 2}",
          "function f(){return x?1:2}");
+    fold("function f(){if(x)return 1;return 2}",
+         "function f(){return x?1:2}");
+    fold("function f(){if(x)return;return 2}",
+         "function f(){return x?void 0:2}");
     fold("function f(){if(x)return 1+x;else return 2-x}",
+         "function f(){return x?1+x:2-x}");
+    fold("function f(){if(x)return 1+x;return 2-x}",
          "function f(){return x?1+x:2-x}");
     fold("function f(){if(x)return y += 1;else return y += 2}",
          "function f(){return x?(y+=1):(y+=2)}");
 
     fold("function f(){if(x)return;else return 2-x}",
          "function f(){if(x);else return 2-x}");
+    fold("function f(){if(x)return;return 2-x}",
+         "function f(){return x?void 0:2-x}");
     fold("function f(){if(x)return x;else return}",
-         "function f(){if(x)return x;else;}");
+         "function f(){if(x)return x;{}}");
+    fold("function f(){if(x)return x;return}",
+         "function f(){if(x)return x}");
 
     foldSame("function f(){for(var x in y) { return x.y; } return k}");
   }
+
+  public void testCombineIfs1() {
+    fold("function f() {if (x) return 1; if (y) return 1}",
+         "function f() {if (x||y) return 1;}");
+    fold("function f() {if (x) return 1; if (y) foo(); else return 1}",
+         "function f() {if ((!x)&&y) foo(); else return 1;}");
+  }
+
+  public void testCombineIfs2() {
+    // combinable but not yet done
+    foldSame("function f() {if (x) throw 1; if (y) throw 1}");
+    // Can't combine, side-effect
+    fold("function f(){ if (x) g(); if (y) g() }",
+         "function f(){ x&&g(); y&&g() }");
+    // Can't combine, side-effect
+    fold("function f(){ if (x) y = 0; if (y) y = 0; }",
+         "function f(){ x&&(y = 0); y&&(y = 0); }");
+  }
+
+  public void testCombineIfs3() {
+    foldSame("function f() {if (x) return 1; if (y) {g();f()}}");
+  }
+
 
   /** Try to minimize assignments */
   public void testFoldAssignments() {
@@ -244,6 +279,8 @@ public class PeepholeSubstituteAlternateSyntaxTest extends CompilerTestCase {
 
   public void testAndParenthesesCount() {
     fold("function f(){if(x||y)a.foo()}", "function f(){(x||y)&&a.foo()}");
+    fold("function f(){if(x.a)x.a=0}",
+         "function f(){x.a&&(x.a=0)}");
     foldSame("function f(){if(x()||y()){x()||y()}}");
   }
 
@@ -276,7 +313,7 @@ public class PeepholeSubstituteAlternateSyntaxTest extends CompilerTestCase {
 
     // Cannot fold all the way to a literal because there are too few arguments.
     fold("x = new RegExp",                    "x = RegExp()");
-    // Empty regexp should not fold to // since that is a line comment in js
+    // Empty regexp should not fold to // since that is a line comment in JS
     fold("x = new RegExp(\"\")",              "x = RegExp(\"\")");
     fold("x = new RegExp(\"\", \"i\")",       "x = RegExp(\"\",\"i\")");
     // Bogus flags should not fold
@@ -318,7 +355,7 @@ public class PeepholeSubstituteAlternateSyntaxTest extends CompilerTestCase {
          "x = RegExp(\"foobar\",\"g\")");
     fold("x = new RegExp(\"foobar\", \"ig\")",
          "x = RegExp(\"foobar\",\"ig\")");
-    // ... unless in EcmaScript 5 mode per section 7.8.5 of EcmaScript 5.
+    // ... unless in ECMAScript 5 mode per section 7.8.5 of ECMAScript 5.
     enableEcmaScript5(true);
     fold("x = new RegExp(\"foobar\", \"ig\")",
          "x = /foobar/ig");
@@ -327,7 +364,7 @@ public class PeepholeSubstituteAlternateSyntaxTest extends CompilerTestCase {
     enableEcmaScript5(false);
     fold("x = new RegExp(\"\\u2028\")", "x = RegExp(\"\\u2028\")");
     fold("x = new RegExp(\"\\\\\\\\u2028\")", "x = /\\\\u2028/");
-    // Sunset Safari exclusions for EcmaScript 5 and later.
+    // Sunset Safari exclusions for ECMAScript 5 and later.
     enableEcmaScript5(true);
     fold("x = new RegExp(\"\\u2028\\u2029\")", "x = /\\u2028\\u2029/");
     fold("x = new RegExp(\"\\\\u2028\")", "x = /\\u2028/");
@@ -408,9 +445,9 @@ public class PeepholeSubstituteAlternateSyntaxTest extends CompilerTestCase {
     fold("x = new Array(Array(1, '2', 3, '4'))", "x = [[1, '2', 3, '4']]");
     fold("x = Array(Array(1, '2', 3, '4'))", "x = [[1, '2', 3, '4']]");
     fold("x = new Array(Object(), Array(\"abc\", Object(), Array(Array())))",
-         "x = [{}, [\"abc\", {}, [[]]]");
+         "x = [{}, [\"abc\", {}, [[]]]]");
     fold("x = new Array(Object(), Array(\"abc\", Object(), Array(Array())))",
-         "x = [{}, [\"abc\", {}, [[]]]");
+         "x = [{}, [\"abc\", {}, [[]]]]");
 
     disableNormalize();
     // Cannot fold above when not normalized
@@ -491,6 +528,32 @@ public class PeepholeSubstituteAlternateSyntaxTest extends CompilerTestCase {
   public void testMinimizeCondition_example1() {
     // Based on a real failing code sample.
     fold("if(!!(f() > 20)) {foo();foo()}", "if(f() > 20){foo();foo()}");
+  }
+
+  public void testFoldLoopBreakLate() {
+    late = true;
+    fold("for(;;) if (a) break", "for(;!a;);");
+    foldSame("for(;;) if (a) { f(); break }");
+    fold("for(;;) if (a) break; else f()", "for(;!a;) { { f(); } }");
+    fold("for(;a;) if (b) break", "for(;a && !b;);");
+    fold("for(;a;) { if (b) break; if (c) break; }", "for(;(a && !b) && !c;);");
+
+    // 'while' is normalized to 'for'
+    enableNormalize(true);
+    fold("while(true) if (a) break", "for(;1&&!a;);");
+  }
+
+  public void testFoldLoopBreakEarly() {
+    late = false;
+    foldSame("for(;;) if (a) break");
+    foldSame("for(;;) if (a) { f(); break }");
+    foldSame("for(;;) if (a) break; else f()");
+    foldSame("for(;a;) if (b) break");
+    foldSame("for(;a;) { if (b) break; if (c) break; }");
+
+    foldSame("while(1) if (a) break");
+    enableNormalize(true);
+    foldSame("while(1) if (a) break");
   }
 
   public void testFoldConditionalVarDeclaration() {
@@ -765,9 +828,15 @@ public class PeepholeSubstituteAlternateSyntaxTest extends CompilerTestCase {
     foldSame(
         "var undefined = 1;" +
         "function f() {var undefined=2;var x = undefined;}");
+    foldSame("function f(undefined) {}");
+    foldSame("try {} catch(undefined) {}");
+    foldSame("for (undefined in {}) {}");
+    foldSame("undefined++;");
+    fold("undefined += undefined;", "undefined += void 0;");
   }
 
   public void testSplitCommaExpressions() {
+    late = false;
     // Don't try to split in expressions.
     foldSame("while (foo(), !0) boo()");
     foldSame("var a = (foo(), !0);");
@@ -784,32 +853,37 @@ public class PeepholeSubstituteAlternateSyntaxTest extends CompilerTestCase {
   }
 
   public void testComma1() {
+    late = false;
     fold("1, 2", "1; 1");
-    doCommaSplitting = false;
+    late = true;
     foldSame("1, 2");
   }
 
   public void testComma2() {
+    late = false;
     test("1, a()", "1; a()");
-    doCommaSplitting = false;
+    late = true;
     foldSame("1, a()");
   }
 
   public void testComma3() {
+    late = false;
     test("1, a(), b()", "1; a(); b()");
-    doCommaSplitting = false;
+    late = true;
     foldSame("1, a(), b()");
   }
 
   public void testComma4() {
+    late = false;
     test("a(), b()", "a();b()");
-    doCommaSplitting = false;
+    late = true;
     foldSame("a(), b()");
   }
 
   public void testComma5() {
+    late = false;
     test("a(), b(), 1", "a();b();1");
-    doCommaSplitting = false;
+    late = true;
     foldSame("a(), b(), 1");
   }
 
@@ -825,5 +899,176 @@ public class PeepholeSubstituteAlternateSyntaxTest extends CompilerTestCase {
     test("([1])", "1");
     test("([a])", "1");
     testSame("([foo()])");
+  }
+
+  public void testStringArraySplitting() {
+    testSame("var x=['1','2','3','4']");
+    testSame("var x=['1','2','3','4','5']");
+    test("var x=['1','2','3','4','5','6']",
+         "var x='123456'.split('')");
+    test("var x=['1','2','3','4','5','00']",
+         "var x='1 2 3 4 5 00'.split(' ')");
+    test("var x=['1','2','3','4','5','6','7']",
+        "var x='1234567'.split('')");
+    test("var x=['1','2','3','4','5','6','00']",
+         "var x='1 2 3 4 5 6 00'.split(' ')");
+    test("var x=[' ,',',',',',',',',',',']",
+         "var x=' ,;,;,;,;,;,'.split(';')");
+    test("var x=[',,',' ',',',',',',',',']",
+         "var x=',,; ;,;,;,;,'.split(';')");
+    test("var x=['a,',' ',',',',',',',',']",
+         "var x='a,; ;,;,;,;,'.split(';')");
+
+    // all possible delimiters used, leave it alone
+    testSame("var x=[',', ' ', ';', '{', '}']");
+  }
+
+  public void testRemoveElseCause() {
+    test("function f() {" +
+         " if(x) return 1;" +
+         " else if(x) return 2;" +
+         " else if(x) return 3 }",
+         "function f() {" +
+         " if(x) return 1;" +
+         "{ if(x) return 2;" +
+         "{ if(x) return 3 } } }");
+  }
+
+
+  public void testRemoveElseCause1() {
+    test("function f() { if (x) throw 1; else f() }",
+         "function f() { if (x) throw 1; { f() } }");
+  }
+
+  public void testRemoveElseCause2() {
+    test("function f() { if (x) return 1; else f() }",
+         "function f() { if (x) return 1; { f() } }");
+    test("function f() { if (x) return; else f() }",
+         "function f() { if (x) {} else { f() } }");
+    // This case is handled by minimize exit points.
+    testSame("function f() { if (x) return; f() }");
+  }
+
+  public void testRemoveElseCause3() {
+    testSame("function f() { a:{if (x) break a; else f() } }");
+    testSame("function f() { if (x) { a:{ break a } } else f() }");
+    testSame("function f() { if (x) a:{ break a } else f() }");
+  }
+
+  public void testRemoveElseCause4() {
+    testSame("function f() { if (x) { if (y) { return 1; } } else f() }");
+  }
+
+  public void testBindToCall1() {
+    test("(goog.bind(f))()", "f()");
+    test("(goog.bind(f,a))()", "f.call(a)");
+    test("(goog.bind(f,a,b))()", "f.call(a,b)");
+
+    test("(goog.bind(f))(a)", "f(a)");
+    test("(goog.bind(f,a))(b)", "f.call(a,b)");
+    test("(goog.bind(f,a,b))(c)", "f.call(a,b,c)");
+
+    test("(goog.partial(f))()", "f()");
+    test("(goog.partial(f,a))()", "f(a)");
+    test("(goog.partial(f,a,b))()", "f(a,b)");
+
+    test("(goog.partial(f))(a)", "f(a)");
+    test("(goog.partial(f,a))(b)", "f(a,b)");
+    test("(goog.partial(f,a,b))(c)", "f(a,b,c)");
+
+    test("((function(){}).bind())()", "((function(){}))()");
+    test("((function(){}).bind(a))()", "((function(){})).call(a)");
+    test("((function(){}).bind(a,b))()", "((function(){})).call(a,b)");
+
+    test("((function(){}).bind())(a)", "((function(){}))(a)");
+    test("((function(){}).bind(a))(b)", "((function(){})).call(a,b)");
+    test("((function(){}).bind(a,b))(c)", "((function(){})).call(a,b,c)");
+
+    // Without using type information we don't know "f" is a function.
+    testSame("(f.bind())()");
+    testSame("(f.bind(a))()");
+    testSame("(f.bind())(a)");
+    testSame("(f.bind(a))(b)");
+
+    // Don't rewrite if the bind isn't the immediate call target
+    testSame("(goog.bind(f)).call(g)");
+  }
+
+  public void testBindToCall2() {
+    test("(goog$bind(f))()", "f()");
+    test("(goog$bind(f,a))()", "f.call(a)");
+    test("(goog$bind(f,a,b))()", "f.call(a,b)");
+
+    test("(goog$bind(f))(a)", "f(a)");
+    test("(goog$bind(f,a))(b)", "f.call(a,b)");
+    test("(goog$bind(f,a,b))(c)", "f.call(a,b,c)");
+
+    test("(goog$partial(f))()", "f()");
+    test("(goog$partial(f,a))()", "f(a)");
+    test("(goog$partial(f,a,b))()", "f(a,b)");
+
+    test("(goog$partial(f))(a)", "f(a)");
+    test("(goog$partial(f,a))(b)", "f(a,b)");
+    test("(goog$partial(f,a,b))(c)", "f(a,b,c)");
+
+    // Don't rewrite if the bind isn't the immediate call target
+    testSame("(goog$bind(f)).call(g)");
+  }
+
+  public void testBindToCall3() {
+    // TODO(johnlenz): The code generator wraps free calls with (0,...) to
+    // prevent leaking "this", but the parser doesn't unfold it, making a
+    // AST comparison fail.  For now do a string comparison to validate the
+    // correct code is in fact generated.
+    // The FREE call wrapping should be moved out of the code generator
+    // and into a denormalizing pass.
+    new StringCompareTestCase().testBindToCall3();
+  }
+
+  public void testSimpleFunctionCall() {
+    test("var a = String(23)", "var a = '' + 23");
+    test("var a = String('hello')", "var a = '' + 'hello'");
+    testSame("var a = String('hello', bar());");
+    testSame("var a = String({valueOf: function() { return 1; }});");
+  }
+
+  private static class StringCompareTestCase extends CompilerTestCase {
+
+    StringCompareTestCase() {
+      super("", false);
+    }
+
+    @Override
+    protected CompilerPass getProcessor(Compiler compiler) {
+      CompilerPass peepholePass =
+        new PeepholeOptimizationsPass(compiler,
+            new PeepholeSubstituteAlternateSyntax(false));
+      return peepholePass;
+    }
+
+    public void testBindToCall3() {
+      test("(goog.bind(f.m))()", "(0,f.m)()");
+      test("(goog.bind(f.m,a))()", "f.m.call(a)");
+
+      test("(goog.bind(f.m))(a)", "(0,f.m)(a)");
+      test("(goog.bind(f.m,a))(b)", "f.m.call(a,b)");
+
+      test("(goog.partial(f.m))()", "(0,f.m)()");
+      test("(goog.partial(f.m,a))()", "(0,f.m)(a)");
+
+      test("(goog.partial(f.m))(a)", "(0,f.m)(a)");
+      test("(goog.partial(f.m,a))(b)", "(0,f.m)(a,b)");
+
+      // Without using type information we don't know "f" is a function.
+      testSame("f.m.bind()()");
+      testSame("f.m.bind(a)()");
+      testSame("f.m.bind()(a)");
+      testSame("f.m.bind(a)(b)");
+
+      // Don't rewrite if the bind isn't the immediate call target
+      testSame("goog.bind(f.m).call(g)");
+    }
+
+
   }
 }

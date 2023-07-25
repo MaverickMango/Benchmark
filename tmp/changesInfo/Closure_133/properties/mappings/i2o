@@ -1,6 +1,4 @@
 M	src/com/google/javascript/jscomp/parsing/JsDocInfoParser.java
-M	src/com/google/javascript/rhino/JSDocInfo.java
-M	src/com/google/javascript/rhino/JSDocInfoBuilder.java
-M	src/com/google/javascript/rhino/jstype/PrototypeObjectType.java
-M	test/com/google/javascript/jscomp/DisambiguatePropertiesTest.java
+M	src/com/google/javascript/rhino/Token.java
+M	test/com/google/javascript/jscomp/TypeCheckTest.java
 M	test/com/google/javascript/jscomp/parsing/JsDocInfoParserTest.java

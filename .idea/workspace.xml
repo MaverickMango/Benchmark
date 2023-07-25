@@ -2,93 +2,84 @@
 <project version="4">
   <component name="ArtifactsWorkspaceSettings">
     <artifacts-to-build>
-      <artifact name="CrossFinder:jar" />
+      <artifact name="InducingFinder:jar" />
     </artifacts-to-build>
   </component>
   <component name="AutoImportSettings">
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="d0255cba-b34e-49dd-ac16-a0d0136257aa" name="Changes" comment="add changesInfos">
-      <change afterPath="$PROJECT_DIR$/.idea/artifacts/CrossFinder_jar.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/artifacts/FilterAnnotations_jar.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/artifacts/FindDiffBetween2Buggy_jar.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/artifacts/FindInducing4Defects4j_jar.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/root/analysis/StringFilter.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/root/bean/D4JBug.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/java/attempt/MethodTest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/tmp/changesInfo/Closure_12/cleaned/fixing/src/com/google/javascript/jscomp/MaybeReachingVariableUse.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/tmp/changesInfo/Closure_60/cleaned/fixing/src/com/google/javascript/jscomp/NodeUtil.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/tmp/changesInfo/Closure_60/cleaned/inducing/test/com/google/javascript/jscomp/NodeUtilTest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/tmp/changesInfo/Closure_75/cleaned/fixing/src/com/google/javascript/jscomp/NodeUtil.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/tmp/changesInfo/META-INF/MANIFEST.MF" afterDir="false" />
+    <list default="true" id="d0255cba-b34e-49dd-ac16-a0d0136257aa" name="Changes" comment="add tests">
+      <change afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/root/analysis/BugInfoExtractor.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/root/attempt/BugswarmMain.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/root/attempt/InducingFinder.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/root/attempt/MongoDB.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/root/bean/Bugswarm.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/root/bean/BugswarmShow.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/root/bean/Classification.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/root/bean/Collection.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/root/bean/ComponentVersions.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/root/bean/Config.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/root/bean/FailedJob.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/root/bean/Links.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/root/bean/Matrix.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/root/bean/Metrics.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/root/bean/Null.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/root/bean/PassedJob.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/root/bean/Patches.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/root/bean/ReproducibilityStatus.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/root/bean/Steps.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/root/bean/Strategy.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/root/bean/With.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/resources/Another.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/artifacts/FindInducing4Defects4j_jar.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/build.gradle" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/root/analysis/ASTManipulator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/root/analysis/ASTManipulator.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/root/attempt/Defects4jBugsMain.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/root/attempt/Defects4jBugsMain.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/root/attempt/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/root/attempt/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/root/bean/BugFixCommit.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/root/bean/BugFixCommit.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/root/benchmarks/BearsBugsUtils.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/root/benchmarks/BearsBugsUtils.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/root/attempt/ViewDiffTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/root/attempt/ViewDiffTest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/root/benchmarks/Defects4JBug.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/root/benchmarks/Defects4JBug.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/root/util/FileUtils.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/root/util/FileUtils.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/root/util/GitTool.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/root/util/GitTool.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/default.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/default.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/attempt/BearsBugsUtilsTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/attempt/BearsBugsUtilsTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/simplelogger.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/simplelogger.properties" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/test/java/attempt/Defects4jBugsMainTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/attempt/Defects4jBugsMainTest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/test/resources/BugFixInfo.csv" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/resources/BugFixInfo.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tmp/changesInfo/Closure_12/patches/b2i.diff" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/tmp/changesInfo/Closure_12/patches/i2b.diff" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/tmp/changesInfo/Closure_12/patches/inducing.diff" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/tmp/changesInfo/Closure_12/patches/o2b.diff" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/tmp/changesInfo/Closure_12/properties/modified_classes/inducing/src/com/google/javascript/jscomp/MaybeReachingVariableUse.java" beforeDir="false" afterPath="$PROJECT_DIR$/tmp/changesInfo/Closure_12/properties/modified_classes/inducing/src/com/google/javascript/jscomp/MaybeReachingVariableUse.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tmp/changesInfo/Closure_12/properties/modified_classes/inducing/test/com/google/javascript/jscomp/FlowSensitiveInlineVariablesTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/tmp/changesInfo/Closure_12/properties/modified_classes/inducing/test/com/google/javascript/jscomp/FlowSensitiveInlineVariablesTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tmp/changesInfo/Closure_12/properties/modified_classes/original/test/com/google/javascript/jscomp/FlowSensitiveInlineVariablesTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/tmp/changesInfo/Closure_12/properties/modified_classes/original/test/com/google/javascript/jscomp/FlowSensitiveInlineVariablesTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tmp/changesInfo/Closure_19/cleaned/inducing/test/com/google/javascript/jscomp/TypeInferenceTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/tmp/changesInfo/Closure_19/cleaned/inducing/test/com/google/javascript/jscomp/TypeInferenceTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tmp/changesInfo/Closure_19/patches/b2i.diff" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/tmp/changesInfo/Closure_19/patches/i2b.diff" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/tmp/changesInfo/Closure_19/patches/inducing.diff" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/tmp/changesInfo/Closure_19/patches/o2b.diff" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/tmp/changesInfo/Closure_19/properties/modified_classes/original/src/com/google/javascript/jscomp/type/ChainableReverseAbstractInterpreter.java" beforeDir="false" afterPath="$PROJECT_DIR$/tmp/changesInfo/Closure_19/properties/modified_classes/original/src/com/google/javascript/jscomp/type/ChainableReverseAbstractInterpreter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tmp/changesInfo/Closure_19/properties/modified_classes/original/test/com/google/javascript/jscomp/TypeInferenceTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/tmp/changesInfo/Closure_19/properties/modified_classes/original/test/com/google/javascript/jscomp/TypeInferenceTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tmp/changesInfo/Closure_52/cleaned/inducing/test/com/google/javascript/jscomp/CodePrinterTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/tmp/changesInfo/Closure_52/cleaned/inducing/test/com/google/javascript/jscomp/CodePrinterTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tmp/changesInfo/Closure_52/patches/b2i.diff" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/tmp/changesInfo/Closure_52/patches/i2b.diff" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/tmp/changesInfo/Closure_52/patches/inducing.diff" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/tmp/changesInfo/Closure_52/patches/o2b.diff" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/tmp/changesInfo/Closure_52/properties/modified_classes/original/src/com/google/javascript/jscomp/CodeGenerator.java" beforeDir="false" afterPath="$PROJECT_DIR$/tmp/changesInfo/Closure_52/properties/modified_classes/original/src/com/google/javascript/jscomp/CodeGenerator.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tmp/changesInfo/Closure_52/properties/modified_classes/original/test/com/google/javascript/jscomp/CodePrinterTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/tmp/changesInfo/Closure_52/properties/modified_classes/original/test/com/google/javascript/jscomp/CodePrinterTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tmp/changesInfo/Closure_59/cleaned/inducing/test/com/google/javascript/jscomp/CommandLineRunnerTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/tmp/changesInfo/Closure_59/cleaned/inducing/test/com/google/javascript/jscomp/CommandLineRunnerTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tmp/changesInfo/Closure_59/properties/modified_classes/original/src/com/google/javascript/jscomp/Compiler.java" beforeDir="false" afterPath="$PROJECT_DIR$/tmp/changesInfo/Closure_59/properties/modified_classes/original/src/com/google/javascript/jscomp/Compiler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tmp/changesInfo/Closure_59/properties/modified_classes/original/test/com/google/javascript/jscomp/CommandLineRunnerTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/tmp/changesInfo/Closure_59/properties/modified_classes/original/test/com/google/javascript/jscomp/CommandLineRunnerTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tmp/changesInfo/Closure_60/cleaned/inducing/test/com/google/javascript/jscomp/CommandLineRunnerTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/tmp/changesInfo/Closure_60/cleaned/inducing/test/com/google/javascript/jscomp/CommandLineRunnerTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tmp/changesInfo/Closure_60/info.txt" beforeDir="false" afterPath="$PROJECT_DIR$/tmp/changesInfo/Closure_60/info.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tmp/changesInfo/Closure_60/patches/b2i.diff" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/tmp/changesInfo/Closure_60/patches/i2b.diff" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/tmp/changesInfo/Closure_60/patches/inducing.diff" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/tmp/changesInfo/Closure_60/patches/o2b.diff" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/tmp/changesInfo/Closure_60/properties/modified_classes/inducing/src/com/google/javascript/jscomp/NodeUtil.java" beforeDir="false" afterPath="$PROJECT_DIR$/tmp/changesInfo/Closure_60/properties/modified_classes/inducing/src/com/google/javascript/jscomp/NodeUtil.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tmp/changesInfo/Closure_60/properties/modified_classes/inducing/test/com/google/javascript/jscomp/CommandLineRunnerTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/tmp/changesInfo/Closure_60/properties/modified_classes/inducing/test/com/google/javascript/jscomp/CommandLineRunnerTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tmp/changesInfo/Closure_60/properties/modified_classes/original/test/com/google/javascript/jscomp/CommandLineRunnerTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/tmp/changesInfo/Closure_60/properties/modified_classes/original/test/com/google/javascript/jscomp/CommandLineRunnerTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tmp/changesInfo/Closure_66/cleaned/inducing/test/com/google/javascript/jscomp/TypeCheckTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/tmp/changesInfo/Closure_66/cleaned/inducing/test/com/google/javascript/jscomp/TypeCheckTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tmp/changesInfo/Closure_66/patches/b2i.diff" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/tmp/changesInfo/Closure_66/patches/i2b.diff" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/tmp/changesInfo/Closure_66/patches/inducing.diff" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/tmp/changesInfo/Closure_66/patches/o2b.diff" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/tmp/changesInfo/Closure_66/properties/modified_classes/original/src/com/google/javascript/jscomp/TypeCheck.java" beforeDir="false" afterPath="$PROJECT_DIR$/tmp/changesInfo/Closure_66/properties/modified_classes/original/src/com/google/javascript/jscomp/TypeCheck.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tmp/changesInfo/Closure_66/properties/modified_classes/original/test/com/google/javascript/jscomp/TypeCheckTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/tmp/changesInfo/Closure_66/properties/modified_classes/original/test/com/google/javascript/jscomp/TypeCheckTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tmp/changesInfo/Closure_75/info.txt" beforeDir="false" afterPath="$PROJECT_DIR$/tmp/changesInfo/Closure_75/info.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tmp/changesInfo/Closure_75/patches/b2i.diff" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/tmp/changesInfo/Closure_75/patches/fixing.diff" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/tmp/changesInfo/Closure_75/patches/i2b.diff" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/tmp/changesInfo/Closure_75/patches/inducing.diff" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/tmp/changesInfo/Closure_75/patches/o2b.diff" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/tmp/changesInfo/Closure_75/properties/modified_classes/inducing/src/com/google/javascript/jscomp/NodeUtil.java" beforeDir="false" afterPath="$PROJECT_DIR$/tmp/changesInfo/Closure_75/properties/modified_classes/inducing/src/com/google/javascript/jscomp/NodeUtil.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tmp/changesInfo/Closure_75/properties/modified_classes/original/test/com/google/javascript/jscomp/PeepholeFoldConstantsTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/tmp/changesInfo/Closure_75/properties/modified_classes/original/test/com/google/javascript/jscomp/PeepholeFoldConstantsTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tmp/changesInfo/Math_45/cleaned/inducing/src/main/java/org/apache/commons/math/linear/OpenMapRealMatrix.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/tmp/changesInfo/Math_45/info.txt" beforeDir="false" afterPath="$PROJECT_DIR$/tmp/changesInfo/Math_45/info.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tmp/changesInfo/Math_45/patches/b2i.diff" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/tmp/changesInfo/Math_45/patches/i2b.diff" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/tmp/changesInfo/Math_45/patches/inducing.diff" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/tmp/changesInfo/Math_45/patches/o2b.diff" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/tmp/changesInfo/Math_48/cleaned/RegulaFalsiSolverTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/tmp/changesInfo/Math_48/cleaned/inducing/src/test/java/org/apache/commons/math/analysis/solvers/RegulaFalsiSolverTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tmp/changesInfo/Closure_125/info.txt" beforeDir="false" afterPath="$PROJECT_DIR$/tmp/changesInfo/Closure_125/info.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tmp/changesInfo/Closure_125/patches/inducing.diff" beforeDir="false" afterPath="$PROJECT_DIR$/tmp/changesInfo/Closure_125/patches/inducing.diff" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tmp/changesInfo/Closure_125/properties/mappings/f2i" beforeDir="false" afterPath="$PROJECT_DIR$/tmp/changesInfo/Closure_125/properties/mappings/f2i" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tmp/changesInfo/Closure_125/properties/mappings/i2o" beforeDir="false" afterPath="$PROJECT_DIR$/tmp/changesInfo/Closure_125/properties/mappings/i2o" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tmp/changesInfo/Closure_125/properties/modified_classes/inducing.txt" beforeDir="false" afterPath="$PROJECT_DIR$/tmp/changesInfo/Closure_125/properties/modified_classes/inducing.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tmp/changesInfo/Closure_125/properties/modified_classes/inducing/src/com/google/javascript/jscomp/TypeCheck.java" beforeDir="false" afterPath="$PROJECT_DIR$/tmp/changesInfo/Closure_125/properties/modified_classes/inducing/src/com/google/javascript/jscomp/TypeCheck.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tmp/changesInfo/Closure_125/properties/modified_classes/inducing/test/com/google/javascript/jscomp/TypeCheckTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/tmp/changesInfo/Closure_125/properties/modified_classes/inducing/test/com/google/javascript/jscomp/TypeCheckTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tmp/changesInfo/Closure_125/properties/modified_classes/original/src/com/google/javascript/jscomp/TypeCheck.java" beforeDir="false" afterPath="$PROJECT_DIR$/tmp/changesInfo/Closure_125/properties/modified_classes/original/src/com/google/javascript/jscomp/TypeCheck.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tmp/changesInfo/Closure_125/properties/modified_classes/original/test/com/google/javascript/jscomp/TypeCheckTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/tmp/changesInfo/Closure_125/properties/modified_classes/original/test/com/google/javascript/jscomp/TypeCheckTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tmp/changesInfo/Closure_133/actions/fixing/JsDocInfoParser" beforeDir="false" afterPath="$PROJECT_DIR$/tmp/changesInfo/Closure_133/actions/fixing/JsDocInfoParser" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tmp/changesInfo/Closure_133/actions/inducing/JsDocInfoParser" beforeDir="false" afterPath="$PROJECT_DIR$/tmp/changesInfo/Closure_133/actions/inducing/JsDocInfoParser" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tmp/changesInfo/Closure_133/actions/inducing/JsDocInfoParserTest" beforeDir="false" afterPath="$PROJECT_DIR$/tmp/changesInfo/Closure_133/actions/inducing/JsDocInfoParserTest" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tmp/changesInfo/Closure_133/cleaned/inducing/test/com/google/javascript/jscomp/parsing/JsDocInfoParserTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/tmp/changesInfo/Closure_133/cleaned/inducing/test/com/google/javascript/jscomp/parsing/JsDocInfoParserTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tmp/changesInfo/Closure_133/info.txt" beforeDir="false" afterPath="$PROJECT_DIR$/tmp/changesInfo/Closure_133/info.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tmp/changesInfo/Closure_133/patches/inducing.diff" beforeDir="false" afterPath="$PROJECT_DIR$/tmp/changesInfo/Closure_133/patches/inducing.diff" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tmp/changesInfo/Closure_133/properties/mappings/f2i" beforeDir="false" afterPath="$PROJECT_DIR$/tmp/changesInfo/Closure_133/properties/mappings/f2i" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tmp/changesInfo/Closure_133/properties/mappings/i2o" beforeDir="false" afterPath="$PROJECT_DIR$/tmp/changesInfo/Closure_133/properties/mappings/i2o" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tmp/changesInfo/Closure_133/properties/modified_classes/inducing.txt" beforeDir="false" afterPath="$PROJECT_DIR$/tmp/changesInfo/Closure_133/properties/modified_classes/inducing.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tmp/changesInfo/Closure_133/properties/modified_classes/inducing/javadoc/com/google/javascript/jscomp/parsing/JsDocInfoParser.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tmp/changesInfo/Closure_133/properties/modified_classes/inducing/src/com/google/javascript/jscomp/parsing/JsDocInfoParser.java" beforeDir="false" afterPath="$PROJECT_DIR$/tmp/changesInfo/Closure_133/properties/modified_classes/inducing/src/com/google/javascript/jscomp/parsing/JsDocInfoParser.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tmp/changesInfo/Closure_133/properties/modified_classes/inducing/test/com/google/javascript/jscomp/PeepholeSubstituteAlternateSyntaxTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/tmp/changesInfo/Closure_133/properties/modified_classes/inducing/test/com/google/javascript/jscomp/PeepholeSubstituteAlternateSyntaxTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tmp/changesInfo/Closure_133/properties/modified_classes/original/src/com/google/javascript/jscomp/parsing/JsDocInfoParser.java" beforeDir="false" afterPath="$PROJECT_DIR$/tmp/changesInfo/Closure_133/properties/modified_classes/original/src/com/google/javascript/jscomp/parsing/JsDocInfoParser.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tmp/changesInfo/Closure_133/properties/modified_classes/original/test/com/google/javascript/jscomp/PeepholeSubstituteAlternateSyntaxTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/tmp/changesInfo/Closure_133/properties/modified_classes/original/test/com/google/javascript/jscomp/PeepholeSubstituteAlternateSyntaxTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tmp/changesInfo/Closure_133/properties/modified_classes/original/test/com/google/javascript/jscomp/parsing/JsDocInfoParserTest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tmp/changesInfo/Closure_33/actions/inducing/PrototypeObjectType" beforeDir="false" afterPath="$PROJECT_DIR$/tmp/changesInfo/Closure_33/actions/inducing/PrototypeObjectType" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tmp/changesInfo/Closure_33/cleaned/inducing/test/com/google/javascript/jscomp/TypeCheckTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/tmp/changesInfo/Closure_33/cleaned/inducing/test/com/google/javascript/jscomp/TypeCheckTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tmp/changesInfo/Closure_33/info.txt" beforeDir="false" afterPath="$PROJECT_DIR$/tmp/changesInfo/Closure_33/info.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tmp/changesInfo/Closure_33/patches/inducing.diff" beforeDir="false" afterPath="$PROJECT_DIR$/tmp/changesInfo/Closure_33/patches/inducing.diff" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tmp/changesInfo/Closure_33/properties/mappings/f2i" beforeDir="false" afterPath="$PROJECT_DIR$/tmp/changesInfo/Closure_33/properties/mappings/f2i" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tmp/changesInfo/Closure_33/properties/mappings/i2o" beforeDir="false" afterPath="$PROJECT_DIR$/tmp/changesInfo/Closure_33/properties/mappings/i2o" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tmp/changesInfo/Closure_33/properties/modified_classes/inducing.txt" beforeDir="false" afterPath="$PROJECT_DIR$/tmp/changesInfo/Closure_33/properties/modified_classes/inducing.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tmp/changesInfo/Closure_33/properties/modified_classes/inducing/src/com/google/javascript/rhino/jstype/PrototypeObjectType.java" beforeDir="false" afterPath="$PROJECT_DIR$/tmp/changesInfo/Closure_33/properties/modified_classes/inducing/src/com/google/javascript/rhino/jstype/PrototypeObjectType.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tmp/changesInfo/Closure_33/properties/modified_classes/inducing/test/com/google/javascript/jscomp/TypeCheckTest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tmp/changesInfo/Closure_33/properties/modified_classes/original/src/com/google/javascript/rhino/jstype/PrototypeObjectType.java" beforeDir="false" afterPath="$PROJECT_DIR$/tmp/changesInfo/Closure_33/properties/modified_classes/original/src/com/google/javascript/rhino/jstype/PrototypeObjectType.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tmp/changesInfo/Closure_33/properties/modified_classes/original/test/com/google/javascript/jscomp/TypeCheckTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/tmp/changesInfo/Closure_33/properties/modified_classes/original/test/com/google/javascript/jscomp/TypeCheckTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -147,7 +138,7 @@
     <option name="stateVersion" value="1" />
   </component>
   <component name="ProblemsViewState">
-    <option name="selectedTabId" value="ProjectErrors" />
+    <option name="selectedTabId" value="CurrentFile" />
   </component>
   <component name="ProjectId" id="2PzgmZBRteZb54lOhiY0sTIWzWB" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
@@ -155,38 +146,38 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
-    &quot;com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary&quot;: &quot;JUnit5&quot;,
-    &quot;com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5&quot;: &quot;&quot;,
-    &quot;jdk.selected.JAVA_MODULE&quot;: &quot;11&quot;,
-    &quot;last_opened_file_path&quot;: &quot;/home/liumengjiao/Desktop/CI/Benchmark/tmp/changesInfo/Math_48/cleaned/src/test/java/org/apache/commons/math/analysis/solvers&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;Artifacts&quot;,
-    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
-    &quot;project.structure.side.proportion&quot;: &quot;0.2925483&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary": "JUnit5",
+    "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5": "",
+    "jdk.selected.JAVA_MODULE": "11",
+    "last_opened_file_path": "/home/liumengjiao/Desktop/CI/Benchmark/tmp/changesInfo/Mockito_38/cleaned/fixing",
+    "project.structure.last.edited": "Artifacts",
+    "project.structure.proportion": "0.15",
+    "project.structure.side.proportion": "0.2925483",
+    "settings.editor.selected.configurable": "preferences.pluginManager"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/tmp/changesInfo/Math_48/cleaned/src/test/java/org/apache/commons/math/analysis/solvers" />
-      <recent name="$PROJECT_DIR$/tmp/changesInfo/Math_48/cleaned" />
-      <recent name="$PROJECT_DIR$/tmp/changesInfo/Math_45/cleaned/inducing/src/test/java/org/apache/commons/math/linear" />
-      <recent name="$PROJECT_DIR$/tmp/changesInfo/Closure_66/cleaned/inducing/test/com/google/javascript/jscomp" />
-      <recent name="$PROJECT_DIR$/tmp/changesInfo/Closure_60/cleaned/inducing/test/com/google/javascript/jscomp" />
+      <recent name="$PROJECT_DIR$/tmp/changesInfo/Mockito_38/cleaned/fixing" />
+      <recent name="$PROJECT_DIR$/tmp/changesInfo/Mockito_38/cleaned/inducing/test/org/mockito/internal/verification/argumentmatching" />
+      <recent name="$PROJECT_DIR$/tmp/changesInfo/Mockito_38/cleaned/inducing" />
+      <recent name="$PROJECT_DIR$/tmp/changesInfo/Mockito_38/properties/modified_classes" />
+      <recent name="$PROJECT_DIR$/tmp/changesInfo/Mockito_12/cleaned/fixing" />
     </key>
     <key name="CreateTestDialog.Recents.Supers">
       <recent name="" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/tmp/changesInfo/Mockito_12/properties/modified_classes/original/test/org/mockitousage/annotation" />
+      <recent name="$PROJECT_DIR$/tmp/changesInfo/Closure_133/properties/modified_classes/original/test/com/google/javascript/jscomp/parsing" />
+      <recent name="$PROJECT_DIR$/tmp/changesInfo/Closure_133/properties/modified_classes/inducing/test/com/google/javascript/jscomp/parsing" />
       <recent name="$PROJECT_DIR$/tmp/changesInfo/Math_48/cleaned/inducing/src/test/java/org/apache/commons/math/analysis" />
       <recent name="$PROJECT_DIR$/tmp/changesInfo/Closure_12/cleaned/fixing/src/com/google/javascript" />
-      <recent name="$PROJECT_DIR$/tmp/changesInfo/Closure_75/cleaned/fixing/src/com/google/javascript" />
-      <recent name="$PROJECT_DIR$/tmp/changesInfo/Closure_60/cleaned/inducing/test/com/google/javascript/jscomp" />
-      <recent name="$PROJECT_DIR$/tmp/changesInfo/Closure_60" />
     </key>
     <key name="MoveMembersDialog.RECENTS_KEY">
       <recent name="util.BearsBugsTools" />
@@ -195,14 +186,39 @@
       <recent name="attempt" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.Main">
+  <component name="RunManager" selected="Gradle.Defects4jBugsMainTest.testInsertTest">
+    <configuration name="BugInfoExtractor" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="root.analysis.BugInfoExtractor" />
+      <module name="Benchmark.main" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="root.analysis.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="BugswarmMain" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="root.attempt.BugswarmMain" />
+      <module name="Benchmark.main" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="root.analysis.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="Defects4jBugsMain" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="root.attempt.Defects4jBugsMain" />
       <module name="Benchmark.main" />
-      <option name="PROGRAM_PARAMETERS" value="tmp/bugs_allRepair tmp/bugs/ BugFixInfo.csv tmp/changesInfo/" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="root.attempt.*" />
+          <option name="PATTERN" value="root.analysis.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -216,7 +232,7 @@
       <option name="PROGRAM_PARAMETERS" value="tmp/realDiff.txt tmp/bugs/ $USER_HOME$/Downloads/bugWithRepairTools_FL.csv" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="root.attempt.*" />
+          <option name="PATTERN" value="root.analysis.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -247,7 +263,7 @@
       <DebugAllEnabled>false</DebugAllEnabled>
       <method v="2" />
     </configuration>
-    <configuration name="Defects4jBugsMainTest" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+    <configuration name="Defects4jBugsMainTest.test" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
         <option name="executionName" />
         <option name="externalProjectPath" value="$PROJECT_DIR$" />
@@ -260,7 +276,7 @@
           <list>
             <option value=":test" />
             <option value="--tests" />
-            <option value="&quot;attempt.Defects4jBugsMainTest&quot;" />
+            <option value="&quot;attempt.Defects4jBugsMainTest.test&quot;" />
           </list>
         </option>
         <option name="vmOptions" />
@@ -270,7 +286,7 @@
       <DebugAllEnabled>false</DebugAllEnabled>
       <method v="2" />
     </configuration>
-    <configuration name="Defects4jBugsMainTest.testDiff" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+    <configuration name="Defects4jBugsMainTest.testInsertTest" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
         <option name="executionName" />
         <option name="externalProjectPath" value="$PROJECT_DIR$" />
@@ -283,53 +299,7 @@
           <list>
             <option value=":test" />
             <option value="--tests" />
-            <option value="&quot;attempt.Defects4jBugsMainTest.testDiff&quot;" />
-          </list>
-        </option>
-        <option name="vmOptions" />
-      </ExternalSystemSettings>
-      <ExternalSystemDebugServerProcess>false</ExternalSystemDebugServerProcess>
-      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
-      <DebugAllEnabled>false</DebugAllEnabled>
-      <method v="2" />
-    </configuration>
-    <configuration name="Defects4jBugsMainTest.testFilter" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
-      <ExternalSystemSettings>
-        <option name="executionName" />
-        <option name="externalProjectPath" value="$PROJECT_DIR$" />
-        <option name="externalSystemIdString" value="GRADLE" />
-        <option name="scriptParameters" value="" />
-        <option name="taskDescriptions">
-          <list />
-        </option>
-        <option name="taskNames">
-          <list>
-            <option value=":test" />
-            <option value="--tests" />
-            <option value="&quot;attempt.Defects4jBugsMainTest.testFilter&quot;" />
-          </list>
-        </option>
-        <option name="vmOptions" />
-      </ExternalSystemSettings>
-      <ExternalSystemDebugServerProcess>false</ExternalSystemDebugServerProcess>
-      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
-      <DebugAllEnabled>false</DebugAllEnabled>
-      <method v="2" />
-    </configuration>
-    <configuration name="MethodTest.test" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
-      <ExternalSystemSettings>
-        <option name="executionName" />
-        <option name="externalProjectPath" value="$PROJECT_DIR$" />
-        <option name="externalSystemIdString" value="GRADLE" />
-        <option name="scriptParameters" value="" />
-        <option name="taskDescriptions">
-          <list />
-        </option>
-        <option name="taskNames">
-          <list>
-            <option value=":test" />
-            <option value="--tests" />
-            <option value="&quot;attempt.MethodTest.test&quot;" />
+            <option value="&quot;attempt.Defects4jBugsMainTest.testInsertTest&quot;" />
           </list>
         </option>
         <option name="vmOptions" />
@@ -341,20 +311,20 @@
     </configuration>
     <list>
       <item itemvalue="Application.Main" />
+      <item itemvalue="Application.BugInfoExtractor" />
       <item itemvalue="Application.Defects4jBugsMain" />
+      <item itemvalue="Application.BugswarmMain" />
       <item itemvalue="Gradle.BearsBugsToolsTest.test" />
-      <item itemvalue="Gradle.Defects4jBugsMainTest.testDiff" />
-      <item itemvalue="Gradle.Defects4jBugsMainTest.testFilter" />
-      <item itemvalue="Gradle.MethodTest.test" />
-      <item itemvalue="Gradle.Defects4jBugsMainTest" />
+      <item itemvalue="Gradle.Defects4jBugsMainTest.test" />
+      <item itemvalue="Gradle.Defects4jBugsMainTest.testInsertTest" />
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="Gradle.Defects4jBugsMainTest.testFilter" />
-        <item itemvalue="Gradle.MethodTest.test" />
-        <item itemvalue="Gradle.Defects4jBugsMainTest" />
-        <item itemvalue="Gradle.Defects4jBugsMainTest.testDiff" />
+        <item itemvalue="Gradle.Defects4jBugsMainTest.testInsertTest" />
+        <item itemvalue="Application.BugInfoExtractor" />
+        <item itemvalue="Gradle.Defects4jBugsMainTest.test" />
         <item itemvalue="Application.Defects4jBugsMain" />
+        <item itemvalue="Application.BugswarmMain" />
       </list>
     </recent_temporary>
   </component>
@@ -395,7 +365,14 @@
       <option name="project" value="LOCAL" />
       <updated>1687612051338</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="add tests">
+      <created>1688635225716</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1688635225716</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -417,7 +394,8 @@
     <MESSAGE value="initial commit with utils files and test examples to get commits diffs with bears' bugs." />
     <MESSAGE value="add manipulations for defects4j" />
     <MESSAGE value="add changesInfos" />
-    <option name="LAST_COMMIT_MESSAGE" value="add changesInfos" />
+    <MESSAGE value="add tests" />
+    <option name="LAST_COMMIT_MESSAGE" value="add tests" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -426,11 +404,6 @@
           <url>jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.github.tsantalis/refactoring-miner/2.4.0/3c098097675026fd9b92fd04d127228077a18449/refactoring-miner-2.4.0-sources.jar!/org/refactoringminer/rm1/GitHistoryRefactoringMinerImpl.java</url>
           <line>634</line>
           <option name="timeStamp" value="9" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/root/analysis/ASTManipulator.java</url>
-          <line>106</line>
-          <option name="timeStamp" value="55" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/tmp/changesInfo/Closure_2/properties/modified_classes/inducing/test/com/google/javascript/jscomp/TypeCheckTest.java</url>
@@ -444,8 +417,23 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/root/util/GitTool.java</url>
-          <line>294</line>
+          <line>300</line>
           <option name="timeStamp" value="94" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/root/attempt/ViewDiffTest.java</url>
+          <line>43</line>
+          <option name="timeStamp" value="100" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/root/attempt/BugswarmMain.java</url>
+          <line>34</line>
+          <option name="timeStamp" value="103" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/test/java/attempt/Defects4jBugsMainTest.java</url>
+          <line>114</line>
+          <option name="timeStamp" value="108" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-method">
           <url>file://$PROJECT_DIR$/tmp/changesInfo/Closure_120/properties/modified_classes/fixing/test/com/google/javascript/jscomp/InlineVariablesTest.java</url>
@@ -458,5 +446,9 @@
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
+  </component>
+  <component name="XSLT-Support.FileAssociations.UIState">
+    <expand />
+    <select />
   </component>
 </project>

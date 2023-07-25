@@ -24,6 +24,8 @@ import java.util.stream.StreamSupport;
 
 public class GitTool extends GitServiceImpl {
     final Logger logger = LoggerFactory.getLogger(GitTool.class);
+    final private String githubPrefix = "https://github.com/";
+    final private String githubSuffix = ".git";
 
     public boolean init(String workingDir, int timeoutSecond) {
         CommandSummary cs = new CommandSummary();
@@ -94,6 +96,10 @@ public class GitTool extends GitServiceImpl {
         String[] cmd = cs.flat();
         List<String> res = FileUtils.executeCommand(cmd);
         FileUtils.writeToFile(FileUtils.getStrOfIterable(res, "\n").toString(), outputFile, false);
+    }
+
+    public String getRepositoryURL(String repoName) {
+        return githubPrefix + repoName + githubSuffix;
     }
 
     /**

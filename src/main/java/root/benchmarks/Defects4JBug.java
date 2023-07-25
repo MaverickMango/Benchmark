@@ -466,7 +466,7 @@ public class Defects4JBug implements GitAccess {
 
     public void getDiffInfo(Repository repository, String srcCommit, String dstCommit, String version) {
         List<String> modifiedClasses = new ArrayList<>();
-        String filePath = "tmp/changesInfo/" + proj + "_" + id + "_buggy";
+        String filePath = "tmp/changesInfo/" + proj + "_" + id;
         RefactoringMiner miner = new RefactoringMiner();
         Set<ASTDiff> astDiffs = miner.diffAtCommit(repository, srcCommit, dstCommit);
         for (ASTDiff diff :astDiffs) {
@@ -543,11 +543,18 @@ public class Defects4JBug implements GitAccess {
         return true;
     }
 
-    public void bisectTest(Repository repository, String fixingCommit, String bugName, Map<String, String> properties, List<String> triggerTests){
+    public String bisectTest(Repository repository, String fixingCommit, String startCommit, boolean findOlderVersion){
         boolean res = false;
         String fakeInducing = "", fakeOriginal = "";
+        String bugName = proj + "_" + id + "_buggy";
         FileUtils.executeCommand(new String[]{"/bin/bash", "-c", "git add . && git stash && git stash drop"}, workingDir, 300, null);
-        int r = FileUtils.executeCommand(new String[]{"/bin/bash", "-c", "git bisect start HEAD " + gitAccess.getInitialCommit(repository)}, workingDir, 300, null);
+        int r = -1;
+        if (findOlderVersion) {
+            List<RevCommit> revsWalkOfAll = gitAccess.createRevsWalkOfAll(repository, true);
+            r = FileUtils.executeCommand(new String[]{"/bin/bash", "-c", "git bisect start " + startCommit + " " + revsWalkOfAll.get(0).getName()}, workingDir, 300, null);
+        } else {
+            r = FileUtils.executeCommand(new String[]{"/bin/bash", "-c", "git bisect start " + fixingCommit + " " + startCommit}, workingDir, 300, null);
+        }
 
         while (r == 0) {
             fakeInducing = gitAccess.getCurrentHeadCommit(repository);
@@ -557,32 +564,51 @@ public class Defects4JBug implements GitAccess {
                 FileUtils.executeCommand(new String[]{"/bin/bash", "-c", "git add . && git stash && git stash drop"}, workingDir, 300, null);
                 int i = FileUtils.executeCommand(new String[]{"/bin/bash", "-c", "git bisect skip"}, workingDir, 300, null);
                 if (i != 0)
-                    return;
+                    return startCommit;
                 continue;
             }
-//                List<String> failingTests = getFailingTests("failing_tests");
-
-            //todo: add trigger tests accurately
-            String srcFilePath = "../findInducing/" + bugName + "/fixing/" + properties.get("test.dir") + "/*";
-            String dstFilePath = properties.get("test.dir") + "/";
-            logger.info("---------- copy test file...");
-            FileUtils.executeCommand(new String[]{"/bin/bash", "-c", "cp -r " + srcFilePath + " " + dstFilePath}, workingDir, 300, null);
+            //get mapping file
+            String mappingFile = workingDir + "/../findInducing/" + bugName + "/properties/mappings/f2i";
+            gitAccess.getFileStatDiffBetweenCommits(workingDir, fixingCommit, fakeInducing, mappingFile);
+            // extract trigger test and modified classes
+            Map<String, String> properties = getProperties("/defects4j.build.properties");//todo: package name from wrong version after version change.
+            List<String> triggerTests = List.of(properties.get("trigger.tests").split(","));
+            addTest(repository, mappingFile, triggerTests, fixingCommit, fakeInducing);
 
             // test for each single trigger test
             int count = 0;
             for (String triggerTest : triggerTests) {
                 res = singleTest(triggerTest);
                 if (!res) {
-                    logger.info("---------- " + bugName + " failed after changing tests.");
+                    logger.info("---------- " + bugName + " went wrong after changing tests.");
                     FileUtils.executeCommand(new String[]{"/bin/bash", "-c", "git add . && git stash && git stash drop"}, workingDir, 300, null);
                     FileUtils.executeCommand(new String[]{"/bin/bash", "-c", "git bisect reset"}, workingDir, 300, null);
-                    return;
+                    return fakeInducing;
                 }
                 List<String> failingTests_new = getFailingTests("failing_tests");
                 count += failingTests_new.size();
+                if (count != 0)
+                    break;
             }
-            if (count >= 0 && count < triggerTests.size()) {
-                FileUtils.executeCommand(new String[]{"/bin/bash", "-c", "git stash && git stash drop"}, workingDir, 300, null);
+            if (count > 0) {
+                FileUtils.executeCommand(new String[]{"/bin/bash", "-c", "git add . && git stash && git stash drop"}, workingDir, 300, null);
+                List<String> message = FileUtils.execute(new String[]{"/bin/bash", "-c", "git bisect bad"}, workingDir, 300, null);
+                logger.info("Command result:\n" + FileUtils.getStrOfIterable(message, "\n"));
+                if (Integer.parseInt(message.get(0)) == 0) {
+                    String s = message.get(1);
+                    if (s.contains("is the first bad commit")) {
+                        logger.info("----------" + bugName + " successfully found inducing commit");
+                        bugName += "*";
+                        fakeInducing = s.split(" ")[0];
+                        FileUtils.executeCommand(new String[]{"/bin/bash", "-c", "git bisect reset"}, workingDir, 300, null);
+                        break;
+                    }
+                } else {
+                    logger.info("----------" + bugName + " error occurred.");
+                    return fakeInducing;
+                }
+            } else {
+                FileUtils.executeCommand(new String[]{"/bin/bash", "-c", "git add . && git stash && git stash drop"}, workingDir, 300, null);
                 List<String> message = FileUtils.execute(new String[]{"/bin/bash", "-c", "git bisect good"}, workingDir, 300, null);
                 logger.info("Command result:\n" + FileUtils.getStrOfIterable(message, "\n"));
                 if (Integer.parseInt(message.get(0)) == 0) {
@@ -591,69 +617,55 @@ public class Defects4JBug implements GitAccess {
                         logger.info("----------" + bugName + " successfully found inducing commit");
                         bugName += "*";
                         fakeInducing = s.split(" ")[0];
+                        FileUtils.executeCommand(new String[]{"/bin/bash", "-c", "git bisect reset"}, workingDir, 300, null);
                         break;
                     }
                 } else {
-                    FileUtils.executeCommand(new String[]{"/bin/bash", "-c", "git bisect reset"}, workingDir, 300, null);
-                    return;
-                }
-            } else {
-                FileUtils.executeCommand(new String[]{"/bin/bash", "-c", "git stash && git stash drop"}, workingDir, 300, null);
-                List<String> message = FileUtils.execute(new String[]{"/bin/bash", "-c", "git bisect bad"}, workingDir, 300, null);
-                logger.info("Command result:\n" + FileUtils.getStrOfIterable(message, "\n"));
-                if (Integer.parseInt(message.get(0)) == 0) {
-                    String s = message.get(1);
-                    if (s.contains("is the first bad commit")) {
-                        logger.info("----------" + bugName + " successfully found inducing commit");
-                        bugName += "*";
-                        break;
-                    }
-                } else {
-                    FileUtils.executeCommand(new String[]{"/bin/bash", "-c", "git bisect reset"}, workingDir, 300, null);
-                    return;
+                    logger.info("----------" + bugName + " error occurred.");
+                    return fakeInducing;
                 }
             }
         }
-        fakeOriginal = gitAccess.getNextCommit(repository, fakeInducing, false);
-        FileUtils.writeToFile(bugName + "," + fakeInducing + "," + fakeOriginal + "\n", "/bug_original_commits", true);
+        if (findOlderVersion) {
+            FileUtils.writeToFile(proj + "," + id + "," + fakeInducing + "\n", "tmp/bug_original_commits", true);
+        } else {
+            FileUtils.writeToFile(proj + "," + id + "," + fakeInducing + "\n", "tmp/bug_inducing_commits", true);
+        }
+        return null;
     }
 
-    public boolean findInducingCommit(String fixedCommit, String startCommit) {
+    public String findInducingCommit(String fixedCommit, String startCommit, boolean findOlderVersion) {
         String bugName = proj + "_" + id + "_buggy";
         logger.info("Starting find inducing commit process for " + bugName + "...");
-        boolean res = false;
+        String res = startCommit;
         try {
             Repository repository = getGitRepository("b");
             //initial checkout & test : at fixed commit
-            res = switchAndTest(repository, fixedCommit, "fixing");
-            if (!res) {
+            boolean r = switchAndTest(repository, fixedCommit, "fixing");
+            if (!r) {
                 logger.info("---------- " + bugName + " failed in initial test.");
-                return false;
+                return res;
             }
-            // extract trigger test and modified classes
-            Map<String, String> properties = getProperties("/defects4j.build.properties");
-            List<String> triggerTests = List.of(properties.get("trigger.tests").split(","));
-            Set<String> testsClz = triggerTests.stream().map(t -> t.split("::")[0]).collect(Collectors.toSet());
-            for (String testCls :testsClz) {
-                String srcFilePath = workingDir + "/" + properties.get("test.dir") + "/" + testCls.replaceAll("[.]", "/") + ".java";
-                String dstFilePath = workingDir + "/../findInducing/" + bugName + "/fixing/" + properties.get("test.dir") + "/" + testCls.replaceAll("[.]", "/") + ".java";
-                FileUtils.copy(new File(srcFilePath), new File(dstFilePath));
-            }
-            List<String> modifiedClz = List.of(properties.get("clz.modified").split(","));
-            for (String modifiedCls: modifiedClz) {
-                String srcFilePath = workingDir + "/" + properties.get("src.dir") + "/" + modifiedCls.replaceAll("[.]", "/") + ".java";
-                String dstFilePath = workingDir + "/../findInducing/" + bugName + "/fixing/" + properties.get("src.dir") + "/" + modifiedCls.replaceAll("[.]", "/") + ".java";
-                FileUtils.copy(new File(srcFilePath), new File(dstFilePath));
-            }
+//            Set<String> testsClz = triggerTests.stream().map(t -> t.split("::")[0]).collect(Collectors.toSet());
+//            for (String testCls :testsClz) {
+//                String srcFilePath = workingDir + "/" + properties.get("test.dir") + "/" + testCls.replaceAll("[.]", "/") + ".java";
+//                String dstFilePath = workingDir + "/../findInducing/" + bugName + "/fixing/" + properties.get("test.dir") + "/" + testCls.replaceAll("[.]", "/") + ".java";
+//                FileUtils.copy(new File(srcFilePath), new File(dstFilePath));
+//            }
+//            List<String> modifiedClz = List.of(properties.get("clz.modified").split(","));
+//            for (String modifiedCls: modifiedClz) {
+//                String srcFilePath = workingDir + "/" + properties.get("src.dir") + "/" + modifiedCls.replaceAll("[.]", "/") + ".java";
+//                String dstFilePath = workingDir + "/../findInducing/" + bugName + "/fixing/" + properties.get("src.dir") + "/" + modifiedCls.replaceAll("[.]", "/") + ".java";
+//                FileUtils.copy(new File(srcFilePath), new File(dstFilePath));
+//            }
 
-            gitAccess.checkoutf(workingDir, startCommit);
             // find inducing commit with binary search
-            bisectTest(repository,fixedCommit, bugName, properties, triggerTests);
+            res = bisectTest(repository, fixedCommit, startCommit, findOlderVersion);
         } catch (Exception e) {
             e.printStackTrace();
             logger.info("error occurred when processing " + bugName + ": " + e.getMessage());
         }
-        return false;
+        return res;
     }
 
     public boolean findInducingCommitSequencely(String fixedCommit, String startCommit) {

@@ -40,14 +40,14 @@
 package com.google.javascript.rhino.jstype;
 
 import static com.google.common.base.Preconditions.checkState;
-
+import com.google.common.base.Preconditions;
+import com.google.common.collect.ImmutableList;
 import com.google.common.collect.Maps;
 import com.google.common.collect.Sets;
 import com.google.javascript.rhino.ErrorReporter;
 import com.google.javascript.rhino.JSDocInfo;
 import com.google.javascript.rhino.Node;
 
-import java.io.Serializable;
 import java.util.Map;
 import java.util.Set;
 
@@ -78,6 +78,11 @@ class PrototypeObjectType extends ObjectType {
   // Modelling this is a bear. Always call getImplicitPrototype(), because
   // some subclasses override this to do special resolution handling.
   private ObjectType implicitPrototypeFallback;
+
+  // If this is a function prototype, then this is the owner.
+  // A PrototypeObjectType can only be the prototype of one function. If we try
+  // to do this for multiple functions, then we'll have to create a new one.
+  private FunctionType ownerFunction = null;
 
   // Whether the toString representation of this should be pretty-printed,
   // by printing all properties.
@@ -119,6 +124,27 @@ class PrototypeObjectType extends ObjectType {
     }
   }
 
+  @Override
+  public Property getSlot(String name) {
+    if (properties.containsKey(name)) {
+      return properties.get(name);
+    }
+    ObjectType implicitPrototype = getImplicitPrototype();
+    if (implicitPrototype != null) {
+      Property prop = implicitPrototype.getSlot(name);
+      if (prop != null) {
+        return prop;
+      }
+    }
+    for (ObjectType interfaceType : getCtorExtendedInterfaces()) {
+      Property prop = interfaceType.getSlot(name);
+      if (prop != null) {
+        return prop;
+      }
+    }
+    return null;
+  }
+
   /**
    * Gets the number of properties of this object.
    */
@@ -139,14 +165,8 @@ class PrototypeObjectType extends ObjectType {
 
   @Override
   public boolean hasProperty(String propertyName) {
-    if (properties.get(propertyName) != null) {
-      return true;
-    }
-    ObjectType implicitPrototype = getImplicitPrototype();
-    if (implicitPrototype != null) {
-      return implicitPrototype.hasProperty(propertyName);
-    }
-    return false;
+    // Unknown types have all properties.
+    return isUnknownType() || getSlot(propertyName) != null;
   }
 
   @Override
@@ -161,16 +181,11 @@ class PrototypeObjectType extends ObjectType {
 
   @Override
   public boolean isPropertyTypeDeclared(String property) {
-    Property p = properties.get(property);
-    if (p == null) {
-      ObjectType implicitPrototype = getImplicitPrototype();
-      if (implicitPrototype != null) {
-        return implicitPrototype.isPropertyTypeDeclared(property);
-      }
-      // property does not exist
+    StaticSlot<JSType> slot = getSlot(property);
+    if (slot == null) {
       return false;
     }
-    return !p.inferred;
+    return !slot.isTypeInferred();
   }
 
   @Override
@@ -186,36 +201,27 @@ class PrototypeObjectType extends ObjectType {
 
   @Override
   public boolean isPropertyTypeInferred(String property) {
-    Property p = properties.get(property);
-    if (p == null) {
-      ObjectType implicitPrototype = getImplicitPrototype();
-      if (implicitPrototype != null) {
-        return implicitPrototype.isPropertyTypeInferred(property);
-      }
-      // property does not exist
+    StaticSlot<JSType> slot = getSlot(property);
+    if (slot == null) {
       return false;
     }
-    return p.inferred;
+    return slot.isTypeInferred();
   }
 
   @Override
-  public JSType getPropertyType(String propertyName) {
-    Property p = properties.get(propertyName);
-    if (p != null) {
-      return p.type;
+  public JSType getPropertyType(String property) {
+    StaticSlot<JSType> slot = getSlot(property);
+    if (slot == null) {
+      return getNativeType(JSTypeNative.UNKNOWN_TYPE);
     }
-    ObjectType implicitPrototype = getImplicitPrototype();
-    if (implicitPrototype != null) {
-      return implicitPrototype.getPropertyType(propertyName);
-    }
-    return getNativeType(JSTypeNative.UNKNOWN_TYPE);
+    return slot.getType();
   }
 
   @Override
   public boolean isPropertyInExterns(String propertyName) {
     Property p = properties.get(propertyName);
     if (p != null) {
-      return p.inExterns;
+      return p.isFromExterns();
     }
     ObjectType implicitPrototype = getImplicitPrototype();
     if (implicitPrototype != null) {
@@ -226,19 +232,32 @@ class PrototypeObjectType extends ObjectType {
 
   @Override
   boolean defineProperty(String name, JSType type, boolean inferred,
-      boolean inExterns, Node propertyNode) {
+      Node propertyNode) {
     if (hasOwnDeclaredProperty(name)) {
       return false;
     }
-    properties.put(name, new Property(type, inferred, inExterns, propertyNode));
+    Property newProp = new Property(
+        name, type, inferred, propertyNode);
+    Property oldProp = properties.get(name);
+    if (oldProp != null) {
+      // This is to keep previously inferred jsdoc info, e.g., in a
+      // replaceScript scenario.
+      newProp.setJSDocInfo(oldProp.getJSDocInfo());
+    }
+    properties.put(name, newProp);
     return true;
+  }
+
+  @Override
+  public boolean removeProperty(String name) {
+    return properties.remove(name) != null;
   }
 
   @Override
   public Node getPropertyNode(String propertyName) {
     Property p = properties.get(propertyName);
     if (p != null) {
-      return p.propertyNode;
+      return p.getNode();
     }
     ObjectType implicitPrototype = getImplicitPrototype();
     if (implicitPrototype != null) {
@@ -251,28 +270,27 @@ class PrototypeObjectType extends ObjectType {
   public JSDocInfo getOwnPropertyJSDocInfo(String propertyName) {
     Property p = properties.get(propertyName);
     if (p != null) {
-      return p.docInfo;
+      return p.getJSDocInfo();
     }
     return null;
   }
 
   @Override
-  public void setPropertyJSDocInfo(String propertyName, JSDocInfo info,
-      boolean inExterns) {
+  public void setPropertyJSDocInfo(String propertyName, JSDocInfo info) {
     if (info != null) {
       if (!properties.containsKey(propertyName)) {
         // If docInfo was attached, but the type of the property
         // was not defined anywhere, then we consider this an explicit
         // declaration of the property.
         defineInferredProperty(propertyName, getPropertyType(propertyName),
-            inExterns, null);
+            null);
       }
 
       // The prototype property is not represented as a normal Property.
       // We probably don't want to attach any JSDoc to it anyway.
       Property property = properties.get(propertyName);
       if (property != null) {
-        property.docInfo = info;
+        property.setJSDocInfo(info);
       }
     }
   }
@@ -295,7 +313,7 @@ class PrototypeObjectType extends ObjectType {
    * present on the object and different from the native one.
    */
   private boolean hasOverridenNativeProperty(String propertyName) {
-    if (isNative()) {
+    if (isNativeObjectType()) {
       return false;
     }
 
@@ -331,19 +349,14 @@ class PrototypeObjectType extends ObjectType {
     return isRegexpType();
   }
 
-  /**
-   * Whether this represents a native type (such as Object, Date,
-   * RegExp, etc.).
-   */
-  boolean isNative() {
-    return nativeType;
-  }
-
   @Override
-  public String toString() {
+  String toStringHelper(boolean forAnnotations) {
     if (hasReferenceName()) {
       return getReferenceName();
     } else if (prettyPrint) {
+      // Don't pretty print recursively.
+      prettyPrint = false;
+
       // Use a tree set so that the properties are sorted.
       Set<String> propertyNames = Sets.newTreeSet();
       for (ObjectType current = this;
@@ -364,24 +377,30 @@ class PrototypeObjectType extends ObjectType {
 
         sb.append(property);
         sb.append(": ");
-        sb.append(getPropertyType(property).toString());
+        sb.append(getPropertyType(property).toStringHelper(forAnnotations));
 
         ++i;
-        if (i == MAX_PRETTY_PRINTED_PROPERTIES) {
+        if (!forAnnotations && i == MAX_PRETTY_PRINTED_PROPERTIES) {
           sb.append(", ...");
           break;
         }
       }
 
       sb.append("}");
+
+      prettyPrint = true;
       return sb.toString();
     } else {
-      return "{...}";
+      return forAnnotations ? "?" : "{...}";
     }
   }
 
   void setPrettyPrint(boolean prettyPrint) {
     this.prettyPrint = prettyPrint;
+  }
+
+  boolean isPrettyPrint() {
+    return prettyPrint;
   }
 
   @Override
@@ -409,6 +428,8 @@ class PrototypeObjectType extends ObjectType {
   public String getReferenceName() {
     if (className != null) {
       return className;
+    } else if (ownerFunction != null) {
+      return ownerFunction.getReferenceName() + ".prototype";
     } else {
       return null;
     }
@@ -416,25 +437,25 @@ class PrototypeObjectType extends ObjectType {
 
   @Override
   public boolean hasReferenceName() {
-    return className != null;
+    return className != null || ownerFunction != null;
   }
 
   @Override
   public boolean isSubtype(JSType that) {
-    if (JSType.isSubtype(this, that)) {
+    if (JSType.isSubtypeHelper(this, that)) {
       return true;
     }
 
     // Union types
-    if (that instanceof UnionType) {
+    if (that.isUnionType()) {
       // The static {@code JSType.isSubtype} check already decomposed
       // union types, so we don't need to check those again.
       return false;
     }
 
     // record types
-    if (that instanceof RecordType) {
-      return RecordType.isSubtype(this, (RecordType) that);
+    if (that.isRecordType()) {
+      return RecordType.isSubtype(this, that.toMaybeRecordType());
     }
 
     // Interfaces
@@ -451,18 +472,22 @@ class PrototypeObjectType extends ObjectType {
       }
     }
 
-    // other prototype based objects
-    if (that != null) {
-      if (isUnknownType() || implicitPrototypeChainIsUnknown()) {
-        // If unsure, say 'yes', to avoid spurious warnings.
-        // TODO(user): resolve the prototype chain completely in all cases,
-        // to avoid guessing.
-        return true;
+    if (getConstructor() != null && getConstructor().isInterface()) {
+      for (ObjectType thisInterface : getCtorExtendedInterfaces()) {
+        if (thisInterface.isSubtype(that)) {
+          return true;
+        }
       }
-      return this.isImplicitPrototype(thatObj);
     }
 
-    return false;
+    // other prototype based objects
+    if (isUnknownType() || implicitPrototypeChainIsUnknown()) {
+      // If unsure, say 'yes', to avoid spurious warnings.
+      // TODO(user): resolve the prototype chain completely in all cases,
+      // to avoid guessing.
+      return true;
+    }
+    return this.isImplicitPrototype(thatObj);
   }
 
   private boolean implicitPrototypeChainIsUnknown() {
@@ -476,42 +501,6 @@ class PrototypeObjectType extends ObjectType {
     return false;
   }
 
-  private static final class Property implements Serializable {
-    private static final long serialVersionUID = 1L;
-
-    /**
-     * Property's type.
-     */
-    private JSType type;
-
-    /**
-     * Whether the property's type is inferred.
-     */
-    private final boolean inferred;
-
-    /**
-     * Whether the property is defined in the externs.
-     */
-    private final boolean inExterns;
-
-    /**
-     * The node corresponding to this property, e.g., a GETPROP node that
-     * declares this property.
-     */
-    private final Node propertyNode;
-
-    /**  The JSDocInfo for this property. */
-    private JSDocInfo docInfo = null;
-
-    private Property(JSType type, boolean inferred, boolean inExterns,
-        Node propertyNode) {
-      this.type = type;
-      this.inferred = inferred;
-      this.inExterns = inExterns;
-      this.propertyNode = propertyNode;
-    }
-  }
-
   @Override
   public boolean hasCachedValues() {
     return super.hasCachedValues();
@@ -521,6 +510,30 @@ class PrototypeObjectType extends ObjectType {
   @Override
   public boolean isNativeObjectType() {
     return nativeType;
+  }
+
+  void setOwnerFunction(FunctionType type) {
+    Preconditions.checkState(ownerFunction == null || type == null);
+    ownerFunction = type;
+  }
+
+  @Override
+  public FunctionType getOwnerFunction() {
+    return ownerFunction;
+  }
+
+  @Override
+  public Iterable<ObjectType> getCtorImplementedInterfaces() {
+    return isFunctionPrototypeType()
+        ? getOwnerFunction().getImplementedInterfaces()
+        : ImmutableList.<ObjectType>of();
+  }
+
+  @Override
+  public Iterable<ObjectType> getCtorExtendedInterfaces() {
+    return isFunctionPrototypeType()
+        ? getOwnerFunction().getExtendedInterfaces()
+        : ImmutableList.<ObjectType>of();
   }
 
   @Override
@@ -533,7 +546,7 @@ class PrototypeObjectType extends ObjectType {
           (ObjectType) implicitPrototype.resolve(t, scope);
     }
     for (Property prop : properties.values()) {
-      prop.type = safeResolve(prop.type, t, scope);
+      prop.setType(safeResolve(prop.getType(), t, scope));
     }
     return this;
   }

@@ -1,31 +1,31 @@
 {
   "bugName": "Closure_125_buggy",
-  "bugId": "48",
+  "bugId": "3",
   "repo": {
-    "name": "tmp/Closure_125_buggy/.git"
+    "name": "../bugs/Closure_125_buggy/.git"
   },
-  "buggyCommit": {
-    "sha": "4c6e1039b80859f17de5f3cbcfeba61ed8ea0485",
+  "inducingCommit": {
+    "sha": "d3d4d87a8c7b077f6ff29d68651efa24b25fe26e",
     "branchName": "HEAD",
-    "fullMessage": "\nSupport author scrubbing for HTML-format comments. Also refactors author scrubber to\nbe a comment-oriented scrubber rather than a line-oriented scrubber, so only\ncomments are processed.\n\nR\u003ddbentley,dborowitz\nDELTA\u003d263  (205 added, 42 deleted, 16 changed)\n\n\nRevision created by MOE tool push_codebase.\nMOE_MIGRATION\u003d213942\n\n\ngit-svn-id: https://closure-compiler.googlecode.com/svn/trunk@420 b0f006be-c8cd-11de-a2e8-8d36a3108c74\n",
-    "repoName": "tmp/Closure_125_buggy/.git"
+    "fullMessage": "\nAnt refactoring so that Caja and Junit don\u0027t get pulled into\nour jar file.\n\nR\u003dplindner\nDELTA\u003d32  (21 added, 1 deleted, 10 changed)\n\n\nRevision created by MOE tool push_codebase.\nMOE_MIGRATION\u003d261\n\n\ngit-svn-id: https://closure-compiler.googlecode.com/svn/trunk@691 b0f006be-c8cd-11de-a2e8-8d36a3108c74\n",
+    "repoName": "../bugs/Closure_125_buggy/.git"
   },
-  "commitBeforeBuggy": {
-    "sha": "0a40e6661cd197e1cd0d3a3bccaa4c5313df8514",
+  "originalCommit": {
+    "sha": "20c504ecbbdea3908bde81709df5a3765d1e385e",
     "branchName": "HEAD",
-    "fullMessage": "\nfix a weird integration issue.\nsome processes run the\nprovide/require processor after scope creation.  That means\nthat TypedScopeCreator can\u0027t assign types to the\nnew namespaces.  Normal closure compiler is moving towards a model\nwhere TypedScopeCreator declares namespaces in the global\nscope.\nIt\u0027s not clear how we should resolve this inconsistency, but\nfor now this shim will make things better.\n\nR\u003dmoedinger\nDELTA\u003d25  (15 added, 5 deleted, 5 changed)\n\n\nRevision created by MOE tool push_codebase.\nMOE_MIGRATION\u003d214752\n\n\ngit-svn-id: https://closure-compiler.googlecode.com/svn/trunk@419 b0f006be-c8cd-11de-a2e8-8d36a3108c74\n",
-    "repoName": "tmp/Closure_125_buggy/.git"
+    "fullMessage": "\nPatch up NodeUtil.getNumberValue to handle strings values like\n\" 12 \" and \"baz\".\n\nR\u003dnicksantos\nDELTA\u003d123  (109 added, 2 deleted, 12 changed)\n\n\nRevision created by MOE tool push_codebase.\nMOE_MIGRATION\u003d260\n\n\ngit-svn-id: https://closure-compiler.googlecode.com/svn/trunk@690 b0f006be-c8cd-11de-a2e8-8d36a3108c74\n",
+    "repoName": "../bugs/Closure_125_buggy/.git"
   },
   "fixedCommit": {
     "sha": "8cef00180a5cf67d047919c89668a6405030dbab",
     "branchName": "HEAD",
     "fullMessage": "Skip checks if constructor has no instance type.\n\nFixes issue 1002\n-------------\nCreated by MOE: http://code.google.com/p/moe-java\nMOE_MIGRATED_REVID\u003d47053164\n",
-    "repoName": "tmp/Closure_125_buggy/.git"
+    "repoName": "../bugs/Closure_125_buggy/.git"
   },
-  "commitBeforeFixing": {
+  "buggyCommit": {
     "sha": "ddc1299802e88b9814250c369e3fe6f7ee07d4e5",
     "branchName": "HEAD",
     "fullMessage": "Externs version rollover dance for Maps API V3\n-------------\nCreated by MOE: http://code.google.com/p/moe-java\nMOE_MIGRATED_REVID\u003d47012655\n",
-    "repoName": "tmp/Closure_125_buggy/.git"
+    "repoName": "../bugs/Closure_125_buggy/.git"
   }
 }
