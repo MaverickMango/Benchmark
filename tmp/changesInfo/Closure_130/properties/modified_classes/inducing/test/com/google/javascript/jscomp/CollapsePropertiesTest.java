@@ -18,6 +18,8 @@ package com.google.javascript.jscomp;
 
 import static com.google.javascript.jscomp.CollapseProperties.UNSAFE_THIS;
 
+import com.google.javascript.rhino.Node;
+
 /**
  * Tests for {@link CollapseProperties}.
  *
@@ -186,7 +188,7 @@ public class CollapsePropertiesTest extends CompilerTestCase {
     // TODO(user): Make CollapseProperties even more aggressive so that
     // a$b.z gets collapsed. Right now, it doesn't get collapsed because the
     // expression (a.b && a.b.c) could return a.b. But since it returns a.b iff
-    // a.b *is* safely collapsible, the boolean logic should be smart enough to
+    // a.b *is* safely collapsible, the Boolean logic should be smart enough to
     // only consider the right side of the && as aliasing.
     test("var a = {}; a.b = {}; /** @constructor */ a.b.c = function(){};" +
          " a.b.z = 1; var d = a.b && a.b.c;",
@@ -762,7 +764,7 @@ public class CollapsePropertiesTest extends CompilerTestCase {
   }
 
   public void testStaticFunctionReferencingThis1() {
-    // Note: Google's Javascript Style Guide says to avoid using the 'this'
+    // Note: Google's JavaScript Style Guide says to avoid using the 'this'
     // keyword in a static function.
     test("var a = {}; a.b = function() {this.c}; var d = a.b;",
          "var a$b = function() {this.c}; var d = a$b;", null, UNSAFE_THIS);
@@ -928,8 +930,8 @@ public class CollapsePropertiesTest extends CompilerTestCase {
 
   public void testPropertiesOnBothSidesOfAssignment() {
     // This verifies that replacements are done in the right order. Collapsing
-    // the lvalue in an assignment affects the parse tree immediately above
-    // the rvalue, so we update all rvalues before any lvalues.
+    // the l-value in an assignment affects the parse tree immediately above
+    // the r-value, so we update all rvalues before any lvalues.
     test("var a = {b: 0}; a.c = a.b;", "var a$b = 0; var a$c = a$b;");
   }
 
@@ -1051,6 +1053,15 @@ public class CollapsePropertiesTest extends CompilerTestCase {
          "var b = x; function f() { var a = null; b(); }");
     test("var b = {}; b.c = x; function f() { var a = b.c; a(); }",
          "var b$c = x; function f() { var a = null; b$c(); }");
+  }
+
+  public void testInlineAliasWithModifications() {
+    testSame("var x = 10; function f() { var y = x; x++; alert(y)} ");
+    testSame("var x = 10; function f() { var y = x; x+=1; alert(y)} ");
+    test("var x = {}; x.x = 10; function f() {var y=x.x; x.x++; alert(y)}",
+         "var x$x = 10; function f() {var y=x$x; x$x++; alert(y)}");
+    test("var x = {}; x.x = 10; function f() {var y=x.x; x.x+=1; alert(y)}",
+         "var x$x = 10; function f() {var y=x$x; x$x+=1; alert(y)}");
   }
 
   public void testCollapsePropertyOnExternType() {
@@ -1267,6 +1278,11 @@ public class CollapsePropertiesTest extends CompilerTestCase {
          "function Map() {} var Map$foo = 3; Map;");
   }
 
+  public void testPropertyOnGlobalInterface() {
+    test("/** @interface */ function Map() {} Map.foo = 3; Map;",
+         "function Map() {} var Map$foo = 3; Map;");
+  }
+
   public void testPropertyOnGlobalFunction() {
     testSame("function Map() {} Map.foo = 3; Map;");
   }
@@ -1340,5 +1356,136 @@ public class CollapsePropertiesTest extends CompilerTestCase {
         "a = {b: 3};" +
         "var a = null;" +
         "this.c = a.b;");
+  }
+
+  public void testTypedef1() {
+    test("var foo = {};" +
+         "/** @typedef {number} */ foo.Baz;",
+         "var foo = {}; var foo$Baz;");
+  }
+
+  public void testTypedef2() {
+    test("var foo = {};" +
+         "/** @typedef {number} */ foo.Bar.Baz;" +
+         "foo.Bar = function() {};",
+         "var foo$Bar$Baz; var foo$Bar = function(){};");
+  }
+
+  public void testDelete1() {
+    testSame(
+        "var foo = {};" +
+        "foo.bar = 3;" +
+        "delete foo.bar;");
+  }
+
+  public void testDelete2() {
+    test(
+        "var foo = {};" +
+        "foo.bar = 3;" +
+        "foo.baz = 3;" +
+        "delete foo.bar;",
+        "var foo = {};" +
+        "foo.bar = 3;" +
+        "var foo$baz = 3;" +
+        "delete foo.bar;");
+  }
+
+  public void testDelete3() {
+    testSame(
+        "var foo = {bar: 3};" +
+        "delete foo.bar;");
+  }
+
+  public void testDelete4() {
+    test(
+        "var foo = {bar: 3, baz: 3};" +
+        "delete foo.bar;",
+        "var foo$baz=3;var foo={bar:3};delete foo.bar");
+  }
+
+  public void testDelete5() {
+    test(
+        "var x = {};" +
+        "x.foo = {};" +
+        "x.foo.bar = 3;" +
+        "delete x.foo.bar;",
+        "var x$foo = {};" +
+        "x$foo.bar = 3;" +
+        "delete x$foo.bar;");
+  }
+
+  public void testDelete6() {
+    test(
+        "var x = {};" +
+        "x.foo = {};" +
+        "x.foo.bar = 3;" +
+        "x.foo.baz = 3;" +
+        "delete x.foo.bar;",
+        "var x$foo = {};" +
+        "x$foo.bar = 3;" +
+        "var x$foo$baz = 3;" +
+        "delete x$foo.bar;");
+  }
+
+  public void testDelete7() {
+    test(
+        "var x = {};" +
+        "x.foo = {bar: 3};" +
+        "delete x.foo.bar;",
+        "var x$foo = {bar: 3};" +
+        "delete x$foo.bar;");
+  }
+
+  public void testDelete8() {
+    test(
+        "var x = {};" +
+        "x.foo = {bar: 3, baz: 3};" +
+        "delete x.foo.bar;",
+        "var x$foo$baz = 3; var x$foo = {bar: 3};" +
+        "delete x$foo.bar;");
+  }
+
+  public void testDelete9() {
+    testSame(
+        "var x = {};" +
+        "x.foo = {};" +
+        "x.foo.bar = 3;" +
+        "delete x.foo;");
+  }
+
+  public void testDelete10() {
+    testSame(
+        "var x = {};" +
+        "x.foo = {bar: 3};" +
+        "delete x.foo;");
+  }
+
+  public void testDelete11() {
+    // Constructors are always collapsed.
+    test(
+        "var x = {};" +
+        "x.foo = {};" +
+        "/** @constructor */ x.foo.Bar = function() {};" +
+        "delete x.foo;",
+        "var x = {};" +
+        "x.foo = {};" +
+        "var x$foo$Bar = function() {};" +
+        "delete x.foo;",
+        null,
+        CollapseProperties.NAMESPACE_REDEFINED_WARNING);
+  }
+
+  public void testPreserveConstructorDoc() {
+    test("var foo = {};" +
+         "/** @constructor */\n" +
+         "foo.bar = function() {}",
+         "var foo$bar = function() {}");
+
+    Node root = getLastCompiler().getRoot();
+
+    Node fooBarNode = findQualifiedNameNode("foo$bar", root);
+    Node varNode = fooBarNode.getParent();
+    assertTrue(varNode.isVar());
+    assertTrue(varNode.getJSDocInfo().isConstructor());
   }
 }

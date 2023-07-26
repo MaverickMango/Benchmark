@@ -1097,6 +1097,11 @@ public class NameAnalyzerTest extends CompilerTestCase {
         "");
   }
 
+  public void testAssignWithCall() {
+    test("var fun, x; (fun = function(){ x; })();",
+            "var x; (function(){ x; })();");
+  }
+
   public void testNestedAssign1() {
     test("var a, b = a = 1, c = 2", "");
   }
@@ -1520,11 +1525,49 @@ public class NameAnalyzerTest extends CompilerTestCase {
       "throw new e();");
   }
 
-  public void testAssignWithCall() {
-    test("var fun, x; (fun = function(){ x; })();",
-            "var x; (function(){ x; })();");
+  public void testClassDefinedInObjectLit1() {
+    test(
+      "var data = {Foo: function() {}};" +
+      "data.Foo.prototype.toString = function() {};",
+      "");
   }
 
+  public void testClassDefinedInObjectLit2() {
+    test(
+      "var data = {}; data.bar = {Foo: function() {}};" +
+      "data.bar.Foo.prototype.toString = function() {};",
+      "");
+  }
+
+  public void testClassDefinedInObjectLit3() {
+    test(
+      "var data = {bar: {Foo: function() {}}};" +
+      "data.bar.Foo.prototype.toString = function() {};",
+      "");
+  }
+
+  public void testClassDefinedInObjectLit4() {
+    test(
+      "var data = {};" +
+      "data.baz = {bar: {Foo: function() {}}};" +
+      "data.baz.bar.Foo.prototype.toString = function() {};",
+      "");
+  }
+
+  public void testVarReferencedInClassDefinedInObjectLit1() {
+    testSame(
+      "var ref = 3;" +
+      "var data = {Foo: function() { this.x = ref; }};" +
+      "window.Foo = data.Foo;");
+  }
+
+  public void testVarReferencedInClassDefinedInObjectLit2() {
+    testSame(
+      "var ref = 3;" +
+      "var data = {Foo: function() { this.x = ref; }," +
+      "            Bar: function() {}};" +
+      "window.Bar = data.Bar;");
+  }
 
   @Override
   protected CompilerPass getProcessor(Compiler compiler) {

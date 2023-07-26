@@ -353,70 +353,14 @@ QualifiedName: Token.STRING [2149,2161]
 ===
 multi-move-tree
 ---
-MethodInvocation [2397,2444]
-    METHOD_INVOCATION_RECEIVER [2397,2398]
-        SimpleName: n [2397,2398]
-    SimpleName: putProp [2399,2406]
-    METHOD_INVOCATION_ARGUMENTS [2407,2443]
-        QualifiedName: Node.ORIGINALNAME_PROP [2407,2429]
-        SimpleName: functionName [2431,2443]
+METHOD_INVOCATION_ARGUMENTS [2185,2229]
+    QualifiedName: Node.ORIGINALNAME_PROP [2185,2207]
+    MethodInvocation [2209,2229]
+        METHOD_INVOCATION_RECEIVER [2209,2217]
+            SimpleName: propNode [2209,2217]
+        SimpleName: getString [2218,2227]
 to
-MethodInvocation [2884,2923]
-at -1
-===
-multi-move-tree
----
-MethodInvocation [2789,2841]
-    METHOD_INVOCATION_RECEIVER [2789,2792]
-        SimpleName: key [2789,2792]
-    SimpleName: putProp [2793,2800]
-    METHOD_INVOCATION_ARGUMENTS [2801,2840]
-        QualifiedName: Node.ORIGINALNAME_PROP [2801,2823]
-        MethodInvocation [2825,2840]
-            METHOD_INVOCATION_RECEIVER [2825,2828]
-                SimpleName: key [2825,2828]
-            SimpleName: getString [2829,2838]
-to
-MethodInvocation [2884,2923]
-at -1
-===
-multi-move-tree
----
-MethodInvocation [2503,2551]
-    METHOD_INVOCATION_RECEIVER [2503,2504]
-        SimpleName: n [2503,2504]
-    SimpleName: putProp [2505,2512]
-    METHOD_INVOCATION_ARGUMENTS [2513,2550]
-        QualifiedName: Node.ORIGINALNAME_PROP [2513,2535]
-        MethodInvocation [2537,2550]
-            METHOD_INVOCATION_RECEIVER [2537,2538]
-                SimpleName: n [2537,2538]
-            SimpleName: getString [2539,2548]
-to
-MethodInvocation [2884,2923]
-at -1
-===
-multi-move-tree
----
-MethodInvocation [2175,2230]
-    METHOD_INVOCATION_RECEIVER [2175,2176]
-        SimpleName: n [2175,2176]
-    SimpleName: putProp [2177,2184]
-    METHOD_INVOCATION_ARGUMENTS [2185,2229]
-        QualifiedName: Node.ORIGINALNAME_PROP [2185,2207]
-        MethodInvocation [2209,2229]
-            METHOD_INVOCATION_RECEIVER [2209,2217]
-                SimpleName: propNode [2209,2217]
-            SimpleName: getString [2218,2227]
-to
-MethodInvocation [2884,2923]
-at -1
-===
-multi-move-tree
----
-SimpleName: key [2789,2792]
-to
-SimpleName: n [2884,2885]
+METHOD_INVOCATION_ARGUMENTS [2894,2922]
 at -1
 ===
 multi-move-tree
@@ -454,14 +398,130 @@ at -1
 ===
 multi-move-tree
 ---
-METHOD_INVOCATION_ARGUMENTS [2185,2229]
-    QualifiedName: Node.ORIGINALNAME_PROP [2185,2207]
-    MethodInvocation [2209,2229]
-        METHOD_INVOCATION_RECEIVER [2209,2217]
-            SimpleName: propNode [2209,2217]
-        SimpleName: getString [2218,2227]
+METHOD_INVOCATION_RECEIVER [2397,2398]
+    SimpleName: n [2397,2398]
 to
-METHOD_INVOCATION_ARGUMENTS [2894,2922]
+METHOD_INVOCATION_RECEIVER [2884,2885]
+at -1
+===
+multi-move-tree
+---
+METHOD_INVOCATION_RECEIVER [2503,2504]
+    SimpleName: n [2503,2504]
+to
+METHOD_INVOCATION_RECEIVER [2884,2885]
+at -1
+===
+multi-move-tree
+---
+METHOD_INVOCATION_RECEIVER [2175,2176]
+    SimpleName: n [2175,2176]
+to
+METHOD_INVOCATION_RECEIVER [2884,2885]
+at -1
+===
+multi-move-tree
+---
+METHOD_INVOCATION_RECEIVER [2789,2792]
+    SimpleName: key [2789,2792]
+to
+METHOD_INVOCATION_RECEIVER [2884,2885]
+at -1
+===
+multi-move-tree
+---
+SimpleName: putProp [2793,2800]
+to
+SimpleName: putProp [2886,2893]
+at -1
+===
+multi-move-tree
+---
+SimpleName: putProp [2399,2406]
+to
+SimpleName: putProp [2886,2893]
+at -1
+===
+multi-move-tree
+---
+SimpleName: putProp [2505,2512]
+to
+SimpleName: putProp [2886,2893]
+at -1
+===
+multi-move-tree
+---
+SimpleName: putProp [2177,2184]
+to
+SimpleName: putProp [2886,2893]
+at -1
+===
+multi-move-tree
+---
+MethodInvocation [2503,2551]
+    METHOD_INVOCATION_RECEIVER [2503,2504]
+        SimpleName: n [2503,2504]
+    SimpleName: putProp [2505,2512]
+    METHOD_INVOCATION_ARGUMENTS [2513,2550]
+        QualifiedName: Node.ORIGINALNAME_PROP [2513,2535]
+        MethodInvocation [2537,2550]
+            METHOD_INVOCATION_RECEIVER [2537,2538]
+                SimpleName: n [2537,2538]
+            SimpleName: getString [2539,2548]
+to
+MethodInvocation [2884,2923]
+at -1
+===
+multi-move-tree
+---
+MethodInvocation [2175,2230]
+    METHOD_INVOCATION_RECEIVER [2175,2176]
+        SimpleName: n [2175,2176]
+    SimpleName: putProp [2177,2184]
+    METHOD_INVOCATION_ARGUMENTS [2185,2229]
+        QualifiedName: Node.ORIGINALNAME_PROP [2185,2207]
+        MethodInvocation [2209,2229]
+            METHOD_INVOCATION_RECEIVER [2209,2217]
+                SimpleName: propNode [2209,2217]
+            SimpleName: getString [2218,2227]
+to
+MethodInvocation [2884,2923]
+at -1
+===
+multi-move-tree
+---
+MethodInvocation [2397,2444]
+    METHOD_INVOCATION_RECEIVER [2397,2398]
+        SimpleName: n [2397,2398]
+    SimpleName: putProp [2399,2406]
+    METHOD_INVOCATION_ARGUMENTS [2407,2443]
+        QualifiedName: Node.ORIGINALNAME_PROP [2407,2429]
+        SimpleName: functionName [2431,2443]
+to
+MethodInvocation [2884,2923]
+at -1
+===
+multi-move-tree
+---
+MethodInvocation [2789,2841]
+    METHOD_INVOCATION_RECEIVER [2789,2792]
+        SimpleName: key [2789,2792]
+    SimpleName: putProp [2793,2800]
+    METHOD_INVOCATION_ARGUMENTS [2801,2840]
+        QualifiedName: Node.ORIGINALNAME_PROP [2801,2823]
+        MethodInvocation [2825,2840]
+            METHOD_INVOCATION_RECEIVER [2825,2828]
+                SimpleName: key [2825,2828]
+            SimpleName: getString [2829,2838]
+to
+MethodInvocation [2884,2923]
+at -1
+===
+multi-move-tree
+---
+SimpleName: key [2789,2792]
+to
+SimpleName: n [2884,2885]
 at -1
 ===
 multi-move-tree
@@ -494,17 +554,17 @@ at -1
 ===
 multi-move-tree
 ---
-ExpressionStatement [2503,2552]
-    MethodInvocation [2503,2551]
-        METHOD_INVOCATION_RECEIVER [2503,2504]
-            SimpleName: n [2503,2504]
-        SimpleName: putProp [2505,2512]
-        METHOD_INVOCATION_ARGUMENTS [2513,2550]
-            QualifiedName: Node.ORIGINALNAME_PROP [2513,2535]
-            MethodInvocation [2537,2550]
-                METHOD_INVOCATION_RECEIVER [2537,2538]
-                    SimpleName: n [2537,2538]
-                SimpleName: getString [2539,2548]
+ExpressionStatement [2175,2231]
+    MethodInvocation [2175,2230]
+        METHOD_INVOCATION_RECEIVER [2175,2176]
+            SimpleName: n [2175,2176]
+        SimpleName: putProp [2177,2184]
+        METHOD_INVOCATION_ARGUMENTS [2185,2229]
+            QualifiedName: Node.ORIGINALNAME_PROP [2185,2207]
+            MethodInvocation [2209,2229]
+                METHOD_INVOCATION_RECEIVER [2209,2217]
+                    SimpleName: propNode [2209,2217]
+                SimpleName: getString [2218,2227]
 to
 ExpressionStatement [2884,2924]
 at -1
@@ -528,6 +588,23 @@ at -1
 ===
 multi-move-tree
 ---
+ExpressionStatement [2503,2552]
+    MethodInvocation [2503,2551]
+        METHOD_INVOCATION_RECEIVER [2503,2504]
+            SimpleName: n [2503,2504]
+        SimpleName: putProp [2505,2512]
+        METHOD_INVOCATION_ARGUMENTS [2513,2550]
+            QualifiedName: Node.ORIGINALNAME_PROP [2513,2535]
+            MethodInvocation [2537,2550]
+                METHOD_INVOCATION_RECEIVER [2537,2538]
+                    SimpleName: n [2537,2538]
+                SimpleName: getString [2539,2548]
+to
+ExpressionStatement [2884,2924]
+at -1
+===
+multi-move-tree
+---
 ExpressionStatement [2397,2445]
     MethodInvocation [2397,2444]
         METHOD_INVOCATION_RECEIVER [2397,2398]
@@ -538,81 +615,4 @@ ExpressionStatement [2397,2445]
             SimpleName: functionName [2431,2443]
 to
 ExpressionStatement [2884,2924]
-at -1
-===
-multi-move-tree
----
-ExpressionStatement [2175,2231]
-    MethodInvocation [2175,2230]
-        METHOD_INVOCATION_RECEIVER [2175,2176]
-            SimpleName: n [2175,2176]
-        SimpleName: putProp [2177,2184]
-        METHOD_INVOCATION_ARGUMENTS [2185,2229]
-            QualifiedName: Node.ORIGINALNAME_PROP [2185,2207]
-            MethodInvocation [2209,2229]
-                METHOD_INVOCATION_RECEIVER [2209,2217]
-                    SimpleName: propNode [2209,2217]
-                SimpleName: getString [2218,2227]
-to
-ExpressionStatement [2884,2924]
-at -1
-===
-multi-move-tree
----
-SimpleName: putProp [2399,2406]
-to
-SimpleName: putProp [2886,2893]
-at -1
-===
-multi-move-tree
----
-SimpleName: putProp [2505,2512]
-to
-SimpleName: putProp [2886,2893]
-at -1
-===
-multi-move-tree
----
-SimpleName: putProp [2177,2184]
-to
-SimpleName: putProp [2886,2893]
-at -1
-===
-multi-move-tree
----
-SimpleName: putProp [2793,2800]
-to
-SimpleName: putProp [2886,2893]
-at -1
-===
-multi-move-tree
----
-METHOD_INVOCATION_RECEIVER [2397,2398]
-    SimpleName: n [2397,2398]
-to
-METHOD_INVOCATION_RECEIVER [2884,2885]
-at -1
-===
-multi-move-tree
----
-METHOD_INVOCATION_RECEIVER [2789,2792]
-    SimpleName: key [2789,2792]
-to
-METHOD_INVOCATION_RECEIVER [2884,2885]
-at -1
-===
-multi-move-tree
----
-METHOD_INVOCATION_RECEIVER [2503,2504]
-    SimpleName: n [2503,2504]
-to
-METHOD_INVOCATION_RECEIVER [2884,2885]
-at -1
-===
-multi-move-tree
----
-METHOD_INVOCATION_RECEIVER [2175,2176]
-    SimpleName: n [2175,2176]
-to
-METHOD_INVOCATION_RECEIVER [2884,2885]
 at -1

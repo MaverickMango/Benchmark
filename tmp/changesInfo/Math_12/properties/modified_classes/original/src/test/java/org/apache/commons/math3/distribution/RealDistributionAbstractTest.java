@@ -17,14 +17,13 @@
 package org.apache.commons.math3.distribution;
 
 
-import java.util.ArrayList;
-import java.util.Collections;
-
+import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import org.apache.commons.math3.TestUtils;
 import org.apache.commons.math3.util.FastMath;
-import org.apache.commons.math3.analysis.UnivariateFunction;
-import org.apache.commons.math3.analysis.integration.BaseAbstractUnivariateIntegrator;
-import org.apache.commons.math3.analysis.integration.IterativeLegendreGaussIntegrator;
 import org.apache.commons.math3.exception.MathIllegalArgumentException;
 import org.apache.commons.math3.exception.NumberIsTooLargeException;
 import org.junit.After;
@@ -159,7 +158,6 @@ public abstract class RealDistributionAbstractTest {
                 getTolerance());
         }
         // verify cumulativeProbability(double, double)
-        // XXX In 4.0, "cumulativeProbability(double,double)" must be replaced with "probability" (MATH-839).
         for (int i = 0; i < cumulativeTestPoints.length; i++) {
             for (int j = 0; j < cumulativeTestPoints.length; j++) {
                 if (cumulativeTestPoints[i] <= cumulativeTestPoints[j]) {
@@ -240,7 +238,6 @@ public abstract class RealDistributionAbstractTest {
         for (int i=1; i < cumulativeTestPoints.length; i++) {
 
             // check that cdf(x, x) = 0
-            // XXX In 4.0, "cumulativeProbability(double,double)" must be replaced with "probability" (MATH-839).
             TestUtils.assertEquals(0d,
                distribution.cumulativeProbability
                  (cumulativeTestPoints[i], cumulativeTestPoints[i]), tolerance);
@@ -250,7 +247,6 @@ public abstract class RealDistributionAbstractTest {
             double lower = FastMath.min(cumulativeTestPoints[i], cumulativeTestPoints[i -1]);
             double diff = distribution.cumulativeProbability(upper) -
                 distribution.cumulativeProbability(lower);
-            // XXX In 4.0, "cumulativeProbability(double,double)" must be replaced with "probability" (MATH-839).
             double direct = distribution.cumulativeProbability(lower, upper);
             TestUtils.assertEquals("Inconsistent cumulative probabilities for ("
                     + lower + "," + upper + ")", diff, direct, tolerance);
@@ -263,7 +259,6 @@ public abstract class RealDistributionAbstractTest {
     @Test
     public void testIllegalArguments() {
         try {
-            // XXX In 4.0, "cumulativeProbability(double,double)" must be replaced with "probability" (MATH-839).
             distribution.cumulativeProbability(1, 0);
             Assert.fail("Expecting MathIllegalArgumentException for bad cumulativeProbability interval");
         } catch (MathIllegalArgumentException ex) {
@@ -298,77 +293,6 @@ public abstract class RealDistributionAbstractTest {
             TestUtils.updateCounts(sample[i], counts, quartiles);
         }
         TestUtils.assertChiSquareAccept(expected, counts, 0.001);
-    }
-    
-    /**
-     * Verify that density integrals match the distribution.
-     * The (filtered, sorted) cumulativeTestPoints array is used to source
-     * integration limits. The integral of the density (estimated using a
-     * Legendre-Gauss integrator) is compared with the cdf over the same
-     * interval. Test points outside of the domain of the density function
-     * are discarded.
-     */
-    @Test
-    public void testDensityIntegrals() {
-        final double tol = 1.0e-9;
-        final BaseAbstractUnivariateIntegrator integrator =
-            new IterativeLegendreGaussIntegrator(5, 1.0e-12, 1.0e-10);
-        final UnivariateFunction d = new UnivariateFunction() {
-            public double value(double x) {
-                return distribution.density(x);
-            }
-        };
-        final ArrayList<Double> integrationTestPoints = new ArrayList<Double>();
-        for (int i = 0; i < cumulativeTestPoints.length; i++) {
-            if (Double.isNaN(cumulativeTestValues[i]) ||
-                    cumulativeTestValues[i] < 1.0e-5 ||
-                    cumulativeTestValues[i] > 1 - 1.0e-5) {
-                continue; // exclude integrals outside domain.
-            }
-            integrationTestPoints.add(cumulativeTestPoints[i]);
-        }
-        Collections.sort(integrationTestPoints);
-        for (int i = 1; i < integrationTestPoints.size(); i++) {
-            Assert.assertEquals(
-                    distribution.cumulativeProbability(  // FIXME @4.0 when rename happens
-                            integrationTestPoints.get(0), integrationTestPoints.get(i)),
-                            integrator.integrate(
-                                    1000000, // Triangle integrals are very slow to converge
-                                    d, integrationTestPoints.get(0),
-                                    integrationTestPoints.get(i)), tol);
-        }
-    }
-    
-    /**
-     * Verify that isSupportLowerBoundInclusvie returns true iff the lower bound
-     * is finite and density is non-NaN, non-infinite there.
-     */
-    @Test
-    public void testIsSupportLowerBoundInclusive() {
-        final double lowerBound = distribution.getSupportLowerBound();
-        double result = Double.NaN;
-        result = distribution.density(lowerBound);
-        Assert.assertEquals(
-                !Double.isInfinite(lowerBound) && !Double.isNaN(result) &&
-                !Double.isInfinite(result),
-                distribution.isSupportLowerBoundInclusive());
-         
-    }
-    
-    /**
-     * Verify that isSupportUpperBoundInclusvie returns true iff the upper bound
-     * is finite and density is non-NaN, non-infinite there.
-     */
-    @Test
-    public void testIsSupportUpperBoundInclusive() {
-        final double upperBound = distribution.getSupportUpperBound();
-        double result = Double.NaN;
-        result = distribution.density(upperBound);
-        Assert.assertEquals(
-                !Double.isInfinite(upperBound) && !Double.isNaN(result) &&
-                !Double.isInfinite(result),
-                distribution.isSupportUpperBoundInclusive());
-         
     }
 
     //------------------ Getters / Setters for test instance data -----------
@@ -464,4 +388,43 @@ public abstract class RealDistributionAbstractTest {
         this.tolerance = tolerance;
     }
 
+
+    @Test
+    public void testDistributionClone()
+            throws IOException,
+            ClassNotFoundException {
+        // Construct a distribution and initialize its internal random
+        // generator, using a fixed seed for deterministic results.
+        distribution.reseedRandomGenerator(123);
+        distribution.sample();
+
+        // Clone the distribution.
+        final RealDistribution cloned = deepClone();
+
+        // Make sure they still produce the same samples.
+        final double s1 = distribution.sample();
+        final double s2 = cloned.sample();
+        Assert.assertEquals(s1, s2, 0d);
+    }
+
+    /**
+     * Serialization and deserialization loop of the {@link #distribution}.
+     */
+    private RealDistribution deepClone()
+            throws IOException,
+            ClassNotFoundException {
+        // Serialize to byte array.
+        final ByteArrayOutputStream bOut = new ByteArrayOutputStream();
+        final ObjectOutputStream oOut = new ObjectOutputStream(bOut);
+        oOut.writeObject(distribution);
+        final byte[] data = bOut.toByteArray();
+
+        // Deserialize from byte array.
+        final ByteArrayInputStream bIn = new ByteArrayInputStream(data);
+        final ObjectInputStream oIn = new ObjectInputStream(bIn);
+        final Object clone = oIn.readObject();
+        oIn.close();
+
+        return (RealDistribution) clone;
+    }
 }

@@ -1,305 +1,132 @@
-diff --git a/src/main/java/org/apache/commons/math3/optimization/direct/BaseAbstractMultivariateVectorOptimizer.java b/src/main/java/org/apache/commons/math3/optimization/direct/BaseAbstractMultivariateVectorOptimizer.java
-index c807f0c..17bd55d 100644
---- a/src/main/java/org/apache/commons/math3/optimization/direct/BaseAbstractMultivariateVectorOptimizer.java
-+++ b/src/main/java/org/apache/commons/math3/optimization/direct/BaseAbstractMultivariateVectorOptimizer.java
-@@ -269,37 +269,6 @@
-     }
- 
-     /**
--     * Computes the residuals.
--     * The residual is the difference between the observed (target)
--     * values and the model (objective function) value, for the given
--     * parameters.
--     * There is one residual for each element of the vector-valued
--     * function.
--     *
--     * @param point Parameters of the model.
--     * @return the residuals.
--     * @throws DimensionMismatchException if {@code point} has a wrong
--     * length.
--     * @since 3.1
--     */
--    protected double[] computeResidual(double[] point) {
--        if (point.length != start.length) {
--            throw new DimensionMismatchException(point.length,
--                                                 start.length);
--        }
--
--        final double[] objective = computeObjectiveValue(point);
--
--        final double[] residuals = new double[target.length];
--        for (int i = 0; i < target.length; i++) {
--            residuals[i] = target[i] - objective[i];
--        }
--
--        return residuals;
--    }
--
--
--    /**
-      * Gets the objective vector function.
-      * Note that this access bypasses the evaluation counter.
-      *
-@@ -340,7 +309,7 @@
-      * state depend on the {@link OptimizationData input} parsed by this base
-      * class.
-      * It will be called after the parsing step performed in the
--     * {@link #optimize(int,MultivariateVectorFunction,OptimizationData[]) 
-+     * {@link #optimize(int,MultivariateVectorFunction,OptimizationData[])
-      * optimize} method and just before {@link #doOptimize()}.
-      *
-      * @since 3.1
-diff --git a/src/main/java/org/apache/commons/math3/optimization/general/AbstractLeastSquaresOptimizer.java b/src/main/java/org/apache/commons/math3/optimization/general/AbstractLeastSquaresOptimizer.java
-index 1288af1..72d932f 100644
---- a/src/main/java/org/apache/commons/math3/optimization/general/AbstractLeastSquaresOptimizer.java
-+++ b/src/main/java/org/apache/commons/math3/optimization/general/AbstractLeastSquaresOptimizer.java
-@@ -20,14 +20,17 @@
- import org.apache.commons.math3.analysis.DifferentiableMultivariateVectorFunction;
- import org.apache.commons.math3.analysis.FunctionUtils;
- import org.apache.commons.math3.analysis.differentiation.DerivativeStructure;
--import org.apache.commons.math3.analysis.differentiation.JacobianFunction;
- import org.apache.commons.math3.analysis.differentiation.MultivariateDifferentiableVectorFunction;
- import org.apache.commons.math3.exception.DimensionMismatchException;
- import org.apache.commons.math3.exception.NumberIsTooSmallException;
- import org.apache.commons.math3.exception.util.LocalizedFormats;
-+import org.apache.commons.math3.linear.ArrayRealVector;
+diff --git a/src/main/java/org/apache/commons/math3/optimization/Target.java b/src/main/java/org/apache/commons/math3/optimization/Target.java
+new file mode 100644
+index 0000000..530ad53
+--- /dev/null
++++ b/src/main/java/org/apache/commons/math3/optimization/Target.java
+@@ -0,0 +1,49 @@
++/*
++ * Licensed to the Apache Software Foundation (ASF) under one or more
++ * contributor license agreements.  See the NOTICE file distributed with
++ * this work for additional information regarding copyright ownership.
++ * The ASF licenses this file to You under the Apache License, Version 2.0
++ * (the "License"); you may not use this file except in compliance with
++ * the License.  You may obtain a copy of the License at
++ *
++ *      http://www.apache.org/licenses/LICENSE-2.0
++ *
++ * Unless required by applicable law or agreed to in writing, software
++ * distributed under the License is distributed on an "AS IS" BASIS,
++ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
++ * See the License for the specific language governing permissions and
++ * limitations under the License.
++ */
++
++package org.apache.commons.math3.optimization;
++
++/**
++ * Target of the optimization procedure.
++ * They are the values which the objective vector function must reproduce
++ * When the parameters of the model have been optimized.
++ * <br/>
++ * Immutable class.
++ *
++ * @version $Id$
++ * @since 3.1
++ */
++public class Target implements OptimizationData {
++    /** Target values (of the objective vector function). */
++    private final double[] target;
++
++    /**
++     * @param observations Target values.
++     */
++    public Target(double[] observations) {
++        target = observations.clone();
++    }
++
++    /**
++     * Gets the initial guess.
++     *
++     * @return the initial guess.
++     */
++    public double[] getTarget() {
++        return target.clone();
++    }
++}
+diff --git a/src/main/java/org/apache/commons/math3/optimization/Weight.java b/src/main/java/org/apache/commons/math3/optimization/Weight.java
+new file mode 100644
+index 0000000..c5263e6
+--- /dev/null
++++ b/src/main/java/org/apache/commons/math3/optimization/Weight.java
+@@ -0,0 +1,71 @@
++/*
++ * Licensed to the Apache Software Foundation (ASF) under one or more
++ * contributor license agreements.  See the NOTICE file distributed with
++ * this work for additional information regarding copyright ownership.
++ * The ASF licenses this file to You under the Apache License, Version 2.0
++ * (the "License"); you may not use this file except in compliance with
++ * the License.  You may obtain a copy of the License at
++ *
++ *      http://www.apache.org/licenses/LICENSE-2.0
++ *
++ * Unless required by applicable law or agreed to in writing, software
++ * distributed under the License is distributed on an "AS IS" BASIS,
++ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
++ * See the License for the specific language governing permissions and
++ * limitations under the License.
++ */
++
++package org.apache.commons.math3.optimization;
++
 +import org.apache.commons.math3.linear.RealMatrix;
 +import org.apache.commons.math3.linear.Array2DRowRealMatrix;
- import org.apache.commons.math3.linear.DecompositionSolver;
- import org.apache.commons.math3.linear.MatrixUtils;
- import org.apache.commons.math3.linear.QRDecomposition;
-+import org.apache.commons.math3.linear.EigenDecomposition;
- import org.apache.commons.math3.optimization.OptimizationData;
- import org.apache.commons.math3.optimization.InitialGuess;
- import org.apache.commons.math3.optimization.Target;
-@@ -41,15 +44,16 @@
- /**
-  * Base class for implementing least squares optimizers.
-  * It handles the boilerplate methods associated to thresholds settings,
-- * jacobian and error estimation.
-+ * Jacobian and error estimation.
-  * <br/>
-- * This class uses the {@link JacobianFunction Jacobian} of the function argument in method
-- * {@link #optimize(int, MultivariateDifferentiableVectorFunction, double[], double[], double[])
-- * optimize} and assumes that, in the matrix returned by the
-- * {@link JacobianFunction#value(double[]) value} method, the rows
-- * iterate on the model functions while the columns iterate on the parameters; thus,
-- * the numbers of rows is equal to the length of the {@code target} array while the
-- * number of columns is equal to the length of the {@code startPoint} array.
-+ * This class constructs the Jacobian matrix of the function argument in method
-+ * {@link BaseAbstractMultivariateVectorOptimizer#optimize(int,MultivariateVectorFunction,OptimizationData[])
-+ * optimize} and assumes that the rows of that matrix iterate on the model
-+ * functions while the columns iterate on the parameters; thus, the numbers
-+ * of rows is equal to the dimension of the
-+ * {@link org.apache.commons.math3.optimization.Target Target} while
-+ * the number of columns is equal to the dimension of the
-+ * {@link org.apache.commons.math3.optimization.InitialGuess InitialGuess}.
-  *
-  * @version $Id$
-  * @since 1.2
-@@ -83,6 +87,8 @@
-     private MultivariateDifferentiableVectorFunction jF;
-     /** Number of evaluations of the Jacobian. */
-     private int jacobianEvaluations;
-+    /** Square-root of the weight matrix. */
-+    private RealMatrix weightMatrixSqrt;
- 
-     /**
-      * Simple constructor with default settings.
-@@ -124,25 +130,20 @@
-         if (dsValue.length != rows) {
-             throw new DimensionMismatchException(dsValue.length, rows);
-         }
--        for (int i = 0; i < rows; ++i) {
-+        final int nR = getTarget().length;
-+        final int nC = point.length;
-+        final double[][] jacobianData = new double[nR][nC];
-+        for (int i = 0; i < nR; ++i) {
-             int[] orders = new int[point.length];
--            for (int j = 0; j < point.length; ++j) {
-+            for (int j = 0; j < nC; ++j) {
-                 orders[j] = 1;
--                weightedResidualJacobian[i][j] = dsValue[i].getPartialDerivative(orders);
-+                jacobianData[i][j] = dsValue[i].getPartialDerivative(orders);
-                 orders[j] = 0;
-             }
-         }
- 
--        final double[] residualsWeights = getWeightRef();
--
--        for (int i = 0; i < rows; i++) {
--            final double[] ji = weightedResidualJacobian[i];
--            double wi = FastMath.sqrt(residualsWeights[i]);
--            for (int j = 0; j < cols; ++j) {
--                //ji[j] *=  -1.0;
--                weightedResidualJacobian[i][j] = -ji[j]*wi;
--            }
--        }
-+        weightedResidualJacobian
-+            = weightMatrixSqrt.multiply(MatrixUtils.createRealMatrix(jacobianData)).scalarMultiply(-1).getData();
-     }
- 
-     /**
-@@ -153,21 +154,14 @@
-      * if the maximal number of evaluations is exceeded.
-      */
-     protected void updateResidualsAndCost() {
--        objective = computeObjectiveValue(point);
--        if (objective.length != rows) {
--            throw new DimensionMismatchException(objective.length, rows);
--        }
-+        final double[] res = computeResidual(point);
-+        final ArrayRealVector residuals = new ArrayRealVector(res);
-+        final RealMatrix weight = getWeight();
- 
--        final double[] targetValues = getTargetRef();
--        final double[] residualsWeights = getWeightRef();
--
--        cost = 0;
--        for (int i = 0; i < rows; i++) {
--            final double residual = targetValues[i] - objective[i];
--            weightedResiduals[i]= residual*FastMath.sqrt(residualsWeights[i]);
--            cost += residualsWeights[i] * residual * residual;
--        }
--        cost = FastMath.sqrt(cost);
-+        // Compute cost.
-+        cost = FastMath.sqrt(residuals.dotProduct(weight.operate(residuals)));
-+        // Compute weighted residuals.
-+        weightedResiduals = weightMatrixSqrt.operate(residuals).toArray();
-     }
- 
-     /**
-@@ -226,22 +220,13 @@
-         // Set up the jacobian.
-         updateJacobian();
- 
--        // Compute transpose(J)J, without building intermediate matrices.
--        double[][] jTj = new double[cols][cols];
--        for (int i = 0; i < cols; ++i) {
--            for (int j = i; j < cols; ++j) {
--                double sum = 0;
--                for (int k = 0; k < rows; ++k) {
--                    sum += weightedResidualJacobian[k][i] * weightedResidualJacobian[k][j];
--                }
--                jTj[i][j] = sum;
--                jTj[j][i] = sum;
--            }
--        }
-+        // Compute transpose(J)J.
-+        final RealMatrix wrj = new Array2DRowRealMatrix(weightedResidualJacobian);
-+        final RealMatrix jTj = wrj.transpose().multiply(wrj);
- 
-         // Compute the covariances matrix.
-         final DecompositionSolver solver
--            = new QRDecomposition(MatrixUtils.createRealMatrix(jTj), threshold).getSolver();
-+            = new QRDecomposition(jTj, threshold).getSolver();
-         return solver.getInverse().getData();
-     }
- 
-@@ -381,14 +366,16 @@
-      * </ul>
-      * @return the point/value pair giving the optimal value of the objective
-      * function.
--     * @throws TooManyEvaluationsException if the maximal number of
--     * evaluations is exceeded.
-+     * @throws org.apache.commons.math3.exception.TooManyEvaluationsException if
-+     * the maximal number of evaluations is exceeded.
-      * @throws DimensionMismatchException if the target, and weight arguments
-      * have inconsistent dimensions.
-      * @see BaseAbstractMultivariateVectorOptimizer#optimizeInternal(int,MultivariateVectorFunction,OptimizationData[])
--     *
-      * @since 3.1
-+     * @deprecated As of 3.1. Override is necessary only until this class's generic
-+     * argument is changed to {@code MultivariateDifferentiableVectorFunction}.
-      */
-+    @Deprecated
-     protected PointVectorValuePair optimizeInternal(final int maxEval,
-                                                     final MultivariateDifferentiableVectorFunction f,
-                                                     OptimizationData... optData) {
-@@ -405,6 +392,9 @@
-         // Reset counter.
-         jacobianEvaluations = 0;
- 
-+        // Square-root of the weight matrix.
-+        weightMatrixSqrt = squareRoot(getWeight());
++import org.apache.commons.math3.linear.NonSquareMatrixException;
 +
-         // Store least squares problem characteristics.
-         // XXX The conversion won't be necessary when the generic argument of
-         // the base class becomes "MultivariateDifferentiableVectorFunction".
-@@ -413,14 +403,50 @@
-         // every time it is used.
-         jF = FunctionUtils.toMultivariateDifferentiableVectorFunction((DifferentiableMultivariateVectorFunction) getObjectiveFunction());
- 
--        // Arrays shared with the other private methods.
-+        // Arrays shared with "private" and "protected" methods.
-         point = getStartPoint();
-         rows = getTarget().length;
-         cols = point.length;
-+    }
- 
--        weightedResidualJacobian = new double[rows][cols];
--        this.weightedResiduals = new double[rows];
++/**
++ * Weight matrix of the residuals between model and observations.
++ * <br/>
++ * Immutable class.
++ *
++ * @version $Id$
++ * @since 3.1
++ */
++public class Weight implements OptimizationData {
++    /** Weight matrix. */
++    private final RealMatrix weightMatrix;
++
 +    /**
-+     * Computes the square-root of the weight matrix.
++     * Creates a diagonal weight matrix.
 +     *
-+     * @param m Symmetric, positive-definite (weight) matrix.
-+     * @return the square-root of the weight matrix.
++     * @param weight List of the values of the diagonal.
 +     */
-+    private RealMatrix squareRoot(RealMatrix m) {
-+        final EigenDecomposition dec = new EigenDecomposition(m);
-+        return dec.getSquareRoot();
++    public Weight(double[] weight) {
++        final int dim = weight.length;
++        weightMatrix = new Array2DRowRealMatrix(dim, dim);
++        for (int i = 0; i < dim; i++) {
++            weightMatrix.setEntry(i, i, weight[i]);
++        }
 +    }
- 
--        cost = Double.POSITIVE_INFINITY;
++
 +    /**
-+     * Computes the residuals.
-+     * The residual is the difference between the observed (target)
-+     * values and the model (objective function) value, for the given
-+     * parameters.
-+     * There is one residual for each element of the vector-valued
-+     * function.
-+     *
-+     * @param params Parameters of the model.
-+     * @return the residuals.
-+     * @throws DimensionMismatchException if {@code params} has a wrong
-+     * length.
++     * @param weight Weight matrix.
++     * @throws NonSquareMatrixException if the argument is not
++     * a square matrix.
 +     */
-+    private double[] computeResidual(double[] params) {
-+        if (params.length != getStartPoint().length) {
-+            throw new DimensionMismatchException(params.length,
-+                                                 getStartPoint().length);
++    public Weight(RealMatrix weight) {
++        if (weight.getColumnDimension() != weight.getRowDimension()) {
++            throw new NonSquareMatrixException(weight.getColumnDimension(),
++                                               weight.getRowDimension());
 +        }
 +
-+        objective = computeObjectiveValue(params);
-+        final double[] target = getTarget();
++        weightMatrix = weight.copy();
++    }
 +
-+        final double[] residuals = new double[target.length];
-+        for (int i = 0; i < target.length; i++) {
-+            residuals[i] = target[i] - objective[i];
-+        }
-+
-+        return residuals;
-     }
- }
-diff --git a/src/test/java/org/apache/commons/math3/optimization/general/LevenbergMarquardtOptimizerTest.java b/src/test/java/org/apache/commons/math3/optimization/general/LevenbergMarquardtOptimizerTest.java
-index e521fd3..28acea0 100644
---- a/src/test/java/org/apache/commons/math3/optimization/general/LevenbergMarquardtOptimizerTest.java
-+++ b/src/test/java/org/apache/commons/math3/optimization/general/LevenbergMarquardtOptimizerTest.java
-@@ -33,6 +33,7 @@
- import org.apache.commons.math3.util.Precision;
- import org.junit.Assert;
- import org.junit.Test;
-+import org.junit.Ignore;
- 
- /**
-  * <p>Some of the unit tests are re-implementations of the MINPACK <a
-@@ -160,7 +161,8 @@
-         }
-     }
- 
--    @Test
-+    // Test is skipped because it fails with the latest code update.
-+    @Ignore@Test
-     public void testMath199() {
-         try {
-             QuadraticProblem problem = new QuadraticProblem();
++    /**
++     * Gets the initial guess.
++     *
++     * @return the initial guess.
++     */
++    public RealMatrix getWeight() {
++        return weightMatrix.copy();
++    }
++}

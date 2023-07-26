@@ -1,19 +1,19 @@
 {
   "bugName": "Closure_125_buggy",
-  "bugId": "3",
+  "bugId": "0",
   "repo": {
     "name": "../bugs/Closure_125_buggy/.git"
   },
   "inducingCommit": {
-    "sha": "d3d4d87a8c7b077f6ff29d68651efa24b25fe26e",
+    "sha": "83026babd3b768f508780b0c38c3cef2bb9242a5",
     "branchName": "HEAD",
-    "fullMessage": "\nAnt refactoring so that Caja and Junit don\u0027t get pulled into\nour jar file.\n\nR\u003dplindner\nDELTA\u003d32  (21 added, 1 deleted, 10 changed)\n\n\nRevision created by MOE tool push_codebase.\nMOE_MIGRATION\u003d261\n\n\ngit-svn-id: https://closure-compiler.googlecode.com/svn/trunk@691 b0f006be-c8cd-11de-a2e8-8d36a3108c74\n",
+    "fullMessage": "\nclean up a long-standing TODO and fix up the function type lattice\n\nR\u003dmoedinger,awiner\nDELTA\u003d168  (108 added, 21 deleted, 39 changed)\n\n\nRevision created by MOE tool push_codebase.\nMOE_MIGRATION\u003d469041\n\n\ngit-svn-id: https://closure-compiler.googlecode.com/svn/trunk@504 b0f006be-c8cd-11de-a2e8-8d36a3108c74\n",
     "repoName": "../bugs/Closure_125_buggy/.git"
   },
   "originalCommit": {
-    "sha": "20c504ecbbdea3908bde81709df5a3765d1e385e",
+    "sha": "dfcdb31eb6afcdb590b23a3c93a35b5591a43afa",
     "branchName": "HEAD",
-    "fullMessage": "\nPatch up NodeUtil.getNumberValue to handle strings values like\n\" 12 \" and \"baz\".\n\nR\u003dnicksantos\nDELTA\u003d123  (109 added, 2 deleted, 12 changed)\n\n\nRevision created by MOE tool push_codebase.\nMOE_MIGRATION\u003d260\n\n\ngit-svn-id: https://closure-compiler.googlecode.com/svn/trunk@690 b0f006be-c8cd-11de-a2e8-8d36a3108c74\n",
+    "fullMessage": "\nShort circuit common union type comparisons when the results are clear.\n\nR\u003dnicksantos\nDELTA\u003d8  (8 added, 0 deleted, 0 changed)\n\n\nRevision created by MOE tool push_codebase.\nMOE_MIGRATION\u003d474001\n\n\ngit-svn-id: https://closure-compiler.googlecode.com/svn/trunk@503 b0f006be-c8cd-11de-a2e8-8d36a3108c74\n",
     "repoName": "../bugs/Closure_125_buggy/.git"
   },
   "fixedCommit": {

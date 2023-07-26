@@ -139,8 +139,8 @@ A	src/java/org/apache/commons/math/estimation/LevenbergMarquardtEstimator.java
 A	src/java/org/apache/commons/math/estimation/SimpleEstimationProblem.java
 A	src/java/org/apache/commons/math/estimation/WeightedMeasurement.java
 A	src/java/org/apache/commons/math/estimation/package.html
-R057	src/main/java/org/apache/commons/math3/fraction/Fraction.java	src/java/org/apache/commons/math/fraction/Fraction.java
-R079	src/main/java/org/apache/commons/math3/fraction/FractionConversionException.java	src/java/org/apache/commons/math/fraction/FractionConversionException.java
+R053	src/main/java/org/apache/commons/math3/fraction/Fraction.java	src/java/org/apache/commons/math/fraction/Fraction.java
+R060	src/main/java/org/apache/commons/math3/fraction/FractionConversionException.java	src/java/org/apache/commons/math/fraction/FractionConversionException.java
 R051	src/main/java/org/apache/commons/math3/fraction/FractionFormat.java	src/java/org/apache/commons/math/fraction/FractionFormat.java
 R091	src/main/java/org/apache/commons/math3/fraction/ProperFractionFormat.java	src/java/org/apache/commons/math/fraction/ProperFractionFormat.java
 A	src/java/org/apache/commons/math/fraction/package.html
@@ -1336,7 +1336,7 @@ A	src/test/org/apache/commons/math/estimation/LevenbergMarquardtEstimatorTest.ja
 R070	src/test/java/org/apache/commons/math3/optimization/general/MinpackTest.java	src/test/org/apache/commons/math/estimation/MinpackTest.java
 A	src/test/org/apache/commons/math/estimation/WeightedMeasurementTest.java
 A	src/test/org/apache/commons/math/fraction/FractionFormatTest.java
-R056	src/test/java/org/apache/commons/math3/fraction/FractionTest.java	src/test/org/apache/commons/math/fraction/FractionTest.java
+R053	src/test/java/org/apache/commons/math3/fraction/FractionTest.java	src/test/org/apache/commons/math/fraction/FractionTest.java
 R080	src/test/java/org/apache/commons/math3/geometry/euclidean/threed/RotationOrderTest.java	src/test/org/apache/commons/math/geometry/RotationOrderTest.java
 R058	src/test/java/org/apache/commons/math3/geometry/euclidean/threed/RotationTest.java	src/test/org/apache/commons/math/geometry/RotationTest.java
 A	src/test/org/apache/commons/math/geometry/Vector3DTest.java

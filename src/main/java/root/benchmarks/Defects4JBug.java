@@ -123,7 +123,7 @@ public class Defects4JBug implements GitAccess {
         CommandSummary cs = new CommandSummary();
         cs.append(d4jCmd, "checkout");
         cs.append("-p", proj);
-        version = version.startsWith("fix") ? "f" : "b";
+        version = version.startsWith("f") ? "f" : "b";
         cs.append("-v", id + version);
         cs.append("-w", workingDir);
         String[] cmd = cs.flat();

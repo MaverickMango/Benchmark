@@ -38,9 +38,12 @@ D	src/main/java/org/apache/commons/math3/fitting/WeightedObservedPoint.java
 D	src/main/java/org/apache/commons/math3/fitting/package-info.java
 M	src/main/java/org/apache/commons/math3/genetics/ListPopulation.java
 M	src/main/java/org/apache/commons/math3/geometry/euclidean/oned/Interval.java
+M	src/main/java/org/apache/commons/math3/geometry/euclidean/oned/IntervalsSet.java
+M	src/main/java/org/apache/commons/math3/geometry/euclidean/threed/SubLine.java
 M	src/main/java/org/apache/commons/math3/geometry/euclidean/twod/Line.java
 M	src/main/java/org/apache/commons/math3/geometry/euclidean/twod/PolygonsSet.java
 M	src/main/java/org/apache/commons/math3/geometry/euclidean/twod/Segment.java
+M	src/main/java/org/apache/commons/math3/geometry/euclidean/twod/SubLine.java
 M	src/main/java/org/apache/commons/math3/geometry/partitioning/AbstractSubHyperplane.java
 D	src/main/java/org/apache/commons/math3/linear/DiagonalMatrix.java
 M	src/main/java/org/apache/commons/math3/linear/EigenDecomposition.java
@@ -209,7 +212,8 @@ M	src/main/java/org/apache/commons/math3/stat/correlation/StorelessBivariateCova
 M	src/main/java/org/apache/commons/math3/stat/correlation/StorelessCovariance.java
 M	src/main/java/org/apache/commons/math3/stat/descriptive/DescriptiveStatistics.java
 M	src/main/java/org/apache/commons/math3/stat/descriptive/UnivariateStatistic.java
-M	src/main/java/org/apache/commons/math3/stat/inference/GTest.java
+M	src/main/java/org/apache/commons/math3/stat/inference/ChiSquareTest.java
+D	src/main/java/org/apache/commons/math3/stat/inference/GTest.java
 M	src/main/java/org/apache/commons/math3/stat/inference/TestUtils.java
 M	src/main/java/org/apache/commons/math3/stat/ranking/NaNStrategy.java
 M	src/main/java/org/apache/commons/math3/stat/ranking/NaturalRanking.java
@@ -240,6 +244,12 @@ D	src/test/java/org/apache/commons/math3/fitting/PolynomialFitterTest.java
 M	src/test/java/org/apache/commons/math3/genetics/CycleCrossoverTest.java
 M	src/test/java/org/apache/commons/math3/genetics/FixedElapsedTimeTest.java
 M	src/test/java/org/apache/commons/math3/genetics/OrderedCrossoverTest.java
+D	src/test/java/org/apache/commons/math3/geometry/euclidean/oned/IntervalTest.java
+M	src/test/java/org/apache/commons/math3/geometry/euclidean/oned/IntervalsSetTest.java
+M	src/test/java/org/apache/commons/math3/geometry/euclidean/twod/PolygonsSetTest.java
+M	src/test/java/org/apache/commons/math3/linear/EigenDecompositionTest.java
+M	src/test/java/org/apache/commons/math3/linear/MatrixUtilsTest.java
+M	src/test/java/org/apache/commons/math3/linear/SingularValueDecompositionTest.java
 D	src/test/java/org/apache/commons/math3/optim/PointValuePairTest.java
 D	src/test/java/org/apache/commons/math3/optim/PointVectorValuePairTest.java
 D	src/test/java/org/apache/commons/math3/optim/SimplePointCheckerTest.java
@@ -292,7 +302,7 @@ M	src/test/java/org/apache/commons/math3/special/BetaTest.java
 M	src/test/java/org/apache/commons/math3/special/GammaTest.java
 D	src/test/java/org/apache/commons/math3/stat/clustering/DBSCANClustererTest.java
 D	src/test/java/org/apache/commons/math3/stat/clustering/EuclideanDoublePointTest.java
-M	src/test/java/org/apache/commons/math3/stat/inference/GTestTest.java
+D	src/test/java/org/apache/commons/math3/stat/inference/GTestTest.java
 M	src/test/java/org/apache/commons/math3/stat/inference/TestUtilsTest.java
 M	src/test/java/org/apache/commons/math3/stat/ranking/NaturalRankingTest.java
 M	src/test/java/org/apache/commons/math3/util/FastMathTest.java

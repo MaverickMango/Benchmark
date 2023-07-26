@@ -23,7 +23,6 @@ import com.google.common.collect.Maps;
 import com.google.common.collect.Sets;
 import com.google.common.io.Files;
 import com.google.common.io.LimitInputStream;
-import com.google.javascript.jscomp.AbstractCommandLineRunner.WarningGuardSpec;
 
 import org.kohsuke.args4j.CmdLineException;
 import org.kohsuke.args4j.CmdLineParser;
@@ -35,6 +34,7 @@ import org.kohsuke.args4j.spi.Setter;
 import org.kohsuke.args4j.spi.StringOptionHandler;
 
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.PrintStream;
@@ -224,18 +224,29 @@ public class CommandLineRunner extends
         "corresponds to.")
     private String create_source_map = "";
 
+    @Option(name = "--source_map_format",
+        usage = "The source map format to produce. " +
+        "Options: V1, V2, V3, DEFAULT. DEFAULT produces V2.")
+    private SourceMap.Format source_map_format = SourceMap.Format.DEFAULT;
+
+    // Used to define the flag, values are stored by the handler.
+    @SuppressWarnings("unused")
     @Option(name = "--jscomp_error",
         handler = WarningGuardErrorOptionHandler.class,
         usage = "Make the named class of warnings an error. Options:" +
         DiagnosticGroups.DIAGNOSTIC_GROUP_NAMES)
     private List<String> jscomp_error = Lists.newArrayList();
 
+    // Used to define the flag, values are stored by the handler.
+    @SuppressWarnings("unused")
     @Option(name = "--jscomp_warning",
         handler = WarningGuardWarningOptionHandler.class,
         usage = "Make the named class of warnings a normal warning. " +
         "Options:" + DiagnosticGroups.DIAGNOSTIC_GROUP_NAMES)
     private List<String> jscomp_warning = Lists.newArrayList();
 
+    // Used to define the flag, values are stored by the handler.
+    @SuppressWarnings("unused")
     @Option(name = "--jscomp_off",
         handler = WarningGuardOffOptionHandler.class,
         usage = "Turn off the named class of warnings. Options:" +
@@ -336,6 +347,16 @@ public class CommandLineRunner extends
         usage = "Prints the compiler version to stderr.")
     private boolean version = false;
 
+    @Option(name = "--translations_file",
+        usage = "Source of translated messages. Currently only supports XTB.")
+    private String translationsFile = "";
+
+    @Option(name = "--translations_project",
+        usage = "Scopes all translations to the specified project." +
+        "When specified, we will use different message ids so that messages " +
+        "in different projects can have different translations.")
+    private String translationsProject = null;
+
     @Option(name = "--flagfile",
         usage = "A file containing additional command-line options.")
     private String flag_file = "";
@@ -414,22 +435,27 @@ public class CommandLineRunner extends
       }
     }
 
-    private static class WarningGuardSetter implements Setter {
-      private final Setter proxy;
+    private static class WarningGuardSetter implements Setter<String> {
+      private final Setter<? super String> proxy;
       private final CheckLevel level;
 
-      private WarningGuardSetter(Setter proxy, CheckLevel level) {
+      private WarningGuardSetter(
+          Setter<? super String> proxy, CheckLevel level) {
         this.proxy = proxy;
         this.level = level;
       }
 
-      @Override public boolean isMultiValued() { return proxy.isMultiValued(); }
+      @Override public boolean isMultiValued() {
+        return proxy.isMultiValued();
+      }
 
-      @Override public Class getType() { return proxy.getType(); }
+      @Override public Class<String> getType() {
+        return (Class<String>) proxy.getType();
+      }
 
-      @Override public void addValue(Object value) throws CmdLineException {
-        proxy.addValue((String) value);
-        warningGuardSpec.add(level, (String) value);
+      @Override public void addValue(String value) throws CmdLineException {
+        proxy.addValue(value);
+        warningGuardSpec.add(level, value);
       }
     }
   }
@@ -589,12 +615,13 @@ public class CommandLineRunner extends
           .setModuleWrapper(flags.module_wrapper)
           .setModuleOutputPathPrefix(flags.module_output_path_prefix)
           .setCreateSourceMap(flags.create_source_map)
+          .setSourceMapFormat(flags.source_map_format)
           .setWarningGuardSpec(Flags.warningGuardSpec)
           .setDefine(flags.define)
           .setCharset(flags.charset)
           .setManageClosureDependencies(flags.manage_closure_dependencies)
           .setClosureEntryPoints(flags.closure_entry_point)
-          .setOutputManifest(flags.output_manifest)
+          .setOutputManifest(ImmutableList.of(flags.output_manifest))
           .setAcceptConstKeyword(flags.accept_const_keyword)
           .setLanguageIn(flags.language_in);
     }
@@ -610,7 +637,7 @@ public class CommandLineRunner extends
       level.setDebugOptionsForCompilationLevel(options);
     }
 
-    if(flags.generate_exports) {
+    if (flags.generate_exports) {
       options.setGenerateExports(flags.generate_exports);
     }
 
@@ -621,6 +648,26 @@ public class CommandLineRunner extends
     }
 
     options.closurePass = flags.process_closure_primitives;
+
+    if (!flags.translationsFile.isEmpty()) {
+      try {
+        options.messageBundle = new XtbMessageBundle(
+            new FileInputStream(flags.translationsFile),
+            flags.translationsProject);
+      } catch (IOException e) {
+        throw new RuntimeException("Reading XTB file", e);
+      }
+    } else if (CompilationLevel.ADVANCED_OPTIMIZATIONS == level) {
+      // In SIMPLE or WHITESPACE mode, if the user hasn't specified a
+      // translations file, they might reasonably try to write their own
+      // implementation of goog.getMsg that makes the substitution at
+      // run-time.
+      //
+      // In ADVANCED mode, goog.getMsg is going to be renamed anyway,
+      // so we might as well inline it.
+      options.messageBundle = new EmptyMessageBundle();
+    }
+
     return options;
   }
 

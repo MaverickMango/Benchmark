@@ -17,15 +17,15 @@
 package org.apache.commons.math3.optimization.univariate;
 
 
-import org.apache.commons.math3.analysis.function.Sin;
-import org.apache.commons.math3.analysis.function.StepFunction;
-import org.apache.commons.math3.analysis.FunctionUtils;
 import org.apache.commons.math3.exception.NumberIsTooLargeException;
 import org.apache.commons.math3.exception.NumberIsTooSmallException;
 import org.apache.commons.math3.exception.TooManyEvaluationsException;
 import org.apache.commons.math3.analysis.QuinticFunction;
 import org.apache.commons.math3.analysis.SinFunction;
 import org.apache.commons.math3.analysis.UnivariateFunction;
+import org.apache.commons.math3.analysis.function.Sin;
+import org.apache.commons.math3.analysis.function.StepFunction;
+import org.apache.commons.math3.analysis.FunctionUtils;
 import org.apache.commons.math3.optimization.GoalType;
 import org.apache.commons.math3.optimization.ConvergenceChecker;
 import org.apache.commons.math3.stat.descriptive.DescriptiveStatistics;

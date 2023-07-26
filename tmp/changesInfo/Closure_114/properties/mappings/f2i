@@ -673,19 +673,17 @@ D	lib/rhino/xmlimplsrc/org/mozilla/javascript/xmlimpl/XMLObjectImpl.java
 D	lib/rhino/xmlimplsrc/org/mozilla/javascript/xmlimpl/XMLWithScope.java
 D	lib/rhino/xmlimplsrc/org/mozilla/javascript/xmlimpl/XmlNode.java
 D	lib/rhino/xmlimplsrc/org/mozilla/javascript/xmlimpl/XmlProcessor.java
-D	src/com/google/debugging/sourcemap/Base64.java
-D	src/com/google/debugging/sourcemap/Base64VLQ.java
+M	src/com/google/debugging/sourcemap/Base64.java
 M	src/com/google/debugging/sourcemap/FilePosition.java
 M	src/com/google/debugging/sourcemap/SourceMapConsumerFactory.java
 M	src/com/google/debugging/sourcemap/SourceMapConsumerV1.java
 M	src/com/google/debugging/sourcemap/SourceMapConsumerV2.java
-D	src/com/google/debugging/sourcemap/SourceMapConsumerV3.java
-M	src/com/google/debugging/sourcemap/SourceMapFormat.java
+M	src/com/google/debugging/sourcemap/SourceMapConsumerV3.java
 M	src/com/google/debugging/sourcemap/SourceMapGenerator.java
 M	src/com/google/debugging/sourcemap/SourceMapGeneratorFactory.java
 M	src/com/google/debugging/sourcemap/SourceMapGeneratorV1.java
 M	src/com/google/debugging/sourcemap/SourceMapGeneratorV2.java
-D	src/com/google/debugging/sourcemap/SourceMapGeneratorV3.java
+M	src/com/google/debugging/sourcemap/SourceMapGeneratorV3.java
 M	src/com/google/debugging/sourcemap/SourceMapLineDecoder.java
 M	src/com/google/debugging/sourcemap/SourceMapSection.java
 D	src/com/google/debugging/sourcemap/SourceMapSupplier.java
@@ -731,7 +729,7 @@ M	src/com/google/javascript/jscomp/CheckUnreachableCode.java
 D	src/com/google/javascript/jscomp/CleanupPasses.java
 M	src/com/google/javascript/jscomp/ClosureCodeRemoval.java
 M	src/com/google/javascript/jscomp/ClosureCodingConvention.java
-D	src/com/google/javascript/jscomp/ClosureOptimizePrimitives.java
+M	src/com/google/javascript/jscomp/ClosureOptimizePrimitives.java
 R085	src/com/google/javascript/jscomp/type/ClosureReverseAbstractInterpreter.java	src/com/google/javascript/jscomp/ClosureReverseAbstractInterpreter.java
 D	src/com/google/javascript/jscomp/ClosureRewriteClass.java
 M	src/com/google/javascript/jscomp/CoalesceVariableNames.java
@@ -809,12 +807,12 @@ D	src/com/google/javascript/jscomp/GlobalVarReferenceMap.java
 M	src/com/google/javascript/jscomp/GoogleCodingConvention.java
 D	src/com/google/javascript/jscomp/GoogleJsMessageIdGenerator.java
 M	src/com/google/javascript/jscomp/GroupVariableDeclarations.java
-D	src/com/google/javascript/jscomp/HotSwapCompilerPass.java
+M	src/com/google/javascript/jscomp/HotSwapCompilerPass.java
 M	src/com/google/javascript/jscomp/IgnoreCajaProperties.java
 M	src/com/google/javascript/jscomp/InferJSDocInfo.java
 M	src/com/google/javascript/jscomp/InlineCostEstimator.java
 M	src/com/google/javascript/jscomp/InlineFunctions.java
-D	src/com/google/javascript/jscomp/InlineObjectLiterals.java
+M	src/com/google/javascript/jscomp/InlineObjectLiterals.java
 D	src/com/google/javascript/jscomp/InlineProperties.java
 M	src/com/google/javascript/jscomp/InlineSimpleMethods.java
 M	src/com/google/javascript/jscomp/InlineVariables.java
@@ -838,7 +836,6 @@ M	src/com/google/javascript/jscomp/LightweightMessageFormatter.java
 M	src/com/google/javascript/jscomp/LineNumberCheck.java
 M	src/com/google/javascript/jscomp/LinkedFlowScope.java
 M	src/com/google/javascript/jscomp/LiveVariablesAnalysis.java
-A	src/com/google/javascript/jscomp/LocaleUtil.java
 M	src/com/google/javascript/jscomp/LoggerErrorManager.java
 M	src/com/google/javascript/jscomp/MakeDeclaredNamesUnique.java
 M	src/com/google/javascript/jscomp/MarkNoSideEffectCalls.java
@@ -1095,14 +1092,11 @@ M	src/com/google/javascript/rhino/testing/Asserts.java
 M	src/com/google/javascript/rhino/testing/BaseJSTypeTestCase.java
 M	src/com/google/javascript/rhino/testing/MapBasedScope.java
 M	src/com/google/javascript/rhino/testing/TestErrorReporter.java
-D	test/com/google/debugging/sourcemap/Base64Test.java
-D	test/com/google/debugging/sourcemap/Base64VLQTest.java
-M	test/com/google/debugging/sourcemap/SourceMapConsumerV1Test.java
-M	test/com/google/debugging/sourcemap/SourceMapConsumerV2Test.java
+M	test/com/google/debugging/sourcemap/Base64Test.java
 M	test/com/google/debugging/sourcemap/SourceMapGeneratorV1Test.java
 M	test/com/google/debugging/sourcemap/SourceMapGeneratorV2Test.java
-D	test/com/google/debugging/sourcemap/SourceMapGeneratorV3Test.java
-D	test/com/google/debugging/sourcemap/SourceMapTestCase.java
+M	test/com/google/debugging/sourcemap/SourceMapGeneratorV3Test.java
+M	test/com/google/debugging/sourcemap/SourceMapTestCase.java
 M	test/com/google/javascript/jscomp/AliasExternalsTest.java
 M	test/com/google/javascript/jscomp/AmbiguatePropertiesTest.java
 D	test/com/google/javascript/jscomp/AngularPassTest.java
@@ -1126,7 +1120,6 @@ M	test/com/google/javascript/jscomp/CheckSideEffectsTest.java
 D	test/com/google/javascript/jscomp/CheckSuspiciousCodeTest.java
 D	test/com/google/javascript/jscomp/CleanupPassesTest.java
 M	test/com/google/javascript/jscomp/ClosureCodingConventionTest.java
-D	test/com/google/javascript/jscomp/ClosureOptimizePrimitivesTest.java
 M	test/com/google/javascript/jscomp/ClosureReverseAbstractInterpreterTest.java
 D	test/com/google/javascript/jscomp/ClosureRewriteClassTest.java
 M	test/com/google/javascript/jscomp/CoalesceVariableNamesTest.java
@@ -1141,7 +1134,6 @@ M	test/com/google/javascript/jscomp/CompilerTypeTestCase.java
 M	test/com/google/javascript/jscomp/ConcreteTypeTest.java
 M	test/com/google/javascript/jscomp/ConstCheckTest.java
 M	test/com/google/javascript/jscomp/ControlFlowAnalysisTest.java
-M	test/com/google/javascript/jscomp/ControlStructureCheckTest.java
 M	test/com/google/javascript/jscomp/ConvertToDottedPropertiesTest.java
 M	test/com/google/javascript/jscomp/CreateSyntheticBlocksTest.java
 M	test/com/google/javascript/jscomp/CrossModuleCodeMotionTest.java
@@ -1176,7 +1168,7 @@ M	test/com/google/javascript/jscomp/GoogleCodingConventionTest.java
 M	test/com/google/javascript/jscomp/InferJSDocInfoTest.java
 M	test/com/google/javascript/jscomp/InlineCostEstimatorTest.java
 M	test/com/google/javascript/jscomp/InlineFunctionsTest.java
-D	test/com/google/javascript/jscomp/InlineObjectLiteralsTest.java
+M	test/com/google/javascript/jscomp/InlineObjectLiteralsTest.java
 D	test/com/google/javascript/jscomp/InlinePropertiesTest.java
 M	test/com/google/javascript/jscomp/InlineSimpleMethodsTest.java
 M	test/com/google/javascript/jscomp/InlineVariablesConstantsTest.java
@@ -1233,7 +1225,6 @@ D	test/com/google/javascript/jscomp/RemoveUnusedClassPropertiesTest.java
 M	test/com/google/javascript/jscomp/RemoveUnusedNamesTest.java
 M	test/com/google/javascript/jscomp/RemoveUnusedPrototypePropertiesTest.java
 M	test/com/google/javascript/jscomp/RemoveUnusedVarsTest.java
-M	test/com/google/javascript/jscomp/RenameLabelsTest.java
 M	test/com/google/javascript/jscomp/RenameLocalVarsTest.java
 M	test/com/google/javascript/jscomp/RenamePropertiesTest.java
 D	test/com/google/javascript/jscomp/RenameVars2Test.java

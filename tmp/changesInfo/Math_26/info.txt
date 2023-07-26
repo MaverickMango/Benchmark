@@ -1,31 +1,31 @@
 {
   "bugName": "Math_26_buggy",
-  "bugId": "69",
+  "bugId": "0",
   "repo": {
-    "name": "tmp/Math_26_buggy/.git"
+    "name": "../bugs/Math_26_buggy/.git"
   },
-  "buggyCommit": {
-    "sha": "c7b489f1e9cf9ceaff0f5844fdcf6630224ebf16",
+  "inducingCommit": {
+    "sha": "0b59d70b7948a22e770b8dd81e6eca20be2c71f4",
     "branchName": "HEAD",
-    "fullMessage": "added checks for integer overflows during double to Fraction conversion\nJIRA: MATH-182\n\ngit-svn-id: https://svn.apache.org/repos/asf/commons/proper/math/trunk@617482 13f79535-47bb-0310-9956-ffa450edef68\n",
-    "repoName": "tmp/Math_26_buggy/.git"
+    "fullMessage": "added new constructors for Fractions\nJIRA: MATH-181\n\ngit-svn-id: https://svn.apache.org/repos/asf/commons/proper/math/trunk@615856 13f79535-47bb-0310-9956-ffa450edef68\n",
+    "repoName": "../bugs/Math_26_buggy/.git"
   },
-  "commitBeforeBuggy": {
-    "sha": "ececa46fe81ebd38c07e487a5e3368fb3aa16e25",
+  "originalCommit": {
+    "sha": "932ebf87acd81162cc7b1751c18b0e0ca760c8bf",
     "branchName": "HEAD",
-    "fullMessage": "still javadoc ...\n\ngit-svn-id: https://svn.apache.org/repos/asf/commons/proper/math/trunk@617418 13f79535-47bb-0310-9956-ffa450edef68\n",
-    "repoName": "tmp/Math_26_buggy/.git"
+    "fullMessage": "Javadoc only. Added missing \u003c/p\u003e\u0027s\n\ngit-svn-id: https://svn.apache.org/repos/asf/commons/proper/math/trunk@615734 13f79535-47bb-0310-9956-ffa450edef68\n",
+    "repoName": "../bugs/Math_26_buggy/.git"
   },
   "fixedCommit": {
     "sha": "1566dd339f6efc2347b0962fac7fce22adbc31ff",
     "branchName": "HEAD",
     "fullMessage": "[MATH-836] Improve overflow check for negative values in Fraction constructor.\n\ngit-svn-id: https://svn.apache.org/repos/asf/commons/proper/math/trunk@1368253 13f79535-47bb-0310-9956-ffa450edef68\n",
-    "repoName": "tmp/Math_26_buggy/.git"
+    "repoName": "../bugs/Math_26_buggy/.git"
   },
-  "commitBeforeFixing": {
+  "buggyCommit": {
     "sha": "5f2077bb774d283e7984a2d5dc0c2759f2954963",
     "branchName": "HEAD",
     "fullMessage": "MATH-835\nAvoid overflow.\n\n\ngit-svn-id: https://svn.apache.org/repos/asf/commons/proper/math/trunk@1367593 13f79535-47bb-0310-9956-ffa450edef68\n",
-    "repoName": "tmp/Math_26_buggy/.git"
+    "repoName": "../bugs/Math_26_buggy/.git"
   }
 }

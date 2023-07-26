@@ -231,7 +231,7 @@ public class PolynomialFitterTest {
             for (int i = 0; i < 40000; ++i) {
                 double x = -1.0 + i / 20000.0;
                 fitter.addObservedPoint(1.0, x,
-                                        p.value(x) + 0.1 * randomizer.nextGaussian());
+                        p.value(x) + 0.1 * randomizer.nextGaussian());
             }
 
             final double[] init = new double[degree + 1];
@@ -239,7 +239,7 @@ public class PolynomialFitterTest {
 
             for (double x = -1.0; x < 1.0; x += 0.01) {
                 double error = FastMath.abs(p.value(x) - fitted.value(x)) /
-                              (1.0 + FastMath.abs(p.value(x)));
+                        (1.0 + FastMath.abs(p.value(x)));
                 maxError = FastMath.max(maxError, error);
                 Assert.assertTrue(FastMath.abs(error) < 0.01);
             }

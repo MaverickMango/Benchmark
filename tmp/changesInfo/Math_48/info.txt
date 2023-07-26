@@ -1,31 +1,31 @@
 {
   "bugName": "Math_48_buggy",
-  "bugId": "74",
+  "bugId": "0",
   "repo": {
-    "name": "tmp/Math_48_buggy/.git"
+    "name": "../bugs/Math_48_buggy/.git"
   },
-  "buggyCommit": {
-    "sha": "39cf5e69259d7560d50553caf028f9229b721013",
+  "inducingCommit": {
+    "sha": "ed5fdf67a31518149a74e05db23371056af10842",
     "branchName": "HEAD",
-    "fullMessage": "MATH-631\nReverted to original behaviour.\n\n\ngit-svn-id: https://svn.apache.org/repos/asf/commons/proper/math/trunk@1157185 13f79535-47bb-0310-9956-ffa450edef68\n",
-    "repoName": "tmp/Math_48_buggy/.git"
+    "fullMessage": "MATH-599\n\"SecantSolver\" modified to correspond to the original algorithm. Added several\nsecant-based solvers. Patch provided by Dennis Hendriks.\n\n\ngit-svn-id: https://svn.apache.org/repos/asf/commons/proper/math/trunk@1139126 13f79535-47bb-0310-9956-ffa450edef68\n",
+    "repoName": "../bugs/Math_48_buggy/.git"
   },
-  "commitBeforeBuggy": {
-    "sha": "ef028845113aca7e1159b1725edd7c39ed686faf",
+  "originalCommit": {
+    "sha": "c377b9c6bc631f057b190ca331114ac7f8e67769",
     "branchName": "HEAD",
-    "fullMessage": "Added \"final\".\n\n\ngit-svn-id: https://svn.apache.org/repos/asf/commons/proper/math/trunk@1157088 13f79535-47bb-0310-9956-ffa450edef68\n",
-    "repoName": "tmp/Math_48_buggy/.git"
+    "fullMessage": "MATH-485\n\"KalmanFilter\" and related classes updated by Thomas Neidhart according to\ncomments on JIRA.\n\n\ngit-svn-id: https://svn.apache.org/repos/asf/commons/proper/math/trunk@1138461 13f79535-47bb-0310-9956-ffa450edef68\n",
+    "repoName": "../bugs/Math_48_buggy/.git"
   },
   "fixedCommit": {
     "sha": "13d22f45624470ce5c07c085cf8b1ec0251eaee6",
     "branchName": "HEAD",
     "fullMessage": "MATH-631\nEarly detection of \"Regula Falsi\" algorithm being stuck due to finite\nprecision.\nJavadoc makes it clear that either the Pegasus or the Illinois solver should\nbe preferred over the Regula Falsi one (due to D. Hendriks).\n\n\ngit-svn-id: https://svn.apache.org/repos/asf/commons/proper/math/trunk@1164474 13f79535-47bb-0310-9956-ffa450edef68\n",
-    "repoName": "tmp/Math_48_buggy/.git"
+    "repoName": "../bugs/Math_48_buggy/.git"
   },
-  "commitBeforeFixing": {
+  "buggyCommit": {
     "sha": "2af72281fcb919dac92b0c4e464f847adda23be1",
     "branchName": "HEAD",
     "fullMessage": "MATH-413\nOptional, user-defined, convergence checker passed in the constructor.\n\n\ngit-svn-id: https://svn.apache.org/repos/asf/commons/proper/math/trunk@1164303 13f79535-47bb-0310-9956-ffa450edef68\n",
-    "repoName": "tmp/Math_48_buggy/.git"
+    "repoName": "../bugs/Math_48_buggy/.git"
   }
 }

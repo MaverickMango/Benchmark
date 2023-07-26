@@ -2,7 +2,7 @@ plugins {
     id 'java'
 }
 
-group 'com.tju.liumengjiao'
+group 'edu.tju.liumengjiao'
 version '1.0-SNAPSHOT'
 
 repositories {

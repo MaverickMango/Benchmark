@@ -1,2 +1,3 @@
-src/main/java/org/apache/commons/math/analysis/solvers/BaseSecantSolver.java
-src/test/java/org/apache/commons/math/analysis/solvers/RegulaFalsiSolverTest.java
+src/main/java/org/apache/commons/math/analysis/solvers/BaseUnivariateRealSolver.java
+src/main/java/org/apache/commons/math/analysis/solvers/SecantSolver.java
+src/test/java/org/apache/commons/math/analysis/solvers/SecantSolverTest.java

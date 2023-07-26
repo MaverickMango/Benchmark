@@ -1,41 +1,1358 @@
-diff --git a/src/main/java/org/apache/commons/math/analysis/solvers/BaseSecantSolver.java b/src/main/java/org/apache/commons/math/analysis/solvers/BaseSecantSolver.java
-index b3a23a1..c781a90 100644
---- a/src/main/java/org/apache/commons/math/analysis/solvers/BaseSecantSolver.java
-+++ b/src/main/java/org/apache/commons/math/analysis/solvers/BaseSecantSolver.java
-@@ -183,14 +183,7 @@
-                     f0 *= f1 / (f1 + fx);
-                     break;
-                 case REGULA_FALSI:
--                    if (x == x1) {
--                        final double delta = FastMath.max(rtol * FastMath.abs(x1),
--                                                          atol);
--                        // Update formula cannot make any progress: Update the
--                        // search interval.
--                        x0 = 0.5 * (x0 + x1 - delta);
--                        f0 = computeObjectiveValue(x0);
--                    }
-+                    // Nothing.
-                     break;
-                 default:
-                     // Should never happen.
-diff --git a/src/test/java/org/apache/commons/math/analysis/solvers/RegulaFalsiSolverTest.java b/src/test/java/org/apache/commons/math/analysis/solvers/RegulaFalsiSolverTest.java
-index df729f7..fea0abc 100644
---- a/src/test/java/org/apache/commons/math/analysis/solvers/RegulaFalsiSolverTest.java
-+++ b/src/test/java/org/apache/commons/math/analysis/solvers/RegulaFalsiSolverTest.java
-@@ -18,6 +18,7 @@
+diff --git a/src/main/java/org/apache/commons/math/analysis/solvers/AllowedSolutions.java b/src/main/java/org/apache/commons/math/analysis/solvers/AllowedSolutions.java
+new file mode 100644
+index 0000000..2604709
+--- /dev/null
++++ b/src/main/java/org/apache/commons/math/analysis/solvers/AllowedSolutions.java
+@@ -0,0 +1,61 @@
++/*
++ * Licensed to the Apache Software Foundation (ASF) under one or more
++ * contributor license agreements.  See the NOTICE file distributed with
++ * this work for additional information regarding copyright ownership.
++ * The ASF licenses this file to You under the Apache License, Version 2.0
++ * (the "License"); you may not use this file except in compliance with
++ * the License.  You may obtain a copy of the License at
++ *
++ *      http://www.apache.org/licenses/LICENSE-2.0
++ *
++ * Unless required by applicable law or agreed to in writing, software
++ * distributed under the License is distributed on an "AS IS" BASIS,
++ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
++ * See the License for the specific language governing permissions and
++ * limitations under the License.
++ */
++
++package org.apache.commons.math.analysis.solvers;
++
++
++/** The kinds of solutions that a {@link UnivariateRealSolver (univariate real)
++ * root-finding algorithm} may accept as solutions. This basically controls
++ * whether or not under-approximations and over-approximations are allowed.
++ *
++ * <p>If all solutions are accepted ({@link #EITHER_SIDE}), then the solution
++ * that the root-finding algorithm returns for a given root may be equal to the
++ * actual root, but it may also be an approximation that is slightly smaller
++ * or slightly larger than the actual root. Root-finding algorithms generally
++ * only guarantee that the returned solution is within the requested
++ * tolerances. In certain cases however, in particular for
++ * {@link EventHandler state events} of {@link ODEIntegrator ODE solvers}, it
++ * may be necessary to guarantee that a solution is returned that does not
++ * under-approximate the solution.</p>
++ *
++ * @see BracketedSolution
++ * @since 3.0
++ * @version $Id$
++ */
++public enum AllowedSolutions {
++    /** There are no additional side restriction on the solutions for
++     * root-finding. That is, both under-approximations and over-approximations
++     * are allowed. So, if a function f(x) has a root at x = y, then the
++     * root-finding result s may be smaller than y, equal to y, or greater
++     * than y.
++     */
++    EITHER_SIDE,
++
++    /** Only solutions that are less than or equal to the actual root are
++     * acceptable as solutions for root-finding. In other words,
++     * over-approximations are not allowed. So, if a function f(x) has a root
++     * at x = y, then the root-finding result s must satisfy s &lt;= y.
++     */
++    LEFT_SIDE,
++
++    /** Only solutions that are greater than or equal to the actual root are
++     * acceptable as solutions for root-finding. In other words,
++     * under-approximations are not allowed. So, if a function f(x) has a root
++     * at x = y, then the root-finding result s must satisfy s &gt;= y.
++     */
++    RIGHT_SIDE;
++}
+diff --git a/src/main/java/org/apache/commons/math/analysis/solvers/BaseUnivariateRealSolver.java b/src/main/java/org/apache/commons/math/analysis/solvers/BaseUnivariateRealSolver.java
+index 5099d88..772c5c2 100644
+--- a/src/main/java/org/apache/commons/math/analysis/solvers/BaseUnivariateRealSolver.java
++++ b/src/main/java/org/apache/commons/math/analysis/solvers/BaseUnivariateRealSolver.java
+@@ -65,10 +65,10 @@
+      * Solvers that do require bracketing should be able to handle the case
+      * where one of the endpoints is itself a root.
+      *
++     * @param maxEval Maximum number of evaluations.
+      * @param f Function to solve.
+      * @param min Lower bound for the interval.
+      * @param max Upper bound for the interval.
+-     * @param maxEval Maximum number of evaluations.
+      * @return a value where the function is zero.
+      * @throws org.apache.commons.math.exception.MathIllegalArgumentException
+      * if the arguments do not satisfy the requirements specified by the solver.
+@@ -83,11 +83,11 @@
+      * Solvers that do require bracketing should be able to handle the case
+      * where one of the endpoints is itself a root.
+      *
++     * @param maxEval Maximum number of evaluations.
+      * @param f Function to solve.
+      * @param min Lower bound for the interval.
+      * @param max Upper bound for the interval.
+      * @param startValue Start value to use.
+-     * @param maxEval Maximum number of evaluations.
+      * @return a value where the function is zero.
+      * @throws org.apache.commons.math.exception.MathIllegalArgumentException
+      * if the arguments do not satisfy the requirements specified by the solver.
+diff --git a/src/main/java/org/apache/commons/math/analysis/solvers/BracketedSolution.java b/src/main/java/org/apache/commons/math/analysis/solvers/BracketedSolution.java
+new file mode 100644
+index 0000000..e08261b
+--- /dev/null
++++ b/src/main/java/org/apache/commons/math/analysis/solvers/BracketedSolution.java
+@@ -0,0 +1,60 @@
++/*
++ * Licensed to the Apache Software Foundation (ASF) under one or more
++ * contributor license agreements.  See the NOTICE file distributed with
++ * this work for additional information regarding copyright ownership.
++ * The ASF licenses this file to You under the Apache License, Version 2.0
++ * (the "License"); you may not use this file except in compliance with
++ * the License.  You may obtain a copy of the License at
++ *
++ *      http://www.apache.org/licenses/LICENSE-2.0
++ *
++ * Unless required by applicable law or agreed to in writing, software
++ * distributed under the License is distributed on an "AS IS" BASIS,
++ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
++ * See the License for the specific language governing permissions and
++ * limitations under the License.
++ */
++
++package org.apache.commons.math.analysis.solvers;
++
++/** Interface for {@link UnivariateRealSolver (univariate real) root-finding
++ * algorithms} that maintain a bracketed solution. There are several advantages
++ * to having such root-finding algorithms:
++ * <ul>
++ *  <li>The bracketed solution guarantees that the root is kept within the
++ *      interval. As such, these algorithms generally also guarantee
++ *      convergence.</li>
++ *  <li>The bracketed solution means that we have the opportunity to only
++ *      return roots that are greater than or equal to the actual root, or
++ *      are less than or equal to the actual root. That is, we can control
++ *      whether under-approximations and over-approximations are
++ *      {@link AllowedSolutions allowed solutions}. Other root-finding
++ *      algorithms can usually only guarantee that the solution (the root that
++ *      was found) is around the actual root.</li>
++ * </ul>
++ *
++ * <p>For backwards compatibility, all root-finding algorithms must have
++ * {@link AllowedSolutions#EITHER_SIDE EITHER_SIDE} as default for the allowed
++ * solutions.</p>
++ *
++ * @see AllowedSolutions
++ * @since 3.0
++ * @version $Id$
++ */
++public interface BracketedSolution {
++    /** Returns the kind of solutions that the root-finding algorithm may
++     * accept as solutions.
++     *
++     * @return the kind of solutions that the root-finding algorithm may
++     * accept as solutions
++     */
++    AllowedSolutions getAllowedSolutions();
++
++    /** Sets the kind of solutions that the root-finding algorithm may accept
++     * as solutions.
++     *
++     * @param allowedSolutions the kind of solutions that the root-finding
++     * algorithm may accept as solutions
++     */
++    void setAllowedSolutions(AllowedSolutions allowedSolutions);
++}
+diff --git a/src/main/java/org/apache/commons/math/analysis/solvers/IllinoisSolver.java b/src/main/java/org/apache/commons/math/analysis/solvers/IllinoisSolver.java
+new file mode 100644
+index 0000000..dda2f50
+--- /dev/null
++++ b/src/main/java/org/apache/commons/math/analysis/solvers/IllinoisSolver.java
+@@ -0,0 +1,78 @@
++/*
++ * Licensed to the Apache Software Foundation (ASF) under one or more
++ * contributor license agreements.  See the NOTICE file distributed with
++ * this work for additional information regarding copyright ownership.
++ * The ASF licenses this file to You under the Apache License, Version 2.0
++ * (the "License"); you may not use this file except in compliance with
++ * the License.  You may obtain a copy of the License at
++ *
++ *      http://www.apache.org/licenses/LICENSE-2.0
++ *
++ * Unless required by applicable law or agreed to in writing, software
++ * distributed under the License is distributed on an "AS IS" BASIS,
++ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
++ * See the License for the specific language governing permissions and
++ * limitations under the License.
++ */
++
++package org.apache.commons.math.analysis.solvers;
++
++/**
++ * Implements the <em>Illinois</em> method for root-finding (approximating
++ * a zero of a univariate real function). It is a modified
++ * {@link RegulaFalsiSolver <em>Regula Falsi</em>} method.
++ *
++ * <p>Like the <em>Regula Falsi</em> method, convergence is guaranteed by
++ * maintaining a bracketed solution. The <em>Illinois</em> method however,
++ * should converge much faster than the original <em>Regula Falsi</em>
++ * method.</p>
++ *
++ * <p>The <em>Illinois</em> method assumes that the function is continuous,
++ * but not necessarily smooth.</p>
++ *
++ * <p>Implementation based on the following article: M. Dowell and P. Jarratt,
++ * <em>A modified regula falsi method for computing the root of an
++ * equation</em>, BIT Numerical Mathematics, volume 11, number 2,
++ * pages 168-174, Springer, 1971.</p>
++ *
++ * @since 3.0
++ * @version $Id$
++ */
++public class IllinoisSolver extends SecantBase implements BracketedSolution {
++    /** Construct a solver with default accuracy (1e-6). */
++    public IllinoisSolver() {
++        super(DEFAULT_ABSOLUTE_ACCURACY, Method.ILLINOIS);
++    }
++
++    /**
++     * Construct a solver.
++     *
++     * @param absoluteAccuracy absolute accuracy
++     */
++    public IllinoisSolver(final double absoluteAccuracy) {
++        super(absoluteAccuracy, Method.ILLINOIS);
++    }
++
++    /**
++     * Construct a solver.
++     *
++     * @param relativeAccuracy relative accuracy
++     * @param absoluteAccuracy absolute accuracy
++     */
++    public IllinoisSolver(final double relativeAccuracy,
++                          final double absoluteAccuracy) {
++        super(relativeAccuracy, absoluteAccuracy, Method.ILLINOIS);
++    }
++
++    /** {@inheritDoc} */
++    @Override
++    public AllowedSolutions getAllowedSolutions() {
++        return allowedSolutions;
++    }
++
++    /** {@inheritDoc} */
++    @Override
++    public void setAllowedSolutions(final AllowedSolutions allowedSolutions) {
++        this.allowedSolutions = allowedSolutions;
++    }
++}
+diff --git a/src/main/java/org/apache/commons/math/analysis/solvers/PegasusSolver.java b/src/main/java/org/apache/commons/math/analysis/solvers/PegasusSolver.java
+new file mode 100644
+index 0000000..9422ca8
+--- /dev/null
++++ b/src/main/java/org/apache/commons/math/analysis/solvers/PegasusSolver.java
+@@ -0,0 +1,80 @@
++/*
++ * Licensed to the Apache Software Foundation (ASF) under one or more
++ * contributor license agreements.  See the NOTICE file distributed with
++ * this work for additional information regarding copyright ownership.
++ * The ASF licenses this file to You under the Apache License, Version 2.0
++ * (the "License"); you may not use this file except in compliance with
++ * the License.  You may obtain a copy of the License at
++ *
++ *      http://www.apache.org/licenses/LICENSE-2.0
++ *
++ * Unless required by applicable law or agreed to in writing, software
++ * distributed under the License is distributed on an "AS IS" BASIS,
++ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
++ * See the License for the specific language governing permissions and
++ * limitations under the License.
++ */
++
++package org.apache.commons.math.analysis.solvers;
++
++/**
++ * Implements the <em>Pegasus</em> method for root-finding (approximating
++ * a zero of a univariate real function). It is a modified
++ * {@link RegulaFalsiSolver <em>Regula Falsi</em>} method.
++ *
++ * <p>Like the <em>Regula Falsi</em> method, convergence is guaranteed by
++ * maintaining a bracketed solution. The <em>Pegasus</em> method however,
++ * should converge much faster than the original <em>Regula Falsi</em> method.
++ * Furthermore, it should converge faster than the
++ * {@link IllinoisSolver <em>Illinois</em>} method, another
++ * <em>Regula Falsi</em>-based method.</p>
++ *
++ * <p>The <em>Pegasus</em> method assumes that the function is continuous,
++ * but not necessarily smooth.</p>
++ *
++ * <p>Implementation based on the following article: M. Dowell and P. Jarratt,
++ * <em>The "Pegasus" method for computing the root of an equation</em>,
++ * BIT Numerical Mathematics, volume 12, number 4, pages 503-508, Springer,
++ * 1972.</p>
++ *
++ * @since 3.0
++ * @version $Id$
++ */
++public class PegasusSolver extends SecantBase implements BracketedSolution {
++    /** Construct a solver with default accuracy (1e-6). */
++    public PegasusSolver() {
++        super(DEFAULT_ABSOLUTE_ACCURACY, Method.PEGASUS);
++    }
++
++    /**
++     * Construct a solver.
++     *
++     * @param absoluteAccuracy absolute accuracy
++     */
++    public PegasusSolver(final double absoluteAccuracy) {
++        super(absoluteAccuracy, Method.PEGASUS);
++    }
++
++    /**
++     * Construct a solver.
++     *
++     * @param relativeAccuracy relative accuracy
++     * @param absoluteAccuracy absolute accuracy
++     */
++    public PegasusSolver(final double relativeAccuracy,
++                         final double absoluteAccuracy) {
++        super(relativeAccuracy, absoluteAccuracy, Method.PEGASUS);
++    }
++
++    /** {@inheritDoc} */
++    @Override
++    public AllowedSolutions getAllowedSolutions() {
++        return allowedSolutions;
++    }
++
++    /** {@inheritDoc} */
++    @Override
++    public void setAllowedSolutions(final AllowedSolutions allowedSolutions) {
++        this.allowedSolutions = allowedSolutions;
++    }
++}
+diff --git a/src/main/java/org/apache/commons/math/analysis/solvers/RegulaFalsiSolver.java b/src/main/java/org/apache/commons/math/analysis/solvers/RegulaFalsiSolver.java
+new file mode 100644
+index 0000000..48e1d10
+--- /dev/null
++++ b/src/main/java/org/apache/commons/math/analysis/solvers/RegulaFalsiSolver.java
+@@ -0,0 +1,75 @@
++/*
++ * Licensed to the Apache Software Foundation (ASF) under one or more
++ * contributor license agreements.  See the NOTICE file distributed with
++ * this work for additional information regarding copyright ownership.
++ * The ASF licenses this file to You under the Apache License, Version 2.0
++ * (the "License"); you may not use this file except in compliance with
++ * the License.  You may obtain a copy of the License at
++ *
++ *      http://www.apache.org/licenses/LICENSE-2.0
++ *
++ * Unless required by applicable law or agreed to in writing, software
++ * distributed under the License is distributed on an "AS IS" BASIS,
++ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
++ * See the License for the specific language governing permissions and
++ * limitations under the License.
++ */
++
++package org.apache.commons.math.analysis.solvers;
++
++/**
++ * Implements the <em>Regula Falsi</em> or <em>False position</em> method for
++ * root-finding (approximating a zero of a univariate real function). It is a
++ * modified {@link SecantSolver <em>Secant</em>} method. Unlike the
++ * <em>Secant</em> method, convergence is guaranteed by maintaining a
++ * {@link BracketedSolution bracketed solution}.
++ *
++ * <p>The <em>Regula Falsi</em> method assumes that the function is continuous,
++ * but not necessarily smooth.</p>
++ *
++ * <p>Implementation based on the following article: M. Dowell and P. Jarratt,
++ * <em>A modified regula falsi method for computing the root of an
++ * equation</em>, BIT Numerical Mathematics, volume 11, number 2,
++ * pages 168-174, Springer, 1971.</p>
++ *
++ * @since 3.0
++ * @version $Id$
++ */
++public class RegulaFalsiSolver extends SecantBase implements BracketedSolution {
++    /** Construct a solver with default accuracy (1e-6). */
++    public RegulaFalsiSolver() {
++        super(DEFAULT_ABSOLUTE_ACCURACY, Method.REGULA_FALSI);
++    }
++
++    /**
++     * Construct a solver.
++     *
++     * @param absoluteAccuracy absolute accuracy
++     */
++    public RegulaFalsiSolver(final double absoluteAccuracy) {
++        super(absoluteAccuracy, Method.REGULA_FALSI);
++    }
++
++    /**
++     * Construct a solver.
++     *
++     * @param relativeAccuracy relative accuracy
++     * @param absoluteAccuracy absolute accuracy
++     */
++    public RegulaFalsiSolver(final double relativeAccuracy,
++                             final double absoluteAccuracy) {
++        super(relativeAccuracy, absoluteAccuracy, Method.REGULA_FALSI);
++    }
++
++    /** {@inheritDoc} */
++    @Override
++    public AllowedSolutions getAllowedSolutions() {
++        return allowedSolutions;
++    }
++
++    /** {@inheritDoc} */
++    @Override
++    public void setAllowedSolutions(final AllowedSolutions allowedSolutions) {
++        this.allowedSolutions = allowedSolutions;
++    }
++}
+diff --git a/src/main/java/org/apache/commons/math/analysis/solvers/SecantBase.java b/src/main/java/org/apache/commons/math/analysis/solvers/SecantBase.java
+new file mode 100644
+index 0000000..6ff2aa7
+--- /dev/null
++++ b/src/main/java/org/apache/commons/math/analysis/solvers/SecantBase.java
+@@ -0,0 +1,200 @@
++/*
++ * Licensed to the Apache Software Foundation (ASF) under one or more
++ * contributor license agreements.  See the NOTICE file distributed with
++ * this work for additional information regarding copyright ownership.
++ * The ASF licenses this file to You under the Apache License, Version 2.0
++ * (the "License"); you may not use this file except in compliance with
++ * the License.  You may obtain a copy of the License at
++ *
++ *      http://www.apache.org/licenses/LICENSE-2.0
++ *
++ * Unless required by applicable law or agreed to in writing, software
++ * distributed under the License is distributed on an "AS IS" BASIS,
++ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
++ * See the License for the specific language governing permissions and
++ * limitations under the License.
++ */
++
++package org.apache.commons.math.analysis.solvers;
++
++import org.apache.commons.math.util.FastMath;
++import org.apache.commons.math.exception.MathInternalError;
++
++/**
++ * Base class for all <em>Secant</em>-based methods for root-finding
++ * (approximating a zero of a univariate real function).
++ *
++ * <p>Implementation of the {@link SecantSolver <em>Secant</em>},
++ * {@link RegulaFalsiSolver <em>Regula Falsi</em>}, and
++ * {@link IllinoisSolver <em>Illinois</em>} methods is based on the
++ * following article: M. Dowell and P. Jarratt,
++ * <em>A modified regula falsi method for computing the root of an
++ * equation</em>, BIT Numerical Mathematics, volume 11, number 2,
++ * pages 168-174, Springer, 1971.</p>
++ *
++ * <p>Implementation of the {@link PegasusSolver <em>Pegasus</em>} method is
++ * based on the following article: M. Dowell and P. Jarratt,
++ * <em>The "Pegasus" method for computing the root of an equation</em>,
++ * BIT Numerical Mathematics, volume 12, number 4, pages 503-508, Springer,
++ * 1972.</p>
++ *
++ * @since 3.0
++ * @version $Id$
++ */
++public abstract class SecantBase extends AbstractUnivariateRealSolver {
++    /** Default absolute accuracy. */
++    protected static final double DEFAULT_ABSOLUTE_ACCURACY = 1e-6;
++    /** The kinds of solutions that the algorithm may accept. */
++    protected AllowedSolutions allowedSolutions = AllowedSolutions.EITHER_SIDE;
++    /** The <em>Secant</em>-based root-finding method to use. */
++    private final Method method;
++
++    /**
++     * Construct a solver.
++     *
++     * @param absoluteAccuracy absolute accuracy
++     * @param method <em>Secant</em>-based root-finding method to use
++     */
++    protected SecantBase(final double absoluteAccuracy, final Method method) {
++        super(absoluteAccuracy);
++        this.method = method;
++    }
++
++    /**
++     * Construct a solver.
++     *
++     * @param relativeAccuracy relative accuracy
++     * @param absoluteAccuracy absolute accuracy
++     * @param method <em>Secant</em>-based root-finding method to use
++     */
++    protected SecantBase(final double relativeAccuracy,
++                         final double absoluteAccuracy,
++                         final Method method) {
++        super(relativeAccuracy, absoluteAccuracy);
++        this.method = method;
++    }
++
++    /** {@inheritDoc} */
++    @Override
++    protected final double doSolve() {
++        // Get initial solution
++        double x0 = getMin();
++        double x1 = getMax();
++        double f0 = computeObjectiveValue(x0);
++        double f1 = computeObjectiveValue(x1);
++
++        // If one of the bounds is the exact root, return it. Since these are
++        // not under-approximations or over-approximations, we can return them
++        // regardless of the allowed solutions.
++        if (f0 == 0.0) return x0;
++        if (f1 == 0.0) return x1;
++
++        // Verify bracketing of initial solution.
++        verifyBracketing(x0, x1);
++
++        // Get accuracies.
++        final double ftol = getFunctionValueAccuracy();
++        final double atol = getAbsoluteAccuracy();
++        final double rtol = getRelativeAccuracy();
++
++        // Variables to hold new bounds.
++        double x;
++        double fx;
++
++        // Keep track of inverted intervals, meaning that the left bound is
++        // larger than the right bound. Not used for the original Secant
++        // method.
++        boolean inverted = false;
++
++        // Keep finding better approximations.
++        while (true) {
++            // Calculate the next approximation.
++            x = x1 - ((f1 * (x1 - x0)) / (f1 - f0));
++            fx = computeObjectiveValue(x);
++
++            // If the new approximation is the exact root, return it. Since
++            // this is not an under-approximation or an over-approximation,
++            // we can return it regardless of the allowed solutions.
++            if (fx == 0.0) return x;
++
++            // Update the bounds with the new approximation.
++            if (method == Method.SECANT) {
++                x0 = x1;
++                f0 = f1;
++                x1 = x;
++                f1 = fx;
++            } else if (f1 * fx < 0) {
++                // We had [x0..x1]. We update it to [x1, x]. Note that the
++                // value of x1 has switched to the other bound, thus inverting
++                // the interval.
++                x0 = x1;
++                f0 = f1;
++                x1 = x;
++                f1 = fx;
++                inverted = !inverted;
++            } else {
++                // We had [x0..x1]. We update it to [x0, x].
++                if (method == Method.ILLINOIS) f0 *= 0.5;
++                if (method == Method.PEGASUS) f0 *= f1 / (f1 + fx);
++                x1 = x;
++                f1 = fx;
++            }
++
++            // If the function value of the last approximation is too small,
++            // given the function value accuracy, then we can't get close to
++            // the root than we already are.
++            if (FastMath.abs(f1) <= ftol) {
++                switch (allowedSolutions) {
++                case EITHER_SIDE:
++                    return x1;
++                case LEFT_SIDE:
++                    if (inverted) {
++                        return x1;
++                    }
++                    break;
++                case RIGHT_SIDE:
++                    if (!inverted) {
++                        return x1;
++                    }
++                    break;
++                default:
++                    throw new MathInternalError();
++                }
++            }
++
++            // If the current interval is within the given accuracies, we
++            // are satisfied with the current approximation.
++            if (FastMath.abs(x1 - x0) < FastMath.max(rtol * FastMath.abs(x1),
++                                                     atol)) {
++                switch (allowedSolutions) {
++                case EITHER_SIDE:
++                    return x1;
++                case LEFT_SIDE:
++                    return inverted ? x1 : x0;
++                case RIGHT_SIDE:
++                    return inverted ? x0 : x1;
++                default:
++                    throw new MathInternalError();
++                }
++            }
++        }
++    }
++
++    /** <em>Secant</em>-based root-finding methods. */
++    protected enum Method {
++        /** The original {@link SecantSolver <em>Secant</em>} method. */
++        SECANT,
++
++        /**
++         * The {@link RegulaFalsiSolver <em>Regula Falsi</em>} or
++         * <em>False Position</em> method.
++         */
++        REGULA_FALSI,
++
++        /** The {@link IllinoisSolver <em>Illinois</em>} method. */
++        ILLINOIS,
++
++        /** The {@link PegasusSolver <em>Pegasus</em>} method. */
++        PEGASUS,
++    }
++}
+diff --git a/src/main/java/org/apache/commons/math/analysis/solvers/SecantSolver.java b/src/main/java/org/apache/commons/math/analysis/solvers/SecantSolver.java
+index 3d59976..0d50c94 100644
+--- a/src/main/java/org/apache/commons/math/analysis/solvers/SecantSolver.java
++++ b/src/main/java/org/apache/commons/math/analysis/solvers/SecantSolver.java
+@@ -14,137 +14,51 @@
+  * See the License for the specific language governing permissions and
+  * limitations under the License.
+  */
++
  package org.apache.commons.math.analysis.solvers;
  
- import org.apache.commons.math.analysis.UnivariateRealFunction;
-+import org.apache.commons.math.exception.TooManyEvaluationsException;
- import org.junit.Test;
- import org.junit.Assert;
+-import org.apache.commons.math.exception.NoBracketingException;
+-import org.apache.commons.math.util.FastMath;
+-
+-
+ /**
+- * Implements a modified version of the
+- * <a href="http://mathworld.wolfram.com/SecantMethod.html">secant method</a>
+- * for approximating a zero of a real univariate function.
+- * <p>
+- * The algorithm is modified to maintain bracketing of a root by successive
+- * approximations. Because of forced bracketing, convergence may be slower than
+- * the unrestricted secant algorithm. However, this implementation should in
+- * general outperform the
+- * <a href="http://mathworld.wolfram.com/MethodofFalsePosition.html">
+- * regula falsi method.</a></p>
+- * <p>
+- * The function is assumed to be continuous but not necessarily smooth.</p>
++ * Implements the <em>Secant</em> method for root-finding (approximating a
++ * zero of a univariate real function). The solution that is maintained is
++ * not bracketed, and as such convergence is not guaranteed.
++ *
++ * <p>Implementation based on the following article: M. Dowell and P. Jarratt,
++ * <em>A modified regula falsi method for computing the root of an
++ * equation</em>, BIT Numerical Mathematics, volume 11, number 2,
++ * pages 168-174, Springer, 1971.</p>
++ *
++ * <p>Note that since release 3.0 this class implements the actual
++ * <em>Secant</em> algorithm, and not a modified one. As such, the 3.0 version
++ * is not backwards compatible with previous versions. To use an algorithm
++ * similar to the pre-3.0 releases, use the
++ * {@link IllinoisSolver <em>Illinois</em>} algorithm or the
++ * {@link PegasusSolver <em>Pegasus</em>} algorithm.</p>
+  *
+  * @version $Id$
+  */
+-public class SecantSolver extends AbstractUnivariateRealSolver {
+-    /** Default absolute accuracy. */
+-    private static final double DEFAULT_ABSOLUTE_ACCURACY = 1e-6;
+-
+-    /**
+-     * Construct a solver with default accuracy (1e-6).
+-     */
++public class SecantSolver extends SecantBase {
++    /** Construct a solver with default accuracy (1e-6). */
+     public SecantSolver() {
+-        this(DEFAULT_ABSOLUTE_ACCURACY);
++        super(DEFAULT_ABSOLUTE_ACCURACY, Method.SECANT);
+     }
++
+     /**
+      * Construct a solver.
+      *
+-     * @param absoluteAccuracy Absolute accuracy.
++     * @param absoluteAccuracy absolute accuracy
+      */
+-    public SecantSolver(double absoluteAccuracy) {
+-        super(absoluteAccuracy);
++    public SecantSolver(final double absoluteAccuracy) {
++        super(absoluteAccuracy, Method.SECANT);
+     }
++
+     /**
+      * Construct a solver.
+      *
+-     * @param relativeAccuracy Relative accuracy.
+-     * @param absoluteAccuracy Absolute accuracy.
++     * @param relativeAccuracy relative accuracy
++     * @param absoluteAccuracy absolute accuracy
+      */
+-    public SecantSolver(double relativeAccuracy,
+-                        double absoluteAccuracy) {
+-        super(relativeAccuracy, absoluteAccuracy);
+-    }
+-
+-    /**
+-     * {@inheritDoc}
+-     */
+-    @Override
+-    protected double doSolve() {
+-        double min = getMin();
+-        double max = getMax();
+-        verifyInterval(min, max);
+-
+-        final double functionValueAccuracy = getFunctionValueAccuracy();
+-
+-        // Index 0 is the old approximation for the root.
+-        // Index 1 is the last calculated approximation  for the root.
+-        // Index 2 is a bracket for the root with respect to x0.
+-        // OldDelta is the length of the bracketing interval of the last
+-        // iteration.
+-        double x0 = min;
+-        double x1 = max;
+-
+-        double y0 = computeObjectiveValue(x0);
+-        // return the first endpoint if it is good enough
+-        if (FastMath.abs(y0) <= functionValueAccuracy) {
+-            return x0;
+-        }
+-
+-        // return the second endpoint if it is good enough
+-        double y1 = computeObjectiveValue(x1);
+-        if (FastMath.abs(y1) <= functionValueAccuracy) {
+-            return x1;
+-        }
+-
+-        // Verify bracketing
+-        if (y0 * y1 >= 0) {
+-            throw new NoBracketingException(min, max, y0, y1);
+-        }
+-
+-        final double absoluteAccuracy = getAbsoluteAccuracy();
+-        final double relativeAccuracy = getRelativeAccuracy();
+-
+-        double x2 = x0;
+-        double y2 = y0;
+-        double oldDelta = x2 - x1;
+-        while (true) {
+-            if (FastMath.abs(y2) < FastMath.abs(y1)) {
+-                x0 = x1;
+-                x1 = x2;
+-                x2 = x0;
+-                y0 = y1;
+-                y1 = y2;
+-                y2 = y0;
+-            }
+-            if (FastMath.abs(y1) <= functionValueAccuracy) {
+-                return x1;
+-            }
+-            if (FastMath.abs(oldDelta) < FastMath.max(relativeAccuracy * FastMath.abs(x1),
+-                                                      absoluteAccuracy)) {
+-                return x1;
+-            }
+-            double delta;
+-            if (FastMath.abs(y1) > FastMath.abs(y0)) {
+-                // Function value increased in last iteration. Force bisection.
+-                delta = 0.5 * oldDelta;
+-            } else {
+-                delta = (x0 - x1) / (1 - y0 / y1);
+-                if (delta / oldDelta > 1) {
+-                    // New approximation falls outside bracket.
+-                    // Fall back to bisection.
+-                    delta = 0.5 * oldDelta;
+-                }
+-            }
+-            x0 = x1;
+-            y0 = y1;
+-            x1 = x1 + delta;
+-            y1 = computeObjectiveValue(x1);
+-            if ((y1 > 0) == (y2 > 0)) {
+-                // New bracket is (x0,x1).
+-                x2 = x0;
+-                y2 = y0;
+-            }
+-            oldDelta = x2 - x1;
+-        }
++    public SecantSolver(final double relativeAccuracy,
++                        final double absoluteAccuracy) {
++        super(relativeAccuracy, absoluteAccuracy, Method.SECANT);
+     }
+ }
+diff --git a/src/site/xdoc/changes.xml b/src/site/xdoc/changes.xml
+index b7c920f..5236147 100644
+--- a/src/site/xdoc/changes.xml
++++ b/src/site/xdoc/changes.xml
+@@ -52,6 +52,10 @@
+     If the output is not quite correct, check for invisible trailing spaces!
+      -->
+     <release version="3.0" date="TBD" description="TBD">
++      <action dev="eran" type="add" issue="MATH-599" due-to="Dennis Hendriks">
++        Modified "SecantSolver" to comply with the original algorithm. Added several
++        secant-based solvers.
++      </action>
+       <action dev="luc" type="fix" issue="MATH-600">
+         Fixed javadoc for ODEIntegrator interface
+       </action>
+diff --git a/src/test/java/org/apache/commons/math/analysis/XMinus5Function.java b/src/test/java/org/apache/commons/math/analysis/XMinus5Function.java
+new file mode 100644
+index 0000000..e52a5ac
+--- /dev/null
++++ b/src/test/java/org/apache/commons/math/analysis/XMinus5Function.java
+@@ -0,0 +1,42 @@
++/*
++ * Licensed to the Apache Software Foundation (ASF) under one or more
++ * contributor license agreements.  See the NOTICE file distributed with
++ * this work for additional information regarding copyright ownership.
++ * The ASF licenses this file to You under the Apache License, Version 2.0
++ * (the "License"); you may not use this file except in compliance with
++ * the License.  You may obtain a copy of the License at
++ *
++ *      http://www.apache.org/licenses/LICENSE-2.0
++ *
++ * Unless required by applicable law or agreed to in writing, software
++ * distributed under the License is distributed on an "AS IS" BASIS,
++ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
++ * See the License for the specific language governing permissions and
++ * limitations under the License.
++ */
++package org.apache.commons.math.analysis;
++
++/**
++ * Auxiliary class for testing solvers.
++ *
++ * @version $Id$
++ */
++public class XMinus5Function implements DifferentiableUnivariateRealFunction {
++
++    /* Evaluate x - 5 fuction.
++     * @see org.apache.commons.math.UnivariateRealFunction#value(double)
++     */
++    public double value(double x) {
++        return x - 5;
++    }
++
++    /* First derivative of x - 5 function
++     */
++    public UnivariateRealFunction derivative() {
++        return new UnivariateRealFunction() {
++            public double value(double x) {
++                return 1.0;
++            }
++        };
++    }
++}
+diff --git a/src/test/java/org/apache/commons/math/analysis/solvers/IllinoisSolverTest.java b/src/test/java/org/apache/commons/math/analysis/solvers/IllinoisSolverTest.java
+new file mode 100644
+index 0000000..63b064f
+--- /dev/null
++++ b/src/test/java/org/apache/commons/math/analysis/solvers/IllinoisSolverTest.java
+@@ -0,0 +1,35 @@
++/*
++ * Licensed to the Apache Software Foundation (ASF) under one or more
++ * contributor license agreements.  See the NOTICE file distributed with
++ * this work for additional information regarding copyright ownership.
++ * The ASF licenses this file to You under the Apache License, Version 2.0
++ * (the "License"); you may not use this file except in compliance with
++ * the License.  You may obtain a copy of the License at
++ *
++ *      http://www.apache.org/licenses/LICENSE-2.0
++ *
++ * Unless required by applicable law or agreed to in writing, software
++ * distributed under the License is distributed on an "AS IS" BASIS,
++ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
++ * See the License for the specific language governing permissions and
++ * limitations under the License.
++ */
++
++package org.apache.commons.math.analysis.solvers;
++
++/**
++ * Test case for {@link IllinoisSolver Illinois} solver.
++ *
++ * @version $Id$
++ */
++public final class IllinoisSolverTest extends SecantBaseTest {
++    /** {@inheritDoc} */
++    protected UnivariateRealSolver getSolver() {
++        return new IllinoisSolver();
++    }
++
++    /** {@inheritDoc} */
++    protected int[] getQuinticEvalCounts() {
++        return new int[] {3, 7, 9, 10, 10, 10, 12, 12, 14, 15, 20};
++    }
++}
+diff --git a/src/test/java/org/apache/commons/math/analysis/solvers/PegasusSolverTest.java b/src/test/java/org/apache/commons/math/analysis/solvers/PegasusSolverTest.java
+new file mode 100644
+index 0000000..586ccbc
+--- /dev/null
++++ b/src/test/java/org/apache/commons/math/analysis/solvers/PegasusSolverTest.java
+@@ -0,0 +1,35 @@
++/*
++ * Licensed to the Apache Software Foundation (ASF) under one or more
++ * contributor license agreements.  See the NOTICE file distributed with
++ * this work for additional information regarding copyright ownership.
++ * The ASF licenses this file to You under the Apache License, Version 2.0
++ * (the "License"); you may not use this file except in compliance with
++ * the License.  You may obtain a copy of the License at
++ *
++ *      http://www.apache.org/licenses/LICENSE-2.0
++ *
++ * Unless required by applicable law or agreed to in writing, software
++ * distributed under the License is distributed on an "AS IS" BASIS,
++ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
++ * See the License for the specific language governing permissions and
++ * limitations under the License.
++ */
++
++package org.apache.commons.math.analysis.solvers;
++
++/**
++ * Test case for {@link PegasusSolver Pegasus} solver.
++ *
++ * @version $Id$
++ */
++public final class PegasusSolverTest extends SecantBaseTest {
++    /** {@inheritDoc} */
++    protected UnivariateRealSolver getSolver() {
++        return new PegasusSolver();
++    }
++
++    /** {@inheritDoc} */
++    protected int[] getQuinticEvalCounts() {
++        return new int[] {3, 7, 9, 8, 9, 8, 10, 10, 12, 16, 18};
++    }
++}
+diff --git a/src/test/java/org/apache/commons/math/analysis/solvers/RegulaFalsiSolverTest.java b/src/test/java/org/apache/commons/math/analysis/solvers/RegulaFalsiSolverTest.java
+new file mode 100644
+index 0000000..29a16cd
+--- /dev/null
++++ b/src/test/java/org/apache/commons/math/analysis/solvers/RegulaFalsiSolverTest.java
+@@ -0,0 +1,38 @@
++/*
++ * Licensed to the Apache Software Foundation (ASF) under one or more
++ * contributor license agreements.  See the NOTICE file distributed with
++ * this work for additional information regarding copyright ownership.
++ * The ASF licenses this file to You under the Apache License, Version 2.0
++ * (the "License"); you may not use this file except in compliance with
++ * the License.  You may obtain a copy of the License at
++ *
++ *      http://www.apache.org/licenses/LICENSE-2.0
++ *
++ * Unless required by applicable law or agreed to in writing, software
++ * distributed under the License is distributed on an "AS IS" BASIS,
++ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
++ * See the License for the specific language governing permissions and
++ * limitations under the License.
++ */
++
++package org.apache.commons.math.analysis.solvers;
++
++/**
++ * Test case for {@link RegulaFalsiSolver Regula Falsi} solver.
++ *
++ * @version $Id$
++ */
++public final class RegulaFalsiSolverTest extends SecantBaseTest {
++    /** {@inheritDoc} */
++    protected UnivariateRealSolver getSolver() {
++        return new RegulaFalsiSolver();
++    }
++
++    /** {@inheritDoc} */
++    protected int[] getQuinticEvalCounts() {
++        // While the Regula Falsi method guarantees convergence, convergence
++        // may be extremely slow. The last test case does not converge within
++        // even a million iterations. As such, it was disabled.
++        return new int[] {3, 7, 8, 19, 18, 11, 67, 55, 288, 151, -1};
++    }
++}
+diff --git a/src/test/java/org/apache/commons/math/analysis/solvers/SecantBaseTest.java b/src/test/java/org/apache/commons/math/analysis/solvers/SecantBaseTest.java
+new file mode 100644
+index 0000000..42f42bc
+--- /dev/null
++++ b/src/test/java/org/apache/commons/math/analysis/solvers/SecantBaseTest.java
+@@ -0,0 +1,199 @@
++/*
++ * Licensed to the Apache Software Foundation (ASF) under one or more
++ * contributor license agreements.  See the NOTICE file distributed with
++ * this work for additional information regarding copyright ownership.
++ * The ASF licenses this file to You under the Apache License, Version 2.0
++ * (the "License"); you may not use this file except in compliance with
++ * the License.  You may obtain a copy of the License at
++ *
++ *      http://www.apache.org/licenses/LICENSE-2.0
++ *
++ * Unless required by applicable law or agreed to in writing, software
++ * distributed under the License is distributed on an "AS IS" BASIS,
++ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
++ * See the License for the specific language governing permissions and
++ * limitations under the License.
++ */
++package org.apache.commons.math.analysis.solvers;
++
++import org.apache.commons.math.analysis.QuinticFunction;
++import org.apache.commons.math.analysis.SinFunction;
++import org.apache.commons.math.analysis.UnivariateRealFunction;
++import org.apache.commons.math.analysis.XMinus5Function;
++import org.apache.commons.math.exception.NumberIsTooLargeException;
++import org.apache.commons.math.exception.NoBracketingException;
++import org.apache.commons.math.util.FastMath;
++import org.junit.Assert;
++import org.junit.Test;
++
++/**
++ * Base class for {@link SecantBase} derived root-finding algorithms tests.
++ *
++ * @version $Id$
++ */
++public abstract class SecantBaseTest {
++    /** Returns the solver to use to perform the tests.
++     * @return the solver to use to perform the tests
++     */
++    protected abstract UnivariateRealSolver getSolver();
++
++    /** Returns the expected number of evaluations for the
++     * {@link #testQuinticZero} unit test. A value of {@code -1} indicates that
++     * the test should be skipped for that solver.
++     * @return the expected number of evaluations for the
++     * {@link #testQuinticZero} unit test
++     */
++    protected abstract int[] getQuinticEvalCounts();
++
++    @Test
++    public void testSinZero() {
++        // The sinus function is behaved well around the root at pi. The second
++        // order derivative is zero, which means linear approximating methods
++        // still converge quadratically.
++        UnivariateRealFunction f = new SinFunction();
++        double result;
++        UnivariateRealSolver solver = getSolver();
++
++        result = solver.solve(100, f, 3, 4);
++        //System.out.println(
++        //    "Root: " + result + " Evaluations: " + solver.getEvaluations());
++        Assert.assertEquals(result, FastMath.PI, solver.getAbsoluteAccuracy());
++        Assert.assertTrue(solver.getEvaluations() <= 6);
++        result = solver.solve(100, f, 1, 4);
++        //System.out.println(
++        //    "Root: " + result + " Evaluations: " + solver.getEvaluations());
++        Assert.assertEquals(result, FastMath.PI, solver.getAbsoluteAccuracy());
++        Assert.assertTrue(solver.getEvaluations() <= 7);
++    }
++
++    @Test
++    public void testQuinticZero() {
++        // The quintic function has zeros at 0, +-0.5 and +-1.
++        // Around the root of 0 the function is well behaved, with a second
++        // derivative of zero a 0.
++        // The other roots are less well to find, in particular the root at 1,
++        // because the function grows fast for x>1.
++        // The function has extrema (first derivative is zero) at 0.27195613
++        // and 0.82221643, intervals containing these values are harder for
++        // the solvers.
++        UnivariateRealFunction f = new QuinticFunction();
++        double result;
++        UnivariateRealSolver solver = getSolver();
++        double atol = solver.getAbsoluteAccuracy();
++        int[] counts = getQuinticEvalCounts();
++
++        // Tests data: initial bounds, and expected solution, per test case.
++        double[][] testsData = {{-0.2,  0.2,  0.0},
++                                {-0.1,  0.3,  0.0},
++                                {-0.3,  0.45, 0.0},
++                                { 0.3,  0.7,  0.5},
++                                { 0.2,  0.6,  0.5},
++                                { 0.05, 0.95, 0.5},
++                                { 0.85, 1.25, 1.0},
++                                { 0.8,  1.2,  1.0},
++                                { 0.85, 1.75, 1.0},
++                                { 0.55, 1.45, 1.0},
++                                { 0.85, 5.0,  1.0},
++                               };
++        int maxIter = 500;
++
++        for(int i = 0; i < testsData.length; i++) {
++            // Skip test, if needed.
++            if (counts[i] == -1) continue;
++
++            // Compute solution.
++            double[] testData = testsData[i];
++            result = solver.solve(maxIter, f, testData[0], testData[1]);
++            //System.out.println(
++            //    "Root: " + result + " Evaluations: " + solver.getEvaluations());
++
++            // Check solution.
++            Assert.assertEquals(result, testData[2], atol);
++            Assert.assertTrue(solver.getEvaluations() <= counts[i] + 1);
++        }
++    }
++
++    @Test
++    public void testRootEndpoints() {
++        UnivariateRealFunction f = new XMinus5Function();
++        UnivariateRealSolver solver = getSolver();
++
++        // End-point is root. This should be a special case in the solver, and
++        // the initial end-point should be returned exactly.
++        double result = solver.solve(100, f, 5.0, 6.0);
++        Assert.assertEquals(5.0, result, 0.0);
++
++        result = solver.solve(100, f, 4.0, 5.0);
++        Assert.assertEquals(5.0, result, 0.0);
++
++        result = solver.solve(100, f, 5.0, 6.0, 5.5);
++        Assert.assertEquals(5.0, result, 0.0);
++
++        result = solver.solve(100, f, 4.0, 5.0, 4.5);
++        Assert.assertEquals(5.0, result, 0.0);
++    }
++
++    @Test
++    public void testBadEndpoints() {
++        UnivariateRealFunction f = new SinFunction();
++        UnivariateRealSolver solver = getSolver();
++        try {  // bad interval
++            solver.solve(100, f, 1, -1);
++            Assert.fail("Expecting NumberIsTooLargeException - bad interval");
++        } catch (NumberIsTooLargeException ex) {
++            // expected
++        }
++        try {  // no bracket
++            solver.solve(100, f, 1, 1.5);
++            Assert.fail("Expecting NoBracketingException - non-bracketing");
++        } catch (NoBracketingException ex) {
++            // expected
++        }
++        try {  // no bracket
++            solver.solve(100, f, 1, 1.5, 1.2);
++            Assert.fail("Expecting NoBracketingException - non-bracketing");
++        } catch (NoBracketingException ex) {
++            // expected
++        }
++    }
++
++    @Test
++    public void testSolutionLeftSide() {
++        UnivariateRealFunction f = new SinFunction();
++        UnivariateRealSolver solver = getSolver();
++        if (!(solver instanceof BracketedSolution)) return;
++        ((BracketedSolution)solver).setAllowedSolutions(
++                                                AllowedSolutions.LEFT_SIDE);
++        double left = -1.5;
++        double right = 0.05;
++        for(int i = 0; i < 10; i++) {
++            // Test whether the allowed solutions are taken into account.
++            double solution = solver.solve(100, f, left, right);
++            Assert.assertTrue(solution <= 0.0);
++
++            // Prepare for next test.
++            left -= 0.1;
++            right += 0.3;
++        }
++    }
++
++    @Test
++    public void testSolutionRightSide() {
++        UnivariateRealFunction f = new SinFunction();
++        UnivariateRealSolver solver = getSolver();
++        if (!(solver instanceof BracketedSolution)) return;
++        ((BracketedSolution)solver).setAllowedSolutions(
++                                                AllowedSolutions.RIGHT_SIDE);
++        double left = -1.5;
++        double right = 0.05;
++        for(int i = 0; i < 10; i++) {
++            // Test whether the allowed solutions are taken into account.
++            double solution = solver.solve(100, f, left, right);
++            Assert.assertTrue(solution >= 0.0);
++
++            // Prepare for next test.
++            left -= 0.1;
++            right += 0.3;
++        }
++    }
++}
+diff --git a/src/test/java/org/apache/commons/math/analysis/solvers/SecantSolverTest.java b/src/test/java/org/apache/commons/math/analysis/solvers/SecantSolverTest.java
+index 5ee2a1b..6d89f3e 100644
+--- a/src/test/java/org/apache/commons/math/analysis/solvers/SecantSolverTest.java
++++ b/src/test/java/org/apache/commons/math/analysis/solvers/SecantSolverTest.java
+@@ -14,157 +14,25 @@
+  * See the License for the specific language governing permissions and
+  * limitations under the License.
+  */
++
+ package org.apache.commons.math.analysis.solvers;
  
-@@ -40,7 +41,7 @@
-         return new int[] {3, 7, 8, 19, 18, 11, 67, 55, 288, 151, -1};
+-import org.apache.commons.math.analysis.QuinticFunction;
+-import org.apache.commons.math.analysis.SinFunction;
+-import org.apache.commons.math.analysis.UnivariateRealFunction;
+-import org.apache.commons.math.exception.NumberIsTooLargeException;
+-import org.apache.commons.math.exception.NoBracketingException;
+-import org.apache.commons.math.util.FastMath;
+-import org.junit.Assert;
+-import org.junit.Test;
+-
+ /**
+- * Test case for {@link SecantSolver}.
++ * Test case for {@link SecantSolver Secant} solver.
+  *
+  * @version $Id$
+  */
+-public final class SecantSolverTest {
+-    @Test
+-    public void testSinZero() {
+-        // The sinus function is behaved well around the root at pi. The second
+-        // order derivative is zero, which means linar approximating methods will
+-        // still converge quadratically.
+-        UnivariateRealFunction f = new SinFunction();
+-        double result;
+-        UnivariateRealSolver solver = new SecantSolver();
+-
+-        result = solver.solve(100, f, 3, 4);
+-        //System.out.println(
+-        //    "Root: " + result + " Evaluations: " + solver.getEvaluations());
+-        Assert.assertEquals(result, FastMath.PI, solver.getAbsoluteAccuracy());
+-        Assert.assertTrue(solver.getEvaluations() <= 6);
+-        result = solver.solve(100, f, 1, 4);
+-        //System.out.println(
+-        //    "Root: " + result + " Evaluations: " + solver.getEvaluations());
+-        Assert.assertEquals(result, FastMath.PI, solver.getAbsoluteAccuracy());
+-        Assert.assertTrue(solver.getEvaluations() <= 7);
++public final class SecantSolverTest extends SecantBaseTest {
++    /** {@inheritDoc} */
++    protected UnivariateRealSolver getSolver() {
++        return new SecantSolver();
      }
  
 -    @Test
-+    @Test(expected=TooManyEvaluationsException.class)
-     public void testIssue631() {
-         final UnivariateRealFunction f = new UnivariateRealFunction() {
-                 /** {@inheritDoc} */
+-    public void testQuinticZero() {
+-        // The quintic function has zeros at 0, +-0.5 and +-1.
+-        // Around the root of 0 the function is well behaved, with a second derivative
+-        // of zero a 0.
+-        // The other roots are less well to find, in particular the root at 1, because
+-        // the function grows fast for x>1.
+-        // The function has extrema (first derivative is zero) at 0.27195613 and 0.82221643,
+-        // intervals containing these values are harder for the solvers.
+-        UnivariateRealFunction f = new QuinticFunction();
+-        double result;
+-        // Brent-Dekker solver.
+-        UnivariateRealSolver solver = new SecantSolver();
+-        result = solver.solve(100, f, -0.2, 0.2);
+-        //System.out.println(
+-        //    "Root: " + result + " Evaluations: " + solver.getEvaluations());
+-        Assert.assertEquals(result, 0, solver.getAbsoluteAccuracy());
+-        Assert.assertTrue(solver.getEvaluations() <= 3);
+-        result = solver.solve(100, f, -0.1, 0.3);
+-        //System.out.println(
+-        //    "Root: " + result + " Evaluations: " + solver.getEvaluations());
+-        Assert.assertEquals(result, 0, solver.getAbsoluteAccuracy());
+-        Assert.assertTrue(solver.getEvaluations() <= 7);
+-        result = solver.solve(100, f, -0.3, 0.45);
+-        //System.out.println(
+-        //    "Root: " + result + " Evaluations: " + solver.getEvaluations());
+-        Assert.assertEquals(result, 0, solver.getAbsoluteAccuracy());
+-        Assert.assertTrue(solver.getEvaluations() <= 8);
+-        result = solver.solve(100, f, 0.3, 0.7);
+-        //System.out.println(
+-        //    "Root: " + result + " Evaluations: " + solver.getEvaluations());
+-        Assert.assertEquals(result, 0.5, solver.getAbsoluteAccuracy());
+-        Assert.assertTrue(solver.getEvaluations() <= 9);
+-        result = solver.solve(100, f, 0.2, 0.6);
+-        //System.out.println(
+-        //    "Root: " + result + " Evaluations: " + solver.getEvaluations());
+-        Assert.assertEquals(result, 0.5, solver.getAbsoluteAccuracy());
+-        Assert.assertTrue(solver.getEvaluations() <= 8);
+-        result = solver.solve(100, f, 0.05, 0.95);
+-        //System.out.println(
+-        //    "Root: " + result + " Evaluations: " + solver.getEvaluations());
+-        Assert.assertEquals(result, 0.5, solver.getAbsoluteAccuracy());
+-        Assert.assertTrue(solver.getEvaluations() <= 10);
+-        result = solver.solve(100, f, 0.85, 1.25);
+-        //System.out.println(
+-        //    "Root: " + result + " Evaluations: " + solver.getEvaluations());
+-        Assert.assertEquals(result, 1.0, solver.getAbsoluteAccuracy());
+-        Assert.assertTrue(solver.getEvaluations() <= 12);
+-        result = solver.solve(100, f, 0.8, 1.2);
+-        //System.out.println(
+-        //    "Root: " + result + " Evaluations: " + solver.getEvaluations());
+-        Assert.assertEquals(result, 1.0, solver.getAbsoluteAccuracy());
+-        Assert.assertTrue(solver.getEvaluations() <= 10);
+-        result = solver.solve(100, f, 0.85, 1.75);
+-        //System.out.println(
+-        //    "Root: " + result + " Evaluations: " + solver.getEvaluations());
+-        Assert.assertEquals(result, 1.0, solver.getAbsoluteAccuracy());
+-        Assert.assertTrue(solver.getEvaluations() <= 16);
+-        // The followig is especially slow because the solver first has to reduce
+-        // the bracket to exclude the extremum. After that, convergence is rapide.
+-        result = solver.solve(100, f, 0.55, 1.45);
+-        //System.out.println(
+-        //    "Root: " + result + " Evaluations: " + solver.getEvaluations());
+-        Assert.assertEquals(result, 1.0, solver.getAbsoluteAccuracy());
+-        Assert.assertTrue(solver.getEvaluations() <= 9);
+-        result = solver.solve(100, f, 0.85, 5);
+-        //System.out.println(
+-        //    "Root: " + result + " Evaluations: " + solver.getEvaluations());
+-        Assert.assertEquals(result, 1.0, solver.getAbsoluteAccuracy());
+-        Assert.assertTrue(solver.getEvaluations() <= 16);
+-    }
+-
+-    @Test
+-    public void testRootEndpoints() {
+-        UnivariateRealFunction f = new SinFunction();
+-        SecantSolver solver = new SecantSolver();
+-
+-        // endpoint is root
+-        double result = solver.solve(100, f, FastMath.PI, 4);
+-        Assert.assertEquals(FastMath.PI, result, solver.getAbsoluteAccuracy());
+-
+-        result = solver.solve(100, f, 3, FastMath.PI);
+-        Assert.assertEquals(FastMath.PI, result, solver.getAbsoluteAccuracy());
+-
+-        result = solver.solve(100, f, FastMath.PI, 4, 3.5);
+-        Assert.assertEquals(FastMath.PI, result, solver.getAbsoluteAccuracy());
+-
+-        result = solver.solve(100, f, 3, FastMath.PI, 3.07);
+-        Assert.assertEquals(FastMath.PI, result, solver.getAbsoluteAccuracy());
+-
+-    }
+-
+-    @Test
+-    public void testBadEndpoints() {
+-        UnivariateRealFunction f = new SinFunction();
+-        SecantSolver solver = new SecantSolver();
+-        try {  // bad interval
+-            solver.solve(100, f, 1, -1);
+-            Assert.fail("Expecting NumberIsTooLargeException - bad interval");
+-        } catch (NumberIsTooLargeException ex) {
+-            // expected
+-        }
+-        try {  // no bracket
+-            solver.solve(100, f, 1, 1.5);
+-            Assert.fail("Expecting NoBracketingException - non-bracketing");
+-        } catch (NoBracketingException ex) {
+-            // expected
+-        }
+-        try {  // no bracket
+-            solver.solve(100, f, 1, 1.5, 1.2);
+-            Assert.fail("Expecting NoBracketingException - non-bracketing");
+-        } catch (NoBracketingException ex) {
+-            // expected
+-        }
++    /** {@inheritDoc} */
++    protected int[] getQuinticEvalCounts() {
++        // As the Secant method does not maintain a bracketed solution,
++        // convergence is not guaranteed. Two test cases are disabled (-1) due
++        // to bad solutions.
++        return new int[] {3, 7, -1, 8, 9, 8, 11, 12, 14, -1, 16};
+     }
+ }

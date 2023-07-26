@@ -1,5 +1,5 @@
 /*
- * Copyright 2006 The Closure Compiler Authors.
+ * Copyright 2006 Google Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -246,12 +246,7 @@ public class TypeCheck implements NodeTraversal.Callback, CompilerPass {
       UNKNOWN_EXPR_TYPE,
       UNRESOLVED_TYPE,
       WRONG_ARGUMENT_COUNT,
-      ILLEGAL_IMPLICIT_CAST,
-      TypedScopeCreator.UNKNOWN_LENDS,
-      TypedScopeCreator.LENDS_ON_NON_OBJECT,
-      TypedScopeCreator.CTOR_INITIALIZER,
-      TypedScopeCreator.IFACE_INITIALIZER,
-      FunctionTypeBuilder.THIS_TYPE_NON_OBJECT);
+      ILLEGAL_IMPLICIT_CAST);
 
   private final AbstractCompiler compiler;
   private final TypeValidator validator;
@@ -642,11 +637,11 @@ public class TypeCheck implements NodeTraversal.Callback, CompilerPass {
           // should match a string context.
           String message = "left side of comparison";
           validator.expectString(t, n, leftType, message);
-          validator.expectNotNullOrUndefined(
+          validator.expectNotVoid(
               t, n, leftType, message, getNativeType(STRING_TYPE));
           message = "right side of comparison";
           validator.expectString(t, n, rightType, message);
-          validator.expectNotNullOrUndefined(
+          validator.expectNotVoid(
               t, n, rightType, message, getNativeType(STRING_TYPE));
         }
         ensureTyped(t, n, BOOLEAN_TYPE);
@@ -982,7 +977,10 @@ public class TypeCheck implements NodeTraversal.Callback, CompilerPass {
               HIDDEN_INTERFACE_PROPERTY, propertyName,
               interfaceType.getTopMostDefiningType(propertyName).toString()));
         }
-        // Check that it is ok
+        if (!declaredOverride) {
+          continue;
+        }
+        // @override is present and we have to check that it is ok
         if (interfaceHasProperty) {
           JSType interfacePropType =
               interfaceType.getPrototype().getPropertyType(propertyName);
@@ -1153,8 +1151,8 @@ public class TypeCheck implements NodeTraversal.Callback, CompilerPass {
 
     // TODO(user): remove in favor of flagging every property access on
     // non-object.
-    if (!validator.expectNotNullOrUndefined(t, n, childType,
-            childType + " has no properties", getNativeType(OBJECT_TYPE))) {
+    if (!validator.expectNotVoid(t, n, childType,
+            "undefined has no properties", getNativeType(OBJECT_TYPE))) {
       ensureTyped(t, n);
       return;
     }

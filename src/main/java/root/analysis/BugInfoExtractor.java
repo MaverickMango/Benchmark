@@ -33,13 +33,6 @@ public class BugInfoExtractor implements GitAccess {
 
             String bugFixingCommit = defects4JBug.getFixingCommit();
             String bugInduingCommit = bug.get(2);
-            if (bugNames.contains(bugName)) {
-                List<List<String>> collect = infos.stream().filter(b -> b.get(2).equals(bugName)).collect(Collectors.toList());
-                assert collect.size() == 1;
-                String inducing = collect.get(0).get(5);
-//                if (inducing.equals(bugInduingCommit))
-//                    continue;
-            }
 
             // get diff infos
             String fixingDiff = gitAccess.diff(repository, bugFixingCommit);
@@ -62,6 +55,14 @@ public class BugInfoExtractor implements GitAccess {
                         "," + bugInduingCommit +
                         "," + bugOriginalCommit + "\n";
                 stringBuilder.append(buginfo);
+            }
+            if (bugNames.contains(bugName)) {
+                List<List<String>> collect = infos.stream().filter(b -> b.get(2).equals(bugName)).collect(Collectors.toList());
+                assert collect.size() == 1;
+                String inducing = collect.get(0).get(5);
+//                if (inducing.equals(bugInduingCommit)) {
+//                    continue;
+//                }
             }
             FileUtils.writeToFile(stringBuilder.toString(), bugInfo, true);
 

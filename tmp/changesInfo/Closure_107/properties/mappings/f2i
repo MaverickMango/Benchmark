@@ -1,4 +1,3 @@
-M	.classpath
 D	.gitignore
 M	CONTRIBUTORS
 M	README
@@ -24,22 +23,22 @@ M	contrib/externs/jquery-1.3.2.externs.js
 M	contrib/externs/jquery-1.4.3.js
 M	contrib/externs/jquery-1.4.4.js
 M	contrib/externs/jquery-1.5.js
-D	contrib/externs/jquery-1.6.js
+M	contrib/externs/jquery-1.6.js
 D	contrib/externs/jquery-1.7.js
 D	contrib/externs/jquery-1.8.js
 D	contrib/externs/jquery-1.9.js
 M	contrib/externs/json.js
 M	contrib/externs/maps/google_maps_api_v3.js
-R063	contrib/externs/maps/google_maps_api_v3_6.js	contrib/externs/maps/google_maps_api_v3_1.js
 D	contrib/externs/maps/google_maps_api_v3_10.js
 D	contrib/externs/maps/google_maps_api_v3_11.js
 D	contrib/externs/maps/google_maps_api_v3_12.js
 D	contrib/externs/maps/google_maps_api_v3_13.js
 D	contrib/externs/maps/google_maps_api_v3_14.js
 D	contrib/externs/maps/google_maps_api_v3_15.js
-R064	contrib/externs/maps/google_maps_api_v3_5.js	contrib/externs/maps/google_maps_api_v3_2.js
 M	contrib/externs/maps/google_maps_api_v3_3.js
 M	contrib/externs/maps/google_maps_api_v3_4.js
+M	contrib/externs/maps/google_maps_api_v3_5.js
+M	contrib/externs/maps/google_maps_api_v3_6.js
 D	contrib/externs/maps/google_maps_api_v3_7.js
 D	contrib/externs/maps/google_maps_api_v3_8.js
 D	contrib/externs/maps/google_maps_api_v3_9.js
@@ -98,13 +97,6 @@ M	externs/webkit_event.js
 M	externs/webkit_notifications.js
 M	externs/webstorage.js
 M	externs/window.js
-M	gen/com/google/debugging/sourcemap/proto/Mapping.java
-M	gen/com/google/javascript/jscomp/FunctionInfo.java
-M	gen/com/google/javascript/jscomp/FunctionInformationMap.java
-D	gen/com/google/javascript/jscomp/FunctionInformationMapOrBuilder.java
-M	gen/com/google/javascript/jscomp/Instrumentation.java
-D	gen/com/google/javascript/jscomp/InstrumentationOrBuilder.java
-M	gen/com/google/javascript/jscomp/InstrumentationTemplate.java
 A	javadoc/allclasses-frame.html
 A	javadoc/allclasses-noframe.html
 A	javadoc/com/google/javascript/jscomp/AbstractCompiler.html
@@ -362,223 +354,678 @@ M	lib/ant-launcher.jar
 M	lib/ant.jar
 M	lib/args4j.jar
 M	lib/guava.jar
-D	lib/jarjar.jar
 M	lib/junit.jar
-A	lib/libtrunk_rhino_parser_jarjared.jar
 D	lib/mockito-core.jar
 D	lib/objenesis.jar
-M	lib/protobuf-java.jar
-D	lib/rhino/.cvsignore
 D	lib/rhino/LICENSE.txt
 D	lib/rhino/README.html
-D	lib/rhino/apiClasses.properties
-D	lib/rhino/build-date
 D	lib/rhino/build.properties
-D	lib/rhino/build.xml
 D	lib/rhino/deprecatedsrc/build.xml
 D	lib/rhino/deprecatedsrc/org/mozilla/javascript/ClassDefinitionException.java
 D	lib/rhino/deprecatedsrc/org/mozilla/javascript/NotAFunctionException.java
 D	lib/rhino/deprecatedsrc/org/mozilla/javascript/PropertyException.java
-D	lib/rhino/deprecatedsrc/org/mozilla/javascript/xml/impl/xmlbeans/LogicalEquality.java
-D	lib/rhino/deprecatedsrc/org/mozilla/javascript/xml/impl/xmlbeans/Namespace.java
-D	lib/rhino/deprecatedsrc/org/mozilla/javascript/xml/impl/xmlbeans/NamespaceHelper.java
-D	lib/rhino/deprecatedsrc/org/mozilla/javascript/xml/impl/xmlbeans/QName.java
-D	lib/rhino/deprecatedsrc/org/mozilla/javascript/xml/impl/xmlbeans/XML.java
-D	lib/rhino/deprecatedsrc/org/mozilla/javascript/xml/impl/xmlbeans/XMLCtor.java
-D	lib/rhino/deprecatedsrc/org/mozilla/javascript/xml/impl/xmlbeans/XMLLibImpl.java
-D	lib/rhino/deprecatedsrc/org/mozilla/javascript/xml/impl/xmlbeans/XMLList.java
-D	lib/rhino/deprecatedsrc/org/mozilla/javascript/xml/impl/xmlbeans/XMLName.java
-D	lib/rhino/deprecatedsrc/org/mozilla/javascript/xml/impl/xmlbeans/XMLObjectImpl.java
-D	lib/rhino/deprecatedsrc/org/mozilla/javascript/xml/impl/xmlbeans/XMLWithScope.java
-D	lib/rhino/examples/Control.java
 D	lib/rhino/examples/Counter.java
 D	lib/rhino/examples/CounterTest.java
-D	lib/rhino/examples/DynamicScopes.java
-D	lib/rhino/examples/E4X/e4x_example.js
-D	lib/rhino/examples/File.java
-D	lib/rhino/examples/Foo.java
-D	lib/rhino/examples/Matrix.java
 D	lib/rhino/examples/NervousText.html
-D	lib/rhino/examples/NervousText.js
 D	lib/rhino/examples/PrimitiveWrapFactory.java
 D	lib/rhino/examples/RunScript.java
 D	lib/rhino/examples/RunScript2.java
-D	lib/rhino/examples/RunScript3.java
 D	lib/rhino/examples/RunScript4.java
-D	lib/rhino/examples/Shell.java
-D	lib/rhino/examples/SwingApplication.js
-D	lib/rhino/examples/checkParam.js
 D	lib/rhino/examples/enum.js
-D	lib/rhino/examples/jsdoc.js
 D	lib/rhino/examples/liveConnect.js
 D	lib/rhino/examples/unique.js
 D	lib/rhino/src/build.xml
 D	lib/rhino/src/manifest
-D	lib/rhino/src/org/mozilla/classfile/ByteCode.java
-D	lib/rhino/src/org/mozilla/classfile/ClassFileWriter.java
-D	lib/rhino/src/org/mozilla/javascript/Arguments.java
+A	lib/rhino/src/mozilla/CVS/Entries
+A	lib/rhino/src/mozilla/CVS/Entries.Log
+A	lib/rhino/src/mozilla/CVS/Entries.Static
+A	lib/rhino/src/mozilla/CVS/Repository
+A	lib/rhino/src/mozilla/CVS/Root
+A	lib/rhino/src/mozilla/js/CVS/Entries
+A	lib/rhino/src/mozilla/js/CVS/Entries.Log
+A	lib/rhino/src/mozilla/js/CVS/Entries.Static
+A	lib/rhino/src/mozilla/js/CVS/Repository
+A	lib/rhino/src/mozilla/js/CVS/Root
+R100	lib/rhino/.cvsignore	lib/rhino/src/mozilla/js/rhino/.cvsignore
+A	lib/rhino/src/mozilla/js/rhino/CVS/Entries
+A	lib/rhino/src/mozilla/js/rhino/CVS/Entries.Log
+A	lib/rhino/src/mozilla/js/rhino/CVS/Repository
+A	lib/rhino/src/mozilla/js/rhino/CVS/Root
+A	lib/rhino/src/mozilla/js/rhino/LICENSE.txt
+A	lib/rhino/src/mozilla/js/rhino/README.html
+R051	lib/rhino/apiClasses.properties	lib/rhino/src/mozilla/js/rhino/apiClasses.properties
+R100	lib/rhino/build-date	lib/rhino/src/mozilla/js/rhino/build-date
+A	lib/rhino/src/mozilla/js/rhino/build.properties
+R080	lib/rhino/build.xml	lib/rhino/src/mozilla/js/rhino/build.xml
+A	lib/rhino/src/mozilla/js/rhino/deprecatedsrc/CVS/Entries
+A	lib/rhino/src/mozilla/js/rhino/deprecatedsrc/CVS/Entries.Log
+A	lib/rhino/src/mozilla/js/rhino/deprecatedsrc/CVS/Repository
+A	lib/rhino/src/mozilla/js/rhino/deprecatedsrc/CVS/Root
+A	lib/rhino/src/mozilla/js/rhino/deprecatedsrc/build.xml
+A	lib/rhino/src/mozilla/js/rhino/deprecatedsrc/org/CVS/Entries
+A	lib/rhino/src/mozilla/js/rhino/deprecatedsrc/org/CVS/Entries.Log
+A	lib/rhino/src/mozilla/js/rhino/deprecatedsrc/org/CVS/Repository
+A	lib/rhino/src/mozilla/js/rhino/deprecatedsrc/org/CVS/Root
+A	lib/rhino/src/mozilla/js/rhino/deprecatedsrc/org/mozilla/CVS/Entries
+A	lib/rhino/src/mozilla/js/rhino/deprecatedsrc/org/mozilla/CVS/Entries.Log
+A	lib/rhino/src/mozilla/js/rhino/deprecatedsrc/org/mozilla/CVS/Repository
+A	lib/rhino/src/mozilla/js/rhino/deprecatedsrc/org/mozilla/CVS/Root
+A	lib/rhino/src/mozilla/js/rhino/deprecatedsrc/org/mozilla/javascript/CVS/Entries
+A	lib/rhino/src/mozilla/js/rhino/deprecatedsrc/org/mozilla/javascript/CVS/Entries.Log
+A	lib/rhino/src/mozilla/js/rhino/deprecatedsrc/org/mozilla/javascript/CVS/Repository
+A	lib/rhino/src/mozilla/js/rhino/deprecatedsrc/org/mozilla/javascript/CVS/Root
+A	lib/rhino/src/mozilla/js/rhino/deprecatedsrc/org/mozilla/javascript/ClassDefinitionException.java
+A	lib/rhino/src/mozilla/js/rhino/deprecatedsrc/org/mozilla/javascript/NotAFunctionException.java
+A	lib/rhino/src/mozilla/js/rhino/deprecatedsrc/org/mozilla/javascript/PropertyException.java
+A	lib/rhino/src/mozilla/js/rhino/deprecatedsrc/org/mozilla/javascript/xml/CVS/Entries
+A	lib/rhino/src/mozilla/js/rhino/deprecatedsrc/org/mozilla/javascript/xml/CVS/Entries.Log
+A	lib/rhino/src/mozilla/js/rhino/deprecatedsrc/org/mozilla/javascript/xml/CVS/Repository
+A	lib/rhino/src/mozilla/js/rhino/deprecatedsrc/org/mozilla/javascript/xml/CVS/Root
+A	lib/rhino/src/mozilla/js/rhino/deprecatedsrc/org/mozilla/javascript/xml/impl/CVS/Entries
+A	lib/rhino/src/mozilla/js/rhino/deprecatedsrc/org/mozilla/javascript/xml/impl/CVS/Entries.Log
+A	lib/rhino/src/mozilla/js/rhino/deprecatedsrc/org/mozilla/javascript/xml/impl/CVS/Repository
+A	lib/rhino/src/mozilla/js/rhino/deprecatedsrc/org/mozilla/javascript/xml/impl/CVS/Root
+A	lib/rhino/src/mozilla/js/rhino/deprecatedsrc/org/mozilla/javascript/xml/impl/xmlbeans/CVS/Entries
+A	lib/rhino/src/mozilla/js/rhino/deprecatedsrc/org/mozilla/javascript/xml/impl/xmlbeans/CVS/Repository
+A	lib/rhino/src/mozilla/js/rhino/deprecatedsrc/org/mozilla/javascript/xml/impl/xmlbeans/CVS/Root
+R084	lib/rhino/deprecatedsrc/org/mozilla/javascript/xml/impl/xmlbeans/LogicalEquality.java	lib/rhino/src/mozilla/js/rhino/deprecatedsrc/org/mozilla/javascript/xml/impl/xmlbeans/LogicalEquality.java
+R082	lib/rhino/deprecatedsrc/org/mozilla/javascript/xml/impl/xmlbeans/Namespace.java	lib/rhino/src/mozilla/js/rhino/deprecatedsrc/org/mozilla/javascript/xml/impl/xmlbeans/Namespace.java
+R084	lib/rhino/deprecatedsrc/org/mozilla/javascript/xml/impl/xmlbeans/NamespaceHelper.java	lib/rhino/src/mozilla/js/rhino/deprecatedsrc/org/mozilla/javascript/xml/impl/xmlbeans/NamespaceHelper.java
+R082	lib/rhino/deprecatedsrc/org/mozilla/javascript/xml/impl/xmlbeans/QName.java	lib/rhino/src/mozilla/js/rhino/deprecatedsrc/org/mozilla/javascript/xml/impl/xmlbeans/QName.java
+R096	lib/rhino/deprecatedsrc/org/mozilla/javascript/xml/impl/xmlbeans/XML.java	lib/rhino/src/mozilla/js/rhino/deprecatedsrc/org/mozilla/javascript/xml/impl/xmlbeans/XML.java
+R083	lib/rhino/deprecatedsrc/org/mozilla/javascript/xml/impl/xmlbeans/XMLCtor.java	lib/rhino/src/mozilla/js/rhino/deprecatedsrc/org/mozilla/javascript/xml/impl/xmlbeans/XMLCtor.java
+R093	lib/rhino/deprecatedsrc/org/mozilla/javascript/xml/impl/xmlbeans/XMLLibImpl.java	lib/rhino/src/mozilla/js/rhino/deprecatedsrc/org/mozilla/javascript/xml/impl/xmlbeans/XMLLibImpl.java
+R093	lib/rhino/deprecatedsrc/org/mozilla/javascript/xml/impl/xmlbeans/XMLList.java	lib/rhino/src/mozilla/js/rhino/deprecatedsrc/org/mozilla/javascript/xml/impl/xmlbeans/XMLList.java
+R068	lib/rhino/deprecatedsrc/org/mozilla/javascript/xml/impl/xmlbeans/XMLName.java	lib/rhino/src/mozilla/js/rhino/deprecatedsrc/org/mozilla/javascript/xml/impl/xmlbeans/XMLName.java
+R092	lib/rhino/deprecatedsrc/org/mozilla/javascript/xml/impl/xmlbeans/XMLObjectImpl.java	lib/rhino/src/mozilla/js/rhino/deprecatedsrc/org/mozilla/javascript/xml/impl/xmlbeans/XMLObjectImpl.java
+R063	lib/rhino/deprecatedsrc/org/mozilla/javascript/xml/impl/xmlbeans/XMLWithScope.java	lib/rhino/src/mozilla/js/rhino/deprecatedsrc/org/mozilla/javascript/xml/impl/xmlbeans/XMLWithScope.java
+A	lib/rhino/src/mozilla/js/rhino/docs/CVS/Entries
+A	lib/rhino/src/mozilla/js/rhino/docs/CVS/Repository
+A	lib/rhino/src/mozilla/js/rhino/docs/CVS/Root
+A	lib/rhino/src/mozilla/js/rhino/examples/CVS/Entries
+A	lib/rhino/src/mozilla/js/rhino/examples/CVS/Entries.Log
+A	lib/rhino/src/mozilla/js/rhino/examples/CVS/Repository
+A	lib/rhino/src/mozilla/js/rhino/examples/CVS/Root
+R059	lib/rhino/examples/Control.java	lib/rhino/src/mozilla/js/rhino/examples/Control.java
+A	lib/rhino/src/mozilla/js/rhino/examples/Counter.java
+A	lib/rhino/src/mozilla/js/rhino/examples/CounterTest.java
+R079	lib/rhino/examples/DynamicScopes.java	lib/rhino/src/mozilla/js/rhino/examples/DynamicScopes.java
+A	lib/rhino/src/mozilla/js/rhino/examples/E4X/CVS/Entries
+A	lib/rhino/src/mozilla/js/rhino/examples/E4X/CVS/Repository
+A	lib/rhino/src/mozilla/js/rhino/examples/E4X/CVS/Root
+R078	lib/rhino/examples/E4X/e4x_example.js	lib/rhino/src/mozilla/js/rhino/examples/E4X/e4x_example.js
+R080	lib/rhino/examples/File.java	lib/rhino/src/mozilla/js/rhino/examples/File.java
+R072	lib/rhino/examples/Foo.java	lib/rhino/src/mozilla/js/rhino/examples/Foo.java
+R080	lib/rhino/examples/Matrix.java	lib/rhino/src/mozilla/js/rhino/examples/Matrix.java
+A	lib/rhino/src/mozilla/js/rhino/examples/NervousText.html
+R052	lib/rhino/examples/NervousText.js	lib/rhino/src/mozilla/js/rhino/examples/NervousText.js
+A	lib/rhino/src/mozilla/js/rhino/examples/PrimitiveWrapFactory.java
+A	lib/rhino/src/mozilla/js/rhino/examples/RunScript.java
+A	lib/rhino/src/mozilla/js/rhino/examples/RunScript2.java
+R052	lib/rhino/examples/RunScript3.java	lib/rhino/src/mozilla/js/rhino/examples/RunScript3.java
+A	lib/rhino/src/mozilla/js/rhino/examples/RunScript4.java
+R087	lib/rhino/examples/Shell.java	lib/rhino/src/mozilla/js/rhino/examples/Shell.java
+R062	lib/rhino/examples/SwingApplication.js	lib/rhino/src/mozilla/js/rhino/examples/SwingApplication.js
+R062	lib/rhino/examples/checkParam.js	lib/rhino/src/mozilla/js/rhino/examples/checkParam.js
+A	lib/rhino/src/mozilla/js/rhino/examples/enum.js
+R090	lib/rhino/examples/jsdoc.js	lib/rhino/src/mozilla/js/rhino/examples/jsdoc.js
+A	lib/rhino/src/mozilla/js/rhino/examples/liveConnect.js
+A	lib/rhino/src/mozilla/js/rhino/examples/unique.js
+A	lib/rhino/src/mozilla/js/rhino/macbuild/CVS/Entries
+A	lib/rhino/src/mozilla/js/rhino/macbuild/CVS/Repository
+A	lib/rhino/src/mozilla/js/rhino/macbuild/CVS/Root
+A	lib/rhino/src/mozilla/js/rhino/src/CVS/Entries
+A	lib/rhino/src/mozilla/js/rhino/src/CVS/Entries.Log
+A	lib/rhino/src/mozilla/js/rhino/src/CVS/Repository
+A	lib/rhino/src/mozilla/js/rhino/src/CVS/Root
+A	lib/rhino/src/mozilla/js/rhino/src/META-INF/CVS/Entries
+A	lib/rhino/src/mozilla/js/rhino/src/META-INF/CVS/Entries.Log
+A	lib/rhino/src/mozilla/js/rhino/src/META-INF/CVS/Repository
+A	lib/rhino/src/mozilla/js/rhino/src/META-INF/CVS/Root
+A	lib/rhino/src/mozilla/js/rhino/src/META-INF/services/CVS/Entries
+A	lib/rhino/src/mozilla/js/rhino/src/META-INF/services/CVS/Repository
+A	lib/rhino/src/mozilla/js/rhino/src/META-INF/services/CVS/Root
+A	lib/rhino/src/mozilla/js/rhino/src/build.xml
+A	lib/rhino/src/mozilla/js/rhino/src/manifest
+A	lib/rhino/src/mozilla/js/rhino/src/org/CVS/Entries
+A	lib/rhino/src/mozilla/js/rhino/src/org/CVS/Entries.Log
+A	lib/rhino/src/mozilla/js/rhino/src/org/CVS/Repository
+A	lib/rhino/src/mozilla/js/rhino/src/org/CVS/Root
+A	lib/rhino/src/mozilla/js/rhino/src/org/mozilla/CVS/Entries
+A	lib/rhino/src/mozilla/js/rhino/src/org/mozilla/CVS/Entries.Log
+A	lib/rhino/src/mozilla/js/rhino/src/org/mozilla/CVS/Repository
+A	lib/rhino/src/mozilla/js/rhino/src/org/mozilla/CVS/Root
+R077	lib/rhino/src/org/mozilla/classfile/ByteCode.java	lib/rhino/src/mozilla/js/rhino/src/org/mozilla/classfile/ByteCode.java
+A	lib/rhino/src/mozilla/js/rhino/src/org/mozilla/classfile/CVS/Entries
+A	lib/rhino/src/mozilla/js/rhino/src/org/mozilla/classfile/CVS/Repository
+A	lib/rhino/src/mozilla/js/rhino/src/org/mozilla/classfile/CVS/Root
+R056	lib/rhino/src/org/mozilla/classfile/ClassFileWriter.java	lib/rhino/src/mozilla/js/rhino/src/org/mozilla/classfile/ClassFileWriter.java
+R059	lib/rhino/src/org/mozilla/javascript/Arguments.java	lib/rhino/src/mozilla/js/rhino/src/org/mozilla/javascript/Arguments.java
+R086	lib/rhino/src/org/mozilla/javascript/BaseFunction.java	lib/rhino/src/mozilla/js/rhino/src/org/mozilla/javascript/BaseFunction.java
+R055	lib/rhino/src/org/mozilla/javascript/BoundFunction.java	lib/rhino/src/mozilla/js/rhino/src/org/mozilla/javascript/BoundFunction.java
+A	lib/rhino/src/mozilla/js/rhino/src/org/mozilla/javascript/CVS/Entries
+A	lib/rhino/src/mozilla/js/rhino/src/org/mozilla/javascript/CVS/Entries.Log
+A	lib/rhino/src/mozilla/js/rhino/src/org/mozilla/javascript/CVS/Repository
+A	lib/rhino/src/mozilla/js/rhino/src/org/mozilla/javascript/CVS/Root
+A	lib/rhino/src/mozilla/js/rhino/src/org/mozilla/javascript/Callable.java
+R072	lib/rhino/src/org/mozilla/javascript/ClassCache.java	lib/rhino/src/mozilla/js/rhino/src/org/mozilla/javascript/ClassCache.java
+R058	lib/rhino/src/org/mozilla/javascript/ClassShutter.java	lib/rhino/src/mozilla/js/rhino/src/org/mozilla/javascript/ClassShutter.java
+R096	lib/rhino/src/org/mozilla/javascript/CodeGenerator.java	lib/rhino/src/mozilla/js/rhino/src/org/mozilla/javascript/CodeGenerator.java
+R073	lib/rhino/src/org/mozilla/javascript/CompilerEnvirons.java	lib/rhino/src/mozilla/js/rhino/src/org/mozilla/javascript/CompilerEnvirons.java
+R068	lib/rhino/src/org/mozilla/javascript/ConstProperties.java	lib/rhino/src/mozilla/js/rhino/src/org/mozilla/javascript/ConstProperties.java
+R096	lib/rhino/src/org/mozilla/javascript/Context.java	lib/rhino/src/mozilla/js/rhino/src/org/mozilla/javascript/Context.java
+A	lib/rhino/src/mozilla/js/rhino/src/org/mozilla/javascript/ContextAction.java
+R090	lib/rhino/src/org/mozilla/javascript/ContextFactory.java	lib/rhino/src/mozilla/js/rhino/src/org/mozilla/javascript/ContextFactory.java
+A	lib/rhino/src/mozilla/js/rhino/src/org/mozilla/javascript/ContextListener.java
+R059	lib/rhino/src/org/mozilla/javascript/ContinuationPending.java	lib/rhino/src/mozilla/js/rhino/src/org/mozilla/javascript/ContinuationPending.java
+R093	lib/rhino/src/org/mozilla/javascript/DToA.java	lib/rhino/src/mozilla/js/rhino/src/org/mozilla/javascript/DToA.java
+R094	lib/rhino/src/org/mozilla/javascript/Decompiler.java	lib/rhino/src/mozilla/js/rhino/src/org/mozilla/javascript/Decompiler.java
+R062	lib/rhino/src/org/mozilla/javascript/DefaultErrorReporter.java	lib/rhino/src/mozilla/js/rhino/src/org/mozilla/javascript/DefaultErrorReporter.java
+A	lib/rhino/src/mozilla/js/rhino/src/org/mozilla/javascript/DefiningClassLoader.java
+R081	lib/rhino/src/org/mozilla/javascript/Delegator.java	lib/rhino/src/mozilla/js/rhino/src/org/mozilla/javascript/Delegator.java
+R068	lib/rhino/src/org/mozilla/javascript/EcmaError.java	lib/rhino/src/mozilla/js/rhino/src/org/mozilla/javascript/EcmaError.java
+R062	lib/rhino/src/org/mozilla/javascript/ErrorReporter.java	lib/rhino/src/mozilla/js/rhino/src/org/mozilla/javascript/ErrorReporter.java
+R071	lib/rhino/src/org/mozilla/javascript/Evaluator.java	lib/rhino/src/mozilla/js/rhino/src/org/mozilla/javascript/Evaluator.java
+R061	lib/rhino/src/org/mozilla/javascript/EvaluatorException.java	lib/rhino/src/mozilla/js/rhino/src/org/mozilla/javascript/EvaluatorException.java
+A	lib/rhino/src/mozilla/js/rhino/src/org/mozilla/javascript/FieldAndMethods.java
+R051	lib/rhino/src/org/mozilla/javascript/Function.java	lib/rhino/src/mozilla/js/rhino/src/org/mozilla/javascript/Function.java
+R092	lib/rhino/src/org/mozilla/javascript/FunctionObject.java	lib/rhino/src/mozilla/js/rhino/src/org/mozilla/javascript/FunctionObject.java
+A	lib/rhino/src/mozilla/js/rhino/src/org/mozilla/javascript/GeneratedClassLoader.java
+R091	lib/rhino/src/org/mozilla/javascript/IRFactory.java	lib/rhino/src/mozilla/js/rhino/src/org/mozilla/javascript/IRFactory.java
+R083	lib/rhino/src/org/mozilla/javascript/Icode.java	lib/rhino/src/mozilla/js/rhino/src/org/mozilla/javascript/Icode.java
+A	lib/rhino/src/mozilla/js/rhino/src/org/mozilla/javascript/IdFunctionCall.java
+R073	lib/rhino/src/org/mozilla/javascript/IdFunctionObject.java	lib/rhino/src/mozilla/js/rhino/src/org/mozilla/javascript/IdFunctionObject.java
+R087	lib/rhino/src/org/mozilla/javascript/IdScriptableObject.java	lib/rhino/src/mozilla/js/rhino/src/org/mozilla/javascript/IdScriptableObject.java
+R084	lib/rhino/src/org/mozilla/javascript/ImporterTopLevel.java	lib/rhino/src/mozilla/js/rhino/src/org/mozilla/javascript/ImporterTopLevel.java
+A	lib/rhino/src/mozilla/js/rhino/src/org/mozilla/javascript/InterfaceAdapter.java
+R067	lib/rhino/src/org/mozilla/javascript/InterpretedFunction.java	lib/rhino/src/mozilla/js/rhino/src/org/mozilla/javascript/InterpretedFunction.java
+R089	lib/rhino/src/org/mozilla/javascript/Interpreter.java	lib/rhino/src/mozilla/js/rhino/src/org/mozilla/javascript/Interpreter.java
+R067	lib/rhino/src/org/mozilla/javascript/InterpreterData.java	lib/rhino/src/mozilla/js/rhino/src/org/mozilla/javascript/InterpreterData.java
+R083	lib/rhino/src/org/mozilla/javascript/JavaAdapter.java	lib/rhino/src/mozilla/js/rhino/src/org/mozilla/javascript/JavaAdapter.java
+R085	lib/rhino/src/org/mozilla/javascript/JavaMembers.java	lib/rhino/src/mozilla/js/rhino/src/org/mozilla/javascript/JavaMembers.java
+R055	lib/rhino/src/org/mozilla/javascript/JavaScriptException.java	lib/rhino/src/mozilla/js/rhino/src/org/mozilla/javascript/JavaScriptException.java
+R090	lib/rhino/src/org/mozilla/javascript/Kit.java	lib/rhino/src/mozilla/js/rhino/src/org/mozilla/javascript/Kit.java
+R072	lib/rhino/src/org/mozilla/javascript/LazilyLoadedCtor.java	lib/rhino/src/mozilla/js/rhino/src/org/mozilla/javascript/LazilyLoadedCtor.java
+R086	lib/rhino/src/org/mozilla/javascript/MemberBox.java	lib/rhino/src/mozilla/js/rhino/src/org/mozilla/javascript/MemberBox.java
+R080	lib/rhino/src/org/mozilla/javascript/NativeArray.java	lib/rhino/src/mozilla/js/rhino/src/org/mozilla/javascript/NativeArray.java
+R071	lib/rhino/src/org/mozilla/javascript/NativeBoolean.java	lib/rhino/src/mozilla/js/rhino/src/org/mozilla/javascript/NativeBoolean.java
+R069	lib/rhino/src/org/mozilla/javascript/NativeCall.java	lib/rhino/src/mozilla/js/rhino/src/org/mozilla/javascript/NativeCall.java
+R064	lib/rhino/src/org/mozilla/javascript/NativeContinuation.java	lib/rhino/src/mozilla/js/rhino/src/org/mozilla/javascript/NativeContinuation.java
+R092	lib/rhino/src/org/mozilla/javascript/NativeDate.java	lib/rhino/src/mozilla/js/rhino/src/org/mozilla/javascript/NativeDate.java
+R070	lib/rhino/src/org/mozilla/javascript/NativeError.java	lib/rhino/src/mozilla/js/rhino/src/org/mozilla/javascript/NativeError.java
+R070	lib/rhino/src/org/mozilla/javascript/NativeFunction.java	lib/rhino/src/mozilla/js/rhino/src/org/mozilla/javascript/NativeFunction.java
+R081	lib/rhino/src/org/mozilla/javascript/NativeGenerator.java	lib/rhino/src/mozilla/js/rhino/src/org/mozilla/javascript/NativeGenerator.java
+R089	lib/rhino/src/org/mozilla/javascript/NativeGlobal.java	lib/rhino/src/mozilla/js/rhino/src/org/mozilla/javascript/NativeGlobal.java
+R086	lib/rhino/src/org/mozilla/javascript/NativeIterator.java	lib/rhino/src/mozilla/js/rhino/src/org/mozilla/javascript/NativeIterator.java
+R087	lib/rhino/src/org/mozilla/javascript/NativeJSON.java	lib/rhino/src/mozilla/js/rhino/src/org/mozilla/javascript/NativeJSON.java
+R068	lib/rhino/src/org/mozilla/javascript/NativeJavaArray.java	lib/rhino/src/mozilla/js/rhino/src/org/mozilla/javascript/NativeJavaArray.java
+R077	lib/rhino/src/org/mozilla/javascript/NativeJavaClass.java	lib/rhino/src/mozilla/js/rhino/src/org/mozilla/javascript/NativeJavaClass.java
+A	lib/rhino/src/mozilla/js/rhino/src/org/mozilla/javascript/NativeJavaConstructor.java
+R084	lib/rhino/src/org/mozilla/javascript/NativeJavaMethod.java	lib/rhino/src/mozilla/js/rhino/src/org/mozilla/javascript/NativeJavaMethod.java
+R088	lib/rhino/src/org/mozilla/javascript/NativeJavaObject.java	lib/rhino/src/mozilla/js/rhino/src/org/mozilla/javascript/NativeJavaObject.java
+R076	lib/rhino/src/org/mozilla/javascript/NativeJavaPackage.java	lib/rhino/src/mozilla/js/rhino/src/org/mozilla/javascript/NativeJavaPackage.java
+R076	lib/rhino/src/org/mozilla/javascript/NativeJavaTopPackage.java	lib/rhino/src/mozilla/js/rhino/src/org/mozilla/javascript/NativeJavaTopPackage.java
+R088	lib/rhino/src/org/mozilla/javascript/NativeMath.java	lib/rhino/src/mozilla/js/rhino/src/org/mozilla/javascript/NativeMath.java
+R082	lib/rhino/src/org/mozilla/javascript/NativeNumber.java	lib/rhino/src/mozilla/js/rhino/src/org/mozilla/javascript/NativeNumber.java
+R073	lib/rhino/src/org/mozilla/javascript/NativeObject.java	lib/rhino/src/mozilla/js/rhino/src/org/mozilla/javascript/NativeObject.java
+R077	lib/rhino/src/org/mozilla/javascript/NativeScript.java	lib/rhino/src/mozilla/js/rhino/src/org/mozilla/javascript/NativeScript.java
+R090	lib/rhino/src/org/mozilla/javascript/NativeString.java	lib/rhino/src/mozilla/js/rhino/src/org/mozilla/javascript/NativeString.java
+R071	lib/rhino/src/org/mozilla/javascript/NativeWith.java	lib/rhino/src/mozilla/js/rhino/src/org/mozilla/javascript/NativeWith.java
+R096	lib/rhino/src/org/mozilla/javascript/Node.java	lib/rhino/src/mozilla/js/rhino/src/org/mozilla/javascript/Node.java
+R093	lib/rhino/src/org/mozilla/javascript/NodeTransformer.java	lib/rhino/src/mozilla/js/rhino/src/org/mozilla/javascript/NodeTransformer.java
+R086	lib/rhino/src/org/mozilla/javascript/ObjArray.java	lib/rhino/src/mozilla/js/rhino/src/org/mozilla/javascript/ObjArray.java
+R092	lib/rhino/src/org/mozilla/javascript/ObjToIntMap.java	lib/rhino/src/mozilla/js/rhino/src/org/mozilla/javascript/ObjToIntMap.java
+R091	lib/rhino/src/org/mozilla/javascript/Parser.java	lib/rhino/src/mozilla/js/rhino/src/org/mozilla/javascript/Parser.java
+R077	lib/rhino/src/org/mozilla/javascript/PolicySecurityController.java	lib/rhino/src/mozilla/js/rhino/src/org/mozilla/javascript/PolicySecurityController.java
+A	lib/rhino/src/mozilla/js/rhino/src/org/mozilla/javascript/Ref.java
+A	lib/rhino/src/mozilla/js/rhino/src/org/mozilla/javascript/RefCallable.java
+A	lib/rhino/src/mozilla/js/rhino/src/org/mozilla/javascript/RegExpProxy.java
+R059	lib/rhino/src/org/mozilla/javascript/RhinoException.java	lib/rhino/src/mozilla/js/rhino/src/org/mozilla/javascript/RhinoException.java
+A	lib/rhino/src/mozilla/js/rhino/src/org/mozilla/javascript/Script.java
+R088	lib/rhino/src/org/mozilla/javascript/ScriptRuntime.java	lib/rhino/src/mozilla/js/rhino/src/org/mozilla/javascript/ScriptRuntime.java
+R088	lib/rhino/src/org/mozilla/javascript/Scriptable.java	lib/rhino/src/mozilla/js/rhino/src/org/mozilla/javascript/Scriptable.java
+R073	lib/rhino/src/org/mozilla/javascript/ScriptableObject.java	lib/rhino/src/mozilla/js/rhino/src/org/mozilla/javascript/ScriptableObject.java
+R079	lib/rhino/src/org/mozilla/javascript/SecureCaller.java	lib/rhino/src/mozilla/js/rhino/src/org/mozilla/javascript/SecureCaller.java
+R080	lib/rhino/src/org/mozilla/javascript/SecurityController.java	lib/rhino/src/mozilla/js/rhino/src/org/mozilla/javascript/SecurityController.java
+A	lib/rhino/src/mozilla/js/rhino/src/org/mozilla/javascript/SecurityUtilities.java
+R068	lib/rhino/src/org/mozilla/javascript/SpecialRef.java	lib/rhino/src/mozilla/js/rhino/src/org/mozilla/javascript/SpecialRef.java
+A	lib/rhino/src/mozilla/js/rhino/src/org/mozilla/javascript/Synchronizer.java
+R087	lib/rhino/src/org/mozilla/javascript/Token.java	lib/rhino/src/mozilla/js/rhino/src/org/mozilla/javascript/Token.java
+R096	lib/rhino/src/org/mozilla/javascript/TokenStream.java	lib/rhino/src/mozilla/js/rhino/src/org/mozilla/javascript/TokenStream.java
+R092	lib/rhino/src/org/mozilla/javascript/UintMap.java	lib/rhino/src/mozilla/js/rhino/src/org/mozilla/javascript/UintMap.java
+A	lib/rhino/src/mozilla/js/rhino/src/org/mozilla/javascript/Undefined.java
+R058	lib/rhino/src/org/mozilla/javascript/UniqueTag.java	lib/rhino/src/mozilla/js/rhino/src/org/mozilla/javascript/UniqueTag.java
+R078	lib/rhino/src/org/mozilla/javascript/VMBridge.java	lib/rhino/src/mozilla/js/rhino/src/org/mozilla/javascript/VMBridge.java
+R075	lib/rhino/src/org/mozilla/javascript/WrapFactory.java	lib/rhino/src/mozilla/js/rhino/src/org/mozilla/javascript/WrapFactory.java
+A	lib/rhino/src/mozilla/js/rhino/src/org/mozilla/javascript/WrappedException.java
+A	lib/rhino/src/mozilla/js/rhino/src/org/mozilla/javascript/Wrapper.java
+R071	lib/rhino/src/org/mozilla/javascript/annotations/JSConstructor.java	lib/rhino/src/mozilla/js/rhino/src/org/mozilla/javascript/annotations/JSConstructor.java
+R070	lib/rhino/src/org/mozilla/javascript/annotations/JSFunction.java	lib/rhino/src/mozilla/js/rhino/src/org/mozilla/javascript/annotations/JSFunction.java
+R070	lib/rhino/src/org/mozilla/javascript/annotations/JSGetter.java	lib/rhino/src/mozilla/js/rhino/src/org/mozilla/javascript/annotations/JSGetter.java
+R070	lib/rhino/src/org/mozilla/javascript/annotations/JSSetter.java	lib/rhino/src/mozilla/js/rhino/src/org/mozilla/javascript/annotations/JSSetter.java
+R071	lib/rhino/src/org/mozilla/javascript/annotations/JSStaticFunction.java	lib/rhino/src/mozilla/js/rhino/src/org/mozilla/javascript/annotations/JSStaticFunction.java
+R072	lib/rhino/src/org/mozilla/javascript/ast/ArrayComprehension.java	lib/rhino/src/mozilla/js/rhino/src/org/mozilla/javascript/ast/ArrayComprehension.java
+R051	lib/rhino/src/org/mozilla/javascript/ast/ArrayComprehensionLoop.java	lib/rhino/src/mozilla/js/rhino/src/org/mozilla/javascript/ast/ArrayComprehensionLoop.java
+R077	lib/rhino/src/org/mozilla/javascript/ast/ArrayLiteral.java	lib/rhino/src/mozilla/js/rhino/src/org/mozilla/javascript/ast/ArrayLiteral.java
+A	lib/rhino/src/mozilla/js/rhino/src/org/mozilla/javascript/ast/Assignment.java
+R092	lib/rhino/src/org/mozilla/javascript/ast/AstNode.java	lib/rhino/src/mozilla/js/rhino/src/org/mozilla/javascript/ast/AstNode.java
+R073	lib/rhino/src/org/mozilla/javascript/ast/AstRoot.java	lib/rhino/src/mozilla/js/rhino/src/org/mozilla/javascript/ast/AstRoot.java
+A	lib/rhino/src/mozilla/js/rhino/src/org/mozilla/javascript/ast/Block.java
+R062	lib/rhino/src/org/mozilla/javascript/ast/BreakStatement.java	lib/rhino/src/mozilla/js/rhino/src/org/mozilla/javascript/ast/BreakStatement.java
+A	lib/rhino/src/mozilla/js/rhino/src/org/mozilla/javascript/ast/CVS/Entries
+A	lib/rhino/src/mozilla/js/rhino/src/org/mozilla/javascript/ast/CVS/Repository
+A	lib/rhino/src/mozilla/js/rhino/src/org/mozilla/javascript/ast/CVS/Root
+R071	lib/rhino/src/org/mozilla/javascript/ast/CatchClause.java	lib/rhino/src/mozilla/js/rhino/src/org/mozilla/javascript/ast/CatchClause.java
+R063	lib/rhino/src/org/mozilla/javascript/ast/Comment.java	lib/rhino/src/mozilla/js/rhino/src/org/mozilla/javascript/ast/Comment.java
+R074	lib/rhino/src/org/mozilla/javascript/ast/ConditionalExpression.java	lib/rhino/src/mozilla/js/rhino/src/org/mozilla/javascript/ast/ConditionalExpression.java
+R063	lib/rhino/src/org/mozilla/javascript/ast/ContinueStatement.java	lib/rhino/src/mozilla/js/rhino/src/org/mozilla/javascript/ast/ContinueStatement.java
+A	lib/rhino/src/mozilla/js/rhino/src/org/mozilla/javascript/ast/DestructuringForm.java
+R054	lib/rhino/src/org/mozilla/javascript/ast/DoLoop.java	lib/rhino/src/mozilla/js/rhino/src/org/mozilla/javascript/ast/DoLoop.java
+R067	lib/rhino/src/org/mozilla/javascript/ast/ElementGet.java	lib/rhino/src/mozilla/js/rhino/src/org/mozilla/javascript/ast/ElementGet.java
+A	lib/rhino/src/mozilla/js/rhino/src/org/mozilla/javascript/ast/EmptyExpression.java
+R063	lib/rhino/src/org/mozilla/javascript/ast/ErrorCollector.java	lib/rhino/src/mozilla/js/rhino/src/org/mozilla/javascript/ast/ErrorCollector.java
+A	lib/rhino/src/mozilla/js/rhino/src/org/mozilla/javascript/ast/ErrorNode.java
+R068	lib/rhino/src/org/mozilla/javascript/ast/ExpressionStatement.java	lib/rhino/src/mozilla/js/rhino/src/org/mozilla/javascript/ast/ExpressionStatement.java
+R070	lib/rhino/src/org/mozilla/javascript/ast/ForInLoop.java	lib/rhino/src/mozilla/js/rhino/src/org/mozilla/javascript/ast/ForInLoop.java
+R069	lib/rhino/src/org/mozilla/javascript/ast/ForLoop.java	lib/rhino/src/mozilla/js/rhino/src/org/mozilla/javascript/ast/ForLoop.java
+R070	lib/rhino/src/org/mozilla/javascript/ast/FunctionCall.java	lib/rhino/src/mozilla/js/rhino/src/org/mozilla/javascript/ast/FunctionCall.java
+R085	lib/rhino/src/org/mozilla/javascript/ast/FunctionNode.java	lib/rhino/src/mozilla/js/rhino/src/org/mozilla/javascript/ast/FunctionNode.java
+R061	lib/rhino/src/org/mozilla/javascript/ast/IdeErrorReporter.java	lib/rhino/src/mozilla/js/rhino/src/org/mozilla/javascript/ast/IdeErrorReporter.java
+R067	lib/rhino/src/org/mozilla/javascript/ast/IfStatement.java	lib/rhino/src/mozilla/js/rhino/src/org/mozilla/javascript/ast/IfStatement.java
+R076	lib/rhino/src/org/mozilla/javascript/ast/InfixExpression.java	lib/rhino/src/mozilla/js/rhino/src/org/mozilla/javascript/ast/InfixExpression.java
+R066	lib/rhino/src/org/mozilla/javascript/ast/Jump.java	lib/rhino/src/mozilla/js/rhino/src/org/mozilla/javascript/ast/Jump.java
+R061	lib/rhino/src/org/mozilla/javascript/ast/KeywordLiteral.java	lib/rhino/src/mozilla/js/rhino/src/org/mozilla/javascript/ast/KeywordLiteral.java
+R051	lib/rhino/src/org/mozilla/javascript/ast/Label.java	lib/rhino/src/mozilla/js/rhino/src/org/mozilla/javascript/ast/Label.java
+R067	lib/rhino/src/org/mozilla/javascript/ast/LabeledStatement.java	lib/rhino/src/mozilla/js/rhino/src/org/mozilla/javascript/ast/LabeledStatement.java
+R069	lib/rhino/src/org/mozilla/javascript/ast/LetNode.java	lib/rhino/src/mozilla/js/rhino/src/org/mozilla/javascript/ast/LetNode.java
+A	lib/rhino/src/mozilla/js/rhino/src/org/mozilla/javascript/ast/Loop.java
+R074	lib/rhino/src/org/mozilla/javascript/ast/Name.java	lib/rhino/src/mozilla/js/rhino/src/org/mozilla/javascript/ast/Name.java
+R062	lib/rhino/src/org/mozilla/javascript/ast/NewExpression.java	lib/rhino/src/mozilla/js/rhino/src/org/mozilla/javascript/ast/NewExpression.java
+A	lib/rhino/src/mozilla/js/rhino/src/org/mozilla/javascript/ast/NodeVisitor.java
+R056	lib/rhino/src/org/mozilla/javascript/ast/NumberLiteral.java	lib/rhino/src/mozilla/js/rhino/src/org/mozilla/javascript/ast/NumberLiteral.java
+R070	lib/rhino/src/org/mozilla/javascript/ast/ObjectLiteral.java	lib/rhino/src/mozilla/js/rhino/src/org/mozilla/javascript/ast/ObjectLiteral.java
+R064	lib/rhino/src/org/mozilla/javascript/ast/ObjectProperty.java	lib/rhino/src/mozilla/js/rhino/src/org/mozilla/javascript/ast/ObjectProperty.java
+R053	lib/rhino/src/org/mozilla/javascript/ast/ParenthesizedExpression.java	lib/rhino/src/mozilla/js/rhino/src/org/mozilla/javascript/ast/ParenthesizedExpression.java
+R054	lib/rhino/src/org/mozilla/javascript/ast/ParseProblem.java	lib/rhino/src/mozilla/js/rhino/src/org/mozilla/javascript/ast/ParseProblem.java
+R060	lib/rhino/src/org/mozilla/javascript/ast/PropertyGet.java	lib/rhino/src/mozilla/js/rhino/src/org/mozilla/javascript/ast/PropertyGet.java
+A	lib/rhino/src/mozilla/js/rhino/src/org/mozilla/javascript/ast/RegExpLiteral.java
+R053	lib/rhino/src/org/mozilla/javascript/ast/ReturnStatement.java	lib/rhino/src/mozilla/js/rhino/src/org/mozilla/javascript/ast/ReturnStatement.java
+R081	lib/rhino/src/org/mozilla/javascript/ast/Scope.java	lib/rhino/src/mozilla/js/rhino/src/org/mozilla/javascript/ast/Scope.java
+R084	lib/rhino/src/org/mozilla/javascript/ast/ScriptNode.java	lib/rhino/src/mozilla/js/rhino/src/org/mozilla/javascript/ast/ScriptNode.java
+R050	lib/rhino/src/org/mozilla/javascript/ast/StringLiteral.java	lib/rhino/src/mozilla/js/rhino/src/org/mozilla/javascript/ast/StringLiteral.java
+R072	lib/rhino/src/org/mozilla/javascript/ast/SwitchCase.java	lib/rhino/src/mozilla/js/rhino/src/org/mozilla/javascript/ast/SwitchCase.java
+R073	lib/rhino/src/org/mozilla/javascript/ast/SwitchStatement.java	lib/rhino/src/mozilla/js/rhino/src/org/mozilla/javascript/ast/SwitchStatement.java
+R064	lib/rhino/src/org/mozilla/javascript/ast/Symbol.java	lib/rhino/src/mozilla/js/rhino/src/org/mozilla/javascript/ast/Symbol.java
+R055	lib/rhino/src/org/mozilla/javascript/ast/ThrowStatement.java	lib/rhino/src/mozilla/js/rhino/src/org/mozilla/javascript/ast/ThrowStatement.java
+R074	lib/rhino/src/org/mozilla/javascript/ast/TryStatement.java	lib/rhino/src/mozilla/js/rhino/src/org/mozilla/javascript/ast/TryStatement.java
+R070	lib/rhino/src/org/mozilla/javascript/ast/UnaryExpression.java	lib/rhino/src/mozilla/js/rhino/src/org/mozilla/javascript/ast/UnaryExpression.java
+R065	lib/rhino/src/org/mozilla/javascript/ast/VariableDeclaration.java	lib/rhino/src/mozilla/js/rhino/src/org/mozilla/javascript/ast/VariableDeclaration.java
+R068	lib/rhino/src/org/mozilla/javascript/ast/VariableInitializer.java	lib/rhino/src/mozilla/js/rhino/src/org/mozilla/javascript/ast/VariableInitializer.java
+R050	lib/rhino/src/org/mozilla/javascript/ast/WhileLoop.java	lib/rhino/src/mozilla/js/rhino/src/org/mozilla/javascript/ast/WhileLoop.java
+R060	lib/rhino/src/org/mozilla/javascript/ast/WithStatement.java	lib/rhino/src/mozilla/js/rhino/src/org/mozilla/javascript/ast/WithStatement.java
+R053	lib/rhino/src/org/mozilla/javascript/ast/XmlDotQuery.java	lib/rhino/src/mozilla/js/rhino/src/org/mozilla/javascript/ast/XmlDotQuery.java
+R068	lib/rhino/src/org/mozilla/javascript/ast/XmlElemRef.java	lib/rhino/src/mozilla/js/rhino/src/org/mozilla/javascript/ast/XmlElemRef.java
+R054	lib/rhino/src/org/mozilla/javascript/ast/XmlExpression.java	lib/rhino/src/mozilla/js/rhino/src/org/mozilla/javascript/ast/XmlExpression.java
+A	lib/rhino/src/mozilla/js/rhino/src/org/mozilla/javascript/ast/XmlFragment.java
+R060	lib/rhino/src/org/mozilla/javascript/ast/XmlLiteral.java	lib/rhino/src/mozilla/js/rhino/src/org/mozilla/javascript/ast/XmlLiteral.java
+R060	lib/rhino/src/org/mozilla/javascript/ast/XmlMemberGet.java	lib/rhino/src/mozilla/js/rhino/src/org/mozilla/javascript/ast/XmlMemberGet.java
+R059	lib/rhino/src/org/mozilla/javascript/ast/XmlPropRef.java	lib/rhino/src/mozilla/js/rhino/src/org/mozilla/javascript/ast/XmlPropRef.java
+R064	lib/rhino/src/org/mozilla/javascript/ast/XmlRef.java	lib/rhino/src/mozilla/js/rhino/src/org/mozilla/javascript/ast/XmlRef.java
+A	lib/rhino/src/mozilla/js/rhino/src/org/mozilla/javascript/ast/XmlString.java
+A	lib/rhino/src/mozilla/js/rhino/src/org/mozilla/javascript/ast/Yield.java
+A	lib/rhino/src/mozilla/js/rhino/src/org/mozilla/javascript/continuations/CVS/Entries
+A	lib/rhino/src/mozilla/js/rhino/src/org/mozilla/javascript/continuations/CVS/Repository
+A	lib/rhino/src/mozilla/js/rhino/src/org/mozilla/javascript/continuations/CVS/Root
+A	lib/rhino/src/mozilla/js/rhino/src/org/mozilla/javascript/debug/CVS/Entries
+A	lib/rhino/src/mozilla/js/rhino/src/org/mozilla/javascript/debug/CVS/Repository
+A	lib/rhino/src/mozilla/js/rhino/src/org/mozilla/javascript/debug/CVS/Root
+R054	lib/rhino/src/org/mozilla/javascript/debug/DebugFrame.java	lib/rhino/src/mozilla/js/rhino/src/org/mozilla/javascript/debug/DebugFrame.java
+A	lib/rhino/src/mozilla/js/rhino/src/org/mozilla/javascript/debug/DebuggableObject.java
+R059	lib/rhino/src/org/mozilla/javascript/debug/DebuggableScript.java	lib/rhino/src/mozilla/js/rhino/src/org/mozilla/javascript/debug/DebuggableScript.java
+A	lib/rhino/src/mozilla/js/rhino/src/org/mozilla/javascript/debug/Debugger.java
+A	lib/rhino/src/mozilla/js/rhino/src/org/mozilla/javascript/jdk11/CVS/Entries
+A	lib/rhino/src/mozilla/js/rhino/src/org/mozilla/javascript/jdk11/CVS/Repository
+A	lib/rhino/src/mozilla/js/rhino/src/org/mozilla/javascript/jdk11/CVS/Root
+A	lib/rhino/src/mozilla/js/rhino/src/org/mozilla/javascript/jdk13/CVS/Entries
+A	lib/rhino/src/mozilla/js/rhino/src/org/mozilla/javascript/jdk13/CVS/Repository
+A	lib/rhino/src/mozilla/js/rhino/src/org/mozilla/javascript/jdk13/CVS/Root
+R071	lib/rhino/src/org/mozilla/javascript/jdk13/VMBridge_jdk13.java	lib/rhino/src/mozilla/js/rhino/src/org/mozilla/javascript/jdk13/VMBridge_jdk13.java
+A	lib/rhino/src/mozilla/js/rhino/src/org/mozilla/javascript/jdk15/CVS/Entries
+A	lib/rhino/src/mozilla/js/rhino/src/org/mozilla/javascript/jdk15/CVS/Repository
+A	lib/rhino/src/mozilla/js/rhino/src/org/mozilla/javascript/jdk15/CVS/Root
+R056	lib/rhino/src/org/mozilla/javascript/jdk15/VMBridge_jdk15.java	lib/rhino/src/mozilla/js/rhino/src/org/mozilla/javascript/jdk15/VMBridge_jdk15.java
+A	lib/rhino/src/mozilla/js/rhino/src/org/mozilla/javascript/json/JsonLexer.java
+R051	lib/rhino/src/org/mozilla/javascript/json/JsonParser.java	lib/rhino/src/mozilla/js/rhino/src/org/mozilla/javascript/json/JsonParser.java
+R062	lib/rhino/src/org/mozilla/javascript/optimizer/Block.java	lib/rhino/src/mozilla/js/rhino/src/org/mozilla/javascript/optimizer/Block.java
+A	lib/rhino/src/mozilla/js/rhino/src/org/mozilla/javascript/optimizer/CVS/Entries
+A	lib/rhino/src/mozilla/js/rhino/src/org/mozilla/javascript/optimizer/CVS/Repository
+A	lib/rhino/src/mozilla/js/rhino/src/org/mozilla/javascript/optimizer/CVS/Root
+R080	lib/rhino/src/org/mozilla/javascript/optimizer/ClassCompiler.java	lib/rhino/src/mozilla/js/rhino/src/org/mozilla/javascript/optimizer/ClassCompiler.java
+R085	lib/rhino/src/org/mozilla/javascript/optimizer/Codegen.java	lib/rhino/src/mozilla/js/rhino/src/org/mozilla/javascript/optimizer/Codegen.java
+A	lib/rhino/src/mozilla/js/rhino/src/org/mozilla/javascript/optimizer/DataFlowBitSet.java
+R055	lib/rhino/src/org/mozilla/javascript/optimizer/OptFunctionNode.java	lib/rhino/src/mozilla/js/rhino/src/org/mozilla/javascript/optimizer/OptFunctionNode.java
+R083	lib/rhino/src/org/mozilla/javascript/optimizer/OptRuntime.java	lib/rhino/src/mozilla/js/rhino/src/org/mozilla/javascript/optimizer/OptRuntime.java
+R068	lib/rhino/src/org/mozilla/javascript/optimizer/OptTransformer.java	lib/rhino/src/mozilla/js/rhino/src/org/mozilla/javascript/optimizer/OptTransformer.java
+R089	lib/rhino/src/org/mozilla/javascript/optimizer/Optimizer.java	lib/rhino/src/mozilla/js/rhino/src/org/mozilla/javascript/optimizer/Optimizer.java
+A	lib/rhino/src/mozilla/js/rhino/src/org/mozilla/javascript/regexp/CVS/Entries
+A	lib/rhino/src/mozilla/js/rhino/src/org/mozilla/javascript/regexp/CVS/Repository
+A	lib/rhino/src/mozilla/js/rhino/src/org/mozilla/javascript/regexp/CVS/Root
+R065	lib/rhino/src/org/mozilla/javascript/regexp/NativeRegExp.java	lib/rhino/src/mozilla/js/rhino/src/org/mozilla/javascript/regexp/NativeRegExp.java
+R083	lib/rhino/src/org/mozilla/javascript/regexp/NativeRegExpCtor.java	lib/rhino/src/mozilla/js/rhino/src/org/mozilla/javascript/regexp/NativeRegExpCtor.java
+R088	lib/rhino/src/org/mozilla/javascript/regexp/RegExpImpl.java	lib/rhino/src/mozilla/js/rhino/src/org/mozilla/javascript/regexp/RegExpImpl.java
+A	lib/rhino/src/mozilla/js/rhino/src/org/mozilla/javascript/regexp/SubString.java
+A	lib/rhino/src/mozilla/js/rhino/src/org/mozilla/javascript/resources/CVS/Entries
+A	lib/rhino/src/mozilla/js/rhino/src/org/mozilla/javascript/resources/CVS/Repository
+A	lib/rhino/src/mozilla/js/rhino/src/org/mozilla/javascript/resources/CVS/Root
+R092	lib/rhino/src/org/mozilla/javascript/resources/Messages.properties	lib/rhino/src/mozilla/js/rhino/src/org/mozilla/javascript/resources/Messages.properties
+A	lib/rhino/src/mozilla/js/rhino/src/org/mozilla/javascript/resources/Messages_fr.properties
+A	lib/rhino/src/mozilla/js/rhino/src/org/mozilla/javascript/serialize/CVS/Entries
+A	lib/rhino/src/mozilla/js/rhino/src/org/mozilla/javascript/serialize/CVS/Repository
+A	lib/rhino/src/mozilla/js/rhino/src/org/mozilla/javascript/serialize/CVS/Root
+R059	lib/rhino/src/org/mozilla/javascript/serialize/ScriptableInputStream.java	lib/rhino/src/mozilla/js/rhino/src/org/mozilla/javascript/serialize/ScriptableInputStream.java
+R080	lib/rhino/src/org/mozilla/javascript/serialize/ScriptableOutputStream.java	lib/rhino/src/mozilla/js/rhino/src/org/mozilla/javascript/serialize/ScriptableOutputStream.java
+A	lib/rhino/src/mozilla/js/rhino/src/org/mozilla/javascript/xml/CVS/Entries
+A	lib/rhino/src/mozilla/js/rhino/src/org/mozilla/javascript/xml/CVS/Repository
+A	lib/rhino/src/mozilla/js/rhino/src/org/mozilla/javascript/xml/CVS/Root
+R072	lib/rhino/src/org/mozilla/javascript/xml/XMLLib.java	lib/rhino/src/mozilla/js/rhino/src/org/mozilla/javascript/xml/XMLLib.java
+R059	lib/rhino/src/org/mozilla/javascript/xml/XMLObject.java	lib/rhino/src/mozilla/js/rhino/src/org/mozilla/javascript/xml/XMLObject.java
+A	lib/rhino/src/mozilla/js/rhino/testsrc/CVS/Entries
+A	lib/rhino/src/mozilla/js/rhino/testsrc/CVS/Entries.Log
+A	lib/rhino/src/mozilla/js/rhino/testsrc/CVS/Repository
+A	lib/rhino/src/mozilla/js/rhino/testsrc/CVS/Root
+A	lib/rhino/src/mozilla/js/rhino/testsrc/base.skip
+A	lib/rhino/src/mozilla/js/rhino/testsrc/benchmarks/CVS/Entries
+A	lib/rhino/src/mozilla/js/rhino/testsrc/benchmarks/CVS/Entries.Log
+A	lib/rhino/src/mozilla/js/rhino/testsrc/benchmarks/CVS/Repository
+A	lib/rhino/src/mozilla/js/rhino/testsrc/benchmarks/CVS/Root
+A	lib/rhino/src/mozilla/js/rhino/testsrc/benchmarks/v8/CVS/Entries
+A	lib/rhino/src/mozilla/js/rhino/testsrc/benchmarks/v8/CVS/Repository
+A	lib/rhino/src/mozilla/js/rhino/testsrc/benchmarks/v8/CVS/Root
+A	lib/rhino/src/mozilla/js/rhino/testsrc/benchmarks/v8/base.js
+A	lib/rhino/src/mozilla/js/rhino/testsrc/benchmarks/v8/crypto.js
+A	lib/rhino/src/mozilla/js/rhino/testsrc/benchmarks/v8/deltablue.js
+A	lib/rhino/src/mozilla/js/rhino/testsrc/benchmarks/v8/earley-boyer.js
+A	lib/rhino/src/mozilla/js/rhino/testsrc/benchmarks/v8/raytrace.js
+A	lib/rhino/src/mozilla/js/rhino/testsrc/benchmarks/v8/regexp.js
+A	lib/rhino/src/mozilla/js/rhino/testsrc/benchmarks/v8/richards.js
+A	lib/rhino/src/mozilla/js/rhino/testsrc/benchmarks/v8/run.js
+A	lib/rhino/src/mozilla/js/rhino/testsrc/benchmarks/v8/splay.js
+A	lib/rhino/src/mozilla/js/rhino/testsrc/build.xml
+A	lib/rhino/src/mozilla/js/rhino/testsrc/doctests/368019.doctest
+A	lib/rhino/src/mozilla/js/rhino/testsrc/doctests/393794.doctest
+A	lib/rhino/src/mozilla/js/rhino/testsrc/doctests/413838.doctest
+A	lib/rhino/src/mozilla/js/rhino/testsrc/doctests/429121.doctest
+A	lib/rhino/src/mozilla/js/rhino/testsrc/doctests/433878.doctest
+A	lib/rhino/src/mozilla/js/rhino/testsrc/doctests/434041.doctest
+A	lib/rhino/src/mozilla/js/rhino/testsrc/doctests/439530.doctest
+A	lib/rhino/src/mozilla/js/rhino/testsrc/doctests/441417.doctest
+A	lib/rhino/src/mozilla/js/rhino/testsrc/doctests/442922.doctest
+A	lib/rhino/src/mozilla/js/rhino/testsrc/doctests/467396.doctest
+A	lib/rhino/src/mozilla/js/rhino/testsrc/doctests/473761.doctest
+A	lib/rhino/src/mozilla/js/rhino/testsrc/doctests/477233.doctest
+A	lib/rhino/src/mozilla/js/rhino/testsrc/doctests/480758.doctest
+A	lib/rhino/src/mozilla/js/rhino/testsrc/doctests/CVS/Entries
+A	lib/rhino/src/mozilla/js/rhino/testsrc/doctests/CVS/Repository
+A	lib/rhino/src/mozilla/js/rhino/testsrc/doctests/CVS/Root
+A	lib/rhino/src/mozilla/js/rhino/testsrc/doctests/Counter.doctest
+A	lib/rhino/src/mozilla/js/rhino/testsrc/doctests/Matrix.doctest
+A	lib/rhino/src/mozilla/js/rhino/testsrc/doctests/array.isarray.doctest
+A	lib/rhino/src/mozilla/js/rhino/testsrc/doctests/array.length.doctest
+A	lib/rhino/src/mozilla/js/rhino/testsrc/doctests/arrays.doctest
+A	lib/rhino/src/mozilla/js/rhino/testsrc/doctests/canonicalize.doctest
+A	lib/rhino/src/mozilla/js/rhino/testsrc/doctests/controlchars.doctest
+A	lib/rhino/src/mozilla/js/rhino/testsrc/doctests/date.parse.doctest
+A	lib/rhino/src/mozilla/js/rhino/testsrc/doctests/date.toisostring.doctest
+A	lib/rhino/src/mozilla/js/rhino/testsrc/doctests/date.tojson.doctest
+A	lib/rhino/src/mozilla/js/rhino/testsrc/doctests/eval.doctest
+A	lib/rhino/src/mozilla/js/rhino/testsrc/doctests/function.bind.doctest
+A	lib/rhino/src/mozilla/js/rhino/testsrc/doctests/iterable.doctest
+A	lib/rhino/src/mozilla/js/rhino/testsrc/doctests/iteratorKeys.doctest
+A	lib/rhino/src/mozilla/js/rhino/testsrc/doctests/object.create.doctest
+A	lib/rhino/src/mozilla/js/rhino/testsrc/doctests/object.defineproperties.doctest
+A	lib/rhino/src/mozilla/js/rhino/testsrc/doctests/object.defineproperty.doctest
+A	lib/rhino/src/mozilla/js/rhino/testsrc/doctests/object.extensible.doctest
+A	lib/rhino/src/mozilla/js/rhino/testsrc/doctests/object.freeze.doctest
+A	lib/rhino/src/mozilla/js/rhino/testsrc/doctests/object.getownpropertydescriptor.doctest
+A	lib/rhino/src/mozilla/js/rhino/testsrc/doctests/object.getownpropertynames.doctest
+A	lib/rhino/src/mozilla/js/rhino/testsrc/doctests/object.getprototypeof.doctest
+A	lib/rhino/src/mozilla/js/rhino/testsrc/doctests/object.isfrozen.doctest
+A	lib/rhino/src/mozilla/js/rhino/testsrc/doctests/object.issealed.doctest
+A	lib/rhino/src/mozilla/js/rhino/testsrc/doctests/object.keys.doctest
+A	lib/rhino/src/mozilla/js/rhino/testsrc/doctests/object.seal.doctest
+A	lib/rhino/src/mozilla/js/rhino/testsrc/doctests/serialize.doctest
+A	lib/rhino/src/mozilla/js/rhino/testsrc/doctests/string.trim.doctest
+A	lib/rhino/src/mozilla/js/rhino/testsrc/doctests/tail-call-in-try.doctest
+A	lib/rhino/src/mozilla/js/rhino/testsrc/doctests/test2.doctest
+A	lib/rhino/src/mozilla/js/rhino/testsrc/doctests/util.js
+A	lib/rhino/src/mozilla/js/rhino/testsrc/doctests/whitespace.doctest
+A	lib/rhino/src/mozilla/js/rhino/testsrc/doctests/xmlOptions.doctest
+A	lib/rhino/src/mozilla/js/rhino/testsrc/jstests/420012.jstest
+A	lib/rhino/src/mozilla/js/rhino/testsrc/jstests/437988.jstest
+A	lib/rhino/src/mozilla/js/rhino/testsrc/jstests/CVS/Entries
+A	lib/rhino/src/mozilla/js/rhino/testsrc/jstests/CVS/Repository
+A	lib/rhino/src/mozilla/js/rhino/testsrc/jstests/CVS/Root
+A	lib/rhino/src/mozilla/js/rhino/testsrc/jstests/destructuringLvalue.jstest
+A	lib/rhino/src/mozilla/js/rhino/testsrc/opt-1.tests
+A	lib/rhino/src/mozilla/js/rhino/testsrc/opt0.tests
+A	lib/rhino/src/mozilla/js/rhino/testsrc/opt1.skip
+A	lib/rhino/src/mozilla/js/rhino/testsrc/opt9.tests
+A	lib/rhino/src/mozilla/js/rhino/testsrc/org/CVS/Entries
+A	lib/rhino/src/mozilla/js/rhino/testsrc/org/CVS/Entries.Log
+A	lib/rhino/src/mozilla/js/rhino/testsrc/org/CVS/Repository
+A	lib/rhino/src/mozilla/js/rhino/testsrc/org/CVS/Root
+A	lib/rhino/src/mozilla/js/rhino/testsrc/org/mozilla/CVS/Entries
+A	lib/rhino/src/mozilla/js/rhino/testsrc/org/mozilla/CVS/Entries.Log
+A	lib/rhino/src/mozilla/js/rhino/testsrc/org/mozilla/CVS/Repository
+A	lib/rhino/src/mozilla/js/rhino/testsrc/org/mozilla/CVS/Root
+A	lib/rhino/src/mozilla/js/rhino/testsrc/org/mozilla/javascript/CVS/Entries
+A	lib/rhino/src/mozilla/js/rhino/testsrc/org/mozilla/javascript/CVS/Entries.Log
+A	lib/rhino/src/mozilla/js/rhino/testsrc/org/mozilla/javascript/CVS/Repository
+A	lib/rhino/src/mozilla/js/rhino/testsrc/org/mozilla/javascript/CVS/Root
+A	lib/rhino/src/mozilla/js/rhino/testsrc/org/mozilla/javascript/drivers/CVS/Entries
+A	lib/rhino/src/mozilla/js/rhino/testsrc/org/mozilla/javascript/drivers/CVS/Repository
+A	lib/rhino/src/mozilla/js/rhino/testsrc/org/mozilla/javascript/drivers/CVS/Root
+A	lib/rhino/src/mozilla/js/rhino/testsrc/org/mozilla/javascript/drivers/JsDriver.java
+A	lib/rhino/src/mozilla/js/rhino/testsrc/org/mozilla/javascript/drivers/JsTestsBase.java
+A	lib/rhino/src/mozilla/js/rhino/testsrc/org/mozilla/javascript/drivers/ShellTest.java
+A	lib/rhino/src/mozilla/js/rhino/testsrc/org/mozilla/javascript/drivers/StandardTests.java
+A	lib/rhino/src/mozilla/js/rhino/testsrc/org/mozilla/javascript/drivers/TestUtils.java
+A	lib/rhino/src/mozilla/js/rhino/testsrc/org/mozilla/javascript/drivers/results.html
+A	lib/rhino/src/mozilla/js/rhino/testsrc/org/mozilla/javascript/testing/CVS/Entries
+A	lib/rhino/src/mozilla/js/rhino/testsrc/org/mozilla/javascript/testing/CVS/Repository
+A	lib/rhino/src/mozilla/js/rhino/testsrc/org/mozilla/javascript/testing/CVS/Root
+A	lib/rhino/src/mozilla/js/rhino/testsrc/org/mozilla/javascript/testing/TestErrorReporter.java
+A	lib/rhino/src/mozilla/js/rhino/testsrc/org/mozilla/javascript/tests/ApplyOnPrimitiveNumberTest.java
+A	lib/rhino/src/mozilla/js/rhino/testsrc/org/mozilla/javascript/tests/ArrayConcatTest.java
+A	lib/rhino/src/mozilla/js/rhino/testsrc/org/mozilla/javascript/tests/Bug409702Test.java
+A	lib/rhino/src/mozilla/js/rhino/testsrc/org/mozilla/javascript/tests/Bug412433Test.java
+A	lib/rhino/src/mozilla/js/rhino/testsrc/org/mozilla/javascript/tests/Bug419940Test.java
+A	lib/rhino/src/mozilla/js/rhino/testsrc/org/mozilla/javascript/tests/Bug421071Test.java
+A	lib/rhino/src/mozilla/js/rhino/testsrc/org/mozilla/javascript/tests/Bug448816Test.java
+A	lib/rhino/src/mozilla/js/rhino/testsrc/org/mozilla/javascript/tests/Bug467396Test.java
+A	lib/rhino/src/mozilla/js/rhino/testsrc/org/mozilla/javascript/tests/Bug482203.java
+A	lib/rhino/src/mozilla/js/rhino/testsrc/org/mozilla/javascript/tests/Bug492525Test.java
+A	lib/rhino/src/mozilla/js/rhino/testsrc/org/mozilla/javascript/tests/Bug496585.java
+A	lib/rhino/src/mozilla/js/rhino/testsrc/org/mozilla/javascript/tests/CVS/Entries
+A	lib/rhino/src/mozilla/js/rhino/testsrc/org/mozilla/javascript/tests/CVS/Entries.Log
+A	lib/rhino/src/mozilla/js/rhino/testsrc/org/mozilla/javascript/tests/CVS/Repository
+A	lib/rhino/src/mozilla/js/rhino/testsrc/org/mozilla/javascript/tests/CVS/Root
+A	lib/rhino/src/mozilla/js/rhino/testsrc/org/mozilla/javascript/tests/ClassShutterExceptionTest.java
+A	lib/rhino/src/mozilla/js/rhino/testsrc/org/mozilla/javascript/tests/ContextFactoryTest.java
+A	lib/rhino/src/mozilla/js/rhino/testsrc/org/mozilla/javascript/tests/ContinuationsApiTest.java
+A	lib/rhino/src/mozilla/js/rhino/testsrc/org/mozilla/javascript/tests/CustomSetterAcceptNullScriptableTest.java
+A	lib/rhino/src/mozilla/js/rhino/testsrc/org/mozilla/javascript/tests/DefineClassTest.java
+A	lib/rhino/src/mozilla/js/rhino/testsrc/org/mozilla/javascript/tests/DefineFunctionPropertiesTest.java
+A	lib/rhino/src/mozilla/js/rhino/testsrc/org/mozilla/javascript/tests/DeletePropertyTest.java
+A	lib/rhino/src/mozilla/js/rhino/testsrc/org/mozilla/javascript/tests/DoctestsTest.java
+A	lib/rhino/src/mozilla/js/rhino/testsrc/org/mozilla/javascript/tests/Evaluator.java
+A	lib/rhino/src/mozilla/js/rhino/testsrc/org/mozilla/javascript/tests/GeneratedClassNameTest.java
+A	lib/rhino/src/mozilla/js/rhino/testsrc/org/mozilla/javascript/tests/GeneratedMethodNameTest.java
+A	lib/rhino/src/mozilla/js/rhino/testsrc/org/mozilla/javascript/tests/GlobalParseXTest.java
+A	lib/rhino/src/mozilla/js/rhino/testsrc/org/mozilla/javascript/tests/JavaAcessibilityTest.java
+A	lib/rhino/src/mozilla/js/rhino/testsrc/org/mozilla/javascript/tests/JsTestsTest.java
+A	lib/rhino/src/mozilla/js/rhino/testsrc/org/mozilla/javascript/tests/MozillaSuiteTest.java
+A	lib/rhino/src/mozilla/js/rhino/testsrc/org/mozilla/javascript/tests/NativeArrayTest.java
+A	lib/rhino/src/mozilla/js/rhino/testsrc/org/mozilla/javascript/tests/NativeStringTest.java
+A	lib/rhino/src/mozilla/js/rhino/testsrc/org/mozilla/javascript/tests/ObserveInstructionCountTest.java
+A	lib/rhino/src/mozilla/js/rhino/testsrc/org/mozilla/javascript/tests/ParserTest.java
+A	lib/rhino/src/mozilla/js/rhino/testsrc/org/mozilla/javascript/tests/PrimitiveTypeScopeResolutionTest.java
+A	lib/rhino/src/mozilla/js/rhino/testsrc/org/mozilla/javascript/tests/PrivateAccessClass.java
+A	lib/rhino/src/mozilla/js/rhino/testsrc/org/mozilla/javascript/tests/StackTraceTest.java
+A	lib/rhino/src/mozilla/js/rhino/testsrc/org/mozilla/javascript/tests/StrictModeApiTest.java
+A	lib/rhino/src/mozilla/js/rhino/testsrc/org/mozilla/javascript/tests/TypeOfTest.java
+A	lib/rhino/src/mozilla/js/rhino/testsrc/org/mozilla/javascript/tests/Utils.java
+A	lib/rhino/src/mozilla/js/rhino/testsrc/org/mozilla/javascript/tests/conttest.js
+A	lib/rhino/src/mozilla/js/rhino/testsrc/org/mozilla/javascript/tests/es5/CVS/Entries
+A	lib/rhino/src/mozilla/js/rhino/testsrc/org/mozilla/javascript/tests/es5/CVS/Repository
+A	lib/rhino/src/mozilla/js/rhino/testsrc/org/mozilla/javascript/tests/es5/CVS/Root
+A	lib/rhino/src/mozilla/js/rhino/testsrc/org/mozilla/javascript/tests/es5/ObjectGetOwnPropertyDescriptorTest.java
+A	lib/rhino/src/mozilla/js/rhino/testsrc/org/mozilla/javascript/tests/es5/ObjectGetOwnPropertyNamesTest.java
+A	lib/rhino/src/mozilla/js/rhino/testsrc/org/mozilla/javascript/tests/es5/ObjectKeysTest.java
+A	lib/rhino/src/mozilla/js/rhino/testsrc/org/mozilla/javascript/tests/json/JsonLexerTest.java
+A	lib/rhino/src/mozilla/js/rhino/testsrc/org/mozilla/javascript/tests/json/JsonParserTest.java
+A	lib/rhino/src/mozilla/js/rhino/toolsrc/CVS/Entries
+A	lib/rhino/src/mozilla/js/rhino/toolsrc/CVS/Entries.Log
+A	lib/rhino/src/mozilla/js/rhino/toolsrc/CVS/Repository
+A	lib/rhino/src/mozilla/js/rhino/toolsrc/CVS/Root
+A	lib/rhino/src/mozilla/js/rhino/toolsrc/build.xml
+A	lib/rhino/src/mozilla/js/rhino/toolsrc/org/CVS/Entries
+A	lib/rhino/src/mozilla/js/rhino/toolsrc/org/CVS/Entries.Log
+A	lib/rhino/src/mozilla/js/rhino/toolsrc/org/CVS/Repository
+A	lib/rhino/src/mozilla/js/rhino/toolsrc/org/CVS/Root
+A	lib/rhino/src/mozilla/js/rhino/toolsrc/org/mozilla/CVS/Entries
+A	lib/rhino/src/mozilla/js/rhino/toolsrc/org/mozilla/CVS/Entries.Log
+A	lib/rhino/src/mozilla/js/rhino/toolsrc/org/mozilla/CVS/Repository
+A	lib/rhino/src/mozilla/js/rhino/toolsrc/org/mozilla/CVS/Root
+A	lib/rhino/src/mozilla/js/rhino/toolsrc/org/mozilla/javascript/CVS/Entries
+A	lib/rhino/src/mozilla/js/rhino/toolsrc/org/mozilla/javascript/CVS/Entries.Log
+A	lib/rhino/src/mozilla/js/rhino/toolsrc/org/mozilla/javascript/CVS/Repository
+A	lib/rhino/src/mozilla/js/rhino/toolsrc/org/mozilla/javascript/CVS/Root
+A	lib/rhino/src/mozilla/js/rhino/toolsrc/org/mozilla/javascript/tools/CVS/Entries
+A	lib/rhino/src/mozilla/js/rhino/toolsrc/org/mozilla/javascript/tools/CVS/Entries.Log
+A	lib/rhino/src/mozilla/js/rhino/toolsrc/org/mozilla/javascript/tools/CVS/Repository
+A	lib/rhino/src/mozilla/js/rhino/toolsrc/org/mozilla/javascript/tools/CVS/Root
+R088	lib/rhino/toolsrc/org/mozilla/javascript/tools/SourceReader.java	lib/rhino/src/mozilla/js/rhino/toolsrc/org/mozilla/javascript/tools/SourceReader.java
+R079	lib/rhino/toolsrc/org/mozilla/javascript/tools/ToolErrorReporter.java	lib/rhino/src/mozilla/js/rhino/toolsrc/org/mozilla/javascript/tools/ToolErrorReporter.java
+R100	lib/rhino/toolsrc/org/mozilla/javascript/tools/debugger/.cvsignore	lib/rhino/src/mozilla/js/rhino/toolsrc/org/mozilla/javascript/tools/debugger/.cvsignore
+A	lib/rhino/src/mozilla/js/rhino/toolsrc/org/mozilla/javascript/tools/debugger/CVS/Entries
+A	lib/rhino/src/mozilla/js/rhino/toolsrc/org/mozilla/javascript/tools/debugger/CVS/Entries.Log
+A	lib/rhino/src/mozilla/js/rhino/toolsrc/org/mozilla/javascript/tools/debugger/CVS/Repository
+A	lib/rhino/src/mozilla/js/rhino/toolsrc/org/mozilla/javascript/tools/debugger/CVS/Root
+R096	lib/rhino/toolsrc/org/mozilla/javascript/tools/debugger/Dim.java	lib/rhino/src/mozilla/js/rhino/toolsrc/org/mozilla/javascript/tools/debugger/Dim.java
+A	lib/rhino/src/mozilla/js/rhino/toolsrc/org/mozilla/javascript/tools/debugger/GuiCallback.java
+R083	lib/rhino/toolsrc/org/mozilla/javascript/tools/debugger/Main.java	lib/rhino/src/mozilla/js/rhino/toolsrc/org/mozilla/javascript/tools/debugger/Main.java
+A	lib/rhino/src/mozilla/js/rhino/toolsrc/org/mozilla/javascript/tools/debugger/ScopeProvider.java
+R097	lib/rhino/toolsrc/org/mozilla/javascript/tools/debugger/SwingGui.java	lib/rhino/src/mozilla/js/rhino/toolsrc/org/mozilla/javascript/tools/debugger/SwingGui.java
+R068	lib/rhino/toolsrc/org/mozilla/javascript/tools/debugger/build.xml	lib/rhino/src/mozilla/js/rhino/toolsrc/org/mozilla/javascript/tools/debugger/build.xml
+R100	lib/rhino/toolsrc/org/mozilla/javascript/tools/debugger/downloaded/.cvsignore	lib/rhino/src/mozilla/js/rhino/toolsrc/org/mozilla/javascript/tools/debugger/downloaded/.cvsignore
+A	lib/rhino/src/mozilla/js/rhino/toolsrc/org/mozilla/javascript/tools/debugger/downloaded/CVS/Entries
+A	lib/rhino/src/mozilla/js/rhino/toolsrc/org/mozilla/javascript/tools/debugger/downloaded/CVS/Repository
+A	lib/rhino/src/mozilla/js/rhino/toolsrc/org/mozilla/javascript/tools/debugger/downloaded/CVS/Root
+R060	lib/rhino/toolsrc/org/mozilla/javascript/tools/debugger/test.js	lib/rhino/src/mozilla/js/rhino/toolsrc/org/mozilla/javascript/tools/debugger/test.js
+R096	lib/rhino/toolsrc/org/mozilla/javascript/tools/debugger/treetable/AbstractCellEditor.java	lib/rhino/src/mozilla/js/rhino/toolsrc/org/mozilla/javascript/tools/debugger/treetable/AbstractCellEditor.java
+A	lib/rhino/src/mozilla/js/rhino/toolsrc/org/mozilla/javascript/tools/debugger/treetable/CVS/Entries
+A	lib/rhino/src/mozilla/js/rhino/toolsrc/org/mozilla/javascript/tools/debugger/treetable/CVS/Repository
+A	lib/rhino/src/mozilla/js/rhino/toolsrc/org/mozilla/javascript/tools/debugger/treetable/CVS/Root
+R100	lib/rhino/toolsrc/org/mozilla/javascript/tools/debugger/treetable/JTreeTable.java	lib/rhino/src/mozilla/js/rhino/toolsrc/org/mozilla/javascript/tools/debugger/treetable/JTreeTable.java
+R100	lib/rhino/toolsrc/org/mozilla/javascript/tools/debugger/treetable/TreeTableModel.java	lib/rhino/src/mozilla/js/rhino/toolsrc/org/mozilla/javascript/tools/debugger/treetable/TreeTableModel.java
+R100	lib/rhino/toolsrc/org/mozilla/javascript/tools/debugger/treetable/TreeTableModelAdapter.java	lib/rhino/src/mozilla/js/rhino/toolsrc/org/mozilla/javascript/tools/debugger/treetable/TreeTableModelAdapter.java
+A	lib/rhino/src/mozilla/js/rhino/toolsrc/org/mozilla/javascript/tools/idswitch/CVS/Entries
+A	lib/rhino/src/mozilla/js/rhino/toolsrc/org/mozilla/javascript/tools/idswitch/CVS/Repository
+A	lib/rhino/src/mozilla/js/rhino/toolsrc/org/mozilla/javascript/tools/idswitch/CVS/Root
+R076	lib/rhino/toolsrc/org/mozilla/javascript/tools/idswitch/CodePrinter.java	lib/rhino/src/mozilla/js/rhino/toolsrc/org/mozilla/javascript/tools/idswitch/CodePrinter.java
+R073	lib/rhino/toolsrc/org/mozilla/javascript/tools/idswitch/FileBody.java	lib/rhino/src/mozilla/js/rhino/toolsrc/org/mozilla/javascript/tools/idswitch/FileBody.java
+A	lib/rhino/src/mozilla/js/rhino/toolsrc/org/mozilla/javascript/tools/idswitch/IdValuePair.java
+R092	lib/rhino/toolsrc/org/mozilla/javascript/tools/idswitch/Main.java	lib/rhino/src/mozilla/js/rhino/toolsrc/org/mozilla/javascript/tools/idswitch/Main.java
+R076	lib/rhino/toolsrc/org/mozilla/javascript/tools/idswitch/README	lib/rhino/src/mozilla/js/rhino/toolsrc/org/mozilla/javascript/tools/idswitch/README
+R090	lib/rhino/toolsrc/org/mozilla/javascript/tools/idswitch/SwitchGenerator.java	lib/rhino/src/mozilla/js/rhino/toolsrc/org/mozilla/javascript/tools/idswitch/SwitchGenerator.java
+A	lib/rhino/src/mozilla/js/rhino/toolsrc/org/mozilla/javascript/tools/jsc/CVS/Entries
+A	lib/rhino/src/mozilla/js/rhino/toolsrc/org/mozilla/javascript/tools/jsc/CVS/Repository
+A	lib/rhino/src/mozilla/js/rhino/toolsrc/org/mozilla/javascript/tools/jsc/CVS/Root
+R088	lib/rhino/toolsrc/org/mozilla/javascript/tools/jsc/Main.java	lib/rhino/src/mozilla/js/rhino/toolsrc/org/mozilla/javascript/tools/jsc/Main.java
+A	lib/rhino/src/mozilla/js/rhino/toolsrc/org/mozilla/javascript/tools/resources/CVS/Entries
+A	lib/rhino/src/mozilla/js/rhino/toolsrc/org/mozilla/javascript/tools/resources/CVS/Repository
+A	lib/rhino/src/mozilla/js/rhino/toolsrc/org/mozilla/javascript/tools/resources/CVS/Root
+R083	lib/rhino/toolsrc/org/mozilla/javascript/tools/resources/Messages.properties	lib/rhino/src/mozilla/js/rhino/toolsrc/org/mozilla/javascript/tools/resources/Messages.properties
+A	lib/rhino/src/mozilla/js/rhino/toolsrc/org/mozilla/javascript/tools/shell/CVS/Entries
+A	lib/rhino/src/mozilla/js/rhino/toolsrc/org/mozilla/javascript/tools/shell/CVS/Repository
+A	lib/rhino/src/mozilla/js/rhino/toolsrc/org/mozilla/javascript/tools/shell/CVS/Root
+R082	lib/rhino/toolsrc/org/mozilla/javascript/tools/shell/ConsoleTextArea.java	lib/rhino/src/mozilla/js/rhino/toolsrc/org/mozilla/javascript/tools/shell/ConsoleTextArea.java
+R064	lib/rhino/toolsrc/org/mozilla/javascript/tools/shell/Environment.java	lib/rhino/src/mozilla/js/rhino/toolsrc/org/mozilla/javascript/tools/shell/Environment.java
+R091	lib/rhino/toolsrc/org/mozilla/javascript/tools/shell/Global.java	lib/rhino/src/mozilla/js/rhino/toolsrc/org/mozilla/javascript/tools/shell/Global.java
+R081	lib/rhino/toolsrc/org/mozilla/javascript/tools/shell/JSConsole.java	lib/rhino/src/mozilla/js/rhino/toolsrc/org/mozilla/javascript/tools/shell/JSConsole.java
+R079	lib/rhino/toolsrc/org/mozilla/javascript/tools/shell/JavaPolicySecurity.java	lib/rhino/src/mozilla/js/rhino/toolsrc/org/mozilla/javascript/tools/shell/JavaPolicySecurity.java
+R057	lib/rhino/toolsrc/org/mozilla/javascript/tools/shell/Main.java	lib/rhino/src/mozilla/js/rhino/toolsrc/org/mozilla/javascript/tools/shell/Main.java
+A	lib/rhino/src/mozilla/js/rhino/toolsrc/org/mozilla/javascript/tools/shell/ParsedContentType.java
+A	lib/rhino/src/mozilla/js/rhino/toolsrc/org/mozilla/javascript/tools/shell/QuitAction.java
+A	lib/rhino/src/mozilla/js/rhino/toolsrc/org/mozilla/javascript/tools/shell/SecurityProxy.java
+R059	lib/rhino/toolsrc/org/mozilla/javascript/tools/shell/ShellContextFactory.java	lib/rhino/src/mozilla/js/rhino/toolsrc/org/mozilla/javascript/tools/shell/ShellContextFactory.java
+A	lib/rhino/src/mozilla/js/rhino/toolsrc/org/mozilla/javascript/tools/shell/ShellLine.java
+A	lib/rhino/src/mozilla/js/rhino/xmlimplsrc/CVS/Entries
+A	lib/rhino/src/mozilla/js/rhino/xmlimplsrc/CVS/Entries.Log
+A	lib/rhino/src/mozilla/js/rhino/xmlimplsrc/CVS/Repository
+A	lib/rhino/src/mozilla/js/rhino/xmlimplsrc/CVS/Root
+A	lib/rhino/src/mozilla/js/rhino/xmlimplsrc/build.xml
+A	lib/rhino/src/mozilla/js/rhino/xmlimplsrc/org/CVS/Entries
+A	lib/rhino/src/mozilla/js/rhino/xmlimplsrc/org/CVS/Entries.Log
+A	lib/rhino/src/mozilla/js/rhino/xmlimplsrc/org/CVS/Repository
+A	lib/rhino/src/mozilla/js/rhino/xmlimplsrc/org/CVS/Root
+A	lib/rhino/src/mozilla/js/rhino/xmlimplsrc/org/mozilla/CVS/Entries
+A	lib/rhino/src/mozilla/js/rhino/xmlimplsrc/org/mozilla/CVS/Entries.Log
+A	lib/rhino/src/mozilla/js/rhino/xmlimplsrc/org/mozilla/CVS/Repository
+A	lib/rhino/src/mozilla/js/rhino/xmlimplsrc/org/mozilla/CVS/Root
+A	lib/rhino/src/mozilla/js/rhino/xmlimplsrc/org/mozilla/javascript/CVS/Entries
+A	lib/rhino/src/mozilla/js/rhino/xmlimplsrc/org/mozilla/javascript/CVS/Entries.Log
+A	lib/rhino/src/mozilla/js/rhino/xmlimplsrc/org/mozilla/javascript/CVS/Repository
+A	lib/rhino/src/mozilla/js/rhino/xmlimplsrc/org/mozilla/javascript/CVS/Root
+A	lib/rhino/src/mozilla/js/rhino/xmlimplsrc/org/mozilla/javascript/xmlimpl/CVS/Entries
+A	lib/rhino/src/mozilla/js/rhino/xmlimplsrc/org/mozilla/javascript/xmlimpl/CVS/Repository
+A	lib/rhino/src/mozilla/js/rhino/xmlimplsrc/org/mozilla/javascript/xmlimpl/CVS/Root
+R086	lib/rhino/xmlimplsrc/org/mozilla/javascript/xmlimpl/Namespace.java	lib/rhino/src/mozilla/js/rhino/xmlimplsrc/org/mozilla/javascript/xmlimpl/Namespace.java
+R086	lib/rhino/xmlimplsrc/org/mozilla/javascript/xmlimpl/QName.java	lib/rhino/src/mozilla/js/rhino/xmlimplsrc/org/mozilla/javascript/xmlimpl/QName.java
+R091	lib/rhino/xmlimplsrc/org/mozilla/javascript/xmlimpl/XML.java	lib/rhino/src/mozilla/js/rhino/xmlimplsrc/org/mozilla/javascript/xmlimpl/XML.java
+R084	lib/rhino/xmlimplsrc/org/mozilla/javascript/xmlimpl/XMLCtor.java	lib/rhino/src/mozilla/js/rhino/xmlimplsrc/org/mozilla/javascript/xmlimpl/XMLCtor.java
+R090	lib/rhino/xmlimplsrc/org/mozilla/javascript/xmlimpl/XMLLibImpl.java	lib/rhino/src/mozilla/js/rhino/xmlimplsrc/org/mozilla/javascript/xmlimpl/XMLLibImpl.java
+R087	lib/rhino/xmlimplsrc/org/mozilla/javascript/xmlimpl/XMLList.java	lib/rhino/src/mozilla/js/rhino/xmlimplsrc/org/mozilla/javascript/xmlimpl/XMLList.java
+R089	lib/rhino/xmlimplsrc/org/mozilla/javascript/xmlimpl/XMLName.java	lib/rhino/src/mozilla/js/rhino/xmlimplsrc/org/mozilla/javascript/xmlimpl/XMLName.java
+R092	lib/rhino/xmlimplsrc/org/mozilla/javascript/xmlimpl/XMLObjectImpl.java	lib/rhino/src/mozilla/js/rhino/xmlimplsrc/org/mozilla/javascript/xmlimpl/XMLObjectImpl.java
+R063	lib/rhino/xmlimplsrc/org/mozilla/javascript/xmlimpl/XMLWithScope.java	lib/rhino/src/mozilla/js/rhino/xmlimplsrc/org/mozilla/javascript/xmlimpl/XMLWithScope.java
+R094	lib/rhino/xmlimplsrc/org/mozilla/javascript/xmlimpl/XmlNode.java	lib/rhino/src/mozilla/js/rhino/xmlimplsrc/org/mozilla/javascript/xmlimpl/XmlNode.java
+R084	lib/rhino/xmlimplsrc/org/mozilla/javascript/xmlimpl/XmlProcessor.java	lib/rhino/src/mozilla/js/rhino/xmlimplsrc/org/mozilla/javascript/xmlimpl/XmlProcessor.java
 D	lib/rhino/src/org/mozilla/javascript/AttachJsDocs.java
-D	lib/rhino/src/org/mozilla/javascript/BaseFunction.java
-D	lib/rhino/src/org/mozilla/javascript/BoundFunction.java
 D	lib/rhino/src/org/mozilla/javascript/Callable.java
-D	lib/rhino/src/org/mozilla/javascript/ClassCache.java
-D	lib/rhino/src/org/mozilla/javascript/ClassShutter.java
-D	lib/rhino/src/org/mozilla/javascript/CodeGenerator.java
-D	lib/rhino/src/org/mozilla/javascript/CompilerEnvirons.java
 D	lib/rhino/src/org/mozilla/javascript/ConsString.java
-D	lib/rhino/src/org/mozilla/javascript/ConstProperties.java
-D	lib/rhino/src/org/mozilla/javascript/Context.java
 D	lib/rhino/src/org/mozilla/javascript/ContextAction.java
-D	lib/rhino/src/org/mozilla/javascript/ContextFactory.java
 D	lib/rhino/src/org/mozilla/javascript/ContextListener.java
-D	lib/rhino/src/org/mozilla/javascript/ContinuationPending.java
-D	lib/rhino/src/org/mozilla/javascript/DefaultErrorReporter.java
 D	lib/rhino/src/org/mozilla/javascript/DefiningClassLoader.java
-D	lib/rhino/src/org/mozilla/javascript/Delegator.java
-D	lib/rhino/src/org/mozilla/javascript/ErrorReporter.java
-D	lib/rhino/src/org/mozilla/javascript/Evaluator.java
-D	lib/rhino/src/org/mozilla/javascript/EvaluatorException.java
-D	lib/rhino/src/org/mozilla/javascript/Function.java
-D	lib/rhino/src/org/mozilla/javascript/FunctionObject.java
 D	lib/rhino/src/org/mozilla/javascript/GeneratedClassLoader.java
-D	lib/rhino/src/org/mozilla/javascript/IRFactory.java
-D	lib/rhino/src/org/mozilla/javascript/Icode.java
 D	lib/rhino/src/org/mozilla/javascript/IdFunctionCall.java
-D	lib/rhino/src/org/mozilla/javascript/IdFunctionObject.java
-D	lib/rhino/src/org/mozilla/javascript/IdScriptableObject.java
-D	lib/rhino/src/org/mozilla/javascript/ImporterTopLevel.java
 D	lib/rhino/src/org/mozilla/javascript/InterfaceAdapter.java
-D	lib/rhino/src/org/mozilla/javascript/InterpretedFunction.java
-D	lib/rhino/src/org/mozilla/javascript/Interpreter.java
-D	lib/rhino/src/org/mozilla/javascript/InterpreterData.java
-D	lib/rhino/src/org/mozilla/javascript/JavaAdapter.java
-D	lib/rhino/src/org/mozilla/javascript/JavaMembers.java
-D	lib/rhino/src/org/mozilla/javascript/JavaScriptException.java
-D	lib/rhino/src/org/mozilla/javascript/LazilyLoadedCtor.java
-D	lib/rhino/src/org/mozilla/javascript/MemberBox.java
-D	lib/rhino/src/org/mozilla/javascript/NativeArray.java
-D	lib/rhino/src/org/mozilla/javascript/NativeBoolean.java
-D	lib/rhino/src/org/mozilla/javascript/NativeCall.java
-D	lib/rhino/src/org/mozilla/javascript/NativeContinuation.java
-D	lib/rhino/src/org/mozilla/javascript/NativeDate.java
-D	lib/rhino/src/org/mozilla/javascript/NativeError.java
-D	lib/rhino/src/org/mozilla/javascript/NativeFunction.java
-D	lib/rhino/src/org/mozilla/javascript/NativeGenerator.java
-D	lib/rhino/src/org/mozilla/javascript/NativeGlobal.java
-D	lib/rhino/src/org/mozilla/javascript/NativeIterator.java
-D	lib/rhino/src/org/mozilla/javascript/NativeJSON.java
-D	lib/rhino/src/org/mozilla/javascript/NativeJavaArray.java
-D	lib/rhino/src/org/mozilla/javascript/NativeJavaClass.java
 D	lib/rhino/src/org/mozilla/javascript/NativeJavaConstructor.java
-D	lib/rhino/src/org/mozilla/javascript/NativeJavaMethod.java
-D	lib/rhino/src/org/mozilla/javascript/NativeJavaObject.java
-D	lib/rhino/src/org/mozilla/javascript/NativeJavaPackage.java
-D	lib/rhino/src/org/mozilla/javascript/NativeJavaTopPackage.java
-D	lib/rhino/src/org/mozilla/javascript/NativeMath.java
-D	lib/rhino/src/org/mozilla/javascript/NativeNumber.java
-D	lib/rhino/src/org/mozilla/javascript/NativeObject.java
-D	lib/rhino/src/org/mozilla/javascript/NativeScript.java
-D	lib/rhino/src/org/mozilla/javascript/NativeString.java
-D	lib/rhino/src/org/mozilla/javascript/NativeWith.java
-D	lib/rhino/src/org/mozilla/javascript/Node.java
-D	lib/rhino/src/org/mozilla/javascript/NodeTransformer.java
-D	lib/rhino/src/org/mozilla/javascript/Parser.java
-D	lib/rhino/src/org/mozilla/javascript/PolicySecurityController.java
 D	lib/rhino/src/org/mozilla/javascript/Ref.java
 D	lib/rhino/src/org/mozilla/javascript/RefCallable.java
 D	lib/rhino/src/org/mozilla/javascript/RegExpProxy.java
-D	lib/rhino/src/org/mozilla/javascript/RhinoException.java
 D	lib/rhino/src/org/mozilla/javascript/RhinoSecurityManager.java
 D	lib/rhino/src/org/mozilla/javascript/Script.java
-D	lib/rhino/src/org/mozilla/javascript/ScriptRuntime.java
 D	lib/rhino/src/org/mozilla/javascript/ScriptStackElement.java
-D	lib/rhino/src/org/mozilla/javascript/Scriptable.java
-D	lib/rhino/src/org/mozilla/javascript/ScriptableObject.java
-D	lib/rhino/src/org/mozilla/javascript/SecureCaller.java
-D	lib/rhino/src/org/mozilla/javascript/SecurityController.java
 D	lib/rhino/src/org/mozilla/javascript/SecurityUtilities.java
-D	lib/rhino/src/org/mozilla/javascript/SpecialRef.java
 D	lib/rhino/src/org/mozilla/javascript/Synchronizer.java
-D	lib/rhino/src/org/mozilla/javascript/Token.java
-D	lib/rhino/src/org/mozilla/javascript/TokenStream.java
 D	lib/rhino/src/org/mozilla/javascript/TopLevel.java
 D	lib/rhino/src/org/mozilla/javascript/Undefined.java
-D	lib/rhino/src/org/mozilla/javascript/VMBridge.java
-D	lib/rhino/src/org/mozilla/javascript/WrapFactory.java
 D	lib/rhino/src/org/mozilla/javascript/WrappedException.java
 D	lib/rhino/src/org/mozilla/javascript/Wrapper.java
-D	lib/rhino/src/org/mozilla/javascript/annotations/JSConstructor.java
-D	lib/rhino/src/org/mozilla/javascript/annotations/JSFunction.java
-D	lib/rhino/src/org/mozilla/javascript/annotations/JSGetter.java
-D	lib/rhino/src/org/mozilla/javascript/annotations/JSSetter.java
-D	lib/rhino/src/org/mozilla/javascript/annotations/JSStaticFunction.java
-D	lib/rhino/src/org/mozilla/javascript/ast/ArrayComprehension.java
-D	lib/rhino/src/org/mozilla/javascript/ast/ArrayComprehensionLoop.java
-D	lib/rhino/src/org/mozilla/javascript/ast/ArrayLiteral.java
 D	lib/rhino/src/org/mozilla/javascript/ast/Assignment.java
-D	lib/rhino/src/org/mozilla/javascript/ast/AstNode.java
-D	lib/rhino/src/org/mozilla/javascript/ast/AstRoot.java
 D	lib/rhino/src/org/mozilla/javascript/ast/Block.java
-D	lib/rhino/src/org/mozilla/javascript/ast/BreakStatement.java
-D	lib/rhino/src/org/mozilla/javascript/ast/CatchClause.java
-D	lib/rhino/src/org/mozilla/javascript/ast/Comment.java
-D	lib/rhino/src/org/mozilla/javascript/ast/ConditionalExpression.java
-D	lib/rhino/src/org/mozilla/javascript/ast/ContinueStatement.java
 D	lib/rhino/src/org/mozilla/javascript/ast/DestructuringForm.java
-D	lib/rhino/src/org/mozilla/javascript/ast/DoLoop.java
-D	lib/rhino/src/org/mozilla/javascript/ast/ElementGet.java
 D	lib/rhino/src/org/mozilla/javascript/ast/EmptyExpression.java
 D	lib/rhino/src/org/mozilla/javascript/ast/EmptyStatement.java
-D	lib/rhino/src/org/mozilla/javascript/ast/ErrorCollector.java
 D	lib/rhino/src/org/mozilla/javascript/ast/ErrorNode.java
-D	lib/rhino/src/org/mozilla/javascript/ast/ExpressionStatement.java
-D	lib/rhino/src/org/mozilla/javascript/ast/ForInLoop.java
-D	lib/rhino/src/org/mozilla/javascript/ast/ForLoop.java
-D	lib/rhino/src/org/mozilla/javascript/ast/FunctionCall.java
-D	lib/rhino/src/org/mozilla/javascript/ast/FunctionNode.java
 D	lib/rhino/src/org/mozilla/javascript/ast/GeneratorExpression.java
 D	lib/rhino/src/org/mozilla/javascript/ast/GeneratorExpressionLoop.java
-D	lib/rhino/src/org/mozilla/javascript/ast/IdeErrorReporter.java
-D	lib/rhino/src/org/mozilla/javascript/ast/IfStatement.java
-D	lib/rhino/src/org/mozilla/javascript/ast/InfixExpression.java
-D	lib/rhino/src/org/mozilla/javascript/ast/Jump.java
-D	lib/rhino/src/org/mozilla/javascript/ast/KeywordLiteral.java
-D	lib/rhino/src/org/mozilla/javascript/ast/Label.java
-D	lib/rhino/src/org/mozilla/javascript/ast/LabeledStatement.java
-D	lib/rhino/src/org/mozilla/javascript/ast/LetNode.java
 D	lib/rhino/src/org/mozilla/javascript/ast/Loop.java
-D	lib/rhino/src/org/mozilla/javascript/ast/Name.java
-D	lib/rhino/src/org/mozilla/javascript/ast/NewExpression.java
 D	lib/rhino/src/org/mozilla/javascript/ast/NodeVisitor.java
-D	lib/rhino/src/org/mozilla/javascript/ast/NumberLiteral.java
-D	lib/rhino/src/org/mozilla/javascript/ast/ObjectLiteral.java
-D	lib/rhino/src/org/mozilla/javascript/ast/ObjectProperty.java
-D	lib/rhino/src/org/mozilla/javascript/ast/ParenthesizedExpression.java
-D	lib/rhino/src/org/mozilla/javascript/ast/ParseProblem.java
-D	lib/rhino/src/org/mozilla/javascript/ast/PropertyGet.java
 D	lib/rhino/src/org/mozilla/javascript/ast/RegExpLiteral.java
-D	lib/rhino/src/org/mozilla/javascript/ast/ReturnStatement.java
-D	lib/rhino/src/org/mozilla/javascript/ast/Scope.java
-D	lib/rhino/src/org/mozilla/javascript/ast/ScriptNode.java
-D	lib/rhino/src/org/mozilla/javascript/ast/StringLiteral.java
-D	lib/rhino/src/org/mozilla/javascript/ast/SwitchCase.java
-D	lib/rhino/src/org/mozilla/javascript/ast/SwitchStatement.java
-D	lib/rhino/src/org/mozilla/javascript/ast/Symbol.java
-D	lib/rhino/src/org/mozilla/javascript/ast/ThrowStatement.java
-D	lib/rhino/src/org/mozilla/javascript/ast/TryStatement.java
-D	lib/rhino/src/org/mozilla/javascript/ast/UnaryExpression.java
-D	lib/rhino/src/org/mozilla/javascript/ast/VariableDeclaration.java
-D	lib/rhino/src/org/mozilla/javascript/ast/VariableInitializer.java
-D	lib/rhino/src/org/mozilla/javascript/ast/WhileLoop.java
-D	lib/rhino/src/org/mozilla/javascript/ast/WithStatement.java
-D	lib/rhino/src/org/mozilla/javascript/ast/XmlDotQuery.java
-D	lib/rhino/src/org/mozilla/javascript/ast/XmlElemRef.java
-D	lib/rhino/src/org/mozilla/javascript/ast/XmlExpression.java
 D	lib/rhino/src/org/mozilla/javascript/ast/XmlFragment.java
-D	lib/rhino/src/org/mozilla/javascript/ast/XmlLiteral.java
-D	lib/rhino/src/org/mozilla/javascript/ast/XmlMemberGet.java
-D	lib/rhino/src/org/mozilla/javascript/ast/XmlPropRef.java
-D	lib/rhino/src/org/mozilla/javascript/ast/XmlRef.java
 D	lib/rhino/src/org/mozilla/javascript/ast/XmlString.java
 D	lib/rhino/src/org/mozilla/javascript/ast/Yield.java
 D	lib/rhino/src/org/mozilla/javascript/commonjs/module/ModuleScope.java
@@ -600,102 +1047,37 @@ D	lib/rhino/src/org/mozilla/javascript/commonjs/module/provider/UrlConnectionExp
 D	lib/rhino/src/org/mozilla/javascript/commonjs/module/provider/UrlConnectionSecurityDomainProvider.java
 D	lib/rhino/src/org/mozilla/javascript/commonjs/module/provider/UrlModuleSourceProvider.java
 D	lib/rhino/src/org/mozilla/javascript/commonjs/module/provider/package.html
-D	lib/rhino/src/org/mozilla/javascript/debug/DebugFrame.java
 D	lib/rhino/src/org/mozilla/javascript/debug/DebuggableObject.java
-D	lib/rhino/src/org/mozilla/javascript/debug/DebuggableScript.java
 D	lib/rhino/src/org/mozilla/javascript/debug/Debugger.java
-D	lib/rhino/src/org/mozilla/javascript/jdk13/VMBridge_jdk13.java
-D	lib/rhino/src/org/mozilla/javascript/jdk15/VMBridge_jdk15.java
-D	lib/rhino/src/org/mozilla/javascript/json/JsonParser.java
-D	lib/rhino/src/org/mozilla/javascript/optimizer/Block.java
-D	lib/rhino/src/org/mozilla/javascript/optimizer/ClassCompiler.java
-D	lib/rhino/src/org/mozilla/javascript/optimizer/Codegen.java
-D	lib/rhino/src/org/mozilla/javascript/optimizer/OptFunctionNode.java
-D	lib/rhino/src/org/mozilla/javascript/optimizer/OptRuntime.java
-D	lib/rhino/src/org/mozilla/javascript/optimizer/OptTransformer.java
-D	lib/rhino/src/org/mozilla/javascript/optimizer/Optimizer.java
-D	lib/rhino/src/org/mozilla/javascript/regexp/NativeRegExp.java
-D	lib/rhino/src/org/mozilla/javascript/regexp/NativeRegExpCtor.java
-D	lib/rhino/src/org/mozilla/javascript/regexp/RegExpImpl.java
 D	lib/rhino/src/org/mozilla/javascript/regexp/SubString.java
-D	lib/rhino/src/org/mozilla/javascript/resources/Messages.properties
 D	lib/rhino/src/org/mozilla/javascript/resources/Messages_fr.properties
-D	lib/rhino/src/org/mozilla/javascript/serialize/ScriptableInputStream.java
-D	lib/rhino/src/org/mozilla/javascript/serialize/ScriptableOutputStream.java
 D	lib/rhino/src/org/mozilla/javascript/v8dtoa/CachedPowers.java
 D	lib/rhino/src/org/mozilla/javascript/v8dtoa/DiyFp.java
 D	lib/rhino/src/org/mozilla/javascript/v8dtoa/DoubleHelper.java
 D	lib/rhino/src/org/mozilla/javascript/v8dtoa/FastDtoa.java
 D	lib/rhino/src/org/mozilla/javascript/v8dtoa/FastDtoaBuilder.java
-D	lib/rhino/src/org/mozilla/javascript/xml/XMLLib.java
-D	lib/rhino/src/org/mozilla/javascript/xml/XMLObject.java
 D	lib/rhino/toolsrc/build.xml
-D	lib/rhino/toolsrc/org/mozilla/javascript/tools/SourceReader.java
-D	lib/rhino/toolsrc/org/mozilla/javascript/tools/ToolErrorReporter.java
-D	lib/rhino/toolsrc/org/mozilla/javascript/tools/debugger/.cvsignore
-D	lib/rhino/toolsrc/org/mozilla/javascript/tools/debugger/Dim.java
 D	lib/rhino/toolsrc/org/mozilla/javascript/tools/debugger/GuiCallback.java
-D	lib/rhino/toolsrc/org/mozilla/javascript/tools/debugger/Main.java
 D	lib/rhino/toolsrc/org/mozilla/javascript/tools/debugger/ScopeProvider.java
 D	lib/rhino/toolsrc/org/mozilla/javascript/tools/debugger/SourceProvider.java
-D	lib/rhino/toolsrc/org/mozilla/javascript/tools/debugger/SwingGui.java
-D	lib/rhino/toolsrc/org/mozilla/javascript/tools/debugger/build.xml
-D	lib/rhino/toolsrc/org/mozilla/javascript/tools/debugger/downloaded/.cvsignore
-D	lib/rhino/toolsrc/org/mozilla/javascript/tools/debugger/test.js
-D	lib/rhino/toolsrc/org/mozilla/javascript/tools/debugger/treetable/AbstractCellEditor.java
-D	lib/rhino/toolsrc/org/mozilla/javascript/tools/debugger/treetable/JTreeTable.java
-D	lib/rhino/toolsrc/org/mozilla/javascript/tools/debugger/treetable/TreeTableModel.java
-D	lib/rhino/toolsrc/org/mozilla/javascript/tools/debugger/treetable/TreeTableModelAdapter.java
-D	lib/rhino/toolsrc/org/mozilla/javascript/tools/idswitch/CodePrinter.java
-D	lib/rhino/toolsrc/org/mozilla/javascript/tools/idswitch/FileBody.java
 D	lib/rhino/toolsrc/org/mozilla/javascript/tools/idswitch/IdValuePair.java
-D	lib/rhino/toolsrc/org/mozilla/javascript/tools/idswitch/Main.java
-D	lib/rhino/toolsrc/org/mozilla/javascript/tools/idswitch/README
-D	lib/rhino/toolsrc/org/mozilla/javascript/tools/idswitch/SwitchGenerator.java
-D	lib/rhino/toolsrc/org/mozilla/javascript/tools/jsc/Main.java
-D	lib/rhino/toolsrc/org/mozilla/javascript/tools/resources/Messages.properties
-D	lib/rhino/toolsrc/org/mozilla/javascript/tools/shell/ConsoleTextArea.java
-D	lib/rhino/toolsrc/org/mozilla/javascript/tools/shell/Environment.java
-D	lib/rhino/toolsrc/org/mozilla/javascript/tools/shell/Global.java
-D	lib/rhino/toolsrc/org/mozilla/javascript/tools/shell/JSConsole.java
-D	lib/rhino/toolsrc/org/mozilla/javascript/tools/shell/JavaPolicySecurity.java
-D	lib/rhino/toolsrc/org/mozilla/javascript/tools/shell/Main.java
 D	lib/rhino/toolsrc/org/mozilla/javascript/tools/shell/QuitAction.java
 D	lib/rhino/toolsrc/org/mozilla/javascript/tools/shell/SecurityProxy.java
 D	lib/rhino/toolsrc/org/mozilla/javascript/tools/shell/ShellConsole.java
-D	lib/rhino/toolsrc/org/mozilla/javascript/tools/shell/ShellContextFactory.java
 D	lib/rhino/toolsrc/org/mozilla/javascript/tools/shell/ShellLine.java
 D	lib/rhino/xmlimplsrc/build.xml
-D	lib/rhino/xmlimplsrc/org/mozilla/javascript/xmlimpl/Namespace.java
-D	lib/rhino/xmlimplsrc/org/mozilla/javascript/xmlimpl/QName.java
-D	lib/rhino/xmlimplsrc/org/mozilla/javascript/xmlimpl/XML.java
-D	lib/rhino/xmlimplsrc/org/mozilla/javascript/xmlimpl/XMLCtor.java
-D	lib/rhino/xmlimplsrc/org/mozilla/javascript/xmlimpl/XMLLibImpl.java
-D	lib/rhino/xmlimplsrc/org/mozilla/javascript/xmlimpl/XMLList.java
-D	lib/rhino/xmlimplsrc/org/mozilla/javascript/xmlimpl/XMLName.java
-D	lib/rhino/xmlimplsrc/org/mozilla/javascript/xmlimpl/XMLObjectImpl.java
-D	lib/rhino/xmlimplsrc/org/mozilla/javascript/xmlimpl/XMLWithScope.java
-D	lib/rhino/xmlimplsrc/org/mozilla/javascript/xmlimpl/XmlNode.java
-D	lib/rhino/xmlimplsrc/org/mozilla/javascript/xmlimpl/XmlProcessor.java
-D	src/com/google/debugging/sourcemap/Base64.java
-D	src/com/google/debugging/sourcemap/Base64VLQ.java
+M	src/com/google/debugging/sourcemap/Base64.java
 M	src/com/google/debugging/sourcemap/FilePosition.java
-M	src/com/google/debugging/sourcemap/SourceMapConsumerFactory.java
 M	src/com/google/debugging/sourcemap/SourceMapConsumerV1.java
-M	src/com/google/debugging/sourcemap/SourceMapConsumerV2.java
-D	src/com/google/debugging/sourcemap/SourceMapConsumerV3.java
-M	src/com/google/debugging/sourcemap/SourceMapFormat.java
-M	src/com/google/debugging/sourcemap/SourceMapGenerator.java
+M	src/com/google/debugging/sourcemap/SourceMapConsumerV3.java
 M	src/com/google/debugging/sourcemap/SourceMapGeneratorFactory.java
 M	src/com/google/debugging/sourcemap/SourceMapGeneratorV1.java
 M	src/com/google/debugging/sourcemap/SourceMapGeneratorV2.java
-D	src/com/google/debugging/sourcemap/SourceMapGeneratorV3.java
+M	src/com/google/debugging/sourcemap/SourceMapGeneratorV3.java
 M	src/com/google/debugging/sourcemap/SourceMapLineDecoder.java
 M	src/com/google/debugging/sourcemap/SourceMapSection.java
-D	src/com/google/debugging/sourcemap/SourceMapSupplier.java
-D	src/com/google/debugging/sourcemap/SourceMappingReversable.java
+M	src/com/google/debugging/sourcemap/SourceMapSupplier.java
 M	src/com/google/debugging/sourcemap/Util.java
-D	src/com/google/debugging/sourcemap/proto/mapping.proto
 M	src/com/google/javascript/jscomp/AbstractCommandLineRunner.java
 M	src/com/google/javascript/jscomp/AbstractCompiler.java
 M	src/com/google/javascript/jscomp/AbstractMessageFormatter.java
@@ -716,7 +1098,7 @@ D	src/com/google/javascript/jscomp/BitField.java
 D	src/com/google/javascript/jscomp/ByPathWarningsGuard.java
 M	src/com/google/javascript/jscomp/CallGraph.java
 M	src/com/google/javascript/jscomp/ChainCalls.java
-R080	src/com/google/javascript/jscomp/type/ChainableReverseAbstractInterpreter.java	src/com/google/javascript/jscomp/ChainableReverseAbstractInterpreter.java
+R084	src/com/google/javascript/jscomp/type/ChainableReverseAbstractInterpreter.java	src/com/google/javascript/jscomp/ChainableReverseAbstractInterpreter.java
 M	src/com/google/javascript/jscomp/CheckAccessControls.java
 A	src/com/google/javascript/jscomp/CheckAccidentalSemicolon.java
 D	src/com/google/javascript/jscomp/CheckDebuggerStatement.java
@@ -735,8 +1117,8 @@ M	src/com/google/javascript/jscomp/CheckUnreachableCode.java
 D	src/com/google/javascript/jscomp/CleanupPasses.java
 M	src/com/google/javascript/jscomp/ClosureCodeRemoval.java
 M	src/com/google/javascript/jscomp/ClosureCodingConvention.java
-D	src/com/google/javascript/jscomp/ClosureOptimizePrimitives.java
-R083	src/com/google/javascript/jscomp/type/ClosureReverseAbstractInterpreter.java	src/com/google/javascript/jscomp/ClosureReverseAbstractInterpreter.java
+M	src/com/google/javascript/jscomp/ClosureOptimizePrimitives.java
+R085	src/com/google/javascript/jscomp/type/ClosureReverseAbstractInterpreter.java	src/com/google/javascript/jscomp/ClosureReverseAbstractInterpreter.java
 D	src/com/google/javascript/jscomp/ClosureRewriteClass.java
 M	src/com/google/javascript/jscomp/CoalesceVariableNames.java
 M	src/com/google/javascript/jscomp/CodeChangeHandler.java
@@ -748,7 +1130,6 @@ D	src/com/google/javascript/jscomp/CodingConventions.java
 M	src/com/google/javascript/jscomp/CollapseAnonymousFunctions.java
 M	src/com/google/javascript/jscomp/CollapseProperties.java
 M	src/com/google/javascript/jscomp/CollapseVariableDeclarations.java
-M	src/com/google/javascript/jscomp/CombinedCompilerPass.java
 M	src/com/google/javascript/jscomp/CommandLineRunner.java
 M	src/com/google/javascript/jscomp/CompilationLevel.java
 M	src/com/google/javascript/jscomp/Compiler.java
@@ -760,7 +1141,6 @@ M	src/com/google/javascript/jscomp/ConstCheck.java
 D	src/com/google/javascript/jscomp/ConstParamCheck.java
 M	src/com/google/javascript/jscomp/ControlFlowAnalysis.java
 M	src/com/google/javascript/jscomp/ControlFlowGraph.java
-M	src/com/google/javascript/jscomp/ControlStructureCheck.java
 M	src/com/google/javascript/jscomp/ConvertToDottedProperties.java
 D	src/com/google/javascript/jscomp/CoverageInstrumentationCallback.java
 D	src/com/google/javascript/jscomp/CoverageInstrumentationPass.java
@@ -784,7 +1164,6 @@ M	src/com/google/javascript/jscomp/DiagnosticType.java
 D	src/com/google/javascript/jscomp/DisambiguatePrivateProperties.java
 M	src/com/google/javascript/jscomp/DisambiguateProperties.java
 M	src/com/google/javascript/jscomp/DotFormatter.java
-D	src/com/google/javascript/jscomp/EmptyMessageBundle.java
 D	src/com/google/javascript/jscomp/ErrorHandler.java
 M	src/com/google/javascript/jscomp/ErrorManager.java
 D	src/com/google/javascript/jscomp/ExpandJqueryAliases.java
@@ -793,7 +1172,7 @@ M	src/com/google/javascript/jscomp/ExportTestFunctions.java
 M	src/com/google/javascript/jscomp/ExpressionDecomposer.java
 M	src/com/google/javascript/jscomp/ExternExportsPass.java
 M	src/com/google/javascript/jscomp/ExtractPrototypeMemberDeclarations.java
-D	src/com/google/javascript/jscomp/FieldCleanupPass.java
+M	src/com/google/javascript/jscomp/FieldCleanupPass.java
 D	src/com/google/javascript/jscomp/FileInstrumentationData.java
 M	src/com/google/javascript/jscomp/FindExportableNodes.java
 R088	src/com/google/javascript/jscomp/type/FlowScope.java	src/com/google/javascript/jscomp/FlowScope.java
@@ -810,16 +1189,16 @@ M	src/com/google/javascript/jscomp/GatherRawExports.java
 M	src/com/google/javascript/jscomp/GatherSideEffectSubexpressionsCallback.java
 M	src/com/google/javascript/jscomp/GenerateExports.java
 M	src/com/google/javascript/jscomp/GlobalNamespace.java
-D	src/com/google/javascript/jscomp/GlobalVarReferenceMap.java
+M	src/com/google/javascript/jscomp/GlobalVarReferenceMap.java
 M	src/com/google/javascript/jscomp/GoogleCodingConvention.java
-D	src/com/google/javascript/jscomp/GoogleJsMessageIdGenerator.java
+M	src/com/google/javascript/jscomp/GoogleJsMessageIdGenerator.java
 M	src/com/google/javascript/jscomp/GroupVariableDeclarations.java
-D	src/com/google/javascript/jscomp/HotSwapCompilerPass.java
+M	src/com/google/javascript/jscomp/HotSwapCompilerPass.java
 M	src/com/google/javascript/jscomp/IgnoreCajaProperties.java
 M	src/com/google/javascript/jscomp/InferJSDocInfo.java
 M	src/com/google/javascript/jscomp/InlineCostEstimator.java
 M	src/com/google/javascript/jscomp/InlineFunctions.java
-D	src/com/google/javascript/jscomp/InlineObjectLiterals.java
+M	src/com/google/javascript/jscomp/InlineObjectLiterals.java
 D	src/com/google/javascript/jscomp/InlineProperties.java
 M	src/com/google/javascript/jscomp/InlineSimpleMethods.java
 M	src/com/google/javascript/jscomp/InlineVariables.java
@@ -843,7 +1222,6 @@ M	src/com/google/javascript/jscomp/LightweightMessageFormatter.java
 M	src/com/google/javascript/jscomp/LineNumberCheck.java
 M	src/com/google/javascript/jscomp/LinkedFlowScope.java
 M	src/com/google/javascript/jscomp/LiveVariablesAnalysis.java
-A	src/com/google/javascript/jscomp/LocaleUtil.java
 M	src/com/google/javascript/jscomp/LoggerErrorManager.java
 M	src/com/google/javascript/jscomp/MakeDeclaredNamesUnique.java
 M	src/com/google/javascript/jscomp/MarkNoSideEffectCalls.java
@@ -882,13 +1260,12 @@ M	src/com/google/javascript/jscomp/PeepholeFoldWithTypes.java
 D	src/com/google/javascript/jscomp/PeepholeMinimizeConditions.java
 M	src/com/google/javascript/jscomp/PeepholeOptimizationsPass.java
 M	src/com/google/javascript/jscomp/PeepholeRemoveDeadCode.java
-D	src/com/google/javascript/jscomp/PeepholeReplaceKnownMethods.java
-D	src/com/google/javascript/jscomp/PeepholeSimplifyRegExp.java
+M	src/com/google/javascript/jscomp/PeepholeReplaceKnownMethods.java
+M	src/com/google/javascript/jscomp/PeepholeSimplifyRegExp.java
 M	src/com/google/javascript/jscomp/PeepholeSubstituteAlternateSyntax.java
 M	src/com/google/javascript/jscomp/PerformanceTracker.java
 M	src/com/google/javascript/jscomp/PhaseOptimizer.java
 M	src/com/google/javascript/jscomp/PrepareAst.java
-D	src/com/google/javascript/jscomp/PreprocessorSymbolTable.java
 M	src/com/google/javascript/jscomp/PrintStreamErrorManager.java
 M	src/com/google/javascript/jscomp/ProcessClosurePrimitives.java
 D	src/com/google/javascript/jscomp/ProcessCommonJSModules.java
@@ -900,7 +1277,6 @@ M	src/com/google/javascript/jscomp/RecordFunctionInformation.java
 M	src/com/google/javascript/jscomp/ReferenceCollectingCallback.java
 M	src/com/google/javascript/jscomp/RemoveTryCatch.java
 D	src/com/google/javascript/jscomp/RemoveUnusedClassProperties.java
-M	src/com/google/javascript/jscomp/RemoveUnusedNames.java
 M	src/com/google/javascript/jscomp/RemoveUnusedPrototypeProperties.java
 M	src/com/google/javascript/jscomp/RemoveUnusedVars.java
 M	src/com/google/javascript/jscomp/RenameLabels.java
@@ -909,7 +1285,7 @@ M	src/com/google/javascript/jscomp/RenamePrototypes.java
 M	src/com/google/javascript/jscomp/RenameVars.java
 D	src/com/google/javascript/jscomp/RenameVars2.java
 D	src/com/google/javascript/jscomp/RenamingMap.java
-D	src/com/google/javascript/jscomp/ReorderConstantExpression.java
+M	src/com/google/javascript/jscomp/ReorderConstantExpression.java
 M	src/com/google/javascript/jscomp/ReplaceCssNames.java
 M	src/com/google/javascript/jscomp/ReplaceIdGenerators.java
 M	src/com/google/javascript/jscomp/ReplaceMessages.java
@@ -922,15 +1298,13 @@ M	src/com/google/javascript/jscomp/RuntimeTypeCheck.java
 M	src/com/google/javascript/jscomp/SanityCheck.java
 M	src/com/google/javascript/jscomp/Scope.java
 M	src/com/google/javascript/jscomp/ScopedAliases.java
-R079	src/com/google/javascript/jscomp/type/SemanticReverseAbstractInterpreter.java	src/com/google/javascript/jscomp/SemanticReverseAbstractInterpreter.java
+R082	src/com/google/javascript/jscomp/type/SemanticReverseAbstractInterpreter.java	src/com/google/javascript/jscomp/SemanticReverseAbstractInterpreter.java
 M	src/com/google/javascript/jscomp/ShadowVariables.java
 D	src/com/google/javascript/jscomp/ShadowVariables2.java
 M	src/com/google/javascript/jscomp/ShowByPathWarningsGuard.java
 M	src/com/google/javascript/jscomp/SideEffectsAnalysis.java
 M	src/com/google/javascript/jscomp/SimpleDefinitionFinder.java
 M	src/com/google/javascript/jscomp/SimpleFunctionAliasAnalysis.java
-M	src/com/google/javascript/jscomp/SimpleRegion.java
-M	src/com/google/javascript/jscomp/SourceAst.java
 M	src/com/google/javascript/jscomp/SourceFile.java
 M	src/com/google/javascript/jscomp/SourceInformationAnnotator.java
 M	src/com/google/javascript/jscomp/SourceMap.java
@@ -941,8 +1315,7 @@ M	src/com/google/javascript/jscomp/StrictWarningsGuard.java
 M	src/com/google/javascript/jscomp/Strings.java
 M	src/com/google/javascript/jscomp/StripCode.java
 M	src/com/google/javascript/jscomp/SuppressDocWarningsGuard.java
-A	src/com/google/javascript/jscomp/SuspiciousPropertiesCheck.java
-D	src/com/google/javascript/jscomp/SymbolTable.java
+M	src/com/google/javascript/jscomp/SymbolTable.java
 M	src/com/google/javascript/jscomp/SyntacticScopeCreator.java
 M	src/com/google/javascript/jscomp/SyntheticAst.java
 M	src/com/google/javascript/jscomp/TightenTypes.java
@@ -967,16 +1340,15 @@ M	src/com/google/javascript/jscomp/VerboseMessageFormatter.java
 M	src/com/google/javascript/jscomp/WarningLevel.java
 M	src/com/google/javascript/jscomp/WarningsGuard.java
 D	src/com/google/javascript/jscomp/WhitelistWarningsGuard.java
-D	src/com/google/javascript/jscomp/XtbMessageBundle.java
+M	src/com/google/javascript/jscomp/XtbMessageBundle.java
 M	src/com/google/javascript/jscomp/ant/AntErrorManager.java
 M	src/com/google/javascript/jscomp/ant/CompileTask.java
 D	src/com/google/javascript/jscomp/ant/Warning.java
 M	src/com/google/javascript/jscomp/deps/DepsFileParser.java
-D	src/com/google/javascript/jscomp/deps/DepsGenerator.java
+M	src/com/google/javascript/jscomp/deps/DepsGenerator.java
 M	src/com/google/javascript/jscomp/deps/JsFileLineParser.java
 M	src/com/google/javascript/jscomp/deps/JsFileParser.java
 M	src/com/google/javascript/jscomp/deps/JsFunctionParser.java
-D	src/com/google/javascript/jscomp/deps/PathUtil.java
 M	src/com/google/javascript/jscomp/deps/SimpleDependencyInfo.java
 M	src/com/google/javascript/jscomp/deps/SortedDependencies.java
 D	src/com/google/javascript/jscomp/fuzzing/DiscreteDistribution.java
@@ -991,7 +1363,7 @@ M	src/com/google/javascript/jscomp/graph/AdjacencyGraph.java
 M	src/com/google/javascript/jscomp/graph/FixedPointGraphTraversal.java
 M	src/com/google/javascript/jscomp/graph/Graph.java
 M	src/com/google/javascript/jscomp/graph/GraphColoring.java
-D	src/com/google/javascript/jscomp/graph/GraphPruner.java
+M	src/com/google/javascript/jscomp/graph/GraphPruner.java
 M	src/com/google/javascript/jscomp/graph/GraphReachability.java
 M	src/com/google/javascript/jscomp/graph/LinkedDirectedGraph.java
 M	src/com/google/javascript/jscomp/graph/LinkedUndirectedGraph.java
@@ -1000,10 +1372,8 @@ M	src/com/google/javascript/jscomp/graph/UnionFind.java
 M	src/com/google/javascript/jscomp/instrumentation_template.proto
 D	src/com/google/javascript/jscomp/js/base.js
 M	src/com/google/javascript/jscomp/js/runtime_type_check.js
-M	src/com/google/javascript/jscomp/jsonml/JsonML.java
 M	src/com/google/javascript/jscomp/jsonml/JsonMLAst.java
 M	src/com/google/javascript/jscomp/jsonml/JsonMLError.java
-M	src/com/google/javascript/jscomp/jsonml/NodeUtil.java
 M	src/com/google/javascript/jscomp/jsonml/Reader.java
 M	src/com/google/javascript/jscomp/jsonml/SecureCompiler.java
 M	src/com/google/javascript/jscomp/jsonml/Writer.java
@@ -1122,18 +1492,18 @@ D	src/com/google/javascript/jscomp/parsing/parser/util/format/MissingFormatArgum
 D	src/com/google/javascript/jscomp/parsing/parser/util/format/MissingFormatWidthException.java
 D	src/com/google/javascript/jscomp/parsing/parser/util/format/SimpleFormat.java
 D	src/com/google/javascript/jscomp/parsing/parser/util/format/UnknownFormatConversionException.java
-D	src/com/google/javascript/jscomp/regex/CaseCanonicalize.java
-D	src/com/google/javascript/jscomp/regex/CharRanges.java
-D	src/com/google/javascript/jscomp/regex/RegExpTree.java
+M	src/com/google/javascript/jscomp/regex/CaseCanonicalize.java
+M	src/com/google/javascript/jscomp/regex/CharRanges.java
+M	src/com/google/javascript/jscomp/regex/RegExpTree.java
 M	src/com/google/javascript/jscomp/testing/TestErrorReporter.java
 D	src/com/google/javascript/jscomp/type/package.html
 D	src/com/google/javascript/jscomp/webservice/common/ErrorCode.java
 D	src/com/google/javascript/jscomp/webservice/common/Protocol.java
 A	src/com/google/javascript/rhino/CompilerEnvirons.java
 A	src/com/google/javascript/rhino/Context.java
-R093	lib/rhino/src/org/mozilla/javascript/DToA.java	src/com/google/javascript/rhino/DToA.java
-R094	lib/rhino/src/org/mozilla/javascript/Decompiler.java	src/com/google/javascript/rhino/Decompiler.java
-R058	lib/rhino/src/org/mozilla/javascript/EcmaError.java	src/com/google/javascript/rhino/EcmaError.java
+A	src/com/google/javascript/rhino/DToA.java
+A	src/com/google/javascript/rhino/Decompiler.java
+A	src/com/google/javascript/rhino/EcmaError.java
 M	src/com/google/javascript/rhino/ErrorReporter.java
 A	src/com/google/javascript/rhino/EvaluatorException.java
 A	src/com/google/javascript/rhino/FunctionNode.java
@@ -1142,12 +1512,12 @@ A	src/com/google/javascript/rhino/IRFactory.java
 M	src/com/google/javascript/rhino/JSDocInfo.java
 M	src/com/google/javascript/rhino/JSDocInfoBuilder.java
 M	src/com/google/javascript/rhino/JSTypeExpression.java
-R068	src/com/google/javascript/rhino/InputId.java	src/com/google/javascript/rhino/JavaScriptException.java
-R080	lib/rhino/src/org/mozilla/javascript/Kit.java	src/com/google/javascript/rhino/Kit.java
+A	src/com/google/javascript/rhino/JavaScriptException.java
+A	src/com/google/javascript/rhino/Kit.java
 M	src/com/google/javascript/rhino/Messages.properties
 M	src/com/google/javascript/rhino/Node.java
-R082	lib/rhino/src/org/mozilla/javascript/ObjArray.java	src/com/google/javascript/rhino/ObjArray.java
-R092	lib/rhino/src/org/mozilla/javascript/ObjToIntMap.java	src/com/google/javascript/rhino/ObjToIntMap.java
+A	src/com/google/javascript/rhino/ObjArray.java
+A	src/com/google/javascript/rhino/ObjToIntMap.java
 A	src/com/google/javascript/rhino/Parser.java
 A	src/com/google/javascript/rhino/RhinoException.java
 A	src/com/google/javascript/rhino/ScriptOrFnNode.java
@@ -1156,20 +1526,18 @@ M	src/com/google/javascript/rhino/SimpleErrorReporter.java
 M	src/com/google/javascript/rhino/SourcePosition.java
 M	src/com/google/javascript/rhino/Token.java
 M	src/com/google/javascript/rhino/TokenStream.java
-R092	lib/rhino/src/org/mozilla/javascript/UintMap.java	src/com/google/javascript/rhino/UintMap.java
-R055	lib/rhino/src/org/mozilla/javascript/UniqueTag.java	src/com/google/javascript/rhino/UniqueTag.java
+A	src/com/google/javascript/rhino/UintMap.java
+A	src/com/google/javascript/rhino/UniqueTag.java
 M	src/com/google/javascript/rhino/jstype/AllType.java
 M	src/com/google/javascript/rhino/jstype/ArrowType.java
 M	src/com/google/javascript/rhino/jstype/BooleanType.java
 D	src/com/google/javascript/rhino/jstype/CanCastToVisitor.java
 M	src/com/google/javascript/rhino/jstype/EnumElementType.java
 M	src/com/google/javascript/rhino/jstype/EnumType.java
-D	src/com/google/javascript/rhino/jstype/EquivalenceMethod.java
 M	src/com/google/javascript/rhino/jstype/FunctionBuilder.java
 M	src/com/google/javascript/rhino/jstype/FunctionParamBuilder.java
-R053	src/com/google/javascript/rhino/jstype/SimpleReference.java	src/com/google/javascript/rhino/jstype/FunctionPrototypeType.java
 M	src/com/google/javascript/rhino/jstype/FunctionType.java
-R075	src/com/google/javascript/rhino/jstype/StaticReference.java	src/com/google/javascript/rhino/jstype/IndexedType.java
+R056	src/com/google/javascript/rhino/jstype/RelationshipVisitor.java	src/com/google/javascript/rhino/jstype/IndexedType.java
 M	src/com/google/javascript/rhino/jstype/InstanceObjectType.java
 M	src/com/google/javascript/rhino/jstype/JSType.java
 M	src/com/google/javascript/rhino/jstype/JSTypeNative.java
@@ -1182,19 +1550,18 @@ M	src/com/google/javascript/rhino/jstype/NoType.java
 M	src/com/google/javascript/rhino/jstype/NullType.java
 M	src/com/google/javascript/rhino/jstype/NumberType.java
 M	src/com/google/javascript/rhino/jstype/ObjectType.java
-R070	src/com/google/javascript/rhino/jstype/StaticSymbolTable.java	src/com/google/javascript/rhino/jstype/ParameterizedType.java
+R055	src/com/google/javascript/rhino/jstype/EquivalenceMethod.java	src/com/google/javascript/rhino/jstype/ParameterizedType.java
 D	src/com/google/javascript/rhino/jstype/Property.java
 D	src/com/google/javascript/rhino/jstype/PropertyMap.java
 M	src/com/google/javascript/rhino/jstype/PrototypeObjectType.java
 M	src/com/google/javascript/rhino/jstype/ProxyObjectType.java
 M	src/com/google/javascript/rhino/jstype/RecordType.java
 M	src/com/google/javascript/rhino/jstype/RecordTypeBuilder.java
-D	src/com/google/javascript/rhino/jstype/RelationshipVisitor.java
 M	src/com/google/javascript/rhino/jstype/SimpleSlot.java
-D	src/com/google/javascript/rhino/jstype/SimpleSourceFile.java
+M	src/com/google/javascript/rhino/jstype/SimpleSourceFile.java
 M	src/com/google/javascript/rhino/jstype/StaticScope.java
 M	src/com/google/javascript/rhino/jstype/StaticSlot.java
-D	src/com/google/javascript/rhino/jstype/StaticSourceFile.java
+M	src/com/google/javascript/rhino/jstype/StaticSourceFile.java
 M	src/com/google/javascript/rhino/jstype/StringType.java
 M	src/com/google/javascript/rhino/jstype/TemplateType.java
 D	src/com/google/javascript/rhino/jstype/TemplateTypeMap.java
@@ -1209,20 +1576,15 @@ M	src/com/google/javascript/rhino/jstype/ValueType.java
 M	src/com/google/javascript/rhino/jstype/Visitor.java
 M	src/com/google/javascript/rhino/jstype/VoidType.java
 M	src/com/google/javascript/rhino/package.html
-D	src/com/google/javascript/rhino/testing/AbstractStaticScope.java
 M	src/com/google/javascript/rhino/testing/Asserts.java
 M	src/com/google/javascript/rhino/testing/BaseJSTypeTestCase.java
-M	src/com/google/javascript/rhino/testing/MapBasedScope.java
 M	src/com/google/javascript/rhino/testing/TestErrorReporter.java
-D	test/com/google/debugging/sourcemap/Base64Test.java
-D	test/com/google/debugging/sourcemap/Base64VLQTest.java
-M	test/com/google/debugging/sourcemap/SourceMapConsumerV1Test.java
-M	test/com/google/debugging/sourcemap/SourceMapConsumerV2Test.java
+M	test/com/google/debugging/sourcemap/Base64Test.java
 D	test/com/google/debugging/sourcemap/SourceMapConsumerV3Test.java
 M	test/com/google/debugging/sourcemap/SourceMapGeneratorV1Test.java
 M	test/com/google/debugging/sourcemap/SourceMapGeneratorV2Test.java
-D	test/com/google/debugging/sourcemap/SourceMapGeneratorV3Test.java
-D	test/com/google/debugging/sourcemap/SourceMapTestCase.java
+M	test/com/google/debugging/sourcemap/SourceMapGeneratorV3Test.java
+M	test/com/google/debugging/sourcemap/SourceMapTestCase.java
 M	test/com/google/javascript/jscomp/AliasExternalsTest.java
 M	test/com/google/javascript/jscomp/AmbiguatePropertiesTest.java
 D	test/com/google/javascript/jscomp/AngularPassTest.java
@@ -1246,7 +1608,6 @@ M	test/com/google/javascript/jscomp/CheckSideEffectsTest.java
 D	test/com/google/javascript/jscomp/CheckSuspiciousCodeTest.java
 D	test/com/google/javascript/jscomp/CleanupPassesTest.java
 M	test/com/google/javascript/jscomp/ClosureCodingConventionTest.java
-D	test/com/google/javascript/jscomp/ClosureOptimizePrimitivesTest.java
 M	test/com/google/javascript/jscomp/ClosureReverseAbstractInterpreterTest.java
 D	test/com/google/javascript/jscomp/ClosureRewriteClassTest.java
 M	test/com/google/javascript/jscomp/CoalesceVariableNamesTest.java
@@ -1259,10 +1620,8 @@ M	test/com/google/javascript/jscomp/CompilerTest.java
 M	test/com/google/javascript/jscomp/CompilerTestCase.java
 M	test/com/google/javascript/jscomp/CompilerTypeTestCase.java
 M	test/com/google/javascript/jscomp/ConcreteTypeTest.java
-M	test/com/google/javascript/jscomp/ConstCheckTest.java
 D	test/com/google/javascript/jscomp/ConstParamCheckTest.java
 M	test/com/google/javascript/jscomp/ControlFlowAnalysisTest.java
-M	test/com/google/javascript/jscomp/ControlStructureCheckTest.java
 M	test/com/google/javascript/jscomp/ConvertToDottedPropertiesTest.java
 M	test/com/google/javascript/jscomp/CreateSyntheticBlocksTest.java
 M	test/com/google/javascript/jscomp/CrossModuleCodeMotionTest.java
@@ -1279,25 +1638,21 @@ M	test/com/google/javascript/jscomp/ExploitAssignsTest.java
 M	test/com/google/javascript/jscomp/ExportTestFunctionsTest.java
 M	test/com/google/javascript/jscomp/ExpressionDecomposerTest.java
 M	test/com/google/javascript/jscomp/ExternExportsPassTest.java
-M	test/com/google/javascript/jscomp/ExtractPrototypeMemberDeclarationsTest.java
-M	test/com/google/javascript/jscomp/FixedPointGraphTraversalTest.java
 M	test/com/google/javascript/jscomp/FlowSensitiveInlineVariablesTest.java
 M	test/com/google/javascript/jscomp/FunctionArgumentInjectorTest.java
 M	test/com/google/javascript/jscomp/FunctionInjectorTest.java
-M	test/com/google/javascript/jscomp/FunctionRewriterTest.java
 M	test/com/google/javascript/jscomp/FunctionToBlockMutatorTest.java
 M	test/com/google/javascript/jscomp/FunctionTypeBuilderTest.java
 D	test/com/google/javascript/jscomp/GatherCharacterEncodingBiasTest.java
 M	test/com/google/javascript/jscomp/GatherRawExportsTest.java
 M	test/com/google/javascript/jscomp/GatherSideEffectSubexpressionsCallbackTest.java
 M	test/com/google/javascript/jscomp/GenerateExportsTest.java
-M	test/com/google/javascript/jscomp/GlobalNamespaceTest.java
-D	test/com/google/javascript/jscomp/GlobalVarReferenceMapTest.java
+M	test/com/google/javascript/jscomp/GlobalVarReferenceMapTest.java
 M	test/com/google/javascript/jscomp/GoogleCodingConventionTest.java
 M	test/com/google/javascript/jscomp/InferJSDocInfoTest.java
 M	test/com/google/javascript/jscomp/InlineCostEstimatorTest.java
 M	test/com/google/javascript/jscomp/InlineFunctionsTest.java
-D	test/com/google/javascript/jscomp/InlineObjectLiteralsTest.java
+M	test/com/google/javascript/jscomp/InlineObjectLiteralsTest.java
 D	test/com/google/javascript/jscomp/InlinePropertiesTest.java
 M	test/com/google/javascript/jscomp/InlineSimpleMethodsTest.java
 M	test/com/google/javascript/jscomp/InlineVariablesConstantsTest.java
@@ -1310,7 +1665,6 @@ M	test/com/google/javascript/jscomp/JSModuleGraphTest.java
 M	test/com/google/javascript/jscomp/JSModuleTest.java
 M	test/com/google/javascript/jscomp/JsMessageExtractorTest.java
 M	test/com/google/javascript/jscomp/JsMessageVisitorTest.java
-M	test/com/google/javascript/jscomp/LightweightMessageFormatterTest.java
 M	test/com/google/javascript/jscomp/LinkedFlowScopeTest.java
 M	test/com/google/javascript/jscomp/LiveVariableAnalysisTest.java
 M	test/com/google/javascript/jscomp/LooseTypeCheckTest.java
@@ -1329,7 +1683,6 @@ M	test/com/google/javascript/jscomp/NodeUtilTest.java
 M	test/com/google/javascript/jscomp/NormalizeTest.java
 A	test/com/google/javascript/jscomp/OperaCompoundAssignFixTest.java
 M	test/com/google/javascript/jscomp/OptimizeArgumentsArrayTest.java
-D	test/com/google/javascript/jscomp/OptimizeCallsTest.java
 M	test/com/google/javascript/jscomp/OptimizeParametersTest.java
 A	test/com/google/javascript/jscomp/ParallelCompilerPassTest.java
 M	test/com/google/javascript/jscomp/PeepholeCollectPropertyAssignmentsTest.java
@@ -1338,8 +1691,7 @@ M	test/com/google/javascript/jscomp/PeepholeIntegrationTest.java
 D	test/com/google/javascript/jscomp/PeepholeMinimizeConditionsTest.java
 M	test/com/google/javascript/jscomp/PeepholeOptimizationsPassTest.java
 M	test/com/google/javascript/jscomp/PeepholeRemoveDeadCodeTest.java
-D	test/com/google/javascript/jscomp/PeepholeReplaceKnownMethodsTest.java
-D	test/com/google/javascript/jscomp/PeepholeSimplifyRegExpTest.java
+M	test/com/google/javascript/jscomp/PeepholeReplaceKnownMethodsTest.java
 M	test/com/google/javascript/jscomp/PeepholeSubstituteAlternateSyntaxTest.java
 D	test/com/google/javascript/jscomp/PerformanceTrackerTest.java
 M	test/com/google/javascript/jscomp/PhaseOptimizerTest.java
@@ -1354,12 +1706,11 @@ D	test/com/google/javascript/jscomp/RemoveUnusedClassPropertiesTest.java
 M	test/com/google/javascript/jscomp/RemoveUnusedNamesTest.java
 M	test/com/google/javascript/jscomp/RemoveUnusedPrototypePropertiesTest.java
 M	test/com/google/javascript/jscomp/RemoveUnusedVarsTest.java
-M	test/com/google/javascript/jscomp/RenameLabelsTest.java
 M	test/com/google/javascript/jscomp/RenameLocalVarsTest.java
 M	test/com/google/javascript/jscomp/RenamePropertiesTest.java
 D	test/com/google/javascript/jscomp/RenameVars2Test.java
 M	test/com/google/javascript/jscomp/RenameVarsTest.java
-D	test/com/google/javascript/jscomp/ReorderConstantExpressionTest.java
+M	test/com/google/javascript/jscomp/ReorderConstantExpressionTest.java
 M	test/com/google/javascript/jscomp/ReplaceCssNamesTest.java
 M	test/com/google/javascript/jscomp/ReplaceIdGeneratorsTest.java
 D	test/com/google/javascript/jscomp/ReplaceMessagesForChromeTest.java
@@ -1377,29 +1728,25 @@ M	test/com/google/javascript/jscomp/SideEffectsAnalysisTest.java
 M	test/com/google/javascript/jscomp/SimpleDefinitionFinderTest.java
 M	test/com/google/javascript/jscomp/SimpleFunctionAliasAnalysisTest.java
 M	test/com/google/javascript/jscomp/SourceInformationAnnotatorTest.java
-D	test/com/google/javascript/jscomp/SourceMapTest.java
+M	test/com/google/javascript/jscomp/SourceMapTest.java
 M	test/com/google/javascript/jscomp/SpecializeModuleTest.java
 M	test/com/google/javascript/jscomp/StatementFusionTest.java
 M	test/com/google/javascript/jscomp/StrictModeCheckTest.java
 M	test/com/google/javascript/jscomp/StripCodeTest.java
-A	test/com/google/javascript/jscomp/SuspiciousPropertiesCheckTest.java
-D	test/com/google/javascript/jscomp/SymbolTableTest.java
+M	test/com/google/javascript/jscomp/SymbolTableTest.java
 M	test/com/google/javascript/jscomp/SyntacticScopeCreatorTest.java
 M	test/com/google/javascript/jscomp/TightenTypesTest.java
 D	test/com/google/javascript/jscomp/TransformAMDToCJSModuleTest.java
 M	test/com/google/javascript/jscomp/TypeCheckFunctionCheckTest.java
 M	test/com/google/javascript/jscomp/TypeCheckTest.java
 M	test/com/google/javascript/jscomp/TypeInferenceTest.java
-M	test/com/google/javascript/jscomp/TypeValidatorTest.java
 M	test/com/google/javascript/jscomp/TypedScopeCreatorTest.java
 A	test/com/google/javascript/jscomp/UnfoldCompoundAssignmentsTest.java
 M	test/com/google/javascript/jscomp/UnreachableCodeEliminationTest.java
 M	test/com/google/javascript/jscomp/VarCheckTest.java
 M	test/com/google/javascript/jscomp/VariableMapTest.java
-M	test/com/google/javascript/jscomp/VariableReferenceCheckTest.java
 A	test/com/google/javascript/jscomp/VariableShadowDeclarationCheckTest.java
 M	test/com/google/javascript/jscomp/VariableVisibilityAnalysisTest.java
-D	test/com/google/javascript/jscomp/XtbMessageBundleTest.java
 M	test/com/google/javascript/jscomp/deps/DepsFileParserTest.java
 M	test/com/google/javascript/jscomp/deps/JsFileLineParserTest.java
 M	test/com/google/javascript/jscomp/deps/JsFileParserTest.java
@@ -1407,26 +1754,22 @@ M	test/com/google/javascript/jscomp/deps/JsFunctionParserTest.java
 M	test/com/google/javascript/jscomp/deps/SortedDependenciesTest.java
 D	test/com/google/javascript/jscomp/fuzzing/ControlledRandom.java
 D	test/com/google/javascript/jscomp/fuzzing/FuzzerTest.java
-M	test/com/google/javascript/jscomp/graph/GraphColoringTest.java
-D	test/com/google/javascript/jscomp/graph/GraphPrunerTest.java
-M	test/com/google/javascript/jscomp/jsonml/JsonMLConversionTest.java
 M	test/com/google/javascript/jscomp/parsing/IRFactoryTest.java
 M	test/com/google/javascript/jscomp/parsing/JsDocInfoParserTest.java
 M	test/com/google/javascript/jscomp/parsing/JsDocTokenStreamTest.java
 M	test/com/google/javascript/jscomp/parsing/ParserTest.java
-D	test/com/google/javascript/jscomp/regex/CharRangesTest.java
 M	test/com/google/javascript/jscomp/regtests/CompileEachLineOfProgramOutput.java
 D	test/com/google/javascript/rhino/IRTest.java
 M	test/com/google/javascript/rhino/JSDocInfoTest.java
 M	test/com/google/javascript/rhino/NodeTest.java
 A	test/com/google/javascript/rhino/ParserTest.java
 A	test/com/google/javascript/rhino/TokenStreamTest.java
-D	test/com/google/javascript/rhino/jstype/EnumElementTypeTest.java
+M	test/com/google/javascript/rhino/jstype/EnumElementTypeTest.java
 M	test/com/google/javascript/rhino/jstype/FunctionTypeTest.java
 M	test/com/google/javascript/rhino/jstype/JSTypeRegistryTest.java
 M	test/com/google/javascript/rhino/jstype/JSTypeTest.java
 M	test/com/google/javascript/rhino/jstype/NamedTypeTest.java
-D	test/com/google/javascript/rhino/jstype/PrototypeObjectTypeTest.java
+M	test/com/google/javascript/rhino/jstype/PrototypeObjectTypeTest.java
 D	test/com/google/javascript/rhino/jstype/RecordTypeTest.java
 D	test/com/google/javascript/rhino/jstype/TemplatizedTypeTest.java
 M	test/com/google/javascript/rhino/jstype/UnionTypeBuilderTest.java

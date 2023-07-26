@@ -18,15 +18,19 @@ package com.google.javascript.jscomp;
 
 import com.google.common.base.Function;
 import com.google.common.base.Joiner;
+import com.google.common.base.Preconditions;
 import com.google.common.base.Supplier;
 import com.google.common.base.Suppliers;
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.Lists;
+import com.google.javascript.jscomp.AbstractCommandLineRunner.FlagUsageException;
+import com.google.javascript.jscomp.CompilerOptions.LanguageMode;
 import com.google.javascript.rhino.Node;
 
 import junit.framework.TestCase;
 
 import java.io.ByteArrayOutputStream;
+import java.io.IOException;
 import java.io.PrintStream;
 import java.util.List;
 
@@ -152,9 +156,31 @@ public class CommandLineRunnerTest extends TestCase {
     test("function f() { this.a = 3; }", CheckGlobalThis.GLOBAL_THIS);
   }
 
+  public void testCheckGlobalThisOff() {
+    args.add("--warning_level=VERBOSE");
+    args.add("--jscomp_off=globalThis");
+    testSame("function f() { this.a = 3; }");
+  }
+
   public void testTypeCheckingOffByDefault() {
     test("function f(x) { return x; } f();",
          "function f(a) { return a; } f();");
+  }
+
+  public void testReflectedMethods() {
+    args.add("--compilation_level=ADVANCED_OPTIMIZATIONS");
+    test(
+        "/** @constructor */" +
+        "function Foo() {}" +
+        "Foo.prototype.handle = function(x, y) { alert(y); };" +
+        "var x = goog.reflect.object(Foo, {handle: 1});" +
+        "for (var i in x) { x[i].call(x); }" +
+        "window['Foo'] = Foo;",
+        "function a() {}" +
+        "a.prototype.a = function(e, d) { alert(d); };" +
+        "var b = goog.c.b(a, {a: 1}),c;" +
+        "for (c in b) { b[c].call(b); }" +
+        "window.Foo = a;");
   }
 
   public void testTypeCheckingOnWithVerbose() {
@@ -206,6 +232,12 @@ public class CommandLineRunnerTest extends TestCase {
     testSame("x = 3;");
   }
 
+  public void testCheckSymbolsOverrideForQuiet() {
+    args.add("--warning_level=QUIET");
+    args.add("--jscomp_error=undefinedVars");
+    test("x = 3;", VarCheck.UNDEFINED_VAR_ERROR);
+  }
+
   public void testCheckUndefinedProperties1() {
     args.add("--warning_level=VERBOSE");
     args.add("--jscomp_error=missingProperties");
@@ -238,7 +270,7 @@ public class CommandLineRunnerTest extends TestCase {
          "/** @define {number} */ var BAR = 3;" +
          "/** @define {boolean} */ var CCC = false;" +
          "/** @define {boolean} */ var DDD = false;",
-         "var FOO = !0, BAR = 5, CCC = !0, DDD = !0;");
+         "var FOO = true, BAR = 5, CCC = true, DDD = true;");
   }
 
   public void testDefineFlag2() {
@@ -317,6 +349,7 @@ public class CommandLineRunnerTest extends TestCase {
 
   public void testIssue115() {
     args.add("--compilation_level=SIMPLE_OPTIMIZATIONS");
+    args.add("--jscomp_off=es5Strict");
     args.add("--warning_level=VERBOSE");
     test("function f() { " +
          "  var arguments = Array.prototype.slice.call(arguments, 0);" +
@@ -338,6 +371,12 @@ public class CommandLineRunnerTest extends TestCase {
          " var a;" +
          " return ((a=b.id) && (a=parseInt(a.substr(1))) && a>0);" +
          "}");
+  }
+
+  public void testIssue504() {
+    args.add("--compilation_level=ADVANCED_OPTIMIZATIONS");
+    test("void function() { alert('hi'); }();",
+         "alert('hi');", CheckSideEffects.USELESS_CODE_ERROR);
   }
 
   public void testDebugFlag1() {
@@ -605,6 +644,15 @@ public class CommandLineRunnerTest extends TestCase {
         lastCompiler.getOptions().sourceMapFormat);
   }
 
+  public void testSourceMapFormat2() {
+    args.add("--js_output_file");
+    args.add("/path/to/out.js");
+    args.add("--source_map_format=V3");
+    testSame("var x = 3;");
+    assertEquals(SourceMap.Format.V3,
+        lastCompiler.getOptions().sourceMapFormat);
+  }
+
   public void testCharSetExpansion() {
     testSame("");
     assertEquals("US-ASCII", lastCompiler.getOptions().outputCharset);
@@ -619,8 +667,8 @@ public class CommandLineRunnerTest extends TestCase {
           "var x = 3;", "var y = 5;", "var z = 7;", "var a = 9;"});
 
     StringBuilder builder = new StringBuilder();
-    lastCommandLineRunner.printModuleGraphManifestTo(
-        lastCompiler.getModuleGraph(), builder);
+    lastCommandLineRunner.printModuleGraphManifestOrBundleTo(
+        lastCompiler.getModuleGraph(), builder, true);
     assertEquals(
         "{m0}\n" +
         "i0\n" +
@@ -642,8 +690,8 @@ public class CommandLineRunnerTest extends TestCase {
           "var x = 3;", "var y = 5;", "var z = 7;", "var a = 9;"});
 
     StringBuilder builder = new StringBuilder();
-    lastCommandLineRunner.printModuleGraphManifestTo(
-        lastCompiler.getModuleGraph(), builder);
+    lastCommandLineRunner.printModuleGraphManifestOrBundleTo(
+        lastCompiler.getModuleGraph(), builder, true);
     assertEquals(
         "{m0}\n" +
         "i0\n" +
@@ -720,7 +768,7 @@ public class CommandLineRunnerTest extends TestCase {
     test("goog.asserts.assert(false)",
          "");
     args.add("--debug");
-    test("goog.asserts.assert(false)", "goog.$asserts$.$assert$(!1)");
+    test("goog.asserts.assert(false)", "goog.$asserts$.$assert$(false)");
   }
 
   public void testMissingReturnCheckOnWithVerbose() {
@@ -740,6 +788,71 @@ public class CommandLineRunnerTest extends TestCase {
     args.add("--warning_level=VERBOSE");
     test("/** @deprecated */ function f() {}; f()",
        CheckAccessControls.DEPRECATED_NAME);
+  }
+
+  public void testTwoParseErrors() {
+    // If parse errors are reported in different files, make
+    // sure all of them are reported.
+    Compiler compiler = compile(new String[] {
+      "var a b;",
+      "var b c;"
+    });
+    assertEquals(2, compiler.getErrors().length);
+  }
+
+  public void testES3ByDefault() {
+    test("var x = f.function", RhinoErrorReporter.PARSE_ERROR);
+  }
+
+  public void testES5() {
+    args.add("--language_in=ECMASCRIPT5");
+    test("var x = f.function", "var x = f.function");
+    test("var let", "var let");
+  }
+
+  public void testES5Strict() {
+    args.add("--language_in=ECMASCRIPT5_STRICT");
+    test("var x = f.function", "'use strict';var x = f.function");
+    test("var let", RhinoErrorReporter.PARSE_ERROR);
+  }
+
+  public void testES5StrictUseStrict() {
+    args.add("--language_in=ECMASCRIPT5_STRICT");
+    Compiler compiler = compile(new String[] {"var x = f.function"});
+    String outputSource = compiler.toSource();
+    assertEquals("'use strict'", outputSource.substring(0, 12));
+  }
+
+  public void testES5StrictUseStrictMultipleInputs() {
+    args.add("--language_in=ECMASCRIPT5_STRICT");
+    Compiler compiler = compile(new String[] {"var x = f.function",
+        "var y = f.function", "var z = f.function"});
+    String outputSource = compiler.toSource();
+    assertEquals("'use strict'", outputSource.substring(0, 12));
+    assertEquals(outputSource.substring(13).indexOf("'use strict'"), -1);
+  }
+
+  public void testWithKeywordDefault() {
+    test("var x = {}; with (x) {}", ControlStructureCheck.USE_OF_WITH);
+  }
+
+  public void testWithKeywordWithEs5ChecksOff() {
+    args.add("--jscomp_off=es5Strict");
+    testSame("var x = {}; with (x) {}");
+  }
+
+  public void testNoSrCFilesWithManifest() throws IOException {
+    args.add("--use_only_custom_externs=true");
+    args.add("--output_manifest=test.MF");
+    CommandLineRunner runner = createCommandLineRunner(new String[0]);
+    String expectedMessage = "";
+    try {
+      runner.doRun();
+    } catch (FlagUsageException e) {
+      expectedMessage = e.getMessage();
+    }
+    assertEquals(expectedMessage, "Bad --js flag. " +
+      "Manifest files cannot be generated when the input is from stdin.");
   }
 
   /* Helper functions */
@@ -801,6 +914,10 @@ public class CommandLineRunnerTest extends TestCase {
    */
   private void test(String original, DiagnosticType warning) {
     test(new String[] { original }, warning);
+  }
+
+  private void test(String original, String expected, DiagnosticType warning) {
+    test(new String[] { original }, new String[] { expected }, warning);
   }
 
   /**
@@ -899,8 +1016,13 @@ public class CommandLineRunnerTest extends TestCase {
     for (int i = 0; i < original.length; i++) {
       inputs.add(JSSourceFile.fromCode("input" + i, original[i]));
     }
-    compiler.init(externs, inputs, new CompilerOptions());
+    CompilerOptions options = new CompilerOptions();
+    // ECMASCRIPT5 is the most forgiving.
+    options.setLanguageIn(LanguageMode.ECMASCRIPT5);
+    compiler.init(externs, inputs, options);
     Node all = compiler.parseInputs();
+    Preconditions.checkState(compiler.getErrorCount() == 0);
+    Preconditions.checkNotNull(all);
     Node n = all.getLastChild();
     return n;
   }
