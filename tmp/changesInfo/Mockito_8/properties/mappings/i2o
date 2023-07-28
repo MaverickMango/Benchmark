@@ -1,0 +1,5 @@
+M	src/org/mockito/internal/creation/MockSettingsImpl.java
+M	src/org/mockito/internal/creation/settings/CreationSettings.java
+M	src/org/mockito/internal/stubbing/defaultanswers/ReturnsGenericDeepStubs.java
+R090	src/org/mockito/internal/util/reflection/GenericMetadataSupport.java	src/org/mockito/internal/util/reflection/MockitoGenericMetadata.java
+R084	test/org/mockito/internal/util/reflection/GenericMetadataSupportTest.java	test/org/mockito/internal/util/reflection/MockitoGenericMetadataTest.java

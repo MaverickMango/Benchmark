@@ -1,0 +1,31 @@
+{
+  "bugName": "Mockito_8_buggy",
+  "bugId": "1",
+  "repo": {
+    "name": "../bugs/Mockito_8_buggy/.git"
+  },
+  "inducingCommit": {
+    "sha": "55bfac6da735fbda1711e4a5ba53dd324ffa0f99",
+    "branchName": "HEAD",
+    "fullMessage": "Renamed MockitoGenericMetadata to GenericMetadataSupport\n\n--HG--\nbranch : issue230\nrename : src/org/mockito/internal/util/reflection/MockitoGenericMetadata.java \u003d\u003e src/org/mockito/internal/util/reflection/GenericMetadataSupport.java\nrename : test/org/mockito/internal/util/reflection/MockitoGenericMetadataTest.java \u003d\u003e test/org/mockito/internal/util/reflection/GenericMetadataSupportTest.java\n",
+    "repoName": "../bugs/Mockito_8_buggy/.git"
+  },
+  "originalCommit": {
+    "sha": "6e97858d79d08b455cb3690b811120965ee1975a",
+    "branchName": "HEAD",
+    "fullMessage": "For now keep the old ReturnsDeepStubs and created a specific ReturnsGenericDeepStubs\n\n--HG--\nbranch : issue230\nrename : test/org/mockito/internal/stubbing/defaultanswers/ReturnsDeepStubsTest.java \u003d\u003e test/org/mockito/internal/stubbing/defaultanswers/ReturnsGenericDeepStubsTest.java\n",
+    "repoName": "../bugs/Mockito_8_buggy/.git"
+  },
+  "fixedCommit": {
+    "sha": "5a03bf5d0c9aedac9cfbf074833167c1eca6439f",
+    "branchName": "HEAD",
+    "fullMessage": "Fixes issue #114\n",
+    "repoName": "../bugs/Mockito_8_buggy/.git"
+  },
+  "buggyCommit": {
+    "sha": "9fb7d8b62814f959ceca6096d785b96c11bdfd0a",
+    "branchName": "HEAD",
+    "fullMessage": "Small grammer issue\n\n\"The any family methods **do not** do any type checks\" doesn\u0027t make sense.\n\nPull request: #149\n",
+    "repoName": "../bugs/Mockito_8_buggy/.git"
+  }
+}

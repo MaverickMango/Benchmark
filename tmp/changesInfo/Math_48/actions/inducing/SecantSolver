@@ -1,0 +1,516 @@
+===
+insert-node
+---
+Javadoc [855,1732]
+to
+TypeDeclaration [966,5132]
+at 0
+===
+insert-tree
+---
+SimpleType [1767,1777]
+    SimpleName: SecantBase [1767,1777]
+to
+TypeDeclaration [966,5132]
+at 5
+===
+insert-tree
+---
+TagElement [862,1708]
+    TextElement: Implements the <em>Secant</em> method for root-finding (approximating a [862,933]
+    TextElement: zero of a univariate real function). The solution that is maintained is [937,1008]
+    TextElement: not bracketed, and as such convergence is not guaranteed. [1012,1069]
+    TextElement: <p>Implementation based on the following article: M. Dowell and P. Jarratt, [1076,1151]
+    TextElement: <em>A modified regula falsi method for computing the root of an [1155,1218]
+    TextElement: equation</em>, BIT Numerical Mathematics, volume 11, number 2, [1222,1284]
+    TextElement: pages 168-174, Springer, 1971.</p> [1288,1322]
+    TextElement: <p>Note that since release 3.0 this class implements the actual [1329,1392]
+    TextElement: <em>Secant</em> algorithm, and not a modified one. As such, the 3.0 version [1396,1471]
+    TextElement: is not backwards compatible with previous versions. To use an algorithm [1475,1546]
+    TextElement: similar to the pre-3.0 releases, use the [1550,1590]
+    TagElement [1594,1634]
+        SimpleName: IllinoisSolver [1601,1615]
+        TextElement:  <em>Illinois</em> [1615,1633]
+    TextElement:  algorithm or the [1634,1651]
+    TagElement [1655,1693]
+        SimpleName: PegasusSolver [1662,1675]
+        TextElement:  <em>Pegasus</em> [1675,1692]
+    TextElement:  algorithm.</p> [1693,1708]
+to
+Javadoc [855,1732]
+at 0
+===
+move-tree
+---
+TagElement [1604,1617]
+    TextElement:  $Id$ [1612,1617]
+to
+Javadoc [855,1732]
+at 1
+===
+insert-tree
+---
+Javadoc [1784,1839]
+    TagElement [1788,1837]
+        TextElement: Construct a solver with default accuracy (1e-6).  [1788,1837]
+to
+MethodDeclaration [1796,1938]
+at 0
+===
+insert-tree
+---
+SuperConstructorInvocation [1876,1924]
+    SimpleName: DEFAULT_ABSOLUTE_ACCURACY [1882,1907]
+    QualifiedName: Method.SECANT [1909,1922]
+to
+Block [1890,1938]
+at 0
+===
+insert-node
+---
+Modifier: final [2055,2060]
+to
+SingleVariableDeclaration [2063,2086]
+at 0
+===
+insert-node
+---
+Modifier: final [2315,2320]
+to
+SingleVariableDeclaration [2303,2326]
+at 0
+===
+insert-node
+---
+Modifier: final [2370,2375]
+to
+SingleVariableDeclaration [2352,2375]
+at 0
+===
+update-node
+---
+TextElement:  Absolute accuracy. [2011,2030]
+replace  Absolute accuracy. by  absolute accuracy
+===
+insert-node
+---
+QualifiedName: Method.SECANT [2120,2133]
+to
+SuperConstructorInvocation [2098,2122]
+at 1
+===
+update-node
+---
+TextElement:  Relative accuracy. [2201,2220]
+replace  Relative accuracy. by  relative accuracy
+===
+update-node
+---
+TextElement:  Absolute accuracy. [2251,2270]
+replace  Absolute accuracy. by  absolute accuracy
+===
+insert-node
+---
+QualifiedName: Method.SECANT [2453,2466]
+to
+SuperConstructorInvocation [2387,2429]
+at 2
+===
+delete-tree
+---
+ImportDeclaration [854,917]
+    QualifiedName: org.apache.commons.math.exception.NoBracketingException [861,916]
+===
+delete-tree
+---
+ImportDeclaration [918,963]
+    QualifiedName: org.apache.commons.math.util.FastMath [925,962]
+===
+delete-tree
+---
+TagElement [973,1597]
+    TextElement: Implements a modified version of the [973,1009]
+    TextElement: <a href="http://mathworld.wolfram.com/SecantMethod.html">secant method</a> [1013,1087]
+    TextElement: for approximating a zero of a real univariate function. [1091,1146]
+    TextElement: <p> [1150,1153]
+    TextElement: The algorithm is modified to maintain bracketing of a root by successive [1157,1229]
+    TextElement: approximations. Because of forced bracketing, convergence may be slower than [1233,1309]
+    TextElement: the unrestricted secant algorithm. However, this implementation should in [1313,1386]
+    TextElement: general outperform the [1390,1412]
+    TextElement: <a href="http://mathworld.wolfram.com/MethodofFalsePosition.html"> [1416,1482]
+    TextElement: regula falsi method.</a></p> [1486,1514]
+    TextElement: <p> [1518,1521]
+    TextElement: The function is assumed to be continuous but not necessarily smooth.</p> [1525,1597]
+===
+delete-node
+---
+Javadoc [966,1621]
+===
+===
+delete-tree
+---
+SimpleType [1656,1684]
+    SimpleName: AbstractUnivariateRealSolver [1656,1684]
+Moved to File: src/main/java/org/apache/commons/math/analysis/solvers/SecantBase.java
+===
+delete-tree
+---
+Javadoc [1796,1863]
+    TagElement [1807,1855]
+        TextElement: Construct a solver with default accuracy (1e-6). [1807,1855]
+===
+delete-tree
+---
+ConstructorInvocation [1900,1932]
+    SimpleName: DEFAULT_ABSOLUTE_ACCURACY [1905,1930]
+Moved to File: src/main/java/org/apache/commons/math/analysis/solvers/SecantBase.java
+Moved to File: src/main/java/org/apache/commons/math/analysis/solvers/SecantBase.java
+Moved to File: src/main/java/org/apache/commons/math/analysis/solvers/SecantBase.java
+Moved to File: src/main/java/org/apache/commons/math/analysis/solvers/SecantBase.java
+Moved to File: src/main/java/org/apache/commons/math/analysis/solvers/SecantBase.java
+Moved to File: src/main/java/org/apache/commons/math/analysis/solvers/SecantBase.java
+Moved to File: src/main/java/org/apache/commons/math/analysis/solvers/SecantBase.java
+===
+delete-tree
+---
+ExpressionStatement [2591,2616]
+    MethodInvocation [2591,2615]
+        SimpleName: verifyInterval [2591,2605]
+        METHOD_INVOCATION_ARGUMENTS [2606,2614]
+            SimpleName: min [2606,2609]
+            SimpleName: max [2611,2614]
+Moved to File: src/main/java/org/apache/commons/math/analysis/solvers/SecantBase.java
+===
+delete-tree
+---
+VariableDeclarationStatement [2989,3005]
+    PrimitiveType: double [2989,2995]
+    VariableDeclarationFragment [2996,3004]
+        SimpleName: x0 [2996,2998]
+        SimpleName: min [3001,3004]
+===
+delete-node
+---
+PrimitiveType: double [3014,3020]
+===
+Moved to File: src/main/java/org/apache/commons/math/analysis/solvers/SecantBase.java
+===
+delete-node
+---
+SimpleName: max [3026,3029]
+===
+===
+delete-node
+---
+VariableDeclarationFragment [3021,3029]
+===
+===
+delete-node
+---
+VariableDeclarationStatement [3014,3030]
+===
+Moved to File: src/main/java/org/apache/commons/math/analysis/solvers/SecantBase.java
+===
+delete-tree
+---
+MethodInvocation [3149,3165]
+    METHOD_INVOCATION_RECEIVER [3149,3157]
+        SimpleName: FastMath [3149,3157]
+    SimpleName: abs [3158,3161]
+    METHOD_INVOCATION_ARGUMENTS [3162,3164]
+        SimpleName: y0 [3162,3164]
+Moved to File: src/main/java/org/apache/commons/math/analysis/solvers/SecantBase.java
+Moved to File: src/main/java/org/apache/commons/math/analysis/solvers/SecantBase.java
+Moved to File: src/main/java/org/apache/commons/math/analysis/solvers/SecantBase.java
+Moved to File: src/main/java/org/apache/commons/math/analysis/solvers/SecantBase.java
+===
+delete-node
+---
+Block [3192,3226]
+===
+Moved to File: src/main/java/org/apache/commons/math/analysis/solvers/SecantBase.java
+Moved to File: src/main/java/org/apache/commons/math/analysis/solvers/SecantBase.java
+===
+delete-tree
+---
+MethodInvocation [3346,3362]
+    METHOD_INVOCATION_RECEIVER [3346,3354]
+        SimpleName: FastMath [3346,3354]
+    SimpleName: abs [3355,3358]
+    METHOD_INVOCATION_ARGUMENTS [3359,3361]
+        SimpleName: y1 [3359,3361]
+Moved to File: src/main/java/org/apache/commons/math/analysis/solvers/SecantBase.java
+Moved to File: src/main/java/org/apache/commons/math/analysis/solvers/SecantBase.java
+Moved to File: src/main/java/org/apache/commons/math/analysis/solvers/SecantBase.java
+Moved to File: src/main/java/org/apache/commons/math/analysis/solvers/SecantBase.java
+===
+delete-node
+---
+Block [3389,3423]
+===
+Moved to File: src/main/java/org/apache/commons/math/analysis/solvers/SecantBase.java
+===
+delete-tree
+---
+IfStatement [3462,3554]
+    InfixExpression [3466,3478]
+        InfixExpression [3466,3473]
+            SimpleName: y0 [3466,3468]
+            INFIX_EXPRESSION_OPERATOR: * [3469,3470]
+            SimpleName: y1 [3471,3473]
+        INFIX_EXPRESSION_OPERATOR: >= [3474,3476]
+        NumberLiteral: 0 [3477,3478]
+    Block [3480,3554]
+        ThrowStatement [3494,3544]
+            ClassInstanceCreation [3500,3543]
+                SimpleType [3504,3525]
+                    SimpleName: NoBracketingException [3504,3525]
+                SimpleName: min [3526,3529]
+                SimpleName: max [3531,3534]
+                SimpleName: y0 [3536,3538]
+                SimpleName: y1 [3540,3542]
+Moved to File: src/main/java/org/apache/commons/math/analysis/solvers/SecantBase.java
+Moved to File: src/main/java/org/apache/commons/math/analysis/solvers/SecantBase.java
+===
+delete-tree
+---
+VariableDeclarationStatement [3691,3706]
+    PrimitiveType: double [3691,3697]
+    VariableDeclarationFragment [3698,3705]
+        SimpleName: x2 [3698,3700]
+        SimpleName: x0 [3703,3705]
+===
+delete-tree
+---
+VariableDeclarationStatement [3715,3730]
+    PrimitiveType: double [3715,3721]
+    VariableDeclarationFragment [3722,3729]
+        SimpleName: y2 [3722,3724]
+        SimpleName: y0 [3727,3729]
+===
+delete-tree
+---
+VariableDeclarationStatement [3739,3765]
+    PrimitiveType: double [3739,3745]
+    VariableDeclarationFragment [3746,3764]
+        SimpleName: oldDelta [3746,3754]
+        InfixExpression [3757,3764]
+            SimpleName: x2 [3757,3759]
+            INFIX_EXPRESSION_OPERATOR: - [3760,3761]
+            SimpleName: x1 [3762,3764]
+Moved to File: src/main/java/org/apache/commons/math/analysis/solvers/SecantBase.java
+===
+delete-tree
+---
+InfixExpression [3805,3840]
+    MethodInvocation [3805,3821]
+        METHOD_INVOCATION_RECEIVER [3805,3813]
+            SimpleName: FastMath [3805,3813]
+        SimpleName: abs [3814,3817]
+        METHOD_INVOCATION_ARGUMENTS [3818,3820]
+            SimpleName: y2 [3818,3820]
+    INFIX_EXPRESSION_OPERATOR: < [3822,3823]
+    MethodInvocation [3824,3840]
+        METHOD_INVOCATION_RECEIVER [3824,3832]
+            SimpleName: FastMath [3824,3832]
+        SimpleName: abs [3833,3836]
+        METHOD_INVOCATION_ARGUMENTS [3837,3839]
+            SimpleName: y1 [3837,3839]
+Moved to File: src/main/java/org/apache/commons/math/analysis/solvers/SecantBase.java
+Moved to File: src/main/java/org/apache/commons/math/analysis/solvers/SecantBase.java
+Moved to File: src/main/java/org/apache/commons/math/analysis/solvers/SecantBase.java
+Moved to File: src/main/java/org/apache/commons/math/analysis/solvers/SecantBase.java
+===
+delete-node
+---
+SimpleName: x0 [3915,3917]
+===
+Moved to File: src/main/java/org/apache/commons/math/analysis/solvers/SecantBase.java
+Moved to File: src/main/java/org/apache/commons/math/analysis/solvers/SecantBase.java
+Moved to File: src/main/java/org/apache/commons/math/analysis/solvers/SecantBase.java
+Moved to File: src/main/java/org/apache/commons/math/analysis/solvers/SecantBase.java
+===
+delete-tree
+---
+ExpressionStatement [3985,3993]
+    Assignment [3985,3992]
+        SimpleName: y2 [3985,3987]
+        ASSIGNMENT_OPERATOR: = [3988,3989]
+        SimpleName: y0 [3990,3992]
+Moved to File: src/main/java/org/apache/commons/math/analysis/solvers/SecantBase.java
+===
+delete-node
+---
+IfStatement [3801,4007]
+===
+Moved to File: src/main/java/org/apache/commons/math/analysis/solvers/SecantBase.java
+Moved to File: src/main/java/org/apache/commons/math/analysis/solvers/SecantBase.java
+Moved to File: src/main/java/org/apache/commons/math/analysis/solvers/SecantBase.java
+===
+delete-node
+---
+SimpleName: oldDelta [4139,4147]
+===
+Moved to File: src/main/java/org/apache/commons/math/analysis/solvers/SecantBase.java
+Moved to File: src/main/java/org/apache/commons/math/analysis/solvers/SecantBase.java
+Moved to File: src/main/java/org/apache/commons/math/analysis/solvers/SecantBase.java
+Moved to File: src/main/java/org/apache/commons/math/analysis/solvers/SecantBase.java
+Moved to File: src/main/java/org/apache/commons/math/analysis/solvers/SecantBase.java
+Moved to File: src/main/java/org/apache/commons/math/analysis/solvers/SecantBase.java
+Moved to File: src/main/java/org/apache/commons/math/analysis/solvers/SecantBase.java
+Moved to File: src/main/java/org/apache/commons/math/analysis/solvers/SecantBase.java
+===
+delete-tree
+---
+IfStatement [4355,4820]
+    InfixExpression [4359,4394]
+        MethodInvocation [4359,4375]
+            METHOD_INVOCATION_RECEIVER [4359,4367]
+                SimpleName: FastMath [4359,4367]
+            SimpleName: abs [4368,4371]
+            METHOD_INVOCATION_ARGUMENTS [4372,4374]
+                SimpleName: y1 [4372,4374]
+        INFIX_EXPRESSION_OPERATOR: > [4376,4377]
+        MethodInvocation [4378,4394]
+            METHOD_INVOCATION_RECEIVER [4378,4386]
+                SimpleName: FastMath [4378,4386]
+            SimpleName: abs [4387,4390]
+            METHOD_INVOCATION_ARGUMENTS [4391,4393]
+                SimpleName: y0 [4391,4393]
+    Block [4396,4531]
+        ExpressionStatement [4494,4517]
+            Assignment [4494,4516]
+                SimpleName: delta [4494,4499]
+                ASSIGNMENT_OPERATOR: = [4500,4501]
+                InfixExpression [4502,4516]
+                    NumberLiteral: 0.5 [4502,4505]
+                    INFIX_EXPRESSION_OPERATOR: * [4506,4507]
+                    SimpleName: oldDelta [4508,4516]
+    Block [4537,4820]
+        ExpressionStatement [4555,4589]
+            Assignment [4555,4588]
+                SimpleName: delta [4555,4560]
+                ASSIGNMENT_OPERATOR: = [4561,4562]
+                InfixExpression [4563,4588]
+                    ParenthesizedExpression [4563,4572]
+                        InfixExpression [4564,4571]
+                            SimpleName: x0 [4564,4566]
+                            INFIX_EXPRESSION_OPERATOR: - [4567,4568]
+                            SimpleName: x1 [4569,4571]
+                    INFIX_EXPRESSION_OPERATOR: / [4573,4574]
+                    ParenthesizedExpression [4575,4588]
+                        InfixExpression [4576,4587]
+                            NumberLiteral: 1 [4576,4577]
+                            INFIX_EXPRESSION_OPERATOR: - [4578,4579]
+                            InfixExpression [4580,4587]
+                                SimpleName: y0 [4580,4582]
+                                INFIX_EXPRESSION_OPERATOR: / [4583,4584]
+                                SimpleName: y1 [4585,4587]
+        IfStatement [4606,4806]
+            InfixExpression [4610,4630]
+                InfixExpression [4610,4626]
+                    SimpleName: delta [4610,4615]
+                    INFIX_EXPRESSION_OPERATOR: / [4616,4617]
+                    SimpleName: oldDelta [4618,4626]
+                INFIX_EXPRESSION_OPERATOR: > [4627,4628]
+                NumberLiteral: 1 [4629,4630]
+            Block [4632,4806]
+                ExpressionStatement [4765,4788]
+                    Assignment [4765,4787]
+                        SimpleName: delta [4765,4770]
+                        ASSIGNMENT_OPERATOR: = [4771,4772]
+                        InfixExpression [4773,4787]
+                            NumberLiteral: 0.5 [4773,4776]
+                            INFIX_EXPRESSION_OPERATOR: * [4777,4778]
+                            SimpleName: oldDelta [4779,4787]
+Moved to File: src/main/java/org/apache/commons/math/analysis/solvers/SecantBase.java
+Moved to File: src/main/java/org/apache/commons/math/analysis/solvers/SecantBase.java
+Moved to File: src/main/java/org/apache/commons/math/analysis/solvers/SecantBase.java
+Moved to File: src/main/java/org/apache/commons/math/analysis/solvers/SecantBase.java
+===
+delete-tree
+---
+InfixExpression [4880,4890]
+    SimpleName: x1 [4880,4882]
+    INFIX_EXPRESSION_OPERATOR: + [4883,4884]
+    SimpleName: delta [4885,4890]
+Moved to File: src/main/java/org/apache/commons/math/analysis/solvers/SecantBase.java
+Moved to File: src/main/java/org/apache/commons/math/analysis/solvers/SecantBase.java
+===
+delete-node
+---
+SimpleName: y1 [4904,4906]
+===
+===
+delete-node
+---
+ASSIGNMENT_OPERATOR: = [4907,4908]
+===
+===
+delete-node
+---
+SimpleName: computeObjectiveValue [4909,4930]
+===
+Moved to File: src/main/java/org/apache/commons/math/analysis/solvers/SecantBase.java
+===
+delete-node
+---
+METHOD_INVOCATION_ARGUMENTS [4931,4933]
+===
+===
+delete-node
+---
+MethodInvocation [4909,4934]
+===
+===
+delete-node
+---
+Assignment [4904,4934]
+===
+===
+delete-node
+---
+ExpressionStatement [4904,4935]
+===
+===
+delete-tree
+---
+IfStatement [4948,5082]
+    InfixExpression [4952,4972]
+        ParenthesizedExpression [4952,4960]
+            InfixExpression [4953,4959]
+                SimpleName: y1 [4953,4955]
+                INFIX_EXPRESSION_OPERATOR: > [4956,4957]
+                NumberLiteral: 0 [4958,4959]
+        INFIX_EXPRESSION_OPERATOR: == [4961,4963]
+        ParenthesizedExpression [4964,4972]
+            InfixExpression [4965,4971]
+                SimpleName: y2 [4965,4967]
+                INFIX_EXPRESSION_OPERATOR: > [4968,4969]
+                NumberLiteral: 0 [4970,4971]
+    Block [4974,5082]
+        ExpressionStatement [5035,5043]
+            Assignment [5035,5042]
+                SimpleName: x2 [5035,5037]
+                ASSIGNMENT_OPERATOR: = [5038,5039]
+                SimpleName: x0 [5040,5042]
+        ExpressionStatement [5060,5068]
+            Assignment [5060,5067]
+                SimpleName: y2 [5060,5062]
+                ASSIGNMENT_OPERATOR: = [5063,5064]
+                SimpleName: y0 [5065,5067]
+===
+delete-tree
+---
+ExpressionStatement [5095,5114]
+    Assignment [5095,5113]
+        SimpleName: oldDelta [5095,5103]
+        ASSIGNMENT_OPERATOR: = [5104,5105]
+        InfixExpression [5106,5113]
+            SimpleName: x2 [5106,5108]
+            INFIX_EXPRESSION_OPERATOR: - [5109,5110]
+            SimpleName: x1 [5111,5113]
+Moved to File: src/main/java/org/apache/commons/math/analysis/solvers/SecantBase.java
+Moved to File: src/main/java/org/apache/commons/math/analysis/solvers/SecantBase.java
+Moved to File: src/main/java/org/apache/commons/math/analysis/solvers/SecantBase.java
+Moved to File: src/main/java/org/apache/commons/math/analysis/solvers/SecantBase.java

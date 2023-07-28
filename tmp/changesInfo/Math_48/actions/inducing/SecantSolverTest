@@ -1,0 +1,870 @@
+===
+insert-tree
+---
+SimpleType [980,994]
+    SimpleName: SecantBaseTest [980,994]
+to
+TypeDeclaration [1255,7958]
+at 5
+===
+insert-tree
+---
+MethodDeclaration [1001,1111]
+    Javadoc [1001,1021]
+        TagElement [1005,1019]
+            TagElement [1005,1018]
+            TextElement:   [1018,1019]
+    Modifier: protected [1026,1035]
+    SimpleType [1036,1056]
+        SimpleName: UnivariateRealSolver [1036,1056]
+    SimpleName: getSolver [1057,1066]
+    Block [1069,1111]
+        ReturnStatement [1079,1105]
+            ClassInstanceCreation [1086,1104]
+                SimpleType [1090,1102]
+                    SimpleName: SecantSolver [1090,1102]
+to
+TypeDeclaration [1255,7958]
+at 6
+===
+insert-tree
+---
+MethodDeclaration [1117,1434]
+    Javadoc [1117,1137]
+        TagElement [1121,1135]
+            TagElement [1121,1134]
+            TextElement:   [1134,1135]
+    Modifier: protected [1142,1151]
+    ArrayType [1152,1157]
+        PrimitiveType: int [1152,1155]
+        Dimension [1155,1157]
+    SimpleName: getQuinticEvalCounts [1158,1178]
+    Block [1181,1434]
+        ReturnStatement [1371,1428]
+            ArrayCreation [1378,1427]
+                ArrayType [1382,1387]
+                    PrimitiveType: int [1382,1385]
+                    Dimension [1385,1387]
+                ArrayInitializer [1388,1427]
+                    NumberLiteral: 3 [1389,1390]
+                    NumberLiteral: 7 [1392,1393]
+                    PrefixExpression [1395,1397]
+                        PREFIX_EXPRESSION_OPERATOR: - [1395,1396]
+                        NumberLiteral: 1 [1396,1397]
+                    NumberLiteral: 8 [1399,1400]
+                    NumberLiteral: 9 [1402,1403]
+                    NumberLiteral: 8 [1405,1406]
+                    NumberLiteral: 11 [1408,1410]
+                    NumberLiteral: 12 [1412,1414]
+                    NumberLiteral: 14 [1416,1418]
+                    PrefixExpression [1420,1422]
+                        PREFIX_EXPRESSION_OPERATOR: - [1420,1421]
+                        NumberLiteral: 1 [1421,1422]
+                    NumberLiteral: 16 [1424,1426]
+to
+TypeDeclaration [1255,7958]
+at 7
+===
+update-node
+---
+TextElement: . [1296,1297]
+replace . by  solver.
+===
+insert-node
+---
+TextElement:  Secant [895,902]
+to
+TagElement [1276,1296]
+at 1
+===
+delete-tree
+---
+ImportDeclaration [854,910]
+    QualifiedName: org.apache.commons.math.analysis.QuinticFunction [861,909]
+===
+delete-tree
+---
+ImportDeclaration [911,963]
+    QualifiedName: org.apache.commons.math.analysis.SinFunction [918,962]
+===
+delete-tree
+---
+ImportDeclaration [964,1027]
+    QualifiedName: org.apache.commons.math.analysis.UnivariateRealFunction [971,1026]
+===
+delete-tree
+---
+ImportDeclaration [1028,1095]
+    QualifiedName: org.apache.commons.math.exception.NumberIsTooLargeException [1035,1094]
+===
+delete-tree
+---
+ImportDeclaration [1096,1159]
+    QualifiedName: org.apache.commons.math.exception.NoBracketingException [1103,1158]
+===
+delete-tree
+---
+ImportDeclaration [1160,1205]
+    QualifiedName: org.apache.commons.math.util.FastMath [1167,1204]
+===
+delete-tree
+---
+ImportDeclaration [1206,1230]
+    QualifiedName: org.junit.Assert [1213,1229]
+===
+delete-tree
+---
+ImportDeclaration [1231,1253]
+    QualifiedName: org.junit.Test [1238,1252]
+Moved to File: src/test/java/org/apache/commons/math/analysis/solvers/SecantBaseTest.java
+Moved to File: src/test/java/org/apache/commons/math/analysis/solvers/SecantBaseTest.java
+Moved to File: src/test/java/org/apache/commons/math/analysis/solvers/SecantBaseTest.java
+Moved to File: src/test/java/org/apache/commons/math/analysis/solvers/SecantBaseTest.java
+Moved to File: src/test/java/org/apache/commons/math/analysis/solvers/SecantBaseTest.java
+Moved to File: src/test/java/org/apache/commons/math/analysis/solvers/SecantBaseTest.java
+===
+delete-tree
+---
+VariableDeclarationStatement [1690,1739]
+    SimpleType [1690,1710]
+        SimpleName: UnivariateRealSolver [1690,1710]
+    VariableDeclarationFragment [1711,1738]
+        SimpleName: solver [1711,1717]
+        ClassInstanceCreation [1720,1738]
+            SimpleType [1724,1736]
+                SimpleName: SecantSolver [1724,1736]
+Moved to File: src/test/java/org/apache/commons/math/analysis/solvers/SecantBaseTest.java
+Moved to File: src/test/java/org/apache/commons/math/analysis/solvers/SecantBaseTest.java
+Moved to File: src/test/java/org/apache/commons/math/analysis/solvers/SecantBaseTest.java
+Moved to File: src/test/java/org/apache/commons/math/analysis/solvers/SecantBaseTest.java
+Moved to File: src/test/java/org/apache/commons/math/analysis/solvers/SecantBaseTest.java
+Moved to File: src/test/java/org/apache/commons/math/analysis/solvers/SecantBaseTest.java
+Moved to File: src/test/java/org/apache/commons/math/analysis/solvers/SecantBaseTest.java
+Moved to File: src/test/java/org/apache/commons/math/analysis/solvers/SecantBaseTest.java
+Moved to File: src/test/java/org/apache/commons/math/analysis/solvers/SecantBaseTest.java
+Moved to File: src/test/java/org/apache/commons/math/analysis/solvers/SecantBaseTest.java
+Moved to File: src/test/java/org/apache/commons/math/analysis/solvers/SecantBaseTest.java
+Moved to File: src/test/java/org/apache/commons/math/analysis/solvers/SecantBaseTest.java
+Moved to File: src/test/java/org/apache/commons/math/analysis/solvers/SecantBaseTest.java
+Moved to File: src/test/java/org/apache/commons/math/analysis/solvers/SecantBaseTest.java
+===
+delete-tree
+---
+VariableDeclarationStatement [2968,3017]
+    SimpleType [2968,2988]
+        SimpleName: UnivariateRealSolver [2968,2988]
+    VariableDeclarationFragment [2989,3016]
+        SimpleName: solver [2989,2995]
+        ClassInstanceCreation [2998,3016]
+            SimpleType [3002,3014]
+                SimpleName: SecantSolver [3002,3014]
+===
+delete-tree
+---
+ExpressionStatement [3026,3067]
+    Assignment [3026,3066]
+        SimpleName: result [3026,3032]
+        ASSIGNMENT_OPERATOR: = [3033,3034]
+        MethodInvocation [3035,3066]
+            METHOD_INVOCATION_RECEIVER [3035,3041]
+                SimpleName: solver [3035,3041]
+            SimpleName: solve [3042,3047]
+            METHOD_INVOCATION_ARGUMENTS [3048,3065]
+                NumberLiteral: 100 [3048,3051]
+                SimpleName: f [3053,3054]
+                PrefixExpression [3056,3060]
+                    PREFIX_EXPRESSION_OPERATOR: - [3056,3057]
+                    NumberLiteral: 0.2 [3057,3060]
+                NumberLiteral: 0.2 [3062,3065]
+Moved to File: src/test/java/org/apache/commons/math/analysis/solvers/SecantBaseTest.java
+Moved to File: src/test/java/org/apache/commons/math/analysis/solvers/SecantBaseTest.java
+Moved to File: src/test/java/org/apache/commons/math/analysis/solvers/SecantBaseTest.java
+===
+delete-node
+---
+NumberLiteral: 0 [3213,3214]
+===
+===
+delete-tree
+---
+MethodInvocation [3216,3244]
+    METHOD_INVOCATION_RECEIVER [3216,3222]
+        SimpleName: solver [3216,3222]
+    SimpleName: getAbsoluteAccuracy [3223,3242]
+Moved to File: src/test/java/org/apache/commons/math/analysis/solvers/SecantBaseTest.java
+Moved to File: src/test/java/org/apache/commons/math/analysis/solvers/SecantBaseTest.java
+Moved to File: src/test/java/org/apache/commons/math/analysis/solvers/SecantBaseTest.java
+Moved to File: src/test/java/org/apache/commons/math/analysis/solvers/SecantBaseTest.java
+Moved to File: src/test/java/org/apache/commons/math/analysis/solvers/SecantBaseTest.java
+Moved to File: src/test/java/org/apache/commons/math/analysis/solvers/SecantBaseTest.java
+Moved to File: src/test/java/org/apache/commons/math/analysis/solvers/SecantBaseTest.java
+===
+delete-node
+---
+NumberLiteral: 3 [3300,3301]
+===
+Moved to File: src/test/java/org/apache/commons/math/analysis/solvers/SecantBaseTest.java
+Moved to File: src/test/java/org/apache/commons/math/analysis/solvers/SecantBaseTest.java
+Moved to File: src/test/java/org/apache/commons/math/analysis/solvers/SecantBaseTest.java
+Moved to File: src/test/java/org/apache/commons/math/analysis/solvers/SecantBaseTest.java
+===
+delete-tree
+---
+ExpressionStatement [3312,3353]
+    Assignment [3312,3352]
+        SimpleName: result [3312,3318]
+        ASSIGNMENT_OPERATOR: = [3319,3320]
+        MethodInvocation [3321,3352]
+            METHOD_INVOCATION_RECEIVER [3321,3327]
+                SimpleName: solver [3321,3327]
+            SimpleName: solve [3328,3333]
+            METHOD_INVOCATION_ARGUMENTS [3334,3351]
+                NumberLiteral: 100 [3334,3337]
+                SimpleName: f [3339,3340]
+                PrefixExpression [3342,3346]
+                    PREFIX_EXPRESSION_OPERATOR: - [3342,3343]
+                    NumberLiteral: 0.1 [3343,3346]
+                NumberLiteral: 0.3 [3348,3351]
+===
+delete-tree
+---
+ExpressionStatement [3471,3532]
+    MethodInvocation [3471,3531]
+        METHOD_INVOCATION_RECEIVER [3471,3477]
+            SimpleName: Assert [3471,3477]
+        SimpleName: assertEquals [3478,3490]
+        METHOD_INVOCATION_ARGUMENTS [3491,3530]
+            SimpleName: result [3491,3497]
+            NumberLiteral: 0 [3499,3500]
+            MethodInvocation [3502,3530]
+                METHOD_INVOCATION_RECEIVER [3502,3508]
+                    SimpleName: solver [3502,3508]
+                SimpleName: getAbsoluteAccuracy [3509,3528]
+===
+delete-tree
+---
+ExpressionStatement [3541,3589]
+    MethodInvocation [3541,3588]
+        METHOD_INVOCATION_RECEIVER [3541,3547]
+            SimpleName: Assert [3541,3547]
+        SimpleName: assertTrue [3548,3558]
+        METHOD_INVOCATION_ARGUMENTS [3559,3587]
+            InfixExpression [3559,3587]
+                MethodInvocation [3559,3582]
+                    METHOD_INVOCATION_RECEIVER [3559,3565]
+                        SimpleName: solver [3559,3565]
+                    SimpleName: getEvaluations [3566,3580]
+                INFIX_EXPRESSION_OPERATOR: <= [3583,3585]
+                NumberLiteral: 7 [3586,3587]
+===
+delete-tree
+---
+ExpressionStatement [3598,3640]
+    Assignment [3598,3639]
+        SimpleName: result [3598,3604]
+        ASSIGNMENT_OPERATOR: = [3605,3606]
+        MethodInvocation [3607,3639]
+            METHOD_INVOCATION_RECEIVER [3607,3613]
+                SimpleName: solver [3607,3613]
+            SimpleName: solve [3614,3619]
+            METHOD_INVOCATION_ARGUMENTS [3620,3638]
+                NumberLiteral: 100 [3620,3623]
+                SimpleName: f [3625,3626]
+                PrefixExpression [3628,3632]
+                    PREFIX_EXPRESSION_OPERATOR: - [3628,3629]
+                    NumberLiteral: 0.3 [3629,3632]
+                NumberLiteral: 0.45 [3634,3638]
+===
+delete-tree
+---
+ExpressionStatement [3758,3819]
+    MethodInvocation [3758,3818]
+        METHOD_INVOCATION_RECEIVER [3758,3764]
+            SimpleName: Assert [3758,3764]
+        SimpleName: assertEquals [3765,3777]
+        METHOD_INVOCATION_ARGUMENTS [3778,3817]
+            SimpleName: result [3778,3784]
+            NumberLiteral: 0 [3786,3787]
+            MethodInvocation [3789,3817]
+                METHOD_INVOCATION_RECEIVER [3789,3795]
+                    SimpleName: solver [3789,3795]
+                SimpleName: getAbsoluteAccuracy [3796,3815]
+===
+delete-tree
+---
+ExpressionStatement [3828,3876]
+    MethodInvocation [3828,3875]
+        METHOD_INVOCATION_RECEIVER [3828,3834]
+            SimpleName: Assert [3828,3834]
+        SimpleName: assertTrue [3835,3845]
+        METHOD_INVOCATION_ARGUMENTS [3846,3874]
+            InfixExpression [3846,3874]
+                MethodInvocation [3846,3869]
+                    METHOD_INVOCATION_RECEIVER [3846,3852]
+                        SimpleName: solver [3846,3852]
+                    SimpleName: getEvaluations [3853,3867]
+                INFIX_EXPRESSION_OPERATOR: <= [3870,3872]
+                NumberLiteral: 8 [3873,3874]
+===
+delete-tree
+---
+ExpressionStatement [3885,3925]
+    Assignment [3885,3924]
+        SimpleName: result [3885,3891]
+        ASSIGNMENT_OPERATOR: = [3892,3893]
+        MethodInvocation [3894,3924]
+            METHOD_INVOCATION_RECEIVER [3894,3900]
+                SimpleName: solver [3894,3900]
+            SimpleName: solve [3901,3906]
+            METHOD_INVOCATION_ARGUMENTS [3907,3923]
+                NumberLiteral: 100 [3907,3910]
+                SimpleName: f [3912,3913]
+                NumberLiteral: 0.3 [3915,3918]
+                NumberLiteral: 0.7 [3920,3923]
+===
+delete-tree
+---
+ExpressionStatement [4043,4106]
+    MethodInvocation [4043,4105]
+        METHOD_INVOCATION_RECEIVER [4043,4049]
+            SimpleName: Assert [4043,4049]
+        SimpleName: assertEquals [4050,4062]
+        METHOD_INVOCATION_ARGUMENTS [4063,4104]
+            SimpleName: result [4063,4069]
+            NumberLiteral: 0.5 [4071,4074]
+            MethodInvocation [4076,4104]
+                METHOD_INVOCATION_RECEIVER [4076,4082]
+                    SimpleName: solver [4076,4082]
+                SimpleName: getAbsoluteAccuracy [4083,4102]
+===
+delete-tree
+---
+ExpressionStatement [4115,4163]
+    MethodInvocation [4115,4162]
+        METHOD_INVOCATION_RECEIVER [4115,4121]
+            SimpleName: Assert [4115,4121]
+        SimpleName: assertTrue [4122,4132]
+        METHOD_INVOCATION_ARGUMENTS [4133,4161]
+            InfixExpression [4133,4161]
+                MethodInvocation [4133,4156]
+                    METHOD_INVOCATION_RECEIVER [4133,4139]
+                        SimpleName: solver [4133,4139]
+                    SimpleName: getEvaluations [4140,4154]
+                INFIX_EXPRESSION_OPERATOR: <= [4157,4159]
+                NumberLiteral: 9 [4160,4161]
+===
+delete-tree
+---
+ExpressionStatement [4172,4212]
+    Assignment [4172,4211]
+        SimpleName: result [4172,4178]
+        ASSIGNMENT_OPERATOR: = [4179,4180]
+        MethodInvocation [4181,4211]
+            METHOD_INVOCATION_RECEIVER [4181,4187]
+                SimpleName: solver [4181,4187]
+            SimpleName: solve [4188,4193]
+            METHOD_INVOCATION_ARGUMENTS [4194,4210]
+                NumberLiteral: 100 [4194,4197]
+                SimpleName: f [4199,4200]
+                NumberLiteral: 0.2 [4202,4205]
+                NumberLiteral: 0.6 [4207,4210]
+===
+delete-tree
+---
+ExpressionStatement [4330,4393]
+    MethodInvocation [4330,4392]
+        METHOD_INVOCATION_RECEIVER [4330,4336]
+            SimpleName: Assert [4330,4336]
+        SimpleName: assertEquals [4337,4349]
+        METHOD_INVOCATION_ARGUMENTS [4350,4391]
+            SimpleName: result [4350,4356]
+            NumberLiteral: 0.5 [4358,4361]
+            MethodInvocation [4363,4391]
+                METHOD_INVOCATION_RECEIVER [4363,4369]
+                    SimpleName: solver [4363,4369]
+                SimpleName: getAbsoluteAccuracy [4370,4389]
+===
+delete-tree
+---
+ExpressionStatement [4402,4450]
+    MethodInvocation [4402,4449]
+        METHOD_INVOCATION_RECEIVER [4402,4408]
+            SimpleName: Assert [4402,4408]
+        SimpleName: assertTrue [4409,4419]
+        METHOD_INVOCATION_ARGUMENTS [4420,4448]
+            InfixExpression [4420,4448]
+                MethodInvocation [4420,4443]
+                    METHOD_INVOCATION_RECEIVER [4420,4426]
+                        SimpleName: solver [4420,4426]
+                    SimpleName: getEvaluations [4427,4441]
+                INFIX_EXPRESSION_OPERATOR: <= [4444,4446]
+                NumberLiteral: 8 [4447,4448]
+Moved to File: src/test/java/org/apache/commons/math/analysis/solvers/SecantBaseTest.java
+Moved to File: src/test/java/org/apache/commons/math/analysis/solvers/SecantBaseTest.java
+Moved to File: src/test/java/org/apache/commons/math/analysis/solvers/SecantBaseTest.java
+Moved to File: src/test/java/org/apache/commons/math/analysis/solvers/SecantBaseTest.java
+===
+delete-node
+---
+NumberLiteral: 100 [4481,4484]
+===
+Moved to File: src/test/java/org/apache/commons/math/analysis/solvers/SecantBaseTest.java
+===
+delete-node
+---
+NumberLiteral: 0.05 [4489,4493]
+===
+===
+delete-node
+---
+NumberLiteral: 0.95 [4495,4499]
+===
+Moved to File: src/test/java/org/apache/commons/math/analysis/solvers/SecantBaseTest.java
+Moved to File: src/test/java/org/apache/commons/math/analysis/solvers/SecantBaseTest.java
+Moved to File: src/test/java/org/apache/commons/math/analysis/solvers/SecantBaseTest.java
+Moved to File: src/test/java/org/apache/commons/math/analysis/solvers/SecantBaseTest.java
+===
+delete-tree
+---
+ExpressionStatement [4619,4682]
+    MethodInvocation [4619,4681]
+        METHOD_INVOCATION_RECEIVER [4619,4625]
+            SimpleName: Assert [4619,4625]
+        SimpleName: assertEquals [4626,4638]
+        METHOD_INVOCATION_ARGUMENTS [4639,4680]
+            SimpleName: result [4639,4645]
+            NumberLiteral: 0.5 [4647,4650]
+            MethodInvocation [4652,4680]
+                METHOD_INVOCATION_RECEIVER [4652,4658]
+                    SimpleName: solver [4652,4658]
+                SimpleName: getAbsoluteAccuracy [4659,4678]
+===
+delete-tree
+---
+ExpressionStatement [4691,4740]
+    MethodInvocation [4691,4739]
+        METHOD_INVOCATION_RECEIVER [4691,4697]
+            SimpleName: Assert [4691,4697]
+        SimpleName: assertTrue [4698,4708]
+        METHOD_INVOCATION_ARGUMENTS [4709,4738]
+            InfixExpression [4709,4738]
+                MethodInvocation [4709,4732]
+                    METHOD_INVOCATION_RECEIVER [4709,4715]
+                        SimpleName: solver [4709,4715]
+                    SimpleName: getEvaluations [4716,4730]
+                INFIX_EXPRESSION_OPERATOR: <= [4733,4735]
+                NumberLiteral: 10 [4736,4738]
+===
+delete-tree
+---
+ExpressionStatement [4749,4791]
+    Assignment [4749,4790]
+        SimpleName: result [4749,4755]
+        ASSIGNMENT_OPERATOR: = [4756,4757]
+        MethodInvocation [4758,4790]
+            METHOD_INVOCATION_RECEIVER [4758,4764]
+                SimpleName: solver [4758,4764]
+            SimpleName: solve [4765,4770]
+            METHOD_INVOCATION_ARGUMENTS [4771,4789]
+                NumberLiteral: 100 [4771,4774]
+                SimpleName: f [4776,4777]
+                NumberLiteral: 0.85 [4779,4783]
+                NumberLiteral: 1.25 [4785,4789]
+===
+delete-tree
+---
+ExpressionStatement [4909,4972]
+    MethodInvocation [4909,4971]
+        METHOD_INVOCATION_RECEIVER [4909,4915]
+            SimpleName: Assert [4909,4915]
+        SimpleName: assertEquals [4916,4928]
+        METHOD_INVOCATION_ARGUMENTS [4929,4970]
+            SimpleName: result [4929,4935]
+            NumberLiteral: 1.0 [4937,4940]
+            MethodInvocation [4942,4970]
+                METHOD_INVOCATION_RECEIVER [4942,4948]
+                    SimpleName: solver [4942,4948]
+                SimpleName: getAbsoluteAccuracy [4949,4968]
+===
+delete-tree
+---
+ExpressionStatement [4981,5030]
+    MethodInvocation [4981,5029]
+        METHOD_INVOCATION_RECEIVER [4981,4987]
+            SimpleName: Assert [4981,4987]
+        SimpleName: assertTrue [4988,4998]
+        METHOD_INVOCATION_ARGUMENTS [4999,5028]
+            InfixExpression [4999,5028]
+                MethodInvocation [4999,5022]
+                    METHOD_INVOCATION_RECEIVER [4999,5005]
+                        SimpleName: solver [4999,5005]
+                    SimpleName: getEvaluations [5006,5020]
+                INFIX_EXPRESSION_OPERATOR: <= [5023,5025]
+                NumberLiteral: 12 [5026,5028]
+===
+delete-tree
+---
+ExpressionStatement [5039,5079]
+    Assignment [5039,5078]
+        SimpleName: result [5039,5045]
+        ASSIGNMENT_OPERATOR: = [5046,5047]
+        MethodInvocation [5048,5078]
+            METHOD_INVOCATION_RECEIVER [5048,5054]
+                SimpleName: solver [5048,5054]
+            SimpleName: solve [5055,5060]
+            METHOD_INVOCATION_ARGUMENTS [5061,5077]
+                NumberLiteral: 100 [5061,5064]
+                SimpleName: f [5066,5067]
+                NumberLiteral: 0.8 [5069,5072]
+                NumberLiteral: 1.2 [5074,5077]
+===
+delete-tree
+---
+ExpressionStatement [5197,5260]
+    MethodInvocation [5197,5259]
+        METHOD_INVOCATION_RECEIVER [5197,5203]
+            SimpleName: Assert [5197,5203]
+        SimpleName: assertEquals [5204,5216]
+        METHOD_INVOCATION_ARGUMENTS [5217,5258]
+            SimpleName: result [5217,5223]
+            NumberLiteral: 1.0 [5225,5228]
+            MethodInvocation [5230,5258]
+                METHOD_INVOCATION_RECEIVER [5230,5236]
+                    SimpleName: solver [5230,5236]
+                SimpleName: getAbsoluteAccuracy [5237,5256]
+===
+delete-tree
+---
+ExpressionStatement [5269,5318]
+    MethodInvocation [5269,5317]
+        METHOD_INVOCATION_RECEIVER [5269,5275]
+            SimpleName: Assert [5269,5275]
+        SimpleName: assertTrue [5276,5286]
+        METHOD_INVOCATION_ARGUMENTS [5287,5316]
+            InfixExpression [5287,5316]
+                MethodInvocation [5287,5310]
+                    METHOD_INVOCATION_RECEIVER [5287,5293]
+                        SimpleName: solver [5287,5293]
+                    SimpleName: getEvaluations [5294,5308]
+                INFIX_EXPRESSION_OPERATOR: <= [5311,5313]
+                NumberLiteral: 10 [5314,5316]
+===
+delete-tree
+---
+ExpressionStatement [5327,5369]
+    Assignment [5327,5368]
+        SimpleName: result [5327,5333]
+        ASSIGNMENT_OPERATOR: = [5334,5335]
+        MethodInvocation [5336,5368]
+            METHOD_INVOCATION_RECEIVER [5336,5342]
+                SimpleName: solver [5336,5342]
+            SimpleName: solve [5343,5348]
+            METHOD_INVOCATION_ARGUMENTS [5349,5367]
+                NumberLiteral: 100 [5349,5352]
+                SimpleName: f [5354,5355]
+                NumberLiteral: 0.85 [5357,5361]
+                NumberLiteral: 1.75 [5363,5367]
+===
+delete-tree
+---
+ExpressionStatement [5487,5550]
+    MethodInvocation [5487,5549]
+        METHOD_INVOCATION_RECEIVER [5487,5493]
+            SimpleName: Assert [5487,5493]
+        SimpleName: assertEquals [5494,5506]
+        METHOD_INVOCATION_ARGUMENTS [5507,5548]
+            SimpleName: result [5507,5513]
+            NumberLiteral: 1.0 [5515,5518]
+            MethodInvocation [5520,5548]
+                METHOD_INVOCATION_RECEIVER [5520,5526]
+                    SimpleName: solver [5520,5526]
+                SimpleName: getAbsoluteAccuracy [5527,5546]
+===
+delete-tree
+---
+ExpressionStatement [5559,5608]
+    MethodInvocation [5559,5607]
+        METHOD_INVOCATION_RECEIVER [5559,5565]
+            SimpleName: Assert [5559,5565]
+        SimpleName: assertTrue [5566,5576]
+        METHOD_INVOCATION_ARGUMENTS [5577,5606]
+            InfixExpression [5577,5606]
+                MethodInvocation [5577,5600]
+                    METHOD_INVOCATION_RECEIVER [5577,5583]
+                        SimpleName: solver [5577,5583]
+                    SimpleName: getEvaluations [5584,5598]
+                INFIX_EXPRESSION_OPERATOR: <= [5601,5603]
+                NumberLiteral: 16 [5604,5606]
+===
+delete-tree
+---
+ExpressionStatement [5782,5824]
+    Assignment [5782,5823]
+        SimpleName: result [5782,5788]
+        ASSIGNMENT_OPERATOR: = [5789,5790]
+        MethodInvocation [5791,5823]
+            METHOD_INVOCATION_RECEIVER [5791,5797]
+                SimpleName: solver [5791,5797]
+            SimpleName: solve [5798,5803]
+            METHOD_INVOCATION_ARGUMENTS [5804,5822]
+                NumberLiteral: 100 [5804,5807]
+                SimpleName: f [5809,5810]
+                NumberLiteral: 0.55 [5812,5816]
+                NumberLiteral: 1.45 [5818,5822]
+===
+delete-tree
+---
+ExpressionStatement [5942,6005]
+    MethodInvocation [5942,6004]
+        METHOD_INVOCATION_RECEIVER [5942,5948]
+            SimpleName: Assert [5942,5948]
+        SimpleName: assertEquals [5949,5961]
+        METHOD_INVOCATION_ARGUMENTS [5962,6003]
+            SimpleName: result [5962,5968]
+            NumberLiteral: 1.0 [5970,5973]
+            MethodInvocation [5975,6003]
+                METHOD_INVOCATION_RECEIVER [5975,5981]
+                    SimpleName: solver [5975,5981]
+                SimpleName: getAbsoluteAccuracy [5982,6001]
+===
+delete-tree
+---
+ExpressionStatement [6014,6062]
+    MethodInvocation [6014,6061]
+        METHOD_INVOCATION_RECEIVER [6014,6020]
+            SimpleName: Assert [6014,6020]
+        SimpleName: assertTrue [6021,6031]
+        METHOD_INVOCATION_ARGUMENTS [6032,6060]
+            InfixExpression [6032,6060]
+                MethodInvocation [6032,6055]
+                    METHOD_INVOCATION_RECEIVER [6032,6038]
+                        SimpleName: solver [6032,6038]
+                    SimpleName: getEvaluations [6039,6053]
+                INFIX_EXPRESSION_OPERATOR: <= [6056,6058]
+                NumberLiteral: 9 [6059,6060]
+===
+delete-tree
+---
+ExpressionStatement [6071,6110]
+    Assignment [6071,6109]
+        SimpleName: result [6071,6077]
+        ASSIGNMENT_OPERATOR: = [6078,6079]
+        MethodInvocation [6080,6109]
+            METHOD_INVOCATION_RECEIVER [6080,6086]
+                SimpleName: solver [6080,6086]
+            SimpleName: solve [6087,6092]
+            METHOD_INVOCATION_ARGUMENTS [6093,6108]
+                NumberLiteral: 100 [6093,6096]
+                SimpleName: f [6098,6099]
+                NumberLiteral: 0.85 [6101,6105]
+                NumberLiteral: 5 [6107,6108]
+===
+delete-tree
+---
+ExpressionStatement [6228,6291]
+    MethodInvocation [6228,6290]
+        METHOD_INVOCATION_RECEIVER [6228,6234]
+            SimpleName: Assert [6228,6234]
+        SimpleName: assertEquals [6235,6247]
+        METHOD_INVOCATION_ARGUMENTS [6248,6289]
+            SimpleName: result [6248,6254]
+            NumberLiteral: 1.0 [6256,6259]
+            MethodInvocation [6261,6289]
+                METHOD_INVOCATION_RECEIVER [6261,6267]
+                    SimpleName: solver [6261,6267]
+                SimpleName: getAbsoluteAccuracy [6268,6287]
+===
+delete-tree
+---
+ExpressionStatement [6300,6349]
+    MethodInvocation [6300,6348]
+        METHOD_INVOCATION_RECEIVER [6300,6306]
+            SimpleName: Assert [6300,6306]
+        SimpleName: assertTrue [6307,6317]
+        METHOD_INVOCATION_ARGUMENTS [6318,6347]
+            InfixExpression [6318,6347]
+                MethodInvocation [6318,6341]
+                    METHOD_INVOCATION_RECEIVER [6318,6324]
+                        SimpleName: solver [6318,6324]
+                    SimpleName: getEvaluations [6325,6339]
+                INFIX_EXPRESSION_OPERATOR: <= [6342,6344]
+                NumberLiteral: 16 [6345,6347]
+Moved to File: src/test/java/org/apache/commons/math/analysis/solvers/SecantBaseTest.java
+Moved to File: src/test/java/org/apache/commons/math/analysis/solvers/SecantBaseTest.java
+Moved to File: src/test/java/org/apache/commons/math/analysis/solvers/SecantBaseTest.java
+Moved to File: src/test/java/org/apache/commons/math/analysis/solvers/SecantBaseTest.java
+Moved to File: src/test/java/org/apache/commons/math/analysis/solvers/SecantBaseTest.java
+Moved to File: src/test/java/org/apache/commons/math/analysis/solvers/SecantBaseTest.java
+Moved to File: src/test/java/org/apache/commons/math/analysis/solvers/SecantBaseTest.java
+===
+delete-tree
+---
+VariableDeclarationStatement [6467,6508]
+    SimpleType [6467,6479]
+        SimpleName: SecantSolver [6467,6479]
+    VariableDeclarationFragment [6480,6507]
+        SimpleName: solver [6480,6486]
+        ClassInstanceCreation [6489,6507]
+            SimpleType [6493,6505]
+                SimpleName: SecantSolver [6493,6505]
+Moved to File: src/test/java/org/apache/commons/math/analysis/solvers/SecantBaseTest.java
+Moved to File: src/test/java/org/apache/commons/math/analysis/solvers/SecantBaseTest.java
+Moved to File: src/test/java/org/apache/commons/math/analysis/solvers/SecantBaseTest.java
+Moved to File: src/test/java/org/apache/commons/math/analysis/solvers/SecantBaseTest.java
+Moved to File: src/test/java/org/apache/commons/math/analysis/solvers/SecantBaseTest.java
+Moved to File: src/test/java/org/apache/commons/math/analysis/solvers/SecantBaseTest.java
+===
+delete-node
+---
+QualifiedName: FastMath.PI [6583,6594]
+===
+Moved to File: src/test/java/org/apache/commons/math/analysis/solvers/SecantBaseTest.java
+Moved to File: src/test/java/org/apache/commons/math/analysis/solvers/SecantBaseTest.java
+Moved to File: src/test/java/org/apache/commons/math/analysis/solvers/SecantBaseTest.java
+Moved to File: src/test/java/org/apache/commons/math/analysis/solvers/SecantBaseTest.java
+Moved to File: src/test/java/org/apache/commons/math/analysis/solvers/SecantBaseTest.java
+Moved to File: src/test/java/org/apache/commons/math/analysis/solvers/SecantBaseTest.java
+Moved to File: src/test/java/org/apache/commons/math/analysis/solvers/SecantBaseTest.java
+===
+delete-node
+---
+QualifiedName: FastMath.PI [6628,6639]
+===
+Moved to File: src/test/java/org/apache/commons/math/analysis/solvers/SecantBaseTest.java
+===
+delete-tree
+---
+MethodInvocation [6649,6677]
+    METHOD_INVOCATION_RECEIVER [6649,6655]
+        SimpleName: solver [6649,6655]
+    SimpleName: getAbsoluteAccuracy [6656,6675]
+Moved to File: src/test/java/org/apache/commons/math/analysis/solvers/SecantBaseTest.java
+Moved to File: src/test/java/org/apache/commons/math/analysis/solvers/SecantBaseTest.java
+Moved to File: src/test/java/org/apache/commons/math/analysis/solvers/SecantBaseTest.java
+Moved to File: src/test/java/org/apache/commons/math/analysis/solvers/SecantBaseTest.java
+Moved to File: src/test/java/org/apache/commons/math/analysis/solvers/SecantBaseTest.java
+Moved to File: src/test/java/org/apache/commons/math/analysis/solvers/SecantBaseTest.java
+Moved to File: src/test/java/org/apache/commons/math/analysis/solvers/SecantBaseTest.java
+Moved to File: src/test/java/org/apache/commons/math/analysis/solvers/SecantBaseTest.java
+Moved to File: src/test/java/org/apache/commons/math/analysis/solvers/SecantBaseTest.java
+Moved to File: src/test/java/org/apache/commons/math/analysis/solvers/SecantBaseTest.java
+===
+delete-node
+---
+QualifiedName: FastMath.PI [6722,6733]
+===
+Moved to File: src/test/java/org/apache/commons/math/analysis/solvers/SecantBaseTest.java
+Moved to File: src/test/java/org/apache/commons/math/analysis/solvers/SecantBaseTest.java
+Moved to File: src/test/java/org/apache/commons/math/analysis/solvers/SecantBaseTest.java
+Moved to File: src/test/java/org/apache/commons/math/analysis/solvers/SecantBaseTest.java
+Moved to File: src/test/java/org/apache/commons/math/analysis/solvers/SecantBaseTest.java
+Moved to File: src/test/java/org/apache/commons/math/analysis/solvers/SecantBaseTest.java
+===
+delete-node
+---
+QualifiedName: FastMath.PI [6764,6775]
+===
+Moved to File: src/test/java/org/apache/commons/math/analysis/solvers/SecantBaseTest.java
+===
+delete-tree
+---
+MethodInvocation [6785,6813]
+    METHOD_INVOCATION_RECEIVER [6785,6791]
+        SimpleName: solver [6785,6791]
+    SimpleName: getAbsoluteAccuracy [6792,6811]
+Moved to File: src/test/java/org/apache/commons/math/analysis/solvers/SecantBaseTest.java
+Moved to File: src/test/java/org/apache/commons/math/analysis/solvers/SecantBaseTest.java
+Moved to File: src/test/java/org/apache/commons/math/analysis/solvers/SecantBaseTest.java
+Moved to File: src/test/java/org/apache/commons/math/analysis/solvers/SecantBaseTest.java
+Moved to File: src/test/java/org/apache/commons/math/analysis/solvers/SecantBaseTest.java
+Moved to File: src/test/java/org/apache/commons/math/analysis/solvers/SecantBaseTest.java
+Moved to File: src/test/java/org/apache/commons/math/analysis/solvers/SecantBaseTest.java
+Moved to File: src/test/java/org/apache/commons/math/analysis/solvers/SecantBaseTest.java
+Moved to File: src/test/java/org/apache/commons/math/analysis/solvers/SecantBaseTest.java
+===
+delete-node
+---
+QualifiedName: FastMath.PI [6855,6866]
+===
+Moved to File: src/test/java/org/apache/commons/math/analysis/solvers/SecantBaseTest.java
+Moved to File: src/test/java/org/apache/commons/math/analysis/solvers/SecantBaseTest.java
+Moved to File: src/test/java/org/apache/commons/math/analysis/solvers/SecantBaseTest.java
+Moved to File: src/test/java/org/apache/commons/math/analysis/solvers/SecantBaseTest.java
+Moved to File: src/test/java/org/apache/commons/math/analysis/solvers/SecantBaseTest.java
+Moved to File: src/test/java/org/apache/commons/math/analysis/solvers/SecantBaseTest.java
+Moved to File: src/test/java/org/apache/commons/math/analysis/solvers/SecantBaseTest.java
+Moved to File: src/test/java/org/apache/commons/math/analysis/solvers/SecantBaseTest.java
+===
+delete-node
+---
+QualifiedName: FastMath.PI [6905,6916]
+===
+Moved to File: src/test/java/org/apache/commons/math/analysis/solvers/SecantBaseTest.java
+===
+delete-tree
+---
+MethodInvocation [6926,6954]
+    METHOD_INVOCATION_RECEIVER [6926,6932]
+        SimpleName: solver [6926,6932]
+    SimpleName: getAbsoluteAccuracy [6933,6952]
+Moved to File: src/test/java/org/apache/commons/math/analysis/solvers/SecantBaseTest.java
+Moved to File: src/test/java/org/apache/commons/math/analysis/solvers/SecantBaseTest.java
+Moved to File: src/test/java/org/apache/commons/math/analysis/solvers/SecantBaseTest.java
+Moved to File: src/test/java/org/apache/commons/math/analysis/solvers/SecantBaseTest.java
+Moved to File: src/test/java/org/apache/commons/math/analysis/solvers/SecantBaseTest.java
+Moved to File: src/test/java/org/apache/commons/math/analysis/solvers/SecantBaseTest.java
+Moved to File: src/test/java/org/apache/commons/math/analysis/solvers/SecantBaseTest.java
+Moved to File: src/test/java/org/apache/commons/math/analysis/solvers/SecantBaseTest.java
+Moved to File: src/test/java/org/apache/commons/math/analysis/solvers/SecantBaseTest.java
+Moved to File: src/test/java/org/apache/commons/math/analysis/solvers/SecantBaseTest.java
+===
+delete-node
+---
+QualifiedName: FastMath.PI [6999,7010]
+===
+Moved to File: src/test/java/org/apache/commons/math/analysis/solvers/SecantBaseTest.java
+Moved to File: src/test/java/org/apache/commons/math/analysis/solvers/SecantBaseTest.java
+Moved to File: src/test/java/org/apache/commons/math/analysis/solvers/SecantBaseTest.java
+Moved to File: src/test/java/org/apache/commons/math/analysis/solvers/SecantBaseTest.java
+Moved to File: src/test/java/org/apache/commons/math/analysis/solvers/SecantBaseTest.java
+Moved to File: src/test/java/org/apache/commons/math/analysis/solvers/SecantBaseTest.java
+Moved to File: src/test/java/org/apache/commons/math/analysis/solvers/SecantBaseTest.java
+===
+delete-node
+---
+QualifiedName: FastMath.PI [7047,7058]
+===
+Moved to File: src/test/java/org/apache/commons/math/analysis/solvers/SecantBaseTest.java
+===
+delete-tree
+---
+MethodInvocation [7068,7096]
+    METHOD_INVOCATION_RECEIVER [7068,7074]
+        SimpleName: solver [7068,7074]
+    SimpleName: getAbsoluteAccuracy [7075,7094]
+Moved to File: src/test/java/org/apache/commons/math/analysis/solvers/SecantBaseTest.java
+Moved to File: src/test/java/org/apache/commons/math/analysis/solvers/SecantBaseTest.java
+Moved to File: src/test/java/org/apache/commons/math/analysis/solvers/SecantBaseTest.java
+Moved to File: src/test/java/org/apache/commons/math/analysis/solvers/SecantBaseTest.java
+Moved to File: src/test/java/org/apache/commons/math/analysis/solvers/SecantBaseTest.java
+Moved to File: src/test/java/org/apache/commons/math/analysis/solvers/SecantBaseTest.java
+Moved to File: src/test/java/org/apache/commons/math/analysis/solvers/SecantBaseTest.java
+Moved to File: src/test/java/org/apache/commons/math/analysis/solvers/SecantBaseTest.java
+Moved to File: src/test/java/org/apache/commons/math/analysis/solvers/SecantBaseTest.java
+Moved to File: src/test/java/org/apache/commons/math/analysis/solvers/SecantBaseTest.java
+===
+delete-tree
+---
+VariableDeclarationStatement [7216,7257]
+    SimpleType [7216,7228]
+        SimpleName: SecantSolver [7216,7228]
+    VariableDeclarationFragment [7229,7256]
+        SimpleName: solver [7229,7235]
+        ClassInstanceCreation [7238,7256]
+            SimpleType [7242,7254]
+                SimpleName: SecantSolver [7242,7254]
+Moved to File: src/test/java/org/apache/commons/math/analysis/solvers/SecantBaseTest.java
+Moved to File: src/test/java/org/apache/commons/math/analysis/solvers/SecantBaseTest.java
+Moved to File: src/test/java/org/apache/commons/math/analysis/solvers/SecantBaseTest.java
+Moved to File: src/test/java/org/apache/commons/math/analysis/solvers/SecantBaseTest.java
+Moved to File: src/test/java/org/apache/commons/math/analysis/solvers/SecantBaseTest.java
