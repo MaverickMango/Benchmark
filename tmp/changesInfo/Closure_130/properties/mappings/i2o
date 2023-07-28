@@ -1,3 +1,2 @@
-M	README
-M	closure-compiler.pom
-M	lib/guava.jar
+M	src/com/google/javascript/jscomp/CollapseProperties.java
+M	test/com/google/javascript/jscomp/CollapsePropertiesTest.java

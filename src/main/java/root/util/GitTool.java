@@ -92,7 +92,7 @@ public class GitTool extends GitServiceImpl {
     public void getFileStatDiffBetweenCommits(String workingDIr, String srcCommitId, String dsrCommitId, String outputFile) {
         CommandSummary cs = new CommandSummary();
         cs.append("/bin/bash", "-c");
-        cs.append("cd " + workingDIr + " && git diff --name-status " + srcCommitId + " " + dsrCommitId, null);
+        cs.append("cd " + workingDIr + " && git diff --name-status " + srcCommitId + " " + dsrCommitId + " --", null);
         String[] cmd = cs.flat();
         List<String> res = FileUtils.executeCommand(cmd);
         FileUtils.writeToFile(FileUtils.getStrOfIterable(res, "\n").toString(), outputFile, false);

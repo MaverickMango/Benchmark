@@ -19,8 +19,8 @@ public class BugInfoExtractor implements GitAccess {
         List<List<String>> d4jinfos = FileUtils.readCsv(filePath, true);
         String bugInfo = "src/test/resources/BugFixInfo.csv";
         List<List<String>> infos = FileUtils.readCsv(bugInfo, true);
+        int idx = Integer.parseInt(infos.get(infos.size() - 1).get(0)) + 1;
         List<String> bugNames = infos.stream().map(bug -> bug.get(2)).collect(Collectors.toList());
-        StringBuilder stringBuilder = new StringBuilder();
         for (int i = 0; i < d4jinfos.size(); i ++) {
             List<String> bug = d4jinfos.get(i);
             String proj = bug.get(0);
@@ -42,13 +42,14 @@ public class BugInfoExtractor implements GitAccess {
             String changesInfoDir = "tmp/changesInfo/" + bug_tag + "/info.txt";
             String bugBuggyCommit = gitAccess.getCommit(repository, bugFixingCommit).getParent(0).getName();
             String bugOriginalCommit = gitAccess.getCommit(repository, bugInduingCommit).getParent(0).getName();
+            StringBuilder stringBuilder = new StringBuilder();
             if (fixingDiff != null && inducingDiff != null) {
                 BugFixCommit bugFixCommit = gitAccess.getBugFixCommit(bugName, String.valueOf(i),
                         repository, bugInduingCommit, bugFixingCommit);
                 FileUtils.writeToFile(bugFixCommit.toString(), changesInfoDir, false);
                 FileUtils.writeToFile(fixingDiff, fixingDiffDir, false);
                 FileUtils.writeToFile(inducingDiff, inducingDiffDir, false);
-                String buginfo = i + "," + "defects4j" +
+                String buginfo = (i + idx) + "," + "defects4j" +
                         "," + bugName +
                         "," + bugFixingCommit +
                         "," + bugBuggyCommit +
