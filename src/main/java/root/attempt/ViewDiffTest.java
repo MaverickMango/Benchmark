@@ -22,9 +22,18 @@ public class ViewDiffTest implements GitAccess {
 
     public static void main(String[] args) throws Exception {
         RefactoringMiner miner = new RefactoringMiner();
-        File dir1 = new File("/home/liumengjiao/bugswarm-sandbox/Buffer.java");
-        File dir2 = new File("/home/liumengjiao/Desktop/CI/bugswarm/bugs/okio/okio/src/main/java/okio/Buffer.java");
+        File dir1 = new File("tmp/changes/Closure_48/properties/modified_classes/original/");
+        File dir2 = new File("tmp/changes/Closure_48/properties/modified_classes/inducing/");
         Set<ASTDiff> astDiffs = miner.diffAtDirectories(dir1, dir2);
+        miner.detectAtDirectories(dir1, dir2, new RefactoringHandler() {
+            @Override
+            public void handle(String commitId, List<Refactoring> refactorings) {
+                System.out.println("Refactoring at " + commitId);
+                for (Refactoring ref :refactorings) {
+                    System.out.println(ref.toString());
+                }
+            }
+        });
 //        Repository repo = gitAccess.getGitRepository(
 //                "/home/liumengjiao/Desktop/CI/bugswarm/bugs/okio",
 //                ""

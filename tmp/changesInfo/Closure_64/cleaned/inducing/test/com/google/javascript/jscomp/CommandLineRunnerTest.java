@@ -18,12 +18,10 @@ package com.google.javascript.jscomp;
 
 import com.google.common.base.Function;
 import com.google.common.base.Joiner;
-import com.google.common.base.Preconditions;
 import com.google.common.base.Supplier;
 import com.google.common.base.Suppliers;
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.Lists;
-import com.google.javascript.jscomp.CompilerOptions.LanguageMode;
 import com.google.javascript.rhino.Node;
 
 import junit.framework.TestCase;
@@ -116,63 +114,9 @@ public class CommandLineRunnerTest extends TestCase {
     super.tearDown();
   }
 
-  public void testWarningGuardOrdering1() {
-    args.add("--jscomp_error=globalThis");
-    args.add("--jscomp_off=globalThis");
-    testSame("function f() { this.a = 3; }");
-  }
-
-  public void testWarningGuardOrdering2() {
-    args.add("--jscomp_off=globalThis");
-    args.add("--jscomp_error=globalThis");
-    test("function f() { this.a = 3; }", CheckGlobalThis.GLOBAL_THIS);
-  }
-
-  public void testWarningGuardOrdering3() {
-    args.add("--jscomp_warning=globalThis");
-    args.add("--jscomp_off=globalThis");
-    testSame("function f() { this.a = 3; }");
-  }
-
-  public void testWarningGuardOrdering4() {
-    args.add("--jscomp_off=globalThis");
-    args.add("--jscomp_warning=globalThis");
-    test("function f() { this.a = 3; }", CheckGlobalThis.GLOBAL_THIS);
-  }
-
-  public void testCheckGlobalThisOffByDefault() {
-    testSame("function f() { this.a = 3; }");
-  }
-
-  public void testCheckGlobalThisOnWithAdvancedMode() {
-    args.add("--compilation_level=ADVANCED_OPTIMIZATIONS");
-    test("function f() { this.a = 3; }", CheckGlobalThis.GLOBAL_THIS);
-  }
-
-  public void testCheckGlobalThisOnWithErrorFlag() {
-    args.add("--jscomp_error=globalThis");
-    test("function f() { this.a = 3; }", CheckGlobalThis.GLOBAL_THIS);
-  }
-
   public void testTypeCheckingOffByDefault() {
     test("function f(x) { return x; } f();",
          "function f(a) { return a; } f();");
-  }
-
-  public void testReflectedMethods() {
-    args.add("--compilation_level=ADVANCED_OPTIMIZATIONS");
-    test(
-        "/** @constructor */" +
-        "function Foo() {}" +
-        "Foo.prototype.handle = function(x, y) { alert(y); };" +
-        "var x = goog.reflect.object(Foo, {handle: 1});" +
-        "for (var i in x) { x[i].call(x); }" +
-        "window['Foo'] = Foo;",
-        "function a() {}" +
-        "a.prototype.a = function(e, d) { alert(d); };" +
-        "var b = goog.c.b(a, {a: 1}),c;" +
-        "for (c in b) { b[c].call(b); }" +
-        "window.Foo = a;");
   }
 
   public void testTypeCheckingOnWithVerbose() {
@@ -292,22 +236,22 @@ public class CommandLineRunnerTest extends TestCase {
 
   public void testProcessClosurePrimitives() {
     test("var goog = {}; goog.provide('goog.dom');",
-         "var goog = {dom:{}};");
+         "var goog = {}; goog.dom = {};");
     args.add("--process_closure_primitives=false");
     testSame("var goog = {}; goog.provide('goog.dom');");
   }
 
   public void testCssNameWiring() throws Exception {
-    test("var goog = {}; goog.getCssName = function() {};" +
-         "goog.setCssNameMapping = function() {};" +
-         "goog.setCssNameMapping({'goog': 'a', 'button': 'b'});" +
+    String prefix =
+        "var goog = {}; goog.getCssName = function() {};" +
+         "goog.setCssNameMapping = function() {};";
+    test(prefix + "goog.setCssNameMapping({'goog': 'a', 'button': 'b'});" +
          "var a = goog.getCssName('goog-button');" +
          "var b = goog.getCssName('css-button');" +
          "var c = goog.getCssName('goog-menu');" +
          "var d = goog.getCssName('css-menu');",
-         "var goog = { getCssName: function() {}," +
-         "             setCssNameMapping: function() {} }," +
-         "    a = 'a-b'," +
+         prefix +
+         "var a = 'a-b'," +
          "    b = 'css-b'," +
          "    c = 'a-menu'," +
          "    d = 'css-menu';");
@@ -614,7 +558,7 @@ public class CommandLineRunnerTest extends TestCase {
     args.add("--js_output_file");
     args.add("/path/to/out.js");
     testSame("var x = 3;");
-    assertEquals(SourceMap.Format.DEFAULT,
+    assertEquals(SourceMap.Format.LEGACY,
         lastCompiler.getOptions().sourceMapFormat);
   }
 
@@ -755,32 +699,6 @@ public class CommandLineRunnerTest extends TestCase {
        CheckAccessControls.DEPRECATED_NAME);
   }
 
-  public void testTwoParseErrors() {
-    // If parse errors are reported in different files, make
-    // sure all of them are reported.
-    Compiler compiler = compile(new String[] {
-      "var a b;",
-      "var b c;"
-    });
-    assertEquals(2, compiler.getErrors().length);
-  }
-
-  public void testES3ByDefault() {
-    test("var x = f.function", RhinoErrorReporter.PARSE_ERROR);
-  }
-
-  public void testES5() {
-    args.add("--language_in=ECMASCRIPT5");
-    test("var x = f.function", "var x = f.function");
-    test("var let", "var let");
-  }
-
-  public void testES5Strict() {
-    args.add("--language_in=ECMASCRIPT5_STRICT");
-    test("var x = f.function", "'use strict';var x = f.function");
-    test("var let", RhinoErrorReporter.PARSE_ERROR);
-  }
-
   public void testES5StrictUseStrictMultipleInputs() {
     args.add("--language_in=ECMASCRIPT5_STRICT");
     Compiler compiler = compile(new String[] {"var x = f.function",
@@ -789,6 +707,7 @@ public class CommandLineRunnerTest extends TestCase {
     assertEquals("'use strict'", outputSource.substring(0, 12));
     assertEquals(outputSource.substring(13).indexOf("'use strict'"), -1);
   }
+
   /* Helper functions */
 
   private void testSame(String original) {
@@ -946,13 +865,8 @@ public class CommandLineRunnerTest extends TestCase {
     for (int i = 0; i < original.length; i++) {
       inputs.add(JSSourceFile.fromCode("input" + i, original[i]));
     }
-    CompilerOptions options = new CompilerOptions();
-    // ECMASCRIPT5 is the most forgiving.
-    options.setLanguageIn(LanguageMode.ECMASCRIPT5);
-    compiler.init(externs, inputs, options);
+    compiler.init(externs, inputs, new CompilerOptions());
     Node all = compiler.parseInputs();
-    Preconditions.checkState(compiler.getErrorCount() == 0);
-    Preconditions.checkNotNull(all);
     Node n = all.getLastChild();
     return n;
   }

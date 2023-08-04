@@ -116,14 +116,12 @@ public class SimplexSolver extends AbstractLinearOptimizer {
             // there's a degeneracy as indicated by a tie in the minimum ratio test
 
             // 1. check if there's an artificial variable that can be forced out of the basis
-            if (tableau.getNumArtificialVariables() > 0) {
-                for (Integer row : minRatioPositions) {
-                    for (int i = 0; i < tableau.getNumArtificialVariables(); i++) {
-                        int column = i + tableau.getArtificialVariableOffset();
-                        final double entry = tableau.getEntry(row, column);
-                        if (Precision.equals(entry, 1d, maxUlps) && row.equals(tableau.getBasicRow(column))) {
-                            return row;
-                        }
+            for (Integer row : minRatioPositions) {
+                for (int i = 0; i < tableau.getNumArtificialVariables(); i++) {
+                    int column = i + tableau.getArtificialVariableOffset();
+                    final double entry = tableau.getEntry(row, column);
+                    if (Precision.equals(entry, 1d, maxUlps) && row.equals(tableau.getBasicRow(column))) {
+                        return row;
                     }
                 }
             }

@@ -1143,14 +1143,16 @@ final class TypedScopeCreator implements ScopeCreator {
         } else if (info.isConstructor() || info.isInterface()) {
           return createFunctionTypeFromNodes(
               rValue, lValue.getQualifiedName(), info, lValue);
-        } else if (info.isConstant() && rValue != null
-            && rValue.getJSDocInfo() != null
-            && rValue.getJSDocInfo().hasType()) {
-          return rValue.getJSDocInfo().getType().evaluate(scope, typeRegistry);
-        } else if (info.isConstant() && rValue != null
-            && rValue.getJSType() != null
-            && !rValue.getJSType().isUnknownType()) {
-          return rValue.getJSType();
+//        } else if (info.isConstant() && rValue != null
+//            && rValue.getJSDocInfo() != null
+//            && rValue.getJSDocInfo().hasType()) {
+//          return rValue.getJSDocInfo().getType().evaluate(scope, typeRegistry);
+        } else if (info.isConstant() && rValue != null) {
+          if (rValue.getJSDocInfo() != null && rValue.getJSDocInfo().hasType()) {
+            return getDeclaredTypeInAnnotation(sourceName, rValue, rValue.getJSDocInfo());
+          } else if (rValue.getJSType() != null && !rValue.getJSType().isUnknownType()) {
+            return rValue.getJSType();
+          }
         }
       }
 

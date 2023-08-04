@@ -3,6 +3,7 @@ package org.mockito.internal.util.reflection;
 import static org.junit.Assert.*;
 
 import java.lang.reflect.Field;
+import java.util.Collection;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
@@ -17,6 +18,8 @@ public class GenericMasterTest {
     Set<Integer> two;
     Map<Double, String> map;
     String nonGeneric;
+    List<Set<String>> nested;
+    List<Set<Collection<String>>> multiNested;
     
     @Test
     public void shouldFindGenericClass() throws Exception {

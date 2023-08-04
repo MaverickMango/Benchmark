@@ -3,6 +3,7 @@ M	README
 M	build.xml
 M	closure-compiler.pom
 M	contrib/externs/chrome_extensions.js
+D	contrib/externs/facebook_javascript_sdk.js
 M	contrib/externs/jquery-1.3.2.externs.js
 R094	contrib/externs/jquery-1.4.3.js	contrib/externs/jquery-1.4.3.externs.js
 R094	contrib/externs/jquery-1.4.4.js	contrib/externs/jquery-1.4.4.externs.js
@@ -15,7 +16,8 @@ M	externs/fileapi.js
 M	externs/gecko_event.js
 M	externs/html5.js
 M	externs/ie_dom.js
-M	externs/w3c_indexeddb.js
+D	externs/w3c_indexeddb.js
+M	externs/w3c_xml.js
 D	externs/webgl.js
 M	externs/webkit_css.js
 M	externs/webkit_dom.js
@@ -65,6 +67,7 @@ M	src/com/google/javascript/jscomp/Compiler.java
 M	src/com/google/javascript/jscomp/CompilerOptions.java
 M	src/com/google/javascript/jscomp/ComposeWarningsGuard.java
 M	src/com/google/javascript/jscomp/ControlFlowAnalysis.java
+M	src/com/google/javascript/jscomp/ConvertToDottedProperties.java
 M	src/com/google/javascript/jscomp/CrossModuleCodeMotion.java
 M	src/com/google/javascript/jscomp/CssRenamingMap.java
 M	src/com/google/javascript/jscomp/DataFlowAnalysis.java
@@ -156,16 +159,23 @@ M	src/com/google/javascript/rhino/ObjArray.java
 M	src/com/google/javascript/rhino/Parser.java
 M	src/com/google/javascript/rhino/ScriptOrFnNode.java
 M	src/com/google/javascript/rhino/TokenStream.java
+M	src/com/google/javascript/rhino/jstype/AllType.java
 M	src/com/google/javascript/rhino/jstype/ArrowType.java
 M	src/com/google/javascript/rhino/jstype/FunctionType.java
 M	src/com/google/javascript/rhino/jstype/JSType.java
+M	src/com/google/javascript/rhino/jstype/JSTypeNative.java
 M	src/com/google/javascript/rhino/jstype/JSTypeRegistry.java
 M	src/com/google/javascript/rhino/jstype/NamedType.java
+M	src/com/google/javascript/rhino/jstype/NoObjectType.java
+D	src/com/google/javascript/rhino/jstype/NoResolvedType.java
+M	src/com/google/javascript/rhino/jstype/NoType.java
 M	src/com/google/javascript/rhino/jstype/ObjectType.java
 M	src/com/google/javascript/rhino/jstype/ProxyObjectType.java
 M	src/com/google/javascript/rhino/jstype/RecordTypeBuilder.java
 M	src/com/google/javascript/rhino/jstype/SimpleSlot.java
 M	src/com/google/javascript/rhino/jstype/UnionType.java
+M	src/com/google/javascript/rhino/jstype/UnionTypeBuilder.java
+M	src/com/google/javascript/rhino/jstype/UnknownType.java
 M	src/com/google/javascript/rhino/jstype/UnresolvedTypeExpression.java
 M	src/com/google/javascript/rhino/testing/Asserts.java
 M	src/com/google/javascript/rhino/testing/BaseJSTypeTestCase.java

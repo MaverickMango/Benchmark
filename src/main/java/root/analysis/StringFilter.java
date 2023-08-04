@@ -31,7 +31,7 @@ public class StringFilter {
         patterns.add(pattern);
     }
 
-    public boolean canFilter(String str) {
+    public boolean canMatch(String str) {
         for (String pattern :patterns) {
             switch (mode) {
                 case 1:

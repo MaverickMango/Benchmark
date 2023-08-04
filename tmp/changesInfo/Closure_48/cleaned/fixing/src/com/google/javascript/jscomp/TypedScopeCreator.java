@@ -1135,14 +1135,12 @@ final class TypedScopeCreator implements ScopeCreator {
             FunctionTypeBuilder.isFunctionTypeDeclaration(info));
       }
 
-      if (inferred && rhsValue != null && rhsValue.getType() == Token.FUNCTION) {
+      if (inferred) {
         // Determining declaration for #2
-        if (info != null) {
-          inferred = false;
-        } else if (!scope.isDeclared(qName, false) &&
-                  n.isUnscopedQualifiedName()) {
-          inferred = false;
-        }
+        inferred = !(rhsValue != null &&
+                rhsValue.getType() == Token.FUNCTION &&
+                !scope.isDeclared(qName, false) &&
+                n.isUnscopedQualifiedName());
       }
 
       if (!inferred) {

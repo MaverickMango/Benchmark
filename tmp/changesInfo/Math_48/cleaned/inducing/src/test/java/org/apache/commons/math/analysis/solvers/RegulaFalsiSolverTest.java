@@ -21,13 +21,12 @@ import org.apache.commons.math.analysis.UnivariateRealFunction;
 import org.apache.commons.math.exception.ConvergenceException;
 import org.junit.Test;
 import org.junit.Assert;
-
 /**
  * Test case for {@link RegulaFalsiSolver Regula Falsi} solver.
  *
  * @version $Id$
  */
-public final class RegulaFalsiSolverTest extends BaseSecantSolverAbstractTest {
+public final class RegulaFalsiSolverTest extends BaseSecantSolverTest {
     /** {@inheritDoc} */
     protected UnivariateRealSolver getSolver() {
         return new RegulaFalsiSolver();

@@ -1,15 +1,15 @@
 ===
-update-node
+insert-tree
 ---
-SimpleName: PassFactory [33131,33142]
-replace PassFactory by HotSwapPassFactory
+MethodInvocation [8894,8917]
+    METHOD_INVOCATION_RECEIVER [8894,8901]
+        SimpleName: options [8894,8901]
+    SimpleName: getLanguageIn [8902,8915]
+to
+InfixExpression [8894,8947]
+at 0
 ===
-update-node
+delete-node
 ---
-SimpleName: PassFactory [33179,33190]
-replace PassFactory by HotSwapPassFactory
+QualifiedName: options.languageIn [8894,8912]
 ===
-update-node
----
-SimpleName: CompilerPass [33254,33266]
-replace CompilerPass by HotSwapCompilerPass

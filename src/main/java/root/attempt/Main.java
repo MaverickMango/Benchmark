@@ -1,6 +1,5 @@
 package root.attempt;
 
-import org.eclipse.jgit.lib.Repository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import root.analysis.StringFilter;
@@ -12,8 +11,6 @@ import root.util.GitAccess;
 
 import java.io.File;
 import java.util.List;
-import java.util.Map;
-import java.util.Set;
 import java.util.stream.Collectors;
 
 public class Main implements GitAccess {
@@ -117,7 +114,7 @@ public class Main implements GitAccess {
         String[] split = line.split(start);
         if (split.length > 1) {
             String tmp = split[1].strip();
-            return tmp.equals("") || filter.canFilter(tmp);
+            return tmp.equals("") || filter.canMatch(tmp);
         }
         return false;
     }

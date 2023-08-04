@@ -295,7 +295,7 @@ public class GitTool extends GitServiceImpl {
                 diffFormatter.setRepository(repository);
                 List<DiffEntry> scan = diffFormatter.scan(oldCommit, newCommit);
                 for (DiffEntry entry : scan) {
-                    if (filter.canFilter(entry.getNewPath())) {
+                    if (filter.canMatch(entry.getNewPath())) {
                         continue;
                     }
                     diffFormatter.format(diffFormatter.toFileHeader(entry));

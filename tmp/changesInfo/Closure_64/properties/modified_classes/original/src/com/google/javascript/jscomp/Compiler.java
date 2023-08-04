@@ -232,33 +232,15 @@ public class Compiler extends AbstractCompiler {
       }
     }
 
-    // DiagnosticGroups override the plain checkTypes option.
-    if (options.enables(DiagnosticGroups.CHECK_TYPES)) {
-      options.checkTypes = true;
-    } else if (options.disables(DiagnosticGroups.CHECK_TYPES)) {
-      options.checkTypes = false;
-    } else if (!options.checkTypes) {
-      // If DiagnosticGroups did not override the plain checkTypes
-      // option, and checkTypes is enabled, then turn off the
-      // parser type warnings.
-      options.setWarningLevel(
-          DiagnosticGroup.forType(
-              RhinoErrorReporter.TYPE_PARSE_ERROR),
-          CheckLevel.OFF);
-    }
-
-    if (options.checkGlobalThisLevel.isOn()) {
-      options.setWarningLevel(
-          DiagnosticGroups.GLOBAL_THIS,
-          options.checkGlobalThisLevel);
-    }
-
     // Initialize the warnings guard.
     List<WarningsGuard> guards = Lists.newArrayList();
     guards.add(
         new SuppressDocWarningsGuard(
             getDiagnosticGroups().getRegisteredGroups()));
-    guards.add(options.getWarningsGuard());
+    WarningsGuard warningsGuard = options.getWarningsGuard();
+    if (warningsGuard != null) {
+      guards.add(options.getWarningsGuard());
+    }
 
     // All passes must run the variable check. This synthesizes
     // variables later so that the compiler doesn't crash. It also
@@ -272,6 +254,21 @@ public class Compiler extends AbstractCompiler {
           DiagnosticGroups.CHECK_VARIABLES, CheckLevel.OFF));
     }
 
+    // DiagnosticGroups override the plain checkTypes option.
+    if (options.enables(DiagnosticGroups.CHECK_TYPES)) {
+      options.checkTypes = true;
+    } else if (options.disables(DiagnosticGroups.CHECK_TYPES)) {
+      options.checkTypes = false;
+    } else if (!options.checkTypes) {
+      // If DiagnosticGroups did not override the plain checkTypes
+      // option, and checkTypes is enabled, then turn off the
+      // parser type warnings.
+      guards.add(
+          new DiagnosticGroupWarningsGuard(
+              DiagnosticGroup.forType(
+                  RhinoErrorReporter.TYPE_PARSE_ERROR),
+              CheckLevel.OFF));
+    }
     this.warningsGuard = new ComposeWarningsGuard(guards);
   }
 
@@ -752,7 +749,6 @@ public class Compiler extends AbstractCompiler {
     endPass();
   }
 
-  @Override
   void process(CompilerPass p) {
     p.process(externsRoot, jsRoot);
   }
@@ -896,7 +892,9 @@ public class Compiler extends AbstractCompiler {
     return errorManager.getWarnings();
   }
 
-  @Override
+  /**
+   * Returns the root node of the AST, which includes both externs and source.
+   */
   public Node getRoot() {
     return externAndJsRoot;
   }
@@ -948,22 +946,6 @@ public class Compiler extends AbstractCompiler {
   @Override
   public CompilerInput getInput(String name) {
     return inputsByName.get(name);
-  }
-
-  /**
-   * Removes an input file from AST.
-   * @param name The name of the file to be removed.
-   */
-  protected void removeInput(String name) {
-    CompilerInput input = getInput(name);
-    if (input == null) {
-      return;
-    }
-    inputsByName.remove(name);
-    Node root = input.getAstRoot(this);
-    if (root != null) {
-      root.detachFromParent();
-    }
   }
 
   @Override
@@ -1098,12 +1080,6 @@ public class Compiler extends AbstractCompiler {
     jsRoot = new Node(Token.BLOCK);
     jsRoot.setIsSyntheticBlock(true);
 
-    externsRoot = new Node(Token.BLOCK);
-    externsRoot.setIsSyntheticBlock(true);
-
-    externAndJsRoot = new Node(Token.BLOCK, externsRoot, jsRoot);
-    externAndJsRoot.setIsSyntheticBlock(true);
-
     if (options.tracer.isOn()) {
       tracker = new PerformanceTracker(jsRoot,
           options.tracer == TracerMode.ALL);
@@ -1114,6 +1090,8 @@ public class Compiler extends AbstractCompiler {
 
     try {
       // Parse externs sources.
+      externsRoot = new Node(Token.BLOCK);
+      externsRoot.setIsSyntheticBlock(true);
       for (CompilerInput input : externs) {
         Node n = input.getAstRoot(this);
         if (hasErrors()) {
@@ -1154,6 +1132,9 @@ public class Compiler extends AbstractCompiler {
       boolean staleInputs = false;
       for (CompilerInput input : inputs) {
         Node n = input.getAstRoot(this);
+        if (hasErrors()) {
+          return null;
+        }
 
         // Inputs can have a null AST during initial parse.
         if (n == null) {
@@ -1213,9 +1194,9 @@ public class Compiler extends AbstractCompiler {
         jsRoot.addChildToBack(n);
       }
 
-      if (hasErrors()) {
-        return null;
-      }
+      externAndJsRoot = new Node(Token.BLOCK, externsRoot, jsRoot);
+      externAndJsRoot.setIsSyntheticBlock(true);
+
       return externAndJsRoot;
     } finally {
       stopTracer(tracer, "parseInputs");
@@ -1462,9 +1443,6 @@ public class Compiler extends AbstractCompiler {
     builder.setLineBreak(options.lineBreak);
     builder.setSourceMap(sourceMap);
     builder.setSourceMapDetailLevel(options.sourceMapDetailLevel);
-    builder.setTagAsStrict(
-        options.getLanguageOut() == LanguageMode.ECMASCRIPT5_STRICT);
-    builder.setLineLengthThreshold(options.lineLengthThreshold);
 
     Charset charset = options.outputCharset != null ?
         Charset.forName(options.outputCharset) : null;
@@ -1665,16 +1643,11 @@ public class Compiler extends AbstractCompiler {
 
   @Override
   public boolean acceptEcmaScript5() {
-    switch (options.getLanguageIn()) {
-      case ECMASCRIPT5:
-      case ECMASCRIPT5_STRICT:
-        return true;
-    }
-    return false;
+    return options.languageIn == LanguageMode.ECMASCRIPT5;
   }
 
-  public LanguageMode languageMode() {
-    return options.getLanguageIn();
+  public LanguageMode LanguageMode() {
+    return options.languageIn;
   }
 
   @Override
@@ -1686,7 +1659,7 @@ public class Compiler extends AbstractCompiler {
   Config getParserConfig() {
     if (parserConfig == null) {
       Config.LanguageMode mode;
-      switch (options.getLanguageIn()) {
+      switch (options.languageIn) {
         case ECMASCRIPT3:
           mode = Config.LanguageMode.ECMASCRIPT3;
           break;
@@ -1744,7 +1717,12 @@ public class Compiler extends AbstractCompiler {
   @Override
   public CheckLevel getErrorLevel(JSError error) {
     Preconditions.checkNotNull(options);
-    return warningsGuard.level(error);
+    WarningsGuard guards = options.getWarningsGuard();
+    if (guards == null) {
+      return error.level;
+    } else {
+      return guards.level(error);
+    }
   }
 
   /**

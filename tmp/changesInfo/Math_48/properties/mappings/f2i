@@ -9,8 +9,10 @@ M	src/main/java/org/apache/commons/math/analysis/integration/UnivariateRealInteg
 M	src/main/java/org/apache/commons/math/analysis/integration/UnivariateRealIntegratorImpl.java
 M	src/main/java/org/apache/commons/math/analysis/interpolation/DividedDifferenceInterpolator.java
 M	src/main/java/org/apache/commons/math/analysis/interpolation/UnivariateRealInterpolator.java
-R057	src/main/java/org/apache/commons/math/analysis/solvers/AllowedSolution.java	src/main/java/org/apache/commons/math/analysis/solvers/AllowedSolutions.java
+R061	src/main/java/org/apache/commons/math/analysis/solvers/AllowedSolution.java	src/main/java/org/apache/commons/math/analysis/solvers/AllowedSolutions.java
 M	src/main/java/org/apache/commons/math/analysis/solvers/BaseAbstractUnivariateRealSolver.java
+A	src/main/java/org/apache/commons/math/analysis/solvers/BaseBracketedSecantSolver.java
+M	src/main/java/org/apache/commons/math/analysis/solvers/BaseSecantSolver.java
 M	src/main/java/org/apache/commons/math/analysis/solvers/BaseUnivariateRealSolver.java
 A	src/main/java/org/apache/commons/math/analysis/solvers/BracketedSolution.java
 D	src/main/java/org/apache/commons/math/analysis/solvers/BracketedUnivariateRealSolver.java
@@ -23,7 +25,6 @@ M	src/main/java/org/apache/commons/math/analysis/solvers/MullerSolver2.java
 M	src/main/java/org/apache/commons/math/analysis/solvers/NewtonSolver.java
 M	src/main/java/org/apache/commons/math/analysis/solvers/PegasusSolver.java
 M	src/main/java/org/apache/commons/math/analysis/solvers/RegulaFalsiSolver.java
-R053	src/main/java/org/apache/commons/math/analysis/solvers/BaseSecantSolver.java	src/main/java/org/apache/commons/math/analysis/solvers/SecantBase.java
 M	src/main/java/org/apache/commons/math/analysis/solvers/SecantSolver.java
 M	src/main/java/org/apache/commons/math/analysis/solvers/UnivariateRealSolverUtils.java
 M	src/main/java/org/apache/commons/math/complex/Complex.java
@@ -135,11 +136,11 @@ M	src/test/java/org/apache/commons/math/analysis/integration/LegendreGaussIntegr
 M	src/test/java/org/apache/commons/math/analysis/integration/RombergIntegratorTest.java
 M	src/test/java/org/apache/commons/math/analysis/integration/SimpsonIntegratorTest.java
 M	src/test/java/org/apache/commons/math/analysis/integration/TrapezoidIntegratorTest.java
+R071	src/test/java/org/apache/commons/math/analysis/solvers/BaseSecantSolverAbstractTest.java	src/test/java/org/apache/commons/math/analysis/solvers/BaseSecantSolverTest.java
 D	src/test/java/org/apache/commons/math/analysis/solvers/BracketingNthOrderBrentSolverTest.java
 M	src/test/java/org/apache/commons/math/analysis/solvers/IllinoisSolverTest.java
 M	src/test/java/org/apache/commons/math/analysis/solvers/PegasusSolverTest.java
 M	src/test/java/org/apache/commons/math/analysis/solvers/RegulaFalsiSolverTest.java
-R070	src/test/java/org/apache/commons/math/analysis/solvers/BaseSecantSolverAbstractTest.java	src/test/java/org/apache/commons/math/analysis/solvers/SecantBaseTest.java
 M	src/test/java/org/apache/commons/math/analysis/solvers/SecantSolverTest.java
 M	src/test/java/org/apache/commons/math/complex/ComplexFormatAbstractTest.java
 M	src/test/java/org/apache/commons/math/complex/ComplexTest.java

@@ -18,14 +18,14 @@
 package org.apache.commons.math.analysis.solvers;
 
 import org.apache.commons.math.util.FastMath;
-import org.apache.commons.math.analysis.UnivariateRealFunction;
 import org.apache.commons.math.exception.MathInternalError;
 
 /**
- * Base class for all bracketing <em>Secant</em>-based methods for root-finding
+ * Base class for all <em>Secant</em>-based methods for root-finding
  * (approximating a zero of a univariate real function).
  *
- * <p>Implementation of the {@link RegulaFalsiSolver <em>Regula Falsi</em>} and
+ * <p>Implementation of the {@link SecantSolver <em>Secant</em>},
+ * {@link RegulaFalsiSolver <em>Regula Falsi</em>}, and
  * {@link IllinoisSolver <em>Illinois</em>} methods is based on the
  * following article: M. Dowell and P. Jarratt,
  * <em>A modified regula falsi method for computing the root of an
@@ -38,23 +38,14 @@ import org.apache.commons.math.exception.MathInternalError;
  * BIT Numerical Mathematics, volume 12, number 4, pages 503-508, Springer,
  * 1972.</p>
  *
- * <p>The {@link SecantSolver <em>Secant</em>} method is <em>not</em> a
- * bracketing method, so it is not implemented here. It has a separate
- * implementation.</p>
- *
  * @since 3.0
  * @version $Id$
  */
-public abstract class BaseSecantSolver
-    extends AbstractUnivariateRealSolver
-    implements BracketedUnivariateRealSolver<UnivariateRealFunction> {
-
+public abstract class BaseSecantSolver extends AbstractUnivariateRealSolver {
     /** Default absolute accuracy. */
     protected static final double DEFAULT_ABSOLUTE_ACCURACY = 1e-6;
-
     /** The kinds of solutions that the algorithm may accept. */
-    private AllowedSolution allowed;
-
+    protected AllowedSolutions allowedSolutions = AllowedSolutions.EITHER_SIDE;
     /** The <em>Secant</em>-based root-finding method to use. */
     private final Method method;
 
@@ -66,7 +57,6 @@ public abstract class BaseSecantSolver
      */
     protected BaseSecantSolver(final double absoluteAccuracy, final Method method) {
         super(absoluteAccuracy);
-        this.allowed = AllowedSolution.ANY_SIDE;
         this.method = method;
     }
 
@@ -81,50 +71,11 @@ public abstract class BaseSecantSolver
                                final double absoluteAccuracy,
                                final Method method) {
         super(relativeAccuracy, absoluteAccuracy);
-        this.allowed = AllowedSolution.ANY_SIDE;
         this.method = method;
-    }
-
-    /**
-     * Construct a solver.
-     *
-     * @param relativeAccuracy Maximum relative error.
-     * @param absoluteAccuracy Maximum absolute error.
-     * @param functionValueAccuracy Maximum function value error.
-     * @param method <em>Secant</em>-based root-finding method to use
-     */
-    protected BaseSecantSolver(final double relativeAccuracy,
-                               final double absoluteAccuracy,
-                               final double functionValueAccuracy,
-                               final Method method) {
-        super(relativeAccuracy, absoluteAccuracy, functionValueAccuracy);
-        this.allowed = AllowedSolution.ANY_SIDE;
-        this.method = method;
-    }
-
-    /** {@inheritDoc} */
-    public double solve(final int maxEval, final UnivariateRealFunction f,
-                        final double min, final double max,
-                        final AllowedSolution allowedSolution) {
-        return solve(maxEval, f, min, max, min + 0.5 * (max - min), allowedSolution);
-    }
-
-    /** {@inheritDoc} */
-    public double solve(final int maxEval, final UnivariateRealFunction f,
-                        final double min, final double max, final double startValue,
-                        final AllowedSolution allowedSolution) {
-        this.allowed = allowedSolution;
-        return super.solve(maxEval, f, min, max, startValue);
     }
 
     /** {@inheritDoc} */
     @Override
-    public double solve(final int maxEval, final UnivariateRealFunction f,
-                        final double min, final double max, final double startValue) {
-        return solve(maxEval, f, min, max, startValue, AllowedSolution.ANY_SIDE);
-    }
-
-    /** {@inheritDoc} */
     protected final double doSolve() {
         // Get initial solution
         double x0 = getMin();
@@ -135,12 +86,8 @@ public abstract class BaseSecantSolver
         // If one of the bounds is the exact root, return it. Since these are
         // not under-approximations or over-approximations, we can return them
         // regardless of the allowed solutions.
-        if (f0 == 0.0) {
-            return x0;
-        }
-        if (f1 == 0.0) {
-            return x1;
-        }
+        if (f0 == 0.0) return x0;
+        if (f1 == 0.0) return x1;
 
         // Verify bracketing of initial solution.
         verifyBracketing(x0, x1);
@@ -150,63 +97,55 @@ public abstract class BaseSecantSolver
         final double atol = getAbsoluteAccuracy();
         final double rtol = getRelativeAccuracy();
 
+        // Variables to hold new bounds.
+        double x;
+        double fx;
+
         // Keep track of inverted intervals, meaning that the left bound is
-        // larger than the right bound.
+        // larger than the right bound. Not used for the original Secant
+        // method.
         boolean inverted = false;
 
         // Keep finding better approximations.
         while (true) {
             // Calculate the next approximation.
-            final double x = x1 - ((f1 * (x1 - x0)) / (f1 - f0));
-            final double fx = computeObjectiveValue(x);
+            x = x1 - ((f1 * (x1 - x0)) / (f1 - f0));
+            fx = computeObjectiveValue(x);
 
             // If the new approximation is the exact root, return it. Since
             // this is not an under-approximation or an over-approximation,
             // we can return it regardless of the allowed solutions.
-            if (fx == 0.0) {
-                return x;
-            }
+            if (fx == 0.0) return x;
 
             // Update the bounds with the new approximation.
-            if (f1 * fx < 0) {
-                // The value of x1 has switched to the other bound, thus inverting
+            if (method == Method.SECANT) {
+                x0 = x1;
+                f0 = f1;
+                x1 = x;
+                f1 = fx;
+            } else if (f1 * fx < 0) {
+                // We had [x0..x1]. We update it to [x1, x]. Note that the
+                // value of x1 has switched to the other bound, thus inverting
                 // the interval.
                 x0 = x1;
                 f0 = f1;
+                x1 = x;
+                f1 = fx;
                 inverted = !inverted;
             } else {
-                switch (method) {
-                case ILLINOIS:
-                    f0 *= 0.5;
-                    break;
-                case PEGASUS:
-                    f0 *= f1 / (f1 + fx);
-                    break;
-                case REGULA_FALSI:
-                    if (x == x1) {
-                        final double delta = FastMath.max(rtol * FastMath.abs(x1),
-                                                          atol);
-                        // Update formula cannot make any progress: Update the
-                        // search interval.
-                        x0 = 0.5 * (x0 + x1 - delta);
-                        f0 = computeObjectiveValue(x0);
-                    }
-                    break;
-                default:
-                    // Should never happen.
-                    throw new MathInternalError();
-                }
+                // We had [x0..x1]. We update it to [x0, x].
+                if (method == Method.ILLINOIS) f0 *= 0.5;
+                if (method == Method.PEGASUS) f0 *= f1 / (f1 + fx);
+                x1 = x;
+                f1 = fx;
             }
-            // Update from [x0, x1] to [x0, x].
-            x1 = x;
-            f1 = fx;
 
             // If the function value of the last approximation is too small,
-            // given the function value accuracy, then we can't get closer to
+            // given the function value accuracy, then we can't get close to
             // the root than we already are.
             if (FastMath.abs(f1) <= ftol) {
-                switch (allowed) {
-                case ANY_SIDE:
+                switch (allowedSolutions) {
+                case EITHER_SIDE:
                     return x1;
                 case LEFT_SIDE:
                     if (inverted) {
@@ -215,16 +154,6 @@ public abstract class BaseSecantSolver
                     break;
                 case RIGHT_SIDE:
                     if (!inverted) {
-                        return x1;
-                    }
-                    break;
-                case BELOW_SIDE:
-                    if (f1 <= 0) {
-                        return x1;
-                    }
-                    break;
-                case ABOVE_SIDE:
-                    if (f1 >= 0) {
                         return x1;
                     }
                     break;
@@ -237,17 +166,13 @@ public abstract class BaseSecantSolver
             // are satisfied with the current approximation.
             if (FastMath.abs(x1 - x0) < FastMath.max(rtol * FastMath.abs(x1),
                                                      atol)) {
-                switch (allowed) {
-                case ANY_SIDE:
+                switch (allowedSolutions) {
+                case EITHER_SIDE:
                     return x1;
                 case LEFT_SIDE:
                     return inverted ? x1 : x0;
                 case RIGHT_SIDE:
                     return inverted ? x0 : x1;
-                case BELOW_SIDE:
-                    return (f1 <= 0) ? x1 : x0;
-                case ABOVE_SIDE:
-                    return (f1 >= 0) ? x1 : x0;
                 default:
                     throw new MathInternalError();
                 }
@@ -257,6 +182,8 @@ public abstract class BaseSecantSolver
 
     /** <em>Secant</em>-based root-finding methods. */
     protected enum Method {
+        /** The original {@link SecantSolver <em>Secant</em>} method. */
+        SECANT,
 
         /**
          * The {@link RegulaFalsiSolver <em>Regula Falsi</em>} or
@@ -268,7 +195,6 @@ public abstract class BaseSecantSolver
         ILLINOIS,
 
         /** The {@link PegasusSolver <em>Pegasus</em>} method. */
-        PEGASUS;
-
+        PEGASUS,
     }
 }
