@@ -1,0 +1,29 @@
+diff -u -r tmp/changesInfo/Closure_60/properties/modified_classes/inducing/src/com/google/javascript/jscomp/NodeUtil.java tmp/changesInfo/Closure_60/cleaned/fixing/src/com/google/javascript/jscomp/NodeUtil.java
+--- tmp/changesInfo/Closure_60/properties/modified_classes/inducing/src/com/google/javascript/jscomp/NodeUtil.java	2023-06-27 14:36:58.411387476 +0800
++++ tmp/changesInfo/Closure_60/cleaned/fixing/src/com/google/javascript/jscomp/NodeUtil.java	2023-06-27 15:48:02.937625245 +0800
+@@ -94,6 +94,8 @@
+           return TernaryValue.UNKNOWN;
+         }
+       }
++      case Token.VOID:
++        return TernaryValue.UNKNOWN;
+       default:
+         return getBooleanValue(n);
+     }
+@@ -113,9 +115,14 @@
+ 
+       case Token.NULL:
+       case Token.FALSE:
+-      case Token.VOID:
+         return TernaryValue.FALSE;
+ 
++      case Token.VOID:
++        if (!mayHaveSideEffects(n.getFirstChild())) {
++          return TernaryValue.FALSE;
++        }
++        break;
++
+       case Token.NAME:
+         String name = n.getString();
+         if ("undefined".equals(name)
+Only in tmp/changesInfo/Closure_60/properties/modified_classes/inducing: test

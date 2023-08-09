@@ -1,0 +1,30 @@
+Only in tmp/changesInfo/Closure_17/properties/modified_classes/inducing: src
+diff -u -r tmp/changesInfo/Closure_17/properties/modified_classes/inducing/test/com/google/javascript/jscomp/TypeCheckTest.java tmp/changesInfo/Closure_17/cleaned/inducing/test/com/google/javascript/jscomp/TypeCheckTest.java
+--- tmp/changesInfo/Closure_17/properties/modified_classes/inducing/test/com/google/javascript/jscomp/TypeCheckTest.java	2023-06-20 19:34:59.570719167 +0800
++++ tmp/changesInfo/Closure_17/cleaned/inducing/test/com/google/javascript/jscomp/TypeCheckTest.java	2023-06-20 19:35:20.742822536 +0800
+@@ -5388,6 +5388,25 @@
+     assertTrue(node.getJSType().isNumber());
+   }
+ 
++  public void testIssue688() throws Exception {
++    testTypes(
++            "/** @const */ var SOME_DEFAULT =\n" +
++                    "    /** @type {TwoNumbers} */ ({first: 1, second: 2});\n" +
++                    "/**\n" +
++                    "* Class defining an interface with two numbers.\n" +
++                    "* @interface\n" +
++                    "*/\n" +
++                    "function TwoNumbers() {}\n" +
++                    "/** @type number */\n" +
++                    "TwoNumbers.prototype.first;\n" +
++                    "/** @type number */\n" +
++                    "TwoNumbers.prototype.second;\n" +
++                    "/** @return {number} */ function f() { return SOME_DEFAULT; }",
++            "inconsistent return type\n" +
++                    "found   : (TwoNumbers|null)\n" +
++                    "required: number");
++  }
++
+   public void testNew1() throws Exception {
+     testTypes("new 4", TypeCheck.NOT_A_CONSTRUCTOR);
+   }

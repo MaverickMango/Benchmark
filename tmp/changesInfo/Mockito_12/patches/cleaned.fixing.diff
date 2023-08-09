@@ -1,0 +1,18 @@
+diff -u -r tmp/changesInfo/Mockito_12/properties/modified_classes/inducing/src/org/mockito/internal/util/reflection/GenericMaster.java tmp/changesInfo/Mockito_12/cleaned/fixing/src/org/mockito/internal/util/reflection/GenericMaster.java
+--- tmp/changesInfo/Mockito_12/properties/modified_classes/inducing/src/org/mockito/internal/util/reflection/GenericMaster.java	2023-07-24 22:09:14.247939564 +0800
++++ tmp/changesInfo/Mockito_12/cleaned/fixing/src/org/mockito/internal/util/reflection/GenericMaster.java	2023-07-24 22:26:58.743201692 +0800
+@@ -17,7 +17,12 @@
+         Type generic = field.getGenericType();
+         if (generic != null && generic instanceof ParameterizedType) {
+             Type actual = ((ParameterizedType) generic).getActualTypeArguments()[0];
+-            return (Class) actual;
++            if (actual instanceof Class) {
++                return (Class) actual;
++            } else if (actual instanceof ParameterizedType) {
++                //in case of nested generics we don't go deep
++                return (Class) ((ParameterizedType) actual).getRawType();
++            }
+         }
+         
+         return Object.class;
+Only in tmp/changesInfo/Mockito_12/properties/modified_classes/inducing: test

@@ -1,0 +1,13 @@
+diff -u -r tmp/changesInfo/Jsoup_43/properties/modified_classes/inducing/src/main/java/org/jsoup/nodes/Element.java tmp/changesInfo/Jsoup_43/cleaned/fixing/src/main/java/org/jsoup/nodes/Element.java
+--- tmp/changesInfo/Jsoup_43/properties/modified_classes/inducing/src/main/java/org/jsoup/nodes/Element.java	2023-07-26 13:24:49.900172615 +0800
++++ tmp/changesInfo/Jsoup_43/cleaned/fixing/src/main/java/org/jsoup/nodes/Element.java	2023-07-27 17:37:13.462158974 +0800
+@@ -568,7 +568,7 @@
+ 
+         for (int i = 0; i < elements.size(); i++) {
+             E element = elements.get(i);
+-            if (element.equals(search))
++            if (element == search)
+                 return i;
+         }
+         return null;
+Only in tmp/changesInfo/Jsoup_43/properties/modified_classes/inducing/src: test

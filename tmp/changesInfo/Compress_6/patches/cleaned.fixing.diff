@@ -1,0 +1,21 @@
+diff -u -r tmp/changesInfo/Compress_6/properties/modified_classes/inducing/src/main/java/org/apache/commons/compress/archivers/zip/ZipArchiveEntry.java tmp/changesInfo/Compress_6/cleaned/fixing/src/main/java/org/apache/commons/compress/archivers/zip/ZipArchiveEntry.java
+--- tmp/changesInfo/Compress_6/properties/modified_classes/inducing/src/main/java/org/apache/commons/compress/archivers/zip/ZipArchiveEntry.java	2023-07-26 13:24:35.015996928 +0800
++++ tmp/changesInfo/Compress_6/cleaned/fixing/src/main/java/org/apache/commons/compress/archivers/zip/ZipArchiveEntry.java	2023-07-27 14:28:56.599121142 +0800
+@@ -402,11 +402,13 @@
+             return false;
+         }
+         ZipArchiveEntry other = (ZipArchiveEntry) obj;
+-        if (name == null) {
+-            if (other.name != null) {
++        String myName = getName();
++        String otherName = other.getName();
++        if (myName == null) {
++            if (otherName != null) {
+                 return false;
+             }
+-        } else if (!name.equals(other.name)) {
++        } else if (!myName.equals(otherName)) {
+             return false;
+         }
+         return true;
+Only in tmp/changesInfo/Compress_6/properties/modified_classes/inducing/src: test

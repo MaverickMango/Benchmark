@@ -1,0 +1,29 @@
+diff -u -r tmp/changesInfo/Lang_53/properties/modified_classes/inducing/src/java/org/apache/commons/lang/time/DateUtils.java tmp/changesInfo/Lang_53/cleaned/fixing/src/java/org/apache/commons/lang/time/DateUtils.java
+--- tmp/changesInfo/Lang_53/properties/modified_classes/inducing/src/java/org/apache/commons/lang/time/DateUtils.java	2023-06-12 11:40:37.322220646 +0800
++++ tmp/changesInfo/Lang_53/cleaned/fixing/src/java/org/apache/commons/lang/time/DateUtils.java	2023-06-20 22:03:38.571838305 +0800
+@@ -639,18 +639,18 @@
+         int millisecs = val.get(Calendar.MILLISECOND);
+         if (!round || millisecs < 500) {
+             time = time - millisecs;
+-            if (field == Calendar.SECOND) {
+-                done = true;
+-            }
++        }
++        if (field == Calendar.SECOND) {
++            done = true;
+         }
+ 
+         // truncate seconds
+         int seconds = val.get(Calendar.SECOND);
+         if (!done && (!round || seconds < 30)) {
+             time = time - (seconds * 1000L);
+-            if (field == Calendar.MINUTE) {
+-                done = true;
+-            }
++        }
++        if (field == Calendar.MINUTE) {
++            done = true;
+         }
+ 
+         // truncate minutes
+Only in tmp/changesInfo/Lang_53/properties/modified_classes/inducing/src: test

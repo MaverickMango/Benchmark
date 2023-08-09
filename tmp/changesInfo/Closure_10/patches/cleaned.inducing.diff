@@ -1,0 +1,17 @@
+Only in tmp/changesInfo/Closure_10/properties/modified_classes/inducing: src
+diff -u -r tmp/changesInfo/Closure_10/properties/modified_classes/inducing/test/com/google/javascript/jscomp/PeepholeFoldConstantsTest.java tmp/changesInfo/Closure_10/cleaned/inducing/test/com/google/javascript/jscomp/PeepholeFoldConstantsTest.java
+--- tmp/changesInfo/Closure_10/properties/modified_classes/inducing/test/com/google/javascript/jscomp/PeepholeFoldConstantsTest.java	2023-06-12 11:40:17.135149457 +0800
++++ tmp/changesInfo/Closure_10/cleaned/inducing/test/com/google/javascript/jscomp/PeepholeFoldConstantsTest.java	2023-06-20 16:46:17.572912924 +0800
+@@ -538,6 +538,12 @@
+     foldSame("x = 'a'.substring(0, 2)");
+   }
+ 
++  public void testIssue821() {
++    foldSame("var a =(Math.random()>0.5? '1' : 2 ) + 3 + 4;");
++    foldSame("var a = ((Math.random() ? 0 : 1) ||" +
++            "(Math.random()>0.5? '1' : 2 )) + 3 + 4;");
++  }
++
+   public void testFoldArithmetic() {
+     fold("x = 10 + 20", "x = 30");
+     fold("x = 2 / 4", "x = 0.5");

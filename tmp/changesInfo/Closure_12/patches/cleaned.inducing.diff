@@ -1,0 +1,29 @@
+Only in tmp/changesInfo/Closure_12/properties/modified_classes/inducing: src
+diff -u -r tmp/changesInfo/Closure_12/properties/modified_classes/inducing/test/com/google/javascript/jscomp/FlowSensitiveInlineVariablesTest.java tmp/changesInfo/Closure_12/cleaned/inducing/test/com/google/javascript/jscomp/FlowSensitiveInlineVariablesTest.java
+--- tmp/changesInfo/Closure_12/properties/modified_classes/inducing/test/com/google/javascript/jscomp/FlowSensitiveInlineVariablesTest.java	2023-06-27 20:21:00.291190329 +0800
++++ tmp/changesInfo/Closure_12/cleaned/inducing/test/com/google/javascript/jscomp/FlowSensitiveInlineVariablesTest.java	2023-06-27 20:20:37.378000000 +0800
+@@ -379,6 +379,24 @@
+          "function(x, y) { if (y) { print(1) }}");
+   }
+ 
++  public void testIssue794a() {
++    noInline(
++            "var x = 1; " +
++                    "try { x += someFunction(); } catch (e) {}" +
++                    "x += 1;" +
++                    "try { x += someFunction(); } catch (e) {}" +
++                    "return x;");
++  }
++
++  public void testIssue794b() {
++    noInline(
++            "var x = 1; " +
++                    "try { x = x + someFunction(); } catch (e) {}" +
++                    "x = x + 1;" +
++                    "try { x = x + someFunction(); } catch (e) {}" +
++                    "return x;");
++  }
++
+   private void noInline(String input) {
+     inline(input, input);
+   }

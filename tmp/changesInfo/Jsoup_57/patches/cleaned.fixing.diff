@@ -1,0 +1,17 @@
+diff -u -r tmp/changesInfo/Jsoup_57/properties/modified_classes/inducing/src/main/java/org/jsoup/nodes/Attributes.java tmp/changesInfo/Jsoup_57/cleaned/fixing/src/main/java/org/jsoup/nodes/Attributes.java
+--- tmp/changesInfo/Jsoup_57/properties/modified_classes/inducing/src/main/java/org/jsoup/nodes/Attributes.java	2023-07-26 13:24:51.412190468 +0800
++++ tmp/changesInfo/Jsoup_57/cleaned/fixing/src/main/java/org/jsoup/nodes/Attributes.java	2023-07-27 17:43:11.950854711 +0800
+@@ -119,9 +119,10 @@
+         Validate.notEmpty(key);
+         if (attributes == null)
+             return;
+-        for (String attrKey : attributes.keySet()) {
++        for (Iterator<String> it = attributes.keySet().iterator(); it.hasNext();) {
++            String attrKey = it.next();
+             if (attrKey.equalsIgnoreCase(key))
+-                attributes.remove(attrKey);
++                it.remove();
+         }
+     }
+ 
+Only in tmp/changesInfo/Jsoup_57/properties/modified_classes/inducing/src: test

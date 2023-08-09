@@ -1,0 +1,15 @@
+Only in tmp/changesInfo/Closure_75/properties/modified_classes/inducing: src
+diff -u -r tmp/changesInfo/Closure_75/properties/modified_classes/inducing/test/com/google/javascript/jscomp/PeepholeFoldConstantsTest.java tmp/changesInfo/Closure_75/cleaned/inducing/test/com/google/javascript/jscomp/PeepholeFoldConstantsTest.java
+--- tmp/changesInfo/Closure_75/properties/modified_classes/inducing/test/com/google/javascript/jscomp/PeepholeFoldConstantsTest.java	2023-06-27 15:25:08.417508500 +0800
++++ tmp/changesInfo/Closure_75/cleaned/inducing/test/com/google/javascript/jscomp/PeepholeFoldConstantsTest.java	2023-06-27 15:24:57.385000000 +0800
+@@ -900,6 +900,10 @@
+     fold("x/false", "x/0");  // should we add an error check? :)
+   }
+ 
++  public void testIEString() {
++    testSame("!+'\\v1'");
++  }
++
+   private static final List<String> LITERAL_OPERANDS =
+       ImmutableList.of(
+           "null",

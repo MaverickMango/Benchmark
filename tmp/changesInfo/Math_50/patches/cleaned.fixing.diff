@@ -1,0 +1,19 @@
+diff -u -r tmp/changesInfo/Math_50/properties/modified_classes/inducing/src/main/java/org/apache/commons/math/analysis/solvers/BaseSecantSolver.java tmp/changesInfo/Math_50/cleaned/fixing/src/main/java/org/apache/commons/math/analysis/solvers/BaseSecantSolver.java
+--- tmp/changesInfo/Math_50/properties/modified_classes/inducing/src/main/java/org/apache/commons/math/analysis/solvers/BaseSecantSolver.java	2023-06-21 16:48:50.504580486 +0800
++++ tmp/changesInfo/Math_50/cleaned/fixing/src/main/java/org/apache/commons/math/analysis/solvers/BaseSecantSolver.java	2023-06-21 16:49:44.693224621 +0800
+@@ -183,14 +183,6 @@
+                     f0 *= f1 / (f1 + fx);
+                     break;
+                 case REGULA_FALSI:
+-                    if (x == x1) {
+-                        final double delta = FastMath.max(rtol * FastMath.abs(x1),
+-                                                          atol);
+-                        // Update formula cannot make any progress: Update the
+-                        // search interval.
+-                        x0 = 0.5 * (x0 + x1 - delta);
+-                        f0 = computeObjectiveValue(x0);
+-                    }
+                     break;
+                 default:
+                     // Should never happen.
+Only in tmp/changesInfo/Math_50/properties/modified_classes/inducing/src: test

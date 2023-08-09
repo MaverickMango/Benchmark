@@ -1,0 +1,23 @@
+Only in tmp/changesInfo/Math_2/properties/modified_classes/inducing/src: main
+diff -u -r tmp/changesInfo/Math_2/properties/modified_classes/inducing/src/test/java/org/apache/commons/math/distribution/HypergeometricDistributionTest.java tmp/changesInfo/Math_2/cleaned/inducing/src/test/java/org/apache/commons/math/distribution/HypergeometricDistributionTest.java
+--- tmp/changesInfo/Math_2/properties/modified_classes/inducing/src/test/java/org/apache/commons/math/distribution/HypergeometricDistributionTest.java	2023-06-12 11:40:39.114140217 +0800
++++ tmp/changesInfo/Math_2/cleaned/inducing/src/test/java/org/apache/commons/math/distribution/HypergeometricDistributionTest.java	2023-06-20 22:06:04.978690647 +0800
+@@ -266,4 +266,18 @@
+         Assert.assertEquals(dist.getNumericalMean(), 55d * 200d / 3000d, tol);
+         Assert.assertEquals(dist.getNumericalVariance(), ( 200d * 55d * (3000d - 200d) * (3000d - 55d) ) / ( (3000d * 3000d * 2999d) ), tol);
+     }
++
++    @Test
++    public void testMath1021() {
++        final int N = 43130568;
++        final int m = 42976365;
++        final int n = 50;
++        final HypergeometricDistribution dist = new HypergeometricDistribution(N, m, n);
++
++        for (int i = 0; i < 100; i++) {
++            final int sample = dist.sample();
++            Assert.assertTrue("sample=" + sample, 0 <= sample);
++            Assert.assertTrue("sample=" + sample, sample <= n);
++        }
++    }
+ }

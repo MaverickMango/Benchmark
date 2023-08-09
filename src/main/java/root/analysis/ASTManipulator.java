@@ -64,7 +64,6 @@ public class ASTManipulator implements GitAccess {
 
     public String insertTest(char[] fileSource, ASTNode targetMethod, String mappingFile
             , List<?> targetImports, List<MethodDeclaration> dependencies) {
-        //todo: checkout if it needs annotation "@Test"
         Document document = new Document(String.valueOf(fileSource));
         parser.setSource(document.get().toCharArray());
         parser.setKind(ASTParser.K_COMPILATION_UNIT);
@@ -92,6 +91,7 @@ public class ASTManipulator implements GitAccess {
             ListRewrite listRewrite = rewriter.getListRewrite(typeDeclaration, TypeDeclaration.BODY_DECLARATIONS_PROPERTY);
             List<MethodDeclaration> junitType = Arrays.stream(typeDeclaration.getMethods()).filter(o -> o.toString().startsWith("@Test")).collect(Collectors.toList());
             if (junitType.isEmpty()) {
+                //checkout if it needs annotation "@Test"
                 boolean junit4 = targetMethod.toString().startsWith("@Test");
                 if (junit4) {
                     List<IExtendedModifier> modifiers = ((MethodDeclaration) targetMethod).modifiers();

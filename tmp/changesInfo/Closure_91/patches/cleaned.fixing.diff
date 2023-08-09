@@ -1,0 +1,25 @@
+diff -u -r tmp/changesInfo/Closure_91/properties/modified_classes/inducing/src/com/google/javascript/jscomp/CheckGlobalThis.java tmp/changesInfo/Closure_91/cleaned/fixing/src/com/google/javascript/jscomp/CheckGlobalThis.java
+--- tmp/changesInfo/Closure_91/properties/modified_classes/inducing/src/com/google/javascript/jscomp/CheckGlobalThis.java	2023-06-12 11:40:28.410625475 +0800
++++ tmp/changesInfo/Closure_91/cleaned/fixing/src/com/google/javascript/jscomp/CheckGlobalThis.java	2023-06-20 20:49:51.109868557 +0800
+@@ -106,9 +106,19 @@
+             pType == Token.SCRIPT ||
+             pType == Token.NAME ||
+             pType == Token.ASSIGN ||
+-            pType == Token.OBJECTLIT)) {
++            pType == Token.STRING ||
++            pType == Token.NUMBER)) {
+         return false;
+       }
++
++      // Don't traverse functions that are getting lent to a prototype.
++      Node gramps = parent.getParent();
++      if (NodeUtil.isObjectLitKey(parent, gramps)) {
++        if (gramps.getType() == Token.GETPROP &&
++                gramps.getLastChild().getString().equals("prototype")) {
++          return false;
++        }
++      }
+     }
+ 
+     if (parent != null && parent.getType() == Token.ASSIGN) {
+Only in tmp/changesInfo/Closure_91/properties/modified_classes/inducing: test

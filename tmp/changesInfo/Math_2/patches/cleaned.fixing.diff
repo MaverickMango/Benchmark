@@ -1,0 +1,13 @@
+diff -u -r tmp/changesInfo/Math_2/properties/modified_classes/inducing/src/main/java/org/apache/commons/math/distribution/HypergeometricDistribution.java tmp/changesInfo/Math_2/cleaned/fixing/src/main/java/org/apache/commons/math/distribution/HypergeometricDistribution.java
+--- tmp/changesInfo/Math_2/properties/modified_classes/inducing/src/main/java/org/apache/commons/math/distribution/HypergeometricDistribution.java	2023-06-12 11:40:39.110140396 +0800
++++ tmp/changesInfo/Math_2/cleaned/fixing/src/main/java/org/apache/commons/math/distribution/HypergeometricDistribution.java	2023-06-20 22:07:10.875931352 +0800
+@@ -268,7 +268,7 @@
+      * size {@code n}, the mean is {@code n * m / N}.
+      */
+     public double getNumericalMean() {
+-        return (double) (getSampleSize() * getNumberOfSuccesses()) / (double) getPopulationSize();
++        return getSampleSize() * (getNumberOfSuccesses() / (double) getPopulationSize());
+     }
+ 
+     /**
+Only in tmp/changesInfo/Math_2/properties/modified_classes/inducing/src: test

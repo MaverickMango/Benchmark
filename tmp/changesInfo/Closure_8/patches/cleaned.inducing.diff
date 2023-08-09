@@ -1,0 +1,17 @@
+Only in tmp/changesInfo/Closure_8/properties/modified_classes/inducing: src
+diff -u -r tmp/changesInfo/Closure_8/properties/modified_classes/inducing/test/com/google/javascript/jscomp/CollapseVariableDeclarationsTest.java tmp/changesInfo/Closure_8/cleaned/inducing/test/com/google/javascript/jscomp/CollapseVariableDeclarationsTest.java
+--- tmp/changesInfo/Closure_8/properties/modified_classes/inducing/test/com/google/javascript/jscomp/CollapseVariableDeclarationsTest.java	2023-06-12 11:40:16.575175835 +0800
++++ tmp/changesInfo/Closure_8/cleaned/inducing/test/com/google/javascript/jscomp/CollapseVariableDeclarationsTest.java	2023-06-20 16:07:11.758690606 +0800
+@@ -42,6 +42,12 @@
+          "var a=1,b=2,c=3,d=4;");
+   }
+ 
++  public void testIssue820() throws Exception {
++    // Don't redeclare function parameters, this is incompatible with
++    // strict mode.
++    testSame("function f(a){ var b=1; a=2; var c; }");
++  }
++
+   public void testIfElseVarDeclarations() throws Exception {
+     testSame("if (x) var a = 1; else var b = 2;");
+   }

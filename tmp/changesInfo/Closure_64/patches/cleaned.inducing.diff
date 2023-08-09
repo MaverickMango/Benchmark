@@ -1,0 +1,20 @@
+Only in tmp/changesInfo/Closure_64/properties/modified_classes/inducing: src
+diff -u -r tmp/changesInfo/Closure_64/properties/modified_classes/inducing/test/com/google/javascript/jscomp/CommandLineRunnerTest.java tmp/changesInfo/Closure_64/cleaned/inducing/test/com/google/javascript/jscomp/CommandLineRunnerTest.java
+--- tmp/changesInfo/Closure_64/properties/modified_classes/inducing/test/com/google/javascript/jscomp/CommandLineRunnerTest.java	2023-08-02 16:57:25.220992860 +0800
++++ tmp/changesInfo/Closure_64/cleaned/inducing/test/com/google/javascript/jscomp/CommandLineRunnerTest.java	2023-08-02 16:55:42.043000000 +0800
+@@ -699,6 +699,15 @@
+        CheckAccessControls.DEPRECATED_NAME);
+   }
+ 
++  public void testES5StrictUseStrictMultipleInputs() {
++    args.add("--language_in=ECMASCRIPT5_STRICT");
++    Compiler compiler = compile(new String[] {"var x = f.function",
++            "var y = f.function", "var z = f.function"});
++    String outputSource = compiler.toSource();
++    assertEquals("'use strict'", outputSource.substring(0, 12));
++    assertEquals(outputSource.substring(13).indexOf("'use strict'"), -1);
++  }
++
+   /* Helper functions */
+ 
+   private void testSame(String original) {

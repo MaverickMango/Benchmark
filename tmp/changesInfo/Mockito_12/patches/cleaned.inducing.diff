@@ -1,0 +1,18 @@
+diff -u -r tmp/changesInfo/Mockito_12/properties/modified_classes/inducing/test/org/mockito/internal/util/reflection/GenericMasterTest.java tmp/changesInfo/Mockito_12/cleaned/inducing/test/org/mockito/internal/util/reflection/GenericMasterTest.java
+--- tmp/changesInfo/Mockito_12/properties/modified_classes/inducing/test/org/mockito/internal/util/reflection/GenericMasterTest.java	2023-07-24 22:13:29.133817393 +0800
++++ tmp/changesInfo/Mockito_12/cleaned/inducing/test/org/mockito/internal/util/reflection/GenericMasterTest.java	2023-07-24 22:15:38.570836690 +0800
+@@ -27,7 +27,13 @@
+     
+     @Test
+     public void shouldGetObjectForNonGeneric() throws Exception {
+-        assertEquals(m.getGenericType(field("nonGeneric")), Object.class);
++        assertEquals(Object.class, m.getGenericType(field("nonGeneric")));
++    }
++
++    @Test
++    public void shouldDealWithNestedGenerics() throws Exception {
++        assertEquals(Set.class, m.getGenericType(field("nested")));
++        assertEquals(Set.class, m.getGenericType(field("multiNested")));
+     }
+ 
+     private Field field(String fieldName) throws SecurityException, NoSuchFieldException {

@@ -1,0 +1,26 @@
+Only in tmp/changesInfo/Closure_48/properties/modified_classes/inducing: src
+diff -u -r tmp/changesInfo/Closure_48/properties/modified_classes/inducing/test/com/google/javascript/jscomp/TypeCheckTest.java tmp/changesInfo/Closure_48/cleaned/inducing/test/com/google/javascript/jscomp/TypeCheckTest.java
+--- tmp/changesInfo/Closure_48/properties/modified_classes/inducing/test/com/google/javascript/jscomp/TypeCheckTest.java	2023-06-12 11:40:21.198959075 +0800
++++ tmp/changesInfo/Closure_48/cleaned/inducing/test/com/google/javascript/jscomp/TypeCheckTest.java	2023-06-14 13:27:35.888652807 +0800
+@@ -4473,6 +4473,21 @@
+         "right: null");
+   }
+ 
++  public void testIssue586() throws Exception {
++    testTypes(
++            "/** @constructor */" +
++                    "var MyClass = function() {};" +
++                    "/** @param {boolean} success */" +
++                    "MyClass.prototype.fn = function(success) {};" +
++                    "MyClass.prototype.test = function() {" +
++                    "  this.fn();" +
++                    "  this.fn = function() {};" +
++                    "};",
++            "Function MyClass.prototype.fn: called with 0 argument(s). " +
++                    "Function requires at least 1 argument(s) " +
++                    "and no more than 1 argument(s).");
++  }
++
+   /**
+    * Tests that the || operator is type checked correctly, that is of
+    * the type of the first argument or of the second argument. See

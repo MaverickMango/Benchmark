@@ -1,0 +1,13 @@
+Only in tmp/changesInfo/Closure_31/properties/modified_classes/inducing: javadoc
+diff -u -r tmp/changesInfo/Closure_31/properties/modified_classes/inducing/src/com/google/javascript/jscomp/Compiler.java tmp/changesInfo/Closure_31/cleaned/fixing/src/com/google/javascript/jscomp/Compiler.java
+--- tmp/changesInfo/Closure_31/properties/modified_classes/inducing/src/com/google/javascript/jscomp/Compiler.java	2023-06-12 11:40:20.011014541 +0800
++++ tmp/changesInfo/Closure_31/cleaned/fixing/src/com/google/javascript/jscomp/Compiler.java	2023-06-20 20:06:45.887488690 +0800
+@@ -1278,7 +1278,6 @@
+ 
+       // Check if the sources need to be re-ordered.
+       if (options.dependencyOptions.needsManagement() &&
+-          !options.skipAllPasses &&
+           options.closurePass) {
+         for (CompilerInput input : inputs) {
+           // Forward-declare all the provided types, so that they
+Only in tmp/changesInfo/Closure_31/properties/modified_classes/inducing: test

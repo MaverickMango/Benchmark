@@ -1,0 +1,41 @@
+diff -u -r tmp/changesInfo/Math_64/properties/modified_classes/inducing/src/main/java/org/apache/commons/math/optimization/general/LevenbergMarquardtOptimizer.java tmp/changesInfo/Math_64/cleaned/fixing/src/main/java/org/apache/commons/math/optimization/general/LevenbergMarquardtOptimizer.java
+--- tmp/changesInfo/Math_64/properties/modified_classes/inducing/src/main/java/org/apache/commons/math/optimization/general/LevenbergMarquardtOptimizer.java	2023-06-12 11:40:46.745801329 +0800
++++ tmp/changesInfo/Math_64/cleaned/fixing/src/main/java/org/apache/commons/math/optimization/general/LevenbergMarquardtOptimizer.java	2023-06-24 15:10:53.647646344 +0800
+@@ -345,7 +345,6 @@
+ 
+                 // evaluate the function at x + p and calculate its norm
+                 updateResidualsAndCost();
+-                current = new VectorialPointValuePair(point, objective);
+ 
+                 // compute the scaled actual reduction
+                 double actRed = -1.0;
+@@ -401,6 +400,14 @@
+                         xNorm    += xK * xK;
+                     }
+                     xNorm = Math.sqrt(xNorm);
++                    current = new VectorialPointValuePair(point, objective);
++                    // tests for convergence.
++                    if (checker != null) {
++                        // we use the vectorial convergence checker
++                        if (checker.converged(getIterations(), previous, current)) {
++                            return current;
++                        }
++                    }
+                 } else {
+                     // failed iteration, reset the previous values
+                     cost = previousCost;
+@@ -414,12 +421,7 @@
+                 }
+ 
+                 // tests for convergence.
+-                if (checker != null) {
+-                    // we use the vectorial convergence checker
+-                    if (checker.converged(getIterations(), previous, current)) {
+-                        return current;                        
+-                    }
+-                } else {
++                if (checker == null)  {
+                     // we use the Levenberg-Marquardt specific convergence parameters
+                     if (((Math.abs(actRed) <= costRelativeTolerance) &&
+                          (preRed <= costRelativeTolerance) &&
+Only in tmp/changesInfo/Math_64/properties/modified_classes/inducing/src: test

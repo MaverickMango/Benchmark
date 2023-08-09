@@ -1,0 +1,36 @@
+diff -u -r tmp/changesInfo/Closure_64/properties/modified_classes/inducing/src/com/google/javascript/jscomp/Compiler.java tmp/changesInfo/Closure_64/cleaned/fixing/src/com/google/javascript/jscomp/Compiler.java
+--- tmp/changesInfo/Closure_64/properties/modified_classes/inducing/src/com/google/javascript/jscomp/Compiler.java	2023-08-02 16:57:25.216992815 +0800
++++ tmp/changesInfo/Closure_64/cleaned/fixing/src/com/google/javascript/jscomp/Compiler.java	2023-08-02 17:05:26.914490054 +0800
+@@ -1402,7 +1402,7 @@
+               cb.getLineIndex(), cb.getColumnIndex());
+         }
+ 
+-        String code = toSource(root, sourceMap);
++        String code = toSource(root, sourceMap, inputSeqNum == 0);
+         if (!code.isEmpty()) {
+           cb.append(code);
+ 
+@@ -1431,19 +1431,19 @@
+   @Override
+   String toSource(Node n) {
+     initCompilerOptionsIfTesting();
+-    return toSource(n, null);
++    return toSource(n, null, true);
+   }
+ 
+   /**
+    * Generates JavaScript source code for an AST.
+    */
+-  private String toSource(Node n, SourceMap sourceMap) {
++  private String toSource(Node n, SourceMap sourceMap, boolean firstOutput) {
+     CodePrinter.Builder builder = new CodePrinter.Builder(n);
+     builder.setPrettyPrint(options.prettyPrint);
+     builder.setLineBreak(options.lineBreak);
+     builder.setSourceMap(sourceMap);
+     builder.setSourceMapDetailLevel(options.sourceMapDetailLevel);
+-    builder.setTagAsStrict(
++    builder.setTagAsStrict(firstOutput &&
+         options.getLanguageOut() == LanguageMode.ECMASCRIPT5_STRICT);
+ 
+     Charset charset = options.outputCharset != null ?
+Only in tmp/changesInfo/Closure_64/properties/modified_classes/inducing: test

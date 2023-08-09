@@ -1,0 +1,12 @@
+diff -u -r tmp/changesInfo/Math_15/properties/modified_classes/inducing/src/main/java/org/apache/commons/math/util/FastMath.java tmp/changesInfo/Math_15/cleaned/fixing/src/main/java/org/apache/commons/math/util/FastMath.java
+--- tmp/changesInfo/Math_15/properties/modified_classes/inducing/src/main/java/org/apache/commons/math/util/FastMath.java	2023-06-12 11:40:42.118006129 +0800
++++ tmp/changesInfo/Math_15/cleaned/fixing/src/main/java/org/apache/commons/math/util/FastMath.java	2023-06-20 22:19:40.444978476 +0800
+@@ -1323,7 +1323,7 @@
+         /* Handle special case x<0 */
+         if (x < 0) {
+             // y is an even integer in this case
+-            if (y >= 4503599627370496.0 || y <= -4503599627370496.0) {
++            if (y >= 2 * 4503599627370496.0 || y <= -(2 * 4503599627370496.0)) {
+                 return pow(-x, y);
+             }
+ 

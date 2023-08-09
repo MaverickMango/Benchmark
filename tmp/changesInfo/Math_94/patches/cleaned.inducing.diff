@@ -1,0 +1,26 @@
+Only in tmp/changesInfo/Math_94/properties/modified_classes/inducing/src: java
+diff -u -r tmp/changesInfo/Math_94/properties/modified_classes/inducing/src/test/org/apache/commons/math/distribution/NormalDistributionTest.java tmp/changesInfo/Math_94/cleaned/inducing/src/test/org/apache/commons/math/distribution/NormalDistributionTest.java
+--- tmp/changesInfo/Math_94/properties/modified_classes/inducing/src/test/org/apache/commons/math/distribution/NormalDistributionTest.java	2023-06-24 16:44:15.853000000 +0800
++++ tmp/changesInfo/Math_94/cleaned/inducing/src/test/org/apache/commons/math/distribution/NormalDistributionTest.java	2023-06-24 16:45:27.062000000 +0800
+@@ -34,7 +34,7 @@
+     }
+     
+     public static void main(String[] args) {
+-        junit.swingui.TestRunner.run(NormalDistributionTest.class);
++//        junit.swingui.TestRunner.run(NormalDistributionTest.class);
+     }
+     
+     //-------------- Implementations for abstract methods -----------------------
+diff -u -r tmp/changesInfo/Math_94/properties/modified_classes/inducing/src/test/org/apache/commons/math/util/MathUtilsTest.java tmp/changesInfo/Math_94/cleaned/inducing/src/test/org/apache/commons/math/util/MathUtilsTest.java
+--- tmp/changesInfo/Math_94/properties/modified_classes/inducing/src/test/org/apache/commons/math/util/MathUtilsTest.java	2023-06-12 11:40:48.181738215 +0800
++++ tmp/changesInfo/Math_94/cleaned/inducing/src/test/org/apache/commons/math/util/MathUtilsTest.java	2023-06-24 16:48:00.529090215 +0800
+@@ -448,6 +448,9 @@
+         assertEquals(1, MathUtils.gcd(-a,  c));
+         assertEquals(1, MathUtils.gcd( a, -c));
+         assertEquals(1, MathUtils.gcd(-a, -c));
++
++        assertEquals(3 * (1<<15), MathUtils.gcd(3 * (1<<20), 9 * (1<<15)));
++
+     }
+     
+     public void testLcm() {

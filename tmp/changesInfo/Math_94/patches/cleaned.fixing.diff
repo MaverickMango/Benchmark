@@ -1,0 +1,13 @@
+diff -u -r tmp/changesInfo/Math_94/properties/modified_classes/inducing/src/java/org/apache/commons/math/util/MathUtils.java tmp/changesInfo/Math_94/cleaned/fixing/src/java/org/apache/commons/math/util/MathUtils.java
+--- tmp/changesInfo/Math_94/properties/modified_classes/inducing/src/java/org/apache/commons/math/util/MathUtils.java	2023-06-12 11:40:48.181738215 +0800
++++ tmp/changesInfo/Math_94/cleaned/fixing/src/java/org/apache/commons/math/util/MathUtils.java	2023-06-24 16:49:50.897631713 +0800
+@@ -545,7 +545,7 @@
+      * @return the greatest common divisor, never zero
+      */
+     public static int gcd(int u, int v) {
+-        if (u * v == 0) {
++        if ((u == 0) || (v == 0)) {
+             return (Math.abs(u) + Math.abs(v));
+         }
+         // keep u and v negative, as negative integers range down to
+Only in tmp/changesInfo/Math_94/properties/modified_classes/inducing/src: test

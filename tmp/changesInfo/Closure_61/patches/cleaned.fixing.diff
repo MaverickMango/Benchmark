@@ -1,0 +1,19 @@
+diff -u -r tmp/changesInfo/Closure_61/properties/modified_classes/inducing/src/com/google/javascript/jscomp/NodeUtil.java tmp/changesInfo/Closure_61/cleaned/fixing/src/com/google/javascript/jscomp/NodeUtil.java
+--- tmp/changesInfo/Closure_61/properties/modified_classes/inducing/src/com/google/javascript/jscomp/NodeUtil.java	2023-08-02 15:48:40.790194849 +0800
++++ tmp/changesInfo/Closure_61/cleaned/fixing/src/com/google/javascript/jscomp/NodeUtil.java	2023-06-14 16:06:54.071844010 +0800
+@@ -954,6 +954,14 @@
+         return false;
+       }
+ 
++      // Functions in the "Math" namespace have no side effects.
++      if (nameNode.getFirstChild().getType() == Token.NAME) {
++        String namespaceName = nameNode.getFirstChild().getString();
++        if (namespaceName.equals("Math")) {
++          return false;
++        }
++      }
++
+       if (compiler != null && !compiler.hasRegExpGlobalReferences()) {
+         if (nameNode.getFirstChild().getType() == Token.REGEXP
+             && REGEXP_METHODS.contains(nameNode.getLastChild().getString())) {
+Only in tmp/changesInfo/Closure_61/properties/modified_classes/inducing: test

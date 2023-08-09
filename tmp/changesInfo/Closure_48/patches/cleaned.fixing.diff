@@ -1,0 +1,16 @@
+diff -u -r tmp/changesInfo/Closure_48/properties/modified_classes/inducing/src/com/google/javascript/jscomp/TypedScopeCreator.java tmp/changesInfo/Closure_48/cleaned/fixing/src/com/google/javascript/jscomp/TypedScopeCreator.java
+--- tmp/changesInfo/Closure_48/properties/modified_classes/inducing/src/com/google/javascript/jscomp/TypedScopeCreator.java	2023-06-12 11:40:21.194959261 +0800
++++ tmp/changesInfo/Closure_48/cleaned/fixing/src/com/google/javascript/jscomp/TypedScopeCreator.java	2023-07-31 23:28:30.753538940 +0800
+@@ -1138,8 +1138,9 @@
+       if (inferred) {
+         // Determining declaration for #2
+         inferred = !(rhsValue != null &&
+-            rhsValue.getType() == Token.FUNCTION &&
+-            !scope.isDeclared(qName, false));
++                rhsValue.getType() == Token.FUNCTION &&
++                !scope.isDeclared(qName, false) &&
++                n.isUnscopedQualifiedName());
+       }
+ 
+       if (!inferred) {
+Only in tmp/changesInfo/Closure_48/properties/modified_classes/inducing: test

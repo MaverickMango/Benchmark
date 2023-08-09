@@ -1,0 +1,13 @@
+diff -u -r tmp/changesInfo/Mockito_22/properties/modified_classes/inducing/src/org/mockito/internal/matchers/Equality.java tmp/changesInfo/Mockito_22/cleaned/fixing/src/org/mockito/internal/matchers/Equality.java
+--- tmp/changesInfo/Mockito_22/properties/modified_classes/inducing/src/org/mockito/internal/matchers/Equality.java	2023-07-24 16:12:09.343269272 +0800
++++ tmp/changesInfo/Mockito_22/cleaned/fixing/src/org/mockito/internal/matchers/Equality.java	2023-07-24 17:15:18.919959224 +0800
+@@ -6,6 +6,8 @@
+ public class Equality {
+ 
+     public static boolean areEqual(Object o1, Object o2) {
++        if (o1 == o2)
++            return true;
+         if (o1 == null || o2 == null) {
+             return o1 == null && o2 == null;
+         } else if (isArray(o1)) {
+Only in tmp/changesInfo/Mockito_22/properties/modified_classes/inducing: test

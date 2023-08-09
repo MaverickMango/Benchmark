@@ -1,0 +1,14 @@
+diff -u -r tmp/changesInfo/Closure_114/properties/modified_classes/inducing/src/com/google/javascript/jscomp/NameAnalyzer.java tmp/changesInfo/Closure_114/cleaned/fixing/src/com/google/javascript/jscomp/NameAnalyzer.java
+--- tmp/changesInfo/Closure_114/properties/modified_classes/inducing/src/com/google/javascript/jscomp/NameAnalyzer.java	2023-07-25 15:49:24.278217775 +0800
++++ tmp/changesInfo/Closure_114/cleaned/fixing/src/com/google/javascript/jscomp/NameAnalyzer.java	2023-07-25 16:00:28.767129908 +0800
+@@ -514,7 +514,7 @@
+             // logic.
+             if (parent.getFirstChild().getNext() != n) {
+               recordDepScope(n, ns);
+-            } else {
++            } else if (!(parent.getType() == Token.CALL && parent.getFirstChild() == n)) {
+               recordDepScope(nameNode, ns);
+             }
+           } else {
+Only in tmp/changesInfo/Closure_114/properties/modified_classes/inducing/src/com/google/javascript: rhino
+Only in tmp/changesInfo/Closure_114/properties/modified_classes/inducing: test

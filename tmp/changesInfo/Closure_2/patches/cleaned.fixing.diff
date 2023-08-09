@@ -1,0 +1,28 @@
+diff -u -r tmp/changesInfo/Closure_2/properties/modified_classes/inducing/src/com/google/javascript/jscomp/TypeCheck.java tmp/changesInfo/Closure_2/cleaned/fixing/src/com/google/javascript/jscomp/TypeCheck.java
+--- tmp/changesInfo/Closure_2/properties/modified_classes/inducing/src/com/google/javascript/jscomp/TypeCheck.java	2023-06-20 16:00:47.221224080 +0800
++++ tmp/changesInfo/Closure_2/cleaned/fixing/src/com/google/javascript/jscomp/TypeCheck.java	2023-06-20 16:04:20.621505816 +0800
+@@ -28,6 +28,7 @@
+ import static com.google.javascript.rhino.jstype.JSTypeNative.VOID_TYPE;
+ 
+ import com.google.common.base.Preconditions;
++import com.google.common.collect.ImmutableSet;
+ import com.google.javascript.jscomp.CheckLevel;
+ import com.google.javascript.jscomp.Scope.Var;
+ import com.google.javascript.jscomp.type.ReverseAbstractInterpreter;
+@@ -1566,8 +1567,13 @@
+       String functionName, HashMap<String, ObjectType> properties,
+       HashMap<String, ObjectType> currentProperties,
+       ObjectType interfaceType) {
+-    Set<String> currentPropertyNames =
+-        interfaceType.getImplicitPrototype().getOwnPropertyNames();
++    Set<String> currentPropertyNames;
++    ObjectType implicitProto = interfaceType.getImplicitPrototype();
++    if (implicitProto == null) {
++      currentPropertyNames = ImmutableSet.of();
++    } else {
++      currentPropertyNames = interfaceType.getImplicitPrototype().getOwnPropertyNames();
++    }
+     for (String name : currentPropertyNames) {
+       ObjectType oType = properties.get(name);
+       if (oType != null) {
+Only in tmp/changesInfo/Closure_2/properties/modified_classes/inducing: test
