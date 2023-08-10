@@ -1,0 +1,90 @@
+diff --git a/src/java/org/apache/commons/math/analysis/BrentSolver.java b/src/java/org/apache/commons/math/analysis/BrentSolver.java
+index 9f5dc90..2becdbf 100644
+--- a/src/java/org/apache/commons/math/analysis/BrentSolver.java
++++ b/src/java/org/apache/commons/math/analysis/BrentSolver.java
+@@ -1,5 +1,5 @@
+ /*
+- * Copyright 2003-2004 The Apache Software Foundation.
++ * Copyright 2003-2005 The Apache Software Foundation.
+  *
+  * Licensed under the Apache License, Version 2.0 (the "License");
+  * you may not use this file except in compliance with the License.
+@@ -82,7 +82,7 @@
+         FunctionEvaluationException {
+         
+         clearResult();
+-        verifyBracketing(min, max, f);
++        verifyInterval(min, max);
+         
+         // Index 0 is the old approximation for the root.
+         // Index 1 is the last calculated approximation  for the root.
+@@ -93,6 +93,14 @@
+         double y1;
+         y0 = f.value(x0);
+         y1 = f.value(x1);
++        
++        // Verify bracketing
++        if (y0 * y1 >= 0) {
++            throw new IllegalArgumentException
++            ("Function values at endpoints do not have different signs." +
++                    "  Endpoints: [" + min + "," + max + "]" + 
++                    "  Values: [" + y0 + "," + y1 + "]");       
++        }
+    
+         double x2 = x0;
+         double y2 = y0;
+diff --git a/src/java/org/apache/commons/math/analysis/SecantSolver.java b/src/java/org/apache/commons/math/analysis/SecantSolver.java
+index cb090e4..030ce12 100644
+--- a/src/java/org/apache/commons/math/analysis/SecantSolver.java
++++ b/src/java/org/apache/commons/math/analysis/SecantSolver.java
+@@ -84,7 +84,7 @@
+         FunctionEvaluationException {
+         
+         clearResult();
+-        verifyBracketing(min, max, f);
++        verifyInterval(min, max);
+         
+         // Index 0 is the old approximation for the root.
+         // Index 1 is the last calculated approximation  for the root.
+@@ -95,6 +95,15 @@
+         double x1 = max;
+         double y0 = f.value(x0);
+         double y1 = f.value(x1);
++        
++        // Verify bracketing
++        if (y0 * y1 >= 0) {
++            throw new IllegalArgumentException
++            ("Function values at endpoints do not have different signs." +
++                    "  Endpoints: [" + min + "," + max + "]" + 
++                    "  Values: [" + y0 + "," + y1 + "]");       
++        }
++        
+         double x2 = x0;
+         double y2 = y0;
+         double oldDelta = x2 - x1;
+diff --git a/src/test/org/apache/commons/math/analysis/BrentSolverTest.java b/src/test/org/apache/commons/math/analysis/BrentSolverTest.java
+index 9e63737..6c76ef1 100644
+--- a/src/test/org/apache/commons/math/analysis/BrentSolverTest.java
++++ b/src/test/org/apache/commons/math/analysis/BrentSolverTest.java
+@@ -266,4 +266,21 @@
+         result = UnivariateRealSolverUtils.solve(f, 0.85, 5);
+         assertEquals(result, 1.0, 1E-6);
+     }
++    
++    public void testBadEndpoints() throws Exception {
++        UnivariateRealFunction f = new SinFunction();
++        UnivariateRealSolver solver = new BrentSolver(f);
++        try {  // bad interval
++            solver.solve(1, -1);
++            fail("Expecting IllegalArgumentException - bad interval");
++        } catch (IllegalArgumentException ex) {
++            // expected
++        }
++        try {  // no bracket
++            solver.solve(1, 1.5);
++            fail("Expecting IllegalArgumentException - non-bracketing");
++        } catch (IllegalArgumentException ex) {
++            // expected
++        }
++    }
+ }
