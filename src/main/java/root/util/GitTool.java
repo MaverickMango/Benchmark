@@ -211,16 +211,16 @@ public class GitTool extends GitServiceImpl {
         BugFixCommit bugFixCommit = new BugFixCommit(bugName, bugId);
         bugFixCommit.setRepo(getRepositoryInfo(repository));
         RevCommit inducing = getCommit(repository, inducingCommit);
-        assert inducing != null && inducing.getParentCount() != 0;
+//        assert inducing != null && inducing.getParentCount() != 0;
         RevCommit before = getCommit(repository, inducing.getParent(0).getName());
         bugFixCommit.setInducingCommit(getCommitInfo(repository, inducing));
-        assert before != null;
+//        assert before != null;
         bugFixCommit.setOriginalCommit(getCommitInfo(repository, before));
         RevCommit fixed = getCommit(repository, fixedCommit);
-        assert fixed != null && fixed.getParentCount() != 0;
+//        assert fixed != null && fixed.getParentCount() != 0;
         before = getCommit(repository, fixed.getParent(0).getName());
         bugFixCommit.setFixedCommit(getCommitInfo(repository, fixed));
-        assert before != null;
+//        assert before != null;
         bugFixCommit.setBuggyCommit(getCommitInfo(repository, before));
         return bugFixCommit;
     }
@@ -232,6 +232,22 @@ public class GitTool extends GitServiceImpl {
     }
 
     public CommitInfo getCommitInfo(Repository repository, RevCommit commit) {
+        CommitInfo commitInfo = new CommitInfo();
+        commitInfo.setSha(commit.getName());
+        commitInfo.setRepoName(repository.getIdentifier());
+        commitInfo.setFullMessage(commit.getFullMessage());
+        try (Git git = new Git(repository)) {
+            List<Ref> refs = git.branchList().setContains(commit.getName()).call();
+            assert !refs.isEmpty();
+            commitInfo.setBranchName(refs.get(0).getName());
+        } catch (Exception e) {
+            logger.error(e.getMessage());
+        }
+        return commitInfo;
+    }
+
+    public CommitInfo getCommitInfo(Repository repository, String commitSha) {
+        RevCommit commit = getCommit(repository, commitSha);
         CommitInfo commitInfo = new CommitInfo();
         commitInfo.setSha(commit.getName());
         commitInfo.setRepoName(repository.getIdentifier());

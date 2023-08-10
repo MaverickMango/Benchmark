@@ -23,7 +23,7 @@ public class BearsBugsUtilsTest implements GitAccess {
 
     @Test
     public void test() {
-        String tmpPath = "/home/liumengjiao/Desktop/CI/Benchmark/tmp/";//cloned target directory
+        String tmpPath = "/home/liumengjiao/Desktop/CI/Benchmark/data/";//cloned target directory
         List<BugFixCommit> bugs = BearsBugsUtils.getBugInfo();//get bears bugs info
         BugFixCommit bug = bugs.get(1);
         //get its repository
@@ -36,7 +36,7 @@ public class BearsBugsUtilsTest implements GitAccess {
     @Test
     public void testCommitsDiffs() throws Exception {
         //get repository infos of bears-[path2dir, url];
-        String tmpPath = "/home/liumengjiao/Desktop/CI/Benchmark/tmp/";//cloned target directory
+        String tmpPath = "/home/liumengjiao/Desktop/CI/Benchmark/data/";//cloned target directory
         List<BugFixCommit> bugs = BearsBugsUtils.getBugInfo();//get bears bugs info
         BugFixCommit bug = bugs.get(1);
         //get its repository

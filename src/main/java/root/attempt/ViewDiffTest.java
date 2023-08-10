@@ -22,8 +22,8 @@ public class ViewDiffTest implements GitAccess {
 
     public static void main(String[] args) throws Exception {
         RefactoringMiner miner = new RefactoringMiner();
-        File dir1 = new File("tmp/changes/Closure_48/properties/modified_classes/original/");
-        File dir2 = new File("tmp/changes/Closure_48/properties/modified_classes/inducing/");
+        File dir1 = new File("data/changes/Closure_48/properties/modified_classes/original/");
+        File dir2 = new File("data/changes/Closure_48/properties/modified_classes/inducing/");
         Set<ASTDiff> astDiffs = miner.diffAtDirectories(dir1, dir2);
         miner.detectAtDirectories(dir1, dir2, new RefactoringHandler() {
             @Override

@@ -37,7 +37,7 @@ public class RefactorMinerTest implements GitAccess {
 //            }
 //        });
         Repository repo = gitAccess.getGitRepository(
-                "tmp/refactoring-toy-example",
+                "data/refactoring-toy-example",
                 "https://github.com/danilofes/refactoring-toy-example.git"
         );
         miner.detectAll(repo, "master", new RefactoringHandler() {

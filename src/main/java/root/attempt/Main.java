@@ -70,7 +70,7 @@ public class Main implements GitAccess {
      */
     public static void filterAnnotations(String[] args) {
         List<String> proj_bugs = FileUtils.readEachLine(args[0]);
-        String resultFilePath = "tmp/diffFromReal2D4jBuggy/realDiff.txt";
+        String resultFilePath = "data/diffFromReal2D4jBuggy/realDiff.txt";
         StringFilter filter = new StringFilter(StringFilter.STARTS_WITH);
         filter.addPattern("//");
         filter.addPattern("/*");
@@ -83,7 +83,7 @@ public class Main implements GitAccess {
                     String bugName = proj + "_" + id + "_buggy";
                     logger.info("Start processing " + bugName + "...");
 
-                    String inducingDiffDir = "tmp/diffFromReal2D4jBuggy/" + bugName + "/changes.diff";
+                    String inducingDiffDir = "data/diffFromReal2D4jBuggy/" + bugName + "/changes.diff";
                     if (FileUtils.notExists(inducingDiffDir))
                         continue;
                     List<String> diff = FileUtils.readEachLine(inducingDiffDir);
@@ -149,7 +149,7 @@ public class Main implements GitAccess {
                     pattern.append("\\.java$).*");
                     filter.addPattern(pattern.toString());
                     String diff = gitAccess.diffWithFilter(defects4JBug.getGitRepository("buggy"), buggyCommit, d4JBuggy, filter);
-                    String inducingDiffDir = "tmp/diffFromReal2D4jBuggy/" + bugName + "/changes.diff";
+                    String inducingDiffDir = "data/diffFromReal2D4jBuggy/" + bugName + "/changes.diff";
                     if (diff != null) {
                         logger.info("Writing diff in " + bugName + "...");
                         FileUtils.writeToFile(diff, inducingDiffDir, false);

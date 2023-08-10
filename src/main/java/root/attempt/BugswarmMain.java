@@ -36,7 +36,7 @@ public class BugswarmMain implements GitAccess {
 //                gitAccess.cloneIfNotExists(bugsLocation + repoName, repo);
 //                FileUtils.executeCommand(new String[]{"/bin/bash", "-c", "docker pull " + dockerhubPrefix + bug.getImageTag()});
                 String repo = bug.getRepo();
-                FileUtils.writeToFile(dockerhubPrefix + bug.getCurrentImageTag() + "\n", "tmp/bugWithOutPR.txt", true);
+                FileUtils.writeToFile(dockerhubPrefix + bug.getCurrentImageTag() + "\n", "data/bugWithOutPR.txt", true);
                 FileUtils.executeCommand(new String[]{"/bin/bash", "-c", "docker pull " + dockerhubPrefix + bug.getCurrentImageTag()}, null, 600, null);
 //                int res = FileUtils.executeCommand(new String[]{"/bin/bash", "-c", "docker pull " + dockerhubPrefix + bug.getCurrentImageTag()}, null, 600, null);
 //                FileUtils.executeCommand(new String[]{"/bin/bash", "-c", "git clone " + gitAccess.getRepositoryURL(repo) + " " + repo.substring(repo.lastIndexOf("/") + 1)}, bugsLocation, 300, null);

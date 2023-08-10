@@ -31,7 +31,7 @@ public class MethodTest {
 
     @Test
     public void test() {
-        List<String> diff = FileUtils.readEachLine("/home/liumengjiao/Desktop/CI/Benchmark/tmp/changesInfo/Closure_80/patches/inducing.diff");
+        List<String> diff = FileUtils.readEachLine("/home/liumengjiao/Desktop/CI/Benchmark/data/changesInfo/Closure_80/patches/inducing.diff");
         List<String> realDiff = diff.stream().filter(
                 line -> !Main.filter(line, null)
         ).collect(Collectors.toList());

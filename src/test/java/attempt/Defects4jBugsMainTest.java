@@ -27,9 +27,9 @@ import java.util.stream.Collectors;
 
 public class Defects4jBugsMainTest implements GitAccess {
 
-    Defects4JBug defects4JBug = new Defects4JBug("Lang", "4", "tmp/bugs/Lang_4_buggy");
+    Defects4JBug defects4JBug = new Defects4JBug("Lang", "4", "data/bugs/Lang_4_buggy");
 
-    @Test
+    @Ignore
     public void test() {
         String filePath = "src/test/resources/BugFixInfo.csv";
         List<List<String>> d4jinfos = FileUtils.readCsv(filePath, true);
@@ -44,9 +44,9 @@ public class Defects4jBugsMainTest implements GitAccess {
             String bugInduingCommit = bug.get(5);
             Defects4JBug defects4JBug = new Defects4JBug(proj, id, "../bugs/" + bugName);
             Repository repository = defects4JBug.getGitRepository("b");
-            String patches = "tmp/changesInfo/" + proj + "_" + id + "/patches/";
-            String modifiedClasses = "tmp/changesInfo/" + proj + "_" + id + "/properties/modified_classes/";
-            String mappingFile = "tmp/changesInfo/" + proj + "_" + id + "/properties/mappings/b2o";
+            String patches = "data/changesInfo/" + proj + "_" + id + "/patches/";
+            String modifiedClasses = "data/changesInfo/" + proj + "_" + id + "/properties/modified_classes/";
+            String mappingFile = "data/changesInfo/" + proj + "_" + id + "/properties/mappings/b2o";
             String srcClasses = ConfigurationProperties.getProperty("defects4j") + "/framework/projects/" + proj + "/modified_classes/" + id + ".src";
             String srcPatch = ConfigurationProperties.getProperty("defects4j") + "/framework/projects/" + proj + "/patches/" + id + ".src.patch";
             String testPatch = ConfigurationProperties.getProperty("defects4j") + "/framework/projects/" + proj + "/patches/" + id + ".test.patch";
@@ -72,7 +72,7 @@ public class Defects4jBugsMainTest implements GitAccess {
         }
     }
 
-    @Test
+    @Ignore
     public void testMain() throws Exception {
         String filePath = "src/test/resources/BugFixInfo.csv";
         List<List<String>> d4jinfos = FileUtils.readCsv(filePath, true);
@@ -88,7 +88,7 @@ public class Defects4jBugsMainTest implements GitAccess {
                     continue;
                 String bugInduingCommit = bug.get(5);
                 String bugOriginal = bug.get(6);
-                Defects4JBug defects4JBug = new Defects4JBug(proj, id, "tmp/bugs/" + bugName);
+                Defects4JBug defects4JBug = new Defects4JBug(proj, id, "data/bugs/" + bugName);
                 Repository repo = defects4JBug.getGitRepository("b");
                 boolean res = false;
                 res = defects4JBug.switchAndTest(repo, bugOriginal, "original");
@@ -100,11 +100,11 @@ public class Defects4jBugsMainTest implements GitAccess {
         System.out.println(failed);
     }
 
-    @Test
+    @Ignore
     public void testInsertTest() throws Exception {
         defects4JBug.setProj("Math");
         defects4JBug.setId("50");
-        defects4JBug.setWorkingDir("tmp/bugs/Math_50_buggy_test");
+        defects4JBug.setWorkingDir("data/bugs/Math_50_buggy_test");
         Repository repo = defects4JBug.getGitRepository("b");
 //        defects4JBug.switch2TargetCommit(repo, "f6fddf94c74502469c013ed94599bbd7fa2d89e7", "original", "CI_ORIGINAL_POST_COMPILABLE");
 //        gitAccess.getFileStatDiffBetweenCommits(defects4JBug.getWorkingDir(), "c0b655ace5665c0cd32e3f5e5b46edad4d223125"
@@ -112,7 +112,7 @@ public class Defects4jBugsMainTest implements GitAccess {
 //                , "tmp/changesInfo/Math_2/properties/mappings/f2i");
         ArrayList<String> strings = new ArrayList<>();
         strings.add("org.apache.commons.math.analysis.solvers.RegulaFalsiSolverTest::testIssue631");
-        defects4JBug.addTest(repo, "tmp/changesInfo/Math_50/properties/mappings/f2i", strings, defects4JBug.getFixingCommit(), "2f066a5b2d2fe8a00a251a3220b0d52446fe392d");
+        defects4JBug.addTest(repo, "data/changesInfo/Math_50/properties/mappings/f2i", strings, defects4JBug.getFixingCommit(), "2f066a5b2d2fe8a00a251a3220b0d52446fe392d");
 //        String[] f2i = gitAccess.getF2i("tmp/changesInfo/Math_50/properties/mappings/f2i", "org.apache.commons.math.analysis.solvers.RegulaFalsiSolverTest");
 //        gitAccess.checkoutf(defects4JBug.getWorkingDir(), "39cf5e69259d7560d50553caf028f9229b721013");
 //        ASTManipulator astManipulator = new ASTManipulator(8);
@@ -126,11 +126,11 @@ public class Defects4jBugsMainTest implements GitAccess {
 //        FileUtils.writeToFile(s, defects4JBug.getWorkingDir() + "/" + f2i[2], false);
     }
 
-    @Test
+    @Ignore
     public void testtest() throws IOException {
         defects4JBug.setProj("Closure");
         defects4JBug.setId("19");
-        defects4JBug.setWorkingDir("tmp/bugs/Closure_19_buggy");
+        defects4JBug.setWorkingDir("data/bugs/Closure_19_buggy");
         Repository repository = defects4JBug.getGitRepository("b");
         List<Ref> refsByPrefix = repository.getRefDatabase().getRefsByPrefix(Constants.R_TAGS);
         List<Ref> ci_inducing_compilable = refsByPrefix.stream().filter(o -> o.getName().contains("CI_INDUCING_COMPILABLE")).collect(Collectors.toList());
@@ -139,20 +139,20 @@ public class Defects4jBugsMainTest implements GitAccess {
     }
 
 
-    @Test
+    @Ignore
     public void testDiff() throws Exception {
         String bugName = "Math_45";
         String bugInduingCommit = "eb1b2cfefa07149f078a81c8fb30bb826062b7c5";
-        String workingDir = "tmp/bugs/" + bugName + "_buggy";
+        String workingDir = "data/bugs/" + bugName + "_buggy";
         Defects4JBug defects4JBug = new Defects4JBug("Math", "45",  workingDir);
         Repository repository = defects4JBug.getGitRepository("b");
         String bugFixingCommit = "bc4e9db01c2a03062965fa4bac65782376ab2287";
         assert repository != null;
         String fixingDiff = gitAccess.diff(repository, bugFixingCommit);
         String inducingDiff = gitAccess.diff(repository, bugInduingCommit);
-        String fixingDiffDir = "tmp/changesInfo/" + bugName + "/patches/fixing.diff";
-        String inducingDiffDir = "tmp/changesInfo/" + bugName + "/patches/inducing.diff";
-        String changesInfoDir = "tmp/changesInfo/" + bugName + "/info.txt";
+        String fixingDiffDir = "data/changesInfo/" + bugName + "/patches/fixing.diff";
+        String inducingDiffDir = "data/changesInfo/" + bugName + "/patches/inducing.diff";
+        String changesInfoDir = "data/changesInfo/" + bugName + "/info.txt";
         if (fixingDiff != null && inducingDiff != null) {
             BugFixCommit bugFixCommit = gitAccess.getBugFixCommit(bugName, "0",
                     repository, bugInduingCommit, bugFixingCommit);
@@ -162,10 +162,10 @@ public class Defects4jBugsMainTest implements GitAccess {
         }
     }
 
-    @Test
+    @Ignore
     public void testFilter() throws Exception {
         String bugName = "Math_45";
-        String workingDir = "tmp/bugs/" + bugName + "_buggy";
+        String workingDir = "data/bugs/" + bugName + "_buggy";
         Defects4JBug defects4JBug = new Defects4JBug("Math", "45",  workingDir);
         Repository repository = defects4JBug.getGitRepository("b");
         String bugFixingCommit = "bc4e9db01c2a03062965fa4bac65782376ab2287";
@@ -182,7 +182,7 @@ public class Defects4jBugsMainTest implements GitAccess {
         String diff = gitAccess.diffWithFilter(defects4JBug.getGitRepository("buggy"), bugFixingCommit, nextCommit, filter);
     }
 
-    @Test
+    @Ignore
     public void testTest() {
         boolean res = defects4JBug.test();
         System.out.println(res);

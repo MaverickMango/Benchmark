@@ -45,7 +45,7 @@ public class Defects4jBugsMain implements GitAccess {
 //                    }
 //                }
 //                boolean res = defects4JBug.findInducingCommit(fixingCommit, startCommit);
-                FileUtils.writeToFile(fixingCommit + "\n", "tmp/codec-d4j-fixing.txt", true);
+                FileUtils.writeToFile(fixingCommit + "\n", "data/codec-d4j-fixing.txt", true);
                 logger.info("Finished processing " + bugName + "...");
             }
         }
@@ -77,7 +77,7 @@ public class Defects4jBugsMain implements GitAccess {
             String fakeInducing = "", fakeOriginal = "";
             boolean res = false;
             try {
-                Defects4JBug defects4JBug = new Defects4JBug(proj, id, "tmp/bugs/" + bugName);
+                Defects4JBug defects4JBug = new Defects4JBug(proj, id, "data/bugs/" + bugName);
                 if (proj.equals("Time")) {
                     defects4JBug.setWorkingDir(defects4JBug.getWorkingDir() + "/JodaTime");
                 }
@@ -106,10 +106,10 @@ public class Defects4jBugsMain implements GitAccess {
 //                    properties = defects4JBug.getProperties("/defects4j.build.properties");
 //                    defects4JBug.rmBrokenTests(failing_tests_path, defects4JBug.getWorkingDir() + "/" + properties.get("test.dir"));
                     FileUtils.executeCommand(new String[]{"/bin/bash", "-c", "cp -r ../../changesInfo/" + proj + "_" + id + "/cleaned/inducing/* ./"}, defects4JBug.getWorkingDir(), 300, null);
-                    if (FileUtils.notExists("tmp/changesInfo/" + proj + "_" + id + "/cleaned/test_script")) {
+                    if (FileUtils.notExists("data/changesInfo/" + proj + "_" + id + "/cleaned/test_script")) {
                         res = defects4JBug.test();
                     } else {
-                        List<String> test_scripts = FileUtils.readEachLine("tmp/changesInfo/" + proj + "_" + id + "/cleaned/test_script");
+                        List<String> test_scripts = FileUtils.readEachLine("data/changesInfo/" + proj + "_" + id + "/cleaned/test_script");
                         for (String test_script :test_scripts) {
                             int r = FileUtils.executeCommand(new String[]{"/bin/bash", "-c", "timeout 300000 " + test_script}, defects4JBug.getWorkingDir(), 300, null);
                             res &= r == 0;
@@ -155,7 +155,7 @@ public class Defects4jBugsMain implements GitAccess {
             boolean res = false;
             String fakeInducing = "", fakeOriginal = "";
             try {
-                Defects4JBug defects4JBug = new Defects4JBug(proj, id, "tmp/bugs/" + bugName);
+                Defects4JBug defects4JBug = new Defects4JBug(proj, id, "data/bugs/" + bugName);
                 Repository repository = defects4JBug.getGitRepository("b");
                 gitAccess.checkoutf(defects4JBug.getWorkingDir(), bug.get(4));
 //                if (!res) {
@@ -186,10 +186,10 @@ public class Defects4jBugsMain implements GitAccess {
 //                    properties = defects4JBug.getProperties("/defects4j.build.properties");
 //                    defects4JBug.rmBrokenTests(failing_tests_path, defects4JBug.getWorkingDir() + "/" + properties.get("test.dir"));
                     FileUtils.executeCommand(new String[]{"/bin/bash", "-c", "cp -r ../../changesInfo/" + proj + "_" + id + "/cleaned/inducing/* ./"}, defects4JBug.getWorkingDir(), 300, null);
-                    if (FileUtils.notExists("tmp/changesInfo/" + proj + "_" + id + "/cleaned/test_script")) {
+                    if (FileUtils.notExists("data/changesInfo/" + proj + "_" + id + "/cleaned/test_script")) {
                         res = defects4JBug.test();
                     } else {
-                        List<String> test_scripts = FileUtils.readEachLine("tmp/changesInfo/" + proj + "_" + id + "/cleaned/test_script");
+                        List<String> test_scripts = FileUtils.readEachLine("data/changesInfo/" + proj + "_" + id + "/cleaned/test_script");
                         for (String test_script :test_scripts) {
                             int r = FileUtils.executeCommand(new String[]{"/bin/bash", "-c", test_script}, defects4JBug.getWorkingDir(), 300, null);
                             res &= r == 0;
@@ -239,7 +239,7 @@ public class Defects4jBugsMain implements GitAccess {
                 String id = bugName.split("_")[1];
                 if (Arrays.asList(filter.get(proj)).contains(id))
                     continue;
-                Defects4JBug defects4JBug = new Defects4JBug(proj, id, "tmp/bugs/" + bugName, bug.get(3), bug.get(4), bug.get(5), bug.get(6));
+                Defects4JBug defects4JBug = new Defects4JBug(proj, id, "data/bugs/" + bugName, bug.get(3), bug.get(4), bug.get(5), bug.get(6));
                 Repository repo = defects4JBug.getGitRepository("b");
                 boolean res = defects4JBug.switchAndTag(repo, defects4JBug.getInducingCommit(), "inducing", "CI_INDUCING_COMPILABLE");
                 if (!res) {
@@ -267,7 +267,7 @@ public class Defects4jBugsMain implements GitAccess {
             Defects4JBug defects4JBug = new Defects4JBug(proj, id, "../bugs/" + bugName);
             Repository repository = defects4JBug.getGitRepository("b");
             gitAccess.getFileStatDiffBetweenCommits(defects4JBug.getWorkingDir(), bug.get(5), bug.get(6)
-                    , "tmp/changesInfo/" + proj + "_" + id + "/properties/mappings/i2o");
+                    , "data/changesInfo/" + proj + "_" + id + "/properties/mappings/i2o");
         }
     }
 
@@ -286,7 +286,7 @@ public class Defects4jBugsMain implements GitAccess {
                     continue;
                 String bugInduingCommit = bug.get(5);
                 String bugOriginal = bug.get(6);
-                Defects4JBug defects4JBug = new Defects4JBug(proj, id, "tmp/bugs/" + bugName);
+                Defects4JBug defects4JBug = new Defects4JBug(proj, id, "data/bugs/" + bugName);
                 Repository repo = defects4JBug.getGitRepository("b");
                 boolean res = false;
                 res = defects4JBug.switchAndTest(repo, bugInduingCommit, "inducing");
@@ -386,9 +386,9 @@ public class Defects4jBugsMain implements GitAccess {
             assert repository != null;
             String fixingDiff = gitAccess.diff(repository, bugFixingCommit);
             String inducingDiff = gitAccess.diff(repository, bugInduingCommit);
-            String fixingDiffDir = "tmp/changesInfo/" + bug_tag + "/patches/fixing.diff";
-            String inducingDiffDir = "tmp/changesInfo/" + bug_tag + "/patches/inducing.diff";
-            String changesInfoDir = "tmp/changesInfo/" + bug_tag + "/info.txt";
+            String fixingDiffDir = "data/changesInfo/" + bug_tag + "/patches/fixing.diff";
+            String inducingDiffDir = "data/changesInfo/" + bug_tag + "/patches/inducing.diff";
+            String changesInfoDir = "data/changesInfo/" + bug_tag + "/info.txt";
             if (fixingDiff != null && inducingDiff != null) {
                 BugFixCommit bugFixCommit = gitAccess.getBugFixCommit(bugName, String.valueOf(i),
                                             repository, bugInduingCommit, bugFixingCommit);

@@ -23,6 +23,37 @@ public class FileUtils {
         return filePath.replaceAll("/", File.separator);
     }
 
+    /**
+     * Both first and second are considered as a Set in order to check their difference set.
+     * @param first a collection
+     * @param second a collection
+     * @return (first - second)
+     */
+    public static Collection<?> difference(@NonNull Collection<?> first, @NonNull Collection<?> second) {
+        if (second.isEmpty())
+            return first;
+        try {
+            Collection diff = first.getClass().getConstructor().newInstance();
+            for (Object one :first) {
+                if (!contains(second, one))
+                    diff.add(one);
+            }
+            return diff;
+        } catch (Exception e) {
+            logger.error("Error occurred when computing difference set: " + e.getMessage());
+        }
+        return first;
+    }
+
+    private static boolean contains(Collection<?> second, Object one) {
+        for (Object other: second) {
+            if (other.equals(one)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
     public static StringBuilder getMap2String(Map<?, ?> map) {
         Set<?> keySet = map.keySet();
         Iterator<?> iterator = keySet.iterator();
@@ -482,16 +513,5 @@ public class FileUtils {
         }
         stringBuilder.deleteCharAt(stringBuilder.length() - 1);
         writeToFile(stringBuilder.toString(), filePath, false);
-    }
-
-    /**
-     * todo: diff two files with command `diff -u`
-     * @param srcPath source file path
-     * @param dstPath destination file path
-     * @param split ?
-     * @return diff result
-     */
-    public static boolean diff(String srcPath, String dstPath, int split) {
-        return false;
     }
 }

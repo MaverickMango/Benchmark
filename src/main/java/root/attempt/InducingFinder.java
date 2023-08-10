@@ -27,7 +27,7 @@ public class InducingFinder implements GitAccess {
             for (String id :bugs) {
                 String bugName = proj + "_" + id + "_buggy";
                 logger.info("Starting process " + bugName + "...");
-                Defects4JBug defects4JBug = new Defects4JBug(proj, id, "tmp/bugs/" + bugName);
+                Defects4JBug defects4JBug = new Defects4JBug(proj, id, "data/bugs/" + bugName);
                 String bugFixingCommit = defects4JBug.getFixingCommit();
                 Repository repo = defects4JBug.getGitRepository("b");
                 List<RevCommit> revsWalkOfAll = gitAccess.createRevsWalkOfAll(repo, true);
@@ -42,7 +42,7 @@ public class InducingFinder implements GitAccess {
                 }
                 if (res != null) {
                     logger.info("----------" + bugName + " can not find inducing commit");
-                    FileUtils.writeToFile(proj + "," + id + "," + fakeInducing + "\n", "tmp/bug_inducing_commits", true);
+                    FileUtils.writeToFile(proj + "," + id + "," + fakeInducing + "\n", "data/bug_inducing_commits", true);
                 }
                 logger.info("Finished processing " + bugName + "...");
             }

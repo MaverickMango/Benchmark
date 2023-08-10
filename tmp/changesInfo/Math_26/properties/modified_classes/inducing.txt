@@ -1,2 +1,0 @@
-src/java/org/apache/commons/math/fraction/Fraction.java
-src/test/org/apache/commons/math/fraction/FractionTest.java
