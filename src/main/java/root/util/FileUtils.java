@@ -514,4 +514,20 @@ public class FileUtils {
         stringBuilder.deleteCharAt(stringBuilder.length() - 1);
         writeToFile(stringBuilder.toString(), filePath, false);
     }
+
+    /**
+     * 写入csv，在文件最后一列插入一个新列
+     * @param column 列内容
+     * @param header 列名
+     * @param filePath 文件路径
+     */
+    public static void writeCsvColumn(List<String> column, String header, String filePath) {
+        StringBuilder stringBuilder = new StringBuilder();
+        for (int i = 0; i < column.size() + 1; i ++) {
+            String line = column.get(i);
+            //todo
+        }
+        stringBuilder.deleteCharAt(stringBuilder.length() - 1);
+        writeToFile(stringBuilder.toString(), filePath, false);
+    }
 }

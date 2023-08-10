@@ -1423,14 +1423,14 @@ at -1
 ===
 multi-move-tree
 ---
-PrimitiveType: long [2167,2171]
+PrimitiveType: long [6363,6367]
 to
 PrimitiveType: long [2367,2371]
 at -1
 ===
 multi-move-tree
 ---
-PrimitiveType: long [6363,6367]
+PrimitiveType: long [2167,2171]
 to
 PrimitiveType: long [2367,2371]
 at -1

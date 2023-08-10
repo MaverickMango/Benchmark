@@ -715,14 +715,14 @@ ExpressionStatement [17730,17747]
 ===
 multi-move-tree
 ---
-SimpleName: getType [17351,17358]
+SimpleName: getParent [17339,17348]
 to
 SimpleName: getType [26032,26039]
 at -1
 ===
 multi-move-tree
 ---
-SimpleName: getParent [17339,17348]
+SimpleName: getType [17351,17358]
 to
 SimpleName: getType [26032,26039]
 at -1

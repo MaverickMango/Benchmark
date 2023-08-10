@@ -1,6 +1,6 @@
 {
   "bugName": "Time_15_buggy",
-  "bugId": "30",
+  "bugId": "16",
   "repo": {
     "name": "../bugs/Time_15_buggy/.git"
   },

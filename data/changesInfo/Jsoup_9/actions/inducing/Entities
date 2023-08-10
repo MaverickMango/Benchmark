@@ -829,22 +829,6 @@ WhileStatement [1712,3095]
 ===
 multi-move-tree
 ---
-METHOD_INVOCATION_RECEIVER [2863,2866]
-    SimpleName: val [2863,2866]
-to
-METHOD_INVOCATION_RECEIVER [2242,2252]
-at -1
-===
-multi-move-tree
----
-METHOD_INVOCATION_RECEIVER [2804,2807]
-    SimpleName: val [2804,2807]
-to
-METHOD_INVOCATION_RECEIVER [2242,2252]
-at -1
-===
-multi-move-tree
----
 MethodInvocation [2804,2821]
     METHOD_INVOCATION_RECEIVER [2804,2807]
         SimpleName: val [2804,2807]
@@ -865,6 +849,13 @@ at -1
 ===
 multi-move-tree
 ---
+SimpleName: toLowerCase [2867,2878]
+to
+SimpleName: toLowerCase [2253,2264]
+at -1
+===
+multi-move-tree
+---
 SimpleName: toLowerCase [2808,2819]
 to
 SimpleName: toLowerCase [2253,2264]
@@ -872,7 +863,16 @@ at -1
 ===
 multi-move-tree
 ---
-SimpleName: toLowerCase [2867,2878]
+METHOD_INVOCATION_RECEIVER [2863,2866]
+    SimpleName: val [2863,2866]
 to
-SimpleName: toLowerCase [2253,2264]
+METHOD_INVOCATION_RECEIVER [2242,2252]
+at -1
+===
+multi-move-tree
+---
+METHOD_INVOCATION_RECEIVER [2804,2807]
+    SimpleName: val [2804,2807]
+to
+METHOD_INVOCATION_RECEIVER [2242,2252]
 at -1

@@ -575,6 +575,20 @@ MethodDeclaration [65935,66636]
 ===
 multi-move-tree
 ---
+QualifiedName: Double.NEGATIVE_INFINITY [47965,47989]
+to
+QualifiedName: Double.NEGATIVE_INFINITY [46548,46572]
+at -1
+===
+multi-move-tree
+---
+QualifiedName: Double.NEGATIVE_INFINITY [47965,47989]
+to
+QualifiedName: Double.POSITIVE_INFINITY [46428,46452]
+at -1
+===
+multi-move-tree
+---
 Assignment [47919,47991]
     SimpleName: unscaled [47919,47927]
     ASSIGNMENT_OPERATOR: = [47928,47929]
@@ -613,72 +627,6 @@ at -1
 ===
 multi-move-tree
 ---
-SimpleName: unscaled [47919,47927]
-to
-SimpleName: unscaled [46374,46382]
-at -1
-===
-multi-move-tree
----
-SimpleName: unscaled [47919,47927]
-to
-SimpleName: unscaled [46493,46501]
-at -1
-===
-multi-move-tree
----
-SimpleName: floor [47939,47944]
-to
-SimpleName: ceil [46394,46398]
-at -1
-===
-multi-move-tree
----
-SimpleName: floor [47939,47944]
-to
-SimpleName: floor [46513,46518]
-at -1
-===
-multi-move-tree
----
-ASSIGNMENT_OPERATOR: = [47928,47929]
-to
-ASSIGNMENT_OPERATOR: = [46502,46503]
-at -1
-===
-multi-move-tree
----
-ASSIGNMENT_OPERATOR: = [47928,47929]
-to
-ASSIGNMENT_OPERATOR: = [46383,46384]
-at -1
-===
-multi-move-tree
----
-METHOD_INVOCATION_ARGUMENTS [47945,47990]
-    MethodInvocation [47945,47990]
-        SimpleName: nextAfter [47945,47954]
-        METHOD_INVOCATION_ARGUMENTS [47955,47989]
-            SimpleName: unscaled [47955,47963]
-            QualifiedName: Double.NEGATIVE_INFINITY [47965,47989]
-to
-METHOD_INVOCATION_ARGUMENTS [46519,46573]
-at -1
-===
-multi-move-tree
----
-METHOD_INVOCATION_ARGUMENTS [47945,47990]
-    MethodInvocation [47945,47990]
-        SimpleName: nextAfter [47945,47954]
-        METHOD_INVOCATION_ARGUMENTS [47955,47989]
-            SimpleName: unscaled [47955,47963]
-            QualifiedName: Double.NEGATIVE_INFINITY [47965,47989]
-to
-METHOD_INVOCATION_ARGUMENTS [46399,46453]
-at -1
-===
-multi-move-tree
----
 MethodInvocation [47930,47991]
     METHOD_INVOCATION_RECEIVER [47930,47938]
         SimpleName: FastMath [47930,47938]
@@ -707,20 +655,6 @@ MethodInvocation [47930,47991]
                 QualifiedName: Double.NEGATIVE_INFINITY [47965,47989]
 to
 MethodInvocation [46385,46454]
-at -1
-===
-multi-move-tree
----
-QualifiedName: Double.NEGATIVE_INFINITY [47965,47989]
-to
-QualifiedName: Double.POSITIVE_INFINITY [46428,46452]
-at -1
-===
-multi-move-tree
----
-QualifiedName: Double.NEGATIVE_INFINITY [47965,47989]
-to
-QualifiedName: Double.NEGATIVE_INFINITY [46548,46572]
 at -1
 ===
 multi-move-tree
@@ -761,4 +695,70 @@ ExpressionStatement [47919,47992]
                         QualifiedName: Double.NEGATIVE_INFINITY [47965,47989]
 to
 ExpressionStatement [46374,46455]
+at -1
+===
+multi-move-tree
+---
+SimpleName: floor [47939,47944]
+to
+SimpleName: floor [46513,46518]
+at -1
+===
+multi-move-tree
+---
+SimpleName: floor [47939,47944]
+to
+SimpleName: ceil [46394,46398]
+at -1
+===
+multi-move-tree
+---
+ASSIGNMENT_OPERATOR: = [47928,47929]
+to
+ASSIGNMENT_OPERATOR: = [46383,46384]
+at -1
+===
+multi-move-tree
+---
+ASSIGNMENT_OPERATOR: = [47928,47929]
+to
+ASSIGNMENT_OPERATOR: = [46502,46503]
+at -1
+===
+multi-move-tree
+---
+METHOD_INVOCATION_ARGUMENTS [47945,47990]
+    MethodInvocation [47945,47990]
+        SimpleName: nextAfter [47945,47954]
+        METHOD_INVOCATION_ARGUMENTS [47955,47989]
+            SimpleName: unscaled [47955,47963]
+            QualifiedName: Double.NEGATIVE_INFINITY [47965,47989]
+to
+METHOD_INVOCATION_ARGUMENTS [46399,46453]
+at -1
+===
+multi-move-tree
+---
+METHOD_INVOCATION_ARGUMENTS [47945,47990]
+    MethodInvocation [47945,47990]
+        SimpleName: nextAfter [47945,47954]
+        METHOD_INVOCATION_ARGUMENTS [47955,47989]
+            SimpleName: unscaled [47955,47963]
+            QualifiedName: Double.NEGATIVE_INFINITY [47965,47989]
+to
+METHOD_INVOCATION_ARGUMENTS [46519,46573]
+at -1
+===
+multi-move-tree
+---
+SimpleName: unscaled [47919,47927]
+to
+SimpleName: unscaled [46374,46382]
+at -1
+===
+multi-move-tree
+---
+SimpleName: unscaled [47919,47927]
+to
+SimpleName: unscaled [46493,46501]
 at -1

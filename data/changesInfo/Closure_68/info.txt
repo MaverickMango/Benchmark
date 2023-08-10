@@ -1,6 +1,6 @@
 {
   "bugName": "Closure_68_buggy",
-  "bugId": "17",
+  "bugId": "4",
   "repo": {
     "name": "../bugs/Closure_68_buggy/.git"
   },

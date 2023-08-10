@@ -1,6 +1,6 @@
 {
   "bugName": "Lang_49_buggy",
-  "bugId": "64",
+  "bugId": "50",
   "repo": {
     "name": "../bugs/Lang_49_buggy/.git"
   },

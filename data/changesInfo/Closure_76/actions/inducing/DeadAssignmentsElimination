@@ -1219,9 +1219,59 @@ SimpleName: parent [6675,6681]
 ===
 multi-move-tree
 ---
+ExpressionStatement [4151,4237]
+    MethodInvocation [4151,4236]
+        SimpleName: tryRemoveAssignment [4151,4170]
+        METHOD_INVOCATION_ARGUMENTS [4188,4235]
+            SimpleName: t [4188,4189]
+            MethodInvocation [4191,4225]
+                METHOD_INVOCATION_RECEIVER [4191,4199]
+                    SimpleName: NodeUtil [4191,4199]
+                SimpleName: getConditionExpression [4200,4222]
+                METHOD_INVOCATION_ARGUMENTS [4223,4224]
+                    SimpleName: n [4223,4224]
+            SimpleName: n [4227,4228]
+            SimpleName: state [4230,4235]
+to
+ExpressionStatement [4572,4608]
+at -1
+===
+multi-move-tree
+---
+ExpressionStatement [4710,4762]
+    MethodInvocation [4710,4761]
+        SimpleName: tryRemoveAssignment [4710,4729]
+        METHOD_INVOCATION_ARGUMENTS [4730,4760]
+            SimpleName: t [4730,4731]
+            MethodInvocation [4733,4750]
+                METHOD_INVOCATION_RECEIVER [4733,4734]
+                    SimpleName: n [4733,4734]
+                SimpleName: getFirstChild [4735,4748]
+            SimpleName: n [4752,4753]
+            SimpleName: state [4755,4760]
+to
+ExpressionStatement [4572,4608]
+at -1
+===
+multi-move-tree
+---
+SimpleName: n [4227,4228]
+to
+SimpleName: n [4598,4599]
+at -1
+===
+multi-move-tree
+---
+SimpleName: n [4752,4753]
+to
+SimpleName: n [4598,4599]
+at -1
+===
+multi-move-tree
+---
 SimpleName: n [4733,4734]
 to
-SimpleName: n [4082,4083]
+SimpleName: n [4440,4441]
 at -1
 ===
 multi-move-tree
@@ -1233,16 +1283,16 @@ at -1
 ===
 multi-move-tree
 ---
-SimpleName: state [4755,4760]
+SimpleName: n [4733,4734]
 to
-SimpleName: state [4601,4606]
+SimpleName: n [4273,4274]
 at -1
 ===
 multi-move-tree
 ---
-SimpleName: state [4230,4235]
+SimpleName: n [4733,4734]
 to
-SimpleName: state [4601,4606]
+SimpleName: n [4082,4083]
 at -1
 ===
 multi-move-tree
@@ -1271,20 +1321,44 @@ at -1
 ===
 multi-move-tree
 ---
-MethodInvocation [4151,4236]
-    SimpleName: tryRemoveAssignment [4151,4170]
-    METHOD_INVOCATION_ARGUMENTS [4188,4235]
-        SimpleName: t [4188,4189]
-        MethodInvocation [4191,4225]
-            METHOD_INVOCATION_RECEIVER [4191,4199]
-                SimpleName: NodeUtil [4191,4199]
-            SimpleName: getConditionExpression [4200,4222]
-            METHOD_INVOCATION_ARGUMENTS [4223,4224]
-                SimpleName: n [4223,4224]
-        SimpleName: n [4227,4228]
-        SimpleName: state [4230,4235]
+SimpleName: state [4755,4760]
 to
-MethodInvocation [4572,4607]
+SimpleName: state [4601,4606]
+at -1
+===
+multi-move-tree
+---
+SimpleName: state [4230,4235]
+to
+SimpleName: state [4601,4606]
+at -1
+===
+multi-move-tree
+---
+SimpleName: n [4223,4224]
+to
+SimpleName: n [4440,4441]
+at -1
+===
+multi-move-tree
+---
+SimpleName: n [4223,4224]
+to
+SimpleName: n [3902,3903]
+at -1
+===
+multi-move-tree
+---
+SimpleName: n [4223,4224]
+to
+SimpleName: n [4273,4274]
+at -1
+===
+multi-move-tree
+---
+SimpleName: n [4223,4224]
+to
+SimpleName: n [4082,4083]
 at -1
 ===
 multi-move-tree
@@ -1305,66 +1379,48 @@ at -1
 ===
 multi-move-tree
 ---
-ExpressionStatement [4710,4762]
-    MethodInvocation [4710,4761]
-        SimpleName: tryRemoveAssignment [4710,4729]
-        METHOD_INVOCATION_ARGUMENTS [4730,4760]
-            SimpleName: t [4730,4731]
-            MethodInvocation [4733,4750]
-                METHOD_INVOCATION_RECEIVER [4733,4734]
-                    SimpleName: n [4733,4734]
-                SimpleName: getFirstChild [4735,4748]
-            SimpleName: n [4752,4753]
-            SimpleName: state [4755,4760]
+MethodInvocation [4151,4236]
+    SimpleName: tryRemoveAssignment [4151,4170]
+    METHOD_INVOCATION_ARGUMENTS [4188,4235]
+        SimpleName: t [4188,4189]
+        MethodInvocation [4191,4225]
+            METHOD_INVOCATION_RECEIVER [4191,4199]
+                SimpleName: NodeUtil [4191,4199]
+            SimpleName: getConditionExpression [4200,4222]
+            METHOD_INVOCATION_ARGUMENTS [4223,4224]
+                SimpleName: n [4223,4224]
+        SimpleName: n [4227,4228]
+        SimpleName: state [4230,4235]
 to
-ExpressionStatement [4572,4608]
+MethodInvocation [4572,4607]
 at -1
 ===
 multi-move-tree
 ---
-ExpressionStatement [4151,4237]
-    MethodInvocation [4151,4236]
-        SimpleName: tryRemoveAssignment [4151,4170]
-        METHOD_INVOCATION_ARGUMENTS [4188,4235]
-            SimpleName: t [4188,4189]
-            MethodInvocation [4191,4225]
-                METHOD_INVOCATION_RECEIVER [4191,4199]
-                    SimpleName: NodeUtil [4191,4199]
-                SimpleName: getConditionExpression [4200,4222]
-                METHOD_INVOCATION_ARGUMENTS [4223,4224]
-                    SimpleName: n [4223,4224]
-            SimpleName: n [4227,4228]
-            SimpleName: state [4230,4235]
+SimpleName: t [4188,4189]
 to
-ExpressionStatement [4572,4608]
+SimpleName: t [4592,4593]
 at -1
 ===
 multi-move-tree
 ---
-SimpleName: n [4733,4734]
+SimpleName: t [4730,4731]
 to
-SimpleName: n [4273,4274]
+SimpleName: t [4592,4593]
 at -1
 ===
 multi-move-tree
 ---
-SimpleName: n [4733,4734]
+SimpleName: tryRemoveAssignment [4710,4729]
 to
-SimpleName: n [4440,4441]
+SimpleName: tryRemoveAssignment [4572,4591]
 at -1
 ===
 multi-move-tree
 ---
-METHOD_INVOCATION_ARGUMENTS [4730,4760]
-    SimpleName: t [4730,4731]
-    MethodInvocation [4733,4750]
-        METHOD_INVOCATION_RECEIVER [4733,4734]
-            SimpleName: n [4733,4734]
-        SimpleName: getFirstChild [4735,4748]
-    SimpleName: n [4752,4753]
-    SimpleName: state [4755,4760]
+SimpleName: tryRemoveAssignment [4151,4170]
 to
-METHOD_INVOCATION_ARGUMENTS [4592,4606]
+SimpleName: tryRemoveAssignment [4572,4591]
 at -1
 ===
 multi-move-tree
@@ -1385,42 +1441,14 @@ at -1
 ===
 multi-move-tree
 ---
-SimpleName: tryRemoveAssignment [4710,4729]
+METHOD_INVOCATION_ARGUMENTS [4730,4760]
+    SimpleName: t [4730,4731]
+    MethodInvocation [4733,4750]
+        METHOD_INVOCATION_RECEIVER [4733,4734]
+            SimpleName: n [4733,4734]
+        SimpleName: getFirstChild [4735,4748]
+    SimpleName: n [4752,4753]
+    SimpleName: state [4755,4760]
 to
-SimpleName: tryRemoveAssignment [4572,4591]
-at -1
-===
-multi-move-tree
----
-SimpleName: tryRemoveAssignment [4151,4170]
-to
-SimpleName: tryRemoveAssignment [4572,4591]
-at -1
-===
-multi-move-tree
----
-SimpleName: n [4227,4228]
-to
-SimpleName: n [4598,4599]
-at -1
-===
-multi-move-tree
----
-SimpleName: n [4752,4753]
-to
-SimpleName: n [4598,4599]
-at -1
-===
-multi-move-tree
----
-SimpleName: t [4188,4189]
-to
-SimpleName: t [4592,4593]
-at -1
-===
-multi-move-tree
----
-SimpleName: t [4730,4731]
-to
-SimpleName: t [4592,4593]
+METHOD_INVOCATION_ARGUMENTS [4592,4606]
 at -1

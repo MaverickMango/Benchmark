@@ -540,20 +540,20 @@ at -1
 ===
 multi-move-tree
 ---
-MethodInvocation [19889,19902]
-    METHOD_INVOCATION_RECEIVER [19889,19890]
-        SimpleName: c [19889,19890]
-    SimpleName: getString [19891,19900]
+MethodInvocation [20092,20105]
+    METHOD_INVOCATION_RECEIVER [20092,20093]
+        SimpleName: c [20092,20093]
+    SimpleName: getString [20094,20103]
 to
 MethodInvocation [19907,19920]
 at -1
 ===
 multi-move-tree
 ---
-MethodInvocation [20092,20105]
-    METHOD_INVOCATION_RECEIVER [20092,20093]
-        SimpleName: c [20092,20093]
-    SimpleName: getString [20094,20103]
+MethodInvocation [19889,19902]
+    METHOD_INVOCATION_RECEIVER [19889,19890]
+        SimpleName: c [19889,19890]
+    SimpleName: getString [19891,19900]
 to
 MethodInvocation [19907,19920]
 at -1

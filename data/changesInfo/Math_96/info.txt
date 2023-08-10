@@ -1,6 +1,6 @@
 {
   "bugName": "Math_96_buggy",
-  "bugId": "88",
+  "bugId": "74",
   "repo": {
     "name": "../bugs/Math_96_buggy/.git"
   },

@@ -205,21 +205,21 @@ SimpleName: result [1707,1713]
 ===
 multi-move-tree
 ---
-ClassInstanceCreation [1488,1516]
-    SimpleType [1492,1514]
-        SimpleName: NumericEntityUnescaper [1492,1514]
-to
-ClassInstanceCreation [1488,1516]
-at -1
-===
-multi-move-tree
----
 MethodInvocation [1609,1629]
     METHOD_INVOCATION_RECEIVER [1609,1612]
         SimpleName: neu [1609,1612]
     SimpleName: translate [1613,1622]
     METHOD_INVOCATION_ARGUMENTS [1623,1628]
         SimpleName: input [1623,1628]
+to
+ClassInstanceCreation [1488,1516]
+at -1
+===
+multi-move-tree
+---
+ClassInstanceCreation [1488,1516]
+    SimpleType [1492,1514]
+        SimpleName: NumericEntityUnescaper [1492,1514]
 to
 ClassInstanceCreation [1488,1516]
 at -1

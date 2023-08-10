@@ -1681,20 +1681,10 @@ VariableDeclarationStatement [6653,6699]
 ===
 multi-move-tree
 ---
-MethodInvocation [2365,2377]
-    METHOD_INVOCATION_RECEIVER [2365,2368]
-        SimpleName: str [2365,2368]
-    SimpleName: length [2369,2375]
-to
-MethodInvocation [3326,3338]
-at -1
-===
-multi-move-tree
----
-MethodInvocation [2701,2713]
-    METHOD_INVOCATION_RECEIVER [2701,2704]
-        SimpleName: str [2701,2704]
-    SimpleName: length [2705,2711]
+MethodInvocation [2299,2311]
+    METHOD_INVOCATION_RECEIVER [2299,2302]
+        SimpleName: str [2299,2302]
+    SimpleName: length [2303,2309]
 to
 MethodInvocation [3326,3338]
 at -1
@@ -1711,10 +1701,20 @@ at -1
 ===
 multi-move-tree
 ---
-MethodInvocation [2299,2311]
-    METHOD_INVOCATION_RECEIVER [2299,2302]
-        SimpleName: str [2299,2302]
-    SimpleName: length [2303,2309]
+MethodInvocation [2365,2377]
+    METHOD_INVOCATION_RECEIVER [2365,2368]
+        SimpleName: str [2365,2368]
+    SimpleName: length [2369,2375]
+to
+MethodInvocation [3326,3338]
+at -1
+===
+multi-move-tree
+---
+MethodInvocation [2701,2713]
+    METHOD_INVOCATION_RECEIVER [2701,2704]
+        SimpleName: str [2701,2704]
+    SimpleName: length [2705,2711]
 to
 MethodInvocation [3326,3338]
 at -1

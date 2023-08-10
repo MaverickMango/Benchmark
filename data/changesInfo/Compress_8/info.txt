@@ -1,6 +1,6 @@
 {
   "bugName": "Compress_8_buggy",
-  "bugId": "39",
+  "bugId": "25",
   "repo": {
     "name": "../bugs/Compress_8_buggy/.git"
   },

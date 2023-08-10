@@ -2916,205 +2916,6 @@ MethodDeclaration [13461,13768]
 ===
 multi-move-tree
 ---
-IfStatement [13686,13762]
-    SimpleName: m_debug [13690,13697]
-    Block [13708,13762]
-        ExpressionStatement [13722,13752]
-            MethodInvocation [13722,13751]
-                METHOD_INVOCATION_RECEIVER [13722,13732]
-                    QualifiedName: System.err [13722,13732]
-                SimpleName: println [13733,13740]
-                METHOD_INVOCATION_ARGUMENTS [13742,13749]
-                    SimpleName: message [13742,13749]
-to
-IfStatement [6801,7102]
-at -1
-===
-multi-move-tree
----
-IfStatement [13686,13762]
-    SimpleName: m_debug [13690,13697]
-    Block [13708,13762]
-        ExpressionStatement [13722,13752]
-            MethodInvocation [13722,13751]
-                METHOD_INVOCATION_RECEIVER [13722,13732]
-                    QualifiedName: System.err [13722,13732]
-                SimpleName: println [13733,13740]
-                METHOD_INVOCATION_ARGUMENTS [13742,13749]
-                    SimpleName: message [13742,13749]
-to
-IfStatement [7759,7986]
-at -1
-===
-multi-move-tree
----
-IfStatement [13686,13762]
-    SimpleName: m_debug [13690,13697]
-    Block [13708,13762]
-        ExpressionStatement [13722,13752]
-            MethodInvocation [13722,13751]
-                METHOD_INVOCATION_RECEIVER [13722,13732]
-                    QualifiedName: System.err [13722,13732]
-                SimpleName: println [13733,13740]
-                METHOD_INVOCATION_ARGUMENTS [13742,13749]
-                    SimpleName: message [13742,13749]
-to
-IfStatement [7318,7400]
-at -1
-===
-multi-move-tree
----
-IfStatement [13686,13762]
-    SimpleName: m_debug [13690,13697]
-    Block [13708,13762]
-        ExpressionStatement [13722,13752]
-            MethodInvocation [13722,13751]
-                METHOD_INVOCATION_RECEIVER [13722,13732]
-                    QualifiedName: System.err [13722,13732]
-                SimpleName: println [13733,13740]
-                METHOD_INVOCATION_ARGUMENTS [13742,13749]
-                    SimpleName: message [13742,13749]
-to
-IfStatement [7495,7576]
-at -1
-===
-multi-move-tree
----
-SimpleName: offset [10294,10300]
-to
-SimpleName: offset [11525,11531]
-at -1
-===
-multi-move-tree
----
-SimpleName: offset [10294,10300]
-to
-SimpleName: offset [11194,11200]
-at -1
-===
-multi-move-tree
----
-SimpleName: offset [10294,10300]
-to
-SimpleName: offset [11423,11429]
-at -1
-===
-multi-move-tree
----
-SimpleName: offset [10294,10300]
-to
-SimpleName: offset [10351,10357]
-at -1
-===
-multi-move-tree
----
-SimpleName: offset [10294,10300]
-to
-SimpleName: offset [10745,10751]
-at -1
-===
-multi-move-tree
----
-SimpleName: position [12257,12265]
-to
-SimpleName: offset [11525,11531]
-at -1
-===
-multi-move-tree
----
-SimpleName: position [12257,12265]
-to
-SimpleName: offset [11194,11200]
-at -1
-===
-multi-move-tree
----
-SimpleName: position [12257,12265]
-to
-SimpleName: offset [11423,11429]
-at -1
-===
-multi-move-tree
----
-SimpleName: position [12257,12265]
-to
-SimpleName: offset [10351,10357]
-at -1
-===
-multi-move-tree
----
-SimpleName: position [12257,12265]
-to
-SimpleName: offset [10745,10751]
-at -1
-===
-multi-move-tree
----
-SimpleName: m_debug [13690,13697]
-to
-SimpleName: debug [7499,7504]
-at -1
-===
-multi-move-tree
----
-SimpleName: m_debug [13690,13697]
-to
-SimpleName: debug [7322,7327]
-at -1
-===
-multi-move-tree
----
-SimpleName: m_debug [13690,13697]
-to
-SimpleName: debug [7763,7768]
-at -1
-===
-multi-move-tree
----
-SimpleName: m_debug [13690,13697]
-to
-SimpleName: debug [6805,6810]
-at -1
-===
-multi-move-tree
----
-SimpleName: println [13733,13740]
-to
-SimpleName: println [7358,7365]
-at -1
-===
-multi-move-tree
----
-SimpleName: println [13733,13740]
-to
-SimpleName: println [7535,7542]
-at -1
-===
-multi-move-tree
----
-METHOD_INVOCATION_ARGUMENTS [13742,13749]
-    SimpleName: message [13742,13749]
-to
-METHOD_INVOCATION_ARGUMENTS [7366,7384]
-at -1
-===
-multi-move-tree
----
-METHOD_INVOCATION_ARGUMENTS [13742,13749]
-    SimpleName: message [13742,13749]
-to
-METHOD_INVOCATION_ARGUMENTS [7543,7560]
-at -1
-===
-multi-move-tree
----
-SimpleName: position [10789,10797]
-to
-SimpleName: offset [10351,10357]
-at -1
-===
-multi-move-tree
----
 Block [13708,13762]
     ExpressionStatement [13722,13752]
         MethodInvocation [13722,13751]
@@ -3157,6 +2958,264 @@ at -1
 ===
 multi-move-tree
 ---
+METHOD_INVOCATION_ARGUMENTS [13742,13749]
+    SimpleName: message [13742,13749]
+to
+METHOD_INVOCATION_ARGUMENTS [7366,7384]
+at -1
+===
+multi-move-tree
+---
+METHOD_INVOCATION_ARGUMENTS [13742,13749]
+    SimpleName: message [13742,13749]
+to
+METHOD_INVOCATION_ARGUMENTS [7543,7560]
+at -1
+===
+multi-move-tree
+---
+SimpleName: offset [10294,10300]
+to
+SimpleName: offset [10745,10751]
+at -1
+===
+multi-move-tree
+---
+SimpleName: offset [10294,10300]
+to
+SimpleName: offset [11423,11429]
+at -1
+===
+multi-move-tree
+---
+SimpleName: offset [10294,10300]
+to
+SimpleName: offset [10351,10357]
+at -1
+===
+multi-move-tree
+---
+SimpleName: offset [10294,10300]
+to
+SimpleName: offset [11194,11200]
+at -1
+===
+multi-move-tree
+---
+SimpleName: offset [10294,10300]
+to
+SimpleName: offset [11525,11531]
+at -1
+===
+multi-move-tree
+---
+SimpleName: position [11846,11854]
+to
+SimpleName: offset [10745,10751]
+at -1
+===
+multi-move-tree
+---
+SimpleName: position [11846,11854]
+to
+SimpleName: offset [11423,11429]
+at -1
+===
+multi-move-tree
+---
+SimpleName: position [11846,11854]
+to
+SimpleName: offset [10351,10357]
+at -1
+===
+multi-move-tree
+---
+SimpleName: position [11846,11854]
+to
+SimpleName: offset [11194,11200]
+at -1
+===
+multi-move-tree
+---
+SimpleName: position [11846,11854]
+to
+SimpleName: offset [11525,11531]
+at -1
+===
+multi-move-tree
+---
+SimpleName: m_debug [13690,13697]
+to
+SimpleName: debug [7763,7768]
+at -1
+===
+multi-move-tree
+---
+SimpleName: m_debug [13690,13697]
+to
+SimpleName: debug [7499,7504]
+at -1
+===
+multi-move-tree
+---
+SimpleName: m_debug [13690,13697]
+to
+SimpleName: debug [7322,7327]
+at -1
+===
+multi-move-tree
+---
+SimpleName: m_debug [13690,13697]
+to
+SimpleName: debug [6805,6810]
+at -1
+===
+multi-move-tree
+---
+IfStatement [13686,13762]
+    SimpleName: m_debug [13690,13697]
+    Block [13708,13762]
+        ExpressionStatement [13722,13752]
+            MethodInvocation [13722,13751]
+                METHOD_INVOCATION_RECEIVER [13722,13732]
+                    QualifiedName: System.err [13722,13732]
+                SimpleName: println [13733,13740]
+                METHOD_INVOCATION_ARGUMENTS [13742,13749]
+                    SimpleName: message [13742,13749]
+to
+IfStatement [7318,7400]
+at -1
+===
+multi-move-tree
+---
+IfStatement [13686,13762]
+    SimpleName: m_debug [13690,13697]
+    Block [13708,13762]
+        ExpressionStatement [13722,13752]
+            MethodInvocation [13722,13751]
+                METHOD_INVOCATION_RECEIVER [13722,13732]
+                    QualifiedName: System.err [13722,13732]
+                SimpleName: println [13733,13740]
+                METHOD_INVOCATION_ARGUMENTS [13742,13749]
+                    SimpleName: message [13742,13749]
+to
+IfStatement [7495,7576]
+at -1
+===
+multi-move-tree
+---
+IfStatement [13686,13762]
+    SimpleName: m_debug [13690,13697]
+    Block [13708,13762]
+        ExpressionStatement [13722,13752]
+            MethodInvocation [13722,13751]
+                METHOD_INVOCATION_RECEIVER [13722,13732]
+                    QualifiedName: System.err [13722,13732]
+                SimpleName: println [13733,13740]
+                METHOD_INVOCATION_ARGUMENTS [13742,13749]
+                    SimpleName: message [13742,13749]
+to
+IfStatement [7759,7986]
+at -1
+===
+multi-move-tree
+---
+IfStatement [13686,13762]
+    SimpleName: m_debug [13690,13697]
+    Block [13708,13762]
+        ExpressionStatement [13722,13752]
+            MethodInvocation [13722,13751]
+                METHOD_INVOCATION_RECEIVER [13722,13732]
+                    QualifiedName: System.err [13722,13732]
+                SimpleName: println [13733,13740]
+                METHOD_INVOCATION_ARGUMENTS [13742,13749]
+                    SimpleName: message [13742,13749]
+to
+IfStatement [6801,7102]
+at -1
+===
+multi-move-tree
+---
+SimpleName: println [13733,13740]
+to
+SimpleName: println [7358,7365]
+at -1
+===
+multi-move-tree
+---
+SimpleName: println [13733,13740]
+to
+SimpleName: println [7535,7542]
+at -1
+===
+multi-move-tree
+---
+SimpleName: position [12142,12150]
+to
+SimpleName: offset [10745,10751]
+at -1
+===
+multi-move-tree
+---
+SimpleName: position [12142,12150]
+to
+SimpleName: offset [11423,11429]
+at -1
+===
+multi-move-tree
+---
+SimpleName: position [12142,12150]
+to
+SimpleName: offset [10351,10357]
+at -1
+===
+multi-move-tree
+---
+SimpleName: position [12142,12150]
+to
+SimpleName: offset [11194,11200]
+at -1
+===
+multi-move-tree
+---
+SimpleName: position [12142,12150]
+to
+SimpleName: offset [11525,11531]
+at -1
+===
+multi-move-tree
+---
+MethodInvocation [13722,13751]
+    METHOD_INVOCATION_RECEIVER [13722,13732]
+        QualifiedName: System.err [13722,13732]
+    SimpleName: println [13733,13740]
+    METHOD_INVOCATION_ARGUMENTS [13742,13749]
+        SimpleName: message [13742,13749]
+to
+MethodInvocation [7524,7561]
+at -1
+===
+multi-move-tree
+---
+MethodInvocation [13722,13751]
+    METHOD_INVOCATION_RECEIVER [13722,13732]
+        QualifiedName: System.err [13722,13732]
+    SimpleName: println [13733,13740]
+    METHOD_INVOCATION_ARGUMENTS [13742,13749]
+        SimpleName: message [13742,13749]
+to
+MethodInvocation [7347,7385]
+at -1
+===
+multi-move-tree
+---
+SimpleName: position [10789,10797]
+to
+SimpleName: offset [10351,10357]
+at -1
+===
+multi-move-tree
+---
 METHOD_INVOCATION_RECEIVER [13722,13732]
     QualifiedName: System.err [13722,13732]
 to
@@ -3169,6 +3228,13 @@ METHOD_INVOCATION_RECEIVER [13722,13732]
     QualifiedName: System.err [13722,13732]
 to
 METHOD_INVOCATION_RECEIVER [7347,7357]
+at -1
+===
+multi-move-tree
+---
+SimpleName: position [11279,11287]
+to
+SimpleName: offset [10745,10751]
 at -1
 ===
 multi-move-tree
@@ -3199,129 +3265,35 @@ at -1
 ===
 multi-move-tree
 ---
-SimpleName: position [11846,11854]
-to
-SimpleName: offset [11525,11531]
-at -1
-===
-multi-move-tree
----
-SimpleName: position [11846,11854]
-to
-SimpleName: offset [11194,11200]
-at -1
-===
-multi-move-tree
----
-SimpleName: position [11846,11854]
-to
-SimpleName: offset [11423,11429]
-at -1
-===
-multi-move-tree
----
-SimpleName: position [11846,11854]
-to
-SimpleName: offset [10351,10357]
-at -1
-===
-multi-move-tree
----
-SimpleName: position [11846,11854]
+SimpleName: position [12257,12265]
 to
 SimpleName: offset [10745,10751]
 at -1
 ===
 multi-move-tree
 ---
-MethodInvocation [13722,13751]
-    METHOD_INVOCATION_RECEIVER [13722,13732]
-        QualifiedName: System.err [13722,13732]
-    SimpleName: println [13733,13740]
-    METHOD_INVOCATION_ARGUMENTS [13742,13749]
-        SimpleName: message [13742,13749]
-to
-MethodInvocation [7524,7561]
-at -1
-===
-multi-move-tree
----
-MethodInvocation [13722,13751]
-    METHOD_INVOCATION_RECEIVER [13722,13732]
-        QualifiedName: System.err [13722,13732]
-    SimpleName: println [13733,13740]
-    METHOD_INVOCATION_ARGUMENTS [13742,13749]
-        SimpleName: message [13742,13749]
-to
-MethodInvocation [7347,7385]
-at -1
-===
-multi-move-tree
----
-SimpleName: position [12142,12150]
-to
-SimpleName: offset [11525,11531]
-at -1
-===
-multi-move-tree
----
-SimpleName: position [12142,12150]
-to
-SimpleName: offset [11194,11200]
-at -1
-===
-multi-move-tree
----
-SimpleName: position [12142,12150]
+SimpleName: position [12257,12265]
 to
 SimpleName: offset [11423,11429]
 at -1
 ===
 multi-move-tree
 ---
-SimpleName: position [12142,12150]
+SimpleName: position [12257,12265]
 to
 SimpleName: offset [10351,10357]
 at -1
 ===
 multi-move-tree
 ---
-SimpleName: position [12142,12150]
-to
-SimpleName: offset [10745,10751]
-at -1
-===
-multi-move-tree
----
-SimpleName: position [11279,11287]
-to
-SimpleName: offset [11525,11531]
-at -1
-===
-multi-move-tree
----
-SimpleName: position [11279,11287]
+SimpleName: position [12257,12265]
 to
 SimpleName: offset [11194,11200]
 at -1
 ===
 multi-move-tree
 ---
-SimpleName: position [11279,11287]
+SimpleName: position [12257,12265]
 to
-SimpleName: offset [11423,11429]
-at -1
-===
-multi-move-tree
----
-SimpleName: position [11279,11287]
-to
-SimpleName: offset [10351,10357]
-at -1
-===
-multi-move-tree
----
-SimpleName: position [11279,11287]
-to
-SimpleName: offset [10745,10751]
+SimpleName: offset [11525,11531]
 at -1

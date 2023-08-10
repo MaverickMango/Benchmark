@@ -2577,547 +2577,6 @@ MethodDeclaration [13552,13693]
 ===
 multi-move-tree
 ---
-SimpleName: println [13658,13665]
-to
-SimpleName: println [7090,7097]
-at -1
-===
-multi-move-tree
----
-SimpleName: println [13658,13665]
-to
-SimpleName: println [10108,10115]
-at -1
-===
-multi-move-tree
----
-SimpleName: println [13658,13665]
-to
-SimpleName: println [12318,12325]
-at -1
-===
-multi-move-tree
----
-SimpleName: println [13658,13665]
-to
-SimpleName: println [12791,12798]
-at -1
-===
-multi-move-tree
----
-SimpleName: println [13658,13665]
-to
-SimpleName: println [6334,6341]
-at -1
-===
-multi-move-tree
----
-SimpleName: println [13658,13665]
-to
-SimpleName: println [13277,13284]
-at -1
-===
-multi-move-tree
----
-SimpleName: println [13658,13665]
-to
-SimpleName: println [5679,5686]
-at -1
-===
-multi-move-tree
----
-SimpleName: m_debug [12580,12587]
-to
-SimpleName: debug [7058,7063]
-at -1
-===
-multi-move-tree
----
-SimpleName: m_debug [13615,13622]
-to
-SimpleName: debug [7058,7063]
-at -1
-===
-multi-move-tree
----
-ExpressionStatement [13647,13677]
-    MethodInvocation [13647,13676]
-        METHOD_INVOCATION_RECEIVER [13647,13657]
-            QualifiedName: System.err [13647,13657]
-        SimpleName: println [13658,13665]
-        METHOD_INVOCATION_ARGUMENTS [13667,13674]
-            SimpleName: message [13667,13674]
-to
-ExpressionStatement [7079,7135]
-at -1
-===
-multi-move-tree
----
-ExpressionStatement [13647,13677]
-    MethodInvocation [13647,13676]
-        METHOD_INVOCATION_RECEIVER [13647,13657]
-            QualifiedName: System.err [13647,13657]
-        SimpleName: println [13658,13665]
-        METHOD_INVOCATION_ARGUMENTS [13667,13674]
-            SimpleName: message [13667,13674]
-to
-ExpressionStatement [6323,6439]
-at -1
-===
-multi-move-tree
----
-ExpressionStatement [13647,13677]
-    MethodInvocation [13647,13676]
-        METHOD_INVOCATION_RECEIVER [13647,13657]
-            QualifiedName: System.err [13647,13657]
-        SimpleName: println [13658,13665]
-        METHOD_INVOCATION_ARGUMENTS [13667,13674]
-            SimpleName: message [13667,13674]
-to
-ExpressionStatement [5668,5784]
-at -1
-===
-multi-move-tree
----
-ExpressionStatement [13647,13677]
-    MethodInvocation [13647,13676]
-        METHOD_INVOCATION_RECEIVER [13647,13657]
-            QualifiedName: System.err [13647,13657]
-        SimpleName: println [13658,13665]
-        METHOD_INVOCATION_ARGUMENTS [13667,13674]
-            SimpleName: message [13667,13674]
-to
-ExpressionStatement [10097,10214]
-at -1
-===
-multi-move-tree
----
-ExpressionStatement [13647,13677]
-    MethodInvocation [13647,13676]
-        METHOD_INVOCATION_RECEIVER [13647,13657]
-            QualifiedName: System.err [13647,13657]
-        SimpleName: println [13658,13665]
-        METHOD_INVOCATION_ARGUMENTS [13667,13674]
-            SimpleName: message [13667,13674]
-to
-ExpressionStatement [13266,13313]
-at -1
-===
-multi-move-tree
----
-ExpressionStatement [13647,13677]
-    MethodInvocation [13647,13676]
-        METHOD_INVOCATION_RECEIVER [13647,13657]
-            QualifiedName: System.err [13647,13657]
-        SimpleName: println [13658,13665]
-        METHOD_INVOCATION_ARGUMENTS [13667,13674]
-            SimpleName: message [13667,13674]
-to
-ExpressionStatement [12780,12833]
-at -1
-===
-multi-move-tree
----
-ExpressionStatement [13647,13677]
-    MethodInvocation [13647,13676]
-        METHOD_INVOCATION_RECEIVER [13647,13657]
-            QualifiedName: System.err [13647,13657]
-        SimpleName: println [13658,13665]
-        METHOD_INVOCATION_ARGUMENTS [13667,13674]
-            SimpleName: message [13667,13674]
-to
-ExpressionStatement [12307,12364]
-at -1
-===
-multi-move-tree
----
-SimpleName: m_debug [13615,13622]
-to
-SimpleName: debug [10076,10081]
-at -1
-===
-multi-move-tree
----
-SimpleName: m_debug [13615,13622]
-to
-SimpleName: debug [12759,12764]
-at -1
-===
-multi-move-tree
----
-SimpleName: m_debug [13615,13622]
-to
-SimpleName: debug [13245,13250]
-at -1
-===
-multi-move-tree
----
-SimpleName: m_debug [13615,13622]
-to
-SimpleName: debug [5647,5652]
-at -1
-===
-multi-move-tree
----
-SimpleName: m_debug [13615,13622]
-to
-SimpleName: debug [12286,12291]
-at -1
-===
-multi-move-tree
----
-SimpleName: m_debug [13615,13622]
-to
-SimpleName: debug [6302,6307]
-at -1
-===
-multi-move-tree
----
-Block [13633,13687]
-    ExpressionStatement [13647,13677]
-        MethodInvocation [13647,13676]
-            METHOD_INVOCATION_RECEIVER [13647,13657]
-                QualifiedName: System.err [13647,13657]
-            SimpleName: println [13658,13665]
-            METHOD_INVOCATION_ARGUMENTS [13667,13674]
-                SimpleName: message [13667,13674]
-to
-Block [12766,12843]
-at -1
-===
-multi-move-tree
----
-Block [13633,13687]
-    ExpressionStatement [13647,13677]
-        MethodInvocation [13647,13676]
-            METHOD_INVOCATION_RECEIVER [13647,13657]
-                QualifiedName: System.err [13647,13657]
-            SimpleName: println [13658,13665]
-            METHOD_INVOCATION_ARGUMENTS [13667,13674]
-                SimpleName: message [13667,13674]
-to
-Block [12293,12374]
-at -1
-===
-multi-move-tree
----
-Block [13633,13687]
-    ExpressionStatement [13647,13677]
-        MethodInvocation [13647,13676]
-            METHOD_INVOCATION_RECEIVER [13647,13657]
-                QualifiedName: System.err [13647,13657]
-            SimpleName: println [13658,13665]
-            METHOD_INVOCATION_ARGUMENTS [13667,13674]
-                SimpleName: message [13667,13674]
-to
-Block [5654,5794]
-at -1
-===
-multi-move-tree
----
-Block [13633,13687]
-    ExpressionStatement [13647,13677]
-        MethodInvocation [13647,13676]
-            METHOD_INVOCATION_RECEIVER [13647,13657]
-                QualifiedName: System.err [13647,13657]
-            SimpleName: println [13658,13665]
-            METHOD_INVOCATION_ARGUMENTS [13667,13674]
-                SimpleName: message [13667,13674]
-to
-Block [13252,13323]
-at -1
-===
-multi-move-tree
----
-Block [13633,13687]
-    ExpressionStatement [13647,13677]
-        MethodInvocation [13647,13676]
-            METHOD_INVOCATION_RECEIVER [13647,13657]
-                QualifiedName: System.err [13647,13657]
-            SimpleName: println [13658,13665]
-            METHOD_INVOCATION_ARGUMENTS [13667,13674]
-                SimpleName: message [13667,13674]
-to
-Block [6309,6449]
-at -1
-===
-multi-move-tree
----
-Block [13633,13687]
-    ExpressionStatement [13647,13677]
-        MethodInvocation [13647,13676]
-            METHOD_INVOCATION_RECEIVER [13647,13657]
-                QualifiedName: System.err [13647,13657]
-            SimpleName: println [13658,13665]
-            METHOD_INVOCATION_ARGUMENTS [13667,13674]
-                SimpleName: message [13667,13674]
-to
-Block [10083,10224]
-at -1
-===
-multi-move-tree
----
-METHOD_INVOCATION_RECEIVER [12628,12638]
-    QualifiedName: System.err [12628,12638]
-to
-METHOD_INVOCATION_RECEIVER [7079,7089]
-at -1
-===
-multi-move-tree
----
-METHOD_INVOCATION_RECEIVER [13647,13657]
-    QualifiedName: System.err [13647,13657]
-to
-METHOD_INVOCATION_RECEIVER [7079,7089]
-at -1
-===
-multi-move-tree
----
-METHOD_INVOCATION_ARGUMENTS [13667,13674]
-    SimpleName: message [13667,13674]
-to
-METHOD_INVOCATION_ARGUMENTS [6342,6437]
-at -1
-===
-multi-move-tree
----
-METHOD_INVOCATION_ARGUMENTS [13667,13674]
-    SimpleName: message [13667,13674]
-to
-METHOD_INVOCATION_ARGUMENTS [13285,13311]
-at -1
-===
-multi-move-tree
----
-METHOD_INVOCATION_ARGUMENTS [13667,13674]
-    SimpleName: message [13667,13674]
-to
-METHOD_INVOCATION_ARGUMENTS [10116,10212]
-at -1
-===
-multi-move-tree
----
-METHOD_INVOCATION_ARGUMENTS [13667,13674]
-    SimpleName: message [13667,13674]
-to
-METHOD_INVOCATION_ARGUMENTS [7098,7133]
-at -1
-===
-multi-move-tree
----
-METHOD_INVOCATION_ARGUMENTS [13667,13674]
-    SimpleName: message [13667,13674]
-to
-METHOD_INVOCATION_ARGUMENTS [12326,12362]
-at -1
-===
-multi-move-tree
----
-METHOD_INVOCATION_ARGUMENTS [13667,13674]
-    SimpleName: message [13667,13674]
-to
-METHOD_INVOCATION_ARGUMENTS [5687,5782]
-at -1
-===
-multi-move-tree
----
-METHOD_INVOCATION_ARGUMENTS [13667,13674]
-    SimpleName: message [13667,13674]
-to
-METHOD_INVOCATION_ARGUMENTS [12799,12831]
-at -1
-===
-multi-move-tree
----
-METHOD_INVOCATION_ARGUMENTS [12648,12808]
-    InfixExpression [12648,12808]
-        StringLiteral: "ReadBlock: INCOMPLETE READ " [12648,12677]
-        INFIX_EXPRESSION_OPERATOR: + [12718,12719]
-        SimpleName: numBytes [12720,12728]
-        StringLiteral: " of " [12731,12737]
-        SimpleName: m_blockSize [12740,12751]
-        StringLiteral: " bytes read." [12794,12808]
-to
-METHOD_INVOCATION_ARGUMENTS [6342,6437]
-at -1
-===
-multi-move-tree
----
-METHOD_INVOCATION_ARGUMENTS [12648,12808]
-    InfixExpression [12648,12808]
-        StringLiteral: "ReadBlock: INCOMPLETE READ " [12648,12677]
-        INFIX_EXPRESSION_OPERATOR: + [12718,12719]
-        SimpleName: numBytes [12720,12728]
-        StringLiteral: " of " [12731,12737]
-        SimpleName: m_blockSize [12740,12751]
-        StringLiteral: " bytes read." [12794,12808]
-to
-METHOD_INVOCATION_ARGUMENTS [13285,13311]
-at -1
-===
-multi-move-tree
----
-METHOD_INVOCATION_ARGUMENTS [12648,12808]
-    InfixExpression [12648,12808]
-        StringLiteral: "ReadBlock: INCOMPLETE READ " [12648,12677]
-        INFIX_EXPRESSION_OPERATOR: + [12718,12719]
-        SimpleName: numBytes [12720,12728]
-        StringLiteral: " of " [12731,12737]
-        SimpleName: m_blockSize [12740,12751]
-        StringLiteral: " bytes read." [12794,12808]
-to
-METHOD_INVOCATION_ARGUMENTS [10116,10212]
-at -1
-===
-multi-move-tree
----
-METHOD_INVOCATION_ARGUMENTS [12648,12808]
-    InfixExpression [12648,12808]
-        StringLiteral: "ReadBlock: INCOMPLETE READ " [12648,12677]
-        INFIX_EXPRESSION_OPERATOR: + [12718,12719]
-        SimpleName: numBytes [12720,12728]
-        StringLiteral: " of " [12731,12737]
-        SimpleName: m_blockSize [12740,12751]
-        StringLiteral: " bytes read." [12794,12808]
-to
-METHOD_INVOCATION_ARGUMENTS [7098,7133]
-at -1
-===
-multi-move-tree
----
-METHOD_INVOCATION_ARGUMENTS [12648,12808]
-    InfixExpression [12648,12808]
-        StringLiteral: "ReadBlock: INCOMPLETE READ " [12648,12677]
-        INFIX_EXPRESSION_OPERATOR: + [12718,12719]
-        SimpleName: numBytes [12720,12728]
-        StringLiteral: " of " [12731,12737]
-        SimpleName: m_blockSize [12740,12751]
-        StringLiteral: " bytes read." [12794,12808]
-to
-METHOD_INVOCATION_ARGUMENTS [12326,12362]
-at -1
-===
-multi-move-tree
----
-METHOD_INVOCATION_ARGUMENTS [12648,12808]
-    InfixExpression [12648,12808]
-        StringLiteral: "ReadBlock: INCOMPLETE READ " [12648,12677]
-        INFIX_EXPRESSION_OPERATOR: + [12718,12719]
-        SimpleName: numBytes [12720,12728]
-        StringLiteral: " of " [12731,12737]
-        SimpleName: m_blockSize [12740,12751]
-        StringLiteral: " bytes read." [12794,12808]
-to
-METHOD_INVOCATION_ARGUMENTS [5687,5782]
-at -1
-===
-multi-move-tree
----
-METHOD_INVOCATION_ARGUMENTS [12648,12808]
-    InfixExpression [12648,12808]
-        StringLiteral: "ReadBlock: INCOMPLETE READ " [12648,12677]
-        INFIX_EXPRESSION_OPERATOR: + [12718,12719]
-        SimpleName: numBytes [12720,12728]
-        StringLiteral: " of " [12731,12737]
-        SimpleName: m_blockSize [12740,12751]
-        StringLiteral: " bytes read." [12794,12808]
-to
-METHOD_INVOCATION_ARGUMENTS [12799,12831]
-at -1
-===
-multi-move-tree
----
-SimpleName: println [12639,12646]
-to
-SimpleName: println [7090,7097]
-at -1
-===
-multi-move-tree
----
-MethodInvocation [13647,13676]
-    METHOD_INVOCATION_RECEIVER [13647,13657]
-        QualifiedName: System.err [13647,13657]
-    SimpleName: println [13658,13665]
-    METHOD_INVOCATION_ARGUMENTS [13667,13674]
-        SimpleName: message [13667,13674]
-to
-MethodInvocation [6323,6438]
-at -1
-===
-multi-move-tree
----
-MethodInvocation [13647,13676]
-    METHOD_INVOCATION_RECEIVER [13647,13657]
-        QualifiedName: System.err [13647,13657]
-    SimpleName: println [13658,13665]
-    METHOD_INVOCATION_ARGUMENTS [13667,13674]
-        SimpleName: message [13667,13674]
-to
-MethodInvocation [5668,5783]
-at -1
-===
-multi-move-tree
----
-MethodInvocation [13647,13676]
-    METHOD_INVOCATION_RECEIVER [13647,13657]
-        QualifiedName: System.err [13647,13657]
-    SimpleName: println [13658,13665]
-    METHOD_INVOCATION_ARGUMENTS [13667,13674]
-        SimpleName: message [13667,13674]
-to
-MethodInvocation [12307,12363]
-at -1
-===
-multi-move-tree
----
-MethodInvocation [13647,13676]
-    METHOD_INVOCATION_RECEIVER [13647,13657]
-        QualifiedName: System.err [13647,13657]
-    SimpleName: println [13658,13665]
-    METHOD_INVOCATION_ARGUMENTS [13667,13674]
-        SimpleName: message [13667,13674]
-to
-MethodInvocation [13266,13312]
-at -1
-===
-multi-move-tree
----
-MethodInvocation [13647,13676]
-    METHOD_INVOCATION_RECEIVER [13647,13657]
-        QualifiedName: System.err [13647,13657]
-    SimpleName: println [13658,13665]
-    METHOD_INVOCATION_ARGUMENTS [13667,13674]
-        SimpleName: message [13667,13674]
-to
-MethodInvocation [12780,12832]
-at -1
-===
-multi-move-tree
----
-MethodInvocation [13647,13676]
-    METHOD_INVOCATION_RECEIVER [13647,13657]
-        QualifiedName: System.err [13647,13657]
-    SimpleName: println [13658,13665]
-    METHOD_INVOCATION_ARGUMENTS [13667,13674]
-        SimpleName: message [13667,13674]
-to
-MethodInvocation [10097,10213]
-at -1
-===
-multi-move-tree
----
-MethodInvocation [13647,13676]
-    METHOD_INVOCATION_RECEIVER [13647,13657]
-        QualifiedName: System.err [13647,13657]
-    SimpleName: println [13658,13665]
-    METHOD_INVOCATION_ARGUMENTS [13667,13674]
-        SimpleName: message [13667,13674]
-to
-MethodInvocation [7079,7134]
-at -1
-===
-multi-move-tree
----
 IfStatement [13611,13687]
     SimpleName: m_debug [13615,13622]
     Block [13633,13687]
@@ -3161,7 +2620,7 @@ IfStatement [13611,13687]
                 METHOD_INVOCATION_ARGUMENTS [13667,13674]
                     SimpleName: message [13667,13674]
 to
-IfStatement [5643,5794]
+IfStatement [7054,7145]
 at -1
 ===
 multi-move-tree
@@ -3193,22 +2652,6 @@ IfStatement [13611,13687]
                 METHOD_INVOCATION_ARGUMENTS [13667,13674]
                     SimpleName: message [13667,13674]
 to
-IfStatement [13241,13323]
-at -1
-===
-multi-move-tree
----
-IfStatement [13611,13687]
-    SimpleName: m_debug [13615,13622]
-    Block [13633,13687]
-        ExpressionStatement [13647,13677]
-            MethodInvocation [13647,13676]
-                METHOD_INVOCATION_RECEIVER [13647,13657]
-                    QualifiedName: System.err [13647,13657]
-                SimpleName: println [13658,13665]
-                METHOD_INVOCATION_ARGUMENTS [13667,13674]
-                    SimpleName: message [13667,13674]
-to
 IfStatement [12282,12374]
 at -1
 ===
@@ -3225,77 +2668,410 @@ IfStatement [13611,13687]
                 METHOD_INVOCATION_ARGUMENTS [13667,13674]
                     SimpleName: message [13667,13674]
 to
-IfStatement [7054,7145]
+IfStatement [5643,5794]
 at -1
 ===
 multi-move-tree
 ---
-METHOD_INVOCATION_RECEIVER [13647,13657]
-    QualifiedName: System.err [13647,13657]
+IfStatement [13611,13687]
+    SimpleName: m_debug [13615,13622]
+    Block [13633,13687]
+        ExpressionStatement [13647,13677]
+            MethodInvocation [13647,13676]
+                METHOD_INVOCATION_RECEIVER [13647,13657]
+                    QualifiedName: System.err [13647,13657]
+                SimpleName: println [13658,13665]
+                METHOD_INVOCATION_ARGUMENTS [13667,13674]
+                    SimpleName: message [13667,13674]
 to
-METHOD_INVOCATION_RECEIVER [12780,12790]
+IfStatement [13241,13323]
 at -1
 ===
 multi-move-tree
 ---
-METHOD_INVOCATION_RECEIVER [13647,13657]
-    QualifiedName: System.err [13647,13657]
+MethodInvocation [13647,13676]
+    METHOD_INVOCATION_RECEIVER [13647,13657]
+        QualifiedName: System.err [13647,13657]
+    SimpleName: println [13658,13665]
+    METHOD_INVOCATION_ARGUMENTS [13667,13674]
+        SimpleName: message [13667,13674]
 to
-METHOD_INVOCATION_RECEIVER [6323,6333]
+MethodInvocation [6323,6438]
 at -1
 ===
 multi-move-tree
 ---
-METHOD_INVOCATION_RECEIVER [13647,13657]
-    QualifiedName: System.err [13647,13657]
+MethodInvocation [13647,13676]
+    METHOD_INVOCATION_RECEIVER [13647,13657]
+        QualifiedName: System.err [13647,13657]
+    SimpleName: println [13658,13665]
+    METHOD_INVOCATION_ARGUMENTS [13667,13674]
+        SimpleName: message [13667,13674]
 to
-METHOD_INVOCATION_RECEIVER [10097,10107]
+MethodInvocation [10097,10213]
 at -1
 ===
 multi-move-tree
 ---
-METHOD_INVOCATION_RECEIVER [13647,13657]
-    QualifiedName: System.err [13647,13657]
+MethodInvocation [13647,13676]
+    METHOD_INVOCATION_RECEIVER [13647,13657]
+        QualifiedName: System.err [13647,13657]
+    SimpleName: println [13658,13665]
+    METHOD_INVOCATION_ARGUMENTS [13667,13674]
+        SimpleName: message [13667,13674]
 to
-METHOD_INVOCATION_RECEIVER [5668,5678]
+MethodInvocation [12307,12363]
 at -1
 ===
 multi-move-tree
 ---
-METHOD_INVOCATION_RECEIVER [13647,13657]
-    QualifiedName: System.err [13647,13657]
+MethodInvocation [13647,13676]
+    METHOD_INVOCATION_RECEIVER [13647,13657]
+        QualifiedName: System.err [13647,13657]
+    SimpleName: println [13658,13665]
+    METHOD_INVOCATION_ARGUMENTS [13667,13674]
+        SimpleName: message [13667,13674]
 to
-METHOD_INVOCATION_RECEIVER [13266,13276]
+MethodInvocation [12780,12832]
 at -1
 ===
 multi-move-tree
 ---
-METHOD_INVOCATION_RECEIVER [13647,13657]
-    QualifiedName: System.err [13647,13657]
+MethodInvocation [13647,13676]
+    METHOD_INVOCATION_RECEIVER [13647,13657]
+        QualifiedName: System.err [13647,13657]
+    SimpleName: println [13658,13665]
+    METHOD_INVOCATION_ARGUMENTS [13667,13674]
+        SimpleName: message [13667,13674]
 to
-METHOD_INVOCATION_RECEIVER [12307,12317]
+MethodInvocation [7079,7134]
 at -1
 ===
 multi-move-tree
 ---
-IfStatement [12576,12829]
-    SimpleName: m_debug [12580,12587]
-    Block [12606,12829]
-        ExpressionStatement [12628,12811]
-            MethodInvocation [12628,12810]
-                METHOD_INVOCATION_RECEIVER [12628,12638]
-                    QualifiedName: System.err [12628,12638]
-                SimpleName: println [12639,12646]
-                METHOD_INVOCATION_ARGUMENTS [12648,12808]
-                    InfixExpression [12648,12808]
-                        StringLiteral: "ReadBlock: INCOMPLETE READ " [12648,12677]
-                        INFIX_EXPRESSION_OPERATOR: + [12718,12719]
-                        SimpleName: numBytes [12720,12728]
-                        StringLiteral: " of " [12731,12737]
-                        SimpleName: m_blockSize [12740,12751]
-                        StringLiteral: " bytes read." [12794,12808]
+MethodInvocation [13647,13676]
+    METHOD_INVOCATION_RECEIVER [13647,13657]
+        QualifiedName: System.err [13647,13657]
+    SimpleName: println [13658,13665]
+    METHOD_INVOCATION_ARGUMENTS [13667,13674]
+        SimpleName: message [13667,13674]
 to
-IfStatement [7054,7145]
+MethodInvocation [13266,13312]
+at -1
+===
+multi-move-tree
+---
+MethodInvocation [13647,13676]
+    METHOD_INVOCATION_RECEIVER [13647,13657]
+        QualifiedName: System.err [13647,13657]
+    SimpleName: println [13658,13665]
+    METHOD_INVOCATION_ARGUMENTS [13667,13674]
+        SimpleName: message [13667,13674]
+to
+MethodInvocation [5668,5783]
+at -1
+===
+multi-move-tree
+---
+Block [13633,13687]
+    ExpressionStatement [13647,13677]
+        MethodInvocation [13647,13676]
+            METHOD_INVOCATION_RECEIVER [13647,13657]
+                QualifiedName: System.err [13647,13657]
+            SimpleName: println [13658,13665]
+            METHOD_INVOCATION_ARGUMENTS [13667,13674]
+                SimpleName: message [13667,13674]
+to
+Block [6309,6449]
+at -1
+===
+multi-move-tree
+---
+Block [13633,13687]
+    ExpressionStatement [13647,13677]
+        MethodInvocation [13647,13676]
+            METHOD_INVOCATION_RECEIVER [13647,13657]
+                QualifiedName: System.err [13647,13657]
+            SimpleName: println [13658,13665]
+            METHOD_INVOCATION_ARGUMENTS [13667,13674]
+                SimpleName: message [13667,13674]
+to
+Block [12766,12843]
+at -1
+===
+multi-move-tree
+---
+Block [13633,13687]
+    ExpressionStatement [13647,13677]
+        MethodInvocation [13647,13676]
+            METHOD_INVOCATION_RECEIVER [13647,13657]
+                QualifiedName: System.err [13647,13657]
+            SimpleName: println [13658,13665]
+            METHOD_INVOCATION_ARGUMENTS [13667,13674]
+                SimpleName: message [13667,13674]
+to
+Block [5654,5794]
+at -1
+===
+multi-move-tree
+---
+Block [13633,13687]
+    ExpressionStatement [13647,13677]
+        MethodInvocation [13647,13676]
+            METHOD_INVOCATION_RECEIVER [13647,13657]
+                QualifiedName: System.err [13647,13657]
+            SimpleName: println [13658,13665]
+            METHOD_INVOCATION_ARGUMENTS [13667,13674]
+                SimpleName: message [13667,13674]
+to
+Block [12293,12374]
+at -1
+===
+multi-move-tree
+---
+Block [13633,13687]
+    ExpressionStatement [13647,13677]
+        MethodInvocation [13647,13676]
+            METHOD_INVOCATION_RECEIVER [13647,13657]
+                QualifiedName: System.err [13647,13657]
+            SimpleName: println [13658,13665]
+            METHOD_INVOCATION_ARGUMENTS [13667,13674]
+                SimpleName: message [13667,13674]
+to
+Block [13252,13323]
+at -1
+===
+multi-move-tree
+---
+Block [13633,13687]
+    ExpressionStatement [13647,13677]
+        MethodInvocation [13647,13676]
+            METHOD_INVOCATION_RECEIVER [13647,13657]
+                QualifiedName: System.err [13647,13657]
+            SimpleName: println [13658,13665]
+            METHOD_INVOCATION_ARGUMENTS [13667,13674]
+                SimpleName: message [13667,13674]
+to
+Block [10083,10224]
+at -1
+===
+multi-move-tree
+---
+ExpressionStatement [13647,13677]
+    MethodInvocation [13647,13676]
+        METHOD_INVOCATION_RECEIVER [13647,13657]
+            QualifiedName: System.err [13647,13657]
+        SimpleName: println [13658,13665]
+        METHOD_INVOCATION_ARGUMENTS [13667,13674]
+            SimpleName: message [13667,13674]
+to
+ExpressionStatement [7079,7135]
+at -1
+===
+multi-move-tree
+---
+ExpressionStatement [13647,13677]
+    MethodInvocation [13647,13676]
+        METHOD_INVOCATION_RECEIVER [13647,13657]
+            QualifiedName: System.err [13647,13657]
+        SimpleName: println [13658,13665]
+        METHOD_INVOCATION_ARGUMENTS [13667,13674]
+            SimpleName: message [13667,13674]
+to
+ExpressionStatement [6323,6439]
+at -1
+===
+multi-move-tree
+---
+ExpressionStatement [13647,13677]
+    MethodInvocation [13647,13676]
+        METHOD_INVOCATION_RECEIVER [13647,13657]
+            QualifiedName: System.err [13647,13657]
+        SimpleName: println [13658,13665]
+        METHOD_INVOCATION_ARGUMENTS [13667,13674]
+            SimpleName: message [13667,13674]
+to
+ExpressionStatement [12307,12364]
+at -1
+===
+multi-move-tree
+---
+ExpressionStatement [13647,13677]
+    MethodInvocation [13647,13676]
+        METHOD_INVOCATION_RECEIVER [13647,13657]
+            QualifiedName: System.err [13647,13657]
+        SimpleName: println [13658,13665]
+        METHOD_INVOCATION_ARGUMENTS [13667,13674]
+            SimpleName: message [13667,13674]
+to
+ExpressionStatement [12780,12833]
+at -1
+===
+multi-move-tree
+---
+ExpressionStatement [13647,13677]
+    MethodInvocation [13647,13676]
+        METHOD_INVOCATION_RECEIVER [13647,13657]
+            QualifiedName: System.err [13647,13657]
+        SimpleName: println [13658,13665]
+        METHOD_INVOCATION_ARGUMENTS [13667,13674]
+            SimpleName: message [13667,13674]
+to
+ExpressionStatement [13266,13313]
+at -1
+===
+multi-move-tree
+---
+ExpressionStatement [13647,13677]
+    MethodInvocation [13647,13676]
+        METHOD_INVOCATION_RECEIVER [13647,13657]
+            QualifiedName: System.err [13647,13657]
+        SimpleName: println [13658,13665]
+        METHOD_INVOCATION_ARGUMENTS [13667,13674]
+            SimpleName: message [13667,13674]
+to
+ExpressionStatement [10097,10214]
+at -1
+===
+multi-move-tree
+---
+ExpressionStatement [13647,13677]
+    MethodInvocation [13647,13676]
+        METHOD_INVOCATION_RECEIVER [13647,13657]
+            QualifiedName: System.err [13647,13657]
+        SimpleName: println [13658,13665]
+        METHOD_INVOCATION_ARGUMENTS [13667,13674]
+            SimpleName: message [13667,13674]
+to
+ExpressionStatement [5668,5784]
+at -1
+===
+multi-move-tree
+---
+METHOD_INVOCATION_ARGUMENTS [13667,13674]
+    SimpleName: message [13667,13674]
+to
+METHOD_INVOCATION_ARGUMENTS [12799,12831]
+at -1
+===
+multi-move-tree
+---
+METHOD_INVOCATION_ARGUMENTS [13667,13674]
+    SimpleName: message [13667,13674]
+to
+METHOD_INVOCATION_ARGUMENTS [7098,7133]
+at -1
+===
+multi-move-tree
+---
+METHOD_INVOCATION_ARGUMENTS [13667,13674]
+    SimpleName: message [13667,13674]
+to
+METHOD_INVOCATION_ARGUMENTS [5687,5782]
+at -1
+===
+multi-move-tree
+---
+METHOD_INVOCATION_ARGUMENTS [13667,13674]
+    SimpleName: message [13667,13674]
+to
+METHOD_INVOCATION_ARGUMENTS [6342,6437]
+at -1
+===
+multi-move-tree
+---
+METHOD_INVOCATION_ARGUMENTS [13667,13674]
+    SimpleName: message [13667,13674]
+to
+METHOD_INVOCATION_ARGUMENTS [10116,10212]
+at -1
+===
+multi-move-tree
+---
+METHOD_INVOCATION_ARGUMENTS [13667,13674]
+    SimpleName: message [13667,13674]
+to
+METHOD_INVOCATION_ARGUMENTS [12326,12362]
+at -1
+===
+multi-move-tree
+---
+METHOD_INVOCATION_ARGUMENTS [13667,13674]
+    SimpleName: message [13667,13674]
+to
+METHOD_INVOCATION_ARGUMENTS [13285,13311]
+at -1
+===
+multi-move-tree
+---
+MethodInvocation [12628,12810]
+    METHOD_INVOCATION_RECEIVER [12628,12638]
+        QualifiedName: System.err [12628,12638]
+    SimpleName: println [12639,12646]
+    METHOD_INVOCATION_ARGUMENTS [12648,12808]
+        InfixExpression [12648,12808]
+            StringLiteral: "ReadBlock: INCOMPLETE READ " [12648,12677]
+            INFIX_EXPRESSION_OPERATOR: + [12718,12719]
+            SimpleName: numBytes [12720,12728]
+            StringLiteral: " of " [12731,12737]
+            SimpleName: m_blockSize [12740,12751]
+            StringLiteral: " bytes read." [12794,12808]
+to
+MethodInvocation [6323,6438]
+at -1
+===
+multi-move-tree
+---
+MethodInvocation [12628,12810]
+    METHOD_INVOCATION_RECEIVER [12628,12638]
+        QualifiedName: System.err [12628,12638]
+    SimpleName: println [12639,12646]
+    METHOD_INVOCATION_ARGUMENTS [12648,12808]
+        InfixExpression [12648,12808]
+            StringLiteral: "ReadBlock: INCOMPLETE READ " [12648,12677]
+            INFIX_EXPRESSION_OPERATOR: + [12718,12719]
+            SimpleName: numBytes [12720,12728]
+            StringLiteral: " of " [12731,12737]
+            SimpleName: m_blockSize [12740,12751]
+            StringLiteral: " bytes read." [12794,12808]
+to
+MethodInvocation [10097,10213]
+at -1
+===
+multi-move-tree
+---
+MethodInvocation [12628,12810]
+    METHOD_INVOCATION_RECEIVER [12628,12638]
+        QualifiedName: System.err [12628,12638]
+    SimpleName: println [12639,12646]
+    METHOD_INVOCATION_ARGUMENTS [12648,12808]
+        InfixExpression [12648,12808]
+            StringLiteral: "ReadBlock: INCOMPLETE READ " [12648,12677]
+            INFIX_EXPRESSION_OPERATOR: + [12718,12719]
+            SimpleName: numBytes [12720,12728]
+            StringLiteral: " of " [12731,12737]
+            SimpleName: m_blockSize [12740,12751]
+            StringLiteral: " bytes read." [12794,12808]
+to
+MethodInvocation [12307,12363]
+at -1
+===
+multi-move-tree
+---
+MethodInvocation [12628,12810]
+    METHOD_INVOCATION_RECEIVER [12628,12638]
+        QualifiedName: System.err [12628,12638]
+    SimpleName: println [12639,12646]
+    METHOD_INVOCATION_ARGUMENTS [12648,12808]
+        InfixExpression [12648,12808]
+            StringLiteral: "ReadBlock: INCOMPLETE READ " [12648,12677]
+            INFIX_EXPRESSION_OPERATOR: + [12718,12719]
+            SimpleName: numBytes [12720,12728]
+            StringLiteral: " of " [12731,12737]
+            SimpleName: m_blockSize [12740,12751]
+            StringLiteral: " bytes read." [12794,12808]
+to
+MethodInvocation [12780,12832]
 at -1
 ===
 multi-move-tree
@@ -3314,6 +3090,196 @@ MethodInvocation [12628,12810]
             StringLiteral: " bytes read." [12794,12808]
 to
 MethodInvocation [7079,7134]
+at -1
+===
+multi-move-tree
+---
+MethodInvocation [12628,12810]
+    METHOD_INVOCATION_RECEIVER [12628,12638]
+        QualifiedName: System.err [12628,12638]
+    SimpleName: println [12639,12646]
+    METHOD_INVOCATION_ARGUMENTS [12648,12808]
+        InfixExpression [12648,12808]
+            StringLiteral: "ReadBlock: INCOMPLETE READ " [12648,12677]
+            INFIX_EXPRESSION_OPERATOR: + [12718,12719]
+            SimpleName: numBytes [12720,12728]
+            StringLiteral: " of " [12731,12737]
+            SimpleName: m_blockSize [12740,12751]
+            StringLiteral: " bytes read." [12794,12808]
+to
+MethodInvocation [13266,13312]
+at -1
+===
+multi-move-tree
+---
+MethodInvocation [12628,12810]
+    METHOD_INVOCATION_RECEIVER [12628,12638]
+        QualifiedName: System.err [12628,12638]
+    SimpleName: println [12639,12646]
+    METHOD_INVOCATION_ARGUMENTS [12648,12808]
+        InfixExpression [12648,12808]
+            StringLiteral: "ReadBlock: INCOMPLETE READ " [12648,12677]
+            INFIX_EXPRESSION_OPERATOR: + [12718,12719]
+            SimpleName: numBytes [12720,12728]
+            StringLiteral: " of " [12731,12737]
+            SimpleName: m_blockSize [12740,12751]
+            StringLiteral: " bytes read." [12794,12808]
+to
+MethodInvocation [5668,5783]
+at -1
+===
+multi-move-tree
+---
+SimpleName: println [13658,13665]
+to
+SimpleName: println [5679,5686]
+at -1
+===
+multi-move-tree
+---
+SimpleName: println [13658,13665]
+to
+SimpleName: println [10108,10115]
+at -1
+===
+multi-move-tree
+---
+SimpleName: println [13658,13665]
+to
+SimpleName: println [12791,12798]
+at -1
+===
+multi-move-tree
+---
+SimpleName: println [13658,13665]
+to
+SimpleName: println [7090,7097]
+at -1
+===
+multi-move-tree
+---
+SimpleName: println [13658,13665]
+to
+SimpleName: println [6334,6341]
+at -1
+===
+multi-move-tree
+---
+SimpleName: println [13658,13665]
+to
+SimpleName: println [13277,13284]
+at -1
+===
+multi-move-tree
+---
+SimpleName: println [13658,13665]
+to
+SimpleName: println [12318,12325]
+at -1
+===
+multi-move-tree
+---
+SimpleName: m_debug [13615,13622]
+to
+SimpleName: debug [12286,12291]
+at -1
+===
+multi-move-tree
+---
+SimpleName: m_debug [13615,13622]
+to
+SimpleName: debug [10076,10081]
+at -1
+===
+multi-move-tree
+---
+SimpleName: m_debug [13615,13622]
+to
+SimpleName: debug [13245,13250]
+at -1
+===
+multi-move-tree
+---
+SimpleName: m_debug [13615,13622]
+to
+SimpleName: debug [12759,12764]
+at -1
+===
+multi-move-tree
+---
+SimpleName: m_debug [13615,13622]
+to
+SimpleName: debug [6302,6307]
+at -1
+===
+multi-move-tree
+---
+SimpleName: m_debug [13615,13622]
+to
+SimpleName: debug [5647,5652]
+at -1
+===
+multi-move-tree
+---
+SimpleName: m_debug [13615,13622]
+to
+SimpleName: debug [7058,7063]
+at -1
+===
+multi-move-tree
+---
+METHOD_INVOCATION_RECEIVER [13647,13657]
+    QualifiedName: System.err [13647,13657]
+to
+METHOD_INVOCATION_RECEIVER [7079,7089]
+at -1
+===
+multi-move-tree
+---
+METHOD_INVOCATION_RECEIVER [13647,13657]
+    QualifiedName: System.err [13647,13657]
+to
+METHOD_INVOCATION_RECEIVER [6323,6333]
+at -1
+===
+multi-move-tree
+---
+METHOD_INVOCATION_RECEIVER [13647,13657]
+    QualifiedName: System.err [13647,13657]
+to
+METHOD_INVOCATION_RECEIVER [5668,5678]
+at -1
+===
+multi-move-tree
+---
+METHOD_INVOCATION_RECEIVER [13647,13657]
+    QualifiedName: System.err [13647,13657]
+to
+METHOD_INVOCATION_RECEIVER [12307,12317]
+at -1
+===
+multi-move-tree
+---
+METHOD_INVOCATION_RECEIVER [13647,13657]
+    QualifiedName: System.err [13647,13657]
+to
+METHOD_INVOCATION_RECEIVER [10097,10107]
+at -1
+===
+multi-move-tree
+---
+METHOD_INVOCATION_RECEIVER [13647,13657]
+    QualifiedName: System.err [13647,13657]
+to
+METHOD_INVOCATION_RECEIVER [12780,12790]
+at -1
+===
+multi-move-tree
+---
+METHOD_INVOCATION_RECEIVER [13647,13657]
+    QualifiedName: System.err [13647,13657]
+to
+METHOD_INVOCATION_RECEIVER [13266,13276]
 at -1
 ===
 multi-move-tree
@@ -3370,45 +3336,7 @@ ExpressionStatement [12628,12811]
                 SimpleName: m_blockSize [12740,12751]
                 StringLiteral: " bytes read." [12794,12808]
 to
-ExpressionStatement [5668,5784]
-at -1
-===
-multi-move-tree
----
-ExpressionStatement [12628,12811]
-    MethodInvocation [12628,12810]
-        METHOD_INVOCATION_RECEIVER [12628,12638]
-            QualifiedName: System.err [12628,12638]
-        SimpleName: println [12639,12646]
-        METHOD_INVOCATION_ARGUMENTS [12648,12808]
-            InfixExpression [12648,12808]
-                StringLiteral: "ReadBlock: INCOMPLETE READ " [12648,12677]
-                INFIX_EXPRESSION_OPERATOR: + [12718,12719]
-                SimpleName: numBytes [12720,12728]
-                StringLiteral: " of " [12731,12737]
-                SimpleName: m_blockSize [12740,12751]
-                StringLiteral: " bytes read." [12794,12808]
-to
-ExpressionStatement [10097,10214]
-at -1
-===
-multi-move-tree
----
-ExpressionStatement [12628,12811]
-    MethodInvocation [12628,12810]
-        METHOD_INVOCATION_RECEIVER [12628,12638]
-            QualifiedName: System.err [12628,12638]
-        SimpleName: println [12639,12646]
-        METHOD_INVOCATION_ARGUMENTS [12648,12808]
-            InfixExpression [12648,12808]
-                StringLiteral: "ReadBlock: INCOMPLETE READ " [12648,12677]
-                INFIX_EXPRESSION_OPERATOR: + [12718,12719]
-                SimpleName: numBytes [12720,12728]
-                StringLiteral: " of " [12731,12737]
-                SimpleName: m_blockSize [12740,12751]
-                StringLiteral: " bytes read." [12794,12808]
-to
-ExpressionStatement [13266,13313]
+ExpressionStatement [12307,12364]
 at -1
 ===
 multi-move-tree
@@ -3446,5 +3374,185 @@ ExpressionStatement [12628,12811]
                 SimpleName: m_blockSize [12740,12751]
                 StringLiteral: " bytes read." [12794,12808]
 to
-ExpressionStatement [12307,12364]
+ExpressionStatement [13266,13313]
+at -1
+===
+multi-move-tree
+---
+ExpressionStatement [12628,12811]
+    MethodInvocation [12628,12810]
+        METHOD_INVOCATION_RECEIVER [12628,12638]
+            QualifiedName: System.err [12628,12638]
+        SimpleName: println [12639,12646]
+        METHOD_INVOCATION_ARGUMENTS [12648,12808]
+            InfixExpression [12648,12808]
+                StringLiteral: "ReadBlock: INCOMPLETE READ " [12648,12677]
+                INFIX_EXPRESSION_OPERATOR: + [12718,12719]
+                SimpleName: numBytes [12720,12728]
+                StringLiteral: " of " [12731,12737]
+                SimpleName: m_blockSize [12740,12751]
+                StringLiteral: " bytes read." [12794,12808]
+to
+ExpressionStatement [10097,10214]
+at -1
+===
+multi-move-tree
+---
+ExpressionStatement [12628,12811]
+    MethodInvocation [12628,12810]
+        METHOD_INVOCATION_RECEIVER [12628,12638]
+            QualifiedName: System.err [12628,12638]
+        SimpleName: println [12639,12646]
+        METHOD_INVOCATION_ARGUMENTS [12648,12808]
+            InfixExpression [12648,12808]
+                StringLiteral: "ReadBlock: INCOMPLETE READ " [12648,12677]
+                INFIX_EXPRESSION_OPERATOR: + [12718,12719]
+                SimpleName: numBytes [12720,12728]
+                StringLiteral: " of " [12731,12737]
+                SimpleName: m_blockSize [12740,12751]
+                StringLiteral: " bytes read." [12794,12808]
+to
+ExpressionStatement [5668,5784]
+at -1
+===
+multi-move-tree
+---
+IfStatement [12576,12829]
+    SimpleName: m_debug [12580,12587]
+    Block [12606,12829]
+        ExpressionStatement [12628,12811]
+            MethodInvocation [12628,12810]
+                METHOD_INVOCATION_RECEIVER [12628,12638]
+                    QualifiedName: System.err [12628,12638]
+                SimpleName: println [12639,12646]
+                METHOD_INVOCATION_ARGUMENTS [12648,12808]
+                    InfixExpression [12648,12808]
+                        StringLiteral: "ReadBlock: INCOMPLETE READ " [12648,12677]
+                        INFIX_EXPRESSION_OPERATOR: + [12718,12719]
+                        SimpleName: numBytes [12720,12728]
+                        StringLiteral: " of " [12731,12737]
+                        SimpleName: m_blockSize [12740,12751]
+                        StringLiteral: " bytes read." [12794,12808]
+to
+IfStatement [7054,7145]
+at -1
+===
+multi-move-tree
+---
+SimpleName: m_debug [12580,12587]
+to
+SimpleName: debug [7058,7063]
+at -1
+===
+multi-move-tree
+---
+METHOD_INVOCATION_RECEIVER [12628,12638]
+    QualifiedName: System.err [12628,12638]
+to
+METHOD_INVOCATION_RECEIVER [7079,7089]
+at -1
+===
+multi-move-tree
+---
+METHOD_INVOCATION_ARGUMENTS [12648,12808]
+    InfixExpression [12648,12808]
+        StringLiteral: "ReadBlock: INCOMPLETE READ " [12648,12677]
+        INFIX_EXPRESSION_OPERATOR: + [12718,12719]
+        SimpleName: numBytes [12720,12728]
+        StringLiteral: " of " [12731,12737]
+        SimpleName: m_blockSize [12740,12751]
+        StringLiteral: " bytes read." [12794,12808]
+to
+METHOD_INVOCATION_ARGUMENTS [12799,12831]
+at -1
+===
+multi-move-tree
+---
+METHOD_INVOCATION_ARGUMENTS [12648,12808]
+    InfixExpression [12648,12808]
+        StringLiteral: "ReadBlock: INCOMPLETE READ " [12648,12677]
+        INFIX_EXPRESSION_OPERATOR: + [12718,12719]
+        SimpleName: numBytes [12720,12728]
+        StringLiteral: " of " [12731,12737]
+        SimpleName: m_blockSize [12740,12751]
+        StringLiteral: " bytes read." [12794,12808]
+to
+METHOD_INVOCATION_ARGUMENTS [7098,7133]
+at -1
+===
+multi-move-tree
+---
+METHOD_INVOCATION_ARGUMENTS [12648,12808]
+    InfixExpression [12648,12808]
+        StringLiteral: "ReadBlock: INCOMPLETE READ " [12648,12677]
+        INFIX_EXPRESSION_OPERATOR: + [12718,12719]
+        SimpleName: numBytes [12720,12728]
+        StringLiteral: " of " [12731,12737]
+        SimpleName: m_blockSize [12740,12751]
+        StringLiteral: " bytes read." [12794,12808]
+to
+METHOD_INVOCATION_ARGUMENTS [5687,5782]
+at -1
+===
+multi-move-tree
+---
+METHOD_INVOCATION_ARGUMENTS [12648,12808]
+    InfixExpression [12648,12808]
+        StringLiteral: "ReadBlock: INCOMPLETE READ " [12648,12677]
+        INFIX_EXPRESSION_OPERATOR: + [12718,12719]
+        SimpleName: numBytes [12720,12728]
+        StringLiteral: " of " [12731,12737]
+        SimpleName: m_blockSize [12740,12751]
+        StringLiteral: " bytes read." [12794,12808]
+to
+METHOD_INVOCATION_ARGUMENTS [6342,6437]
+at -1
+===
+multi-move-tree
+---
+METHOD_INVOCATION_ARGUMENTS [12648,12808]
+    InfixExpression [12648,12808]
+        StringLiteral: "ReadBlock: INCOMPLETE READ " [12648,12677]
+        INFIX_EXPRESSION_OPERATOR: + [12718,12719]
+        SimpleName: numBytes [12720,12728]
+        StringLiteral: " of " [12731,12737]
+        SimpleName: m_blockSize [12740,12751]
+        StringLiteral: " bytes read." [12794,12808]
+to
+METHOD_INVOCATION_ARGUMENTS [10116,10212]
+at -1
+===
+multi-move-tree
+---
+METHOD_INVOCATION_ARGUMENTS [12648,12808]
+    InfixExpression [12648,12808]
+        StringLiteral: "ReadBlock: INCOMPLETE READ " [12648,12677]
+        INFIX_EXPRESSION_OPERATOR: + [12718,12719]
+        SimpleName: numBytes [12720,12728]
+        StringLiteral: " of " [12731,12737]
+        SimpleName: m_blockSize [12740,12751]
+        StringLiteral: " bytes read." [12794,12808]
+to
+METHOD_INVOCATION_ARGUMENTS [12326,12362]
+at -1
+===
+multi-move-tree
+---
+METHOD_INVOCATION_ARGUMENTS [12648,12808]
+    InfixExpression [12648,12808]
+        StringLiteral: "ReadBlock: INCOMPLETE READ " [12648,12677]
+        INFIX_EXPRESSION_OPERATOR: + [12718,12719]
+        SimpleName: numBytes [12720,12728]
+        StringLiteral: " of " [12731,12737]
+        SimpleName: m_blockSize [12740,12751]
+        StringLiteral: " bytes read." [12794,12808]
+to
+METHOD_INVOCATION_ARGUMENTS [13285,13311]
+at -1
+===
+multi-move-tree
+---
+SimpleName: println [12639,12646]
+to
+SimpleName: println [7090,7097]
 at -1

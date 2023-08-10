@@ -63,12 +63,12 @@ public class BugInfoUtilTest implements GitAccess {
                 String source = Fonte_Info.get(3);
                 if (!BIC.equals(bugInduingCommit)) {
                     //BIC不一致，如果BugInfo中的版本不对，就更改为Fonte的版本，否则以BugInfo中的版本为准
-                    if (!note.equals("√")) {
+                    if (!note.equals("√") && !note.equals("。")) {
                         CommitInfo commitInfo = gitAccess.getCommitInfo(repository, BIC);
                         bugFixCommit.setInducingCommit(commitInfo);
                     }
                 }
-            } else if (!note.equals("√")) {
+            } else if (!note.equals("√") && !note.equals("。")) {
                 //如果BugInfo中的版本还是不对，就删除这个bug
                 idx --;
                 continue;
@@ -268,5 +268,57 @@ public class BugInfoUtilTest implements GitAccess {
         }
 //                FileUtils.executeCommand(new String[]{"/bin/bash", "-c", "diff -r -u original/ buggy/ > " + "../../patches/o2b.diff 2>&1"}, modifiedClasses, 300, null);
         return true;
+    }
+
+    @Test
+    public void intersection() {
+        String bugFixInfo_total = "src/test/resources/BugFixInfo_total.csv";
+        List<List<String>> d4jinfos = FileUtils.readCsv(bugFixInfo_total, true);
+        List<String> d4jinfos_Name = d4jinfos.stream().map(bug -> bug.get(2)).collect(Collectors.toList());
+        String repair_FL = "src/test/resources/bugWithRepairTools_NonFL.csv";
+        List<List<String>> repairFLinfos = FileUtils.readCsv(repair_FL, true);
+        List<String> repairFL_Name = repairFLinfos.stream().map(bug -> bug.get(0) + "_buggy").collect(Collectors.toList());
+
+        int idx = 1;
+        List<String> unfixed = new ArrayList<>();
+        List<String> correct = new ArrayList<>();
+        List<String> plausible = new ArrayList<>();
+        for (int index = 0; index < d4jinfos.size(); index ++, idx ++) {
+            String bugName = d4jinfos.get(index).get(2);
+            String proj = bugName.split("_")[0];
+            String id = bugName.split("_")[1];
+            String bug_tag = proj + "_" + id;
+
+            unfixed.add(bug_tag);
+            continue;
+//            if (!repairFL_Name.contains(bugName)) {
+//                unfixed.add(bug_tag);
+//                continue;
+//            }
+//            int i = repairFL_Name.indexOf(bugName);
+//            assert i != -1;
+//            List<String> bugInRepair = repairFLinfos.get(i);
+//            assert bugInRepair.get(0).equals(bug_tag);
+//            if (!bugInRepair.contains("correct")) {
+//                if (!bugInRepair.contains("plausible")) {
+//                    unfixed.add(bug_tag);
+//                } else {
+//                    plausible.add(bug_tag);
+//                }
+//            } else {
+//                correct.add(bug_tag);
+//            }
+        }
+        List<List<String>> res = new ArrayList<>();
+        unfixed.add(0, String.valueOf(unfixed.size()));
+        unfixed.add(0, "Unfixed");
+        res.add(unfixed);
+        correct.add(0, String.valueOf(correct.size()));
+        correct.add(0, "Correct");
+        res.add(correct);
+        plausible.add(0, String.valueOf(plausible.size()));
+        plausible.add(0, "Plausible");
+        res.add(plausible);
+        FileUtils.writeCsv(res, "src/test/resources/RepairInfo_Model.csv", false);
     }
 }

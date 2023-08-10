@@ -3659,16 +3659,23 @@ MethodDeclaration [15373,15722]
 ===
 multi-move-tree
 ---
-TextElement:  the ParsePosition to advance. [2777,2807]
+TextElement: Advance the parse index by 1. [2722,2751]
 to
-TextElement:  ParsePosition [12371,12385]
+TextElement: Convenience method to advance parse position by 1 [12296,12345]
 at -1
 ===
 multi-move-tree
 ---
-TextElement: Advance the parse index by 1. [2722,2751]
+Modifier: protected [2852,2861]
 to
-TextElement: Convenience method to advance parse position by 1 [12296,12345]
+Modifier: private [12430,12437]
+at -1
+===
+multi-move-tree
+---
+TextElement:  the ParsePosition to advance. [2777,2807]
+to
+TextElement:  ParsePosition [12371,12385]
 at -1
 ===
 multi-move-tree
@@ -3747,11 +3754,4 @@ MethodDeclaration [2711,2969]
             SimpleName: pos [2959,2962]
 to
 MethodDeclaration [12285,12545]
-at -1
-===
-multi-move-tree
----
-Modifier: protected [2852,2861]
-to
-Modifier: private [12430,12437]
 at -1

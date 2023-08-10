@@ -1,6 +1,6 @@
 {
   "bugName": "Gson_15_buggy",
-  "bugId": "40",
+  "bugId": "26",
   "repo": {
     "name": "../bugs/Gson_15_buggy/.git"
   },

@@ -1691,6 +1691,16 @@ at -1
 ===
 multi-move-tree
 ---
+MethodInvocation [2332,2344]
+    METHOD_INVOCATION_RECEIVER [2332,2335]
+        SimpleName: str [2332,2335]
+    SimpleName: length [2336,2342]
+to
+MethodInvocation [3326,3338]
+at -1
+===
+multi-move-tree
+---
 MethodInvocation [3024,3036]
     METHOD_INVOCATION_RECEIVER [3024,3027]
         SimpleName: str [3024,3027]
@@ -1705,16 +1715,6 @@ MethodInvocation [2299,2311]
     METHOD_INVOCATION_RECEIVER [2299,2302]
         SimpleName: str [2299,2302]
     SimpleName: length [2303,2309]
-to
-MethodInvocation [3326,3338]
-at -1
-===
-multi-move-tree
----
-MethodInvocation [2332,2344]
-    METHOD_INVOCATION_RECEIVER [2332,2335]
-        SimpleName: str [2332,2335]
-    SimpleName: length [2336,2342]
 to
 MethodInvocation [3326,3338]
 at -1

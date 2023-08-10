@@ -1,6 +1,6 @@
 {
   "bugName": "JacksonCore_14_buggy",
-  "bugId": "41",
+  "bugId": "27",
   "repo": {
     "name": "../bugs/JacksonCore_14_buggy/.git"
   },

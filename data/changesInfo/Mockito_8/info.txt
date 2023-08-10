@@ -1,6 +1,6 @@
 {
   "bugName": "Mockito_8_buggy",
-  "bugId": "29",
+  "bugId": "15",
   "repo": {
     "name": "../bugs/Mockito_8_buggy/.git"
   },

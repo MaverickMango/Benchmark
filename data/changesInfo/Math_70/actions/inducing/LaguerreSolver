@@ -1241,13 +1241,6 @@ at -1
 ===
 multi-move-tree
 ---
-SimpleName: p [4921,4922]
-to
-SimpleName: p [3392,3393]
-at -1
-===
-multi-move-tree
----
 SimpleName: p [4993,4994]
 to
 SimpleName: p [3392,3393]
@@ -1255,14 +1248,14 @@ at -1
 ===
 multi-move-tree
 ---
-SimpleName: p [3441,3442]
+SimpleName: p [4921,4922]
 to
-SimpleName: p [3624,3625]
+SimpleName: p [3392,3393]
 at -1
 ===
 multi-move-tree
 ---
-SimpleName: p [3392,3393]
+SimpleName: p [3657,3658]
 to
 SimpleName: p [3624,3625]
 at -1
@@ -1276,14 +1269,21 @@ at -1
 ===
 multi-move-tree
 ---
-SimpleName: p [3490,3491]
+SimpleName: p [3392,3393]
 to
 SimpleName: p [3624,3625]
 at -1
 ===
 multi-move-tree
 ---
-SimpleName: p [3657,3658]
+SimpleName: p [3441,3442]
+to
+SimpleName: p [3624,3625]
+at -1
+===
+multi-move-tree
+---
+SimpleName: p [3490,3491]
 to
 SimpleName: p [3624,3625]
 at -1

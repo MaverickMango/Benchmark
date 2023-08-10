@@ -1,6 +1,6 @@
 {
   "bugName": "Jsoup_9_buggy",
-  "bugId": "49",
+  "bugId": "35",
   "repo": {
     "name": "../bugs/Jsoup_9_buggy/.git"
   },

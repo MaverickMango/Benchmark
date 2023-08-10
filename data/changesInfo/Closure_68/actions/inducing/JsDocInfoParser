@@ -635,46 +635,23 @@ at -1
 ===
 multi-move-tree
 ---
-METHOD_INVOCATION_RECEIVER [15568,15574]
-    SimpleName: parser [15568,15574]
+ExpressionStatement [15568,15683]
+    MethodInvocation [15568,15682]
+        METHOD_INVOCATION_RECEIVER [15568,15574]
+            SimpleName: parser [15568,15574]
+        SimpleName: addWarning [15575,15585]
+        METHOD_INVOCATION_ARGUMENTS [15586,15681]
+            StringLiteral: "msg.end.annotation.expected" [15586,15615]
+            MethodInvocation [15643,15661]
+                METHOD_INVOCATION_RECEIVER [15643,15649]
+                    SimpleName: stream [15643,15649]
+                SimpleName: getLineno [15650,15659]
+            MethodInvocation [15663,15681]
+                METHOD_INVOCATION_RECEIVER [15663,15669]
+                    SimpleName: stream [15663,15669]
+                SimpleName: getCharno [15670,15679]
 to
-METHOD_INVOCATION_RECEIVER [23979,23985]
-at -1
-===
-multi-move-tree
----
-METHOD_INVOCATION_RECEIVER [15568,15574]
-    SimpleName: parser [15568,15574]
-to
-METHOD_INVOCATION_RECEIVER [24132,24138]
-at -1
-===
-multi-move-tree
----
-SimpleName: addWarning [15575,15585]
-to
-SimpleName: addTypeWarning [24139,24153]
-at -1
-===
-multi-move-tree
----
-SimpleName: addWarning [15575,15585]
-to
-SimpleName: addTypeWarning [23986,24000]
-at -1
-===
-multi-move-tree
----
-StringLiteral: "msg.end.annotation.expected" [15586,15615]
-to
-StringLiteral: "msg.dup.variable.name" [24001,24024]
-at -1
-===
-multi-move-tree
----
-StringLiteral: "msg.end.annotation.expected" [15586,15615]
-to
-StringLiteral: "msg.jsdoc.incompat.type" [24154,24179]
+ExpressionStatement [24132,24231]
 at -1
 ===
 multi-move-tree
@@ -700,23 +677,48 @@ at -1
 ===
 multi-move-tree
 ---
-ExpressionStatement [15568,15683]
-    MethodInvocation [15568,15682]
-        METHOD_INVOCATION_RECEIVER [15568,15574]
-            SimpleName: parser [15568,15574]
-        SimpleName: addWarning [15575,15585]
-        METHOD_INVOCATION_ARGUMENTS [15586,15681]
-            StringLiteral: "msg.end.annotation.expected" [15586,15615]
-            MethodInvocation [15643,15661]
-                METHOD_INVOCATION_RECEIVER [15643,15649]
-                    SimpleName: stream [15643,15649]
-                SimpleName: getLineno [15650,15659]
-            MethodInvocation [15663,15681]
-                METHOD_INVOCATION_RECEIVER [15663,15669]
-                    SimpleName: stream [15663,15669]
-                SimpleName: getCharno [15670,15679]
+StringLiteral: "msg.end.annotation.expected" [15586,15615]
 to
-ExpressionStatement [24132,24231]
+StringLiteral: "msg.dup.variable.name" [24001,24024]
+at -1
+===
+multi-move-tree
+---
+StringLiteral: "msg.end.annotation.expected" [15586,15615]
+to
+StringLiteral: "msg.jsdoc.incompat.type" [24154,24179]
+at -1
+===
+multi-move-tree
+---
+METHOD_INVOCATION_RECEIVER [15568,15574]
+    SimpleName: parser [15568,15574]
+to
+METHOD_INVOCATION_RECEIVER [24132,24138]
+at -1
+===
+multi-move-tree
+---
+METHOD_INVOCATION_RECEIVER [15568,15574]
+    SimpleName: parser [15568,15574]
+to
+METHOD_INVOCATION_RECEIVER [23979,23985]
+at -1
+===
+multi-move-tree
+---
+METHOD_INVOCATION_ARGUMENTS [15586,15681]
+    StringLiteral: "msg.end.annotation.expected" [15586,15615]
+    MethodInvocation [15643,15661]
+        METHOD_INVOCATION_RECEIVER [15643,15649]
+            SimpleName: stream [15643,15649]
+        SimpleName: getLineno [15650,15659]
+    MethodInvocation [15663,15681]
+        METHOD_INVOCATION_RECEIVER [15663,15669]
+            SimpleName: stream [15663,15669]
+        SimpleName: getCharno [15670,15679]
+to
+METHOD_INVOCATION_ARGUMENTS [24154,24229]
 at -1
 ===
 multi-move-tree
@@ -737,16 +739,14 @@ at -1
 ===
 multi-move-tree
 ---
-METHOD_INVOCATION_ARGUMENTS [15586,15681]
-    StringLiteral: "msg.end.annotation.expected" [15586,15615]
-    MethodInvocation [15643,15661]
-        METHOD_INVOCATION_RECEIVER [15643,15649]
-            SimpleName: stream [15643,15649]
-        SimpleName: getLineno [15650,15659]
-    MethodInvocation [15663,15681]
-        METHOD_INVOCATION_RECEIVER [15663,15669]
-            SimpleName: stream [15663,15669]
-        SimpleName: getCharno [15670,15679]
+SimpleName: addWarning [15575,15585]
 to
-METHOD_INVOCATION_ARGUMENTS [24154,24229]
+SimpleName: addTypeWarning [23986,24000]
+at -1
+===
+multi-move-tree
+---
+SimpleName: addWarning [15575,15585]
+to
+SimpleName: addTypeWarning [24139,24153]
 at -1

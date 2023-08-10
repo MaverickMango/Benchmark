@@ -1,6 +1,6 @@
 {
   "bugName": "Codec_10_buggy",
-  "bugId": "33",
+  "bugId": "19",
   "repo": {
     "name": "../bugs/Codec_10_buggy/.git"
   },

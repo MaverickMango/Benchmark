@@ -4535,6 +4535,26 @@ QualifiedName: TarConstants.DEVLEN [16421,16440]
 ===
 multi-move-tree
 ---
+Assignment [6816,6851]
+    SimpleName: m_linkFlag [6816,6826]
+    ASSIGNMENT_OPERATOR: = [6827,6828]
+    QualifiedName: TarConstants.LF_NORMAL [6829,6851]
+to
+Assignment [6049,6065]
+at -1
+===
+multi-move-tree
+---
+Assignment [6578,6610]
+    SimpleName: m_linkFlag [6578,6588]
+    ASSIGNMENT_OPERATOR: = [6589,6590]
+    QualifiedName: TarConstants.LF_DIR [6591,6610]
+to
+Assignment [6049,6065]
+at -1
+===
+multi-move-tree
+---
 SimpleName: m_linkFlag [6816,6826]
 to
 SimpleName: file [6061,6065]
@@ -4571,34 +4591,14 @@ at -1
 ===
 multi-move-tree
 ---
-Assignment [6816,6851]
-    SimpleName: m_linkFlag [6816,6826]
-    ASSIGNMENT_OPERATOR: = [6827,6828]
-    QualifiedName: TarConstants.LF_NORMAL [6829,6851]
-to
-Assignment [6049,6065]
-at -1
-===
-multi-move-tree
----
-Assignment [6578,6610]
-    SimpleName: m_linkFlag [6578,6588]
-    ASSIGNMENT_OPERATOR: = [6589,6590]
-    QualifiedName: TarConstants.LF_DIR [6591,6610]
-to
-Assignment [6049,6065]
-at -1
-===
-multi-move-tree
----
-ASSIGNMENT_OPERATOR: = [6589,6590]
+ASSIGNMENT_OPERATOR: = [6827,6828]
 to
 ASSIGNMENT_OPERATOR: = [6059,6060]
 at -1
 ===
 multi-move-tree
 ---
-ASSIGNMENT_OPERATOR: = [6827,6828]
+ASSIGNMENT_OPERATOR: = [6589,6590]
 to
 ASSIGNMENT_OPERATOR: = [6059,6060]
 at -1

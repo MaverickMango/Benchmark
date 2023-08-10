@@ -1302,67 +1302,10 @@ TypeDeclaration [28855,29512]
 ===
 multi-move-tree
 ---
-QualifiedName: java.util [371,380]
-to
-QualifiedName: java.util.ArrayList [373,392]
-at -1
-===
-multi-move-tree
----
-QualifiedName: java.util [371,380]
-to
-QualifiedName: java.util.Arrays [402,418]
-at -1
-===
-multi-move-tree
----
-QualifiedName: java.util [371,380]
-to
-QualifiedName: java.util.HashMap [459,476]
-at -1
-===
-multi-move-tree
----
-QualifiedName: java.util [371,380]
-to
-QualifiedName: java.util.Collections [428,449]
-at -1
-===
-multi-move-tree
----
-QualifiedName: java.util [371,380]
-to
-QualifiedName: java.util.Map [543,556]
-at -1
-===
-multi-move-tree
----
-QualifiedName: java.util [371,380]
-to
-QualifiedName: java.util.List [519,533]
-at -1
-===
-multi-move-tree
----
-QualifiedName: java.util [371,380]
-to
-QualifiedName: java.util.LinkedHashMap [486,509]
-at -1
-===
-multi-move-tree
----
 ImportDeclaration [364,383]
     QualifiedName: java.util [371,380]
 to
-ImportDeclaration [512,534]
-at -1
-===
-multi-move-tree
----
-ImportDeclaration [364,383]
-    QualifiedName: java.util [371,380]
-to
-ImportDeclaration [479,510]
+ImportDeclaration [395,419]
 at -1
 ===
 multi-move-tree
@@ -1378,7 +1321,7 @@ multi-move-tree
 ImportDeclaration [364,383]
     QualifiedName: java.util [371,380]
 to
-ImportDeclaration [395,419]
+ImportDeclaration [479,510]
 at -1
 ===
 multi-move-tree
@@ -1386,7 +1329,7 @@ multi-move-tree
 ImportDeclaration [364,383]
     QualifiedName: java.util [371,380]
 to
-ImportDeclaration [421,450]
+ImportDeclaration [512,534]
 at -1
 ===
 multi-move-tree
@@ -1402,7 +1345,78 @@ multi-move-tree
 ImportDeclaration [364,383]
     QualifiedName: java.util [371,380]
 to
+ImportDeclaration [421,450]
+at -1
+===
+multi-move-tree
+---
+ImportDeclaration [364,383]
+    QualifiedName: java.util [371,380]
+to
 ImportDeclaration [366,393]
+at -1
+===
+multi-move-tree
+---
+QualifiedName: java.util [371,380]
+to
+QualifiedName: java.util.Arrays [402,418]
+at -1
+===
+multi-move-tree
+---
+QualifiedName: java.util [371,380]
+to
+QualifiedName: java.util.List [519,533]
+at -1
+===
+multi-move-tree
+---
+QualifiedName: java.util [371,380]
+to
+QualifiedName: java.util.HashMap [459,476]
+at -1
+===
+multi-move-tree
+---
+QualifiedName: java.util [371,380]
+to
+QualifiedName: java.util.Map [543,556]
+at -1
+===
+multi-move-tree
+---
+QualifiedName: java.util [371,380]
+to
+QualifiedName: java.util.Collections [428,449]
+at -1
+===
+multi-move-tree
+---
+QualifiedName: java.util [371,380]
+to
+QualifiedName: java.util.LinkedHashMap [486,509]
+at -1
+===
+multi-move-tree
+---
+QualifiedName: java.util [371,380]
+to
+QualifiedName: java.util.ArrayList [373,392]
+at -1
+===
+multi-move-tree
+---
+QualifiedName: java.lang.reflect [342,359]
+to
+QualifiedName: java.lang.reflect.Method [182,206]
+at -1
+===
+multi-move-tree
+---
+QualifiedName: java.lang.reflect [342,359]
+to
+QualifiedName: java.lang.reflect.WildcardType [333,363]
 at -1
 ===
 multi-move-tree
@@ -1417,20 +1431,6 @@ multi-move-tree
 QualifiedName: java.lang.reflect [342,359]
 to
 QualifiedName: java.lang.reflect.Type [261,283]
-at -1
-===
-multi-move-tree
----
-QualifiedName: java.lang.reflect [342,359]
-to
-QualifiedName: java.lang.reflect.WildcardType [333,363]
-at -1
-===
-multi-move-tree
----
-QualifiedName: java.lang.reflect [342,359]
-to
-QualifiedName: java.lang.reflect.Method [182,206]
 at -1
 ===
 multi-move-tree
@@ -1453,14 +1453,6 @@ multi-move-tree
 ImportDeclaration [335,362]
     QualifiedName: java.lang.reflect [342,359]
 to
-ImportDeclaration [326,364]
-at -1
-===
-multi-move-tree
----
-ImportDeclaration [335,362]
-    QualifiedName: java.lang.reflect [342,359]
-to
 ImportDeclaration [209,252]
 at -1
 ===
@@ -1469,7 +1461,7 @@ multi-move-tree
 ImportDeclaration [335,362]
     QualifiedName: java.lang.reflect [342,359]
 to
-ImportDeclaration [175,207]
+ImportDeclaration [326,364]
 at -1
 ===
 multi-move-tree
@@ -1478,4 +1470,12 @@ ImportDeclaration [335,362]
     QualifiedName: java.lang.reflect [342,359]
 to
 ImportDeclaration [286,324]
+at -1
+===
+multi-move-tree
+---
+ImportDeclaration [335,362]
+    QualifiedName: java.lang.reflect [342,359]
+to
+ImportDeclaration [175,207]
 at -1
