@@ -1,7 +1,7 @@
-Only in tmp/changesInfo/Lang_46/properties/modified_classes/inducing/src: java
-diff -u -r tmp/changesInfo/Lang_46/properties/modified_classes/inducing/src/test/org/apache/commons/lang/StringEscapeUtilsTest.java tmp/changesInfo/Lang_46/cleaned/inducing/src/test/org/apache/commons/lang/StringEscapeUtilsTest.java
---- tmp/changesInfo/Lang_46/properties/modified_classes/inducing/src/test/org/apache/commons/lang/StringEscapeUtilsTest.java	2023-06-12 11:40:36.038278462 +0800
-+++ tmp/changesInfo/Lang_46/cleaned/inducing/src/test/org/apache/commons/lang/StringEscapeUtilsTest.java	2023-06-20 21:51:23.949555808 +0800
+Only in data/changesInfo//Lang_46/properties/modified_classes/inducing/src: java
+diff -u -r data/changesInfo//Lang_46/properties/modified_classes/inducing/src/test/org/apache/commons/lang/StringEscapeUtilsTest.java data/changesInfo//Lang_46/cleaned/inducing/src/test/org/apache/commons/lang/StringEscapeUtilsTest.java
+--- data/changesInfo//Lang_46/properties/modified_classes/inducing/src/test/org/apache/commons/lang/StringEscapeUtilsTest.java	2023-08-25 13:39:57.417011187 +0800
++++ data/changesInfo//Lang_46/cleaned/inducing/src/test/org/apache/commons/lang/StringEscapeUtilsTest.java	2023-06-20 21:51:23.949555808 +0800
 @@ -97,6 +97,22 @@
                  "\uABCD\u1234\u012C");
      }

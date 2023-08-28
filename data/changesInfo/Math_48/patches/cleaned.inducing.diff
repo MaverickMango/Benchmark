@@ -1,7 +1,10 @@
-Only in tmp/changesInfo/Math_48/properties/modified_classes/inducing/src: main
-diff -u -r tmp/changesInfo/Math_48/properties/modified_classes/inducing/src/test/java/org/apache/commons/math/analysis/solvers/RegulaFalsiSolverTest.java tmp/changesInfo/Math_48/cleaned/inducing/src/test/java/org/apache/commons/math/analysis/solvers/RegulaFalsiSolverTest.java
---- tmp/changesInfo/Math_48/properties/modified_classes/inducing/src/test/java/org/apache/commons/math/analysis/solvers/RegulaFalsiSolverTest.java	2023-08-02 21:55:59.449328808 +0800
-+++ tmp/changesInfo/Math_48/cleaned/inducing/src/test/java/org/apache/commons/math/analysis/solvers/RegulaFalsiSolverTest.java	2023-08-02 21:52:32.828000000 +0800
+Only in data/changesInfo//Math_48/properties/modified_classes/inducing/src: main
+Only in data/changesInfo//Math_48/properties/modified_classes/inducing/src/test/java/org/apache/commons/math/analysis/solvers: BaseSecantSolverTest.java
+Only in data/changesInfo//Math_48/properties/modified_classes/inducing/src/test/java/org/apache/commons/math/analysis/solvers: IllinoisSolverTest.java
+Only in data/changesInfo//Math_48/properties/modified_classes/inducing/src/test/java/org/apache/commons/math/analysis/solvers: PegasusSolverTest.java
+diff -u -r data/changesInfo//Math_48/properties/modified_classes/inducing/src/test/java/org/apache/commons/math/analysis/solvers/RegulaFalsiSolverTest.java data/changesInfo//Math_48/cleaned/inducing/src/test/java/org/apache/commons/math/analysis/solvers/RegulaFalsiSolverTest.java
+--- data/changesInfo//Math_48/properties/modified_classes/inducing/src/test/java/org/apache/commons/math/analysis/solvers/RegulaFalsiSolverTest.java	2023-08-25 13:58:28.841417064 +0800
++++ data/changesInfo//Math_48/cleaned/inducing/src/test/java/org/apache/commons/math/analysis/solvers/RegulaFalsiSolverTest.java	2023-08-02 21:52:32.828000000 +0800
 @@ -17,6 +17,10 @@
  
  package org.apache.commons.math.analysis.solvers;
@@ -32,3 +35,4 @@ diff -u -r tmp/changesInfo/Math_48/properties/modified_classes/inducing/src/test
 +        Assert.assertEquals(3.4341896575482003, root, 1e-15);
 +    }
  }
+Only in data/changesInfo//Math_48/properties/modified_classes/inducing/src/test/java/org/apache/commons/math/analysis/solvers: SecantSolverTest.java

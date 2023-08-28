@@ -1,6 +1,7 @@
-diff -u -r tmp/changesInfo/Closure_60/properties/modified_classes/inducing/src/com/google/javascript/jscomp/NodeUtil.java tmp/changesInfo/Closure_60/cleaned/fixing/src/com/google/javascript/jscomp/NodeUtil.java
---- tmp/changesInfo/Closure_60/properties/modified_classes/inducing/src/com/google/javascript/jscomp/NodeUtil.java	2023-06-27 14:36:58.411387476 +0800
-+++ tmp/changesInfo/Closure_60/cleaned/fixing/src/com/google/javascript/jscomp/NodeUtil.java	2023-06-27 15:48:02.937625245 +0800
+Only in data/changesInfo//Closure_60/properties/modified_classes/inducing/src/com/google/javascript/jscomp: MarkNoSideEffectCalls.java
+diff -u -r data/changesInfo//Closure_60/properties/modified_classes/inducing/src/com/google/javascript/jscomp/NodeUtil.java data/changesInfo//Closure_60/cleaned/fixing/src/com/google/javascript/jscomp/NodeUtil.java
+--- data/changesInfo//Closure_60/properties/modified_classes/inducing/src/com/google/javascript/jscomp/NodeUtil.java	2023-08-25 13:12:38.914605675 +0800
++++ data/changesInfo//Closure_60/cleaned/fixing/src/com/google/javascript/jscomp/NodeUtil.java	2023-06-27 15:48:02.937625245 +0800
 @@ -94,6 +94,8 @@
            return TernaryValue.UNKNOWN;
          }
@@ -26,4 +27,21 @@ diff -u -r tmp/changesInfo/Closure_60/properties/modified_classes/inducing/src/c
        case Token.NAME:
          String name = n.getString();
          if ("undefined".equals(name)
-Only in tmp/changesInfo/Closure_60/properties/modified_classes/inducing: test
+@@ -632,14 +639,6 @@
+   }
+ 
+   /**
+-   * @return Whether the call has a local result.
+-   */
+-  static boolean callHasLocalResult(Node n) {
+-    Preconditions.checkState(n.getType() == Token.CALL);
+-    return (n.getSideEffectFlags() & Node.FLAG_LOCAL_RESULTS) > 0;
+-  }
+-
+-  /**
+    * Returns true if the current node's type implies side effects.
+    *
+    * This is a non-recursive version of the may have side effects
+Only in data/changesInfo//Closure_60/properties/modified_classes/inducing/src/com/google/javascript/jscomp: PureFunctionIdentifier.java
+Only in data/changesInfo//Closure_60/properties/modified_classes/inducing/src/com/google/javascript: rhino
+Only in data/changesInfo//Closure_60/properties/modified_classes/inducing/: test

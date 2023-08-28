@@ -1,6 +1,7 @@
-diff -u -r tmp/changesInfo/Mockito_22/properties/modified_classes/inducing/test/org/mockito/internal/matchers/EqualityTest.java tmp/changesInfo/Mockito_22/cleaned/inducing/test/org/mockito/internal/matchers/EqualityTest.java
---- tmp/changesInfo/Mockito_22/properties/modified_classes/inducing/test/org/mockito/internal/matchers/EqualityTest.java	2023-07-24 16:12:09.343269272 +0800
-+++ tmp/changesInfo/Mockito_22/cleaned/inducing/test/org/mockito/internal/matchers/EqualityTest.java	2023-07-24 17:03:06.214765142 +0800
+Only in data/changesInfo//Mockito_22/properties/modified_classes/inducing/src/org/mockito/internal/matchers: Equals.java
+diff -u -r data/changesInfo//Mockito_22/properties/modified_classes/inducing/test/org/mockito/internal/matchers/EqualityTest.java data/changesInfo//Mockito_22/cleaned/inducing/test/org/mockito/internal/matchers/EqualityTest.java
+--- data/changesInfo//Mockito_22/properties/modified_classes/inducing/test/org/mockito/internal/matchers/EqualityTest.java	2023-07-24 16:12:09.343269272 +0800
++++ data/changesInfo//Mockito_22/cleaned/inducing/test/org/mockito/internal/matchers/EqualityTest.java	2023-07-24 17:03:06.214765142 +0800
 @@ -16,9 +16,18 @@
          assertTrue(areEqual(new Object[10], new Object[10]));
          assertTrue(areEqual(new int[] {1}, new Integer[] {1}));
@@ -21,3 +22,5 @@ diff -u -r tmp/changesInfo/Mockito_22/properties/modified_classes/inducing/test/
 +    }
  }
 \ No newline at end of file
+Only in data/changesInfo//Mockito_22/properties/modified_classes/inducing/test/org/mockito/internal/matchers: EqualsTest.java
+Only in data/changesInfo//Mockito_22/properties/modified_classes/inducing/test/org: mockitousage

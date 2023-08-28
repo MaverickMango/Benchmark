@@ -3,8 +3,8 @@ package root.attempt;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import root.analysis.StringFilter;
-import root.bean.D4JBug;
-import root.benchmarks.Defects4JBug;
+import root.bean.otherdataset.D4JBug;
+import root.bean.benchmarks.Defects4JBug;
 import root.util.ConfigurationProperties;
 import root.util.FileUtils;
 import root.util.GitAccess;
@@ -21,7 +21,7 @@ public class Main implements GitAccess {
      *
      * @param args [0]: proj_bugs file [1]: target bug cloned directory [2]: bugWithrepairTools.csv [3]: result_storage file
      */
-    public static void main(String[] args) {
+    public static void total(String[] args) {
         List<List<String>> infos = FileUtils.readCsv(args[2], false);
         List<String> tools = infos.get(0);
         List<String> bugNames = infos.stream().map(info -> info.get(0)).collect(Collectors.toList());
@@ -121,44 +121,38 @@ public class Main implements GitAccess {
 
     /**
      *
-     * @param args [0]: proj_bugs.csv [1]: target bug cloned directory
+     * @param
      */
-    public static void getJavaDiff(String[] args){
-        List<String> proj_bugs = FileUtils.readEachLine(args[0]);
-        for (String proj_bug: proj_bugs) {
-            String proj = proj_bug.split(":")[0];
-            String[] bugs = proj_bug.split(":")[1].split(",");
-            for (String id :bugs) {
-                String bugName = proj + "_" + id + "_buggy";
-                logger.info("Start processing " + bugName + "...");
-                try {
-                    Defects4JBug defects4JBug = new Defects4JBug(proj, id, args[1] + bugName);
-                    String buggyCommit = defects4JBug.getBuggyCommit();
-                    String d4JBuggy = defects4JBug.getD4JBuggy();
-                    String modifiedClasses = ConfigurationProperties.getProperty("defects4j") + "/framework/projects/" + proj + "/modified_classes/" + id + ".src";
-                    List<String> lines = FileUtils.readEachLine(modifiedClasses);
-                    StringFilter filter = new StringFilter(StringFilter.MATCHES);
-                    filter.addPattern(".*Test.java$");
-                    filter.addPattern(".*test/.*");
-                    StringBuilder pattern = new StringBuilder("^(?!.*(?:");
-                    for (String clz : lines) {
-                        String s = clz.replaceAll("[.]", File.separator);
-                        pattern.append(s).append("|");
-                    }
-                    pattern.replace(pattern.length() - 1, pattern.length(), ")");
-                    pattern.append("\\.java$).*");
-                    filter.addPattern(pattern.toString());
-                    String diff = gitAccess.diffWithFilter(defects4JBug.getGitRepository("buggy"), buggyCommit, d4JBuggy, filter);
-                    String inducingDiffDir = "data/diffFromReal2D4jBuggy/" + bugName + "/changes.diff";
-                    if (diff != null) {
-                        logger.info("Writing diff in " + bugName + "...");
-                        FileUtils.writeToFile(diff, inducingDiffDir, false);
-                    }
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
-                logger.info("Finished processing " + bugName + "...");
+    public static void main(String[] args){
+        String proj = args[0], id = args[1];
+        String bugName = proj + "_" + id;
+        logger.info("Start processing " + bugName + "...");
+        try {
+            Defects4JBug defects4JBug = new Defects4JBug(proj, id, "../bugs/" + bugName);
+            String buggyCommit = defects4JBug.getBuggyCommit();
+            String d4JBuggy = defects4JBug.getD4JBuggy();
+            String modifiedClasses = ConfigurationProperties.getProperty("defects4j") + "/framework/projects/" + proj + "/modified_classes/" + id + ".src";
+            List<String> lines = FileUtils.readEachLine(modifiedClasses);
+            StringFilter filter = new StringFilter(StringFilter.MATCHES);
+            filter.addPattern(".*Test.java$");
+            filter.addPattern(".*test/.*");
+            StringBuilder pattern = new StringBuilder("^(?!.*(?:");
+            for (String clz : lines) {
+                String s = clz.replaceAll("[.]", File.separator);
+                pattern.append(s).append("|");
             }
+            pattern.replace(pattern.length() - 1, pattern.length(), ")");
+            pattern.append("\\.java$).*");
+            filter.addPattern(pattern.toString());
+            String diff = gitAccess.diffWithFilter(defects4JBug.getGitRepository("buggy"), buggyCommit, d4JBuggy, filter);
+            String inducingDiffDir = "data/diffFromReal2D4jBuggy/" + bugName + "/changes.diff";
+            if (diff != null) {
+                logger.info("Writing diff in " + bugName + "...");
+                FileUtils.writeToFile(diff, inducingDiffDir, false);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
         }
+        logger.info("Finished processing " + bugName + "...");
     }
 }

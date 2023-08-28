@@ -1,7 +1,8 @@
-Only in tmp/changesInfo/Mockito_38/properties/modified_classes/inducing: src
-diff -u -r tmp/changesInfo/Mockito_38/properties/modified_classes/inducing/test/org/mockito/internal/verification/argumentmatching/ArgumentMatchingToolTest.java tmp/changesInfo/Mockito_38/cleaned/inducing/test/org/mockito/internal/verification/argumentmatching/ArgumentMatchingToolTest.java
---- tmp/changesInfo/Mockito_38/properties/modified_classes/inducing/test/org/mockito/internal/verification/argumentmatching/ArgumentMatchingToolTest.java	2023-07-24 23:32:14.727268706 +0800
-+++ tmp/changesInfo/Mockito_38/cleaned/inducing/test/org/mockito/internal/verification/argumentmatching/ArgumentMatchingToolTest.java	2023-07-24 23:22:28.000000000 +0800
+Only in data/changesInfo//Mockito_38/properties/modified_classes/inducing/: src
+Only in data/changesInfo//Mockito_38/properties/modified_classes/inducing/test/org/mockito/internal: matchers
+diff -u -r data/changesInfo//Mockito_38/properties/modified_classes/inducing/test/org/mockito/internal/verification/argumentmatching/ArgumentMatchingToolTest.java data/changesInfo//Mockito_38/cleaned/inducing/test/org/mockito/internal/verification/argumentmatching/ArgumentMatchingToolTest.java
+--- data/changesInfo//Mockito_38/properties/modified_classes/inducing/test/org/mockito/internal/verification/argumentmatching/ArgumentMatchingToolTest.java	2023-08-25 14:14:46.235917126 +0800
++++ data/changesInfo//Mockito_38/cleaned/inducing/test/org/mockito/internal/verification/argumentmatching/ArgumentMatchingToolTest.java	2023-07-24 23:22:28.000000000 +0800
 @@ -1,7 +1,5 @@
  package org.mockito.internal.verification.argumentmatching;
  
@@ -26,3 +27,4 @@ diff -u -r tmp/changesInfo/Mockito_38/properties/modified_classes/inducing/test/
      
      @Test
      public void shouldUseMatchersSafely() {
+Only in data/changesInfo//Mockito_38/properties/modified_classes/inducing/test/org/mockitousage/bugs: EqWithIntsDoesntCopeWithLongsTest.java

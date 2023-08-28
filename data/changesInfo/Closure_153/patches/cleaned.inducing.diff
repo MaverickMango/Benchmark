@@ -1,7 +1,7 @@
-Only in tmp/changesInfo/Closure_153/properties/modified_classes/inducing: src
-diff -u -r tmp/changesInfo/Closure_153/properties/modified_classes/inducing/test/com/google/javascript/jscomp/NormalizeTest.java tmp/changesInfo/Closure_153/cleaned/inducing/test/com/google/javascript/jscomp/NormalizeTest.java
---- tmp/changesInfo/Closure_153/properties/modified_classes/inducing/test/com/google/javascript/jscomp/NormalizeTest.java	2023-07-27 20:48:47.571623909 +0800
-+++ tmp/changesInfo/Closure_153/cleaned/inducing/test/com/google/javascript/jscomp/NormalizeTest.java	2023-07-27 20:48:39.295000000 +0800
+Only in data/changesInfo//Closure_153/properties/modified_classes/inducing/: src
+diff -u -r data/changesInfo//Closure_153/properties/modified_classes/inducing/test/com/google/javascript/jscomp/NormalizeTest.java data/changesInfo//Closure_153/cleaned/inducing/test/com/google/javascript/jscomp/NormalizeTest.java
+--- data/changesInfo//Closure_153/properties/modified_classes/inducing/test/com/google/javascript/jscomp/NormalizeTest.java	2023-08-25 14:16:38.739602043 +0800
++++ data/changesInfo//Closure_153/cleaned/inducing/test/com/google/javascript/jscomp/NormalizeTest.java	2023-07-27 20:48:39.295000000 +0800
 @@ -89,7 +89,7 @@
  
    public void testDuplicateVarInExterns() {

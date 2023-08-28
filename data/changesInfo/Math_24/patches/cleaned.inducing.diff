@@ -1,7 +1,7 @@
-Only in tmp/changesInfo/Math_24/properties/modified_classes/inducing/src: main
-diff -u -r tmp/changesInfo/Math_24/properties/modified_classes/inducing/src/test/java/org/apache/commons/math3/optimization/univariate/BrentOptimizerTest.java tmp/changesInfo/Math_24/cleaned/inducing/src/test/java/org/apache/commons/math3/optimization/univariate/BrentOptimizerTest.java
---- tmp/changesInfo/Math_24/properties/modified_classes/inducing/src/test/java/org/apache/commons/math3/optimization/univariate/BrentOptimizerTest.java	2023-07-25 21:04:57.417141441 +0800
-+++ tmp/changesInfo/Math_24/cleaned/inducing/src/test/java/org/apache/commons/math3/optimization/univariate/BrentOptimizerTest.java	2023-07-25 20:41:41.581704823 +0800
+Only in data/changesInfo//Math_24/properties/modified_classes/inducing/src: main
+diff -u -r data/changesInfo//Math_24/properties/modified_classes/inducing/src/test/java/org/apache/commons/math3/optimization/univariate/BrentOptimizerTest.java data/changesInfo//Math_24/cleaned/inducing/src/test/java/org/apache/commons/math3/optimization/univariate/BrentOptimizerTest.java
+--- data/changesInfo//Math_24/properties/modified_classes/inducing/src/test/java/org/apache/commons/math3/optimization/univariate/BrentOptimizerTest.java	2023-07-25 21:04:57.417141441 +0800
++++ data/changesInfo//Math_24/cleaned/inducing/src/test/java/org/apache/commons/math3/optimization/univariate/BrentOptimizerTest.java	2023-07-25 20:41:41.581704823 +0800
 @@ -23,6 +23,9 @@
  import org.apache.commons.math3.analysis.QuinticFunction;
  import org.apache.commons.math3.analysis.SinFunction;

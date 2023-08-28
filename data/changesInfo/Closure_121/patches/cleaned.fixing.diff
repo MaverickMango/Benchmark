@@ -1,6 +1,10 @@
-diff -u -r tmp/changesInfo/Closure_121/properties/modified_classes/inducing/src/com/google/javascript/jscomp/InlineVariables.java tmp/changesInfo/Closure_121/cleaned/fixing/src/com/google/javascript/jscomp/InlineVariables.java
---- tmp/changesInfo/Closure_121/properties/modified_classes/inducing/src/com/google/javascript/jscomp/InlineVariables.java	2023-06-12 11:40:31.910465509 +0800
-+++ tmp/changesInfo/Closure_121/cleaned/fixing/src/com/google/javascript/jscomp/InlineVariables.java	2023-06-15 20:34:15.015657916 +0800
+Only in data/changesInfo//Closure_121/properties/modified_classes/inducing/src/com/google/javascript/jscomp: AbstractCompilerRunner.java
+Only in data/changesInfo//Closure_121/properties/modified_classes/inducing/src/com/google/javascript/jscomp: CollapseProperties.java
+Only in data/changesInfo//Closure_121/properties/modified_classes/inducing/src/com/google/javascript/jscomp: ExpressionDecomposer.java
+Only in data/changesInfo//Closure_121/properties/modified_classes/inducing/src/com/google/javascript/jscomp: FunctionArgumentInjector.java
+diff -u -r data/changesInfo//Closure_121/properties/modified_classes/inducing/src/com/google/javascript/jscomp/InlineVariables.java data/changesInfo//Closure_121/cleaned/fixing/src/com/google/javascript/jscomp/InlineVariables.java
+--- data/changesInfo//Closure_121/properties/modified_classes/inducing/src/com/google/javascript/jscomp/InlineVariables.java	2023-08-25 13:35:37.490650679 +0800
++++ data/changesInfo//Closure_121/cleaned/fixing/src/com/google/javascript/jscomp/InlineVariables.java	2023-06-15 20:34:15.015657916 +0800
 @@ -233,7 +233,9 @@
        // reference data is out of sync. We're better off just waiting for
        // the next pass.)
@@ -12,9 +16,12 @@ diff -u -r tmp/changesInfo/Closure_121/properties/modified_classes/inducing/src/
          List<Reference> refs = referenceInfo.references;
          for (int i = 1 /* start from a read */; i < refs.size(); i++) {
            Node nameNode = refs.get(i).getNameNode();
-diff -u -r tmp/changesInfo/Closure_121/properties/modified_classes/inducing/src/com/google/javascript/jscomp/ReferenceCollectingCallback.java tmp/changesInfo/Closure_121/cleaned/fixing/src/com/google/javascript/jscomp/ReferenceCollectingCallback.java
---- tmp/changesInfo/Closure_121/properties/modified_classes/inducing/src/com/google/javascript/jscomp/ReferenceCollectingCallback.java	2023-08-02 19:18:28.201596387 +0800
-+++ tmp/changesInfo/Closure_121/cleaned/fixing/src/com/google/javascript/jscomp/ReferenceCollectingCallback.java	2023-06-15 20:56:49.878745209 +0800
+Only in data/changesInfo//Closure_121/properties/modified_classes/inducing/src/com/google/javascript/jscomp: NodeIterators.java
+Only in data/changesInfo//Closure_121/properties/modified_classes/inducing/src/com/google/javascript/jscomp: NodeUtil.java
+Only in data/changesInfo//Closure_121/properties/modified_classes/inducing/src/com/google/javascript/jscomp: Normalize.java
+diff -u -r data/changesInfo//Closure_121/properties/modified_classes/inducing/src/com/google/javascript/jscomp/ReferenceCollectingCallback.java data/changesInfo//Closure_121/cleaned/fixing/src/com/google/javascript/jscomp/ReferenceCollectingCallback.java
+--- data/changesInfo//Closure_121/properties/modified_classes/inducing/src/com/google/javascript/jscomp/ReferenceCollectingCallback.java	2023-08-25 13:35:37.498650879 +0800
++++ data/changesInfo//Closure_121/cleaned/fixing/src/com/google/javascript/jscomp/ReferenceCollectingCallback.java	2023-06-15 20:56:49.878745209 +0800
 @@ -333,6 +333,49 @@
      }
  
@@ -114,4 +121,7 @@ diff -u -r tmp/changesInfo/Closure_121/properties/modified_classes/inducing/src/
      }
  
      BasicBlock getParent() {
-Only in tmp/changesInfo/Closure_121/properties/modified_classes/inducing: test
+Only in data/changesInfo//Closure_121/properties/modified_classes/inducing/src/com/google/javascript/jscomp: Scope.java
+Only in data/changesInfo//Closure_121/properties/modified_classes/inducing/src/com/google/javascript/jscomp: VarCheck.java
+Only in data/changesInfo//Closure_121/properties/modified_classes/inducing/src/com/google/javascript/jscomp: VariableReferenceCheck.java
+Only in data/changesInfo//Closure_121/properties/modified_classes/inducing/: test

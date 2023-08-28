@@ -2,9 +2,9 @@ package root.util;
 
 import org.eclipse.jgit.lib.AnyObjectId;
 import root.analysis.StringFilter;
-import root.bean.BugFixCommit;
-import root.bean.CommitInfo;
-import root.bean.RepositoryInfo;
+import root.bean.otherdataset.BugFixCommit;
+import root.bean.otherdataset.CommitInfo;
+import root.bean.otherdataset.RepositoryInfo;
 import org.eclipse.jgit.api.Git;
 import org.eclipse.jgit.diff.DiffEntry;
 import org.eclipse.jgit.diff.DiffFormatter;

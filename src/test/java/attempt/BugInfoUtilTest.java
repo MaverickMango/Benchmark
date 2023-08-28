@@ -1,21 +1,159 @@
 package attempt;
 
+import org.eclipse.jdt.core.dom.MethodDeclaration;
 import org.eclipse.jgit.lib.Repository;
 import org.junit.Test;
-import root.bean.BugFixCommit;
-import root.bean.CommitInfo;
-import root.benchmarks.Defects4JBug;
+import org.refactoringminer.astDiff.actions.ASTDiff;
+import org.refactoringminer.rm1.GitHistoryRefactoringMinerImpl;
+import root.analysis.ASTManipulator;
+import root.bean.otherdataset.BugFixCommit;
+import root.bean.BugFunction;
+import root.bean.otherdataset.CommitInfo;
+import root.bean.benchmarks.Defects4JBug;
+import root.util.BugBuilder;
 import root.util.ConfigurationProperties;
 import root.util.FileUtils;
 import root.util.GitAccess;
 
 import java.io.File;
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.List;
+import java.util.*;
 import java.util.stream.Collectors;
 
 public class BugInfoUtilTest implements GitAccess {
+
+    @Test
+    public void bugFunctionExtractor() {
+        String bugInfo = "src/test/resources/BugFixInfo_total.csv";
+        String total_unfixed ="Jsoup_4,Jsoup_88,Closure_114,Closure_99,Codec_6,Math_55,Math_54,Compress_26,Time_2,Jsoup_26,Time_5,Lang_19,Codec_10,Codec_8,Math_45,Math_26,Compress_8,Closure_27,Mockito_11,Closure_153,Math_17,Closure_170,Jsoup_9,Compress_1,Compress_44,Mockito_12,Time_1,Lang_28,Math_106,Compress_7,Closure_82,Closure_91,Closure_80,Jsoup_79,Compress_39,Math_14,Lang_4,Closure_65,Codec_14,JacksonCore_14,JacksonCore_4,Cli_29,Math_92,Compress_3,Compress_6,Lang_49,Closure_85,JacksonCore_6,Lang_64,Jsoup_27,Jsoup_85,Lang_31,Closure_61,Closure_133,Closure_59,Math_103,Closure_60,Closure_76,Closure_75,Lang_53,Closure_68,Closure_17,Math_23,Math_28,Closure_30,Lang_13,Lang_14,Lang_25,Closure_12,Closure_131,Closure_66,Closure_64,Closure_8,Closure_121,Math_60,Math_42,Time_16";
+        List<String> total = List.of(total_unfixed.split(","));
+        List<List<String>> d4jinfos = FileUtils.readCsv(bugInfo, true);
+        Map<String, String> unfixed_bugInput = new HashMap<>();
+        for (int i = 0; i < d4jinfos.size(); i ++) {
+            String bugName = d4jinfos.get(i).get(2);
+            String proj = bugName.split("_")[0];
+            String id = bugName.split("_")[1];
+            String bug_tag = proj + "_" + id;
+            if (!bug_tag.equals("Compress_1"))
+                continue;
+            if (!total.contains(bug_tag)) {
+                continue;
+            }
+            String fixingDir = "data/changesInfo/" + bug_tag + "/cleaned/fixing";
+            if (FileUtils.notExists(fixingDir)) {
+                FileUtils.writeToFile(bug_tag + "\n", "src/test/resources/uncleaned", true);
+                continue;
+            }
+            String workingDir = "../bugs/" + bugName;
+            Defects4JBug defects4JBug = new Defects4JBug(proj, id,  workingDir);
+            Repository repository = defects4JBug.getGitRepository("b");
+            String bugInducingCommit = d4jinfos.get(i).get(5);
+            String indufingDir = "data/changesInfo/" + bug_tag + "/properties/modified_classes/inducing";
+
+            //get changed method of inducing commit
+            Set<MethodDeclaration> ori2bicMths = new HashSet<>();
+            Set<MethodDeclaration> ori_mths = new HashSet<>();
+            Set<Integer> ori_pos = new HashSet<>();
+            Set<Integer> bic_pos = new HashSet<>();
+            String inducingDiff = "data/changesInfo/" + bug_tag + "/patches/inducing.diff";
+            //extract changed lines by diff file
+            FileUtils.getPositionsOfDiff(FileUtils.readEachLine(inducingDiff), ori_pos, bic_pos, true);
+            GitHistoryRefactoringMinerImpl gitHistoryRefactoringMiner = new GitHistoryRefactoringMinerImpl();
+            Set<ASTDiff> astDiffs = gitHistoryRefactoringMiner.diffAtCommit(repository, bugInducingCommit);
+            Set<String> srcs = new HashSet<>(), dst = new HashSet<>();
+            for (ASTDiff astDiff :astDiffs) {
+                boolean flag = astDiff.getSrcPath().contains("test") || astDiff.getSrcPath().endsWith("Test.java");
+                if (flag)
+                    continue;
+                String srcContents = astDiff.getSrcContents();
+                String dstContents = astDiff.getDstContents();
+//                Set<Integer> positions = new HashSet<>();
+//                List<Action> actions = astDiff.editScript.asList();
+//                for (Action action :actions) {
+//                    int pos = action.getNode().getPos();
+//                    positions.add(pos);
+//                }
+                srcs.add(srcContents);
+                dst.add(dstContents);
+            }
+            for (String srcContents :srcs) {
+                ASTManipulator manipulator = new ASTManipulator(8);
+                Set<MethodDeclaration> methods = manipulator.extractMethodByPos(srcContents.toCharArray(), ori_pos, true);
+                ori_mths.addAll(methods);
+            }
+            for (String dstContents :dst) {
+                ASTManipulator manipulator = new ASTManipulator(8);
+                Set<MethodDeclaration> methods = manipulator.extractMethodByPos(dstContents.toCharArray(), bic_pos, true);
+                ori2bicMths.addAll(methods);
+            }
+//            gitHistoryRefactoringMiner.detectAtCommit(repository, bugInducingCommit, new RefactoringHandler() {
+//                @Override
+//                public void handle(String commitId, List<Refactoring> refactorings) {
+//                    for (Refactoring refctor :refactorings) {
+//                        String name = refctor.getName();
+//                    }
+//                }
+//            });
+            //only consider that which is same with fixing function
+            bic_pos = new HashSet<>();
+            Set<Integer> fix_pos = new HashSet<>();
+            String cleanedFixing = "data/changesInfo/" + bug_tag + "/patches/cleaned.fixing.diff";
+            //extract changed lines by diff file
+            FileUtils.getPositionsOfDiff(FileUtils.readEachLine(cleanedFixing), bic_pos, fix_pos, true);
+            List<String> fixedFiles = FileUtils.findAllFilePaths(fixingDir, ".java");
+            String buggyFile = "data/changesInfo/" + bug_tag + "/properties/modified_classes/inducing/";
+            List<String> bicFiles = FileUtils.findAllFilePaths(buggyFile, ".java");
+            List<String> fixedNames = fixedFiles.stream().map(s -> s.substring(s.lastIndexOf("/") + 1)).collect(Collectors.toList());
+            Set<MethodDeclaration> bic_mths = new HashSet<>(), fix_mths = new HashSet<>();
+            for (String bicFile :bicFiles) {
+                boolean flag = bicFile.contains("test") || bicFile.endsWith("Test.java");
+                if (flag)
+                    continue;
+                String bicName = bicFile.substring(bicFile.lastIndexOf("/") + 1);
+                ASTManipulator manipulator = new ASTManipulator(8);
+                char[] bic = FileUtils.readFileByChars(bicFile);
+                bic_mths.addAll(manipulator.extractMethodByPos(bic, bic_pos, true));
+                bic_mths = intersection(bic_mths, ori2bicMths);
+                if (!fixedNames.contains(bicName)){
+                    continue;
+                }
+                int idx = fixedNames.indexOf(bicName);
+                String fixedFilePath = fixedFiles.get(idx);
+                char[] fixed = FileUtils.readFileByChars(fixedFilePath);
+                fix_mths.addAll(manipulator.extractMethodByPos(fixed, fix_pos, true));
+            }
+            ori_mths = intersection(ori_mths, bic_mths);
+            if (bic_mths.isEmpty()) {
+                FileUtils.writeToFile(bug_tag + "\n", "src/test/resources/noBuggy", true);
+            }
+            BugFunction bugFunction = new BugFunction();
+            bugFunction.setOriginal(FileUtils.getStrOfIterable(ori_mths, "\n").toString());
+            bugFunction.setBuggy(FileUtils.getStrOfIterable(bic_mths, "\n").toString());
+            bugFunction.setFix(FileUtils.getStrOfIterable(fix_mths, "\n").toString());
+            unfixed_bugInput.put(bug_tag.replace("_", "-"), FileUtils.bean2Json(bugFunction));
+        }
+        System.out.println("single function unfixed total len: " + unfixed_bugInput.size());
+        StringBuilder builder = new StringBuilder("{\n");
+        for (Map.Entry<String, String> entries : unfixed_bugInput.entrySet()) {
+            builder.append(entries.getKey()).append(":")
+                    .append(entries.getValue()).append(",");
+        }
+        builder.replace(builder.length() - 1, builder.length(), "}");
+        FileUtils.writeToFile(FileUtils.jsonFormatter(builder.toString()), "src/test/resources/single-function-repair-unfixed.json", false);
+    }
+
+
+    private Set<MethodDeclaration> intersection(Set<MethodDeclaration> one, Set<MethodDeclaration> another) {
+        if (another == null)
+            return one;
+        Set<MethodDeclaration> inter = new HashSet<>();
+        List<String> names = another.stream().map(m -> m.getName().toString()).collect(Collectors.toList());
+        for (MethodDeclaration md :one) {
+            if (names.contains(md.getName().toString())) {
+                inter.add(md);
+            }
+        }
+        return inter;
+    }
 
     @Test
     public void mergeBugInfos() {
@@ -216,8 +354,9 @@ public class BugInfoUtilTest implements GitAccess {
 //            FileUtils.writeToFile(stringBuilder.toString(), bugInfo, true);
 
             //get modified changes
-            defects4JBug.getDiffInfo(repository, bugOriginalCommit, bugInduingCommit, "inducing");
-            defects4JBug.getDiffInfo(repository, bugBuggyCommit, bugFixingCommit, "fixing");
+            String fileDir = defects4JBug.getDataDir() + bug_tag;
+            BugBuilder.getDiffInfo(repository, bugOriginalCommit, bugInduingCommit, "inducing", fileDir);
+            BugBuilder.getDiffInfo(repository, bugBuggyCommit, bugFixingCommit, "fixing", fileDir);
 
             //get mappings: f2i,i2o,f2b
             gitAccess.getFileStatDiffBetweenCommits(defects4JBug.getWorkingDir(), bugFixingCommit, bugInduingCommit
@@ -271,7 +410,7 @@ public class BugInfoUtilTest implements GitAccess {
     }
 
     @Test
-    public void intersection() {
+    public void comparison() {
         String bugFixInfo_total = "src/test/resources/BugFixInfo_total.csv";
         List<List<String>> d4jinfos = FileUtils.readCsv(bugFixInfo_total, true);
         List<String> d4jinfos_Name = d4jinfos.stream().map(bug -> bug.get(2)).collect(Collectors.toList());

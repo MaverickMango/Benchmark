@@ -1,7 +1,7 @@
-Only in tmp/changesInfo/Time_2/properties/modified_classes/inducing/src: main
-diff -u -r tmp/changesInfo/Time_2/properties/modified_classes/inducing/src/test/java/org/joda/time/TestPartial_Basics.java tmp/changesInfo/Time_2/cleaned/inducing/src/test/java/org/joda/time/TestPartial_Basics.java
---- tmp/changesInfo/Time_2/properties/modified_classes/inducing/src/test/java/org/joda/time/TestPartial_Basics.java	2023-06-24 17:45:38.329662619 +0800
-+++ tmp/changesInfo/Time_2/cleaned/inducing/src/test/java/org/joda/time/TestPartial_Basics.java	2023-06-24 17:47:36.462589976 +0800
+Only in data/changesInfo//Time_2/properties/modified_classes/inducing/src: main
+diff -u -r data/changesInfo//Time_2/properties/modified_classes/inducing/src/test/java/org/joda/time/TestPartial_Basics.java data/changesInfo//Time_2/cleaned/inducing/src/test/java/org/joda/time/TestPartial_Basics.java
+--- data/changesInfo//Time_2/properties/modified_classes/inducing/src/test/java/org/joda/time/TestPartial_Basics.java	2023-08-25 14:11:55.932745288 +0800
++++ data/changesInfo//Time_2/cleaned/inducing/src/test/java/org/joda/time/TestPartial_Basics.java	2023-06-24 17:47:36.462589976 +0800
 @@ -448,6 +448,14 @@
          assertSame(test, result);
      }
@@ -17,3 +17,4 @@ diff -u -r tmp/changesInfo/Time_2/properties/modified_classes/inducing/src/test/
      //-----------------------------------------------------------------------
      public void testWithout1() {
          Partial test = createHourMinPartial();
+Only in data/changesInfo//Time_2/properties/modified_classes/inducing/src/test/java/org/joda/time: TestPartial_Constructors.java

@@ -1,7 +1,7 @@
-Only in tmp/changesInfo/Closure_114/properties/modified_classes/inducing: src
-diff -u -r tmp/changesInfo/Closure_114/properties/modified_classes/inducing/test/com/google/javascript/jscomp/NameAnalyzerTest.java tmp/changesInfo/Closure_114/cleaned/inducing/test/com/google/javascript/jscomp/NameAnalyzerTest.java
---- tmp/changesInfo/Closure_114/properties/modified_classes/inducing/test/com/google/javascript/jscomp/NameAnalyzerTest.java	2023-07-25 15:49:24.278217775 +0800
-+++ tmp/changesInfo/Closure_114/cleaned/inducing/test/com/google/javascript/jscomp/NameAnalyzerTest.java	2023-07-25 15:48:00.296000000 +0800
+Only in data/changesInfo//Closure_114/properties/modified_classes/inducing/: src
+diff -u -r data/changesInfo//Closure_114/properties/modified_classes/inducing/test/com/google/javascript/jscomp/NameAnalyzerTest.java data/changesInfo//Closure_114/cleaned/inducing/test/com/google/javascript/jscomp/NameAnalyzerTest.java
+--- data/changesInfo//Closure_114/properties/modified_classes/inducing/test/com/google/javascript/jscomp/NameAnalyzerTest.java	2023-08-25 13:30:51.179180843 +0800
++++ data/changesInfo//Closure_114/cleaned/inducing/test/com/google/javascript/jscomp/NameAnalyzerTest.java	2023-07-25 15:48:00.296000000 +0800
 @@ -27,9 +27,7 @@
    private static String kExterns =
        "var window, top;" +

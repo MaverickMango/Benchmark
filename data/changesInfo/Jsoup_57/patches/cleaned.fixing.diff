@@ -1,6 +1,7 @@
-diff -u -r tmp/changesInfo/Jsoup_57/properties/modified_classes/inducing/src/main/java/org/jsoup/nodes/Attributes.java tmp/changesInfo/Jsoup_57/cleaned/fixing/src/main/java/org/jsoup/nodes/Attributes.java
---- tmp/changesInfo/Jsoup_57/properties/modified_classes/inducing/src/main/java/org/jsoup/nodes/Attributes.java	2023-07-26 13:24:51.412190468 +0800
-+++ tmp/changesInfo/Jsoup_57/cleaned/fixing/src/main/java/org/jsoup/nodes/Attributes.java	2023-07-27 17:43:11.950854711 +0800
+Only in data/changesInfo//Jsoup_57/properties/modified_classes/inducing/src/main/java/org/jsoup/nodes: Attribute.java
+diff -u -r data/changesInfo//Jsoup_57/properties/modified_classes/inducing/src/main/java/org/jsoup/nodes/Attributes.java data/changesInfo//Jsoup_57/cleaned/fixing/src/main/java/org/jsoup/nodes/Attributes.java
+--- data/changesInfo//Jsoup_57/properties/modified_classes/inducing/src/main/java/org/jsoup/nodes/Attributes.java	2023-08-25 14:16:10.319666953 +0800
++++ data/changesInfo//Jsoup_57/cleaned/fixing/src/main/java/org/jsoup/nodes/Attributes.java	2023-07-27 17:43:11.950854711 +0800
 @@ -119,9 +119,10 @@
          Validate.notEmpty(key);
          if (attributes == null)
@@ -14,4 +15,9 @@ diff -u -r tmp/changesInfo/Jsoup_57/properties/modified_classes/inducing/src/mai
          }
      }
  
-Only in tmp/changesInfo/Jsoup_57/properties/modified_classes/inducing/src: test
+Only in data/changesInfo//Jsoup_57/properties/modified_classes/inducing/src/main/java/org/jsoup/nodes: Document.java
+Only in data/changesInfo//Jsoup_57/properties/modified_classes/inducing/src/main/java/org/jsoup/nodes: Element.java
+Only in data/changesInfo//Jsoup_57/properties/modified_classes/inducing/src/main/java/org/jsoup/nodes: Node.java
+Only in data/changesInfo//Jsoup_57/properties/modified_classes/inducing/src/main/java/org/jsoup: parser
+Only in data/changesInfo//Jsoup_57/properties/modified_classes/inducing/src/main/java/org/jsoup: select
+Only in data/changesInfo//Jsoup_57/properties/modified_classes/inducing/src: test

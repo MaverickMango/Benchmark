@@ -1,7 +1,8 @@
-Only in tmp/changesInfo/Math_75/properties/modified_classes/inducing/src: main
-diff -u -r tmp/changesInfo/Math_75/properties/modified_classes/inducing/src/test/java/org/apache/commons/math/stat/FrequencyTest.java tmp/changesInfo/Math_75/cleaned/inducing/src/test/java/org/apache/commons/math/stat/FrequencyTest.java
---- tmp/changesInfo/Math_75/properties/modified_classes/inducing/src/test/java/org/apache/commons/math/stat/FrequencyTest.java	2023-06-12 11:40:47.389773003 +0800
-+++ tmp/changesInfo/Math_75/cleaned/inducing/src/test/java/org/apache/commons/math/stat/FrequencyTest.java	2023-06-24 15:15:00.151000000 +0800
+Only in data/changesInfo//Math_75/properties/modified_classes/inducing/src: java
+Only in data/changesInfo//Math_75/properties/modified_classes/inducing/src: main
+diff -u -r data/changesInfo//Math_75/properties/modified_classes/inducing/src/test/java/org/apache/commons/math/stat/FrequencyTest.java data/changesInfo//Math_75/cleaned/inducing/src/test/java/org/apache/commons/math/stat/FrequencyTest.java
+--- data/changesInfo//Math_75/properties/modified_classes/inducing/src/test/java/org/apache/commons/math/stat/FrequencyTest.java	2023-06-12 11:40:47.389773003 +0800
++++ data/changesInfo//Math_75/cleaned/inducing/src/test/java/org/apache/commons/math/stat/FrequencyTest.java	2023-06-24 15:15:00.151000000 +0800
 @@ -144,6 +144,8 @@
          assertEquals("one pct",0.25,f.getPct(1),tolerance);
          assertEquals("two pct",0.25,f.getPct(Long.valueOf(2)),tolerance);

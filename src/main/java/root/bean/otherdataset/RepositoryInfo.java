@@ -1,6 +1,8 @@
-package root.bean;
+package root.bean.otherdataset;
 
-public class RepositoryInfo extends AbstractBeanClazz{
+import root.bean.AbstractBeanClazz;
+
+public class RepositoryInfo extends AbstractBeanClazz {
     /*
       "name": "FasterXML-jackson-databind",
       "url": "https://github.com/FasterXML/jackson-databind",

@@ -1,15 +1,25 @@
-diff -u -r tmp/changesInfo/Closure_17/properties/modified_classes/inducing/src/com/google/javascript/jscomp/TypedScopeCreator.java tmp/changesInfo/Closure_17/cleaned/fixing/src/com/google/javascript/jscomp/TypedScopeCreator.java
---- tmp/changesInfo/Closure_17/properties/modified_classes/inducing/src/com/google/javascript/jscomp/TypedScopeCreator.java	2023-06-12 11:40:18.423088937 +0800
-+++ tmp/changesInfo/Closure_17/cleaned/fixing/src/com/google/javascript/jscomp/TypedScopeCreator.java	2023-06-20 19:43:29.783033365 +0800
-@@ -1144,6 +1144,10 @@
+diff -u -r data/changesInfo//Closure_17/properties/modified_classes/inducing/src/com/google/javascript/jscomp/TypedScopeCreator.java data/changesInfo//Closure_17/cleaned/fixing/src/com/google/javascript/jscomp/TypedScopeCreator.java
+--- data/changesInfo//Closure_17/properties/modified_classes/inducing/src/com/google/javascript/jscomp/TypedScopeCreator.java	2023-08-25 13:06:02.810049285 +0800
++++ data/changesInfo//Closure_17/cleaned/fixing/src/com/google/javascript/jscomp/TypedScopeCreator.java	2023-07-31 22:23:58.627493438 +0800
+@@ -1143,10 +1143,16 @@
+         } else if (info.isConstructor() || info.isInterface()) {
            return createFunctionTypeFromNodes(
                rValue, lValue.getQualifiedName(), info, lValue);
-         } else if (info.isConstant() && rValue != null
-+            && rValue.getJSDocInfo() != null
-+            && rValue.getJSDocInfo().hasType()) {
-+          return rValue.getJSDocInfo().getType().evaluate(scope, typeRegistry);
-+        } else if (info.isConstant() && rValue != null
-             && rValue.getJSType() != null
-             && !rValue.getJSType().isUnknownType()) {
-           return rValue.getJSType();
-Only in tmp/changesInfo/Closure_17/properties/modified_classes/inducing: test
+-        } else if (info.isConstant() && rValue != null
+-            && rValue.getJSType() != null
+-            && !rValue.getJSType().isUnknownType()) {
+-          return rValue.getJSType();
++//        } else if (info.isConstant() && rValue != null
++//            && rValue.getJSDocInfo() != null
++//            && rValue.getJSDocInfo().hasType()) {
++//          return rValue.getJSDocInfo().getType().evaluate(scope, typeRegistry);
++        } else if (info.isConstant() && rValue != null) {
++          if (rValue.getJSDocInfo() != null && rValue.getJSDocInfo().hasType()) {
++            return getDeclaredTypeInAnnotation(sourceName, rValue, rValue.getJSDocInfo());
++          } else if (rValue.getJSType() != null && !rValue.getJSType().isUnknownType()) {
++            return rValue.getJSType();
++          }
+         }
+       }
+ 
+Only in data/changesInfo//Closure_17/properties/modified_classes/inducing/: test

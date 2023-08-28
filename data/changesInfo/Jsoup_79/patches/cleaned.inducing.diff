@@ -1,7 +1,10 @@
-Only in tmp/changesInfo/Jsoup_79/properties/modified_classes/inducing/src: main
-diff -u -r tmp/changesInfo/Jsoup_79/properties/modified_classes/inducing/src/test/java/org/jsoup/nodes/TextNodeTest.java tmp/changesInfo/Jsoup_79/cleaned/inducing/src/test/java/org/jsoup/nodes/TextNodeTest.java
---- tmp/changesInfo/Jsoup_79/properties/modified_classes/inducing/src/test/java/org/jsoup/nodes/TextNodeTest.java	2023-07-27 17:59:45.338340701 +0800
-+++ tmp/changesInfo/Jsoup_79/cleaned/inducing/src/test/java/org/jsoup/nodes/TextNodeTest.java	2023-07-27 17:59:34.558000000 +0800
+Only in data/changesInfo//Jsoup_79/properties/modified_classes/inducing/src: main
+Only in data/changesInfo//Jsoup_79/properties/modified_classes/inducing/src/test/java/org/jsoup/nodes: DocumentTest.java
+Only in data/changesInfo//Jsoup_79/properties/modified_classes/inducing/src/test/java/org/jsoup/nodes: DocumentTypeTest.java
+Only in data/changesInfo//Jsoup_79/properties/modified_classes/inducing/src/test/java/org/jsoup/nodes: ElementTest.java
+diff -u -r data/changesInfo//Jsoup_79/properties/modified_classes/inducing/src/test/java/org/jsoup/nodes/TextNodeTest.java data/changesInfo//Jsoup_79/cleaned/inducing/src/test/java/org/jsoup/nodes/TextNodeTest.java
+--- data/changesInfo//Jsoup_79/properties/modified_classes/inducing/src/test/java/org/jsoup/nodes/TextNodeTest.java	2023-08-25 14:16:17.763649050 +0800
++++ data/changesInfo//Jsoup_79/cleaned/inducing/src/test/java/org/jsoup/nodes/TextNodeTest.java	2023-07-27 17:59:34.558000000 +0800
 @@ -4,6 +4,7 @@
  import org.jsoup.TextUtil;
  import org.junit.Test;

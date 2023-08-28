@@ -1,6 +1,6 @@
-diff -u -r tmp/changesInfo/Math_42/properties/modified_classes/inducing/src/main/java/org/apache/commons/math/optimization/linear/SimplexTableau.java tmp/changesInfo/Math_42/cleaned/fixing/src/main/java/org/apache/commons/math/optimization/linear/SimplexTableau.java
---- tmp/changesInfo/Math_42/properties/modified_classes/inducing/src/main/java/org/apache/commons/math/optimization/linear/SimplexTableau.java	2023-06-12 11:40:45.037876655 +0800
-+++ tmp/changesInfo/Math_42/cleaned/fixing/src/main/java/org/apache/commons/math/optimization/linear/SimplexTableau.java	2023-06-20 22:34:38.098610599 +0800
+diff -u -r data/changesInfo//Math_42/properties/modified_classes/inducing/src/main/java/org/apache/commons/math/optimization/linear/SimplexTableau.java data/changesInfo//Math_42/cleaned/fixing/src/main/java/org/apache/commons/math/optimization/linear/SimplexTableau.java
+--- data/changesInfo//Math_42/properties/modified_classes/inducing/src/main/java/org/apache/commons/math/optimization/linear/SimplexTableau.java	2023-08-25 13:55:30.335078986 +0800
++++ data/changesInfo//Math_42/cleaned/fixing/src/main/java/org/apache/commons/math/optimization/linear/SimplexTableau.java	2023-08-02 21:23:39.773682371 +0800
 @@ -343,10 +343,12 @@
        Set<Integer> basicRows = new HashSet<Integer>();
        for (int i = 0; i < coefficients.length; i++) {
@@ -17,4 +17,4 @@ diff -u -r tmp/changesInfo/Math_42/properties/modified_classes/inducing/src/main
            } else {
                basicRows.add(basicRow);
                coefficients[i] =
-Only in tmp/changesInfo/Math_42/properties/modified_classes/inducing/src: test
+Only in data/changesInfo//Math_42/properties/modified_classes/inducing/src: test

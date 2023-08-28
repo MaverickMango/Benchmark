@@ -1,6 +1,8 @@
-diff -u -r tmp/changesInfo/Closure_33/properties/modified_classes/inducing/src/com/google/javascript/rhino/jstype/PrototypeObjectType.java tmp/changesInfo/Closure_33/cleaned/fixing/src/com/google/javascript/rhino/jstype/PrototypeObjectType.java
---- tmp/changesInfo/Closure_33/properties/modified_classes/inducing/src/com/google/javascript/rhino/jstype/PrototypeObjectType.java	2023-07-24 21:13:40.353768664 +0800
-+++ tmp/changesInfo/Closure_33/cleaned/fixing/src/com/google/javascript/rhino/jstype/PrototypeObjectType.java	2023-07-24 21:11:32.632080395 +0800
+Only in data/changesInfo//Closure_33/properties/modified_classes/inducing/src/com/google/javascript: jscomp
+Only in data/changesInfo//Closure_33/properties/modified_classes/inducing/src/com/google/javascript/rhino/jstype: JSType.java
+diff -u -r data/changesInfo//Closure_33/properties/modified_classes/inducing/src/com/google/javascript/rhino/jstype/PrototypeObjectType.java data/changesInfo//Closure_33/cleaned/fixing/src/com/google/javascript/rhino/jstype/PrototypeObjectType.java
+--- data/changesInfo//Closure_33/properties/modified_classes/inducing/src/com/google/javascript/rhino/jstype/PrototypeObjectType.java	2023-08-25 13:09:41.862863342 +0800
++++ data/changesInfo//Closure_33/cleaned/fixing/src/com/google/javascript/rhino/jstype/PrototypeObjectType.java	2023-07-24 21:11:32.632080395 +0800
 @@ -553,6 +553,9 @@
  
    @Override
@@ -11,4 +13,6 @@ diff -u -r tmp/changesInfo/Closure_33/properties/modified_classes/inducing/src/c
      // Handle the case where the constraint object is a record type.
      //
      // param constraintObj {{prop: (number|undefined)}}
-Only in tmp/changesInfo/Closure_33/properties/modified_classes/inducing: test
+Only in data/changesInfo//Closure_33/properties/modified_classes/inducing/src/com/google/javascript/rhino/jstype: ProxyObjectType.java
+Only in data/changesInfo//Closure_33/properties/modified_classes/inducing/src/com/google/javascript/rhino/jstype: UnionType.java
+Only in data/changesInfo//Closure_33/properties/modified_classes/inducing/: test

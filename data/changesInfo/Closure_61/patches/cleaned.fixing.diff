@@ -1,6 +1,6 @@
-diff -u -r tmp/changesInfo/Closure_61/properties/modified_classes/inducing/src/com/google/javascript/jscomp/NodeUtil.java tmp/changesInfo/Closure_61/cleaned/fixing/src/com/google/javascript/jscomp/NodeUtil.java
---- tmp/changesInfo/Closure_61/properties/modified_classes/inducing/src/com/google/javascript/jscomp/NodeUtil.java	2023-08-02 15:48:40.790194849 +0800
-+++ tmp/changesInfo/Closure_61/cleaned/fixing/src/com/google/javascript/jscomp/NodeUtil.java	2023-06-14 16:06:54.071844010 +0800
+diff -u -r data/changesInfo//Closure_61/properties/modified_classes/inducing/src/com/google/javascript/jscomp/NodeUtil.java data/changesInfo//Closure_61/cleaned/fixing/src/com/google/javascript/jscomp/NodeUtil.java
+--- data/changesInfo//Closure_61/properties/modified_classes/inducing/src/com/google/javascript/jscomp/NodeUtil.java	2023-08-25 13:13:29.915665402 +0800
++++ data/changesInfo//Closure_61/cleaned/fixing/src/com/google/javascript/jscomp/NodeUtil.java	2023-06-14 16:06:54.071844010 +0800
 @@ -954,6 +954,14 @@
          return false;
        }
@@ -16,4 +16,4 @@ diff -u -r tmp/changesInfo/Closure_61/properties/modified_classes/inducing/src/c
        if (compiler != null && !compiler.hasRegExpGlobalReferences()) {
          if (nameNode.getFirstChild().getType() == Token.REGEXP
              && REGEXP_METHODS.contains(nameNode.getLastChild().getString())) {
-Only in tmp/changesInfo/Closure_61/properties/modified_classes/inducing: test
+Only in data/changesInfo//Closure_61/properties/modified_classes/inducing/: test

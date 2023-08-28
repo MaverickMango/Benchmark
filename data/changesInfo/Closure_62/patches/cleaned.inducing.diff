@@ -1,7 +1,7 @@
-Only in tmp/changesInfo/Closure_62/properties/modified_classes/inducing: src
-diff -u -r tmp/changesInfo/Closure_62/properties/modified_classes/inducing/test/com/google/javascript/jscomp/LightweightMessageFormatterTest.java tmp/changesInfo/Closure_62/cleaned/inducing/test/com/google/javascript/jscomp/LightweightMessageFormatterTest.java
---- tmp/changesInfo/Closure_62/properties/modified_classes/inducing/test/com/google/javascript/jscomp/LightweightMessageFormatterTest.java	2023-06-20 20:24:57.753476626 +0800
-+++ tmp/changesInfo/Closure_62/cleaned/inducing/test/com/google/javascript/jscomp/LightweightMessageFormatterTest.java	2023-06-20 20:26:27.430525505 +0800
+Only in data/changesInfo//Closure_62/properties/modified_classes/inducing/: src
+diff -u -r data/changesInfo//Closure_62/properties/modified_classes/inducing/test/com/google/javascript/jscomp/LightweightMessageFormatterTest.java data/changesInfo//Closure_62/cleaned/inducing/test/com/google/javascript/jscomp/LightweightMessageFormatterTest.java
+--- data/changesInfo//Closure_62/properties/modified_classes/inducing/test/com/google/javascript/jscomp/LightweightMessageFormatterTest.java	2023-08-25 13:14:50.045316915 +0800
++++ data/changesInfo//Closure_62/cleaned/inducing/test/com/google/javascript/jscomp/LightweightMessageFormatterTest.java	2023-06-20 20:26:27.430525505 +0800
 @@ -84,6 +84,24 @@
          "\t\t    ^\n", formatter.formatError(error));
    }

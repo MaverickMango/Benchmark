@@ -3,9 +3,10 @@ package root.attempt;
 import org.eclipse.jgit.revwalk.RevCommit;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import root.bean.BugFixCommit;
-import root.benchmarks.Defects4JBug;
+import root.bean.otherdataset.BugFixCommit;
+import root.bean.benchmarks.Defects4JBug;
 import org.eclipse.jgit.lib.Repository;
+import root.util.BugBuilder;
 import root.util.ConfigurationProperties;
 import root.util.FileUtils;
 import root.util.GitAccess;
@@ -55,7 +56,7 @@ public class Defects4jBugsMain implements GitAccess {
      *
      * @param args [0]:failing_tests store directory
      */
-    public static void main(String[] args) {
+    public static void findingInducing(String[] args) {
         String filePath = args[1];//"src/test/resources/BugFixInfo.csv"
         List<List<String>> d4jinfos = FileUtils.readCsv(filePath, true);
         List<String> succeed = new ArrayList<>();
@@ -241,10 +242,10 @@ public class Defects4jBugsMain implements GitAccess {
                     continue;
                 Defects4JBug defects4JBug = new Defects4JBug(proj, id, "data/bugs/" + bugName, bug.get(3), bug.get(4), bug.get(5), bug.get(6));
                 Repository repo = defects4JBug.getGitRepository("b");
-                boolean res = defects4JBug.switchAndTag(repo, defects4JBug.getInducingCommit(), "inducing", "CI_INDUCING_COMPILABLE");
-                if (!res) {
-                    failed.add(bugName);
-                }
+//                boolean res = defects4JBug.switchAndTag(repo, defects4JBug.getInducingCommit(), "inducing", "CI_INDUCING_COMPILABLE");
+//                if (!res) {
+//                    failed.add(bugName);
+//                }
             }
         }
         System.out.println(failed.size());
@@ -271,8 +272,8 @@ public class Defects4jBugsMain implements GitAccess {
         }
     }
 
-    public static void checkoutAndTest(String[] args) {
-        String filePath = "src/test/resources/BugFixInfo.csv";
+    public static void main(String[] args) {
+        String filePath = "src/test/resources/BugFixInfo_total.csv";
         List<List<String>> d4jinfos = FileUtils.readCsv(filePath, true);
         Set<String> projs = d4jinfos.stream().map(o -> o.get(2).split("_")[0]).collect(Collectors.toSet());
         List<String> failed = new ArrayList<>();
@@ -282,11 +283,14 @@ public class Defects4jBugsMain implements GitAccess {
             for (List<String> bug : d4jinfos.stream().filter(o -> o.get(2).split("_")[0].equals(proj)).collect(Collectors.toList())) {
                 String bugName = bug.get(2);
                 String id = bugName.split("_")[1];
-                if (proj.equals("Closure") && Integer.parseInt(id) < 17)
-                    continue;
                 String bugInduingCommit = bug.get(5);
                 String bugOriginal = bug.get(6);
-                Defects4JBug defects4JBug = new Defects4JBug(proj, id, "data/bugs/" + bugName);
+                String bug_tag = proj + "_" + id;
+                String inducingDir = "data/changesInfo/" + bug_tag + "/cleaned/inducing";
+                if (FileUtils.notExists(inducingDir)) {
+                    continue;
+                }
+                Defects4JBug defects4JBug = new Defects4JBug(proj, id, "../bugs/" + bugName);
                 Repository repo = defects4JBug.getGitRepository("b");
                 boolean res = false;
                 res = defects4JBug.switchAndTest(repo, bugInduingCommit, "inducing");
@@ -360,8 +364,9 @@ public class Defects4jBugsMain implements GitAccess {
             Defects4JBug defects4JBug = new Defects4JBug(proj, id, workingDir);
             Repository repository = defects4JBug.getGitRepository("b");
             String bugFixingCommit = bug.get(3);
-            defects4JBug.getDiffInfo(repository, bug.get(6), bugInduingCommit, "inducing");
-            defects4JBug.getDiffInfo(repository, bug.get(4), bugFixingCommit, "fixing");
+            String fileDir = defects4JBug.getDataDir() + proj + "_" + id;
+            BugBuilder.getDiffInfo(repository, bug.get(6), bugInduingCommit, "inducing", fileDir);
+            BugBuilder.getDiffInfo(repository, bug.get(4), bugFixingCommit, "fixing", fileDir);
         }
 
     }

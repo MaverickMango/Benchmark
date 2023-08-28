@@ -1,6 +1,7 @@
-diff -u -r tmp/changesInfo/Jsoup_43/properties/modified_classes/inducing/src/main/java/org/jsoup/nodes/Element.java tmp/changesInfo/Jsoup_43/cleaned/fixing/src/main/java/org/jsoup/nodes/Element.java
---- tmp/changesInfo/Jsoup_43/properties/modified_classes/inducing/src/main/java/org/jsoup/nodes/Element.java	2023-07-26 13:24:49.900172615 +0800
-+++ tmp/changesInfo/Jsoup_43/cleaned/fixing/src/main/java/org/jsoup/nodes/Element.java	2023-07-27 17:37:13.462158974 +0800
+Only in data/changesInfo//Jsoup_43/properties/modified_classes/inducing/src/main/java/org/jsoup/nodes: Attributes.java
+diff -u -r data/changesInfo//Jsoup_43/properties/modified_classes/inducing/src/main/java/org/jsoup/nodes/Element.java data/changesInfo//Jsoup_43/cleaned/fixing/src/main/java/org/jsoup/nodes/Element.java
+--- data/changesInfo//Jsoup_43/properties/modified_classes/inducing/src/main/java/org/jsoup/nodes/Element.java	2023-08-25 14:16:02.691685982 +0800
++++ data/changesInfo//Jsoup_43/cleaned/fixing/src/main/java/org/jsoup/nodes/Element.java	2023-07-27 17:37:13.462158974 +0800
 @@ -568,7 +568,7 @@
  
          for (int i = 0; i < elements.size(); i++) {
@@ -10,4 +11,6 @@ diff -u -r tmp/changesInfo/Jsoup_43/properties/modified_classes/inducing/src/mai
                  return i;
          }
          return null;
-Only in tmp/changesInfo/Jsoup_43/properties/modified_classes/inducing/src: test
+Only in data/changesInfo//Jsoup_43/properties/modified_classes/inducing/src/main/java/org/jsoup/nodes: Node.java
+Only in data/changesInfo//Jsoup_43/properties/modified_classes/inducing/src/main/java/org/jsoup/nodes: TextNode.java
+Only in data/changesInfo//Jsoup_43/properties/modified_classes/inducing/src: test

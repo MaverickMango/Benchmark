@@ -1,6 +1,8 @@
-diff -u -r tmp/changesInfo/Mockito_38/properties/modified_classes/inducing/src/org/mockito/internal/verification/argumentmatching/ArgumentMatchingTool.java tmp/changesInfo/Mockito_38/cleaned/fixing/src/org/mockito/internal/verification/argumentmatching/ArgumentMatchingTool.java
---- tmp/changesInfo/Mockito_38/properties/modified_classes/inducing/src/org/mockito/internal/verification/argumentmatching/ArgumentMatchingTool.java	2023-07-24 23:32:14.727268706 +0800
-+++ tmp/changesInfo/Mockito_38/cleaned/fixing/src/org/mockito/internal/verification/argumentmatching/ArgumentMatchingTool.java	2023-07-24 23:42:35.363719754 +0800
+Only in data/changesInfo//Mockito_38/properties/modified_classes/inducing/src/org/mockito/internal: matchers
+Only in data/changesInfo//Mockito_38/properties/modified_classes/inducing/src/org/mockito/internal: reporting
+diff -u -r data/changesInfo//Mockito_38/properties/modified_classes/inducing/src/org/mockito/internal/verification/argumentmatching/ArgumentMatchingTool.java data/changesInfo//Mockito_38/cleaned/fixing/src/org/mockito/internal/verification/argumentmatching/ArgumentMatchingTool.java
+--- data/changesInfo//Mockito_38/properties/modified_classes/inducing/src/org/mockito/internal/verification/argumentmatching/ArgumentMatchingTool.java	2023-08-25 14:14:46.231917139 +0800
++++ data/changesInfo//Mockito_38/cleaned/fixing/src/org/mockito/internal/verification/argumentmatching/ArgumentMatchingTool.java	2023-07-24 23:42:35.363719754 +0800
 @@ -41,6 +41,6 @@
      }
  
@@ -9,4 +11,5 @@ diff -u -r tmp/changesInfo/Mockito_38/properties/modified_classes/inducing/src/o
 +        return StringDescription.toString(m).equals(arg == null? "null" : arg.toString());
      }
  }
-Only in tmp/changesInfo/Mockito_38/properties/modified_classes/inducing: test
+Only in data/changesInfo//Mockito_38/properties/modified_classes/inducing/src/org/mockito/internal/verification: checkers
+Only in data/changesInfo//Mockito_38/properties/modified_classes/inducing/: test

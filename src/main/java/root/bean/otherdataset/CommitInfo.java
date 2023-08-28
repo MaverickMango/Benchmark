@@ -1,6 +1,8 @@
-package root.bean;
+package root.bean.otherdataset;
 
-public class CommitInfo extends AbstractBeanClazz{
+import root.bean.AbstractBeanClazz;
+
+public class CommitInfo extends AbstractBeanClazz {
     /*
         "url": "http://github.com/FasterXML/jackson-databind/commit/d44600d3750e5dba9fac68aee7248ed2a80a2225",
         "sha": "d44600d3750e5dba9fac68aee7248ed2a80a2225",

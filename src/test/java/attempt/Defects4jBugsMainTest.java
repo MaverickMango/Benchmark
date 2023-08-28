@@ -1,21 +1,12 @@
 package attempt;
 
-import org.eclipse.jdt.core.dom.ASTNode;
-import org.eclipse.jdt.core.dom.ImportDeclaration;
-import org.eclipse.jdt.core.dom.MethodDeclaration;
 import org.eclipse.jgit.lib.Constants;
 import org.eclipse.jgit.lib.Ref;
-import org.eclipse.jgit.revwalk.RevTag;
-import org.eclipse.jgit.revwalk.RevWalk;
-import root.analysis.ASTManipulator;
 import root.analysis.StringFilter;
-import root.bean.BugFixCommit;
-import root.benchmarks.Defects4JBug;
+import root.bean.otherdataset.BugFixCommit;
+import root.bean.benchmarks.Defects4JBug;
 import org.eclipse.jgit.lib.Repository;
-import org.eclipse.jgit.revwalk.RevCommit;
 import org.junit.Ignore;
-import org.junit.Test;
-import root.util.CommandSummary;
 import root.util.ConfigurationProperties;
 import root.util.FileUtils;
 import root.util.GitAccess;

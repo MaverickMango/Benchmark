@@ -1,7 +1,10 @@
-Only in tmp/changesInfo/Closure_31/properties/modified_classes/inducing: javadoc
-diff -u -r tmp/changesInfo/Closure_31/properties/modified_classes/inducing/src/com/google/javascript/jscomp/Compiler.java tmp/changesInfo/Closure_31/cleaned/fixing/src/com/google/javascript/jscomp/Compiler.java
---- tmp/changesInfo/Closure_31/properties/modified_classes/inducing/src/com/google/javascript/jscomp/Compiler.java	2023-06-12 11:40:20.011014541 +0800
-+++ tmp/changesInfo/Closure_31/cleaned/fixing/src/com/google/javascript/jscomp/Compiler.java	2023-06-20 20:06:45.887488690 +0800
+Only in data/changesInfo//Closure_31/properties/modified_classes/inducing/: javadoc
+Only in data/changesInfo//Closure_31/properties/modified_classes/inducing/src/com/google/javascript/jscomp: AbstractCommandLineRunner.java
+Only in data/changesInfo//Closure_31/properties/modified_classes/inducing/src/com/google/javascript/jscomp: CompilationLevel.java
+Only in data/changesInfo//Closure_31/properties/modified_classes/inducing/src/com/google/javascript/jscomp: CompilerInput.java
+diff -u -r data/changesInfo//Closure_31/properties/modified_classes/inducing/src/com/google/javascript/jscomp/Compiler.java data/changesInfo//Closure_31/cleaned/fixing/src/com/google/javascript/jscomp/Compiler.java
+--- data/changesInfo//Closure_31/properties/modified_classes/inducing/src/com/google/javascript/jscomp/Compiler.java	2023-08-25 13:08:15.508994163 +0800
++++ data/changesInfo//Closure_31/cleaned/fixing/src/com/google/javascript/jscomp/Compiler.java	2023-06-20 20:06:45.887488690 +0800
 @@ -1278,7 +1278,6 @@
  
        // Check if the sources need to be re-ordered.
@@ -10,4 +13,5 @@ diff -u -r tmp/changesInfo/Closure_31/properties/modified_classes/inducing/src/c
            options.closurePass) {
          for (CompilerInput input : inputs) {
            // Forward-declare all the provided types, so that they
-Only in tmp/changesInfo/Closure_31/properties/modified_classes/inducing: test
+Only in data/changesInfo//Closure_31/properties/modified_classes/inducing/src/com/google/javascript/jscomp: CompilerOptions.java
+Only in data/changesInfo//Closure_31/properties/modified_classes/inducing/: test

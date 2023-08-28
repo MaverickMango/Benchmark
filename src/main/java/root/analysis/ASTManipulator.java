@@ -1,9 +1,7 @@
 package root.analysis;
 
-import org.eclipse.core.runtime.CoreException;
 import org.eclipse.jdt.core.dom.*;
 import org.eclipse.jdt.core.dom.rewrite.ASTRewrite;
-import org.eclipse.jdt.core.dom.rewrite.ImportRewrite;
 import org.eclipse.jdt.core.dom.rewrite.ListRewrite;
 import org.eclipse.jface.text.BadLocationException;
 import org.eclipse.jface.text.Document;
@@ -14,9 +12,7 @@ import root.util.FileUtils;
 import root.util.GitAccess;
 
 import java.io.File;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
+import java.util.*;
 import java.util.stream.Collectors;
 
 public class ASTManipulator implements GitAccess {
@@ -35,6 +31,78 @@ public class ASTManipulator implements GitAccess {
                 parser = ASTParser.newParser(AST.getJLSLatest());
         }
         return parser;
+    }
+
+    public Set<MethodDeclaration> extractMethodByPos(char[] fileSource, Set<Integer> positions, boolean isLineNumber) {
+        parser.setSource(fileSource);
+        parser.setKind(ASTParser.K_COMPILATION_UNIT);
+        CompilationUnit compilationUnit = (CompilationUnit) parser.createAST(null);
+        List<?> types = compilationUnit.types();
+        Set<MethodDeclaration> methodDeclarations = new HashSet<>();
+        for (Object obj :types) {
+            TypeDeclaration typeDeclaration = (TypeDeclaration) obj;
+            List list = typeDeclaration.bodyDeclarations();
+            recursiveExtract(methodDeclarations, compilationUnit, positions, isLineNumber, list);
+        }
+        return methodDeclarations;
+    }
+
+    private void recursiveExtract(Set<MethodDeclaration> methodDeclarations, CompilationUnit compilationUnit, Set<Integer> positions, boolean isLineNumber, List list) {
+        for (Object dcls :list) {
+            if (dcls instanceof MethodDeclaration) {
+                MethodDeclaration methodDeclaration = (MethodDeclaration) dcls;
+                if (isThisMethodDecl(compilationUnit, methodDeclaration, positions, isLineNumber))
+                    methodDeclarations.add(methodDeclaration);
+            }
+            if (dcls instanceof TypeDeclaration) {
+                TypeDeclaration typeDeclaration1 = (TypeDeclaration) dcls;
+                recursiveExtract(methodDeclarations, compilationUnit, positions, isLineNumber, typeDeclaration1.bodyDeclarations());
+            }
+        }
+    }
+
+    private boolean isThisMethodDecl(CompilationUnit compilationUnit, MethodDeclaration methodDeclaration, Set<Integer> positions, boolean isLineNumber) {
+        int startPosition = methodDeclaration.getStartPosition();
+        int endPosition = methodDeclaration.getLength() + startPosition;
+//                  ASTNode node = NodeFinder.perform(compilationUnit, startPosition, methodDeclaration.getLength());
+        if (isLineNumber) {
+            int start = compilationUnit.getLineNumber(startPosition);
+            int end = compilationUnit.getLineNumber(endPosition);
+            if (inThisFunction(positions, start, end)) {
+                return true;
+            }
+        } else if (inThisFunction(positions,
+                startPosition, endPosition)) {
+            return true;
+        }
+        return false;
+    }
+
+    private boolean inThisFunction(Set<Integer> pos, int start, int end) {
+        if (pos == null || pos.isEmpty())
+            return false;
+        List<Integer> positions = pos.stream().collect(Collectors.toList());
+        positions = positions.stream().sorted().collect(Collectors.toList());
+        if (positions.get(0) >= start && positions.get(0) <= end)
+            return true;
+        if (positions.get(positions.size() - 1) >= start && positions.get(positions.size() - 1) <= end)
+            return true;
+        int idx = positions.size() / 2;
+        while(idx > 0 && idx < positions.size() - 1) {
+            int last = positions.get(idx - 1);
+            int mid = positions.get(idx);
+            int next = positions.get(idx + 1);
+            if (mid >= start && mid <= end) {
+                return true;
+            } else if (last < start && next > end) {
+                return false;
+            } else if (mid > end) {
+                idx --;
+            } else {
+                idx ++;
+            }
+        }
+        return false;
     }
 
     public MethodDeclaration extractTest(char[] fileSource, String methodName
@@ -127,5 +195,10 @@ public class ASTManipulator implements GitAccess {
         }
         String editedFile = document.get().toString();
         return editedFile;
+    }
+
+    public String getFunctionSig(MethodDeclaration methodDeclaration) {
+        String sig = methodDeclaration.getName().toString();
+        return sig;
     }
 }

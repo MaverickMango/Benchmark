@@ -27,7 +27,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-//import odk.lang.FastMath;
+import odk.lang.FastMath;
 
 import org.apache.commons.math3.linear.Array2DRowRealMatrix;
 import org.apache.commons.math3.linear.MatrixUtils;
@@ -461,7 +461,7 @@ class SimplexTableau implements Serializable {
         for (int i = 0; i < getWidth(); i++) {
             double result = tableau.getEntry(minuendRow, i) - tableau.getEntry(subtrahendRow, i) * multiple;
             // cut-off values smaller than the CUTOFF_THRESHOLD, otherwise may lead to numerical instabilities
-            if (Math.abs(result) < CUTOFF_THRESHOLD) {
+            if (FastMath.abs(result) < CUTOFF_THRESHOLD) {
                 result = 0.0;
             }
             tableau.setEntry(minuendRow, i, result);

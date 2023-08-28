@@ -1,1 +1,17 @@
-diff: tmp/changesInfo/Math_89/properties/modified_classes/inducing: No such file or directory
+diff -u -r data/changesInfo//Math_89/properties/modified_classes/inducing/src/java/org/apache/commons/math/stat/Frequency.java data/changesInfo//Math_89/cleaned/fixing/src/java/org/apache/commons/math/stat/Frequency.java
+--- data/changesInfo//Math_89/properties/modified_classes/inducing/src/java/org/apache/commons/math/stat/Frequency.java	2023-08-25 14:11:21.036979036 +0800
++++ data/changesInfo//Math_89/cleaned/fixing/src/java/org/apache/commons/math/stat/Frequency.java	2023-06-24 16:37:12.227942507 +0800
+@@ -107,7 +107,11 @@
+      */
+     @Deprecated
+     public void addValue(Object v) {
+-        addValue((Comparable<?>) v);
++        if (v instanceof Comparable<?>){
++            addValue((Comparable<?>) v);
++        } else {
++            throw new IllegalArgumentException("Object must implement Comparable");
++        }
+     }
+     
+     /**
+Only in data/changesInfo//Math_89/properties/modified_classes/inducing/src: test

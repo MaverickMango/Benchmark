@@ -1,1 +1,29 @@
-diff: tmp/changesInfo/Closure_92/properties/modified_classes/inducing: No such file or directory
+Only in data/changesInfo//Closure_92/properties/modified_classes/inducing/: src
+Only in data/changesInfo//Closure_92/properties/modified_classes/inducing/test/com/google/javascript/jscomp: DisambiguatePropertiesTest.java
+Only in data/changesInfo//Closure_92/properties/modified_classes/inducing/test/com/google/javascript/jscomp: LooseTypeCheckTest.java
+diff -u -r data/changesInfo//Closure_92/properties/modified_classes/inducing/test/com/google/javascript/jscomp/ProcessClosurePrimitivesTest.java data/changesInfo//Closure_92/cleaned/inducing/test/com/google/javascript/jscomp/ProcessClosurePrimitivesTest.java
+--- data/changesInfo//Closure_92/properties/modified_classes/inducing/test/com/google/javascript/jscomp/ProcessClosurePrimitivesTest.java	2023-08-25 13:25:11.853198461 +0800
++++ data/changesInfo//Closure_92/cleaned/inducing/test/com/google/javascript/jscomp/ProcessClosurePrimitivesTest.java	2023-06-13 15:31:44.691000000 +0800
+@@ -771,6 +771,21 @@
+         });
+   }
+ 
++  public void testProvideInIndependentModules4() {
++    // Regression test for bug 261:
++    // http://code.google.com/p/closure-compiler/issues/detail?id=261
++    test(
++        createModuleStar(
++            "goog.provide('apps');",
++            "goog.provide('apps.foo.bar.B');",
++            "goog.provide('apps.foo.bar.C');"),
++        new String[] {
++            "var apps = {};apps.foo = {};apps.foo.bar = {}",
++            "apps.foo.bar.B = {};",
++            "apps.foo.bar.C = {};",
++        });
++  }
++
+   public void testRequireOfBaseGoog() {
+     test("goog.require('goog');",
+          "", MISSING_PROVIDE_ERROR);
+Only in data/changesInfo//Closure_92/properties/modified_classes/inducing/test/com/google/javascript/jscomp: TypeCheckTest.java

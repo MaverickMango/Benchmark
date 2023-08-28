@@ -970,10 +970,6 @@ public class PeepholeFoldConstantsTest extends CompilerTestCase {
     }
   }
 
-  public void testIEString() {
-    testSame("!+'\\v1'");
-  }
-
   public void testCommutativeOperators() {
     List<String> operators =
         ImmutableList.of(

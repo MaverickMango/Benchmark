@@ -1,2 +1,21 @@
-Only in tmp/changesInfo/Time_11/cleaned/fixing: JodaTime
-Only in tmp/changesInfo/Time_11/properties/modified_classes/inducing: src
+Only in data/changesInfo//Time_11/properties/modified_classes/inducing/JodaTime/src/main/java/org/joda/time/tz: DateTimeZoneBuilder.java
+diff -u -r data/changesInfo//Time_11/properties/modified_classes/inducing/JodaTime/src/main/java/org/joda/time/tz/ZoneInfoCompiler.java data/changesInfo//Time_11/cleaned/fixing/JodaTime/src/main/java/org/joda/time/tz/ZoneInfoCompiler.java
+--- data/changesInfo//Time_11/properties/modified_classes/inducing/JodaTime/src/main/java/org/joda/time/tz/ZoneInfoCompiler.java	2023-08-25 14:12:32.712524562 +0800
++++ data/changesInfo//Time_11/cleaned/fixing/JodaTime/src/main/java/org/joda/time/tz/ZoneInfoCompiler.java	2023-06-24 18:40:04.829749793 +0800
+@@ -65,10 +65,11 @@
+ 
+     static Chronology cLenientISO;
+ 
+-    static ThreadLocal<Boolean> cVerbose = new ThreadLocal<Boolean>();
+-    static {
+-        cVerbose.set(Boolean.FALSE);
+-    }
++    static ThreadLocal<Boolean> cVerbose = new ThreadLocal<Boolean>() {
++        protected Boolean initialValue() {
++            return Boolean.FALSE;
++        }
++    };
+ 
+     /**
+      * Gets a flag indicating that verbose logging is required.
+Only in data/changesInfo//Time_11/properties/modified_classes/inducing/: src

@@ -1,7 +1,25 @@
-diff -u -r tmp/changesInfo/Mockito_12/properties/modified_classes/inducing/test/org/mockito/internal/util/reflection/GenericMasterTest.java tmp/changesInfo/Mockito_12/cleaned/inducing/test/org/mockito/internal/util/reflection/GenericMasterTest.java
---- tmp/changesInfo/Mockito_12/properties/modified_classes/inducing/test/org/mockito/internal/util/reflection/GenericMasterTest.java	2023-07-24 22:13:29.133817393 +0800
-+++ tmp/changesInfo/Mockito_12/cleaned/inducing/test/org/mockito/internal/util/reflection/GenericMasterTest.java	2023-07-24 22:15:38.570836690 +0800
-@@ -27,7 +27,13 @@
+Only in data/changesInfo//Mockito_12/properties/modified_classes/inducing/: src
+diff -u -r data/changesInfo//Mockito_12/properties/modified_classes/inducing/test/org/mockito/internal/util/reflection/GenericMasterTest.java data/changesInfo//Mockito_12/cleaned/inducing/test/org/mockito/internal/util/reflection/GenericMasterTest.java
+--- data/changesInfo//Mockito_12/properties/modified_classes/inducing/test/org/mockito/internal/util/reflection/GenericMasterTest.java	2023-07-24 22:13:29.133817393 +0800
++++ data/changesInfo//Mockito_12/cleaned/inducing/test/org/mockito/internal/util/reflection/GenericMasterTest.java	2023-08-03 18:47:14.664079069 +0800
+@@ -3,6 +3,7 @@
+ import static org.junit.Assert.*;
+ 
+ import java.lang.reflect.Field;
++import java.util.Collection;
+ import java.util.List;
+ import java.util.Map;
+ import java.util.Set;
+@@ -17,6 +18,8 @@
+     Set<Integer> two;
+     Map<Double, String> map;
+     String nonGeneric;
++    List<Set<String>> nested;
++    List<Set<Collection<String>>> multiNested;
+     
+     @Test
+     public void shouldFindGenericClass() throws Exception {
+@@ -27,7 +30,13 @@
      
      @Test
      public void shouldGetObjectForNonGeneric() throws Exception {
@@ -16,3 +34,4 @@ diff -u -r tmp/changesInfo/Mockito_12/properties/modified_classes/inducing/test/
      }
  
      private Field field(String fieldName) throws SecurityException, NoSuchFieldException {
+Only in data/changesInfo//Mockito_12/properties/modified_classes/inducing/test/org: mockitousage

@@ -1,7 +1,9 @@
-Only in tmp/changesInfo/Jsoup_88/properties/modified_classes/inducing/src: main
-diff -u -r tmp/changesInfo/Jsoup_88/properties/modified_classes/inducing/src/test/java/org/jsoup/nodes/AttributeTest.java tmp/changesInfo/Jsoup_88/cleaned/inducing/src/test/java/org/jsoup/nodes/AttributeTest.java
---- tmp/changesInfo/Jsoup_88/properties/modified_classes/inducing/src/test/java/org/jsoup/nodes/AttributeTest.java	2023-07-27 18:09:35.981697074 +0800
-+++ tmp/changesInfo/Jsoup_88/cleaned/inducing/src/test/java/org/jsoup/nodes/AttributeTest.java	2023-07-27 18:11:36.487273042 +0800
+Only in data/changesInfo//Jsoup_88/properties/modified_classes/inducing/src: main
+Only in data/changesInfo//Jsoup_88/properties/modified_classes/inducing/src/test/java/org/jsoup: helper
+Only in data/changesInfo//Jsoup_88/properties/modified_classes/inducing/src/test/java/org/jsoup/nodes: AttributesTest.java
+diff -u -r data/changesInfo//Jsoup_88/properties/modified_classes/inducing/src/test/java/org/jsoup/nodes/AttributeTest.java data/changesInfo//Jsoup_88/cleaned/inducing/src/test/java/org/jsoup/nodes/AttributeTest.java
+--- data/changesInfo//Jsoup_88/properties/modified_classes/inducing/src/test/java/org/jsoup/nodes/AttributeTest.java	2023-07-27 18:09:35.981697074 +0800
++++ data/changesInfo//Jsoup_88/cleaned/inducing/src/test/java/org/jsoup/nodes/AttributeTest.java	2023-07-27 18:11:36.487273042 +0800
 @@ -1,5 +1,6 @@
  package org.jsoup.nodes;
  
@@ -24,4 +26,4 @@ diff -u -r tmp/changesInfo/Jsoup_88/properties/modified_classes/inducing/src/tes
 +        assertEquals("", first.getValue());
 +    }
  }
-Only in tmp/changesInfo/Jsoup_88/cleaned/inducing/src/test/java/org/jsoup: parser
+Only in data/changesInfo//Jsoup_88/cleaned/inducing/src/test/java/org/jsoup: parser

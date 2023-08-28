@@ -1,6 +1,6 @@
-diff -u -r tmp/changesInfo/Compress_3/properties/modified_classes/inducing/src/main/java/org/apache/commons/compress/archivers/ar/ArArchiveOutputStream.java tmp/changesInfo/Compress_3/cleaned/fixing/src/main/java/org/apache/commons/compress/archivers/ar/ArArchiveOutputStream.java
---- tmp/changesInfo/Compress_3/properties/modified_classes/inducing/src/main/java/org/apache/commons/compress/archivers/ar/ArArchiveOutputStream.java	2023-07-27 16:18:08.268000000 +0800
-+++ tmp/changesInfo/Compress_3/cleaned/fixing/src/main/java/org/apache/commons/compress/archivers/ar/ArArchiveOutputStream.java	2023-07-27 16:19:04.528859241 +0800
+diff -u -r data/changesInfo//Compress_3/properties/modified_classes/inducing/src/main/java/org/apache/commons/compress/archivers/ar/ArArchiveOutputStream.java data/changesInfo//Compress_3/cleaned/fixing/src/main/java/org/apache/commons/compress/archivers/ar/ArArchiveOutputStream.java
+--- data/changesInfo//Compress_3/properties/modified_classes/inducing/src/main/java/org/apache/commons/compress/archivers/ar/ArArchiveOutputStream.java	2023-08-25 14:16:33.191613989 +0800
++++ data/changesInfo//Compress_3/cleaned/fixing/src/main/java/org/apache/commons/compress/archivers/ar/ArArchiveOutputStream.java	2023-07-27 16:19:04.528859241 +0800
 @@ -153,7 +153,6 @@
      }
  
@@ -19,9 +19,10 @@ diff -u -r tmp/changesInfo/Compress_3/properties/modified_classes/inducing/src/m
 +        }
      }
  }
-diff -u -r tmp/changesInfo/Compress_3/properties/modified_classes/inducing/src/main/java/org/apache/commons/compress/archivers/cpio/CpioArchiveOutputStream.java tmp/changesInfo/Compress_3/cleaned/fixing/src/main/java/org/apache/commons/compress/archivers/cpio/CpioArchiveOutputStream.java
---- tmp/changesInfo/Compress_3/properties/modified_classes/inducing/src/main/java/org/apache/commons/compress/archivers/cpio/CpioArchiveOutputStream.java	2023-07-27 16:19:52.356000000 +0800
-+++ tmp/changesInfo/Compress_3/cleaned/fixing/src/main/java/org/apache/commons/compress/archivers/cpio/CpioArchiveOutputStream.java	2023-07-27 16:20:28.232995146 +0800
+Only in data/changesInfo//Compress_3/properties/modified_classes/inducing/src/main/java/org/apache/commons/compress/archivers: ArchiveOutputStream.java
+diff -u -r data/changesInfo//Compress_3/properties/modified_classes/inducing/src/main/java/org/apache/commons/compress/archivers/cpio/CpioArchiveOutputStream.java data/changesInfo//Compress_3/cleaned/fixing/src/main/java/org/apache/commons/compress/archivers/cpio/CpioArchiveOutputStream.java
+--- data/changesInfo//Compress_3/properties/modified_classes/inducing/src/main/java/org/apache/commons/compress/archivers/cpio/CpioArchiveOutputStream.java	2023-07-27 16:19:52.356000000 +0800
++++ data/changesInfo//Compress_3/cleaned/fixing/src/main/java/org/apache/commons/compress/archivers/cpio/CpioArchiveOutputStream.java	2023-07-27 16:20:28.232995146 +0800
 @@ -315,7 +315,7 @@
              return;
          }
@@ -31,9 +32,9 @@ diff -u -r tmp/changesInfo/Compress_3/properties/modified_classes/inducing/src/m
          }
          this.entry = new CpioArchiveEntry(this.entryFormat);
          this.entry.setName(CPIO_TRAILER);
-diff -u -r tmp/changesInfo/Compress_3/properties/modified_classes/inducing/src/main/java/org/apache/commons/compress/archivers/tar/TarArchiveOutputStream.java tmp/changesInfo/Compress_3/cleaned/fixing/src/main/java/org/apache/commons/compress/archivers/tar/TarArchiveOutputStream.java
---- tmp/changesInfo/Compress_3/properties/modified_classes/inducing/src/main/java/org/apache/commons/compress/archivers/tar/TarArchiveOutputStream.java	2023-07-27 16:01:02.792302317 +0800
-+++ tmp/changesInfo/Compress_3/cleaned/fixing/src/main/java/org/apache/commons/compress/archivers/tar/TarArchiveOutputStream.java	2023-07-27 16:06:22.945628320 +0800
+diff -u -r data/changesInfo//Compress_3/properties/modified_classes/inducing/src/main/java/org/apache/commons/compress/archivers/tar/TarArchiveOutputStream.java data/changesInfo//Compress_3/cleaned/fixing/src/main/java/org/apache/commons/compress/archivers/tar/TarArchiveOutputStream.java
+--- data/changesInfo//Compress_3/properties/modified_classes/inducing/src/main/java/org/apache/commons/compress/archivers/tar/TarArchiveOutputStream.java	2023-07-27 16:01:02.792302317 +0800
++++ data/changesInfo//Compress_3/cleaned/fixing/src/main/java/org/apache/commons/compress/archivers/tar/TarArchiveOutputStream.java	2023-07-27 16:06:22.945628320 +0800
 @@ -50,6 +50,7 @@
      private int       longFileMode = LONGFILE_ERROR;
  
@@ -68,9 +69,9 @@ diff -u -r tmp/changesInfo/Compress_3/properties/modified_classes/inducing/src/m
      }
  
      /**
-diff -u -r tmp/changesInfo/Compress_3/properties/modified_classes/inducing/src/main/java/org/apache/commons/compress/archivers/zip/ZipArchiveOutputStream.java tmp/changesInfo/Compress_3/cleaned/fixing/src/main/java/org/apache/commons/compress/archivers/zip/ZipArchiveOutputStream.java
---- tmp/changesInfo/Compress_3/properties/modified_classes/inducing/src/main/java/org/apache/commons/compress/archivers/zip/ZipArchiveOutputStream.java	2023-07-27 16:16:34.892000000 +0800
-+++ tmp/changesInfo/Compress_3/cleaned/fixing/src/main/java/org/apache/commons/compress/archivers/zip/ZipArchiveOutputStream.java	2023-07-27 16:17:07.528714096 +0800
+diff -u -r data/changesInfo//Compress_3/properties/modified_classes/inducing/src/main/java/org/apache/commons/compress/archivers/zip/ZipArchiveOutputStream.java data/changesInfo//Compress_3/cleaned/fixing/src/main/java/org/apache/commons/compress/archivers/zip/ZipArchiveOutputStream.java
+--- data/changesInfo//Compress_3/properties/modified_classes/inducing/src/main/java/org/apache/commons/compress/archivers/zip/ZipArchiveOutputStream.java	2023-07-27 16:16:34.892000000 +0800
++++ data/changesInfo//Compress_3/cleaned/fixing/src/main/java/org/apache/commons/compress/archivers/zip/ZipArchiveOutputStream.java	2023-07-27 16:17:07.528714096 +0800
 @@ -334,7 +334,9 @@
       * @throws IOException on error
       */
@@ -82,9 +83,9 @@ diff -u -r tmp/changesInfo/Compress_3/properties/modified_classes/inducing/src/m
          cdOffset = written;
          for (Iterator i = entries.iterator(); i.hasNext(); ) {
              writeCentralFileHeader((ZipArchiveEntry) i.next());
-diff -u -r tmp/changesInfo/Compress_3/properties/modified_classes/inducing/src/test/java/org/apache/commons/compress/IOMethodsTest.java tmp/changesInfo/Compress_3/cleaned/fixing/src/test/java/org/apache/commons/compress/IOMethodsTest.java
---- tmp/changesInfo/Compress_3/properties/modified_classes/inducing/src/test/java/org/apache/commons/compress/IOMethodsTest.java	2023-07-27 16:08:25.297000000 +0800
-+++ tmp/changesInfo/Compress_3/cleaned/fixing/src/test/java/org/apache/commons/compress/IOMethodsTest.java	2023-07-27 16:12:09.088675328 +0800
+diff -u -r data/changesInfo//Compress_3/properties/modified_classes/inducing/src/test/java/org/apache/commons/compress/IOMethodsTest.java data/changesInfo//Compress_3/cleaned/fixing/src/test/java/org/apache/commons/compress/IOMethodsTest.java
+--- data/changesInfo//Compress_3/properties/modified_classes/inducing/src/test/java/org/apache/commons/compress/IOMethodsTest.java	2023-07-27 16:08:25.297000000 +0800
++++ data/changesInfo//Compress_3/cleaned/fixing/src/test/java/org/apache/commons/compress/IOMethodsTest.java	2023-07-27 16:12:09.088675328 +0800
 @@ -104,11 +104,11 @@
          for (int i=0; i<byteTest.length; i++){
              aos1.write(byteTest[i]);            

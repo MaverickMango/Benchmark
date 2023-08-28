@@ -1,6 +1,7 @@
-diff -u -r tmp/changesInfo/Math_94/properties/modified_classes/inducing/src/java/org/apache/commons/math/util/MathUtils.java tmp/changesInfo/Math_94/cleaned/fixing/src/java/org/apache/commons/math/util/MathUtils.java
---- tmp/changesInfo/Math_94/properties/modified_classes/inducing/src/java/org/apache/commons/math/util/MathUtils.java	2023-06-12 11:40:48.181738215 +0800
-+++ tmp/changesInfo/Math_94/cleaned/fixing/src/java/org/apache/commons/math/util/MathUtils.java	2023-06-24 16:49:50.897631713 +0800
+Only in data/changesInfo//Math_94/properties/modified_classes/inducing/src/java/org/apache/commons/math: fraction
+diff -u -r data/changesInfo//Math_94/properties/modified_classes/inducing/src/java/org/apache/commons/math/util/MathUtils.java data/changesInfo//Math_94/cleaned/fixing/src/java/org/apache/commons/math/util/MathUtils.java
+--- data/changesInfo//Math_94/properties/modified_classes/inducing/src/java/org/apache/commons/math/util/MathUtils.java	2023-08-25 14:11:33.148895117 +0800
++++ data/changesInfo//Math_94/cleaned/fixing/src/java/org/apache/commons/math/util/MathUtils.java	2023-06-24 16:49:50.897631713 +0800
 @@ -545,7 +545,7 @@
       * @return the greatest common divisor, never zero
       */
@@ -10,4 +11,4 @@ diff -u -r tmp/changesInfo/Math_94/properties/modified_classes/inducing/src/java
              return (Math.abs(u) + Math.abs(v));
          }
          // keep u and v negative, as negative integers range down to
-Only in tmp/changesInfo/Math_94/properties/modified_classes/inducing/src: test
+Only in data/changesInfo//Math_94/properties/modified_classes/inducing/src: test

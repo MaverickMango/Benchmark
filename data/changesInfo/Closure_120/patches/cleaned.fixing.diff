@@ -1,6 +1,7 @@
-diff -u -r tmp/changesInfo/Closure_120/properties/modified_classes/inducing/src/com/google/javascript/jscomp/ReferenceCollectingCallback.java tmp/changesInfo/Closure_120/cleaned/fixing/src/com/google/javascript/jscomp/ReferenceCollectingCallback.java
---- tmp/changesInfo/Closure_120/properties/modified_classes/inducing/src/com/google/javascript/jscomp/ReferenceCollectingCallback.java	2023-08-02 19:04:10.992458806 +0800
-+++ tmp/changesInfo/Closure_120/cleaned/fixing/src/com/google/javascript/jscomp/ReferenceCollectingCallback.java	2023-06-20 21:27:22.560843023 +0800
+Only in data/changesInfo//Closure_120/properties/modified_classes/inducing/src/com/google/javascript/jscomp: InlineVariables.java
+diff -u -r data/changesInfo//Closure_120/properties/modified_classes/inducing/src/com/google/javascript/jscomp/ReferenceCollectingCallback.java data/changesInfo//Closure_120/cleaned/fixing/src/com/google/javascript/jscomp/ReferenceCollectingCallback.java
+--- data/changesInfo//Closure_120/properties/modified_classes/inducing/src/com/google/javascript/jscomp/ReferenceCollectingCallback.java	2023-08-25 13:33:48.691883710 +0800
++++ data/changesInfo//Closure_120/cleaned/fixing/src/com/google/javascript/jscomp/ReferenceCollectingCallback.java	2023-06-20 21:27:22.560843023 +0800
 @@ -428,6 +428,9 @@
        for (BasicBlock block = ref.getBasicBlock();
             block != null; block = block.getParent()) {
@@ -11,4 +12,4 @@ diff -u -r tmp/changesInfo/Closure_120/properties/modified_classes/inducing/src/
            break;
          } else if (block.isLoop) {
            return false;
-Only in tmp/changesInfo/Closure_120/properties/modified_classes/inducing: test
+Only in data/changesInfo//Closure_120/properties/modified_classes/inducing/: test

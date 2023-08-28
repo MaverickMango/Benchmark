@@ -1,7 +1,7 @@
 package attempt;
 
 import root.analysis.RefactoringMiner;
-import root.bean.BugFixCommit;
+import root.bean.otherdataset.BugFixCommit;
 import com.github.gumtreediff.actions.model.Action;
 import org.eclipse.jgit.lib.Repository;
 import org.eclipse.jgit.revwalk.RevCommit;
@@ -11,7 +11,7 @@ import org.refactoringminer.api.RefactoringHandler;
 import org.refactoringminer.astDiff.actions.ASTDiff;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import root.benchmarks.BearsBugsUtils;
+import root.util.BearsBugsUtils;
 import root.util.GitAccess;
 
 import java.util.List;

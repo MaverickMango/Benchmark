@@ -930,6 +930,7 @@ testContinueOutsideSwitch(com.google.javascript.jscomp.ControlStructureCheckTest
 testContinueToSwitchWithTwoCases(com.google.javascript.jscomp.ControlStructureCheckTest)
 testBreakCrossFunction(com.google.javascript.jscomp.ControlStructureCheckTest)
 testNextedWhile(com.google.javascript.jscomp.ControlStructureCheckTest)
+testQuotedProps(com.google.javascript.jscomp.ConvertToDottedPropertiesTest)
 testConvert(com.google.javascript.jscomp.ConvertToDottedPropertiesTest)
 testDoNotConvert(com.google.javascript.jscomp.ConvertToDottedPropertiesTest)
 testFold1(com.google.javascript.jscomp.CreateSyntheticBlocksTest)

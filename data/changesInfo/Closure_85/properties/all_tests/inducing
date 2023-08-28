@@ -4988,6 +4988,7 @@ testNoRemoveUseStrict(com.google.javascript.jscomp.UnreachableCodeEliminationTes
 testRemoveUselessLiteralValueStatements(com.google.javascript.jscomp.UnreachableCodeEliminationTest)
 testAssignPropertyOnCreatedObject(com.google.javascript.jscomp.UnreachableCodeEliminationTest)
 testRemovalRequiresRedeclaration(com.google.javascript.jscomp.UnreachableCodeEliminationTest)
+testIssue311(com.google.javascript.jscomp.UnreachableCodeEliminationTest)
 testUnlessUnconditionalReturn(com.google.javascript.jscomp.UnreachableCodeEliminationTest)
 testUnlessUnconditonalBreak(com.google.javascript.jscomp.UnreachableCodeEliminationTest)
 testRecursiveFunction(com.google.javascript.jscomp.VarCheckTest)

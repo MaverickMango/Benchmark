@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<project default="jar" name="commons-cli" basedir=".">
+<project default="jar" name="commons-cli" basedir="..">
   
   <property name="defaulttargetdir" value="target"></property> 
   <property name="classesdir" value="target/classes"></property>
@@ -51,7 +51,7 @@
  
   <target name="test" description="o Run the test cases" depends="compile-tests">
     <mkdir dir="${testreportdir}"></mkdir>
-    <junit dir="./" printSummary="yes" fork="true" haltonerror="true">
+    <junit dir="../" printSummary="yes" fork="true" haltonerror="true">
       <sysproperty key="basedir" value="src/test"></sysproperty>
       <formatter type="xml"></formatter>
       <formatter usefile="true" type="plain"></formatter>

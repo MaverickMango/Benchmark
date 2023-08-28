@@ -1,6 +1,6 @@
-diff -u -r tmp/changesInfo/Closure_153/properties/modified_classes/inducing/src/com/google/javascript/jscomp/Normalize.java tmp/changesInfo/Closure_153/cleaned/fixing/src/com/google/javascript/jscomp/Normalize.java
---- tmp/changesInfo/Closure_153/properties/modified_classes/inducing/src/com/google/javascript/jscomp/Normalize.java	2023-07-27 20:38:56.353965972 +0800
-+++ tmp/changesInfo/Closure_153/cleaned/fixing/src/com/google/javascript/jscomp/Normalize.java	2023-07-27 20:55:37.193851299 +0800
+diff -u -r data/changesInfo//Closure_153/properties/modified_classes/inducing/src/com/google/javascript/jscomp/Normalize.java data/changesInfo//Closure_153/cleaned/fixing/src/com/google/javascript/jscomp/Normalize.java
+--- data/changesInfo//Closure_153/properties/modified_classes/inducing/src/com/google/javascript/jscomp/Normalize.java	2023-08-25 14:16:38.739602043 +0800
++++ data/changesInfo//Closure_153/cleaned/fixing/src/com/google/javascript/jscomp/Normalize.java	2023-07-27 20:55:37.193851299 +0800
 @@ -18,6 +18,7 @@
  import com.google.common.base.Preconditions;
  import com.google.common.collect.Lists;
@@ -68,9 +68,9 @@ diff -u -r tmp/changesInfo/Closure_153/properties/modified_classes/inducing/src/
        }
      }
  
-diff -u -r tmp/changesInfo/Closure_153/properties/modified_classes/inducing/src/com/google/javascript/jscomp/SyntacticScopeCreator.java tmp/changesInfo/Closure_153/cleaned/fixing/src/com/google/javascript/jscomp/SyntacticScopeCreator.java
---- tmp/changesInfo/Closure_153/properties/modified_classes/inducing/src/com/google/javascript/jscomp/SyntacticScopeCreator.java	2023-07-27 20:56:36.520019361 +0800
-+++ tmp/changesInfo/Closure_153/cleaned/fixing/src/com/google/javascript/jscomp/SyntacticScopeCreator.java	2023-07-27 21:03:57.793069838 +0800
+diff -u -r data/changesInfo//Closure_153/properties/modified_classes/inducing/src/com/google/javascript/jscomp/SyntacticScopeCreator.java data/changesInfo//Closure_153/cleaned/fixing/src/com/google/javascript/jscomp/SyntacticScopeCreator.java
+--- data/changesInfo//Closure_153/properties/modified_classes/inducing/src/com/google/javascript/jscomp/SyntacticScopeCreator.java	2023-07-27 20:56:36.520019361 +0800
++++ data/changesInfo//Closure_153/cleaned/fixing/src/com/google/javascript/jscomp/SyntacticScopeCreator.java	2023-07-27 21:03:57.793069838 +0800
 @@ -93,7 +93,7 @@
        // been declared in the outer scope.
        String fnName = fnNameNode.getString();
@@ -178,4 +178,5 @@ diff -u -r tmp/changesInfo/Closure_153/properties/modified_classes/inducing/src/
      }
    }
  }
-Only in tmp/changesInfo/Closure_153/properties/modified_classes/inducing: test
+Only in data/changesInfo//Closure_153/properties/modified_classes/inducing/src/com/google/javascript/jscomp: VarCheck.java
+Only in data/changesInfo//Closure_153/properties/modified_classes/inducing/: test

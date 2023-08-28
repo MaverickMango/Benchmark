@@ -1,6 +1,8 @@
-package root.bean;
+package root.bean.otherdataset;
 
-public class BugFixCommit extends AbstractBeanClazz{
+import root.bean.AbstractBeanClazz;
+
+public class BugFixCommit extends AbstractBeanClazz {
     private String bugName;
     private String bugId;
     private String diff;

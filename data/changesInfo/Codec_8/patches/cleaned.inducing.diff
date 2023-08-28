@@ -1,7 +1,7 @@
-Only in tmp/changesInfo/Codec_8/properties/modified_classes/inducing/src: java
-diff -u -r tmp/changesInfo/Codec_8/properties/modified_classes/inducing/src/test/org/apache/commons/codec/binary/Base64InputStreamTest.java tmp/changesInfo/Codec_8/cleaned/inducing/src/test/org/apache/commons/codec/binary/Base64InputStreamTest.java
---- tmp/changesInfo/Codec_8/properties/modified_classes/inducing/src/test/org/apache/commons/codec/binary/Base64InputStreamTest.java	2023-07-26 20:03:55.465241012 +0800
-+++ tmp/changesInfo/Codec_8/cleaned/inducing/src/test/org/apache/commons/codec/binary/Base64InputStreamTest.java	2023-07-26 19:56:45.375000000 +0800
+Only in data/changesInfo//Codec_8/properties/modified_classes/inducing/src: java
+diff -u -r data/changesInfo//Codec_8/properties/modified_classes/inducing/src/test/org/apache/commons/codec/binary/Base64InputStreamTest.java data/changesInfo//Codec_8/cleaned/inducing/src/test/org/apache/commons/codec/binary/Base64InputStreamTest.java
+--- data/changesInfo//Codec_8/properties/modified_classes/inducing/src/test/org/apache/commons/codec/binary/Base64InputStreamTest.java	2023-07-26 20:03:55.465241012 +0800
++++ data/changesInfo//Codec_8/cleaned/inducing/src/test/org/apache/commons/codec/binary/Base64InputStreamTest.java	2023-07-26 19:56:45.375000000 +0800
 @@ -22,6 +22,7 @@
  
  import java.io.ByteArrayInputStream;
@@ -27,4 +27,4 @@ diff -u -r tmp/changesInfo/Codec_8/properties/modified_classes/inducing/src/test
       * Test the Base64InputStream implementation.
       *
       * @throws Exception for some failure scenarios.
-Only in tmp/changesInfo/Codec_8/cleaned/inducing/src/test/org/apache/commons/codec/binary: Codec105ErrorInputStream.java
+Only in data/changesInfo//Codec_8/cleaned/inducing/src/test/org/apache/commons/codec/binary: Codec105ErrorInputStream.java

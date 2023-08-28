@@ -1,6 +1,9 @@
-diff -u -r tmp/changesInfo/Jsoup_26/properties/modified_classes/inducing/src/main/java/org/jsoup/safety/Cleaner.java tmp/changesInfo/Jsoup_26/cleaned/fixing/src/main/java/org/jsoup/safety/Cleaner.java
---- tmp/changesInfo/Jsoup_26/properties/modified_classes/inducing/src/main/java/org/jsoup/safety/Cleaner.java	2023-07-26 13:24:49.524168175 +0800
-+++ tmp/changesInfo/Jsoup_26/cleaned/fixing/src/main/java/org/jsoup/safety/Cleaner.java	2023-07-27 17:30:30.991941652 +0800
+Only in data/changesInfo//Jsoup_26/properties/modified_classes/inducing/src/main/java/org/jsoup: helper
+Only in data/changesInfo//Jsoup_26/properties/modified_classes/inducing/src/main/java/org/jsoup: nodes
+Only in data/changesInfo//Jsoup_26/properties/modified_classes/inducing/src/main/java/org/jsoup: parser
+diff -u -r data/changesInfo//Jsoup_26/properties/modified_classes/inducing/src/main/java/org/jsoup/safety/Cleaner.java data/changesInfo//Jsoup_26/cleaned/fixing/src/main/java/org/jsoup/safety/Cleaner.java
+--- data/changesInfo//Jsoup_26/properties/modified_classes/inducing/src/main/java/org/jsoup/safety/Cleaner.java	2023-07-26 13:24:49.524168175 +0800
++++ data/changesInfo//Jsoup_26/cleaned/fixing/src/main/java/org/jsoup/safety/Cleaner.java	2023-07-27 17:30:30.991941652 +0800
 @@ -40,7 +40,8 @@
          Validate.notNull(dirtyDocument);
  
@@ -11,4 +14,4 @@ diff -u -r tmp/changesInfo/Jsoup_26/properties/modified_classes/inducing/src/mai
  
          return clean;
      }
-Only in tmp/changesInfo/Jsoup_26/properties/modified_classes/inducing/src: test
+Only in data/changesInfo//Jsoup_26/properties/modified_classes/inducing/src: test

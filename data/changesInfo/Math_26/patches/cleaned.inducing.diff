@@ -1,7 +1,7 @@
-Only in tmp/changesInfo/Math_26/properties/modified_classes/inducing/src: java
-diff -u -r tmp/changesInfo/Math_26/properties/modified_classes/inducing/src/test/org/apache/commons/math/fraction/FractionTest.java tmp/changesInfo/Math_26/cleaned/inducing/src/test/org/apache/commons/math/fraction/FractionTest.java
---- tmp/changesInfo/Math_26/properties/modified_classes/inducing/src/test/org/apache/commons/math/fraction/FractionTest.java	2023-07-25 22:25:04.637743886 +0800
-+++ tmp/changesInfo/Math_26/cleaned/inducing/src/test/org/apache/commons/math/fraction/FractionTest.java	2023-07-25 22:17:48.848000000 +0800
+Only in data/changesInfo//Math_26/properties/modified_classes/inducing/src: java
+diff -u -r data/changesInfo//Math_26/properties/modified_classes/inducing/src/test/org/apache/commons/math/fraction/FractionTest.java data/changesInfo//Math_26/cleaned/inducing/src/test/org/apache/commons/math/fraction/FractionTest.java
+--- data/changesInfo//Math_26/properties/modified_classes/inducing/src/test/org/apache/commons/math/fraction/FractionTest.java	2023-08-25 13:44:26.127339411 +0800
++++ data/changesInfo//Math_26/cleaned/inducing/src/test/org/apache/commons/math/fraction/FractionTest.java	2023-07-25 22:17:48.848000000 +0800
 @@ -63,96 +63,7 @@
              fail(ex.getMessage());
          }

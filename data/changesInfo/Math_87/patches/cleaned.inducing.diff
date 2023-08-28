@@ -1,7 +1,7 @@
-Only in tmp/changesInfo/Math_87/properties/modified_classes/inducing/src: java
-diff -u -r tmp/changesInfo/Math_87/properties/modified_classes/inducing/src/test/org/apache/commons/math/optimization/linear/SimplexSolverTest.java tmp/changesInfo/Math_87/cleaned/inducing/src/test/org/apache/commons/math/optimization/linear/SimplexSolverTest.java
---- tmp/changesInfo/Math_87/properties/modified_classes/inducing/src/test/org/apache/commons/math/optimization/linear/SimplexSolverTest.java	2023-08-02 22:18:55.340549533 +0800
-+++ tmp/changesInfo/Math_87/cleaned/inducing/src/test/org/apache/commons/math/optimization/linear/SimplexSolverTest.java	2023-06-24 16:11:23.170000000 +0800
+Only in data/changesInfo//Math_87/properties/modified_classes/inducing/src: java
+diff -u -r data/changesInfo//Math_87/properties/modified_classes/inducing/src/test/org/apache/commons/math/optimization/linear/SimplexSolverTest.java data/changesInfo//Math_87/cleaned/inducing/src/test/org/apache/commons/math/optimization/linear/SimplexSolverTest.java
+--- data/changesInfo//Math_87/properties/modified_classes/inducing/src/test/org/apache/commons/math/optimization/linear/SimplexSolverTest.java	2023-08-25 14:01:06.879428152 +0800
++++ data/changesInfo//Math_87/cleaned/inducing/src/test/org/apache/commons/math/optimization/linear/SimplexSolverTest.java	2023-06-24 16:11:23.170000000 +0800
 @@ -64,6 +64,18 @@
          assertEquals(57.0, solution.getValue(), 0.0);
      }

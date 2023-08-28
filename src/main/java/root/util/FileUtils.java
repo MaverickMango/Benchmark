@@ -54,6 +54,68 @@ public class FileUtils {
         return false;
     }
 
+
+    public static void getPositionsOfDiff(List<String> diffLines, Set<Integer> src_pos, Set<Integer> dst_pos, boolean onlySourceCode) {
+//        List<String> diffLines = FileUtils.readEachLine(diffFile);
+        for (int idx = 0; idx < diffLines.size(); idx ++) {
+            String line = diffLines.get(idx);
+            if (onlySourceCode && line.startsWith("diff ")) {
+                if (!line.endsWith(".java")) {
+                    line = diffLines.get(idx + 1);
+                    while (!line.startsWith("diff ")) {
+                        idx++;
+                        if (idx >= diffLines.size())
+                            return;
+                        line = diffLines.get(idx);
+                    }
+                    idx --;
+                }
+            }
+            if (line.startsWith("@@")) {
+                List<Integer> hunk_src_pos = new ArrayList<>();
+                List<Integer> hunk_dst_pos = new ArrayList<>();
+                String[] split = line.substring(0, line.lastIndexOf("@@"))
+                        .replaceAll("@@", "")
+                        .replaceAll("-", "").split("\\+");
+                String[] minus = split[0].strip().split(",");
+                int j = 0, count = 0;
+                for (j = 1; count < Integer.parseInt(minus[1]); j++) {
+                    line = diffLines.get(idx + j);
+                    if (line.startsWith("-")) {
+                        int pos = Integer.parseInt(minus[0]) + count;
+                        hunk_src_pos.add(pos);
+                    }
+                    if (!line.startsWith("+")) {
+                        count ++;
+                    }
+                }
+                String[] plus = split[1].strip().split(",");
+                for (j = 1, count = 0; count < Integer.parseInt(plus[1]); j++) {
+                    line = diffLines.get(idx + j);
+                    if (line.startsWith("+")) {
+                        int pos = Integer.parseInt(plus[0]) + count;
+                        hunk_dst_pos.add(pos);
+                    }
+                    if (!line.startsWith("-")) {
+                        count ++;
+                    }
+                }
+                int offset = Integer.parseInt(plus[0]) - Integer.parseInt(minus[0]);
+                if (hunk_src_pos.isEmpty()) {
+                    src_pos.add(hunk_dst_pos.get(0) - 1 - offset);
+                } else {
+                    src_pos.addAll(hunk_src_pos);
+                }
+                if (hunk_dst_pos.isEmpty()) {
+                    dst_pos.add(hunk_src_pos.get(0) - 1 - offset);
+                } else {
+                    dst_pos.addAll(hunk_dst_pos);
+                }
+                idx += j - 1;
+            }
+        }
+    }
+
     public static StringBuilder getMap2String(Map<?, ?> map) {
         Set<?> keySet = map.keySet();
         Iterator<?> iterator = keySet.iterator();
@@ -77,7 +139,7 @@ public class FileUtils {
                 stringBuilder.append(getStrOfIterable(obj, separator));
             }
         } else {
-            stringBuilder.append(items).append(separator);
+            stringBuilder.append(items.toString()).append(separator);
         }
         return stringBuilder;
     }
@@ -113,9 +175,11 @@ public class FileUtils {
                 dstFile = new File(dstFile, srcFile.getName());
             } else if (!dstFile.isDirectory() && !dstFile.getParentFile().exists()) {
                 res = dstFile.getParentFile().mkdirs();
-            } else {
+            } else if (dstFile.isDirectory()){
                 dstFile = new File(dstFile, srcFile.getName());
                 res = dstFile.getParentFile().exists();
+            } else {
+                res = true;
             }
             if (!res) {
                 logger.error("Could not create the dstFile file directories!");

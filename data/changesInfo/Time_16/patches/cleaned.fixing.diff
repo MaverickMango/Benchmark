@@ -1,6 +1,7 @@
-diff -u -r tmp/changesInfo/Time_16/properties/modified_classes/inducing/src/main/java/org/joda/time/format/DateTimeFormatter.java tmp/changesInfo/Time_16/cleaned/fixing/src/main/java/org/joda/time/format/DateTimeFormatter.java
---- tmp/changesInfo/Time_16/properties/modified_classes/inducing/src/main/java/org/joda/time/format/DateTimeFormatter.java	2023-06-12 11:40:49.125696836 +0800
-+++ tmp/changesInfo/Time_16/cleaned/fixing/src/main/java/org/joda/time/format/DateTimeFormatter.java	2023-06-24 18:54:34.556599346 +0800
+Only in data/changesInfo//Time_16/properties/modified_classes/inducing/: JodaTime
+diff -u -r data/changesInfo//Time_16/properties/modified_classes/inducing/src/main/java/org/joda/time/format/DateTimeFormatter.java data/changesInfo//Time_16/cleaned/fixing/src/main/java/org/joda/time/format/DateTimeFormatter.java
+--- data/changesInfo//Time_16/properties/modified_classes/inducing/src/main/java/org/joda/time/format/DateTimeFormatter.java	2023-06-12 11:40:49.125696836 +0800
++++ data/changesInfo//Time_16/cleaned/fixing/src/main/java/org/joda/time/format/DateTimeFormatter.java	2023-06-24 18:54:34.556599346 +0800
 @@ -701,7 +701,7 @@
          chrono = selectChronology(chrono);
          
@@ -10,4 +11,4 @@ diff -u -r tmp/changesInfo/Time_16/properties/modified_classes/inducing/src/main
          int newPos = parser.parseInto(bucket, text, position);
          instant.setMillis(bucket.computeMillis(false, text));
          if (iOffsetParsed && bucket.getZone() == null) {
-Only in tmp/changesInfo/Time_16/properties/modified_classes/inducing/src: test
+Only in data/changesInfo//Time_16/properties/modified_classes/inducing/src: test

@@ -1,4 +1,4 @@
-package root.bean;
+package root.bean.otherdataset;
 
 import com.google.gson.annotations.SerializedName;
 

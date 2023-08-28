@@ -1,6 +1,6 @@
-package root.bean;
+package root.bean.otherdataset;
 
-import root.benchmarks.Defects4JBug;
+import root.bean.benchmarks.Defects4JBug;
 import root.util.FileUtils;
 
 import java.util.ArrayList;

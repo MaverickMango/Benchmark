@@ -1,6 +1,8 @@
-diff -u -r tmp/changesInfo/Math_2/properties/modified_classes/inducing/src/main/java/org/apache/commons/math/distribution/HypergeometricDistribution.java tmp/changesInfo/Math_2/cleaned/fixing/src/main/java/org/apache/commons/math/distribution/HypergeometricDistribution.java
---- tmp/changesInfo/Math_2/properties/modified_classes/inducing/src/main/java/org/apache/commons/math/distribution/HypergeometricDistribution.java	2023-06-12 11:40:39.110140396 +0800
-+++ tmp/changesInfo/Math_2/cleaned/fixing/src/main/java/org/apache/commons/math/distribution/HypergeometricDistribution.java	2023-06-20 22:07:10.875931352 +0800
+Only in data/changesInfo//Math_2/properties/modified_classes/inducing/src/main/java/org/apache/commons/math/distribution: AbstractIntegerDistribution.java
+Only in data/changesInfo//Math_2/properties/modified_classes/inducing/src/main/java/org/apache/commons/math/distribution: BinomialDistribution.java
+diff -u -r data/changesInfo//Math_2/properties/modified_classes/inducing/src/main/java/org/apache/commons/math/distribution/HypergeometricDistribution.java data/changesInfo//Math_2/cleaned/fixing/src/main/java/org/apache/commons/math/distribution/HypergeometricDistribution.java
+--- data/changesInfo//Math_2/properties/modified_classes/inducing/src/main/java/org/apache/commons/math/distribution/HypergeometricDistribution.java	2023-08-25 13:40:57.342439850 +0800
++++ data/changesInfo//Math_2/cleaned/fixing/src/main/java/org/apache/commons/math/distribution/HypergeometricDistribution.java	2023-06-20 22:07:10.875931352 +0800
 @@ -268,7 +268,7 @@
       * size {@code n}, the mean is {@code n * m / N}.
       */
@@ -10,4 +12,9 @@ diff -u -r tmp/changesInfo/Math_2/properties/modified_classes/inducing/src/main/
      }
  
      /**
-Only in tmp/changesInfo/Math_2/properties/modified_classes/inducing/src: test
+Only in data/changesInfo//Math_2/properties/modified_classes/inducing/src/main/java/org/apache/commons/math/distribution: IntegerDistribution.java
+Only in data/changesInfo//Math_2/properties/modified_classes/inducing/src/main/java/org/apache/commons/math/distribution: PascalDistribution.java
+Only in data/changesInfo//Math_2/properties/modified_classes/inducing/src/main/java/org/apache/commons/math/distribution: PoissonDistribution.java
+Only in data/changesInfo//Math_2/properties/modified_classes/inducing/src/main/java/org/apache/commons/math/distribution: ZipfDistribution.java
+Only in data/changesInfo//Math_2/properties/modified_classes/inducing/src/main/java/org/apache/commons/math: random
+Only in data/changesInfo//Math_2/properties/modified_classes/inducing/src: test

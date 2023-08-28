@@ -1,8 +1,8 @@
-package root.benchmarks;
+package root.util;
 
-import root.bean.BugFixCommit;
-import root.bean.CommitInfo;
-import root.bean.RepositoryInfo;
+import root.bean.otherdataset.BugFixCommit;
+import root.bean.otherdataset.CommitInfo;
+import root.bean.otherdataset.RepositoryInfo;
 
 import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
@@ -10,7 +10,6 @@ import com.google.gson.JsonObject;
 import org.eclipse.jgit.lib.Repository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import root.util.*;
 
 import java.io.File;
 import java.util.ArrayList;

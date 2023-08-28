@@ -4,13 +4,11 @@ import org.eclipse.jgit.lib.Repository;
 import org.eclipse.jgit.revwalk.RevCommit;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import root.benchmarks.Defects4JBug;
-import root.util.ConfigurationProperties;
+import root.bean.benchmarks.Defects4JBug;
 import root.util.FileUtils;
 import root.util.GitAccess;
 
 import java.util.*;
-import java.util.stream.Collectors;
 
 public class InducingFinder implements GitAccess {
     private static final Logger logger = LoggerFactory.getLogger(InducingFinder.class);

@@ -8,6 +8,7 @@ public class StringFilter {
     public static final int STARTS_WITH = 1;
     public static final int ENDS_WITH = 2;
     public static final int EQUALS = 3;
+    public static final int NOT_EQUALS = 6;
     public static final int MATCHES = 4;
     public static final int CONTAINS = 5;
 
@@ -56,6 +57,11 @@ public class StringFilter {
                     break;
                 case 5:
                     if (str.contains(pattern)) {
+                        return true;
+                    }
+                    break;
+                case 6:
+                    if (!str.equals(pattern)) {
                         return true;
                     }
                 default:

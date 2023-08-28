@@ -33,8 +33,22 @@ public class Fraction extends Number implements Comparable {
     /** A fraction representing "0 / 1". */
     public static final Fraction ZERO = new Fraction(0, 1);
 
+    /**
+     * The maximal number of denominator digits that can be requested for double to fraction
+     * conversion.
+     * <p>
+     * When <code>d</code> digits are requested, an integer threshold is
+     * initialized with the value 10<sup>d</sup>. Therefore, <code>d</code>
+     * cannot be larger than this constant. Since the java language uses 32 bits
+     * signed integers, the value for this constant is 9.
+     * </p>
+     * 
+     * @see #Fraction(double,int)
+     */
+    public static final int MAX_DENOMINATOR_DIGITS = 9;
+    
     /** Serializable version identifier */
-    private static final long serialVersionUID = -8958519416450949235L;
+    private static final long serialVersionUID = 5463066929751300926L;
     
     /** The denominator. */
     private int denominator;
@@ -75,7 +89,24 @@ public class Fraction extends Number implements Comparable {
     }
 
     /**
-     * Create a fraction given the double value and maximum denominator.
+     * Convert a number of denominator digits to a denominator max value.
+     * @param denominatorDigits The maximum number of denominator digits.
+     * @return the maximal value for denominator
+     * @throws IllegalArgumentException if more than {@link #MAX_DENOMINATOR_DIGITS}
+     *         are requested
+     */
+    private static int maxDenominator(int denominatorDigits)
+        throws IllegalArgumentException
+    {
+        if (denominatorDigits > MAX_DENOMINATOR_DIGITS) {
+            throw new IllegalArgumentException("too many digits requested");
+        }
+        return (int)Math.pow(10, denominatorDigits);
+    }
+
+    /**
+     * Create a fraction given the double value and maximum number of
+     * denominator digits.
      * <p>
      * References:
      * <ul>
@@ -84,14 +115,16 @@ public class Fraction extends Number implements Comparable {
      * </ul>
      * </p>
      * @param value the double value to convert to a fraction.
-     * @param maxDenominator The maximum allowed value for denominator
+     * @param denominatorDigits The maximum number of denominator digits.
      * @throws FractionConversionException if the continued fraction failed to
      *         converge
+     * @throws IllegalArgumentException if more than {@link #MAX_DENOMINATOR_DIGITS}
+     *         are requested
      */
-    public Fraction(double value, int maxDenominator)
-        throws FractionConversionException
+    public Fraction(double value, int denominatorDigits)
+        throws FractionConversionException, IllegalArgumentException
     {
-       this(value, 0, maxDenominator, 100);
+       this(value, 0, maxDenominator(denominatorDigits), 100);
     }
 
     /**
@@ -128,40 +161,33 @@ public class Fraction extends Number implements Comparable {
     private Fraction(double value, double epsilon, int maxDenominator, int maxIterations)
         throws FractionConversionException
     {
-        long overflow = Integer.MAX_VALUE;
         double r0 = value;
-        long a0 = (long)Math.floor(r0);
-        if (a0 > overflow) {
-            throw new FractionConversionException(value, a0, 1l);
-        }
+        int a0 = (int)Math.floor(r0);
 
         // check for (almost) integer arguments, which should not go
         // to iterations.
         if (Math.abs(a0 - value) < epsilon) {
-            this.numerator = (int) a0;
+            this.numerator = a0;
             this.denominator = 1;
             return;
         }
+        
+        int p0 = 1;
+        int q0 = 0;
+        int p1 = a0;
+        int q1 = 1;
 
-       long p0 = 1;
-        long q0 = 0;
-        long p1 = a0;
-        long q1 = 1;
-
-        long p2 = 0;
-        long q2 = 1;
+        int p2 = 0;
+        int q2 = 1;
 
         int n = 0;
         boolean stop = false;
         do {
             ++n;
             double r1 = 1.0 / (r0 - a0);
-            long a1 = (long)Math.floor(r1);
+            int a1 = (int)Math.floor(r1);
             p2 = (a1 * p1) + p0;
             q2 = (a1 * q1) + q0;
-            if ((p2 > overflow) || (q2 > overflow)) {
-                throw new FractionConversionException(value, p2, q2);
-            }
             
             double convergent = (double)p2 / (double)q2;
             if (n < maxIterations && Math.abs(convergent - value) > epsilon && q2 < maxDenominator) {
@@ -181,13 +207,13 @@ public class Fraction extends Number implements Comparable {
         }
         
         if (q2 < maxDenominator) {
-            this.numerator = (int) p2;
-            this.denominator = (int) q2;
+            this.numerator = p2;
+            this.denominator = q2;
         } else {
-            this.numerator = (int) p1;
-            this.denominator = (int) q1;
+            this.numerator = p1;
+            this.denominator = q1;
         }
-
+        reduce();
     }
     
     /**
