@@ -1,0 +1,2 @@
+cd /home/liumengjiao/Desktop/CI/Benchmark/../bugs/Mockito_22_buggy && timeout 300000 gen_tests.pl -g evosuite -p Mockito -v 22f -n 0 -o /home/liumengjiao/Desktop/CI/Evosuite/Mockito/ -b 300 >> evosuite-report-clz/test_gen.log 2>&1
+

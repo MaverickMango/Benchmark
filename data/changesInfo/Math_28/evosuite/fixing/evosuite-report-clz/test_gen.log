@@ -1,0 +1,2 @@
+cd /home/liumengjiao/Desktop/CI/Benchmark/../bugs/Math_28_buggy && timeout 300000 gen_tests.pl -g evosuite -p Math -v 28f -n 0 -o /home/liumengjiao/Desktop/CI/Evosuite/Math/ -b 300 >> evosuite-report-clz/test_gen.log 2>&1
+

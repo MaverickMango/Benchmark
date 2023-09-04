@@ -1,0 +1,2 @@
+cd /home/liumengjiao/Desktop/CI/Benchmark/../bugs/Lang_53_buggy && timeout 300000 gen_tests.pl -g evosuite -p Lang -v 53f -n 0 -o /home/liumengjiao/Desktop/CI/Evosuite/Lang/ -b 300 >> evosuite-report-clz/test_gen.log 2>&1
+

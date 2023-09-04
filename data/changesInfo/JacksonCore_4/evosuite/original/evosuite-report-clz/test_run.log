@@ -1,0 +1,61 @@
+cd /home/liumengjiao/Desktop/CI/Benchmark/../bugs/JacksonCore_4_buggy && timeout 300000 java -cp /home/liumengjiao/Desktop/CI/Benchmark/libs/evosuite-shaded-1.2.1-SNAPSHOT.jar:evosuite-tests/:target/classes/* org.junit.runner.JUnitCore com.fasterxml.jackson.core.util.TextBuffer_ESTest >> evosuite-report-clz/test_run.log 2>&1
+
+JUnit version 4.13.2
+19:49:28.065 [main] INFO shaded.org.evosuite.runtime.instrumentation.EvoClassLoader - Seeing class for first time: com.fasterxml.jackson.core.util.TextBuffer_ESTest
+19:49:28.066 [main] INFO shaded.org.evosuite.runtime.instrumentation.EvoClassLoader - Instrumenting class 'com.fasterxml.jackson.core.util.TextBuffer_ESTest'.
+19:49:28.108 [main] INFO shaded.org.evosuite.runtime.instrumentation.EvoClassLoader - Seeing class for first time: com.fasterxml.jackson.core.util.TextBuffer_ESTest_scaffolding
+19:49:28.109 [main] INFO shaded.org.evosuite.runtime.instrumentation.EvoClassLoader - Instrumenting class 'com.fasterxml.jackson.core.util.TextBuffer_ESTest_scaffolding'.
+19:49:28.110 [main] INFO shaded.org.evosuite.runtime.instrumentation.EvoClassLoader - Keeping class: com.fasterxml.jackson.core.util.TextBuffer_ESTest_scaffolding
+19:49:28.110 [main] INFO shaded.org.evosuite.runtime.instrumentation.EvoClassLoader - Keeping class: com.fasterxml.jackson.core.util.TextBuffer_ESTest
+19:49:28.185 [main] DEBUG shaded.org.evosuite.runtime.sandbox.MSecurityManager - Adding privileged thread: "Reference Handler"
+19:49:28.186 [main] DEBUG shaded.org.evosuite.runtime.sandbox.MSecurityManager - Adding privileged thread: "Finalizer"
+19:49:28.186 [main] DEBUG shaded.org.evosuite.runtime.sandbox.MSecurityManager - Adding privileged thread: "Signal Dispatcher"
+19:49:28.186 [main] DEBUG shaded.org.evosuite.runtime.sandbox.MSecurityManager - Adding privileged thread: "Java2D Disposer"
+19:49:28.186 [main] DEBUG shaded.org.evosuite.runtime.sandbox.MSecurityManager - Adding privileged thread: "AWT-XAWT"
+19:49:28.186 [main] DEBUG shaded.org.evosuite.runtime.sandbox.MSecurityManager - Adding privileged thread: "main"
+19:49:28.197 [main] INFO shaded.org.evosuite.runtime.instrumentation.EvoClassLoader - Seeing class for first time: com.fasterxml.jackson.core.util.TextBuffer
+19:49:28.197 [main] INFO shaded.org.evosuite.runtime.instrumentation.EvoClassLoader - Instrumenting class 'com.fasterxml.jackson.core.util.TextBuffer'.
+19:49:28.197 [main] INFO shaded.org.evosuite.runtime.instrumentation.EvoClassLoader - Error while loading class: java.lang.ClassNotFoundException: Class 'com/fasterxml/jackson/core/util/TextBuffer.class' should be in target project, but could not be found!
+19:49:28.197 [main] ERROR shaded.org.evosuite.runtime.classhandling.ClassStateSupport - Could not initialize com.fasterxml.jackson.core.util.TextBuffer: Class 'com/fasterxml/jackson/core/util/TextBuffer.class' should be in target project, but could not be found!
+19:49:28.197 [main] INFO shaded.org.evosuite.runtime.instrumentation.EvoClassLoader - Seeing class for first time: com.fasterxml.jackson.core.util.BufferRecycler
+19:49:28.197 [main] INFO shaded.org.evosuite.runtime.instrumentation.EvoClassLoader - Instrumenting class 'com.fasterxml.jackson.core.util.BufferRecycler'.
+19:49:28.197 [main] INFO shaded.org.evosuite.runtime.instrumentation.EvoClassLoader - Error while loading class: java.lang.ClassNotFoundException: Class 'com/fasterxml/jackson/core/util/BufferRecycler.class' should be in target project, but could not be found!
+19:49:28.197 [main] ERROR shaded.org.evosuite.runtime.classhandling.ClassStateSupport - Could not initialize com.fasterxml.jackson.core.util.BufferRecycler: Class 'com/fasterxml/jackson/core/util/BufferRecycler.class' should be in target project, but could not be found!
+.19:49:28.201 [Time-limited test] INFO shaded.org.evosuite.runtime.instrumentation.EvoClassLoader - Seeing class for first time: com.fasterxml.jackson.core.util.BufferRecycler
+19:49:28.201 [Time-limited test] INFO shaded.org.evosuite.runtime.instrumentation.EvoClassLoader - Instrumenting class 'com.fasterxml.jackson.core.util.BufferRecycler'.
+19:49:28.201 [Time-limited test] INFO shaded.org.evosuite.runtime.instrumentation.EvoClassLoader - Error while loading class: java.lang.ClassNotFoundException: Class 'com/fasterxml/jackson/core/util/BufferRecycler.class' should be in target project, but could not be found!
+19:49:28.202 [main] INFO shaded.org.evosuite.runtime.instrumentation.EvoClassLoader - Seeing class for first time: com.fasterxml.jackson.core.util.TextBuffer
+19:49:28.202 [main] INFO shaded.org.evosuite.runtime.instrumentation.EvoClassLoader - Instrumenting class 'com.fasterxml.jackson.core.util.TextBuffer'.
+19:49:28.202 [main] INFO shaded.org.evosuite.runtime.instrumentation.EvoClassLoader - Error while loading class: java.lang.ClassNotFoundException: Class 'com/fasterxml/jackson/core/util/TextBuffer.class' should be in target project, but could not be found!
+19:49:28.202 [main] WARN shaded.org.evosuite.runtime.classhandling.ClassResetter - class java.lang.ClassNotFoundException thrown while loading method  __STATIC_RESET() for class com.fasterxml.jackson.core.util.TextBuffer
+19:49:28.202 [main] INFO shaded.org.evosuite.runtime.instrumentation.EvoClassLoader - Seeing class for first time: com.fasterxml.jackson.core.util.BufferRecycler
+19:49:28.202 [main] INFO shaded.org.evosuite.runtime.instrumentation.EvoClassLoader - Instrumenting class 'com.fasterxml.jackson.core.util.BufferRecycler'.
+19:49:28.202 [main] INFO shaded.org.evosuite.runtime.instrumentation.EvoClassLoader - Error while loading class: java.lang.ClassNotFoundException: Class 'com/fasterxml/jackson/core/util/BufferRecycler.class' should be in target project, but could not be found!
+19:49:28.202 [main] WARN shaded.org.evosuite.runtime.classhandling.ClassResetter - class java.lang.ClassNotFoundException thrown while loading method  __STATIC_RESET() for class com.fasterxml.jackson.core.util.BufferRecycler
+E.19:49:28.204 [main] INFO shaded.org.evosuite.runtime.instrumentation.EvoClassLoader - Seeing class for first time: com.fasterxml.jackson.core.util.TextBuffer
+19:49:28.204 [main] INFO shaded.org.evosuite.runtime.instrumentation.EvoClassLoader - Instrumenting class 'com.fasterxml.jackson.core.util.TextBuffer'.
+19:49:28.204 [main] INFO shaded.org.evosuite.runtime.instrumentation.EvoClassLoader - Error while loading class: java.lang.ClassNotFoundException: Class 'com/fasterxml/jackson/core/util/TextBuffer.class' should be in target project, but could not be found!
+19:49:28.204 [main] INFO shaded.org.evosuite.runtime.instrumentation.EvoClassLoader - Seeing class for first time: com.fasterxml.jackson.core.util.BufferRecycler
+19:49:28.204 [main] INFO shaded.org.evosuite.runtime.instrumentation.EvoClassLoader - Instrumenting class 'com.fasterxml.jackson.core.util.BufferRecycler'.
+19:49:28.204 [main] INFO shaded.org.evosuite.runtime.instrumentation.EvoClassLoader - Error while loading class: java.lang.ClassNotFoundException: Class 'com/fasterxml/jackson/core/util/BufferRecycler.class' should be in target project, but could not be found!
+E
+Time: 0.075
+There were 2 failures:
+1) test1(com.fasterxml.jackson.core.util.TextBuffer_ESTest)
+java.lang.NoClassDefFoundError: com/fasterxml/jackson/core/util/BufferRecycler
+	at com.fasterxml.jackson.core.util.TextBuffer_ESTest.test1(TextBuffer_ESTest.java:39)
+	... 11 trimmed
+Caused by: java.lang.ClassNotFoundException: Class 'com/fasterxml/jackson/core/util/BufferRecycler.class' should be in target project, but could not be found!
+	at shaded.org.evosuite.runtime.instrumentation.EvoClassLoader.instrumentClass(EvoClassLoader.java:122)
+	at shaded.org.evosuite.runtime.instrumentation.EvoClassLoader.loadClass(EvoClassLoader.java:91)
+	... 13 more
+Caused by: java.lang.ClassNotFoundException: Class 'com/fasterxml/jackson/core/util/BufferRecycler.class' should be in target project, but could not be found!
+	at shaded.org.evosuite.runtime.instrumentation.EvoClassLoader.instrumentClass(EvoClassLoader.java:108)
+	... 14 more
+2) test0(com.fasterxml.jackson.core.util.TextBuffer_ESTest)
+java.lang.NoClassDefFoundError: com/fasterxml/jackson/core/util/BufferRecycler
+	at com.fasterxml.jackson.core.util.TextBuffer_ESTest.test0(TextBuffer_ESTest.java:22)
+
+FAILURES!!!
+Tests run: 2,  Failures: 2
+

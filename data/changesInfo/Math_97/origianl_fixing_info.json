@@ -1,0 +1,447 @@
+{
+  "logger": {
+    "currentLogLevel": 20,
+    "name": "root.bean.benchmarks.Defects4JBug"
+  },
+  "d4jCmd": "/home/liumengjiao/Desktop/defects4j/framework/bin/defects4j",
+  "dataDir": "data/changesInfo/",
+  "properties": {
+    "trigger.tests": "org.apache.commons.math.analysis.BrentSolverTest::testRootEndpoints",
+    "test.dir": "src/test",
+    "clz.modified": "org.apache.commons.math.analysis.BrentSolver",
+    "src.dir": "src/java"
+  },
+  "timeoutSecond": 300,
+  "proj": "Math",
+  "id": "97",
+  "workingDir": "../bugs/Math_97_buggy",
+  "buggyCommit": "7cf0c980d5d814daf187502bc07da0542ed7a828",
+  "inducingCommit": "4f1e69b5313761cb95909359a408d13e6aa29635",
+  "originalCommit": "6013c8da1956cd765e28061b7cdc94a33fff5fd4",
+  "bug_name": "Math_97",
+  "derive": "defects4j",
+  "original_fixing_commit": "ed492bd0c5c5c3a0258a65cb31cc8723d8f011fd",
+  "buildFiles_changed": false,
+  "regression": true,
+  "inducing_changes": [
+    {
+      "changed_type": "UPDATE",
+      "changed_class": [
+        "src/java/org/apache/commons/math/analysis/BrentSolver.java",
+        "src/java/org/apache/commons/math/analysis/BrentSolver.java"
+      ],
+      "changed_functions": [
+        {
+          "qualified_names": [
+            "org.apache.commons.math.analysis.BrentSolver:solve:[double min, double max]:double"
+          ],
+          "num": 1
+        },
+        {
+          "qualified_names": [
+            "org.apache.commons.math.analysis.BrentSolver:solve:[double min, double max]:double"
+          ],
+          "num": 1
+        }
+      ],
+      "changed_lines": [
+        {
+          "qualified_names": [
+            "2",
+            "85",
+            "95"
+          ],
+          "num": 3
+        },
+        {
+          "qualified_names": [
+            "2",
+            "85",
+            "96",
+            "97",
+            "98",
+            "99",
+            "100",
+            "101",
+            "102",
+            "103"
+          ],
+          "num": 10
+        }
+      ],
+      "diff": "diff --git a/src/java/org/apache/commons/math/analysis/BrentSolver.java b/src/java/org/apache/commons/math/analysis/BrentSolver.java\nindex 9f5dc90..2becdbf 100644\n--- a/src/java/org/apache/commons/math/analysis/BrentSolver.java\n+++ b/src/java/org/apache/commons/math/analysis/BrentSolver.java\n@@ -1,5 +1,5 @@\n /*\n- * Copyright 2003-2004 The Apache Software Foundation.\n+ * Copyright 2003-2005 The Apache Software Foundation.\n  *\n  * Licensed under the Apache License, Version 2.0 (the \"License\");\n  * you may not use this file except in compliance with the License.\n@@ -82,7 +82,7 @@\n         FunctionEvaluationException {\n         \n         clearResult();\n-        verifyBracketing(min, max, f);\n+        verifyInterval(min, max);\n         \n         // Index 0 is the old approximation for the root.\n         // Index 1 is the last calculated approximation  for the root.\n@@ -93,6 +93,14 @@\n         double y1;\n         y0 \u003d f.value(x0);\n         y1 \u003d f.value(x1);\n+        \n+        // Verify bracketing\n+        if (y0 * y1 \u003e\u003d 0) {\n+            throw new IllegalArgumentException\n+            (\"Function values at endpoints do not have different signs.\" +\n+                    \"  Endpoints: [\" + min + \",\" + max + \"]\" + \n+                    \"  Values: [\" + y0 + \",\" + y1 + \"]\");       \n+        }\n    \n         double x2 \u003d x0;\n         double y2 \u003d y0;\n",
+      "operations": [
+        {
+          "type": "insert-tree",
+          "from": "",
+          "to": "ExpressionStatement [3164,3189]"
+        },
+        {
+          "type": "insert-tree",
+          "from": "",
+          "to": "IfStatement [3579,3859]"
+        },
+        {
+          "type": "delete-tree",
+          "from": "ExpressionStatement [3164,3194]",
+          "to": ""
+        }
+      ]
+    },
+    {
+      "changed_type": "UPDATE",
+      "changed_class": [
+        "src/java/org/apache/commons/math/analysis/SecantSolver.java",
+        "src/java/org/apache/commons/math/analysis/SecantSolver.java"
+      ],
+      "changed_functions": [
+        {
+          "qualified_names": [
+            "org.apache.commons.math.analysis.SecantSolver:solve:[double min, double max]:double"
+          ],
+          "num": 1
+        },
+        {
+          "qualified_names": [
+            "org.apache.commons.math.analysis.SecantSolver:solve:[double min, double max]:double"
+          ],
+          "num": 1
+        }
+      ],
+      "changed_lines": [
+        {
+          "qualified_names": [
+            "87",
+            "97"
+          ],
+          "num": 2
+        },
+        {
+          "qualified_names": [
+            "87",
+            "98",
+            "99",
+            "100",
+            "101",
+            "102",
+            "103",
+            "104",
+            "105",
+            "106"
+          ],
+          "num": 10
+        }
+      ],
+      "diff": "diff --git a/src/java/org/apache/commons/math/analysis/SecantSolver.java b/src/java/org/apache/commons/math/analysis/SecantSolver.java\nindex cb090e4..030ce12 100644\n--- a/src/java/org/apache/commons/math/analysis/SecantSolver.java\n+++ b/src/java/org/apache/commons/math/analysis/SecantSolver.java\n@@ -84,7 +84,7 @@\n         FunctionEvaluationException {\n         \n         clearResult();\n-        verifyBracketing(min, max, f);\n+        verifyInterval(min, max);\n         \n         // Index 0 is the old approximation for the root.\n         // Index 1 is the last calculated approximation  for the root.\n@@ -95,6 +95,15 @@\n         double x1 \u003d max;\n         double y0 \u003d f.value(x0);\n         double y1 \u003d f.value(x1);\n+        \n+        // Verify bracketing\n+        if (y0 * y1 \u003e\u003d 0) {\n+            throw new IllegalArgumentException\n+            (\"Function values at endpoints do not have different signs.\" +\n+                    \"  Endpoints: [\" + min + \",\" + max + \"]\" + \n+                    \"  Values: [\" + y0 + \",\" + y1 + \"]\");       \n+        }\n+        \n         double x2 \u003d x0;\n         double y2 \u003d y0;\n         double oldDelta \u003d x2 - x1;\n",
+      "operations": [
+        {
+          "type": "insert-tree",
+          "from": "",
+          "to": "ExpressionStatement [3351,3376]"
+        },
+        {
+          "type": "insert-tree",
+          "from": "",
+          "to": "IfStatement [3837,4117]"
+        },
+        {
+          "type": "delete-tree",
+          "from": "ExpressionStatement [3351,3381]",
+          "to": ""
+        }
+      ]
+    }
+  ],
+  "inducing_type": {
+    "add_classes": {
+      "qualified_names": [],
+      "num": 0
+    },
+    "delete_classes": {
+      "qualified_names": [],
+      "num": 0
+    },
+    "add_functions": {
+      "qualified_names": [],
+      "num": 0
+    },
+    "delete_functions": {
+      "qualified_names": [],
+      "num": 0
+    }
+  },
+  "trigger_tests": [
+    {
+      "test_class": "org.apache.commons.math.analysis.BrentSolverTest",
+      "test_function": "testRootEndpoints",
+      "exception": "java.lang.IllegalArgumentException",
+      "message": "Function values at endpoints do not have different signs.  Endpoints: [3.0,3.141592653589793]  Values: [0.1411200080598672,1.2246467991473532E-16]"
+    }
+  ],
+  "fixing_changes": [
+    {
+      "changed_type": "UPDATE",
+      "changed_class": [
+        "src/java/org/apache/commons/math/analysis/BrentSolver.java",
+        "src/java/org/apache/commons/math/analysis/BrentSolver.java"
+      ],
+      "changed_functions": [
+        {
+          "qualified_names": [
+            "org.apache.commons.math.analysis.BrentSolver:solve:[double min, double max]:double"
+          ],
+          "num": 1
+        },
+        {
+          "qualified_names": [
+            "org.apache.commons.math.analysis.BrentSolver:solve:[double min, double max]:double"
+          ],
+          "num": 1
+        }
+      ],
+      "changed_lines": [
+        {
+          "qualified_names": [
+            "29",
+            "135",
+            "136",
+            "137",
+            "138",
+            "139",
+            "142",
+            "143",
+            "144"
+          ],
+          "num": 9
+        },
+        {
+          "qualified_names": [
+            "29",
+            "131",
+            "132",
+            "137",
+            "138",
+            "139",
+            "140",
+            "141",
+            "142",
+            "143",
+            "144",
+            "145",
+            "146",
+            "147",
+            "148",
+            "149",
+            "150",
+            "151",
+            "152",
+            "153",
+            "154",
+            "155",
+            "156",
+            "157",
+            "158",
+            "159",
+            "160",
+            "161",
+            "162",
+            "165"
+          ],
+          "num": 30
+        }
+      ],
+      "diff": "diff --git a/src/java/org/apache/commons/math/analysis/BrentSolver.java b/src/java/org/apache/commons/math/analysis/BrentSolver.java\nindex 01a9ee5..57f64a9 100644\n--- a/src/java/org/apache/commons/math/analysis/BrentSolver.java\n+++ b/src/java/org/apache/commons/math/analysis/BrentSolver.java\n@@ -26,7 +26,7 @@\n  * \u003cp\u003e\n  * The function should be continuous but not necessarily smooth.\u003c/p\u003e\n  *  \n- * @version $Revision$ $Date$\n+ * @version $Revision:670469 $ $Date:2008-06-23 10:01:38 +0200 (lun., 23 juin 2008) $\n  */\n public class BrentSolver extends UnivariateRealSolverImpl {\n     \n@@ -128,20 +128,41 @@\n         clearResult();\n         verifyInterval(min, max);\n         \n+        double ret \u003d Double.NaN;\n+        \n         double yMin \u003d f.value(min);\n         double yMax \u003d f.value(max);\n         \n         // Verify bracketing\n-        if (yMin * yMax \u003e\u003d 0) {\n-            throw new IllegalArgumentException\n-            (\"Function values at endpoints do not have different signs.\" +\n-                    \"  Endpoints: [\" + min + \",\" + max + \"]\" + \n-                    \"  Values: [\" + yMin + \",\" + yMax + \"]\");       \n+        double sign \u003d yMin * yMax;\n+        if (sign \u003e 0) {\n+            // check if either value is close to a zero\n+            if (Math.abs(yMin) \u003c\u003d functionValueAccuracy) {\n+                setResult(min, 0);\n+                ret \u003d min;\n+            } else if (Math.abs(yMax) \u003c\u003d functionValueAccuracy) {\n+                setResult(max, 0);\n+                ret \u003d max;\n+            } else {\n+                // neither value is close to zero and min and max do not bracket root.\n+                throw new IllegalArgumentException\n+                (\"Function values at endpoints do not have different signs.\" +\n+                        \"  Endpoints: [\" + min + \",\" + max + \"]\" + \n+                        \"  Values: [\" + yMin + \",\" + yMax + \"]\");\n+            }\n+        } else if (sign \u003c 0){\n+            // solve using only the first endpoint as initial guess\n+            ret \u003d solve(min, yMin, max, yMax, min, yMin);\n+        } else {\n+            // either min or max is a root\n+            if (yMin \u003d\u003d 0.0) {\n+                ret \u003d min;\n+            } else {\n+                ret \u003d max;\n+            }\n         }\n \n-        // solve using only the first endpoint as initial guess\n-        return solve(min, yMin, max, yMax, min, yMin);\n-\n+        return ret;\n     }\n         \n     /**\n",
+      "operations": [
+        {
+          "type": "update-node",
+          "from": "",
+          "to": ""
+        },
+        {
+          "type": "insert-tree",
+          "from": "",
+          "to": "VariableDeclarationStatement [5140,5164]"
+        },
+        {
+          "type": "insert-tree",
+          "from": "",
+          "to": "VariableDeclarationStatement [5292,5318]"
+        },
+        {
+          "type": "insert-node",
+          "from": "",
+          "to": "IfStatement [5327,6379]"
+        },
+        {
+          "type": "insert-tree",
+          "from": "",
+          "to": "ReturnStatement [6389,6400]"
+        },
+        {
+          "type": "insert-tree",
+          "from": "",
+          "to": "InfixExpression [5331,5339]"
+        },
+        {
+          "type": "insert-node",
+          "from": "",
+          "to": "Block [5341,6043]"
+        },
+        {
+          "type": "insert-node",
+          "from": "",
+          "to": "IfStatement [6049,6379]"
+        },
+        {
+          "type": "insert-node",
+          "from": "",
+          "to": "IfStatement [5411,6033]"
+        },
+        {
+          "type": "insert-tree",
+          "from": "",
+          "to": "InfixExpression [6053,6061]"
+        },
+        {
+          "type": "insert-node",
+          "from": "",
+          "to": "Block [6062,6199]"
+        },
+        {
+          "type": "insert-tree",
+          "from": "",
+          "to": "Block [6205,6379]"
+        },
+        {
+          "type": "insert-tree",
+          "from": "",
+          "to": "InfixExpression [5415,5454]"
+        },
+        {
+          "type": "insert-tree",
+          "from": "",
+          "to": "Block [5456,5533]"
+        },
+        {
+          "type": "move-tree",
+          "from": "",
+          "to": ""
+        },
+        {
+          "type": "insert-node",
+          "from": "",
+          "to": "ExpressionStatement [6144,6189]"
+        },
+        {
+          "type": "insert-tree",
+          "from": "",
+          "to": "Block [5584,5661]"
+        },
+        {
+          "type": "insert-node",
+          "from": "",
+          "to": "Assignment [6144,6188]"
+        },
+        {
+          "type": "insert-node",
+          "from": "",
+          "to": "MethodInvocation [5543,5557]"
+        },
+        {
+          "type": "update-node",
+          "from": "",
+          "to": ""
+        },
+        {
+          "type": "insert-node",
+          "from": "",
+          "to": "SimpleName: functionValueAccuracy [5561,5582]"
+        },
+        {
+          "type": "insert-node",
+          "from": "",
+          "to": "SimpleName: ret [6144,6147]"
+        },
+        {
+          "type": "insert-node",
+          "from": "",
+          "to": "ASSIGNMENT_OPERATOR: \u003d [6148,6149]"
+        },
+        {
+          "type": "move-tree",
+          "from": "",
+          "to": ""
+        },
+        {
+          "type": "insert-tree",
+          "from": "",
+          "to": "METHOD_INVOCATION_RECEIVER [5543,5547]"
+        },
+        {
+          "type": "insert-node",
+          "from": "",
+          "to": "SimpleName: abs [5548,5551]"
+        },
+        {
+          "type": "insert-node",
+          "from": "",
+          "to": "METHOD_INVOCATION_ARGUMENTS [5552,5556]"
+        },
+        {
+          "type": "move-tree",
+          "from": "",
+          "to": ""
+        },
+        {
+          "type": "delete-node",
+          "from": "SimpleName: yMin [5198,5202]",
+          "to": ""
+        },
+        {
+          "type": "delete-node",
+          "from": "INFIX_EXPRESSION_OPERATOR: * [5203,5204]",
+          "to": ""
+        },
+        {
+          "type": "delete-node",
+          "from": "InfixExpression [5198,5209]",
+          "to": ""
+        },
+        {
+          "type": "delete-node",
+          "from": "NumberLiteral: 0 [5213,5214]",
+          "to": ""
+        },
+        {
+          "type": "delete-node",
+          "from": "ReturnStatement [5556,5602]",
+          "to": ""
+        }
+      ]
+    }
+  ],
+  "fixing_type": {
+    "add_classes": {
+      "qualified_names": [],
+      "num": 0
+    },
+    "delete_classes": {
+      "qualified_names": [],
+      "num": 0
+    },
+    "add_functions": {
+      "qualified_names": [],
+      "num": 0
+    },
+    "delete_functions": {
+      "qualified_names": [],
+      "num": 0
+    }
+  },
+  "patch_changed_mths": {
+    "qualified_names": [
+      "org.apache.commons.math.analysis.BrentSolver:solve(DD)D:regression"
+    ],
+    "num": 1
+  }
+}

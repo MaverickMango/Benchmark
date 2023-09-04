@@ -3,6 +3,7 @@ package root.attempt;
 import org.eclipse.jgit.revwalk.RevCommit;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import root.bean.ci.CIBug;
 import root.bean.otherdataset.BugFixCommit;
 import root.bean.benchmarks.Defects4JBug;
 import org.eclipse.jgit.lib.Repository;
@@ -17,6 +18,71 @@ import java.util.stream.Collectors;
 public class Defects4jBugsMain implements GitAccess {
 
     private static final Logger logger = LoggerFactory.getLogger(Defects4jBugsMain.class);
+
+    public static void main(String[] args) {//jsonAnalyzer
+        String bugInfo = "src/test/resources/BugFixInfo_total.csv";
+        List<List<String>> d4jinfos = FileUtils.readCsv(bugInfo, true);
+        List<String> addClasses = new ArrayList<>();
+        for (int i = 0; i < d4jinfos.size(); i ++) {
+            String bugName = d4jinfos.get(i).get(2);
+            String proj = bugName.split("_")[0];
+            String id = bugName.split("_")[1];
+            String bug_tag = proj + "_" + id;
+            String jsonFile = "data/changesInfo/" + bug_tag + "/origianl_fixing_info.json";
+            String inducingDir = "data/changesInfo/" + bug_tag + "/cleaned/inducing";
+            if (FileUtils.notExists(jsonFile)) {
+                continue;
+            }
+            String json = FileUtils.readFileByLines(jsonFile);
+            addClasses.add(json);
+//            String workingDir = "../bugs/" + bugName;
+//            String bugInducingCommit = d4jinfos.get(i).get(5);
+//            String bugFixingCommit = d4jinfos.get(i).get(3);
+//            CIBug ciBug = FileUtils.json2Bean(json, CIBug.class);
+//            if (ciBug.getInducingChanges().isEmpty())
+//                continue;
+//            Actions inducingType = ciBug.getInducingType();
+//            if (inducingType.getAddClasses().getNum() != 0) {
+//                addClasses.add(bugName);
+//            }
+//            if (inducingType.getAddClasses().getNum() != 0) {
+//                addClasses.add(bugName);
+//            }
+        }
+        FileUtils.writeToFile(FileUtils.jsonFormatter(addClasses.toString()), "data/changesInfo/info.json", false);
+    }
+
+    public static void functionExtractor(String[] args) {//functionExtractor
+        String bugInfo = "src/test/resources/BugFixInfo_total.csv";
+        List<List<String>> d4jinfos = FileUtils.readCsv(bugInfo, false);
+        for (int i = 0; i < d4jinfos.size(); i ++) {
+            String bugName = d4jinfos.get(i).get(2);
+            String proj = bugName.split("_")[0];
+            String id = bugName.split("_")[1];
+            String bug_tag = proj + "_" + id;
+            String fixingDir = "data/changesInfo/" + bug_tag + "/cleaned/fixing";
+            String inducingDir = "data/changesInfo/" + bug_tag + "/cleaned/inducing";
+//            if (FileUtils.notExists(inducingDir)) {
+//                continue;
+//            }
+            String workingDir = "../bugs/" + bugName;
+            String bugInducingCommit = d4jinfos.get(i).get(5);
+            String bugFixingCommit = d4jinfos.get(i).get(3);
+            CIBug defects4JBug = new Defects4JBug(proj, id,  workingDir);
+            defects4JBug.setBugName(bug_tag);
+            defects4JBug.setDerive("defects4j");
+            defects4JBug.setOriginalFixingCommit(bugFixingCommit);
+            defects4JBug.setInducingCommit(bugInducingCommit);
+            ((Defects4JBug)defects4JBug).setOriginalCommit(d4jinfos.get(i).get(6));
+            ((Defects4JBug)defects4JBug).setBuggyCommit(d4jinfos.get(i).get(4));
+
+            String buildFileDir = "data/changesInfo/" + bug_tag + "/buildfiles";
+            defects4JBug.setBuildfilesChanged(!FileUtils.notExists(buildFileDir));
+            BugBuilder.buildCIBug(defects4JBug, "data/changesInfo/", true);
+            FileUtils.writeToFile(FileUtils.jsonFormatter(FileUtils.bean2Json(defects4JBug)),
+                    ((Defects4JBug) defects4JBug).getDataDir() + defects4JBug.getBugName() + "/origianl_fixing_info.json", false);
+        }
+    }
 
     /**
      *
@@ -272,7 +338,7 @@ public class Defects4jBugsMain implements GitAccess {
         }
     }
 
-    public static void main(String[] args) {
+    public static void switchAndTest(String[] args) {
         String filePath = "src/test/resources/BugFixInfo_total.csv";
         List<List<String>> d4jinfos = FileUtils.readCsv(filePath, true);
         Set<String> projs = d4jinfos.stream().map(o -> o.get(2).split("_")[0]).collect(Collectors.toSet());

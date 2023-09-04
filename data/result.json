@@ -1,0 +1,1051 @@
+{
+  "proj": "Closure",
+  "id": 68,
+  "fixingCommit": "9d5a6e3082dd99f6c44df1b3526b9e83b79aa7da",
+  "buggyCommit": "f392c8416faeb6dc41e663912ad7f4421d893a90",
+  "repairTools": {
+    "plausible": "ssFix StaticBugFix PraPR",
+    "total_num": 3
+  }
+},{
+  "proj": "Mockito",
+  "id": 13,
+  "fixingCommit": "2037361bea014c9ac87393eb96a95374dff46182",
+  "buggyCommit": "88100667b90c4621178fd870fa1ca43060512fc6",
+  "repairTools": {
+    "correct": "LSRepair",
+    "total_num": 1
+  }
+},{
+  "proj": "Mockito",
+  "id": 15,
+  "fixingCommit": "81a380951402d2a158af115ed616ab36e94793b8",
+  "buggyCommit": "77c6703f60d87b88b0e5b175b8fb0462483a8f69",
+  "repairTools": {
+    "plausible": "PraPR",
+    "total_num": 1
+  }
+},{
+  "proj": "Mockito",
+  "id": 27,
+  "fixingCommit": "a8ec4fa290bc1cdde060218d6bb811ac1fa6da6f",
+  "buggyCommit": "19ade1ff81503b05a34ba8fff4ee9c9b63860587",
+  "repairTools": {
+    "plausible": "JAID-revise",
+    "total_num": 1
+  }
+},{
+  "proj": "Mockito",
+  "id": 28,
+  "fixingCommit": "0464f5657dc8c76a4ff209a2cf7fd6312885cdc3",
+  "buggyCommit": "7639f331b8c002647dd02f914bbd3f3203832cb9",
+  "repairTools": {
+    "plausible": "PraPR",
+    "total_num": 1
+  }
+},{
+  "proj": "Closure",
+  "id": 2,
+  "fixingCommit": "d1cfe67977d8f3aaa85ec20c262171da394d5977",
+  "buggyCommit": "61095090415cff7cae4f3645fa76ee7cdd3ee23d",
+  "repairTools": {
+    "correct": "StaticBugFix TBar kPAR Recoder",
+    "plausible": "GENPAT ConFix PraPR JAID-revise",
+    "total_num": 8
+  }
+},{
+  "proj": "Closure",
+  "id": 8,
+  "fixingCommit": "6300a43566d4adcf8828128267808a8740edc835",
+  "buggyCommit": "e237d2643b102fbea616717806391f48e2ce506a",
+  "repairTools": {
+    "plausible": "DynaMoth PraPR",
+    "total_num": 2
+  }
+},{
+  "proj": "Closure",
+  "id": 10,
+  "fixingCommit": "0884a4cbef1c82153ef306477a12af0480385a35",
+  "buggyCommit": "f681fd8045bfa4a41f3a66c942b97fb04335b7cc",
+  "repairTools": {
+    "correct": "PraPR FixMiner",
+    "plausible": "DynaMoth Cardumen TBar JAID-revise",
+    "total_num": 6
+  }
+},{
+  "proj": "Closure",
+  "id": 12,
+  "fixingCommit": "d06ac163013a3779fcec7c2f544ba99d08f69f58",
+  "buggyCommit": "919fda930ca242e2d1490e6413b601c8bad701b4",
+  "repairTools": {
+    "plausible": "DynaMoth ssFix Cardumen Hercules PraPR",
+    "total_num": 5
+  }
+},{
+  "proj": "Closure",
+  "id": 13,
+  "fixingCommit": "d6d733f461ee5ba26e9326c1c7609f1f00d6d2db",
+  "buggyCommit": "8b8c01a39b94069a9dac08b92c27dc9b9532ff7f",
+  "repairTools": {
+    "correct": "VarFix",
+    "plausible": "DynaMoth Cardumen PraPR JAID-revise",
+    "total_num": 5
+  }
+},{
+  "proj": "Closure",
+  "id": 16,
+  "fixingCommit": "3b97e5e4212c769daa22a96094ed19b4658c8760",
+  "buggyCommit": "33ab4df84afbdb36216b8a1ea3a526c438615e26",
+  "repairTools": {
+    "plausible": "DynaMoth",
+    "total_num": 1
+  }
+},{
+  "proj": "Closure",
+  "id": 17,
+  "fixingCommit": "33ab4df84afbdb36216b8a1ea3a526c438615e26",
+  "buggyCommit": "e5e1253ac6d43e26271cc658a42fdb1477454faf",
+  "repairTools": {
+    "plausible": "DynaMoth PraPR JAID-revise",
+    "total_num": 3
+  }
+},{
+  "proj": "Closure",
+  "id": 18,
+  "fixingCommit": "ea119a2d06328852763f9ee447c3bf74fa1f83dc",
+  "buggyCommit": "686146c4de7d2bd985156ae15175365633dd0f94",
+  "repairTools": {
+    "correct": "JAID PraPR RESTORE JAID-revise RewardRepair",
+    "plausible": "DynaMoth",
+    "total_num": 6
+  }
+},{
+  "proj": "Closure",
+  "id": 21,
+  "fixingCommit": "1787d7b2cff83a0f177dd958033c53e4502406d2",
+  "buggyCommit": "a9250a5aac439a72f71c248de07f042674fb2076",
+  "repairTools": {
+    "correct": "TBar Recoder",
+    "plausible": "DynaMoth Cardumen StaticBugFix ConFix PraPR VarFix",
+    "total_num": 8
+  }
+},{
+  "proj": "Closure",
+  "id": 22,
+  "fixingCommit": "43a55234ef122a1ed98681ce0350506207b878d5",
+  "buggyCommit": "c8e5f7acc524fe629f73876acfb463619a02f34b",
+  "repairTools": {
+    "plausible": "DynaMoth Cardumen StaticBugFix ConFix PraPR TBar VarFix",
+    "total_num": 7
+  }
+},{
+  "proj": "Closure",
+  "id": 29,
+  "fixingCommit": "6924915efab89f921fd0779fe200fecc1bf80847",
+  "buggyCommit": "3587cc3bb550dadee3c9aeac44041aa29087e74e",
+  "repairTools": {
+    "plausible": "DynaMoth PraPR",
+    "total_num": 2
+  }
+},{
+  "proj": "Closure",
+  "id": 30,
+  "fixingCommit": "38e2b8f247423734adec3dbd76fa22da1a3561a8",
+  "buggyCommit": "6da361c5865ecac18ee147014c9e84244d19c2a9",
+  "repairTools": {
+    "plausible": "DynaMoth PraPR",
+    "total_num": 2
+  }
+},{
+  "proj": "Closure",
+  "id": 36,
+  "fixingCommit": "be397ee0d0be2aad8f71d12f097b17563866445a",
+  "buggyCommit": "c5ec81dc0b6aaaefcdfd84ee10e43f3312350d23",
+  "repairTools": {
+    "plausible": "DynaMoth PraPR",
+    "total_num": 2
+  }
+},{
+  "proj": "Closure",
+  "id": 38,
+  "fixingCommit": "8cf08115c6b252f8c6b54348a4089dccc45a01fb",
+  "buggyCommit": "f067d0e1d84d631ec0c1e8e8cd812bbda1497958",
+  "repairTools": {
+    "correct": "StaticBugFix ConFix TBar kPAR FixMiner RewardRepair",
+    "plausible": "GENPAT PraPR JAID-revise",
+    "total_num": 9
+  }
+},{
+  "proj": "Closure",
+  "id": 40,
+  "fixingCommit": "6ebc0c3d7d4da7d2cf95f53d4ea790e89d3abc7a",
+  "buggyCommit": "a90f4b4fba37c52376d5f074729233d59ce08408",
+  "repairTools": {
+    "correct": "JAID RESTORE JAID-revise",
+    "plausible": "DynaMoth Cardumen PraPR",
+    "total_num": 6
+  }
+},{
+  "proj": "Closure",
+  "id": 45,
+  "fixingCommit": "6aa71f116df0102a98c463f471ad8ddd4dba01f8",
+  "buggyCommit": "a55420ec8457fb0c7be663b2afbdbc0a60064901",
+  "repairTools": {
+    "plausible": "DynaMoth Cardumen StaticBugFix PraPR JAID-revise",
+    "total_num": 5
+  }
+},{
+  "proj": "Closure",
+  "id": 46,
+  "fixingCommit": "4a1a31c6a50a0fbe25fa33277909bd51f1deb8e9",
+  "buggyCommit": "edb6e4c48c19be681f38e9ee27e67b66a1944640",
+  "repairTools": {
+    "correct": "StaticBugFix PraPR TBar JAID-revise Recoder",
+    "plausible": "DynaMoth Cardumen Hercules ConFix RESTORE",
+    "total_num": 10
+  }
+},{
+  "proj": "Closure",
+  "id": 48,
+  "fixingCommit": "46da17d59abb4f9c48b6ffd31601c212490b970b",
+  "buggyCommit": "5524adbda991632656059566b69cc2771ba42b7d",
+  "repairTools": {
+    "plausible": "DynaMoth PraPR JAID-revise",
+    "total_num": 3
+  }
+},{
+  "proj": "Closure",
+  "id": 49,
+  "fixingCommit": "1a7ba5cb0111dd3ed9afd9691cab39b3c341e408",
+  "buggyCommit": "62581c697a626f2cd848b98648aa42329d482859",
+  "repairTools": {
+    "plausible": "DynaMoth",
+    "total_num": 1
+  }
+},{
+  "proj": "Closure",
+  "id": 50,
+  "fixingCommit": "c3b630fc9c2a1c4eb7cb718f8d324bfb306cb9df",
+  "buggyCommit": "9d3ed3fb128d2378e76f65e15bc45783eaf4cd57",
+  "repairTools": {
+    "plausible": "DynaMoth PraPR",
+    "total_num": 2
+  }
+},{
+  "proj": "Closure",
+  "id": 55,
+  "fixingCommit": "f2c0cb1f67ecb3315c0cb11326c9cb04db07ee8a",
+  "buggyCommit": "1d13eac7441b980804c7ddfbe48a10a2ec3431d0",
+  "repairTools": {
+    "plausible": "DynaMoth Cardumen ConFix",
+    "total_num": 3
+  }
+},{
+  "proj": "Closure",
+  "id": 57,
+  "fixingCommit": "f759f431d5a7a2261b44440bca9cfab93ae25302",
+  "buggyCommit": "2d3b9a6c591ef14e8c9208a3f049a1630c993d84",
+  "repairTools": {
+    "correct": "SimFix Recoder",
+    "total_num": 2
+  }
+},{
+  "proj": "Closure",
+  "id": 60,
+  "fixingCommit": "fbaadc736f0031dd84bebea33abae497b47158cb",
+  "buggyCommit": "042b972a5853424d39be1cb76f2710d4bc3380e0",
+  "repairTools": {
+    "plausible": "DynaMoth",
+    "total_num": 1
+  }
+},{
+  "proj": "Closure",
+  "id": 67,
+  "fixingCommit": "aa89d05b48332d68b8e6ebcee427b2ac3b4e3184",
+  "buggyCommit": "8777edb959dfea307495e667c2c01834adabb906",
+  "repairTools": {
+    "plausible": "DynaMoth",
+    "total_num": 1
+  }
+},{
+  "proj": "Closure",
+  "id": 72,
+  "fixingCommit": "e323b879de2e53e5eedf6e7afb0d582382c6248d",
+  "buggyCommit": "3f8896c5f08cd04efabfc1bd9915ebfd93fb832a",
+  "repairTools": {
+    "plausible": "DynaMoth PraPR",
+    "total_num": 2
+  }
+},{
+  "proj": "Closure",
+  "id": 75,
+  "fixingCommit": "c6cc58a9bc617483366141386e047b085b4e83ff",
+  "buggyCommit": "31baadd1293c5ae7af05b3a06a1ba3a06403e4ed",
+  "repairTools": {
+    "plausible": "DynaMoth",
+    "total_num": 1
+  }
+},{
+  "proj": "Closure",
+  "id": 76,
+  "fixingCommit": "78b01c3a435cd175ce3ee70f97b2f8faac342cdc",
+  "buggyCommit": "a6ca7c196cb8f9bcddefd038d80217c3de486e4e",
+  "repairTools": {
+    "plausible": "DynaMoth PraPR",
+    "total_num": 2
+  }
+},{
+  "proj": "Closure",
+  "id": 78,
+  "fixingCommit": "25829b0395164533782d608399096803321225a7",
+  "buggyCommit": "b40c6c7e0e323f1b69fe7f9686ed8f763b01faf8",
+  "repairTools": {
+    "correct": "Hercules",
+    "plausible": "DynaMoth",
+    "total_num": 2
+  }
+},{
+  "proj": "Closure",
+  "id": 79,
+  "fixingCommit": "5d397618f3c86d9c444a4c4c6441267b8a89a21d",
+  "buggyCommit": "f3c23f757da302483c86414ec8b9c502f10fce00",
+  "repairTools": {
+    "plausible": "SimFix ConFix",
+    "total_num": 2
+  }
+},{
+  "proj": "Closure",
+  "id": 81,
+  "fixingCommit": "084b868bc2fbf9d6d0319e5a362ade1d7f43f899",
+  "buggyCommit": "a65a72e9dd320790710beed1593dd6358c4bf029",
+  "repairTools": {
+    "plausible": "PraPR",
+    "total_num": 1
+  }
+},{
+  "proj": "Closure",
+  "id": 84,
+  "fixingCommit": "4839e1ea57f9a1a26debd2cc8f22beef7282b490",
+  "buggyCommit": "9f8345afa4e5eaa24e3ff6a84d16691764698799",
+  "repairTools": {
+    "plausible": "PraPR",
+    "total_num": 1
+  }
+},{
+  "proj": "Closure",
+  "id": 90,
+  "fixingCommit": "c5e143f7df0c3d73f6634488cac8ad8e7054fe05",
+  "buggyCommit": "97485ec652a6d3471c539d5b0ead4f05707db139",
+  "repairTools": {
+    "plausible": "ConFix",
+    "total_num": 1
+  }
+},{
+  "proj": "Closure",
+  "id": 106,
+  "fixingCommit": "e609670bb56e0c7216c9476a5f6a5594e7f1acdb",
+  "buggyCommit": "6a36f04485599820ff86441accee002b4deec2eb",
+  "repairTools": {
+    "plausible": "SimFix",
+    "total_num": 1
+  }
+},{
+  "proj": "Closure",
+  "id": 109,
+  "fixingCommit": "7d26b7bcae8311f3c032bae3f1df27b590a4c174",
+  "buggyCommit": "bb893266036cbc7f0b434794d4fd9306513357be",
+  "repairTools": {
+    "correct": "Hercules ConFix Recoder",
+    "plausible": "ssFix PraPR",
+    "total_num": 5
+  }
+},{
+  "proj": "Closure",
+  "id": 115,
+  "fixingCommit": "4597738e8898f738c1f969fe90479728be81cc80",
+  "buggyCommit": "2d6e1c78f41248fbbb1eec43b23e7430e2bc7885",
+  "repairTools": {
+    "correct": "ssFix SimFix StaticBugFix GENPAT RESTORE Recoder",
+    "plausible": "PraPR TBar JAID-revise",
+    "total_num": 9
+  }
+},{
+  "proj": "Closure",
+  "id": 118,
+  "fixingCommit": "f17961ae4d3d7cf5ea291d82804239982d009ef7",
+  "buggyCommit": "046e0b226e963bc584c2a6cd3c2b471777c5cc53",
+  "repairTools": {
+    "correct": "Recoder",
+    "plausible": "RESTORE",
+    "total_num": 2
+  }
+},{
+  "proj": "Closure",
+  "id": 121,
+  "fixingCommit": "2aee36e667526ff8b0b5e6dad66506acee920ea6",
+  "buggyCommit": "1af41ab430be090a9a6177648b18c1ff9fb88c3f",
+  "repairTools": {
+    "plausible": "PraPR JAID-revise",
+    "total_num": 2
+  }
+},{
+  "proj": "Closure",
+  "id": 122,
+  "fixingCommit": "a8a456b183c9600658bcb0c72091bae1a30a4fda",
+  "buggyCommit": "f22a0e8b289e8ed26f04ea0d3af3612b6e15414a",
+  "repairTools": {
+    "plausible": "ssFix PraPR",
+    "total_num": 2
+  }
+},{
+  "proj": "Closure",
+  "id": 123,
+  "fixingCommit": "8d11b8cc7a6183222b61c9bd398fed5448c59109",
+  "buggyCommit": "60dac870c77b5de63d981f4be40106fe1c87b7d1",
+  "repairTools": {
+    "plausible": "PraPR",
+    "total_num": 1
+  }
+},{
+  "proj": "Closure",
+  "id": 124,
+  "fixingCommit": "e7f4269d0289f4d47217207ec456219db8efe47c",
+  "buggyCommit": "95ff0484a76d60d30145f4e3da4bf9b517029361",
+  "repairTools": {
+    "plausible": "DynaMoth JAID-revise",
+    "total_num": 2
+  }
+},{
+  "proj": "Closure",
+  "id": 125,
+  "fixingCommit": "8cef00180a5cf67d047919c89668a6405030dbab",
+  "buggyCommit": "ddc1299802e88b9814250c369e3fe6f7ee07d4e5",
+  "repairTools": {
+    "plausible": "ssFix JAID ConFix PraPR RESTORE JAID-revise",
+    "total_num": 6
+  }
+},{
+  "proj": "Closure",
+  "id": 131,
+  "fixingCommit": "7f6700e2b54af3af409f3e8851a0d98a72beef4b",
+  "buggyCommit": "602dc3845e92d39a0701396666635ccc4a321599",
+  "repairTools": {
+    "plausible": "DynaMoth",
+    "total_num": 1
+  }
+},{
+  "proj": "Closure",
+  "id": 133,
+  "fixingCommit": "4fbbc47cb18f241b23dd2d4bf9c15d45b2473523",
+  "buggyCommit": "c5e6df9c0f84de1eee287d530ef8721c05e9cf14",
+  "repairTools": {
+    "plausible": "DynaMoth Cardumen Hercules ConFix PraPR",
+    "total_num": 5
+  }
+},{
+  "proj": "Lang",
+  "id": 7,
+  "fixingCommit": "e71f6dd3f2f70c640ae73d28b432b3a69ffcab4b",
+  "buggyCommit": "f0c7e60bbaf975b64ab5bf1b75ba6b7dbc256300",
+  "repairTools": {
+    "correct": "ACS StaticBugFix arja-e",
+    "plausible": "Cardumen GenProg-A ARJA DeepRepair ConFix PraPR TBar JAID-revise",
+    "total_num": 11
+  }
+},{
+  "proj": "Lang",
+  "id": 12,
+  "fixingCommit": "c9d786a4fe2639581047d878a64bab6fb24f1ab3",
+  "buggyCommit": "9351ed93365de2d1c316b8f419566820e88839e3",
+  "repairTools": {
+    "plausible": "JAID-revise",
+    "total_num": 1
+  }
+},{
+  "proj": "Lang",
+  "id": 13,
+  "fixingCommit": "bd59a1908a1df3364918be7b07782500616b15ac",
+  "buggyCommit": "d0cf0fdd4ff2329f9584c4f663f1af177c1994f6",
+  "repairTools": {
+    "plausible": "StaticBugFix iFixR",
+    "total_num": 2
+  }
+},{
+  "proj": "Lang",
+  "id": 14,
+  "fixingCommit": "cf7211f9d7d70d56501d8c4c827bf9ce3cac5f0b",
+  "buggyCommit": "c8afaa3e869cc8c25577641553e0d0b5bdac78b5",
+  "repairTools": {
+    "plausible": "Cardumen arja-e",
+    "total_num": 2
+  }
+},{
+  "proj": "Lang",
+  "id": 15,
+  "fixingCommit": "8185a9e681d6de5f40b0ed07b40730c9761bad37",
+  "buggyCommit": "76912e0d8aed581ee4bc6b8635d0512ac2695f5d",
+  "repairTools": {
+    "plausible": "arja-e JAID-revise",
+    "total_num": 2
+  }
+},{
+  "proj": "Lang",
+  "id": 20,
+  "fixingCommit": "f08213cc4c35fd71e98aa5233fcb2db3333793a2",
+  "buggyCommit": "0c01b4c48bc886a7e53b517efeb2192d1caaffe2",
+  "repairTools": {
+    "correct": "ARJA Vfix arja-e",
+    "plausible": "DeepRepair GENPAT",
+    "total_num": 5
+  }
+},{
+  "proj": "Lang",
+  "id": 31,
+  "fixingCommit": "38bf7048571f3bc8dd34d14691906426444e4381",
+  "buggyCommit": "0cc451d5e5cb565eb7311308466f487bc534ebaf",
+  "repairTools": {
+    "plausible": "ConFix PraPR JAID-revise",
+    "total_num": 3
+  }
+},{
+  "proj": "Lang",
+  "id": 34,
+  "fixingCommit": "496525b0d626dd5049528cdef61d71681154b660",
+  "buggyCommit": "3f900a7395e31eaa72e0fa2fb43c090e5a8fa4ed",
+  "repairTools": {
+    "correct": "arja-e",
+    "total_num": 1
+  }
+},{
+  "proj": "Lang",
+  "id": 35,
+  "fixingCommit": "80bd78ea0685d28ddec9b8162d652db9dec949ce",
+  "buggyCommit": "48bf241d4149919e0928e39616bee2e3783e2987",
+  "repairTools": {
+    "correct": "ACS ARJA",
+    "plausible": "GenProg-A",
+    "total_num": 3
+  }
+},{
+  "proj": "Lang",
+  "id": 41,
+  "fixingCommit": "4d3629f310e84cc24c0e5f09d97f5126692d0128",
+  "buggyCommit": "ac58807ede6d9a0625b489cdca6fd37bad9cacfe",
+  "repairTools": {
+    "correct": "SimFix",
+    "plausible": "ARJA LSRepair arja-e",
+    "total_num": 4
+  }
+},{
+  "proj": "Lang",
+  "id": 46,
+  "fixingCommit": "916639bda234a8e5a030361c4068667764b34cb7",
+  "buggyCommit": "229151ec41339450e4d4f857bf92ed080d3e2430",
+  "repairTools": {
+    "correct": "LSRepair",
+    "plausible": "Nopol ARJA arja-e",
+    "total_num": 4
+  }
+},{
+  "proj": "Lang",
+  "id": 48,
+  "fixingCommit": "eb8f74efb75e71fc91e515a38becc2aac203e339",
+  "buggyCommit": "3cea4b2af3f9caf6aa72fa56d647c513d320e073",
+  "repairTools": {
+    "correct": "LSRepair",
+    "plausible": "JAID-revise",
+    "total_num": 2
+  }
+},{
+  "proj": "Lang",
+  "id": 53,
+  "fixingCommit": "d3b1163073c7aeb6011a5b65bfadad15bfc0f108",
+  "buggyCommit": "b6f7a8a8be57c9525c59e9f21e958e76cee0dbaf",
+  "repairTools": {
+    "plausible": "Nopol DynaMoth",
+    "total_num": 2
+  }
+},{
+  "proj": "Lang",
+  "id": 55,
+  "fixingCommit": "3ef8a796b5ddf87e3e9afec9ba94aac62681b394",
+  "buggyCommit": "d8c22b8e1c8592bc8c6f6169a5b090082969acd4",
+  "repairTools": {
+    "(correct)": "JAID",
+    "correct": "Nopol SketchFix JAID-revise Recoder",
+    "plausible": "DynaMoth Kali-A GenProg-A ARJA LSRepair arja-e RESTORE",
+    "total_num": 12
+  }
+},{
+  "proj": "Lang",
+  "id": 61,
+  "fixingCommit": "88c76d207f642831ca899e144159424aaa60cf8e",
+  "buggyCommit": "1313a65c11dea54f1baf492d4185fb2d673b6716",
+  "repairTools": {
+    "correct": "arja-e",
+    "plausible": "JAID ARJA PraPR JAID-revise",
+    "total_num": 5
+  }
+},{
+  "proj": "Lang",
+  "id": 63,
+  "fixingCommit": "0695c3f71e3fc5abe29d8b9b33eed7faac7e73bf",
+  "buggyCommit": "3333dcc11f2d65ee99043945502102dcf3bca50c",
+  "repairTools": {
+    "plausible": "DynaMoth ssFix SimFix RSRepair-A Kali-A GenProg-A ARJA StaticBugFix ConFix PraPR TBar arja-e JAID-revise",
+    "total_num": 13
+  }
+},{
+  "proj": "Math",
+  "id": 1,
+  "fixingCommit": "0da657a65c92b086a301a6ffe9e34ec272f8889c",
+  "buggyCommit": "1780da711d88f669e29e0517f83d692fb80099db",
+  "repairTools": {
+    "plausible": "SimFix",
+    "total_num": 1
+  }
+},{
+  "proj": "Math",
+  "id": 6,
+  "fixingCommit": "419a052c6842192e78f747d9f5af619c2ca56e78",
+  "buggyCommit": "6c9d06a658d87c01fb02d1efce15bf6b74eb7aab",
+  "repairTools": {
+    "plausible": "ssFix Cardumen SimFix RSRepair-A GenProg-A ARJA DeepRepair PraPR TBar arja-e",
+    "total_num": 10
+  }
+},{
+  "proj": "Math",
+  "id": 7,
+  "fixingCommit": "1cd68eed57febf806c385bf04a596b922f4c1964",
+  "buggyCommit": "96cd02e82c219349086092cdc2c5a450efc8be13",
+  "repairTools": {
+    "plausible": "DeepRepair ConFix arja-e",
+    "total_num": 3
+  }
+},{
+  "proj": "Math",
+  "id": 8,
+  "fixingCommit": "196e63174afdb3df1529c1b97bb8437b16831cc3",
+  "buggyCommit": "55046479fe33e47a002ab4f4949bd944ba70d37d",
+  "repairTools": {
+    "plausible": "jGenProg jKali ssFix Cardumen SimFix RSRepair-A Kali-A GenProg-A ARJA DeepRepair ConFix PraPR TBar JAID-revise VarFix",
+    "total_num": 15
+  }
+},{
+  "proj": "Math",
+  "id": 16,
+  "fixingCommit": "875ed1f4d90d1457c0ab40dafc79be5a0c6f9bf6",
+  "buggyCommit": "87324e56a31c110a1653955cdd715e9e88a54ed7",
+  "repairTools": {
+    "plausible": "LSRepair",
+    "total_num": 1
+  }
+},{
+  "proj": "Math",
+  "id": 18,
+  "fixingCommit": "7c7d7e8f103582e753c39a2baf14a483e991fefb",
+  "buggyCommit": "6e62aefca7aefe26a2ebc43fcdcd6cd58953f7de",
+  "repairTools": {
+    "plausible": "Cardumen RSRepair-A DeepRepair ConFix PraPR",
+    "total_num": 5
+  }
+},{
+  "proj": "Math",
+  "id": 20,
+  "fixingCommit": "efa9de05114492ca38cf4739a07339f5ad6faddc",
+  "buggyCommit": "5a50073d07ca309d78cfc4e071f4bbe051bdbd40",
+  "repairTools": {
+    "plausible": "ssFix Elixir Cardumen SimFix RSRepair-A Kali-A GenProg-A ARJA DeepRepair Hercules ConFix PraPR",
+    "total_num": 12
+  }
+},{
+  "proj": "Math",
+  "id": 23,
+  "fixingCommit": "f1b04e990f4fc86544b6230fab1aa8ecfb74fbb1",
+  "buggyCommit": "2b4c1f87a73448323d21cd459f967013a41870ca",
+  "repairTools": {
+    "plausible": "JAID-revise",
+    "total_num": 1
+  }
+},{
+  "proj": "Math",
+  "id": 24,
+  "fixingCommit": "d5ff460ba69e4261f066d7856e2f90b886924513",
+  "buggyCommit": "4e21bb6f6c4bc7380dc58bd8d23c99ea8f4ef5bd",
+  "repairTools": {
+    "correct": "Hercules",
+    "plausible": "DynaMoth DeepRepair arja-e JAID-revise VarFix",
+    "total_num": 6
+  }
+},{
+  "proj": "Math",
+  "id": 28,
+  "fixingCommit": "d3fc5af31eb696af03cfbe2e18584c7e1d307d54",
+  "buggyCommit": "a55c951a3d573464e3905de7328fcdc487eebfb4",
+  "repairTools": {
+    "plausible": "jGenProg jKali jMutRepair DynaMoth ssFix ACS Cardumen SimFix RSRepair-A Kali-A GenProg-A ARJA LSRepair StaticBugFix DeepRepair ConFix PraPR TBar arja-e JAID-revise VarFix",
+    "total_num": 21
+  }
+},{
+  "proj": "Math",
+  "id": 31,
+  "fixingCommit": "2d846db3aec18dd081e680be05f6e0faad1cb186",
+  "buggyCommit": "6a5ef0149e123d9de19910d59e45d0e66bfd665c",
+  "repairTools": {
+    "plausible": "RSRepair-A Kali-A GenProg-A ARJA arja-e JAID-revise",
+    "total_num": 6
+  }
+},{
+  "proj": "Math",
+  "id": 32,
+  "fixingCommit": "f81847d8079753ce45b049813730055188a22efb",
+  "buggyCommit": "8d6478346e45d728656ccac760adc8126b3d225c",
+  "repairTools": {
+    "(correct)": "JAID",
+    "correct": "RESTORE JAID-revise",
+    "plausible": "jKali Nopol DynaMoth Elixir Cardumen Kali-A DeepRepair Hercules ConFix PraPR TBar arja-e",
+    "total_num": 15
+  }
+},{
+  "proj": "Math",
+  "id": 50,
+  "fixingCommit": "39cf5e69259d7560d50553caf028f9229b721013",
+  "buggyCommit": "ef028845113aca7e1159b1725edd7c39ed686faf",
+  "repairTools": {
+    "(correct)": "JAID",
+    "correct": "jGenProg jKali Nopol ssFix Elixir SimFix SketchFix SOFix ARJA JAID-revise Recoder VarFix RewardRepair",
+    "plausible": "jMutRepair DynaMoth Cardumen RSRepair-A Kali-A GenProg-A StaticBugFix DeepRepair Hercules GENPAT ConFix PraPR TBar arja-e RESTORE",
+    "total_num": 29
+  }
+},{
+  "proj": "Math",
+  "id": 52,
+  "fixingCommit": "3c319db494928e9d51ea6091b301302c65f4eceb",
+  "buggyCommit": "def9fbf8701afa6937fe582c7572c7be011c319f",
+  "repairTools": {
+    "plausible": "PraPR",
+    "total_num": 1
+  }
+},{
+  "proj": "Math",
+  "id": 58,
+  "fixingCommit": "45add3a0e7e2e94bfc29e85c9ef0856e2e473a33",
+  "buggyCommit": "b1392325d1255f7e3a1b04a12859a8bb75e4d14c",
+  "repairTools": {
+    "correct": "Elixir CapGen SOFix ARJA Hercules TBar kPAR arja-e FixMiner",
+    "plausible": "jMutRepair Nopol DynaMoth ssFix Cardumen RSRepair-A DeepRepair ConFix PraPR",
+    "total_num": 18
+  }
+},{
+  "proj": "Math",
+  "id": 60,
+  "fixingCommit": "9054aac4b948117b838d6a5b15be1f50965d805a",
+  "buggyCommit": "87430634d19f8f3af1e0019f733afb578c80d669",
+  "repairTools": {
+    "plausible": "ssFix Cardumen ARJA DeepRepair TBar",
+    "total_num": 5
+  }
+},{
+  "proj": "Math",
+  "id": 61,
+  "fixingCommit": "f76efe5f4ef36fadc677c94269927076f2f42eb9",
+  "buggyCommit": "30bacfbe14e57ec64d08baae52efa91877e8dd9b",
+  "repairTools": {
+    "correct": "ACS",
+    "plausible": "ConFix",
+    "total_num": 2
+  }
+},{
+  "proj": "Math",
+  "id": 62,
+  "fixingCommit": "8de3eb542b2be80ba309b2c91ae1dba75bdb5063",
+  "buggyCommit": "6a07726a825da09003d153e52ea30005b1a4c013",
+  "repairTools": {
+    "correct": "VarFix",
+    "plausible": "Cardumen ConFix PraPR TBar arja-e",
+    "total_num": 6
+  }
+},{
+  "proj": "Math",
+  "id": 63,
+  "fixingCommit": "d2a5bc02c002acfa220ce8bad23b9e8af137f47d",
+  "buggyCommit": "91b44a1ef7563f54e8acdf29906bd872985a2a6e",
+  "repairTools": {
+    "correct": "SimFix CapGen LSRepair",
+    "plausible": "ssFix Elixir Cardumen DeepRepair Hercules ConFix PraPR TBar arja-e JAID-revise",
+    "total_num": 13
+  }
+},{
+  "proj": "Math",
+  "id": 64,
+  "fixingCommit": "7dadc2ab019f066a7a287376ad4c63193e8a0a9a",
+  "buggyCommit": "1909dbe0ca1fc678d9baf1388f8efcf4c65b2a54",
+  "repairTools": {
+    "plausible": "DeepRepair PraPR arja-e",
+    "total_num": 3
+  }
+},{
+  "proj": "Math",
+  "id": 65,
+  "fixingCommit": "a4f9188a55e6935d4d38ae97806af4d59e671588",
+  "buggyCommit": "d4e5f1ce10a4ca8c13625bd03c00a156238655cc",
+  "repairTools": {
+    "correct": "CapGen TBar arja-e Recoder",
+    "plausible": "ssFix PraPR VarFix",
+    "total_num": 7
+  }
+},{
+  "proj": "Math",
+  "id": 68,
+  "fixingCommit": "615ca9a000c253575e6f62bed87db6110b750834",
+  "buggyCommit": "103f12391b89112f030b921a7c4969f00ff23b44",
+  "repairTools": {
+    "plausible": "RSRepair-A ARJA arja-e",
+    "total_num": 3
+  }
+},{
+  "proj": "Math",
+  "id": 71,
+  "fixingCommit": "6537e18ad189603e19615226e6aa1a9cdd154b8f",
+  "buggyCommit": "fa959ca8c89133c3a2f024a020ec80948ee31926",
+  "repairTools": {
+    "correct": "SimFix",
+    "plausible": "jGenProg Nopol DynaMoth ssFix RSRepair-A GenProg-A ARJA DeepRepair PraPR arja-e",
+    "total_num": 11
+  }
+},{
+  "proj": "Math",
+  "id": 73,
+  "fixingCommit": "29c3b75e2d5120771ca85ffcbffc9b7cb5d45c58",
+  "buggyCommit": "1687372e34828dff42e1482ed6575bb982b81b00",
+  "repairTools": {
+    "correct": "jGenProg ARJA arja-e",
+    "plausible": "Nopol ACS Elixir Cardumen SimFix SketchFix RSRepair-A GenProg-A DeepRepair Hercules PraPR TBar VarFix",
+    "total_num": 16
+  }
+},{
+  "proj": "Math",
+  "id": 74,
+  "fixingCommit": "d06e7b7c8e646ff489a5dfba47dfcb283a194e9b",
+  "buggyCommit": "034b4d68157defc3199f618fdd2d3a487306dbc2",
+  "repairTools": {
+    "plausible": "Cardumen RSRepair-A ARJA DeepRepair ConFix PraPR arja-e",
+    "total_num": 7
+  }
+},{
+  "proj": "Math",
+  "id": 77,
+  "fixingCommit": "d6555de715889237b7be11639d164e7098862003",
+  "buggyCommit": "b30bff0126e1a0301a8b86b40a0b532f1d0ae28f",
+  "repairTools": {
+    "correct": "TBar",
+    "plausible": "DeepRepair GENPAT arja-e",
+    "total_num": 4
+  }
+},{
+  "proj": "Math",
+  "id": 78,
+  "fixingCommit": "b3ed2415fc58b34667d99f077bae6c8e38b7aced",
+  "buggyCommit": "cc7e3e7fe46844f068c622cf439ef4b654d971ec",
+  "repairTools": {
+    "plausible": "jGenProg jKali Nopol DynaMoth ssFix Cardumen DeepRepair ConFix PraPR arja-e",
+    "total_num": 10
+  }
+},{
+  "proj": "Math",
+  "id": 81,
+  "fixingCommit": "7d903ca533833e5db8d2fe150f1e31b54ddda700",
+  "buggyCommit": "6e3ea6857dce8b7a586c3af555e21ba35a59ea54",
+  "repairTools": {
+    "correct": "VarFix",
+    "plausible": "jGenProg jKali jMutRepair Nopol ssFix ACS Cardumen SimFix CapGen RSRepair-A Kali-A GenProg-A ARJA StaticBugFix DeepRepair GENPAT ConFix PraPR arja-e FixMiner",
+    "total_num": 21
+  }
+},{
+  "proj": "Math",
+  "id": 82,
+  "fixingCommit": "4ece1884cc408e15c8f1db9010fec5cac43937b9",
+  "buggyCommit": "f36be8e8b7371fb8814456b6c095866aa802de78",
+  "repairTools": {
+    "(correct)": "JAID",
+    "correct": "jMutRepair ACS Elixir SketchFix SOFix Hercules JAID-revise FixMiner VarFix RewardRepair",
+    "plausible": "jGenProg jKali Nopol DynaMoth Cardumen SimFix CapGen RSRepair-A Kali-A GenProg-A ARJA StaticBugFix DeepRepair ConFix PraPR TBar arja-e RESTORE",
+    "total_num": 29
+  }
+},{
+  "proj": "Math",
+  "id": 87,
+  "fixingCommit": "75f5c92aeb47e264c196a8c38a495adac89f493c",
+  "buggyCommit": "d0c52c49b7efa5367b154443bba9910cb19e6419",
+  "repairTools": {
+    "plausible": "Nopol DynaMoth",
+    "total_num": 2
+  }
+},{
+  "proj": "Math",
+  "id": 88,
+  "fixingCommit": "24a6a2692e942969f5c39bd88d3d12ac0f0bf0d9",
+  "buggyCommit": "1b48dbabe18ca22396bd737df73e241cfdf8c0c5",
+  "repairTools": {
+    "correct": "VarFix",
+    "plausible": "jMutRepair Nopol DynaMoth Cardumen SimFix ConFix PraPR arja-e JAID-revise",
+    "total_num": 10
+  }
+},{
+  "proj": "Math",
+  "id": 89,
+  "fixingCommit": "62b3877f953dd47c4d301be35c77446e2cf55311",
+  "buggyCommit": "0c84b28c3542f3340f7ec0dffc34c60dff66604e",
+  "repairTools": {
+    "correct": "ACS LSRepair StaticBugFix TBar kPAR arja-e",
+    "total_num": 6
+  }
+},{
+  "proj": "Math",
+  "id": 90,
+  "fixingCommit": "0c84b28c3542f3340f7ec0dffc34c60dff66604e",
+  "buggyCommit": "43336b08c6c27d55c1c6e8c1b6330cb44a29044e",
+  "repairTools": {
+    "correct": "ACS",
+    "total_num": 1
+  }
+},{
+  "proj": "Math",
+  "id": 91,
+  "fixingCommit": "e1df5f5486f10ac521dfc3dc20d1bfe508e67aa8",
+  "buggyCommit": "9fb5d27fd15d856b136fbadd3d7bb7dfbd0ddf50",
+  "repairTools": {
+    "correct": "LSRepair",
+    "total_num": 1
+  }
+},{
+  "proj": "Math",
+  "id": 93,
+  "fixingCommit": "7cd3d822b65b7acdd1f6e1c82b291cd994f4fe05",
+  "buggyCommit": "3112f69e1d789e00fb21a1dde901b313547fed60",
+  "repairTools": {
+    "correct": "ACS",
+    "plausible": "LSRepair",
+    "total_num": 2
+  }
+},{
+  "proj": "Math",
+  "id": 95,
+  "fixingCommit": "fbf87122e0f7229892b6dbbf2e211cc46acea008",
+  "buggyCommit": "e640d1613751a99ae4c468c9567f21ea13b496fc",
+  "repairTools": {
+    "plausible": "jGenProg jKali ssFix Cardumen RSRepair-A Kali-A GenProg-A ARJA LSRepair StaticBugFix GENPAT ConFix PraPR TBar arja-e JAID-revise VarFix",
+    "total_num": 17
+  }
+},{
+  "proj": "Math",
+  "id": 96,
+  "fixingCommit": "e6449cccdeaba96ffba4c27db322c5c3d5c18662",
+  "buggyCommit": "704342d6280becc3be194a23dfda2e56c2a64aed",
+  "repairTools": {
+    "correct": "Recoder",
+    "plausible": "PraPR TBar VarFix",
+    "total_num": 4
+  }
+},{
+  "proj": "Math",
+  "id": 97,
+  "fixingCommit": "ed492bd0c5c5c3a0258a65cb31cc8723d8f011fd",
+  "buggyCommit": "7cf0c980d5d814daf187502bc07da0542ed7a828",
+  "repairTools": {
+    "plausible": "Nopol DynaMoth ACS Cardumen JAID-revise",
+    "total_num": 5
+  }
+},{
+  "proj": "Math",
+  "id": 99,
+  "fixingCommit": "58b5609fe8f99aabc990d885bf6c4d85631b7c79",
+  "buggyCommit": "924b6d76a2d44baf858c3aee46ab1439c9641959",
+  "repairTools": {
+    "correct": "ACS",
+    "plausible": "LSRepair",
+    "total_num": 2
+  }
+},{
+  "proj": "Math",
+  "id": 101,
+  "fixingCommit": "32643d19538ad853a1280eb4060c4f15ac6dc3dd",
+  "buggyCommit": "29b732ce0f974e2347b50477c401f0c503a8a981",
+  "repairTools": {
+    "plausible": "DynaMoth Cardumen Hercules GENPAT PraPR",
+    "total_num": 5
+  }
+},{
+  "proj": "Math",
+  "id": 103,
+  "fixingCommit": "4ce05bcd51ec956d789d20b59c743603d24a8ab7",
+  "buggyCommit": "b8058233e92ad635fe204f450235cad597cd70f2",
+  "repairTools": {
+    "plausible": "RSRepair-A ARJA",
+    "total_num": 2
+  }
+},{
+  "proj": "Time",
+  "id": 3,
+  "fixingCommit": "8d109fe1a999a11b4557536dd96f9210460a5936",
+  "buggyCommit": "3ba9ba799b3261b7332a467a88be142c83b298fd",
+  "repairTools": {
+    "plausible": "JAID-revise",
+    "total_num": 1
+  }
+},{
+  "proj": "Time",
+  "id": 7,
+  "fixingCommit": "1adb1e69863dcd1ff282692bf1452c422528eeb9",
+  "buggyCommit": "6bf5bba0f77f3023dec23a1de6e0a8cef8585f61",
+  "repairTools": {
+    "correct": "SimFix StaticBugFix TBar kPAR arja-e Recoder",
+    "plausible": "DynaMoth Cardumen ConFix",
+    "total_num": 9
+  }
+},{
+  "proj": "Time",
+  "id": 15,
+  "fixingCommit": "0cefc4c212e92e5dccdfa658785c419483317558",
+  "buggyCommit": "383354adc669c3fd8d9e6fe3a25403df993e11e7",
+  "repairTools": {
+    "correct": "ACS Elixir ARJA Hercules arja-e",
+    "total_num": 5
+  }
+},{
+  "proj": "Time",
+  "id": 17,
+  "fixingCommit": "a8913f5ad5dfde59263c981c9e9eb28e43fd2e00",
+  "buggyCommit": "cdeacf09e33ddbaf75a4563d7bc62063f50972b1",
+  "repairTools": {
+    "plausible": "ssFix Cardumen ConFix PraPR TBar arja-e",
+    "total_num": 6
+  }
+},{
+  "proj": "Time",
+  "id": 18,
+  "fixingCommit": "b609d7d66d180f2eb537b27f5d605d0596e096ce",
+  "buggyCommit": "e16eb72a29d06ce36030b109156bea3244273fb8",
+  "repairTools": {
+    "plausible": "Cardumen StaticBugFix PraPR",
+    "total_num": 3
+  }
+},{
+  "proj": "Time",
+  "id": 24,
+  "fixingCommit": "d50efdf75a8daeced88d79b168f68d189fb87e13",
+  "buggyCommit": "c3bec2cd4eea2e87c650f5ad9b537dddb804778c",
+  "repairTools": {
+    "plausible": "RSRepair-A Kali-A GenProg-A PraPR arja-e",
+    "total_num": 5
+  }
+},{
+  "proj": "Time",
+  "id": 26,
+  "fixingCommit": "c7a581e55fc988bd90fa4bb1b0acece5181b7c5f",
+  "buggyCommit": "218a7fe91a685e089ab8fd7700806f7a6083f18d",
+  "repairTools": {
+    "correct": "Hercules",
+    "total_num": 1
+  }
+},

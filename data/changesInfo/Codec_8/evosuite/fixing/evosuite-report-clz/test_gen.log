@@ -1,0 +1,2 @@
+cd /home/liumengjiao/Desktop/CI/Benchmark/../bugs/Codec_8_buggy && timeout 300000 gen_tests.pl -g evosuite -p Codec -v 8f -n 0 -o /home/liumengjiao/Desktop/CI/Evosuite/Codec/ -b 300 >> evosuite-report-clz/test_gen.log 2>&1
+

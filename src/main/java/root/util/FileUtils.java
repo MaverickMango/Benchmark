@@ -12,6 +12,8 @@ import java.io.*;
 import java.nio.charset.StandardCharsets;
 import java.util.*;
 import java.util.concurrent.atomic.AtomicBoolean;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 
 public class FileUtils {
@@ -35,7 +37,7 @@ public class FileUtils {
         try {
             Collection diff = first.getClass().getConstructor().newInstance();
             for (Object one :first) {
-                if (!contains(second, one))
+                if (!second.contains(one))
                     diff.add(one);
             }
             return diff;
@@ -45,15 +47,69 @@ public class FileUtils {
         return first;
     }
 
-    private static boolean contains(Collection<?> second, Object one) {
-        for (Object other: second) {
-            if (other.equals(one)) {
-                return true;
+    private static String contains(Collection<String> second, String one) {
+        for (String other: second) {
+            if (one.contains(other)) {
+                return other;
             }
         }
-        return false;
+        return null;
     }
 
+    public static List<String> getDescriptor(List<String> sig, String classFileBaseDir, String workingDir) {
+        List<String> descriptors = new ArrayList<>();
+        Set<String> clzs = sig.stream().map(f -> f.split(":")[0]).collect(Collectors.toSet());
+        for (String clz :clzs) {
+            String cmd = "javap -p -s " + classFileBaseDir + File.separator
+                    + clz.replaceAll("\\.", File.separator)
+                    + ".class";
+            List<String> res = FileUtils.execute(new String[]{"/bin/bash", "-c", cmd}, workingDir, 300, null);
+            for (int i = 3; i < res.size() - 1; i ++) {
+                String line = res.get(i);
+                if (line.trim().startsWith("descriptor"))
+                    continue;
+                Set<String> tmp = sig.stream().filter(f -> f.split(":")[0].equals(clz)).collect(Collectors.toSet());
+                //提取修改的函数名
+                for (String methodName :tmp) {
+                    //找到在该类中存在的函数-contain
+                    String cmp = methodName.split(":")[3].equals("null") ? "" : methodName.split(":")[3]
+                            + " " + methodName.split(":")[1] + "(";
+                    if (line.contains(cmp)) {
+                        Pattern pattern = Pattern.compile("\\((.*?)\\)");
+                        Matcher matcher = pattern.matcher(line);
+                        if (matcher.find()) {
+                            //匹配到的函数参数
+                            String[] pars = matcher.group(0).split(",");
+                            String f_par = methodName.split(":")[2];
+                            //实际的函数参数
+                            String[] f_pars = f_par.substring(1, f_par.length() - 1).split(",");
+                            if (pars.length != f_pars.length)
+                                continue;
+                            //比较函数参数是否相同
+                            boolean flag = true;
+                            for (int j = 0; j < f_pars.length; j++) {
+                                String f_type = f_pars[j].split(" ")[0];
+                                if (!pars[j].endsWith(f_type)) {
+                                    flag = false;
+                                    break;
+                                }
+                            }
+                            if (!flag)
+                                continue;
+                            line = res.get(i + 1);
+                            String ch = "descriptor:";
+                            boolean descriptor = line.trim().startsWith(ch);
+                            if (descriptor) {
+                                String temp = methodName.split(":")[1] + line.substring(line.indexOf(ch) + ch.length()).trim();
+                                descriptors.add(clz + ":" + temp);
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        return descriptors;
+    }
 
     public static void getPositionsOfDiff(List<String> diffLines, Set<Integer> src_pos, Set<Integer> dst_pos, boolean onlySourceCode) {
 //        List<String> diffLines = FileUtils.readEachLine(diffFile);

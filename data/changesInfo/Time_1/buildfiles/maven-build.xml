@@ -15,7 +15,7 @@
 <!--                                                                        -->
 <!-- ====================================================================== -->
 
-<project name="joda-time-from-maven" default="package" basedir="../cleaned/build">
+<project name="joda-time-from-maven" default="package" basedir="./">
 
   <!-- ====================================================================== -->
   <!-- Build environment properties                                           -->
@@ -82,7 +82,7 @@
     </javac>
     <mkdir dir="${maven.build.outputDir}/META-INF"/>
     <copy todir="${maven.build.outputDir}/META-INF">
-      <fileset dir="../cleaned/build">
+      <fileset dir="./">
         <include name="LICENSE.txt"/>
         <include name="NOTICE.txt"/>
       </fileset>
@@ -134,7 +134,7 @@
           unless="junit.skipped" 
           description="Run the test cases">
     <mkdir dir="${maven.test.reports}"/>
-    <junit printSummary="yes" haltonerror="true" haltonfailure="true" fork="true" dir="../cleaned/build">
+    <junit printSummary="yes" haltonerror="true" haltonfailure="true" fork="true" dir="./">
       <sysproperty key="basedir" value="."/>
       <formatter type="xml"/>
       <formatter type="plain" usefile="false"/>

@@ -1,0 +1,2 @@
+cd /home/liumengjiao/Desktop/CI/Benchmark/../bugs/Time_1_buggy && timeout 300000 gen_tests.pl -g evosuite -p Time -v 1f -n 0 -o /home/liumengjiao/Desktop/CI/Evosuite/Time/ -b 300 >> evosuite-report-clz/test_gen.log 2>&1
+

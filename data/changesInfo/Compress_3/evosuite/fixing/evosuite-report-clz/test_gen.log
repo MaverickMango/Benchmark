@@ -1,0 +1,2 @@
+cd /home/liumengjiao/Desktop/CI/Benchmark/../bugs/Compress_3_buggy && timeout 300000 gen_tests.pl -g evosuite -p Compress -v 3f -n 3 -o /home/liumengjiao/Desktop/CI/Evosuite/Compress/ -b 300 >> evosuite-report-clz/test_gen.log 2>&1
+

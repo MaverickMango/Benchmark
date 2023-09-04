@@ -1,0 +1,14 @@
+cd /home/liumengjiao/Desktop/CI/Benchmark/../bugs/Lang_52_buggy && timeout 300000 java -cp /home/liumengjiao/Desktop/CI/Benchmark/libs/evosuite-shaded-1.2.1-SNAPSHOT.jar:evosuite-tests/:target/classes/* org.junit.runner.JUnitCore org.apache.commons.lang.StringEscapeUtils_ESTest >> evosuite-report-clz/test_run.log 2>&1
+
+JUnit version 4.13.2
+19:52:15.663 [main] INFO shaded.org.evosuite.runtime.instrumentation.EvoClassLoader - Seeing class for first time: org.apache.commons.lang.StringEscapeUtils_ESTest
+19:52:15.664 [main] INFO shaded.org.evosuite.runtime.instrumentation.EvoClassLoader - Instrumenting class 'org.apache.commons.lang.StringEscapeUtils_ESTest'.
+19:52:15.704 [main] INFO shaded.org.evosuite.runtime.instrumentation.EvoClassLoader - Seeing class for first time: org.apache.commons.lang.StringEscapeUtils_ESTest_scaffolding
+19:52:15.704 [main] INFO shaded.org.evosuite.runtime.instrumentation.EvoClassLoader - Instrumenting class 'org.apache.commons.lang.StringEscapeUtils_ESTest_scaffolding'.
+19:52:15.705 [main] INFO shaded.org.evosuite.runtime.instrumentation.EvoClassLoader - Keeping class: org.apache.commons.lang.StringEscapeUtils_ESTest_scaffolding
+19:52:15.705 [main] INFO shaded.org.evosuite.runtime.instrumentation.EvoClassLoader - Keeping class: org.apache.commons.lang.StringEscapeUtils_ESTest
+.
+Time: 0.002
+
+OK (1 test)
+

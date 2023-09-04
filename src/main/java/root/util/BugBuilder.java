@@ -5,37 +5,43 @@ import com.github.gumtreediff.tree.Tree;
 import org.eclipse.jdt.core.dom.MethodDeclaration;
 import org.eclipse.jgit.lib.Repository;
 import org.refactoringminer.astDiff.actions.ASTDiff;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import root.analysis.ASTManipulator;
 import root.analysis.RefactoringMiner;
 import root.analysis.StringFilter;
+import root.attempt.Defects4jBugsMain;
 import root.bean.benchmarks.Defects4JBug;
 import root.bean.ci.*;
 
 import java.io.File;
-import java.nio.file.Path;
 import java.util.*;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 public class BugBuilder implements GitAccess {
 
-    public static void buildCIBug(CIBug ciBug, String dataDir) {
+    private static final Logger logger = LoggerFactory.getLogger(BugBuilder.class);
+
+    public static void buildCIBug(CIBug ciBug, String dataDir, boolean originalFixing) {
         if (!(ciBug instanceof Defects4JBug)) {
             return;
         }
         Repository repository = ((Defects4JBug) ciBug).getGitRepository("b");
         String fixingCommit = ciBug.getOriginalFixingCommit();
         String inducingCommit = ciBug.getInducingCommit();
-        String originalCommit = gitAccess.getNextCommit(repository, inducingCommit, false);
+        String originalCommit = ((Defects4JBug) ciBug).getOriginalCommit();
+        String buggyCommit = ((Defects4JBug) ciBug).getBuggyCommit();
 
         //0. extract diff file
+        logger.info("extract diff file...");
         String inducingDiffFile = dataDir + "/" + ciBug.getBugName() + "/patches/inducing.diff";
         if (FileUtils.notExists(inducingDiffFile)) {
             String inducingDiff = gitAccess.diff(repository, inducingCommit);
             FileUtils.writeToFile(inducingDiff, inducingDiffFile, false);
         }
         String fixingDiffFile = dataDir + "/" + ciBug.getBugName() + "/patches/cleaned.fixing.diff";
-        if (true) {//FileUtils.notExists(fixingDiffFile)
+        if (FileUtils.notExists(fixingDiffFile)) {//
             String modified_classes = dataDir + "/" + ciBug.getBugName() + "/properties/modified_classes/inducing/";
             RefactoringMiner miner = new RefactoringMiner();
             Set<ASTDiff> astDiffs = miner.diffAtCommit(repository, inducingCommit);
@@ -50,6 +56,7 @@ public class BugBuilder implements GitAccess {
         List<PatchDiff> patchDiffs = new ArrayList<>();
         Actions actions = new Actions();
         //1. extract inducing infos
+        logger.info("extract inducing infos...");
         try {
             extractChangesFromCommits(repository, originalCommit, inducingCommit, patchDiffs, actions);
         } catch (Exception e) {
@@ -59,14 +66,19 @@ public class BugBuilder implements GitAccess {
         ciBug.setInducingType(actions);
 
         //2. extract fixing infos
+        logger.info("extract fixing infos...");
         patchDiffs = new ArrayList<>();
         actions = new Actions();
         try {
-            String fixingDir = dataDir + "/" + ciBug.getBugName() + "/cleaned/fixing/";
-            String inducingDir = dataDir + "/" + ciBug.getBugName() + "/properties/modified_classes/inducing/";
-            extractChangesFromDirs(repository, new File(inducingDir).getAbsolutePath(),
-                    new File(fixingDir).getAbsolutePath(), patchDiffs, actions,
-                    FileUtils.getStrOfIterable(fixingDiff, "\n").toString());
+            if (!originalFixing) {
+                String fixingDir = dataDir + "/" + ciBug.getBugName() + "/cleaned/fixing/";
+                String inducingDir = dataDir + "/" + ciBug.getBugName() + "/properties/modified_classes/inducing/";
+                extractChangesFromDirs(repository, new File(inducingDir).getAbsolutePath(),
+                        new File(fixingDir).getAbsolutePath(), patchDiffs, actions,
+                        FileUtils.getStrOfIterable(fixingDiff, "\n").toString());
+            } else {
+                extractChangesFromCommits(repository, buggyCommit, fixingCommit, patchDiffs, actions);
+            }
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -74,11 +86,56 @@ public class BugBuilder implements GitAccess {
         ciBug.setFixingType(actions);
 
         //3. failing test
-        ((Defects4JBug) ciBug).switchAndClean(repository, inducingCommit, "inducing", "D4J_CLEANED_" + ciBug.getBugName());
-        //extract message
-        String failing_tests = dataDir + "/" + ciBug.getBugName() + "/properties/failing_tests/inducing";
-        List<FailedTest> failedTests = extractFailedTests(failing_tests);
+        logger.info("extract failing test...");
+        List<FailedTest> failedTests = new ArrayList<>();
+        try {
+            String failing_tests;
+            if (!originalFixing) {
+                ((Defects4JBug) ciBug).switchAndClean(repository, inducingCommit, "inducing", "D4J_CLEANED_" + ciBug.getBugName());
+                failing_tests = dataDir + "/" + ciBug.getBugName() + "/properties/failing_tests/inducing";
+            } else {
+                failing_tests = ConfigurationProperties.getProperty("defects4j") + "/framework/projects/"
+                        + ((Defects4JBug) ciBug).getProj() + "/trigger_tests/" + ((Defects4JBug) ciBug).getId();
+            }
+            //extract message
+            failedTests = extractFailedTests(failing_tests);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
         ciBug.setTriggerTests(failedTests);
+
+
+        //4. get method des if $originalFixing
+        if (originalFixing) {
+            logger.info("get method descriptors for originalFixing...");
+            String d4JFix = ((Defects4JBug) ciBug).getD4JFix();
+            boolean res = ((Defects4JBug) ciBug).switchAndCompile("f");
+            String d4jinfoDir = ConfigurationProperties.getProperty("d4jinfo");
+            if (d4jinfoDir != null ){
+                d4jinfoDir += ((Defects4JBug) ciBug).getProj().toLowerCase() + File.separator + ((Defects4JBug) ciBug).getId() + ".txt";
+            }
+            List<String> path = FileUtils.readEachLine(d4jinfoDir);
+            List<PatchDiff> fixingChanges = ciBug.getFixingChanges();
+            List<String> functionAdded = ciBug.getFixingType().getAddFunctions().getQualifiedNames();
+            List<String> inducing_functionAdded = ciBug.getInducingType().getAddFunctions().getQualifiedNames();
+            boolean regression = false;
+            List<String> descriptors = new ArrayList<>();
+            for (PatchDiff diff :fixingChanges) {
+                List<String> functionsChanges = diff.getChangedFunctions().get(1).getQualifiedNames();
+                List<String> changed = functionsChanges.stream().filter(f -> !functionAdded.contains(f)).collect(Collectors.toList());
+                List<String> inducing_changed = functionsChanges.stream().filter(f -> !inducing_functionAdded.contains(f)).collect(Collectors.toList());
+                boolean flag = !inducing_changed.isEmpty();
+                List<String> tmp = FileUtils.getDescriptor(changed,
+                        path.get(1), ((Defects4JBug) ciBug).getWorkingDir());
+                if (!tmp.isEmpty() && flag) {
+                    tmp = tmp.stream().map(f -> f + ":regression").collect(Collectors.toList());
+                    regression = true;
+                }
+                descriptors.addAll(tmp);
+            }
+            ciBug.setRegression(regression ? regression : !descriptors.isEmpty());
+            ciBug.setPatchChangedMths(new NameList(descriptors));
+        }
     }
 
     public static void extractChangesFromCommits(Repository repository, String srcCommit, String dstCommit, List<PatchDiff> patchDiffs, Actions actions) throws Exception {
@@ -232,7 +289,6 @@ public class BugBuilder implements GitAccess {
                         String message = line.substring(splitPos + 1).trim();
                         failedTest.setException(exception);
                         failedTest.setMessage(message);
-                        break;
                     }
                     if (line.startsWith("Expected")) {
                         failedTest.setMessage(failedTest.getMessage() + line);

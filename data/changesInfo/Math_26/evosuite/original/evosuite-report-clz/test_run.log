@@ -1,0 +1,324 @@
+cd /home/liumengjiao/Desktop/CI/Benchmark/../bugs/Math_26_buggy && timeout 300000 java -cp /home/liumengjiao/Desktop/CI/Benchmark/libs/evosuite-shaded-1.2.1-SNAPSHOT.jar:evosuite-tests/:target/classes/* org.junit.runner.JUnitCore org.apache.commons.math3.fraction.Fraction_ESTest >> evosuite-report-clz/test_run.log 2>&1
+
+JUnit version 4.13.2
+18:51:45.289 [main] INFO shaded.org.evosuite.runtime.instrumentation.EvoClassLoader - Seeing class for first time: org.apache.commons.math3.fraction.Fraction_ESTest
+18:51:45.291 [main] INFO shaded.org.evosuite.runtime.instrumentation.EvoClassLoader - Instrumenting class 'org.apache.commons.math3.fraction.Fraction_ESTest'.
+18:51:45.330 [main] INFO shaded.org.evosuite.runtime.instrumentation.EvoClassLoader - Seeing class for first time: org.apache.commons.math3.fraction.Fraction_ESTest_scaffolding
+18:51:45.331 [main] INFO shaded.org.evosuite.runtime.instrumentation.EvoClassLoader - Instrumenting class 'org.apache.commons.math3.fraction.Fraction_ESTest_scaffolding'.
+18:51:45.332 [main] INFO shaded.org.evosuite.runtime.instrumentation.EvoClassLoader - Keeping class: org.apache.commons.math3.fraction.Fraction_ESTest_scaffolding
+18:51:45.333 [main] INFO shaded.org.evosuite.runtime.instrumentation.EvoClassLoader - Keeping class: org.apache.commons.math3.fraction.Fraction_ESTest
+18:51:45.579 [main] DEBUG shaded.org.evosuite.runtime.sandbox.MSecurityManager - Adding privileged thread: "Reference Handler"
+18:51:45.579 [main] DEBUG shaded.org.evosuite.runtime.sandbox.MSecurityManager - Adding privileged thread: "Finalizer"
+18:51:45.579 [main] DEBUG shaded.org.evosuite.runtime.sandbox.MSecurityManager - Adding privileged thread: "Signal Dispatcher"
+18:51:45.579 [main] DEBUG shaded.org.evosuite.runtime.sandbox.MSecurityManager - Adding privileged thread: "Java2D Disposer"
+18:51:45.579 [main] DEBUG shaded.org.evosuite.runtime.sandbox.MSecurityManager - Adding privileged thread: "AWT-XAWT"
+18:51:45.579 [main] DEBUG shaded.org.evosuite.runtime.sandbox.MSecurityManager - Adding privileged thread: "main"
+18:51:45.619 [main] INFO shaded.org.evosuite.runtime.instrumentation.EvoClassLoader - Seeing class for first time: org.apache.commons.math3.exception.util.ExceptionContextProvider
+18:51:45.619 [main] INFO shaded.org.evosuite.runtime.instrumentation.EvoClassLoader - Instrumenting class 'org.apache.commons.math3.exception.util.ExceptionContextProvider'.
+18:51:45.620 [main] INFO shaded.org.evosuite.runtime.instrumentation.EvoClassLoader - Error while loading class: java.lang.ClassNotFoundException: Class 'org/apache/commons/math3/exception/util/ExceptionContextProvider.class' should be in target project, but could not be found!
+18:51:45.620 [main] ERROR shaded.org.evosuite.runtime.classhandling.ClassStateSupport - Could not initialize org.apache.commons.math3.exception.util.ExceptionContextProvider: Class 'org/apache/commons/math3/exception/util/ExceptionContextProvider.class' should be in target project, but could not be found!
+18:51:45.620 [main] INFO shaded.org.evosuite.runtime.instrumentation.EvoClassLoader - Seeing class for first time: org.apache.commons.math3.exception.MathIllegalNumberException
+18:51:45.620 [main] INFO shaded.org.evosuite.runtime.instrumentation.EvoClassLoader - Instrumenting class 'org.apache.commons.math3.exception.MathIllegalNumberException'.
+18:51:45.620 [main] INFO shaded.org.evosuite.runtime.instrumentation.EvoClassLoader - Error while loading class: java.lang.ClassNotFoundException: Class 'org/apache/commons/math3/exception/MathIllegalNumberException.class' should be in target project, but could not be found!
+18:51:45.620 [main] ERROR shaded.org.evosuite.runtime.classhandling.ClassStateSupport - Could not initialize org.apache.commons.math3.exception.MathIllegalNumberException: Class 'org/apache/commons/math3/exception/MathIllegalNumberException.class' should be in target project, but could not be found!
+18:51:45.620 [main] INFO shaded.org.evosuite.runtime.instrumentation.EvoClassLoader - Seeing class for first time: org.apache.commons.math3.exception.util.LocalizedFormats
+18:51:45.620 [main] INFO shaded.org.evosuite.runtime.instrumentation.EvoClassLoader - Instrumenting class 'org.apache.commons.math3.exception.util.LocalizedFormats'.
+18:51:45.621 [main] INFO shaded.org.evosuite.runtime.instrumentation.EvoClassLoader - Error while loading class: java.lang.ClassNotFoundException: Class 'org/apache/commons/math3/exception/util/LocalizedFormats.class' should be in target project, but could not be found!
+18:51:45.621 [main] ERROR shaded.org.evosuite.runtime.classhandling.ClassStateSupport - Could not initialize org.apache.commons.math3.exception.util.LocalizedFormats: Class 'org/apache/commons/math3/exception/util/LocalizedFormats.class' should be in target project, but could not be found!
+18:51:45.621 [main] INFO shaded.org.evosuite.runtime.instrumentation.EvoClassLoader - Seeing class for first time: org.apache.commons.math3.exception.ConvergenceException
+18:51:45.621 [main] INFO shaded.org.evosuite.runtime.instrumentation.EvoClassLoader - Instrumenting class 'org.apache.commons.math3.exception.ConvergenceException'.
+18:51:45.621 [main] INFO shaded.org.evosuite.runtime.instrumentation.EvoClassLoader - Error while loading class: java.lang.ClassNotFoundException: Class 'org/apache/commons/math3/exception/ConvergenceException.class' should be in target project, but could not be found!
+18:51:45.621 [main] ERROR shaded.org.evosuite.runtime.classhandling.ClassStateSupport - Could not initialize org.apache.commons.math3.exception.ConvergenceException: Class 'org/apache/commons/math3/exception/ConvergenceException.class' should be in target project, but could not be found!
+18:51:45.621 [main] INFO shaded.org.evosuite.runtime.instrumentation.EvoClassLoader - Seeing class for first time: org.apache.commons.math3.util.FastMath
+18:51:45.621 [main] INFO shaded.org.evosuite.runtime.instrumentation.EvoClassLoader - Instrumenting class 'org.apache.commons.math3.util.FastMath'.
+18:51:45.621 [main] INFO shaded.org.evosuite.runtime.instrumentation.EvoClassLoader - Error while loading class: java.lang.ClassNotFoundException: Class 'org/apache/commons/math3/util/FastMath.class' should be in target project, but could not be found!
+18:51:45.621 [main] ERROR shaded.org.evosuite.runtime.classhandling.ClassStateSupport - Could not initialize org.apache.commons.math3.util.FastMath: Class 'org/apache/commons/math3/util/FastMath.class' should be in target project, but could not be found!
+18:51:45.621 [main] INFO shaded.org.evosuite.runtime.instrumentation.EvoClassLoader - Seeing class for first time: org.apache.commons.math3.fraction.FractionField
+18:51:45.621 [main] INFO shaded.org.evosuite.runtime.instrumentation.EvoClassLoader - Instrumenting class 'org.apache.commons.math3.fraction.FractionField'.
+18:51:45.622 [main] INFO shaded.org.evosuite.runtime.instrumentation.EvoClassLoader - Error while loading class: java.lang.ClassNotFoundException: Class 'org/apache/commons/math3/fraction/FractionField.class' should be in target project, but could not be found!
+18:51:45.622 [main] ERROR shaded.org.evosuite.runtime.classhandling.ClassStateSupport - Could not initialize org.apache.commons.math3.fraction.FractionField: Class 'org/apache/commons/math3/fraction/FractionField.class' should be in target project, but could not be found!
+18:51:45.622 [main] INFO shaded.org.evosuite.runtime.instrumentation.EvoClassLoader - Seeing class for first time: org.apache.commons.math3.FieldElement
+18:51:45.622 [main] INFO shaded.org.evosuite.runtime.instrumentation.EvoClassLoader - Instrumenting class 'org.apache.commons.math3.FieldElement'.
+18:51:45.622 [main] INFO shaded.org.evosuite.runtime.instrumentation.EvoClassLoader - Error while loading class: java.lang.ClassNotFoundException: Class 'org/apache/commons/math3/FieldElement.class' should be in target project, but could not be found!
+18:51:45.622 [main] ERROR shaded.org.evosuite.runtime.classhandling.ClassStateSupport - Could not initialize org.apache.commons.math3.FieldElement: Class 'org/apache/commons/math3/FieldElement.class' should be in target project, but could not be found!
+18:51:45.623 [main] INFO shaded.org.evosuite.runtime.instrumentation.EvoClassLoader - Seeing class for first time: org.apache.commons.math3.exception.util.Localizable
+18:51:45.623 [main] INFO shaded.org.evosuite.runtime.instrumentation.EvoClassLoader - Instrumenting class 'org.apache.commons.math3.exception.util.Localizable'.
+18:51:45.623 [main] INFO shaded.org.evosuite.runtime.instrumentation.EvoClassLoader - Error while loading class: java.lang.ClassNotFoundException: Class 'org/apache/commons/math3/exception/util/Localizable.class' should be in target project, but could not be found!
+18:51:45.623 [main] ERROR shaded.org.evosuite.runtime.classhandling.ClassStateSupport - Could not initialize org.apache.commons.math3.exception.util.Localizable: Class 'org/apache/commons/math3/exception/util/Localizable.class' should be in target project, but could not be found!
+18:51:45.623 [main] INFO shaded.org.evosuite.runtime.instrumentation.EvoClassLoader - Seeing class for first time: org.apache.commons.math3.exception.util.ArgUtils
+18:51:45.623 [main] INFO shaded.org.evosuite.runtime.instrumentation.EvoClassLoader - Instrumenting class 'org.apache.commons.math3.exception.util.ArgUtils'.
+18:51:45.623 [main] INFO shaded.org.evosuite.runtime.instrumentation.EvoClassLoader - Error while loading class: java.lang.ClassNotFoundException: Class 'org/apache/commons/math3/exception/util/ArgUtils.class' should be in target project, but could not be found!
+18:51:45.623 [main] ERROR shaded.org.evosuite.runtime.classhandling.ClassStateSupport - Could not initialize org.apache.commons.math3.exception.util.ArgUtils: Class 'org/apache/commons/math3/exception/util/ArgUtils.class' should be in target project, but could not be found!
+18:51:45.623 [main] INFO shaded.org.evosuite.runtime.instrumentation.EvoClassLoader - Seeing class for first time: org.apache.commons.math3.exception.MathArithmeticException
+18:51:45.625 [main] INFO shaded.org.evosuite.runtime.instrumentation.EvoClassLoader - Instrumenting class 'org.apache.commons.math3.exception.MathArithmeticException'.
+18:51:45.625 [main] INFO shaded.org.evosuite.runtime.instrumentation.EvoClassLoader - Error while loading class: java.lang.ClassNotFoundException: Class 'org/apache/commons/math3/exception/MathArithmeticException.class' should be in target project, but could not be found!
+18:51:45.625 [main] ERROR shaded.org.evosuite.runtime.classhandling.ClassStateSupport - Could not initialize org.apache.commons.math3.exception.MathArithmeticException: Class 'org/apache/commons/math3/exception/MathArithmeticException.class' should be in target project, but could not be found!
+18:51:45.625 [main] INFO shaded.org.evosuite.runtime.instrumentation.EvoClassLoader - Seeing class for first time: org.apache.commons.math3.exception.NumberIsTooLargeException
+18:51:45.625 [main] INFO shaded.org.evosuite.runtime.instrumentation.EvoClassLoader - Instrumenting class 'org.apache.commons.math3.exception.NumberIsTooLargeException'.
+18:51:45.625 [main] INFO shaded.org.evosuite.runtime.instrumentation.EvoClassLoader - Error while loading class: java.lang.ClassNotFoundException: Class 'org/apache/commons/math3/exception/NumberIsTooLargeException.class' should be in target project, but could not be found!
+18:51:45.625 [main] ERROR shaded.org.evosuite.runtime.classhandling.ClassStateSupport - Could not initialize org.apache.commons.math3.exception.NumberIsTooLargeException: Class 'org/apache/commons/math3/exception/NumberIsTooLargeException.class' should be in target project, but could not be found!
+18:51:45.625 [main] INFO shaded.org.evosuite.runtime.instrumentation.EvoClassLoader - Seeing class for first time: org.apache.commons.math3.exception.NumberIsTooSmallException
+18:51:45.625 [main] INFO shaded.org.evosuite.runtime.instrumentation.EvoClassLoader - Instrumenting class 'org.apache.commons.math3.exception.NumberIsTooSmallException'.
+18:51:45.626 [main] INFO shaded.org.evosuite.runtime.instrumentation.EvoClassLoader - Error while loading class: java.lang.ClassNotFoundException: Class 'org/apache/commons/math3/exception/NumberIsTooSmallException.class' should be in target project, but could not be found!
+18:51:45.626 [main] ERROR shaded.org.evosuite.runtime.classhandling.ClassStateSupport - Could not initialize org.apache.commons.math3.exception.NumberIsTooSmallException: Class 'org/apache/commons/math3/exception/NumberIsTooSmallException.class' should be in target project, but could not be found!
+18:51:45.626 [main] INFO shaded.org.evosuite.runtime.instrumentation.EvoClassLoader - Seeing class for first time: org.apache.commons.math3.fraction.Fraction
+18:51:45.626 [main] INFO shaded.org.evosuite.runtime.instrumentation.EvoClassLoader - Instrumenting class 'org.apache.commons.math3.fraction.Fraction'.
+18:51:45.626 [main] INFO shaded.org.evosuite.runtime.instrumentation.EvoClassLoader - Error while loading class: java.lang.ClassNotFoundException: Class 'org/apache/commons/math3/fraction/Fraction.class' should be in target project, but could not be found!
+18:51:45.626 [main] ERROR shaded.org.evosuite.runtime.classhandling.ClassStateSupport - Could not initialize org.apache.commons.math3.fraction.Fraction: Class 'org/apache/commons/math3/fraction/Fraction.class' should be in target project, but could not be found!
+18:51:45.626 [main] INFO shaded.org.evosuite.runtime.instrumentation.EvoClassLoader - Seeing class for first time: org.apache.commons.math3.exception.NotPositiveException
+18:51:45.626 [main] INFO shaded.org.evosuite.runtime.instrumentation.EvoClassLoader - Instrumenting class 'org.apache.commons.math3.exception.NotPositiveException'.
+18:51:45.626 [main] INFO shaded.org.evosuite.runtime.instrumentation.EvoClassLoader - Error while loading class: java.lang.ClassNotFoundException: Class 'org/apache/commons/math3/exception/NotPositiveException.class' should be in target project, but could not be found!
+18:51:45.626 [main] ERROR shaded.org.evosuite.runtime.classhandling.ClassStateSupport - Could not initialize org.apache.commons.math3.exception.NotPositiveException: Class 'org/apache/commons/math3/exception/NotPositiveException.class' should be in target project, but could not be found!
+18:51:45.626 [main] INFO shaded.org.evosuite.runtime.instrumentation.EvoClassLoader - Seeing class for first time: org.apache.commons.math3.exception.MathIllegalStateException
+18:51:45.626 [main] INFO shaded.org.evosuite.runtime.instrumentation.EvoClassLoader - Instrumenting class 'org.apache.commons.math3.exception.MathIllegalStateException'.
+18:51:45.626 [main] INFO shaded.org.evosuite.runtime.instrumentation.EvoClassLoader - Error while loading class: java.lang.ClassNotFoundException: Class 'org/apache/commons/math3/exception/MathIllegalStateException.class' should be in target project, but could not be found!
+18:51:45.626 [main] ERROR shaded.org.evosuite.runtime.classhandling.ClassStateSupport - Could not initialize org.apache.commons.math3.exception.MathIllegalStateException: Class 'org/apache/commons/math3/exception/MathIllegalStateException.class' should be in target project, but could not be found!
+18:51:45.626 [main] INFO shaded.org.evosuite.runtime.instrumentation.EvoClassLoader - Seeing class for first time: org.apache.commons.math3.fraction.FractionConversionException
+18:51:45.626 [main] INFO shaded.org.evosuite.runtime.instrumentation.EvoClassLoader - Instrumenting class 'org.apache.commons.math3.fraction.FractionConversionException'.
+18:51:45.627 [main] INFO shaded.org.evosuite.runtime.instrumentation.EvoClassLoader - Error while loading class: java.lang.ClassNotFoundException: Class 'org/apache/commons/math3/fraction/FractionConversionException.class' should be in target project, but could not be found!
+18:51:45.627 [main] ERROR shaded.org.evosuite.runtime.classhandling.ClassStateSupport - Could not initialize org.apache.commons.math3.fraction.FractionConversionException: Class 'org/apache/commons/math3/fraction/FractionConversionException.class' should be in target project, but could not be found!
+18:51:45.627 [main] INFO shaded.org.evosuite.runtime.instrumentation.EvoClassLoader - Seeing class for first time: org.apache.commons.math3.util.ArithmeticUtils
+18:51:45.627 [main] INFO shaded.org.evosuite.runtime.instrumentation.EvoClassLoader - Instrumenting class 'org.apache.commons.math3.util.ArithmeticUtils'.
+18:51:45.627 [main] INFO shaded.org.evosuite.runtime.instrumentation.EvoClassLoader - Error while loading class: java.lang.ClassNotFoundException: Class 'org/apache/commons/math3/util/ArithmeticUtils.class' should be in target project, but could not be found!
+18:51:45.627 [main] ERROR shaded.org.evosuite.runtime.classhandling.ClassStateSupport - Could not initialize org.apache.commons.math3.util.ArithmeticUtils: Class 'org/apache/commons/math3/util/ArithmeticUtils.class' should be in target project, but could not be found!
+18:51:45.627 [main] INFO shaded.org.evosuite.runtime.instrumentation.EvoClassLoader - Seeing class for first time: org.apache.commons.math3.exception.util.ExceptionContext
+18:51:45.627 [main] INFO shaded.org.evosuite.runtime.instrumentation.EvoClassLoader - Instrumenting class 'org.apache.commons.math3.exception.util.ExceptionContext'.
+18:51:45.627 [main] INFO shaded.org.evosuite.runtime.instrumentation.EvoClassLoader - Error while loading class: java.lang.ClassNotFoundException: Class 'org/apache/commons/math3/exception/util/ExceptionContext.class' should be in target project, but could not be found!
+18:51:45.627 [main] ERROR shaded.org.evosuite.runtime.classhandling.ClassStateSupport - Could not initialize org.apache.commons.math3.exception.util.ExceptionContext: Class 'org/apache/commons/math3/exception/util/ExceptionContext.class' should be in target project, but could not be found!
+18:51:45.627 [main] INFO shaded.org.evosuite.runtime.instrumentation.EvoClassLoader - Seeing class for first time: org.apache.commons.math3.exception.NullArgumentException
+18:51:45.627 [main] INFO shaded.org.evosuite.runtime.instrumentation.EvoClassLoader - Instrumenting class 'org.apache.commons.math3.exception.NullArgumentException'.
+18:51:45.627 [main] INFO shaded.org.evosuite.runtime.instrumentation.EvoClassLoader - Error while loading class: java.lang.ClassNotFoundException: Class 'org/apache/commons/math3/exception/NullArgumentException.class' should be in target project, but could not be found!
+18:51:45.627 [main] ERROR shaded.org.evosuite.runtime.classhandling.ClassStateSupport - Could not initialize org.apache.commons.math3.exception.NullArgumentException: Class 'org/apache/commons/math3/exception/NullArgumentException.class' should be in target project, but could not be found!
+18:51:45.628 [main] INFO shaded.org.evosuite.runtime.instrumentation.EvoClassLoader - Seeing class for first time: org.apache.commons.math3.Field
+18:51:45.628 [main] INFO shaded.org.evosuite.runtime.instrumentation.EvoClassLoader - Instrumenting class 'org.apache.commons.math3.Field'.
+18:51:45.628 [main] INFO shaded.org.evosuite.runtime.instrumentation.EvoClassLoader - Error while loading class: java.lang.ClassNotFoundException: Class 'org/apache/commons/math3/Field.class' should be in target project, but could not be found!
+18:51:45.628 [main] ERROR shaded.org.evosuite.runtime.classhandling.ClassStateSupport - Could not initialize org.apache.commons.math3.Field: Class 'org/apache/commons/math3/Field.class' should be in target project, but could not be found!
+18:51:45.628 [main] INFO shaded.org.evosuite.runtime.instrumentation.EvoClassLoader - Seeing class for first time: org.apache.commons.math3.exception.MathIllegalArgumentException
+18:51:45.628 [main] INFO shaded.org.evosuite.runtime.instrumentation.EvoClassLoader - Instrumenting class 'org.apache.commons.math3.exception.MathIllegalArgumentException'.
+18:51:45.628 [main] INFO shaded.org.evosuite.runtime.instrumentation.EvoClassLoader - Error while loading class: java.lang.ClassNotFoundException: Class 'org/apache/commons/math3/exception/MathIllegalArgumentException.class' should be in target project, but could not be found!
+18:51:45.628 [main] ERROR shaded.org.evosuite.runtime.classhandling.ClassStateSupport - Could not initialize org.apache.commons.math3.exception.MathIllegalArgumentException: Class 'org/apache/commons/math3/exception/MathIllegalArgumentException.class' should be in target project, but could not be found!
+.18:51:45.632 [Time-limited test] INFO shaded.org.evosuite.runtime.instrumentation.EvoClassLoader - Seeing class for first time: org.apache.commons.math3.fraction.Fraction
+18:51:45.633 [Time-limited test] INFO shaded.org.evosuite.runtime.instrumentation.EvoClassLoader - Instrumenting class 'org.apache.commons.math3.fraction.Fraction'.
+18:51:45.633 [Time-limited test] INFO shaded.org.evosuite.runtime.instrumentation.EvoClassLoader - Error while loading class: java.lang.ClassNotFoundException: Class 'org/apache/commons/math3/fraction/Fraction.class' should be in target project, but could not be found!
+18:51:45.634 [main] INFO shaded.org.evosuite.runtime.instrumentation.EvoClassLoader - Seeing class for first time: org.apache.commons.math3.util.ArithmeticUtils
+18:51:45.634 [main] INFO shaded.org.evosuite.runtime.instrumentation.EvoClassLoader - Instrumenting class 'org.apache.commons.math3.util.ArithmeticUtils'.
+18:51:45.634 [main] INFO shaded.org.evosuite.runtime.instrumentation.EvoClassLoader - Error while loading class: java.lang.ClassNotFoundException: Class 'org/apache/commons/math3/util/ArithmeticUtils.class' should be in target project, but could not be found!
+18:51:45.634 [main] WARN shaded.org.evosuite.runtime.classhandling.ClassResetter - class java.lang.ClassNotFoundException thrown while loading method  __STATIC_RESET() for class org.apache.commons.math3.util.ArithmeticUtils
+18:51:45.634 [main] INFO shaded.org.evosuite.runtime.instrumentation.EvoClassLoader - Seeing class for first time: org.apache.commons.math3.util.FastMath
+18:51:45.634 [main] INFO shaded.org.evosuite.runtime.instrumentation.EvoClassLoader - Instrumenting class 'org.apache.commons.math3.util.FastMath'.
+18:51:45.634 [main] INFO shaded.org.evosuite.runtime.instrumentation.EvoClassLoader - Error while loading class: java.lang.ClassNotFoundException: Class 'org/apache/commons/math3/util/FastMath.class' should be in target project, but could not be found!
+18:51:45.634 [main] WARN shaded.org.evosuite.runtime.classhandling.ClassResetter - class java.lang.ClassNotFoundException thrown while loading method  __STATIC_RESET() for class org.apache.commons.math3.util.FastMath
+18:51:45.634 [main] INFO shaded.org.evosuite.runtime.instrumentation.EvoClassLoader - Seeing class for first time: org.apache.commons.math3.fraction.Fraction
+18:51:45.634 [main] INFO shaded.org.evosuite.runtime.instrumentation.EvoClassLoader - Instrumenting class 'org.apache.commons.math3.fraction.Fraction'.
+18:51:45.634 [main] INFO shaded.org.evosuite.runtime.instrumentation.EvoClassLoader - Error while loading class: java.lang.ClassNotFoundException: Class 'org/apache/commons/math3/fraction/Fraction.class' should be in target project, but could not be found!
+18:51:45.634 [main] WARN shaded.org.evosuite.runtime.classhandling.ClassResetter - class java.lang.ClassNotFoundException thrown while loading method  __STATIC_RESET() for class org.apache.commons.math3.fraction.Fraction
+18:51:45.634 [main] INFO shaded.org.evosuite.runtime.instrumentation.EvoClassLoader - Seeing class for first time: org.apache.commons.math3.exception.util.LocalizedFormats
+18:51:45.634 [main] INFO shaded.org.evosuite.runtime.instrumentation.EvoClassLoader - Instrumenting class 'org.apache.commons.math3.exception.util.LocalizedFormats'.
+18:51:45.634 [main] INFO shaded.org.evosuite.runtime.instrumentation.EvoClassLoader - Error while loading class: java.lang.ClassNotFoundException: Class 'org/apache/commons/math3/exception/util/LocalizedFormats.class' should be in target project, but could not be found!
+18:51:45.634 [main] WARN shaded.org.evosuite.runtime.classhandling.ClassResetter - class java.lang.ClassNotFoundException thrown while loading method  __STATIC_RESET() for class org.apache.commons.math3.exception.util.LocalizedFormats
+18:51:45.634 [main] INFO shaded.org.evosuite.runtime.instrumentation.EvoClassLoader - Seeing class for first time: org.apache.commons.math3.fraction.FractionField
+18:51:45.634 [main] INFO shaded.org.evosuite.runtime.instrumentation.EvoClassLoader - Instrumenting class 'org.apache.commons.math3.fraction.FractionField'.
+18:51:45.634 [main] INFO shaded.org.evosuite.runtime.instrumentation.EvoClassLoader - Error while loading class: java.lang.ClassNotFoundException: Class 'org/apache/commons/math3/fraction/FractionField.class' should be in target project, but could not be found!
+18:51:45.634 [main] WARN shaded.org.evosuite.runtime.classhandling.ClassResetter - class java.lang.ClassNotFoundException thrown while loading method  __STATIC_RESET() for class org.apache.commons.math3.fraction.FractionField
+18:51:45.634 [main] INFO shaded.org.evosuite.runtime.instrumentation.EvoClassLoader - Seeing class for first time: org.apache.commons.math3.fraction.FractionField$LazyHolder
+18:51:45.634 [main] INFO shaded.org.evosuite.runtime.instrumentation.EvoClassLoader - Instrumenting class 'org.apache.commons.math3.fraction.FractionField$LazyHolder'.
+18:51:45.634 [main] INFO shaded.org.evosuite.runtime.instrumentation.EvoClassLoader - Error while loading class: java.lang.ClassNotFoundException: Class 'org/apache/commons/math3/fraction/FractionField$LazyHolder.class' should be in target project, but could not be found!
+18:51:45.634 [main] WARN shaded.org.evosuite.runtime.classhandling.ClassResetter - class java.lang.ClassNotFoundException thrown while loading method  __STATIC_RESET() for class org.apache.commons.math3.fraction.FractionField$LazyHolder
+18:51:45.634 [main] INFO shaded.org.evosuite.runtime.instrumentation.EvoClassLoader - Seeing class for first time: org.apache.commons.math3.exception.MathIllegalStateException
+18:51:45.634 [main] INFO shaded.org.evosuite.runtime.instrumentation.EvoClassLoader - Instrumenting class 'org.apache.commons.math3.exception.MathIllegalStateException'.
+18:51:45.634 [main] INFO shaded.org.evosuite.runtime.instrumentation.EvoClassLoader - Error while loading class: java.lang.ClassNotFoundException: Class 'org/apache/commons/math3/exception/MathIllegalStateException.class' should be in target project, but could not be found!
+18:51:45.634 [main] WARN shaded.org.evosuite.runtime.classhandling.ClassResetter - class java.lang.ClassNotFoundException thrown while loading method  __STATIC_RESET() for class org.apache.commons.math3.exception.MathIllegalStateException
+18:51:45.634 [main] INFO shaded.org.evosuite.runtime.instrumentation.EvoClassLoader - Seeing class for first time: org.apache.commons.math3.exception.ConvergenceException
+18:51:45.634 [main] INFO shaded.org.evosuite.runtime.instrumentation.EvoClassLoader - Instrumenting class 'org.apache.commons.math3.exception.ConvergenceException'.
+18:51:45.634 [main] INFO shaded.org.evosuite.runtime.instrumentation.EvoClassLoader - Error while loading class: java.lang.ClassNotFoundException: Class 'org/apache/commons/math3/exception/ConvergenceException.class' should be in target project, but could not be found!
+18:51:45.634 [main] WARN shaded.org.evosuite.runtime.classhandling.ClassResetter - class java.lang.ClassNotFoundException thrown while loading method  __STATIC_RESET() for class org.apache.commons.math3.exception.ConvergenceException
+18:51:45.634 [main] INFO shaded.org.evosuite.runtime.instrumentation.EvoClassLoader - Seeing class for first time: org.apache.commons.math3.fraction.FractionConversionException
+18:51:45.635 [main] INFO shaded.org.evosuite.runtime.instrumentation.EvoClassLoader - Instrumenting class 'org.apache.commons.math3.fraction.FractionConversionException'.
+18:51:45.635 [main] INFO shaded.org.evosuite.runtime.instrumentation.EvoClassLoader - Error while loading class: java.lang.ClassNotFoundException: Class 'org/apache/commons/math3/fraction/FractionConversionException.class' should be in target project, but could not be found!
+18:51:45.635 [main] WARN shaded.org.evosuite.runtime.classhandling.ClassResetter - class java.lang.ClassNotFoundException thrown while loading method  __STATIC_RESET() for class org.apache.commons.math3.fraction.FractionConversionException
+18:51:45.635 [main] INFO shaded.org.evosuite.runtime.instrumentation.EvoClassLoader - Seeing class for first time: org.apache.commons.math3.exception.util.ExceptionContext
+18:51:45.635 [main] INFO shaded.org.evosuite.runtime.instrumentation.EvoClassLoader - Instrumenting class 'org.apache.commons.math3.exception.util.ExceptionContext'.
+18:51:45.635 [main] INFO shaded.org.evosuite.runtime.instrumentation.EvoClassLoader - Error while loading class: java.lang.ClassNotFoundException: Class 'org/apache/commons/math3/exception/util/ExceptionContext.class' should be in target project, but could not be found!
+18:51:45.635 [main] WARN shaded.org.evosuite.runtime.classhandling.ClassResetter - class java.lang.ClassNotFoundException thrown while loading method  __STATIC_RESET() for class org.apache.commons.math3.exception.util.ExceptionContext
+18:51:45.635 [main] INFO shaded.org.evosuite.runtime.instrumentation.EvoClassLoader - Seeing class for first time: org.apache.commons.math3.exception.util.ArgUtils
+18:51:45.635 [main] INFO shaded.org.evosuite.runtime.instrumentation.EvoClassLoader - Instrumenting class 'org.apache.commons.math3.exception.util.ArgUtils'.
+18:51:45.635 [main] INFO shaded.org.evosuite.runtime.instrumentation.EvoClassLoader - Error while loading class: java.lang.ClassNotFoundException: Class 'org/apache/commons/math3/exception/util/ArgUtils.class' should be in target project, but could not be found!
+18:51:45.635 [main] WARN shaded.org.evosuite.runtime.classhandling.ClassResetter - class java.lang.ClassNotFoundException thrown while loading method  __STATIC_RESET() for class org.apache.commons.math3.exception.util.ArgUtils
+18:51:45.635 [main] INFO shaded.org.evosuite.runtime.instrumentation.EvoClassLoader - Seeing class for first time: org.apache.commons.math3.exception.MathArithmeticException
+18:51:45.635 [main] INFO shaded.org.evosuite.runtime.instrumentation.EvoClassLoader - Instrumenting class 'org.apache.commons.math3.exception.MathArithmeticException'.
+18:51:45.635 [main] INFO shaded.org.evosuite.runtime.instrumentation.EvoClassLoader - Error while loading class: java.lang.ClassNotFoundException: Class 'org/apache/commons/math3/exception/MathArithmeticException.class' should be in target project, but could not be found!
+18:51:45.635 [main] WARN shaded.org.evosuite.runtime.classhandling.ClassResetter - class java.lang.ClassNotFoundException thrown while loading method  __STATIC_RESET() for class org.apache.commons.math3.exception.MathArithmeticException
+E.18:51:45.637 [main] INFO shaded.org.evosuite.runtime.instrumentation.EvoClassLoader - Seeing class for first time: org.apache.commons.math3.util.ArithmeticUtils
+18:51:45.637 [main] INFO shaded.org.evosuite.runtime.instrumentation.EvoClassLoader - Instrumenting class 'org.apache.commons.math3.util.ArithmeticUtils'.
+18:51:45.637 [main] INFO shaded.org.evosuite.runtime.instrumentation.EvoClassLoader - Error while loading class: java.lang.ClassNotFoundException: Class 'org/apache/commons/math3/util/ArithmeticUtils.class' should be in target project, but could not be found!
+18:51:45.637 [main] INFO shaded.org.evosuite.runtime.instrumentation.EvoClassLoader - Seeing class for first time: org.apache.commons.math3.util.FastMath
+18:51:45.637 [main] INFO shaded.org.evosuite.runtime.instrumentation.EvoClassLoader - Instrumenting class 'org.apache.commons.math3.util.FastMath'.
+18:51:45.637 [main] INFO shaded.org.evosuite.runtime.instrumentation.EvoClassLoader - Error while loading class: java.lang.ClassNotFoundException: Class 'org/apache/commons/math3/util/FastMath.class' should be in target project, but could not be found!
+18:51:45.637 [main] INFO shaded.org.evosuite.runtime.instrumentation.EvoClassLoader - Seeing class for first time: org.apache.commons.math3.fraction.Fraction
+18:51:45.637 [main] INFO shaded.org.evosuite.runtime.instrumentation.EvoClassLoader - Instrumenting class 'org.apache.commons.math3.fraction.Fraction'.
+18:51:45.637 [main] INFO shaded.org.evosuite.runtime.instrumentation.EvoClassLoader - Error while loading class: java.lang.ClassNotFoundException: Class 'org/apache/commons/math3/fraction/Fraction.class' should be in target project, but could not be found!
+18:51:45.637 [main] INFO shaded.org.evosuite.runtime.instrumentation.EvoClassLoader - Seeing class for first time: org.apache.commons.math3.exception.util.LocalizedFormats
+18:51:45.637 [main] INFO shaded.org.evosuite.runtime.instrumentation.EvoClassLoader - Instrumenting class 'org.apache.commons.math3.exception.util.LocalizedFormats'.
+18:51:45.637 [main] INFO shaded.org.evosuite.runtime.instrumentation.EvoClassLoader - Error while loading class: java.lang.ClassNotFoundException: Class 'org/apache/commons/math3/exception/util/LocalizedFormats.class' should be in target project, but could not be found!
+18:51:45.637 [main] INFO shaded.org.evosuite.runtime.instrumentation.EvoClassLoader - Seeing class for first time: org.apache.commons.math3.fraction.FractionField
+18:51:45.637 [main] INFO shaded.org.evosuite.runtime.instrumentation.EvoClassLoader - Instrumenting class 'org.apache.commons.math3.fraction.FractionField'.
+18:51:45.638 [main] INFO shaded.org.evosuite.runtime.instrumentation.EvoClassLoader - Error while loading class: java.lang.ClassNotFoundException: Class 'org/apache/commons/math3/fraction/FractionField.class' should be in target project, but could not be found!
+18:51:45.638 [main] INFO shaded.org.evosuite.runtime.instrumentation.EvoClassLoader - Seeing class for first time: org.apache.commons.math3.fraction.FractionField$LazyHolder
+18:51:45.638 [main] INFO shaded.org.evosuite.runtime.instrumentation.EvoClassLoader - Instrumenting class 'org.apache.commons.math3.fraction.FractionField$LazyHolder'.
+18:51:45.638 [main] INFO shaded.org.evosuite.runtime.instrumentation.EvoClassLoader - Error while loading class: java.lang.ClassNotFoundException: Class 'org/apache/commons/math3/fraction/FractionField$LazyHolder.class' should be in target project, but could not be found!
+18:51:45.638 [main] INFO shaded.org.evosuite.runtime.instrumentation.EvoClassLoader - Seeing class for first time: org.apache.commons.math3.exception.MathIllegalStateException
+18:51:45.638 [main] INFO shaded.org.evosuite.runtime.instrumentation.EvoClassLoader - Instrumenting class 'org.apache.commons.math3.exception.MathIllegalStateException'.
+18:51:45.638 [main] INFO shaded.org.evosuite.runtime.instrumentation.EvoClassLoader - Error while loading class: java.lang.ClassNotFoundException: Class 'org/apache/commons/math3/exception/MathIllegalStateException.class' should be in target project, but could not be found!
+18:51:45.638 [main] INFO shaded.org.evosuite.runtime.instrumentation.EvoClassLoader - Seeing class for first time: org.apache.commons.math3.exception.ConvergenceException
+18:51:45.638 [main] INFO shaded.org.evosuite.runtime.instrumentation.EvoClassLoader - Instrumenting class 'org.apache.commons.math3.exception.ConvergenceException'.
+18:51:45.638 [main] INFO shaded.org.evosuite.runtime.instrumentation.EvoClassLoader - Error while loading class: java.lang.ClassNotFoundException: Class 'org/apache/commons/math3/exception/ConvergenceException.class' should be in target project, but could not be found!
+18:51:45.638 [main] INFO shaded.org.evosuite.runtime.instrumentation.EvoClassLoader - Seeing class for first time: org.apache.commons.math3.fraction.FractionConversionException
+18:51:45.638 [main] INFO shaded.org.evosuite.runtime.instrumentation.EvoClassLoader - Instrumenting class 'org.apache.commons.math3.fraction.FractionConversionException'.
+18:51:45.638 [main] INFO shaded.org.evosuite.runtime.instrumentation.EvoClassLoader - Error while loading class: java.lang.ClassNotFoundException: Class 'org/apache/commons/math3/fraction/FractionConversionException.class' should be in target project, but could not be found!
+18:51:45.638 [main] INFO shaded.org.evosuite.runtime.instrumentation.EvoClassLoader - Seeing class for first time: org.apache.commons.math3.exception.util.ExceptionContext
+18:51:45.638 [main] INFO shaded.org.evosuite.runtime.instrumentation.EvoClassLoader - Instrumenting class 'org.apache.commons.math3.exception.util.ExceptionContext'.
+18:51:45.638 [main] INFO shaded.org.evosuite.runtime.instrumentation.EvoClassLoader - Error while loading class: java.lang.ClassNotFoundException: Class 'org/apache/commons/math3/exception/util/ExceptionContext.class' should be in target project, but could not be found!
+18:51:45.638 [main] INFO shaded.org.evosuite.runtime.instrumentation.EvoClassLoader - Seeing class for first time: org.apache.commons.math3.exception.util.ArgUtils
+18:51:45.638 [main] INFO shaded.org.evosuite.runtime.instrumentation.EvoClassLoader - Instrumenting class 'org.apache.commons.math3.exception.util.ArgUtils'.
+18:51:45.638 [main] INFO shaded.org.evosuite.runtime.instrumentation.EvoClassLoader - Error while loading class: java.lang.ClassNotFoundException: Class 'org/apache/commons/math3/exception/util/ArgUtils.class' should be in target project, but could not be found!
+18:51:45.638 [main] INFO shaded.org.evosuite.runtime.instrumentation.EvoClassLoader - Seeing class for first time: org.apache.commons.math3.exception.MathArithmeticException
+18:51:45.638 [main] INFO shaded.org.evosuite.runtime.instrumentation.EvoClassLoader - Instrumenting class 'org.apache.commons.math3.exception.MathArithmeticException'.
+18:51:45.638 [main] INFO shaded.org.evosuite.runtime.instrumentation.EvoClassLoader - Error while loading class: java.lang.ClassNotFoundException: Class 'org/apache/commons/math3/exception/MathArithmeticException.class' should be in target project, but could not be found!
+E.18:51:45.639 [main] INFO shaded.org.evosuite.runtime.instrumentation.EvoClassLoader - Seeing class for first time: org.apache.commons.math3.util.ArithmeticUtils
+18:51:45.639 [main] INFO shaded.org.evosuite.runtime.instrumentation.EvoClassLoader - Instrumenting class 'org.apache.commons.math3.util.ArithmeticUtils'.
+18:51:45.639 [main] INFO shaded.org.evosuite.runtime.instrumentation.EvoClassLoader - Error while loading class: java.lang.ClassNotFoundException: Class 'org/apache/commons/math3/util/ArithmeticUtils.class' should be in target project, but could not be found!
+18:51:45.639 [main] INFO shaded.org.evosuite.runtime.instrumentation.EvoClassLoader - Seeing class for first time: org.apache.commons.math3.util.FastMath
+18:51:45.639 [main] INFO shaded.org.evosuite.runtime.instrumentation.EvoClassLoader - Instrumenting class 'org.apache.commons.math3.util.FastMath'.
+18:51:45.639 [main] INFO shaded.org.evosuite.runtime.instrumentation.EvoClassLoader - Error while loading class: java.lang.ClassNotFoundException: Class 'org/apache/commons/math3/util/FastMath.class' should be in target project, but could not be found!
+18:51:45.639 [main] INFO shaded.org.evosuite.runtime.instrumentation.EvoClassLoader - Seeing class for first time: org.apache.commons.math3.fraction.Fraction
+18:51:45.639 [main] INFO shaded.org.evosuite.runtime.instrumentation.EvoClassLoader - Instrumenting class 'org.apache.commons.math3.fraction.Fraction'.
+18:51:45.639 [main] INFO shaded.org.evosuite.runtime.instrumentation.EvoClassLoader - Error while loading class: java.lang.ClassNotFoundException: Class 'org/apache/commons/math3/fraction/Fraction.class' should be in target project, but could not be found!
+18:51:45.639 [main] INFO shaded.org.evosuite.runtime.instrumentation.EvoClassLoader - Seeing class for first time: org.apache.commons.math3.exception.util.LocalizedFormats
+18:51:45.639 [main] INFO shaded.org.evosuite.runtime.instrumentation.EvoClassLoader - Instrumenting class 'org.apache.commons.math3.exception.util.LocalizedFormats'.
+18:51:45.639 [main] INFO shaded.org.evosuite.runtime.instrumentation.EvoClassLoader - Error while loading class: java.lang.ClassNotFoundException: Class 'org/apache/commons/math3/exception/util/LocalizedFormats.class' should be in target project, but could not be found!
+18:51:45.639 [main] INFO shaded.org.evosuite.runtime.instrumentation.EvoClassLoader - Seeing class for first time: org.apache.commons.math3.fraction.FractionField
+18:51:45.639 [main] INFO shaded.org.evosuite.runtime.instrumentation.EvoClassLoader - Instrumenting class 'org.apache.commons.math3.fraction.FractionField'.
+18:51:45.639 [main] INFO shaded.org.evosuite.runtime.instrumentation.EvoClassLoader - Error while loading class: java.lang.ClassNotFoundException: Class 'org/apache/commons/math3/fraction/FractionField.class' should be in target project, but could not be found!
+18:51:45.639 [main] INFO shaded.org.evosuite.runtime.instrumentation.EvoClassLoader - Seeing class for first time: org.apache.commons.math3.fraction.FractionField$LazyHolder
+18:51:45.639 [main] INFO shaded.org.evosuite.runtime.instrumentation.EvoClassLoader - Instrumenting class 'org.apache.commons.math3.fraction.FractionField$LazyHolder'.
+18:51:45.639 [main] INFO shaded.org.evosuite.runtime.instrumentation.EvoClassLoader - Error while loading class: java.lang.ClassNotFoundException: Class 'org/apache/commons/math3/fraction/FractionField$LazyHolder.class' should be in target project, but could not be found!
+18:51:45.639 [main] INFO shaded.org.evosuite.runtime.instrumentation.EvoClassLoader - Seeing class for first time: org.apache.commons.math3.exception.MathIllegalStateException
+18:51:45.639 [main] INFO shaded.org.evosuite.runtime.instrumentation.EvoClassLoader - Instrumenting class 'org.apache.commons.math3.exception.MathIllegalStateException'.
+18:51:45.640 [main] INFO shaded.org.evosuite.runtime.instrumentation.EvoClassLoader - Error while loading class: java.lang.ClassNotFoundException: Class 'org/apache/commons/math3/exception/MathIllegalStateException.class' should be in target project, but could not be found!
+18:51:45.640 [main] INFO shaded.org.evosuite.runtime.instrumentation.EvoClassLoader - Seeing class for first time: org.apache.commons.math3.exception.ConvergenceException
+18:51:45.640 [main] INFO shaded.org.evosuite.runtime.instrumentation.EvoClassLoader - Instrumenting class 'org.apache.commons.math3.exception.ConvergenceException'.
+18:51:45.640 [main] INFO shaded.org.evosuite.runtime.instrumentation.EvoClassLoader - Error while loading class: java.lang.ClassNotFoundException: Class 'org/apache/commons/math3/exception/ConvergenceException.class' should be in target project, but could not be found!
+18:51:45.640 [main] INFO shaded.org.evosuite.runtime.instrumentation.EvoClassLoader - Seeing class for first time: org.apache.commons.math3.fraction.FractionConversionException
+18:51:45.640 [main] INFO shaded.org.evosuite.runtime.instrumentation.EvoClassLoader - Instrumenting class 'org.apache.commons.math3.fraction.FractionConversionException'.
+18:51:45.640 [main] INFO shaded.org.evosuite.runtime.instrumentation.EvoClassLoader - Error while loading class: java.lang.ClassNotFoundException: Class 'org/apache/commons/math3/fraction/FractionConversionException.class' should be in target project, but could not be found!
+18:51:45.640 [main] INFO shaded.org.evosuite.runtime.instrumentation.EvoClassLoader - Seeing class for first time: org.apache.commons.math3.exception.util.ExceptionContext
+18:51:45.640 [main] INFO shaded.org.evosuite.runtime.instrumentation.EvoClassLoader - Instrumenting class 'org.apache.commons.math3.exception.util.ExceptionContext'.
+18:51:45.640 [main] INFO shaded.org.evosuite.runtime.instrumentation.EvoClassLoader - Error while loading class: java.lang.ClassNotFoundException: Class 'org/apache/commons/math3/exception/util/ExceptionContext.class' should be in target project, but could not be found!
+18:51:45.640 [main] INFO shaded.org.evosuite.runtime.instrumentation.EvoClassLoader - Seeing class for first time: org.apache.commons.math3.exception.util.ArgUtils
+18:51:45.640 [main] INFO shaded.org.evosuite.runtime.instrumentation.EvoClassLoader - Instrumenting class 'org.apache.commons.math3.exception.util.ArgUtils'.
+18:51:45.640 [main] INFO shaded.org.evosuite.runtime.instrumentation.EvoClassLoader - Error while loading class: java.lang.ClassNotFoundException: Class 'org/apache/commons/math3/exception/util/ArgUtils.class' should be in target project, but could not be found!
+18:51:45.640 [main] INFO shaded.org.evosuite.runtime.instrumentation.EvoClassLoader - Seeing class for first time: org.apache.commons.math3.exception.MathArithmeticException
+18:51:45.640 [main] INFO shaded.org.evosuite.runtime.instrumentation.EvoClassLoader - Instrumenting class 'org.apache.commons.math3.exception.MathArithmeticException'.
+18:51:45.640 [main] INFO shaded.org.evosuite.runtime.instrumentation.EvoClassLoader - Error while loading class: java.lang.ClassNotFoundException: Class 'org/apache/commons/math3/exception/MathArithmeticException.class' should be in target project, but could not be found!
+E.18:51:45.641 [main] INFO shaded.org.evosuite.runtime.instrumentation.EvoClassLoader - Seeing class for first time: org.apache.commons.math3.util.ArithmeticUtils
+18:51:45.641 [main] INFO shaded.org.evosuite.runtime.instrumentation.EvoClassLoader - Instrumenting class 'org.apache.commons.math3.util.ArithmeticUtils'.
+18:51:45.641 [main] INFO shaded.org.evosuite.runtime.instrumentation.EvoClassLoader - Error while loading class: java.lang.ClassNotFoundException: Class 'org/apache/commons/math3/util/ArithmeticUtils.class' should be in target project, but could not be found!
+18:51:45.641 [main] INFO shaded.org.evosuite.runtime.instrumentation.EvoClassLoader - Seeing class for first time: org.apache.commons.math3.util.FastMath
+18:51:45.641 [main] INFO shaded.org.evosuite.runtime.instrumentation.EvoClassLoader - Instrumenting class 'org.apache.commons.math3.util.FastMath'.
+18:51:45.641 [main] INFO shaded.org.evosuite.runtime.instrumentation.EvoClassLoader - Error while loading class: java.lang.ClassNotFoundException: Class 'org/apache/commons/math3/util/FastMath.class' should be in target project, but could not be found!
+18:51:45.641 [main] INFO shaded.org.evosuite.runtime.instrumentation.EvoClassLoader - Seeing class for first time: org.apache.commons.math3.fraction.Fraction
+18:51:45.641 [main] INFO shaded.org.evosuite.runtime.instrumentation.EvoClassLoader - Instrumenting class 'org.apache.commons.math3.fraction.Fraction'.
+18:51:45.641 [main] INFO shaded.org.evosuite.runtime.instrumentation.EvoClassLoader - Error while loading class: java.lang.ClassNotFoundException: Class 'org/apache/commons/math3/fraction/Fraction.class' should be in target project, but could not be found!
+18:51:45.641 [main] INFO shaded.org.evosuite.runtime.instrumentation.EvoClassLoader - Seeing class for first time: org.apache.commons.math3.exception.util.LocalizedFormats
+18:51:45.641 [main] INFO shaded.org.evosuite.runtime.instrumentation.EvoClassLoader - Instrumenting class 'org.apache.commons.math3.exception.util.LocalizedFormats'.
+18:51:45.641 [main] INFO shaded.org.evosuite.runtime.instrumentation.EvoClassLoader - Error while loading class: java.lang.ClassNotFoundException: Class 'org/apache/commons/math3/exception/util/LocalizedFormats.class' should be in target project, but could not be found!
+18:51:45.641 [main] INFO shaded.org.evosuite.runtime.instrumentation.EvoClassLoader - Seeing class for first time: org.apache.commons.math3.fraction.FractionField
+18:51:45.641 [main] INFO shaded.org.evosuite.runtime.instrumentation.EvoClassLoader - Instrumenting class 'org.apache.commons.math3.fraction.FractionField'.
+18:51:45.641 [main] INFO shaded.org.evosuite.runtime.instrumentation.EvoClassLoader - Error while loading class: java.lang.ClassNotFoundException: Class 'org/apache/commons/math3/fraction/FractionField.class' should be in target project, but could not be found!
+18:51:45.641 [main] INFO shaded.org.evosuite.runtime.instrumentation.EvoClassLoader - Seeing class for first time: org.apache.commons.math3.fraction.FractionField$LazyHolder
+18:51:45.641 [main] INFO shaded.org.evosuite.runtime.instrumentation.EvoClassLoader - Instrumenting class 'org.apache.commons.math3.fraction.FractionField$LazyHolder'.
+18:51:45.641 [main] INFO shaded.org.evosuite.runtime.instrumentation.EvoClassLoader - Error while loading class: java.lang.ClassNotFoundException: Class 'org/apache/commons/math3/fraction/FractionField$LazyHolder.class' should be in target project, but could not be found!
+18:51:45.641 [main] INFO shaded.org.evosuite.runtime.instrumentation.EvoClassLoader - Seeing class for first time: org.apache.commons.math3.exception.MathIllegalStateException
+18:51:45.641 [main] INFO shaded.org.evosuite.runtime.instrumentation.EvoClassLoader - Instrumenting class 'org.apache.commons.math3.exception.MathIllegalStateException'.
+18:51:45.641 [main] INFO shaded.org.evosuite.runtime.instrumentation.EvoClassLoader - Error while loading class: java.lang.ClassNotFoundException: Class 'org/apache/commons/math3/exception/MathIllegalStateException.class' should be in target project, but could not be found!
+18:51:45.641 [main] INFO shaded.org.evosuite.runtime.instrumentation.EvoClassLoader - Seeing class for first time: org.apache.commons.math3.exception.ConvergenceException
+18:51:45.641 [main] INFO shaded.org.evosuite.runtime.instrumentation.EvoClassLoader - Instrumenting class 'org.apache.commons.math3.exception.ConvergenceException'.
+18:51:45.641 [main] INFO shaded.org.evosuite.runtime.instrumentation.EvoClassLoader - Error while loading class: java.lang.ClassNotFoundException: Class 'org/apache/commons/math3/exception/ConvergenceException.class' should be in target project, but could not be found!
+18:51:45.641 [main] INFO shaded.org.evosuite.runtime.instrumentation.EvoClassLoader - Seeing class for first time: org.apache.commons.math3.fraction.FractionConversionException
+18:51:45.641 [main] INFO shaded.org.evosuite.runtime.instrumentation.EvoClassLoader - Instrumenting class 'org.apache.commons.math3.fraction.FractionConversionException'.
+18:51:45.641 [main] INFO shaded.org.evosuite.runtime.instrumentation.EvoClassLoader - Error while loading class: java.lang.ClassNotFoundException: Class 'org/apache/commons/math3/fraction/FractionConversionException.class' should be in target project, but could not be found!
+18:51:45.641 [main] INFO shaded.org.evosuite.runtime.instrumentation.EvoClassLoader - Seeing class for first time: org.apache.commons.math3.exception.util.ExceptionContext
+18:51:45.641 [main] INFO shaded.org.evosuite.runtime.instrumentation.EvoClassLoader - Instrumenting class 'org.apache.commons.math3.exception.util.ExceptionContext'.
+18:51:45.642 [main] INFO shaded.org.evosuite.runtime.instrumentation.EvoClassLoader - Error while loading class: java.lang.ClassNotFoundException: Class 'org/apache/commons/math3/exception/util/ExceptionContext.class' should be in target project, but could not be found!
+18:51:45.642 [main] INFO shaded.org.evosuite.runtime.instrumentation.EvoClassLoader - Seeing class for first time: org.apache.commons.math3.exception.util.ArgUtils
+18:51:45.642 [main] INFO shaded.org.evosuite.runtime.instrumentation.EvoClassLoader - Instrumenting class 'org.apache.commons.math3.exception.util.ArgUtils'.
+18:51:45.642 [main] INFO shaded.org.evosuite.runtime.instrumentation.EvoClassLoader - Error while loading class: java.lang.ClassNotFoundException: Class 'org/apache/commons/math3/exception/util/ArgUtils.class' should be in target project, but could not be found!
+18:51:45.642 [main] INFO shaded.org.evosuite.runtime.instrumentation.EvoClassLoader - Seeing class for first time: org.apache.commons.math3.exception.MathArithmeticException
+18:51:45.642 [main] INFO shaded.org.evosuite.runtime.instrumentation.EvoClassLoader - Instrumenting class 'org.apache.commons.math3.exception.MathArithmeticException'.
+18:51:45.642 [main] INFO shaded.org.evosuite.runtime.instrumentation.EvoClassLoader - Error while loading class: java.lang.ClassNotFoundException: Class 'org/apache/commons/math3/exception/MathArithmeticException.class' should be in target project, but could not be found!
+E.18:51:45.642 [main] INFO shaded.org.evosuite.runtime.instrumentation.EvoClassLoader - Seeing class for first time: org.apache.commons.math3.util.ArithmeticUtils
+18:51:45.643 [main] INFO shaded.org.evosuite.runtime.instrumentation.EvoClassLoader - Instrumenting class 'org.apache.commons.math3.util.ArithmeticUtils'.
+18:51:45.643 [main] INFO shaded.org.evosuite.runtime.instrumentation.EvoClassLoader - Error while loading class: java.lang.ClassNotFoundException: Class 'org/apache/commons/math3/util/ArithmeticUtils.class' should be in target project, but could not be found!
+18:51:45.643 [main] INFO shaded.org.evosuite.runtime.instrumentation.EvoClassLoader - Seeing class for first time: org.apache.commons.math3.util.FastMath
+18:51:45.643 [main] INFO shaded.org.evosuite.runtime.instrumentation.EvoClassLoader - Instrumenting class 'org.apache.commons.math3.util.FastMath'.
+18:51:45.643 [main] INFO shaded.org.evosuite.runtime.instrumentation.EvoClassLoader - Error while loading class: java.lang.ClassNotFoundException: Class 'org/apache/commons/math3/util/FastMath.class' should be in target project, but could not be found!
+18:51:45.643 [main] INFO shaded.org.evosuite.runtime.instrumentation.EvoClassLoader - Seeing class for first time: org.apache.commons.math3.fraction.Fraction
+18:51:45.643 [main] INFO shaded.org.evosuite.runtime.instrumentation.EvoClassLoader - Instrumenting class 'org.apache.commons.math3.fraction.Fraction'.
+18:51:45.643 [main] INFO shaded.org.evosuite.runtime.instrumentation.EvoClassLoader - Error while loading class: java.lang.ClassNotFoundException: Class 'org/apache/commons/math3/fraction/Fraction.class' should be in target project, but could not be found!
+18:51:45.643 [main] INFO shaded.org.evosuite.runtime.instrumentation.EvoClassLoader - Seeing class for first time: org.apache.commons.math3.exception.util.LocalizedFormats
+18:51:45.643 [main] INFO shaded.org.evosuite.runtime.instrumentation.EvoClassLoader - Instrumenting class 'org.apache.commons.math3.exception.util.LocalizedFormats'.
+18:51:45.643 [main] INFO shaded.org.evosuite.runtime.instrumentation.EvoClassLoader - Error while loading class: java.lang.ClassNotFoundException: Class 'org/apache/commons/math3/exception/util/LocalizedFormats.class' should be in target project, but could not be found!
+18:51:45.643 [main] INFO shaded.org.evosuite.runtime.instrumentation.EvoClassLoader - Seeing class for first time: org.apache.commons.math3.fraction.FractionField
+18:51:45.643 [main] INFO shaded.org.evosuite.runtime.instrumentation.EvoClassLoader - Instrumenting class 'org.apache.commons.math3.fraction.FractionField'.
+18:51:45.643 [main] INFO shaded.org.evosuite.runtime.instrumentation.EvoClassLoader - Error while loading class: java.lang.ClassNotFoundException: Class 'org/apache/commons/math3/fraction/FractionField.class' should be in target project, but could not be found!
+18:51:45.643 [main] INFO shaded.org.evosuite.runtime.instrumentation.EvoClassLoader - Seeing class for first time: org.apache.commons.math3.fraction.FractionField$LazyHolder
+18:51:45.643 [main] INFO shaded.org.evosuite.runtime.instrumentation.EvoClassLoader - Instrumenting class 'org.apache.commons.math3.fraction.FractionField$LazyHolder'.
+18:51:45.643 [main] INFO shaded.org.evosuite.runtime.instrumentation.EvoClassLoader - Error while loading class: java.lang.ClassNotFoundException: Class 'org/apache/commons/math3/fraction/FractionField$LazyHolder.class' should be in target project, but could not be found!
+18:51:45.643 [main] INFO shaded.org.evosuite.runtime.instrumentation.EvoClassLoader - Seeing class for first time: org.apache.commons.math3.exception.MathIllegalStateException
+18:51:45.643 [main] INFO shaded.org.evosuite.runtime.instrumentation.EvoClassLoader - Instrumenting class 'org.apache.commons.math3.exception.MathIllegalStateException'.
+18:51:45.643 [main] INFO shaded.org.evosuite.runtime.instrumentation.EvoClassLoader - Error while loading class: java.lang.ClassNotFoundException: Class 'org/apache/commons/math3/exception/MathIllegalStateException.class' should be in target project, but could not be found!
+18:51:45.643 [main] INFO shaded.org.evosuite.runtime.instrumentation.EvoClassLoader - Seeing class for first time: org.apache.commons.math3.exception.ConvergenceException
+18:51:45.643 [main] INFO shaded.org.evosuite.runtime.instrumentation.EvoClassLoader - Instrumenting class 'org.apache.commons.math3.exception.ConvergenceException'.
+18:51:45.643 [main] INFO shaded.org.evosuite.runtime.instrumentation.EvoClassLoader - Error while loading class: java.lang.ClassNotFoundException: Class 'org/apache/commons/math3/exception/ConvergenceException.class' should be in target project, but could not be found!
+18:51:45.644 [main] INFO shaded.org.evosuite.runtime.instrumentation.EvoClassLoader - Seeing class for first time: org.apache.commons.math3.fraction.FractionConversionException
+18:51:45.644 [main] INFO shaded.org.evosuite.runtime.instrumentation.EvoClassLoader - Instrumenting class 'org.apache.commons.math3.fraction.FractionConversionException'.
+18:51:45.644 [main] INFO shaded.org.evosuite.runtime.instrumentation.EvoClassLoader - Error while loading class: java.lang.ClassNotFoundException: Class 'org/apache/commons/math3/fraction/FractionConversionException.class' should be in target project, but could not be found!
+18:51:45.644 [main] INFO shaded.org.evosuite.runtime.instrumentation.EvoClassLoader - Seeing class for first time: org.apache.commons.math3.exception.util.ExceptionContext
+18:51:45.644 [main] INFO shaded.org.evosuite.runtime.instrumentation.EvoClassLoader - Instrumenting class 'org.apache.commons.math3.exception.util.ExceptionContext'.
+18:51:45.644 [main] INFO shaded.org.evosuite.runtime.instrumentation.EvoClassLoader - Error while loading class: java.lang.ClassNotFoundException: Class 'org/apache/commons/math3/exception/util/ExceptionContext.class' should be in target project, but could not be found!
+18:51:45.644 [main] INFO shaded.org.evosuite.runtime.instrumentation.EvoClassLoader - Seeing class for first time: org.apache.commons.math3.exception.util.ArgUtils
+18:51:45.644 [main] INFO shaded.org.evosuite.runtime.instrumentation.EvoClassLoader - Instrumenting class 'org.apache.commons.math3.exception.util.ArgUtils'.
+18:51:45.644 [main] INFO shaded.org.evosuite.runtime.instrumentation.EvoClassLoader - Error while loading class: java.lang.ClassNotFoundException: Class 'org/apache/commons/math3/exception/util/ArgUtils.class' should be in target project, but could not be found!
+18:51:45.644 [main] INFO shaded.org.evosuite.runtime.instrumentation.EvoClassLoader - Seeing class for first time: org.apache.commons.math3.exception.MathArithmeticException
+18:51:45.644 [main] INFO shaded.org.evosuite.runtime.instrumentation.EvoClassLoader - Instrumenting class 'org.apache.commons.math3.exception.MathArithmeticException'.
+18:51:45.644 [main] INFO shaded.org.evosuite.runtime.instrumentation.EvoClassLoader - Error while loading class: java.lang.ClassNotFoundException: Class 'org/apache/commons/math3/exception/MathArithmeticException.class' should be in target project, but could not be found!
+E
+Time: 0.292
+There were 5 failures:
+1) test0(org.apache.commons.math3.fraction.Fraction_ESTest)
+java.lang.NoClassDefFoundError: org/apache/commons/math3/fraction/Fraction
+	at org.apache.commons.math3.fraction.Fraction_ESTest.test0(Fraction_ESTest.java:20)
+	... 11 trimmed
+Caused by: java.lang.ClassNotFoundException: Class 'org/apache/commons/math3/fraction/Fraction.class' should be in target project, but could not be found!
+	at shaded.org.evosuite.runtime.instrumentation.EvoClassLoader.instrumentClass(EvoClassLoader.java:122)
+	at shaded.org.evosuite.runtime.instrumentation.EvoClassLoader.loadClass(EvoClassLoader.java:91)
+	... 13 more
+Caused by: java.lang.ClassNotFoundException: Class 'org/apache/commons/math3/fraction/Fraction.class' should be in target project, but could not be found!
+	at shaded.org.evosuite.runtime.instrumentation.EvoClassLoader.instrumentClass(EvoClassLoader.java:108)
+	... 14 more
+2) test1(org.apache.commons.math3.fraction.Fraction_ESTest)
+java.lang.NoClassDefFoundError: org/apache/commons/math3/fraction/Fraction
+	at org.apache.commons.math3.fraction.Fraction_ESTest.test1(Fraction_ESTest.java:27)
+3) test2(org.apache.commons.math3.fraction.Fraction_ESTest)
+java.lang.NoClassDefFoundError: org/apache/commons/math3/fraction/Fraction
+	at org.apache.commons.math3.fraction.Fraction_ESTest.test2(Fraction_ESTest.java:34)
+4) test3(org.apache.commons.math3.fraction.Fraction_ESTest)
+java.lang.NoClassDefFoundError: org/apache/commons/math3/fraction/Fraction
+	at org.apache.commons.math3.fraction.Fraction_ESTest.test3(Fraction_ESTest.java:40)
+5) test4(org.apache.commons.math3.fraction.Fraction_ESTest)
+java.lang.NoClassDefFoundError: org/apache/commons/math3/fraction/Fraction
+	at org.apache.commons.math3.fraction.Fraction_ESTest.test4(Fraction_ESTest.java:46)
+
+FAILURES!!!
+Tests run: 5,  Failures: 5
+

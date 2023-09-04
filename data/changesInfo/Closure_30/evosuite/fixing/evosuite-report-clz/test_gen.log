@@ -1,0 +1,2 @@
+cd /home/liumengjiao/Desktop/CI/Benchmark/../bugs/Closure_30_buggy && timeout 300000 gen_tests.pl -g evosuite -p Closure -v 30f -n 0 -o /home/liumengjiao/Desktop/CI/Evosuite/Closure/ -b 300 >> evosuite-report-clz/test_gen.log 2>&1
+

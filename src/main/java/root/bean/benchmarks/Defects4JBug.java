@@ -31,11 +31,13 @@ public class Defects4JBug extends CIBug implements GitAccess {
 
     final Logger logger = LoggerFactory.getLogger(Defects4JBug.class);
     final String d4jCmd = ConfigurationProperties.getProperty("defects4j") + "/framework/bin/defects4j";
-
     final String dataDir = ConfigurationProperties.getProperty("dataDir");
-
     public String getDataDir() {
         return dataDir;
+    }
+    Map<String, String> properties;
+    public Map<String, String> getProperties() {
+        return properties;
     }
     final Integer timeoutSecond = ConfigurationProperties.getPropertyInt("d4jtimeoutsecond");
     private String proj;
@@ -50,6 +52,8 @@ public class Defects4JBug extends CIBug implements GitAccess {
         this.proj = proj;
         this.id = id;
         this.workingDir = workingDir;
+        writeD4JFiles("b");
+        this.properties = getProperties("/defects4j.build.properties");
     }
 
     public Defects4JBug(String proj, String id, String workingDir, String fixingCommit, String buggyCommit, String inducingCommit, String originalCommit) {
@@ -60,6 +64,8 @@ public class Defects4JBug extends CIBug implements GitAccess {
         this.buggyCommit = buggyCommit;
         this.inducingCommit = inducingCommit;
         this.originalCommit = originalCommit;
+        writeD4JFiles("b");
+        this.properties = getProperties("/defects4j.build.properties");
     }
 
     public void setProj(String proj) {
@@ -151,6 +157,19 @@ public class Defects4JBug extends CIBug implements GitAccess {
         return res == 0;
     }
 
+    public boolean compile() {
+        CommandSummary cs = new CommandSummary();
+        cs.append("/bin/bash", "-c");
+        cs.append("timeout " + timeoutSecond * 1000 + " " + d4jCmd + " compile", null);
+        String[] cmd = cs.flat();
+        int res = FileUtils.executeCommand(cmd, new File(workingDir).getAbsolutePath(), timeoutSecond
+                , Map.of("JAVA_HOME", ConfigurationProperties.getProperty("jdk8")));
+        if (res == 143) {
+            logger.info("test Timeout!");
+        }
+        return res == 0;
+    }
+
     public boolean singleTest(String testMethod) {
         CommandSummary cs = new CommandSummary();
         cs.append("/bin/bash", "-c");
@@ -184,6 +203,7 @@ public class Defects4JBug extends CIBug implements GitAccess {
         return res == 0;
     }
 
+    @Deprecated
     public boolean checkTestResults() {
         return true;
     }
@@ -232,6 +252,27 @@ public class Defects4JBug extends CIBug implements GitAccess {
         return null;
     }
 
+    public boolean switchAndCompile(String version) {
+        boolean res = false;
+        try {
+            version = version.startsWith("f") ? getD4JFix() : version.startsWith("b") ? getD4JBuggy() : null;
+            if (version == null) {
+                logger.error("This repository has no target version!");
+                return res;
+            }
+            logger.debug("Switch to commit " + version);
+            res = gitAccess.checkoutf(workingDir, version);
+            FileUtils.executeCommand(new String[]{"/bin/bash", "-c", "rm -rf " + workingDir + "/build " + workingDir + "/target"});
+            logger.debug("Execute original tests...");
+            boolean testRes = compile();
+            res &= testRes;
+        } catch (Exception e) {
+            logger.error("Error occurred when switchAndTest :" + e.getMessage());
+            res = false;
+        }
+        return res;
+    }
+
     /**
      * checkout a specific commit while keeping the project configure.
      * @param repository a valid defects4j project
@@ -275,6 +316,8 @@ public class Defects4JBug extends CIBug implements GitAccess {
     public boolean checkAndTest(String commitId, String version, String fixingCommit) {
         boolean res = false;
         try {
+            logger.debug("Switch to commit " + commitId);
+            gitAccess.checkoutf(workingDir, commitId);
             FileUtils.executeCommand(new String[]{"/bin/bash", "-c", "rm -rf " + workingDir + "/build " + workingDir + "/target"});
             //todo: build.properties need to map to correct package?
             logger.debug("Output defects4j properties and config file...");
@@ -305,6 +348,8 @@ public class Defects4JBug extends CIBug implements GitAccess {
     public boolean switchAndClean(Repository repository, String commitId, String version, String tagName) {
         boolean res = false;
         try {
+            logger.debug("Switch to commit " + commitId);
+            gitAccess.checkoutf(workingDir, commitId);
             FileUtils.executeCommand(new String[]{"/bin/bash", "-c", "rm -rf " + workingDir + "/build " + workingDir + "/target"});
             //todo: build.properties need to map to correct package?
             logger.debug("Output defects4j properties and config file...");
@@ -339,7 +384,7 @@ public class Defects4JBug extends CIBug implements GitAccess {
 //            }
             String all_tests = dataDir + proj + "_" + id + "/properties/all_tests/" + version;
             String failing_tests = dataDir + proj + "_" + id + "/properties/failing_tests/" + version;
-            if (FileUtils.notExists(failing_tests)) {//
+            if (true) {//FileUtils.notExists(failing_tests)
                 if (true) {//FileUtils.notExists(all_tests)
                     logger.info("Execute original tests...");
                     logger.info("Writing all_tests info...");
@@ -354,10 +399,10 @@ public class Defects4JBug extends CIBug implements GitAccess {
                 String triggerTests = new File(dataDir + proj + "_" + id + "/cleaned/inducing/*").getAbsolutePath();
                 FileUtils.executeCommand(new String[]{"/bin/bash", "-c", "cp -r " + triggerTests + " ./"}, workingDir, 300, null);
                 res &= test();
-//            if (res) {
-                logger.info("Writing failing_tests info...");
-                FileUtils.copy(new File(workingDir + "/failing_tests"), new File(failing_tests));
-//            }
+                if (res) {
+                    logger.info("Writing failing_tests info...");
+                    FileUtils.copy(new File(workingDir + "/failing_tests"), new File(failing_tests));
+                }
             }
 
             logger.info("git int ...");

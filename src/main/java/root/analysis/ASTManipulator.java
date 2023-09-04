@@ -33,6 +33,10 @@ public class ASTManipulator implements GitAccess {
         return parser;
     }
 
+    public ASTParser getParser() {
+        return parser;
+    }
+
     public Set<MethodDeclaration> extractMethodByPos(char[] fileSource, Set<Integer> positions, boolean isLineNumber) {
         parser.setSource(fileSource);
         parser.setKind(ASTParser.K_COMPILATION_UNIT);
@@ -198,7 +202,36 @@ public class ASTManipulator implements GitAccess {
     }
 
     public String getFunctionSig(MethodDeclaration methodDeclaration) {
-        String sig = methodDeclaration.getName().toString();
+        String sig = "";
+        CompilationUnit compilationUnit = (CompilationUnit) methodDeclaration.getRoot();
+        String packageName = compilationUnit.getPackage().getName().toString();
+        ASTNode innerType = methodDeclaration.getParent();
+        if (innerType instanceof TypeDeclaration) {
+            List types = compilationUnit.types();
+            sig = packageName + "." + getInnerType(types, ((TypeDeclaration) innerType).getName().toString())
+                    + ":" + methodDeclaration.getName().toString();
+        } else {
+            sig = methodDeclaration.getName().toString();
+        }
+        sig += ":" + methodDeclaration.parameters();
+        sig += ":" + methodDeclaration.getReturnType2();
         return sig;
+    }
+
+    private String getInnerType(List types, String typeName) {
+        for (Object obj: types) {
+            TypeDeclaration type = (TypeDeclaration) obj;
+            if (typeName.equals(type.getName().toString())) {
+                return type.getName().toString();
+            }
+            List collect = (List) type.bodyDeclarations().stream().filter(o -> o instanceof TypeDeclaration).collect(Collectors.toList());
+            if (!collect.isEmpty()) {
+                String innerType = getInnerType(collect, typeName);
+                if (innerType != null) {
+                    return type.getName().toString() + "\\$" + innerType;
+                }
+            }
+        }
+        return null;
     }
 }

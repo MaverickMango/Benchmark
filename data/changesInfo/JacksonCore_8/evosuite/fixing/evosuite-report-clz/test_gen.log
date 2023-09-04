@@ -1,0 +1,2 @@
+cd /home/liumengjiao/Desktop/CI/Benchmark/../bugs/JacksonCore_8_buggy && timeout 300000 gen_tests.pl -g evosuite -p JacksonCore -v 8f -n 0 -o /home/liumengjiao/Desktop/CI/Evosuite/JacksonCore/ -b 300 >> evosuite-report-clz/test_gen.log 2>&1
+

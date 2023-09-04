@@ -1,7 +1,7 @@
 package attempt;
 
 import org.junit.Test;
-import root.attempt.Main;
+import root.attempt.DiffMain;
 import root.util.FileUtils;
 
 import java.util.List;
@@ -33,7 +33,7 @@ public class MethodTest {
     public void test() {
         List<String> diff = FileUtils.readEachLine("/home/liumengjiao/Desktop/CI/Benchmark/data/changesInfo/Closure_80/patches/inducing.diff");
         List<String> realDiff = diff.stream().filter(
-                line -> !Main.filter(line, null)
+                line -> !DiffMain.filter(line, null)
         ).collect(Collectors.toList());
         if (!realDiff.isEmpty()) {
             System.out.println(realDiff.size());

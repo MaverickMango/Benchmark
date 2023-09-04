@@ -1,0 +1,35 @@
+Only in data/changesInfo//Closure_82/properties/modified_classes/inducing/: src
+diff -u -r data/changesInfo//Closure_82/properties/modified_classes/inducing/test/com/google/javascript/jscomp/TypeCheckTest.java data/changesInfo//Closure_82/cleaned/inducing/test/com/google/javascript/jscomp/TypeCheckTest.java
+--- data/changesInfo//Closure_82/properties/modified_classes/inducing/test/com/google/javascript/jscomp/TypeCheckTest.java	2023-08-10 20:44:55.260564233 +0800
++++ data/changesInfo//Closure_82/cleaned/inducing/test/com/google/javascript/jscomp/TypeCheckTest.java	2023-06-15 10:38:34.899471149 +0800
+@@ -4654,6 +4654,14 @@
+         "required: number");
+   }
+ 
++  public void testIssue301() throws Exception {
++    testTypes(
++            "Array.indexOf = function() {};" +
++                    "var s = 'hello';" +
++                    "alert(s.toLowerCase.indexOf('1'));",
++            "Property indexOf never defined on String.prototype.toLowerCase");
++  }
++
+   /**
+    * Tests that the || operator is type checked correctly, that is of
+    * the type of the first argument or of the second argument. See
+diff -u -r data/changesInfo//Closure_82/properties/modified_classes/inducing/test/com/google/javascript/rhino/jstype/FunctionTypeTest.java data/changesInfo//Closure_82/cleaned/inducing/test/com/google/javascript/rhino/jstype/FunctionTypeTest.java
+--- data/changesInfo//Closure_82/properties/modified_classes/inducing/test/com/google/javascript/rhino/jstype/FunctionTypeTest.java	2023-08-10 20:44:55.260564233 +0800
++++ data/changesInfo//Closure_82/cleaned/inducing/test/com/google/javascript/rhino/jstype/FunctionTypeTest.java	2023-06-15 10:38:13.715173331 +0800
+@@ -161,6 +161,11 @@
+     assertTrue(objReturnBoolean.canAssignTo(ifaceReturnBoolean));
+   }
+ 
++  public void testEmptyFunctionTypes() {
++    assertTrue(LEAST_FUNCTION_TYPE.isEmptyType());
++    assertFalse(GREATEST_FUNCTION_TYPE.isEmptyType());
++  }
++
+   private void assertLeastSupertype(String s, JSType t1, JSType t2) {
+     assertEquals(s, t1.getLeastSupertype(t2).toString());
+     assertEquals(s, t2.getLeastSupertype(t1).toString());
+Only in data/changesInfo//Closure_82/properties/modified_classes/inducing/test/com/google/javascript/rhino/jstype: JSTypeTest.java
