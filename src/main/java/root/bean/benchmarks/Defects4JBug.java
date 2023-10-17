@@ -1,16 +1,12 @@
 package root.bean.benchmarks;
 
-import com.github.gumtreediff.actions.model.Action;
-import com.github.gumtreediff.tree.Tree;
 import org.eclipse.jdt.core.dom.ASTNode;
 import org.eclipse.jdt.core.dom.MethodDeclaration;
 import org.eclipse.jgit.lib.Repository;
 import org.eclipse.jgit.revwalk.RevCommit;
-import org.refactoringminer.astDiff.actions.ASTDiff;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import root.analysis.ASTManipulator;
-import root.analysis.RefactoringMiner;
+import root.analysis.CompilationUnitManipulator;
 import root.bean.ci.CIBug;
 import root.util.*;
 
@@ -531,14 +527,14 @@ public class Defects4JBug extends CIBug implements GitAccess {
         try {
             List<List<String>> f2is = gitAccess.getF2i(mappingFile, methods);
             gitAccess.checkout(repository, fixingCommit);
-            ASTManipulator astManipulator = new ASTManipulator(8);
+            CompilationUnitManipulator compilationUnitManipulator = new CompilationUnitManipulator(8);
             Map<List<String>, ASTNode> triggerTests = new HashMap<>();
             Map<List<String>, List<?>> imports = new HashMap<>();
             Map<List<String>, List<MethodDeclaration>> dependencies = new HashMap<>();
             for (List<String> f2i :f2is) {
                 List<?> importDeclarations = new ArrayList<>();
                 List<MethodDeclaration> methodDeclarations = new ArrayList<>();
-                MethodDeclaration triggerTest = astManipulator.extractTest(FileUtils.readFileByChars(workingDir + File.separator + f2i.get(1)), f2i.get(3)
+                MethodDeclaration triggerTest = compilationUnitManipulator.extractTest(FileUtils.readFileByChars(workingDir + File.separator + f2i.get(1)), f2i.get(3)
                         , importDeclarations, methodDeclarations);
                 triggerTests.put(f2i, triggerTest);
                 imports.put(f2i, importDeclarations);
@@ -546,7 +542,7 @@ public class Defects4JBug extends CIBug implements GitAccess {
             }
             gitAccess.checkout(repository, inducingCommit);
             for (Map.Entry<List<String>, ASTNode> entry: triggerTests.entrySet()) {
-                String s = astManipulator.insertTest(FileUtils.readFileByChars(workingDir + File.separator + entry.getKey().get(2)), entry.getValue()
+                String s = compilationUnitManipulator.insertTest(FileUtils.readFileByChars(workingDir + File.separator + entry.getKey().get(2)), entry.getValue()
                         , mappingFile, imports.get(entry.getKey()), dependencies.get(entry.getKey()));
                 FileUtils.writeToFile(s, workingDir + File.separator + entry.getKey().get(2), false);
             }

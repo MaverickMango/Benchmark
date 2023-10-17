@@ -5,7 +5,7 @@ import org.eclipse.jgit.lib.Repository;
 import org.junit.Test;
 import org.refactoringminer.astDiff.actions.ASTDiff;
 import org.refactoringminer.rm1.GitHistoryRefactoringMinerImpl;
-import root.analysis.ASTManipulator;
+import root.analysis.CompilationUnitManipulator;
 import root.bean.otherdataset.BugFixCommit;
 import root.bean.BugFunction;
 import root.bean.otherdataset.CommitInfo;
@@ -76,12 +76,12 @@ public class BugInfoUtilTest implements GitAccess {
                 dst.add(dstContents);
             }
             for (String srcContents :srcs) {
-                ASTManipulator manipulator = new ASTManipulator(8);
+                CompilationUnitManipulator manipulator = new CompilationUnitManipulator(8);
                 Set<MethodDeclaration> methods = manipulator.extractMethodByPos(srcContents.toCharArray(), ori_pos, true);
                 ori_mths.addAll(methods);
             }
             for (String dstContents :dst) {
-                ASTManipulator manipulator = new ASTManipulator(8);
+                CompilationUnitManipulator manipulator = new CompilationUnitManipulator(8);
                 Set<MethodDeclaration> methods = manipulator.extractMethodByPos(dstContents.toCharArray(), bic_pos, true);
                 ori2bicMths.addAll(methods);
             }
@@ -109,7 +109,7 @@ public class BugInfoUtilTest implements GitAccess {
                 if (flag)
                     continue;
                 String bicName = bicFile.substring(bicFile.lastIndexOf("/") + 1);
-                ASTManipulator manipulator = new ASTManipulator(8);
+                CompilationUnitManipulator manipulator = new CompilationUnitManipulator(8);
                 char[] bic = FileUtils.readFileByChars(bicFile);
                 bic_mths.addAll(manipulator.extractMethodByPos(bic, bic_pos, true));
                 bic_mths = intersection(bic_mths, ori2bicMths);

@@ -7,10 +7,10 @@ import org.eclipse.jgit.lib.Repository;
 import org.refactoringminer.astDiff.actions.ASTDiff;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import root.analysis.ASTManipulator;
+import root.analysis.CompilationUnitManipulator;
+import root.analysis.MethodManipulator;
 import root.analysis.RefactoringMiner;
 import root.analysis.StringFilter;
-import root.attempt.Defects4jBugsMain;
 import root.bean.benchmarks.Defects4JBug;
 import root.bean.ci.*;
 
@@ -234,15 +234,16 @@ public class BugBuilder implements GitAccess {
         patchDiff.setChangedLines(changed);
 
         changed = new ArrayList<>();
-        ASTManipulator manipulator = new ASTManipulator(8);
+        CompilationUnitManipulator manipulator = new CompilationUnitManipulator(8);
         String srcContents = astDiff.getSrcContents();
         methods = manipulator.extractMethodByPos(srcContents.toCharArray(), ori_pos, true);
-        List<String> mths_sig = methods.stream().map(manipulator::getFunctionSig).collect(Collectors.toList());
+        MethodManipulator methodManipulator = new MethodManipulator();
+        List<String> mths_sig = methods.stream().map(methodManipulator::getFunctionSig).collect(Collectors.toList());
         src_mths.addAll(mths_sig);
         changed.add(0, new NameList(mths_sig));
         String dstContents = astDiff.getDstContents();
         methods = manipulator.extractMethodByPos(dstContents.toCharArray(), bic_pos, true);
-        mths_sig = methods.stream().map(manipulator::getFunctionSig).collect(Collectors.toList());
+        mths_sig = methods.stream().map(methodManipulator::getFunctionSig).collect(Collectors.toList());
         dst_mths.addAll(mths_sig);
         changed.add(1, new NameList(mths_sig));
         patchDiff.setChangedFunctions(changed);

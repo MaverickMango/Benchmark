@@ -10,6 +10,9 @@ import org.slf4j.LoggerFactory;
 
 import java.io.*;
 import java.nio.charset.StandardCharsets;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.*;
 import java.util.concurrent.atomic.AtomicBoolean;
 import java.util.regex.Matcher;
@@ -387,6 +390,15 @@ public class FileUtils {
             }
         }
         return res == null ? "" : res;
+    }
+
+    public static List<File> findAllFiles(String fileDir, String postfix) throws IOException {
+        Path path = Paths.get(fileDir);
+        List<File> files = Files.walk(path)
+                .filter(p -> p.toFile().isFile() && p.toFile().getName().endsWith(postfix))
+                .map(Path::toFile)
+                .collect(Collectors.toList());
+        return files;
     }
 
     /**

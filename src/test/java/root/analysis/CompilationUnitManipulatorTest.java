@@ -1,6 +1,5 @@
 package root.analysis;
 
-import org.eclipse.jdt.core.dom.ASTParser;
 import org.eclipse.jdt.core.dom.MethodDeclaration;
 import org.junit.jupiter.api.Test;
 import root.util.FileUtils;
@@ -8,21 +7,20 @@ import root.util.FileUtils;
 import java.util.HashSet;
 import java.util.Set;
 
-import static org.junit.jupiter.api.Assertions.*;
-
-class ASTManipulatorTest {
+class CompilationUnitManipulatorTest {
 
     @Test
     void getFunctionSig() {
         String source = "src/main/java/";
         String cls = "build/classes/java/main/";
         String filePath = "root/analysis/RefactoringMiner.java";
-        ASTManipulator manipulator = new ASTManipulator(8);
+        CompilationUnitManipulator manipulator = new CompilationUnitManipulator(8);
+        MethodManipulator methodManipulator = new MethodManipulator();
         Set<Integer> pos = new HashSet<>();
         pos.add(46);
         Set<MethodDeclaration> methodDeclarations = manipulator.extractMethodByPos(FileUtils.readFileByChars(source + filePath), pos, true);
         for (MethodDeclaration mth :methodDeclarations) {
-            String functionSig = manipulator.getFunctionSig(mth);
+            String functionSig = methodManipulator.getFunctionSig(mth);
             System.out.println(functionSig);
         }
     }
