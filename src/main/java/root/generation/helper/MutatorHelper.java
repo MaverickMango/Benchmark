@@ -1,11 +1,11 @@
 package root.generation.helper;
 
-import com.github.javaparser.ast.CompilationUnit;
-import com.github.javaparser.ast.body.MethodDeclaration;
 import org.apache.commons.io.FileUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import root.generation.parser.ASTParser;
+import root.generation.parser.ASTJDTParser;
+import root.generation.parser.ASTJavaParser;
+import root.generation.parser.AbstractASTParser;
 import root.util.ConfigurationProperties;
 
 import java.io.File;
@@ -24,7 +24,8 @@ public class MutatorHelper {
     protected String testClassesInfoPath;
     protected Set<String> binJavaClasses;
     protected Set<String> binExecuteTestClasses;
-    protected Map<String, CompilationUnit> ASTs;
+    AbstractASTParser parser;
+    protected Map<String, Object> ASTs;//CompilationUnit
     protected List<String> compilerOptions;
 
     public MutatorHelper() {
@@ -55,6 +56,7 @@ public class MutatorHelper {
             invokeCompilerOptionInitializer(complianceLevel);
         }
         invokeSourceASTParser(testOnly);
+        invokeExtractors();
     }
 
     private void invokeClassFinder() throws ClassNotFoundException, IOException {
@@ -73,7 +75,8 @@ public class MutatorHelper {
     private void invokeSourceASTParser(boolean testOnly) throws IOException {
         logger.info("Invoking source code ast parse...");
 
-        ASTParser parser = new ASTParser(srcJavaDir, srcTestDir, dependencies);
+        parser = new ASTJavaParser(srcJavaDir, srcTestDir, dependencies);//resolver是白给的么
+//        parser = new ASTJDTParser(srcJavaDir, srcTestDir, dependencies, new HashMap<>());//很好这两个都没有类型解析啊啊啊
         if (!testOnly)
             parser.parseASTs(srcJavaDir);
         parser.parseASTs(srcTestDir);
@@ -95,5 +98,9 @@ public class MutatorHelper {
             }
         }
         compilerOptions.add(cpStr.toString());
+    }
+
+    private void invokeExtractors() {
+
     }
 }

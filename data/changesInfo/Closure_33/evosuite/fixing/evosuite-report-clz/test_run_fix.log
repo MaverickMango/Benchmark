@@ -1,0 +1,1125 @@
+cd /home/liumengjiao/Desktop/CI/Benchmark/../bugs/Closure_33_fix && timeout 300000 java -cp /home/liumengjiao/Desktop/defects4j/framework/lib/test_generation/generation/evosuite-current.jar:/home/liumengjiao/Desktop/CI/Evosuite/Closure_33/Closure/evosuite//3/::build/classes/:build/lib/*:lib/* org.junit.runner.JUnitCore com.google.javascript.rhino.jstype.PrototypeObjectType_ESTest >> evosuite-report-clz/test_run_fix.log 2>&1
+
+JUnit version 4.13
+19:12:12.575 [main] INFO org.evosuite.runtime.instrumentation.EvoClassLoader - Seeing class for first time: com.google.javascript.rhino.jstype.PrototypeObjectType_ESTest
+19:12:12.576 [main] INFO org.evosuite.runtime.instrumentation.EvoClassLoader - Instrumenting class 'com.google.javascript.rhino.jstype.PrototypeObjectType_ESTest'.
+19:12:12.621 [main] INFO org.evosuite.runtime.instrumentation.EvoClassLoader - Seeing class for first time: com.google.javascript.rhino.jstype.PrototypeObjectType_ESTest_scaffolding
+19:12:12.621 [main] INFO org.evosuite.runtime.instrumentation.EvoClassLoader - Instrumenting class 'com.google.javascript.rhino.jstype.PrototypeObjectType_ESTest_scaffolding'.
+19:12:12.623 [main] INFO org.evosuite.runtime.instrumentation.EvoClassLoader - Keeping class: com.google.javascript.rhino.jstype.PrototypeObjectType_ESTest_scaffolding
+19:12:12.623 [main] INFO org.evosuite.runtime.instrumentation.EvoClassLoader - Keeping class: com.google.javascript.rhino.jstype.PrototypeObjectType_ESTest
+19:12:12.623 [main] INFO org.evosuite.runtime.instrumentation.EvoClassLoader - Seeing class for first time: com.google.javascript.rhino.ErrorReporter
+19:12:12.623 [main] INFO org.evosuite.runtime.instrumentation.EvoClassLoader - Instrumenting class 'com.google.javascript.rhino.ErrorReporter'.
+19:12:12.643 [main] INFO org.evosuite.runtime.instrumentation.EvoClassLoader - Keeping class: com.google.javascript.rhino.ErrorReporter
+19:12:12.643 [main] INFO org.evosuite.runtime.instrumentation.EvoClassLoader - Seeing class for first time: com.google.javascript.rhino.jstype.ObjectType
+19:12:12.644 [main] INFO org.evosuite.runtime.instrumentation.EvoClassLoader - Instrumenting class 'com.google.javascript.rhino.jstype.ObjectType'.
+19:12:12.644 [main] INFO org.evosuite.runtime.instrumentation.MethodCallReplacementClassAdapter - Adding mock interface to class com/google/javascript/rhino/jstype/ObjectType
+19:12:12.685 [main] INFO org.evosuite.runtime.instrumentation.CreateClassResetClassAdapter - Creating brand-new static initializer in class com/google/javascript/rhino/jstype/ObjectType
+19:12:12.686 [main] INFO org.evosuite.runtime.instrumentation.EvoClassLoader - Seeing class for first time: com.google.javascript.rhino.jstype.StaticScope
+19:12:12.686 [main] INFO org.evosuite.runtime.instrumentation.EvoClassLoader - Instrumenting class 'com.google.javascript.rhino.jstype.StaticScope'.
+19:12:12.686 [main] INFO org.evosuite.runtime.instrumentation.EvoClassLoader - Keeping class: com.google.javascript.rhino.jstype.StaticScope
+19:12:12.686 [main] INFO org.evosuite.runtime.instrumentation.EvoClassLoader - Seeing class for first time: com.google.javascript.rhino.jstype.JSType
+19:12:12.686 [main] INFO org.evosuite.runtime.instrumentation.EvoClassLoader - Instrumenting class 'com.google.javascript.rhino.jstype.JSType'.
+19:12:12.687 [main] INFO org.evosuite.runtime.instrumentation.MethodCallReplacementClassAdapter - Adding mock interface to class com/google/javascript/rhino/jstype/JSType
+19:12:12.693 [main] INFO org.evosuite.runtime.instrumentation.CreateClassResetClassAdapter - Found static initializer in class com/google/javascript/rhino/jstype/JSType
+19:12:12.694 [main] INFO org.evosuite.runtime.instrumentation.EvoClassLoader - Keeping class: com.google.javascript.rhino.jstype.JSType
+19:12:12.694 [main] INFO org.evosuite.runtime.instrumentation.EvoClassLoader - Keeping class: com.google.javascript.rhino.jstype.ObjectType
+19:12:12.694 [main] INFO org.evosuite.runtime.instrumentation.EvoClassLoader - Seeing class for first time: com.google.javascript.rhino.jstype.FunctionType
+19:12:12.694 [main] INFO org.evosuite.runtime.instrumentation.EvoClassLoader - Instrumenting class 'com.google.javascript.rhino.jstype.FunctionType'.
+19:12:12.695 [main] INFO org.evosuite.runtime.instrumentation.MethodCallReplacementClassAdapter - Adding mock interface to class com/google/javascript/rhino/jstype/FunctionType
+19:12:12.703 [main] INFO org.evosuite.runtime.instrumentation.CreateClassResetClassAdapter - Creating brand-new static initializer in class com/google/javascript/rhino/jstype/FunctionType
+19:12:12.704 [main] INFO org.evosuite.runtime.instrumentation.EvoClassLoader - Seeing class for first time: com.google.javascript.rhino.jstype.PrototypeObjectType
+19:12:12.704 [main] INFO org.evosuite.runtime.instrumentation.EvoClassLoader - Instrumenting class 'com.google.javascript.rhino.jstype.PrototypeObjectType'.
+19:12:12.705 [main] INFO org.evosuite.runtime.instrumentation.MethodCallReplacementClassAdapter - Adding mock interface to class com/google/javascript/rhino/jstype/PrototypeObjectType
+19:12:12.726 [main] INFO org.evosuite.runtime.instrumentation.CreateClassResetClassAdapter - Creating brand-new static initializer in class com/google/javascript/rhino/jstype/PrototypeObjectType
+19:12:12.726 [main] INFO org.evosuite.runtime.instrumentation.CreateClassResetClassAdapter - Adding bytecode for initializing field MAX_PRETTY_PRINTED_PROPERTIES
+19:12:12.726 [main] INFO org.evosuite.runtime.instrumentation.EvoClassLoader - Keeping class: com.google.javascript.rhino.jstype.PrototypeObjectType
+19:12:12.726 [main] INFO org.evosuite.runtime.instrumentation.EvoClassLoader - Keeping class: com.google.javascript.rhino.jstype.FunctionType
+19:12:12.727 [main] INFO org.evosuite.runtime.instrumentation.EvoClassLoader - Seeing class for first time: com.google.javascript.rhino.jstype.ErrorFunctionType
+19:12:12.727 [main] INFO org.evosuite.runtime.instrumentation.EvoClassLoader - Instrumenting class 'com.google.javascript.rhino.jstype.ErrorFunctionType'.
+19:12:12.727 [main] INFO org.evosuite.runtime.instrumentation.MethodCallReplacementClassAdapter - Adding mock interface to class com/google/javascript/rhino/jstype/ErrorFunctionType
+19:12:12.727 [main] INFO org.evosuite.runtime.instrumentation.CreateClassResetClassAdapter - Creating brand-new static initializer in class com/google/javascript/rhino/jstype/ErrorFunctionType
+19:12:12.727 [main] INFO org.evosuite.runtime.instrumentation.EvoClassLoader - Keeping class: com.google.javascript.rhino.jstype.ErrorFunctionType
+19:12:12.727 [main] INFO org.evosuite.runtime.instrumentation.EvoClassLoader - Seeing class for first time: com.google.javascript.rhino.jstype.NoType
+19:12:12.727 [main] INFO org.evosuite.runtime.instrumentation.EvoClassLoader - Instrumenting class 'com.google.javascript.rhino.jstype.NoType'.
+19:12:12.728 [main] INFO org.evosuite.runtime.instrumentation.MethodCallReplacementClassAdapter - Adding mock interface to class com/google/javascript/rhino/jstype/NoType
+19:12:12.728 [main] INFO org.evosuite.runtime.instrumentation.CreateClassResetClassAdapter - Creating brand-new static initializer in class com/google/javascript/rhino/jstype/NoType
+19:12:12.728 [main] INFO org.evosuite.runtime.instrumentation.EvoClassLoader - Seeing class for first time: com.google.javascript.rhino.jstype.NoObjectType
+19:12:12.728 [main] INFO org.evosuite.runtime.instrumentation.EvoClassLoader - Instrumenting class 'com.google.javascript.rhino.jstype.NoObjectType'.
+19:12:12.728 [main] INFO org.evosuite.runtime.instrumentation.MethodCallReplacementClassAdapter - Adding mock interface to class com/google/javascript/rhino/jstype/NoObjectType
+19:12:12.729 [main] INFO org.evosuite.runtime.instrumentation.CreateClassResetClassAdapter - Creating brand-new static initializer in class com/google/javascript/rhino/jstype/NoObjectType
+19:12:12.729 [main] INFO org.evosuite.runtime.instrumentation.EvoClassLoader - Keeping class: com.google.javascript.rhino.jstype.NoObjectType
+19:12:12.729 [main] INFO org.evosuite.runtime.instrumentation.EvoClassLoader - Keeping class: com.google.javascript.rhino.jstype.NoType
+19:12:12.729 [main] INFO org.evosuite.runtime.instrumentation.EvoClassLoader - Seeing class for first time: com.google.javascript.rhino.jstype.NoResolvedType
+19:12:12.729 [main] INFO org.evosuite.runtime.instrumentation.EvoClassLoader - Instrumenting class 'com.google.javascript.rhino.jstype.NoResolvedType'.
+19:12:12.729 [main] INFO org.evosuite.runtime.instrumentation.MethodCallReplacementClassAdapter - Adding mock interface to class com/google/javascript/rhino/jstype/NoResolvedType
+19:12:12.729 [main] INFO org.evosuite.runtime.instrumentation.CreateClassResetClassAdapter - Creating brand-new static initializer in class com/google/javascript/rhino/jstype/NoResolvedType
+19:12:12.729 [main] INFO org.evosuite.runtime.instrumentation.EvoClassLoader - Keeping class: com.google.javascript.rhino.jstype.NoResolvedType
+19:12:12.730 [main] INFO org.evosuite.runtime.instrumentation.EvoClassLoader - Seeing class for first time: com.google.javascript.rhino.jstype.RecordType
+19:12:12.730 [main] INFO org.evosuite.runtime.instrumentation.EvoClassLoader - Instrumenting class 'com.google.javascript.rhino.jstype.RecordType'.
+19:12:12.730 [main] INFO org.evosuite.runtime.instrumentation.MethodCallReplacementClassAdapter - Adding mock interface to class com/google/javascript/rhino/jstype/RecordType
+19:12:12.731 [main] INFO org.evosuite.runtime.instrumentation.CreateClassResetClassAdapter - Creating brand-new static initializer in class com/google/javascript/rhino/jstype/RecordType
+19:12:12.732 [main] INFO org.evosuite.runtime.instrumentation.EvoClassLoader - Keeping class: com.google.javascript.rhino.jstype.RecordType
+19:12:12.732 [main] INFO org.evosuite.runtime.instrumentation.EvoClassLoader - Seeing class for first time: com.google.javascript.rhino.jstype.InstanceObjectType
+19:12:12.732 [main] INFO org.evosuite.runtime.instrumentation.EvoClassLoader - Instrumenting class 'com.google.javascript.rhino.jstype.InstanceObjectType'.
+19:12:12.732 [main] INFO org.evosuite.runtime.instrumentation.MethodCallReplacementClassAdapter - Adding mock interface to class com/google/javascript/rhino/jstype/InstanceObjectType
+19:12:12.732 [main] INFO org.evosuite.runtime.instrumentation.CreateClassResetClassAdapter - Creating brand-new static initializer in class com/google/javascript/rhino/jstype/InstanceObjectType
+19:12:12.733 [main] INFO org.evosuite.runtime.instrumentation.EvoClassLoader - Keeping class: com.google.javascript.rhino.jstype.InstanceObjectType
+19:12:12.816 [main] DEBUG org.evosuite.runtime.sandbox.MSecurityManager - Adding privileged thread: "Reference Handler"
+19:12:12.816 [main] DEBUG org.evosuite.runtime.sandbox.MSecurityManager - Adding privileged thread: "Finalizer"
+19:12:12.816 [main] DEBUG org.evosuite.runtime.sandbox.MSecurityManager - Adding privileged thread: "Signal Dispatcher"
+19:12:12.816 [main] DEBUG org.evosuite.runtime.sandbox.MSecurityManager - Adding privileged thread: "Java2D Disposer"
+19:12:12.816 [main] DEBUG org.evosuite.runtime.sandbox.MSecurityManager - Adding privileged thread: "AWT-XAWT"
+19:12:12.816 [main] DEBUG org.evosuite.runtime.sandbox.MSecurityManager - Adding privileged thread: "main"
+19:12:12.823 [main] INFO org.evosuite.runtime.instrumentation.EvoClassLoader - Seeing class for first time: com.google.common.collect.ArrayListMultimap
+19:12:12.823 [main] INFO org.evosuite.runtime.instrumentation.EvoClassLoader - Instrumenting class 'com.google.common.collect.ArrayListMultimap'.
+19:12:12.827 [main] INFO org.evosuite.runtime.instrumentation.MethodCallReplacementClassAdapter - Adding mock interface to class com/google/common/collect/ArrayListMultimap
+19:12:12.828 [main] INFO org.evosuite.runtime.instrumentation.CreateClassResetClassAdapter - Creating brand-new static initializer in class com/google/common/collect/ArrayListMultimap
+19:12:12.828 [main] INFO org.evosuite.runtime.instrumentation.CreateClassResetClassAdapter - Adding bytecode for initializing field DEFAULT_VALUES_PER_KEY
+19:12:12.829 [main] INFO org.evosuite.runtime.instrumentation.EvoClassLoader - Defined package (3): package com.google.common.collect, 173171663
+19:12:12.829 [main] INFO org.evosuite.runtime.instrumentation.EvoClassLoader - Seeing class for first time: com.google.common.collect.AbstractListMultimap
+19:12:12.829 [main] INFO org.evosuite.runtime.instrumentation.EvoClassLoader - Instrumenting class 'com.google.common.collect.AbstractListMultimap'.
+19:12:12.832 [main] INFO org.evosuite.runtime.instrumentation.MethodCallReplacementClassAdapter - Adding mock interface to class com/google/common/collect/AbstractListMultimap
+19:12:12.833 [main] INFO org.evosuite.runtime.instrumentation.CreateClassResetClassAdapter - Creating brand-new static initializer in class com/google/common/collect/AbstractListMultimap
+19:12:12.833 [main] INFO org.evosuite.runtime.instrumentation.EvoClassLoader - Seeing class for first time: com.google.common.collect.ListMultimap
+19:12:12.833 [main] INFO org.evosuite.runtime.instrumentation.EvoClassLoader - Instrumenting class 'com.google.common.collect.ListMultimap'.
+19:12:12.844 [main] INFO org.evosuite.runtime.instrumentation.EvoClassLoader - Seeing class for first time: com.google.common.collect.Multimap
+19:12:12.844 [main] INFO org.evosuite.runtime.instrumentation.EvoClassLoader - Instrumenting class 'com.google.common.collect.Multimap'.
+19:12:12.845 [main] INFO org.evosuite.runtime.instrumentation.EvoClassLoader - Keeping class: com.google.common.collect.Multimap
+19:12:12.846 [main] INFO org.evosuite.runtime.instrumentation.EvoClassLoader - Keeping class: com.google.common.collect.ListMultimap
+19:12:12.846 [main] INFO org.evosuite.runtime.instrumentation.EvoClassLoader - Seeing class for first time: com.google.common.collect.AbstractMultimap
+19:12:12.846 [main] INFO org.evosuite.runtime.instrumentation.EvoClassLoader - Instrumenting class 'com.google.common.collect.AbstractMultimap'.
+19:12:12.847 [main] INFO org.evosuite.runtime.instrumentation.MethodCallReplacementClassAdapter - Adding mock interface to class com/google/common/collect/AbstractMultimap
+19:12:12.854 [main] INFO org.evosuite.runtime.instrumentation.CreateClassResetClassAdapter - Creating brand-new static initializer in class com/google/common/collect/AbstractMultimap
+19:12:12.854 [main] INFO org.evosuite.runtime.instrumentation.EvoClassLoader - Keeping class: com.google.common.collect.AbstractMultimap
+19:12:12.854 [main] INFO org.evosuite.runtime.instrumentation.EvoClassLoader - Keeping class: com.google.common.collect.AbstractListMultimap
+19:12:12.854 [main] INFO org.evosuite.runtime.instrumentation.EvoClassLoader - Keeping class: com.google.common.collect.ArrayListMultimap
+19:12:12.855 [main] INFO org.evosuite.runtime.instrumentation.EvoClassLoader - Seeing class for first time: com.google.common.collect.Multiset
+19:12:12.855 [main] INFO org.evosuite.runtime.instrumentation.EvoClassLoader - Instrumenting class 'com.google.common.collect.Multiset'.
+19:12:12.856 [main] INFO org.evosuite.runtime.instrumentation.EvoClassLoader - Keeping class: com.google.common.collect.Multiset
+19:12:12.856 [main] INFO org.evosuite.runtime.instrumentation.EvoClassLoader - Seeing class for first time: com.google.common.collect.AbstractMultimap$SortedAsMap
+19:12:12.856 [main] INFO org.evosuite.runtime.instrumentation.EvoClassLoader - Instrumenting class 'com.google.common.collect.AbstractMultimap$SortedAsMap'.
+19:12:12.856 [main] INFO org.evosuite.runtime.instrumentation.MethodCallReplacementClassAdapter - Adding mock interface to class com/google/common/collect/AbstractMultimap$SortedAsMap
+19:12:12.857 [main] INFO org.evosuite.runtime.instrumentation.CreateClassResetClassAdapter - Creating brand-new static initializer in class com/google/common/collect/AbstractMultimap$SortedAsMap
+19:12:12.857 [main] INFO org.evosuite.runtime.instrumentation.EvoClassLoader - Seeing class for first time: com.google.common.collect.AbstractMultimap$AsMap
+19:12:12.857 [main] INFO org.evosuite.runtime.instrumentation.EvoClassLoader - Instrumenting class 'com.google.common.collect.AbstractMultimap$AsMap'.
+19:12:12.857 [main] INFO org.evosuite.runtime.instrumentation.MethodCallReplacementClassAdapter - Adding mock interface to class com/google/common/collect/AbstractMultimap$AsMap
+19:12:12.858 [main] INFO org.evosuite.runtime.instrumentation.CreateClassResetClassAdapter - Creating brand-new static initializer in class com/google/common/collect/AbstractMultimap$AsMap
+19:12:12.859 [main] INFO org.evosuite.runtime.instrumentation.EvoClassLoader - Keeping class: com.google.common.collect.AbstractMultimap$AsMap
+19:12:12.859 [main] INFO org.evosuite.runtime.instrumentation.EvoClassLoader - Keeping class: com.google.common.collect.AbstractMultimap$SortedAsMap
+19:12:12.859 [main] INFO org.evosuite.runtime.instrumentation.EvoClassLoader - Seeing class for first time: com.google.common.collect.AbstractMultimap$SortedKeySet
+19:12:12.859 [main] INFO org.evosuite.runtime.instrumentation.EvoClassLoader - Instrumenting class 'com.google.common.collect.AbstractMultimap$SortedKeySet'.
+19:12:12.859 [main] INFO org.evosuite.runtime.instrumentation.MethodCallReplacementClassAdapter - Adding mock interface to class com/google/common/collect/AbstractMultimap$SortedKeySet
+19:12:12.860 [main] INFO org.evosuite.runtime.instrumentation.CreateClassResetClassAdapter - Creating brand-new static initializer in class com/google/common/collect/AbstractMultimap$SortedKeySet
+19:12:12.860 [main] INFO org.evosuite.runtime.instrumentation.EvoClassLoader - Seeing class for first time: com.google.common.collect.AbstractMultimap$KeySet
+19:12:12.860 [main] INFO org.evosuite.runtime.instrumentation.EvoClassLoader - Instrumenting class 'com.google.common.collect.AbstractMultimap$KeySet'.
+19:12:12.860 [main] INFO org.evosuite.runtime.instrumentation.MethodCallReplacementClassAdapter - Adding mock interface to class com/google/common/collect/AbstractMultimap$KeySet
+19:12:12.860 [main] INFO org.evosuite.runtime.instrumentation.CreateClassResetClassAdapter - Creating brand-new static initializer in class com/google/common/collect/AbstractMultimap$KeySet
+19:12:12.860 [main] INFO org.evosuite.runtime.instrumentation.EvoClassLoader - Seeing class for first time: com.google.common.collect.Maps$KeySet
+19:12:12.860 [main] INFO org.evosuite.runtime.instrumentation.EvoClassLoader - Instrumenting class 'com.google.common.collect.Maps$KeySet'.
+19:12:12.861 [main] INFO org.evosuite.runtime.instrumentation.MethodCallReplacementClassAdapter - Adding mock interface to class com/google/common/collect/Maps$KeySet
+19:12:12.861 [main] INFO org.evosuite.runtime.instrumentation.CreateClassResetClassAdapter - Creating brand-new static initializer in class com/google/common/collect/Maps$KeySet
+19:12:12.861 [main] INFO org.evosuite.runtime.instrumentation.EvoClassLoader - Keeping class: com.google.common.collect.Maps$KeySet
+19:12:12.861 [main] INFO org.evosuite.runtime.instrumentation.EvoClassLoader - Keeping class: com.google.common.collect.AbstractMultimap$KeySet
+19:12:12.861 [main] INFO org.evosuite.runtime.instrumentation.EvoClassLoader - Keeping class: com.google.common.collect.AbstractMultimap$SortedKeySet
+19:12:12.861 [main] INFO org.evosuite.runtime.instrumentation.EvoClassLoader - Seeing class for first time: com.google.common.collect.AbstractMultimap$RandomAccessWrappedList
+19:12:12.861 [main] INFO org.evosuite.runtime.instrumentation.EvoClassLoader - Instrumenting class 'com.google.common.collect.AbstractMultimap$RandomAccessWrappedList'.
+19:12:12.861 [main] INFO org.evosuite.runtime.instrumentation.MethodCallReplacementClassAdapter - Adding mock interface to class com/google/common/collect/AbstractMultimap$RandomAccessWrappedList
+19:12:12.862 [main] INFO org.evosuite.runtime.instrumentation.CreateClassResetClassAdapter - Creating brand-new static initializer in class com/google/common/collect/AbstractMultimap$RandomAccessWrappedList
+19:12:12.862 [main] INFO org.evosuite.runtime.instrumentation.EvoClassLoader - Seeing class for first time: com.google.common.collect.AbstractMultimap$WrappedList
+19:12:12.862 [main] INFO org.evosuite.runtime.instrumentation.EvoClassLoader - Instrumenting class 'com.google.common.collect.AbstractMultimap$WrappedList'.
+19:12:12.862 [main] INFO org.evosuite.runtime.instrumentation.MethodCallReplacementClassAdapter - Adding mock interface to class com/google/common/collect/AbstractMultimap$WrappedList
+19:12:12.863 [main] INFO org.evosuite.runtime.instrumentation.CreateClassResetClassAdapter - Creating brand-new static initializer in class com/google/common/collect/AbstractMultimap$WrappedList
+19:12:12.863 [main] INFO org.evosuite.runtime.instrumentation.EvoClassLoader - Seeing class for first time: com.google.common.collect.AbstractMultimap$WrappedCollection
+19:12:12.863 [main] INFO org.evosuite.runtime.instrumentation.EvoClassLoader - Instrumenting class 'com.google.common.collect.AbstractMultimap$WrappedCollection'.
+19:12:12.864 [main] INFO org.evosuite.runtime.instrumentation.MethodCallReplacementClassAdapter - Adding mock interface to class com/google/common/collect/AbstractMultimap$WrappedCollection
+19:12:12.864 [main] INFO org.evosuite.runtime.instrumentation.CreateClassResetClassAdapter - Creating brand-new static initializer in class com/google/common/collect/AbstractMultimap$WrappedCollection
+19:12:12.865 [main] INFO org.evosuite.runtime.instrumentation.EvoClassLoader - Keeping class: com.google.common.collect.AbstractMultimap$WrappedCollection
+19:12:12.865 [main] INFO org.evosuite.runtime.instrumentation.EvoClassLoader - Keeping class: com.google.common.collect.AbstractMultimap$WrappedList
+19:12:12.865 [main] INFO org.evosuite.runtime.instrumentation.EvoClassLoader - Keeping class: com.google.common.collect.AbstractMultimap$RandomAccessWrappedList
+19:12:12.866 [main] INFO org.evosuite.runtime.instrumentation.EvoClassLoader - Seeing class for first time: com.google.javascript.rhino.jstype.StaticSlot
+19:12:12.866 [main] INFO org.evosuite.runtime.instrumentation.EvoClassLoader - Instrumenting class 'com.google.javascript.rhino.jstype.StaticSlot'.
+19:12:12.880 [main] INFO org.evosuite.runtime.instrumentation.EvoClassLoader - Keeping class: com.google.javascript.rhino.jstype.StaticSlot
+19:12:12.880 [main] INFO org.evosuite.runtime.instrumentation.EvoClassLoader - Seeing class for first time: com.google.javascript.rhino.jstype.ArrowType
+19:12:12.880 [main] INFO org.evosuite.runtime.instrumentation.EvoClassLoader - Instrumenting class 'com.google.javascript.rhino.jstype.ArrowType'.
+19:12:12.892 [main] INFO org.evosuite.runtime.instrumentation.MethodCallReplacementClassAdapter - Adding mock interface to class com/google/javascript/rhino/jstype/ArrowType
+19:12:12.893 [main] INFO org.evosuite.runtime.instrumentation.CreateClassResetClassAdapter - Creating brand-new static initializer in class com/google/javascript/rhino/jstype/ArrowType
+19:12:12.893 [main] INFO org.evosuite.runtime.instrumentation.EvoClassLoader - Keeping class: com.google.javascript.rhino.jstype.ArrowType
+19:12:12.894 [main] INFO org.evosuite.runtime.instrumentation.EvoClassLoader - Seeing class for first time: com.google.javascript.rhino.jstype.JSType$1
+19:12:12.894 [main] INFO org.evosuite.runtime.instrumentation.EvoClassLoader - Instrumenting class 'com.google.javascript.rhino.jstype.JSType$1'.
+19:12:12.895 [main] INFO org.evosuite.runtime.instrumentation.MethodCallReplacementClassAdapter - Adding mock interface to class com/google/javascript/rhino/jstype/JSType$1
+19:12:12.895 [main] INFO org.evosuite.runtime.instrumentation.EvoClassLoader - Keeping class: com.google.javascript.rhino.jstype.JSType$1
+19:12:12.895 [main] INFO org.evosuite.runtime.instrumentation.EvoClassLoader - Seeing class for first time: com.google.javascript.rhino.JSDocInfo$Visibility
+19:12:12.895 [main] INFO org.evosuite.runtime.instrumentation.EvoClassLoader - Instrumenting class 'com.google.javascript.rhino.JSDocInfo$Visibility'.
+19:12:12.908 [main] INFO org.evosuite.runtime.instrumentation.MethodCallReplacementClassAdapter - Adding mock interface to class com/google/javascript/rhino/JSDocInfo$Visibility
+19:12:12.908 [main] INFO org.evosuite.runtime.instrumentation.CreateClassResetClassAdapter - Found static initializer in class com/google/javascript/rhino/JSDocInfo$Visibility
+19:12:12.909 [main] INFO org.evosuite.runtime.instrumentation.EvoClassLoader - Keeping class: com.google.javascript.rhino.JSDocInfo$Visibility
+19:12:12.909 [main] INFO org.evosuite.runtime.instrumentation.EvoClassLoader - Seeing class for first time: com.google.javascript.rhino.SimpleErrorReporter
+19:12:12.909 [main] INFO org.evosuite.runtime.instrumentation.EvoClassLoader - Instrumenting class 'com.google.javascript.rhino.SimpleErrorReporter'.
+19:12:12.910 [main] INFO org.evosuite.runtime.instrumentation.MethodCallReplacementClassAdapter - Adding mock interface to class com/google/javascript/rhino/SimpleErrorReporter
+19:12:12.910 [main] INFO org.evosuite.runtime.instrumentation.CreateClassResetClassAdapter - Creating brand-new static initializer in class com/google/javascript/rhino/SimpleErrorReporter
+19:12:12.910 [main] INFO org.evosuite.runtime.instrumentation.EvoClassLoader - Keeping class: com.google.javascript.rhino.SimpleErrorReporter
+19:12:12.911 [main] INFO org.evosuite.runtime.instrumentation.EvoClassLoader - Seeing class for first time: com.google.common.collect.Lists$RandomAccessPartition
+19:12:12.911 [main] INFO org.evosuite.runtime.instrumentation.EvoClassLoader - Instrumenting class 'com.google.common.collect.Lists$RandomAccessPartition'.
+19:12:12.912 [main] INFO org.evosuite.runtime.instrumentation.MethodCallReplacementClassAdapter - Adding mock interface to class com/google/common/collect/Lists$RandomAccessPartition
+19:12:12.912 [main] INFO org.evosuite.runtime.instrumentation.CreateClassResetClassAdapter - Creating brand-new static initializer in class com/google/common/collect/Lists$RandomAccessPartition
+19:12:12.912 [main] INFO org.evosuite.runtime.instrumentation.EvoClassLoader - Seeing class for first time: com.google.common.collect.Lists$Partition
+19:12:12.912 [main] INFO org.evosuite.runtime.instrumentation.EvoClassLoader - Instrumenting class 'com.google.common.collect.Lists$Partition'.
+19:12:12.912 [main] INFO org.evosuite.runtime.instrumentation.MethodCallReplacementClassAdapter - Adding mock interface to class com/google/common/collect/Lists$Partition
+19:12:12.913 [main] INFO org.evosuite.runtime.instrumentation.CreateClassResetClassAdapter - Creating brand-new static initializer in class com/google/common/collect/Lists$Partition
+19:12:12.913 [main] INFO org.evosuite.runtime.instrumentation.EvoClassLoader - Keeping class: com.google.common.collect.Lists$Partition
+19:12:12.913 [main] INFO org.evosuite.runtime.instrumentation.EvoClassLoader - Keeping class: com.google.common.collect.Lists$RandomAccessPartition
+19:12:12.913 [main] INFO org.evosuite.runtime.instrumentation.EvoClassLoader - Seeing class for first time: com.google.common.collect.Collections2
+19:12:12.913 [main] INFO org.evosuite.runtime.instrumentation.EvoClassLoader - Instrumenting class 'com.google.common.collect.Collections2'.
+19:12:12.914 [main] INFO org.evosuite.runtime.instrumentation.MethodCallReplacementClassAdapter - Adding mock interface to class com/google/common/collect/Collections2
+19:12:12.914 [main] INFO org.evosuite.runtime.instrumentation.CreateClassResetClassAdapter - Found static initializer in class com/google/common/collect/Collections2
+19:12:12.914 [main] INFO org.evosuite.runtime.instrumentation.EvoClassLoader - Keeping class: com.google.common.collect.Collections2
+19:12:12.914 [main] INFO org.evosuite.runtime.instrumentation.EvoClassLoader - Seeing class for first time: com.google.common.base.Function
+19:12:12.914 [main] INFO org.evosuite.runtime.instrumentation.EvoClassLoader - Instrumenting class 'com.google.common.base.Function'.
+19:12:12.923 [main] INFO org.evosuite.runtime.instrumentation.EvoClassLoader - Defined package (3): package com.google.common.base, 1713999436
+19:12:12.923 [main] INFO org.evosuite.runtime.instrumentation.EvoClassLoader - Keeping class: com.google.common.base.Function
+19:12:12.923 [main] INFO org.evosuite.runtime.instrumentation.EvoClassLoader - Seeing class for first time: com.google.common.base.Joiner
+19:12:12.923 [main] INFO org.evosuite.runtime.instrumentation.EvoClassLoader - Instrumenting class 'com.google.common.base.Joiner'.
+19:12:12.930 [main] INFO org.evosuite.runtime.instrumentation.MethodCallReplacementClassAdapter - Adding mock interface to class com/google/common/base/Joiner
+19:12:12.931 [main] INFO org.evosuite.runtime.instrumentation.CreateClassResetClassAdapter - Creating brand-new static initializer in class com/google/common/base/Joiner
+19:12:12.931 [main] INFO org.evosuite.runtime.instrumentation.EvoClassLoader - Keeping class: com.google.common.base.Joiner
+19:12:12.931 [main] INFO org.evosuite.runtime.instrumentation.EvoClassLoader - Seeing class for first time: com.google.common.base.Joiner$2
+19:12:12.931 [main] INFO org.evosuite.runtime.instrumentation.EvoClassLoader - Instrumenting class 'com.google.common.base.Joiner$2'.
+19:12:12.932 [main] INFO org.evosuite.runtime.instrumentation.MethodCallReplacementClassAdapter - Adding mock interface to class com/google/common/base/Joiner$2
+19:12:12.932 [main] INFO org.evosuite.runtime.instrumentation.EvoClassLoader - Keeping class: com.google.common.base.Joiner$2
+19:12:12.932 [main] INFO org.evosuite.runtime.instrumentation.EvoClassLoader - Seeing class for first time: com.google.common.base.Joiner$1
+19:12:12.932 [main] INFO org.evosuite.runtime.instrumentation.EvoClassLoader - Instrumenting class 'com.google.common.base.Joiner$1'.
+19:12:12.932 [main] INFO org.evosuite.runtime.instrumentation.MethodCallReplacementClassAdapter - Adding mock interface to class com/google/common/base/Joiner$1
+19:12:12.933 [main] INFO org.evosuite.runtime.instrumentation.EvoClassLoader - Keeping class: com.google.common.base.Joiner$1
+19:12:12.933 [main] INFO org.evosuite.runtime.instrumentation.EvoClassLoader - Seeing class for first time: com.google.common.base.Preconditions
+19:12:12.933 [main] INFO org.evosuite.runtime.instrumentation.EvoClassLoader - Instrumenting class 'com.google.common.base.Preconditions'.
+19:12:12.933 [main] INFO org.evosuite.runtime.instrumentation.MethodCallReplacementClassAdapter - Adding mock interface to class com/google/common/base/Preconditions
+19:12:12.935 [main] INFO org.evosuite.runtime.instrumentation.CreateClassResetClassAdapter - Creating brand-new static initializer in class com/google/common/base/Preconditions
+19:12:12.936 [main] INFO org.evosuite.runtime.instrumentation.EvoClassLoader - Keeping class: com.google.common.base.Preconditions
+19:12:12.936 [main] INFO org.evosuite.runtime.instrumentation.EvoClassLoader - Seeing class for first time: com.google.javascript.rhino.jstype.NumberType
+19:12:12.936 [main] INFO org.evosuite.runtime.instrumentation.EvoClassLoader - Instrumenting class 'com.google.javascript.rhino.jstype.NumberType'.
+19:12:12.943 [main] INFO org.evosuite.runtime.instrumentation.MethodCallReplacementClassAdapter - Adding mock interface to class com/google/javascript/rhino/jstype/NumberType
+19:12:12.944 [main] INFO org.evosuite.runtime.instrumentation.CreateClassResetClassAdapter - Creating brand-new static initializer in class com/google/javascript/rhino/jstype/NumberType
+19:12:12.944 [main] INFO org.evosuite.runtime.instrumentation.EvoClassLoader - Seeing class for first time: com.google.javascript.rhino.jstype.ValueType
+19:12:12.944 [main] INFO org.evosuite.runtime.instrumentation.EvoClassLoader - Instrumenting class 'com.google.javascript.rhino.jstype.ValueType'.
+19:12:12.944 [main] INFO org.evosuite.runtime.instrumentation.MethodCallReplacementClassAdapter - Adding mock interface to class com/google/javascript/rhino/jstype/ValueType
+19:12:12.945 [main] INFO org.evosuite.runtime.instrumentation.CreateClassResetClassAdapter - Creating brand-new static initializer in class com/google/javascript/rhino/jstype/ValueType
+19:12:12.945 [main] INFO org.evosuite.runtime.instrumentation.EvoClassLoader - Keeping class: com.google.javascript.rhino.jstype.ValueType
+19:12:12.945 [main] INFO org.evosuite.runtime.instrumentation.EvoClassLoader - Keeping class: com.google.javascript.rhino.jstype.NumberType
+19:12:12.945 [main] INFO org.evosuite.runtime.instrumentation.EvoClassLoader - Seeing class for first time: com.google.javascript.rhino.jstype.FunctionParamBuilder
+19:12:12.945 [main] INFO org.evosuite.runtime.instrumentation.EvoClassLoader - Instrumenting class 'com.google.javascript.rhino.jstype.FunctionParamBuilder'.
+19:12:12.946 [main] INFO org.evosuite.runtime.instrumentation.MethodCallReplacementClassAdapter - Adding mock interface to class com/google/javascript/rhino/jstype/FunctionParamBuilder
+19:12:12.946 [main] INFO org.evosuite.runtime.instrumentation.CreateClassResetClassAdapter - Creating brand-new static initializer in class com/google/javascript/rhino/jstype/FunctionParamBuilder
+19:12:12.946 [main] INFO org.evosuite.runtime.instrumentation.EvoClassLoader - Keeping class: com.google.javascript.rhino.jstype.FunctionParamBuilder
+19:12:12.946 [main] INFO org.evosuite.runtime.instrumentation.EvoClassLoader - Seeing class for first time: com.google.common.collect.PeekingIterator
+19:12:12.946 [main] INFO org.evosuite.runtime.instrumentation.EvoClassLoader - Instrumenting class 'com.google.common.collect.PeekingIterator'.
+19:12:12.947 [main] INFO org.evosuite.runtime.instrumentation.EvoClassLoader - Keeping class: com.google.common.collect.PeekingIterator
+19:12:12.947 [main] INFO org.evosuite.runtime.instrumentation.EvoClassLoader - Seeing class for first time: com.google.javascript.rhino.jstype.TernaryValue$1
+19:12:12.947 [main] INFO org.evosuite.runtime.instrumentation.EvoClassLoader - Instrumenting class 'com.google.javascript.rhino.jstype.TernaryValue$1'.
+19:12:12.948 [main] INFO org.evosuite.runtime.instrumentation.MethodCallReplacementClassAdapter - Adding mock interface to class com/google/javascript/rhino/jstype/TernaryValue$1
+19:12:12.948 [main] INFO org.evosuite.runtime.instrumentation.EvoClassLoader - Seeing class for first time: com.google.javascript.rhino.jstype.TernaryValue
+19:12:12.948 [main] INFO org.evosuite.runtime.instrumentation.EvoClassLoader - Instrumenting class 'com.google.javascript.rhino.jstype.TernaryValue'.
+19:12:12.948 [main] INFO org.evosuite.runtime.instrumentation.MethodCallReplacementClassAdapter - Adding mock interface to class com/google/javascript/rhino/jstype/TernaryValue
+19:12:12.949 [main] INFO org.evosuite.runtime.instrumentation.CreateClassResetClassAdapter - Found static initializer in class com/google/javascript/rhino/jstype/TernaryValue
+19:12:12.949 [main] INFO org.evosuite.runtime.instrumentation.EvoClassLoader - Keeping class: com.google.javascript.rhino.jstype.TernaryValue
+19:12:12.949 [main] INFO org.evosuite.runtime.instrumentation.EvoClassLoader - Keeping class: com.google.javascript.rhino.jstype.TernaryValue$1
+19:12:12.949 [main] INFO org.evosuite.runtime.instrumentation.EvoClassLoader - Seeing class for first time: com.google.javascript.rhino.jstype.TernaryValue$2
+19:12:12.949 [main] INFO org.evosuite.runtime.instrumentation.EvoClassLoader - Instrumenting class 'com.google.javascript.rhino.jstype.TernaryValue$2'.
+19:12:12.949 [main] INFO org.evosuite.runtime.instrumentation.MethodCallReplacementClassAdapter - Adding mock interface to class com/google/javascript/rhino/jstype/TernaryValue$2
+19:12:12.949 [main] INFO org.evosuite.runtime.instrumentation.EvoClassLoader - Keeping class: com.google.javascript.rhino.jstype.TernaryValue$2
+19:12:12.949 [main] INFO org.evosuite.runtime.instrumentation.EvoClassLoader - Seeing class for first time: com.google.javascript.rhino.jstype.TernaryValue$3
+19:12:12.949 [main] INFO org.evosuite.runtime.instrumentation.EvoClassLoader - Instrumenting class 'com.google.javascript.rhino.jstype.TernaryValue$3'.
+19:12:12.950 [main] INFO org.evosuite.runtime.instrumentation.MethodCallReplacementClassAdapter - Adding mock interface to class com/google/javascript/rhino/jstype/TernaryValue$3
+19:12:12.950 [main] INFO org.evosuite.runtime.instrumentation.EvoClassLoader - Keeping class: com.google.javascript.rhino.jstype.TernaryValue$3
+19:12:12.950 [main] INFO org.evosuite.runtime.instrumentation.EvoClassLoader - Seeing class for first time: com.google.common.collect.RegularImmutableList
+19:12:12.950 [main] INFO org.evosuite.runtime.instrumentation.EvoClassLoader - Instrumenting class 'com.google.common.collect.RegularImmutableList'.
+19:12:12.951 [main] INFO org.evosuite.runtime.instrumentation.MethodCallReplacementClassAdapter - Adding mock interface to class com/google/common/collect/RegularImmutableList
+19:12:12.953 [main] INFO org.evosuite.runtime.instrumentation.CreateClassResetClassAdapter - Creating brand-new static initializer in class com/google/common/collect/RegularImmutableList
+19:12:12.953 [main] INFO org.evosuite.runtime.instrumentation.EvoClassLoader - Seeing class for first time: com.google.common.collect.ImmutableList
+19:12:12.953 [main] INFO org.evosuite.runtime.instrumentation.EvoClassLoader - Instrumenting class 'com.google.common.collect.ImmutableList'.
+19:12:12.954 [main] INFO org.evosuite.runtime.instrumentation.MethodCallReplacementClassAdapter - Adding mock interface to class com/google/common/collect/ImmutableList
+19:12:12.955 [main] INFO org.evosuite.runtime.instrumentation.CreateClassResetClassAdapter - Creating brand-new static initializer in class com/google/common/collect/ImmutableList
+19:12:12.955 [main] INFO org.evosuite.runtime.instrumentation.EvoClassLoader - Seeing class for first time: com.google.common.collect.ImmutableCollection
+19:12:12.955 [main] INFO org.evosuite.runtime.instrumentation.EvoClassLoader - Instrumenting class 'com.google.common.collect.ImmutableCollection'.
+19:12:12.955 [main] INFO org.evosuite.runtime.instrumentation.MethodCallReplacementClassAdapter - Adding mock interface to class com/google/common/collect/ImmutableCollection
+19:12:12.955 [main] INFO org.evosuite.runtime.instrumentation.CreateClassResetClassAdapter - Found static initializer in class com/google/common/collect/ImmutableCollection
+19:12:12.956 [main] INFO org.evosuite.runtime.instrumentation.EvoClassLoader - Keeping class: com.google.common.collect.ImmutableCollection
+19:12:12.956 [main] INFO org.evosuite.runtime.instrumentation.EvoClassLoader - Keeping class: com.google.common.collect.ImmutableList
+19:12:12.956 [main] INFO org.evosuite.runtime.instrumentation.EvoClassLoader - Keeping class: com.google.common.collect.RegularImmutableList
+19:12:12.956 [main] INFO org.evosuite.runtime.instrumentation.EvoClassLoader - Seeing class for first time: com.google.common.collect.ImmutableCollection$EmptyImmutableCollection
+19:12:12.956 [main] INFO org.evosuite.runtime.instrumentation.EvoClassLoader - Instrumenting class 'com.google.common.collect.ImmutableCollection$EmptyImmutableCollection'.
+19:12:12.956 [main] INFO org.evosuite.runtime.instrumentation.MethodCallReplacementClassAdapter - Adding mock interface to class com/google/common/collect/ImmutableCollection$EmptyImmutableCollection
+19:12:12.956 [main] INFO org.evosuite.runtime.instrumentation.CreateClassResetClassAdapter - Found static initializer in class com/google/common/collect/ImmutableCollection$EmptyImmutableCollection
+19:12:12.957 [main] INFO org.evosuite.runtime.instrumentation.EvoClassLoader - Keeping class: com.google.common.collect.ImmutableCollection$EmptyImmutableCollection
+19:12:12.957 [main] INFO org.evosuite.runtime.instrumentation.EvoClassLoader - Seeing class for first time: com.google.common.collect.ImmutableAsList
+19:12:12.957 [main] INFO org.evosuite.runtime.instrumentation.EvoClassLoader - Instrumenting class 'com.google.common.collect.ImmutableAsList'.
+19:12:12.958 [main] INFO org.evosuite.runtime.instrumentation.MethodCallReplacementClassAdapter - Adding mock interface to class com/google/common/collect/ImmutableAsList
+19:12:12.958 [main] INFO org.evosuite.runtime.instrumentation.CreateClassResetClassAdapter - Creating brand-new static initializer in class com/google/common/collect/ImmutableAsList
+19:12:12.958 [main] INFO org.evosuite.runtime.instrumentation.EvoClassLoader - Keeping class: com.google.common.collect.ImmutableAsList
+19:12:12.958 [main] INFO org.evosuite.runtime.instrumentation.EvoClassLoader - Seeing class for first time: com.google.common.collect.SingletonImmutableList
+19:12:12.958 [main] INFO org.evosuite.runtime.instrumentation.EvoClassLoader - Instrumenting class 'com.google.common.collect.SingletonImmutableList'.
+19:12:12.971 [main] INFO org.evosuite.runtime.instrumentation.MethodCallReplacementClassAdapter - Adding mock interface to class com/google/common/collect/SingletonImmutableList
+19:12:12.972 [main] INFO org.evosuite.runtime.instrumentation.CreateClassResetClassAdapter - Creating brand-new static initializer in class com/google/common/collect/SingletonImmutableList
+19:12:12.972 [main] INFO org.evosuite.runtime.instrumentation.EvoClassLoader - Keeping class: com.google.common.collect.SingletonImmutableList
+19:12:12.972 [main] INFO org.evosuite.runtime.instrumentation.EvoClassLoader - Seeing class for first time: com.google.common.collect.EmptyImmutableList
+19:12:12.972 [main] INFO org.evosuite.runtime.instrumentation.EvoClassLoader - Instrumenting class 'com.google.common.collect.EmptyImmutableList'.
+19:12:12.983 [main] INFO org.evosuite.runtime.instrumentation.MethodCallReplacementClassAdapter - Adding mock interface to class com/google/common/collect/EmptyImmutableList
+19:12:12.983 [main] INFO org.evosuite.runtime.instrumentation.CreateClassResetClassAdapter - Found static initializer in class com/google/common/collect/EmptyImmutableList
+19:12:12.983 [main] INFO org.evosuite.runtime.instrumentation.EvoClassLoader - Keeping class: com.google.common.collect.EmptyImmutableList
+19:12:12.983 [main] INFO org.evosuite.runtime.instrumentation.EvoClassLoader - Seeing class for first time: com.google.common.collect.ImmutableList$ReverseImmutableList
+19:12:12.983 [main] INFO org.evosuite.runtime.instrumentation.EvoClassLoader - Instrumenting class 'com.google.common.collect.ImmutableList$ReverseImmutableList'.
+19:12:12.990 [main] INFO org.evosuite.runtime.instrumentation.MethodCallReplacementClassAdapter - Adding mock interface to class com/google/common/collect/ImmutableList$ReverseImmutableList
+19:12:12.991 [main] INFO org.evosuite.runtime.instrumentation.CreateClassResetClassAdapter - Creating brand-new static initializer in class com/google/common/collect/ImmutableList$ReverseImmutableList
+19:12:12.991 [main] INFO org.evosuite.runtime.instrumentation.EvoClassLoader - Keeping class: com.google.common.collect.ImmutableList$ReverseImmutableList
+19:12:12.991 [main] INFO org.evosuite.runtime.instrumentation.EvoClassLoader - Seeing class for first time: com.google.common.collect.UnmodifiableIterator
+19:12:12.991 [main] INFO org.evosuite.runtime.instrumentation.EvoClassLoader - Instrumenting class 'com.google.common.collect.UnmodifiableIterator'.
+19:12:12.991 [main] INFO org.evosuite.runtime.instrumentation.MethodCallReplacementClassAdapter - Adding mock interface to class com/google/common/collect/UnmodifiableIterator
+19:12:12.991 [main] INFO org.evosuite.runtime.instrumentation.CreateClassResetClassAdapter - Creating brand-new static initializer in class com/google/common/collect/UnmodifiableIterator
+19:12:12.992 [main] INFO org.evosuite.runtime.instrumentation.EvoClassLoader - Keeping class: com.google.common.collect.UnmodifiableIterator
+19:12:12.992 [main] INFO org.evosuite.runtime.instrumentation.EvoClassLoader - Seeing class for first time: com.google.common.collect.UnmodifiableListIterator
+19:12:12.992 [main] INFO org.evosuite.runtime.instrumentation.EvoClassLoader - Instrumenting class 'com.google.common.collect.UnmodifiableListIterator'.
+19:12:12.992 [main] INFO org.evosuite.runtime.instrumentation.MethodCallReplacementClassAdapter - Adding mock interface to class com/google/common/collect/UnmodifiableListIterator
+19:12:12.992 [main] INFO org.evosuite.runtime.instrumentation.CreateClassResetClassAdapter - Creating brand-new static initializer in class com/google/common/collect/UnmodifiableListIterator
+19:12:12.992 [main] INFO org.evosuite.runtime.instrumentation.EvoClassLoader - Keeping class: com.google.common.collect.UnmodifiableListIterator
+19:12:12.992 [main] INFO org.evosuite.runtime.instrumentation.EvoClassLoader - Seeing class for first time: com.google.common.collect.RegularImmutableList$1
+19:12:12.992 [main] INFO org.evosuite.runtime.instrumentation.EvoClassLoader - Instrumenting class 'com.google.common.collect.RegularImmutableList$1'.
+19:12:12.993 [main] INFO org.evosuite.runtime.instrumentation.MethodCallReplacementClassAdapter - Adding mock interface to class com/google/common/collect/RegularImmutableList$1
+19:12:12.993 [main] INFO org.evosuite.runtime.instrumentation.EvoClassLoader - Seeing class for first time: com.google.common.collect.AbstractIndexedListIterator
+19:12:12.993 [main] INFO org.evosuite.runtime.instrumentation.EvoClassLoader - Instrumenting class 'com.google.common.collect.AbstractIndexedListIterator'.
+19:12:13.003 [main] INFO org.evosuite.runtime.instrumentation.MethodCallReplacementClassAdapter - Adding mock interface to class com/google/common/collect/AbstractIndexedListIterator
+19:12:13.003 [main] INFO org.evosuite.runtime.instrumentation.CreateClassResetClassAdapter - Creating brand-new static initializer in class com/google/common/collect/AbstractIndexedListIterator
+19:12:13.003 [main] INFO org.evosuite.runtime.instrumentation.EvoClassLoader - Keeping class: com.google.common.collect.AbstractIndexedListIterator
+19:12:13.003 [main] INFO org.evosuite.runtime.instrumentation.EvoClassLoader - Keeping class: com.google.common.collect.RegularImmutableList$1
+19:12:13.004 [main] INFO org.evosuite.runtime.instrumentation.EvoClassLoader - Seeing class for first time: com.google.common.collect.Lists$TransformingRandomAccessList
+19:12:13.004 [main] INFO org.evosuite.runtime.instrumentation.EvoClassLoader - Instrumenting class 'com.google.common.collect.Lists$TransformingRandomAccessList'.
+19:12:13.005 [main] INFO org.evosuite.runtime.instrumentation.MethodCallReplacementClassAdapter - Adding mock interface to class com/google/common/collect/Lists$TransformingRandomAccessList
+19:12:13.005 [main] INFO org.evosuite.runtime.instrumentation.CreateClassResetClassAdapter - Creating brand-new static initializer in class com/google/common/collect/Lists$TransformingRandomAccessList
+19:12:13.005 [main] INFO org.evosuite.runtime.instrumentation.EvoClassLoader - Keeping class: com.google.common.collect.Lists$TransformingRandomAccessList
+19:12:13.005 [main] INFO org.evosuite.runtime.instrumentation.EvoClassLoader - Seeing class for first time: com.google.javascript.rhino.Node$PropListItem
+19:12:13.005 [main] INFO org.evosuite.runtime.instrumentation.EvoClassLoader - Instrumenting class 'com.google.javascript.rhino.Node$PropListItem'.
+19:12:13.016 [main] INFO org.evosuite.runtime.instrumentation.EvoClassLoader - Keeping class: com.google.javascript.rhino.Node$PropListItem
+19:12:13.016 [main] INFO org.evosuite.runtime.instrumentation.EvoClassLoader - Seeing class for first time: com.google.common.collect.Sets$2
+19:12:13.016 [main] INFO org.evosuite.runtime.instrumentation.EvoClassLoader - Instrumenting class 'com.google.common.collect.Sets$2'.
+19:12:13.029 [main] INFO org.evosuite.runtime.instrumentation.MethodCallReplacementClassAdapter - Adding mock interface to class com/google/common/collect/Sets$2
+19:12:13.029 [main] INFO org.evosuite.runtime.instrumentation.EvoClassLoader - Seeing class for first time: com.google.common.collect.Sets$SetView
+19:12:13.029 [main] INFO org.evosuite.runtime.instrumentation.EvoClassLoader - Instrumenting class 'com.google.common.collect.Sets$SetView'.
+19:12:13.030 [main] INFO org.evosuite.runtime.instrumentation.MethodCallReplacementClassAdapter - Adding mock interface to class com/google/common/collect/Sets$SetView
+19:12:13.030 [main] INFO org.evosuite.runtime.instrumentation.CreateClassResetClassAdapter - Creating brand-new static initializer in class com/google/common/collect/Sets$SetView
+19:12:13.030 [main] INFO org.evosuite.runtime.instrumentation.EvoClassLoader - Keeping class: com.google.common.collect.Sets$SetView
+19:12:13.030 [main] INFO org.evosuite.runtime.instrumentation.EvoClassLoader - Keeping class: com.google.common.collect.Sets$2
+19:12:13.030 [main] INFO org.evosuite.runtime.instrumentation.EvoClassLoader - Seeing class for first time: com.google.javascript.rhino.Node$IntPropListItem
+19:12:13.030 [main] INFO org.evosuite.runtime.instrumentation.EvoClassLoader - Instrumenting class 'com.google.javascript.rhino.Node$IntPropListItem'.
+19:12:13.031 [main] INFO org.evosuite.runtime.instrumentation.MethodCallReplacementClassAdapter - Adding mock interface to class com/google/javascript/rhino/Node$IntPropListItem
+19:12:13.031 [main] INFO org.evosuite.runtime.instrumentation.CreateClassResetClassAdapter - Creating brand-new static initializer in class com/google/javascript/rhino/Node$IntPropListItem
+19:12:13.031 [main] INFO org.evosuite.runtime.instrumentation.EvoClassLoader - Seeing class for first time: com.google.javascript.rhino.Node$AbstractPropListItem
+19:12:13.031 [main] INFO org.evosuite.runtime.instrumentation.EvoClassLoader - Instrumenting class 'com.google.javascript.rhino.Node$AbstractPropListItem'.
+19:12:13.032 [main] INFO org.evosuite.runtime.instrumentation.MethodCallReplacementClassAdapter - Adding mock interface to class com/google/javascript/rhino/Node$AbstractPropListItem
+19:12:13.032 [main] INFO org.evosuite.runtime.instrumentation.CreateClassResetClassAdapter - Creating brand-new static initializer in class com/google/javascript/rhino/Node$AbstractPropListItem
+19:12:13.032 [main] INFO org.evosuite.runtime.instrumentation.EvoClassLoader - Keeping class: com.google.javascript.rhino.Node$AbstractPropListItem
+19:12:13.032 [main] INFO org.evosuite.runtime.instrumentation.EvoClassLoader - Keeping class: com.google.javascript.rhino.Node$IntPropListItem
+19:12:13.032 [main] INFO org.evosuite.runtime.instrumentation.EvoClassLoader - Seeing class for first time: com.google.common.collect.Sets$3
+19:12:13.032 [main] INFO org.evosuite.runtime.instrumentation.EvoClassLoader - Instrumenting class 'com.google.common.collect.Sets$3'.
+19:12:13.032 [main] INFO org.evosuite.runtime.instrumentation.MethodCallReplacementClassAdapter - Adding mock interface to class com/google/common/collect/Sets$3
+19:12:13.033 [main] INFO org.evosuite.runtime.instrumentation.EvoClassLoader - Keeping class: com.google.common.collect.Sets$3
+19:12:13.033 [main] INFO org.evosuite.runtime.instrumentation.EvoClassLoader - Seeing class for first time: com.google.common.collect.LinkedHashMultimap
+19:12:13.033 [main] INFO org.evosuite.runtime.instrumentation.EvoClassLoader - Instrumenting class 'com.google.common.collect.LinkedHashMultimap'.
+19:12:13.034 [main] INFO org.evosuite.runtime.instrumentation.MethodCallReplacementClassAdapter - Adding mock interface to class com/google/common/collect/LinkedHashMultimap
+19:12:13.035 [main] INFO org.evosuite.runtime.instrumentation.CreateClassResetClassAdapter - Creating brand-new static initializer in class com/google/common/collect/LinkedHashMultimap
+19:12:13.035 [main] INFO org.evosuite.runtime.instrumentation.CreateClassResetClassAdapter - Adding bytecode for initializing field DEFAULT_VALUES_PER_KEY
+19:12:13.035 [main] INFO org.evosuite.runtime.instrumentation.EvoClassLoader - Seeing class for first time: com.google.common.collect.AbstractSetMultimap
+19:12:13.035 [main] INFO org.evosuite.runtime.instrumentation.EvoClassLoader - Instrumenting class 'com.google.common.collect.AbstractSetMultimap'.
+19:12:13.035 [main] INFO org.evosuite.runtime.instrumentation.MethodCallReplacementClassAdapter - Adding mock interface to class com/google/common/collect/AbstractSetMultimap
+19:12:13.035 [main] INFO org.evosuite.runtime.instrumentation.CreateClassResetClassAdapter - Creating brand-new static initializer in class com/google/common/collect/AbstractSetMultimap
+19:12:13.035 [main] INFO org.evosuite.runtime.instrumentation.EvoClassLoader - Seeing class for first time: com.google.common.collect.SetMultimap
+19:12:13.035 [main] INFO org.evosuite.runtime.instrumentation.EvoClassLoader - Instrumenting class 'com.google.common.collect.SetMultimap'.
+19:12:13.036 [main] INFO org.evosuite.runtime.instrumentation.EvoClassLoader - Keeping class: com.google.common.collect.SetMultimap
+19:12:13.036 [main] INFO org.evosuite.runtime.instrumentation.EvoClassLoader - Keeping class: com.google.common.collect.AbstractSetMultimap
+19:12:13.036 [main] INFO org.evosuite.runtime.instrumentation.EvoClassLoader - Keeping class: com.google.common.collect.LinkedHashMultimap
+19:12:13.036 [main] INFO org.evosuite.runtime.instrumentation.EvoClassLoader - Seeing class for first time: com.google.javascript.rhino.Node
+19:12:13.036 [main] INFO org.evosuite.runtime.instrumentation.EvoClassLoader - Instrumenting class 'com.google.javascript.rhino.Node'.
+19:12:13.037 [main] INFO org.evosuite.runtime.instrumentation.MethodCallReplacementClassAdapter - Adding mock interface to class com/google/javascript/rhino/Node
+19:12:13.041 [main] INFO org.evosuite.runtime.instrumentation.CreateClassResetClassAdapter - Creating brand-new static initializer in class com/google/javascript/rhino/Node
+19:12:13.041 [main] INFO org.evosuite.runtime.instrumentation.CreateClassResetClassAdapter - Adding bytecode for initializing field SOURCENAME_PROP
+19:12:13.041 [main] INFO org.evosuite.runtime.instrumentation.CreateClassResetClassAdapter - Adding bytecode for initializing field JSDOC_INFO_PROP
+19:12:13.041 [main] INFO org.evosuite.runtime.instrumentation.CreateClassResetClassAdapter - Adding bytecode for initializing field VAR_ARGS_NAME
+19:12:13.041 [main] INFO org.evosuite.runtime.instrumentation.CreateClassResetClassAdapter - Adding bytecode for initializing field INCRDECR_PROP
+19:12:13.041 [main] INFO org.evosuite.runtime.instrumentation.CreateClassResetClassAdapter - Adding bytecode for initializing field PARENTHESIZED_PROP
+19:12:13.041 [main] INFO org.evosuite.runtime.instrumentation.CreateClassResetClassAdapter - Adding bytecode for initializing field QUOTED_PROP
+19:12:13.041 [main] INFO org.evosuite.runtime.instrumentation.CreateClassResetClassAdapter - Adding bytecode for initializing field OPT_ARG_NAME
+19:12:13.041 [main] INFO org.evosuite.runtime.instrumentation.CreateClassResetClassAdapter - Adding bytecode for initializing field SYNTHETIC_BLOCK_PROP
+19:12:13.041 [main] INFO org.evosuite.runtime.instrumentation.CreateClassResetClassAdapter - Adding bytecode for initializing field EMPTY_BLOCK
+19:12:13.041 [main] INFO org.evosuite.runtime.instrumentation.CreateClassResetClassAdapter - Adding bytecode for initializing field ORIGINALNAME_PROP
+19:12:13.041 [main] INFO org.evosuite.runtime.instrumentation.CreateClassResetClassAdapter - Adding bytecode for initializing field BRACELESS_TYPE
+19:12:13.041 [main] INFO org.evosuite.runtime.instrumentation.CreateClassResetClassAdapter - Adding bytecode for initializing field SIDE_EFFECT_FLAGS
+19:12:13.041 [main] INFO org.evosuite.runtime.instrumentation.CreateClassResetClassAdapter - Adding bytecode for initializing field IS_CONSTANT_NAME
+19:12:13.041 [main] INFO org.evosuite.runtime.instrumentation.CreateClassResetClassAdapter - Adding bytecode for initializing field IS_OPTIONAL_PARAM
+19:12:13.041 [main] INFO org.evosuite.runtime.instrumentation.CreateClassResetClassAdapter - Adding bytecode for initializing field IS_VAR_ARGS_PARAM
+19:12:13.041 [main] INFO org.evosuite.runtime.instrumentation.CreateClassResetClassAdapter - Adding bytecode for initializing field IS_NAMESPACE
+19:12:13.041 [main] INFO org.evosuite.runtime.instrumentation.CreateClassResetClassAdapter - Adding bytecode for initializing field IS_DISPATCHER
+19:12:13.041 [main] INFO org.evosuite.runtime.instrumentation.CreateClassResetClassAdapter - Adding bytecode for initializing field DIRECTIVES
+19:12:13.041 [main] INFO org.evosuite.runtime.instrumentation.CreateClassResetClassAdapter - Adding bytecode for initializing field DIRECT_EVAL
+19:12:13.041 [main] INFO org.evosuite.runtime.instrumentation.CreateClassResetClassAdapter - Adding bytecode for initializing field FREE_CALL
+19:12:13.041 [main] INFO org.evosuite.runtime.instrumentation.CreateClassResetClassAdapter - Adding bytecode for initializing field STATIC_SOURCE_FILE
+19:12:13.041 [main] INFO org.evosuite.runtime.instrumentation.CreateClassResetClassAdapter - Adding bytecode for initializing field LENGTH
+19:12:13.041 [main] INFO org.evosuite.runtime.instrumentation.CreateClassResetClassAdapter - Adding bytecode for initializing field INPUT_ID
+19:12:13.041 [main] INFO org.evosuite.runtime.instrumentation.CreateClassResetClassAdapter - Adding bytecode for initializing field SLASH_V
+19:12:13.041 [main] INFO org.evosuite.runtime.instrumentation.CreateClassResetClassAdapter - Adding bytecode for initializing field LAST_PROP
+19:12:13.041 [main] INFO org.evosuite.runtime.instrumentation.CreateClassResetClassAdapter - Adding bytecode for initializing field DECR_FLAG
+19:12:13.041 [main] INFO org.evosuite.runtime.instrumentation.CreateClassResetClassAdapter - Adding bytecode for initializing field POST_FLAG
+19:12:13.041 [main] INFO org.evosuite.runtime.instrumentation.CreateClassResetClassAdapter - Adding bytecode for initializing field COLUMN_BITS
+19:12:13.041 [main] INFO org.evosuite.runtime.instrumentation.CreateClassResetClassAdapter - Adding bytecode for initializing field MAX_COLUMN_NUMBER
+19:12:13.041 [main] INFO org.evosuite.runtime.instrumentation.CreateClassResetClassAdapter - Adding bytecode for initializing field COLUMN_MASK
+19:12:13.041 [main] INFO org.evosuite.runtime.instrumentation.CreateClassResetClassAdapter - Adding bytecode for initializing field FLAG_GLOBAL_STATE_UNMODIFIED
+19:12:13.041 [main] INFO org.evosuite.runtime.instrumentation.CreateClassResetClassAdapter - Adding bytecode for initializing field FLAG_THIS_UNMODIFIED
+19:12:13.041 [main] INFO org.evosuite.runtime.instrumentation.CreateClassResetClassAdapter - Adding bytecode for initializing field FLAG_ARGUMENTS_UNMODIFIED
+19:12:13.041 [main] INFO org.evosuite.runtime.instrumentation.CreateClassResetClassAdapter - Adding bytecode for initializing field FLAG_NO_THROWS
+19:12:13.041 [main] INFO org.evosuite.runtime.instrumentation.CreateClassResetClassAdapter - Adding bytecode for initializing field FLAG_LOCAL_RESULTS
+19:12:13.041 [main] INFO org.evosuite.runtime.instrumentation.CreateClassResetClassAdapter - Adding bytecode for initializing field SIDE_EFFECTS_FLAGS_MASK
+19:12:13.041 [main] INFO org.evosuite.runtime.instrumentation.CreateClassResetClassAdapter - Adding bytecode for initializing field SIDE_EFFECTS_ALL
+19:12:13.041 [main] INFO org.evosuite.runtime.instrumentation.CreateClassResetClassAdapter - Adding bytecode for initializing field NO_SIDE_EFFECTS
+19:12:13.042 [main] INFO org.evosuite.runtime.instrumentation.EvoClassLoader - Keeping class: com.google.javascript.rhino.Node
+19:12:13.042 [main] INFO org.evosuite.runtime.instrumentation.EvoClassLoader - Seeing class for first time: com.google.javascript.rhino.Node$StringNode
+19:12:13.042 [main] INFO org.evosuite.runtime.instrumentation.EvoClassLoader - Instrumenting class 'com.google.javascript.rhino.Node$StringNode'.
+19:12:13.043 [main] INFO org.evosuite.runtime.instrumentation.MethodCallReplacementClassAdapter - Adding mock interface to class com/google/javascript/rhino/Node$StringNode
+19:12:13.044 [main] INFO org.evosuite.runtime.instrumentation.CreateClassResetClassAdapter - Creating brand-new static initializer in class com/google/javascript/rhino/Node$StringNode
+19:12:13.044 [main] INFO org.evosuite.runtime.instrumentation.EvoClassLoader - Keeping class: com.google.javascript.rhino.Node$StringNode
+19:12:13.044 [main] INFO org.evosuite.runtime.instrumentation.EvoClassLoader - Seeing class for first time: com.google.javascript.rhino.Node$NumberNode
+19:12:13.044 [main] INFO org.evosuite.runtime.instrumentation.EvoClassLoader - Instrumenting class 'com.google.javascript.rhino.Node$NumberNode'.
+19:12:13.045 [main] INFO org.evosuite.runtime.instrumentation.MethodCallReplacementClassAdapter - Adding mock interface to class com/google/javascript/rhino/Node$NumberNode
+19:12:13.045 [main] INFO org.evosuite.runtime.instrumentation.CreateClassResetClassAdapter - Creating brand-new static initializer in class com/google/javascript/rhino/Node$NumberNode
+19:12:13.045 [main] INFO org.evosuite.runtime.instrumentation.EvoClassLoader - Keeping class: com.google.javascript.rhino.Node$NumberNode
+19:12:13.046 [main] INFO org.evosuite.runtime.instrumentation.EvoClassLoader - Seeing class for first time: com.google.common.collect.Sets$1
+19:12:13.046 [main] INFO org.evosuite.runtime.instrumentation.EvoClassLoader - Instrumenting class 'com.google.common.collect.Sets$1'.
+19:12:13.046 [main] INFO org.evosuite.runtime.instrumentation.MethodCallReplacementClassAdapter - Adding mock interface to class com/google/common/collect/Sets$1
+19:12:13.047 [main] INFO org.evosuite.runtime.instrumentation.EvoClassLoader - Keeping class: com.google.common.collect.Sets$1
+19:12:13.047 [main] INFO org.evosuite.runtime.instrumentation.EvoClassLoader - Seeing class for first time: com.google.common.collect.ImmutableSet$ArrayImmutableSet
+19:12:13.047 [main] INFO org.evosuite.runtime.instrumentation.EvoClassLoader - Instrumenting class 'com.google.common.collect.ImmutableSet$ArrayImmutableSet'.
+19:12:13.047 [main] INFO org.evosuite.runtime.instrumentation.MethodCallReplacementClassAdapter - Adding mock interface to class com/google/common/collect/ImmutableSet$ArrayImmutableSet
+19:12:13.047 [main] INFO org.evosuite.runtime.instrumentation.CreateClassResetClassAdapter - Creating brand-new static initializer in class com/google/common/collect/ImmutableSet$ArrayImmutableSet
+19:12:13.048 [main] INFO org.evosuite.runtime.instrumentation.EvoClassLoader - Seeing class for first time: com.google.common.collect.ImmutableSet
+19:12:13.048 [main] INFO org.evosuite.runtime.instrumentation.EvoClassLoader - Instrumenting class 'com.google.common.collect.ImmutableSet'.
+19:12:13.048 [main] INFO org.evosuite.runtime.instrumentation.MethodCallReplacementClassAdapter - Adding mock interface to class com/google/common/collect/ImmutableSet
+19:12:13.048 [main] INFO org.evosuite.runtime.instrumentation.CreateClassResetClassAdapter - Creating brand-new static initializer in class com/google/common/collect/ImmutableSet
+19:12:13.049 [main] INFO org.evosuite.runtime.instrumentation.CreateClassResetClassAdapter - Adding bytecode for initializing field MAX_TABLE_SIZE
+19:12:13.049 [main] INFO org.evosuite.runtime.instrumentation.CreateClassResetClassAdapter - Adding bytecode for initializing field CUTOFF
+19:12:13.049 [main] INFO org.evosuite.runtime.instrumentation.EvoClassLoader - Keeping class: com.google.common.collect.ImmutableSet
+19:12:13.049 [main] INFO org.evosuite.runtime.instrumentation.EvoClassLoader - Keeping class: com.google.common.collect.ImmutableSet$ArrayImmutableSet
+19:12:13.049 [main] INFO org.evosuite.runtime.instrumentation.EvoClassLoader - Seeing class for first time: com.google.common.collect.EmptyImmutableSet
+19:12:13.049 [main] INFO org.evosuite.runtime.instrumentation.EvoClassLoader - Instrumenting class 'com.google.common.collect.EmptyImmutableSet'.
+19:12:13.049 [main] INFO org.evosuite.runtime.instrumentation.MethodCallReplacementClassAdapter - Adding mock interface to class com/google/common/collect/EmptyImmutableSet
+19:12:13.050 [main] INFO org.evosuite.runtime.instrumentation.CreateClassResetClassAdapter - Found static initializer in class com/google/common/collect/EmptyImmutableSet
+19:12:13.050 [main] INFO org.evosuite.runtime.instrumentation.EvoClassLoader - Keeping class: com.google.common.collect.EmptyImmutableSet
+19:12:13.050 [main] INFO org.evosuite.runtime.instrumentation.EvoClassLoader - Seeing class for first time: com.google.common.collect.SingletonImmutableSet
+19:12:13.050 [main] INFO org.evosuite.runtime.instrumentation.EvoClassLoader - Instrumenting class 'com.google.common.collect.SingletonImmutableSet'.
+19:12:13.051 [main] INFO org.evosuite.runtime.instrumentation.MethodCallReplacementClassAdapter - Adding mock interface to class com/google/common/collect/SingletonImmutableSet
+19:12:13.051 [main] INFO org.evosuite.runtime.instrumentation.CreateClassResetClassAdapter - Creating brand-new static initializer in class com/google/common/collect/SingletonImmutableSet
+19:12:13.051 [main] INFO org.evosuite.runtime.instrumentation.EvoClassLoader - Keeping class: com.google.common.collect.SingletonImmutableSet
+19:12:13.051 [main] INFO org.evosuite.runtime.instrumentation.EvoClassLoader - Seeing class for first time: com.google.common.collect.RegularImmutableSet
+19:12:13.051 [main] INFO org.evosuite.runtime.instrumentation.EvoClassLoader - Instrumenting class 'com.google.common.collect.RegularImmutableSet'.
+19:12:13.052 [main] INFO org.evosuite.runtime.instrumentation.MethodCallReplacementClassAdapter - Adding mock interface to class com/google/common/collect/RegularImmutableSet
+19:12:13.052 [main] INFO org.evosuite.runtime.instrumentation.CreateClassResetClassAdapter - Creating brand-new static initializer in class com/google/common/collect/RegularImmutableSet
+19:12:13.052 [main] INFO org.evosuite.runtime.instrumentation.EvoClassLoader - Keeping class: com.google.common.collect.RegularImmutableSet
+19:12:13.053 [main] INFO org.evosuite.runtime.instrumentation.EvoClassLoader - Seeing class for first time: com.google.javascript.rhino.Node$NodeMismatch
+19:12:13.053 [main] INFO org.evosuite.runtime.instrumentation.EvoClassLoader - Instrumenting class 'com.google.javascript.rhino.Node$NodeMismatch'.
+19:12:13.054 [main] INFO org.evosuite.runtime.instrumentation.MethodCallReplacementClassAdapter - Adding mock interface to class com/google/javascript/rhino/Node$NodeMismatch
+19:12:13.054 [main] INFO org.evosuite.runtime.instrumentation.CreateClassResetClassAdapter - Creating brand-new static initializer in class com/google/javascript/rhino/Node$NodeMismatch
+19:12:13.054 [main] INFO org.evosuite.runtime.instrumentation.EvoClassLoader - Keeping class: com.google.javascript.rhino.Node$NodeMismatch
+19:12:13.054 [main] INFO org.evosuite.runtime.instrumentation.EvoClassLoader - Seeing class for first time: com.google.common.collect.Iterators$12
+19:12:13.055 [main] INFO org.evosuite.runtime.instrumentation.EvoClassLoader - Instrumenting class 'com.google.common.collect.Iterators$12'.
+19:12:13.055 [main] INFO org.evosuite.runtime.instrumentation.MethodCallReplacementClassAdapter - Adding mock interface to class com/google/common/collect/Iterators$12
+19:12:13.055 [main] INFO org.evosuite.runtime.instrumentation.EvoClassLoader - Keeping class: com.google.common.collect.Iterators$12
+19:12:13.056 [main] INFO org.evosuite.runtime.instrumentation.EvoClassLoader - Seeing class for first time: com.google.common.collect.Iterators$11
+19:12:13.056 [main] INFO org.evosuite.runtime.instrumentation.EvoClassLoader - Instrumenting class 'com.google.common.collect.Iterators$11'.
+19:12:13.056 [main] INFO org.evosuite.runtime.instrumentation.MethodCallReplacementClassAdapter - Adding mock interface to class com/google/common/collect/Iterators$11
+19:12:13.056 [main] INFO org.evosuite.runtime.instrumentation.EvoClassLoader - Keeping class: com.google.common.collect.Iterators$11
+19:12:13.057 [main] INFO org.evosuite.runtime.instrumentation.EvoClassLoader - Seeing class for first time: com.google.common.base.Predicate
+19:12:13.057 [main] INFO org.evosuite.runtime.instrumentation.EvoClassLoader - Instrumenting class 'com.google.common.base.Predicate'.
+19:12:13.057 [main] INFO org.evosuite.runtime.instrumentation.EvoClassLoader - Keeping class: com.google.common.base.Predicate
+19:12:13.057 [main] INFO org.evosuite.runtime.instrumentation.EvoClassLoader - Seeing class for first time: com.google.common.collect.AbstractMultimap$AsMap$AsMapEntries
+19:12:13.057 [main] INFO org.evosuite.runtime.instrumentation.EvoClassLoader - Instrumenting class 'com.google.common.collect.AbstractMultimap$AsMap$AsMapEntries'.
+19:12:13.057 [main] INFO org.evosuite.runtime.instrumentation.MethodCallReplacementClassAdapter - Adding mock interface to class com/google/common/collect/AbstractMultimap$AsMap$AsMapEntries
+19:12:13.058 [main] INFO org.evosuite.runtime.instrumentation.CreateClassResetClassAdapter - Creating brand-new static initializer in class com/google/common/collect/AbstractMultimap$AsMap$AsMapEntries
+19:12:13.058 [main] INFO org.evosuite.runtime.instrumentation.EvoClassLoader - Seeing class for first time: com.google.common.collect.Maps$EntrySet
+19:12:13.058 [main] INFO org.evosuite.runtime.instrumentation.EvoClassLoader - Instrumenting class 'com.google.common.collect.Maps$EntrySet'.
+19:12:13.058 [main] INFO org.evosuite.runtime.instrumentation.MethodCallReplacementClassAdapter - Adding mock interface to class com/google/common/collect/Maps$EntrySet
+19:12:13.058 [main] INFO org.evosuite.runtime.instrumentation.CreateClassResetClassAdapter - Creating brand-new static initializer in class com/google/common/collect/Maps$EntrySet
+19:12:13.058 [main] INFO org.evosuite.runtime.instrumentation.EvoClassLoader - Keeping class: com.google.common.collect.Maps$EntrySet
+19:12:13.058 [main] INFO org.evosuite.runtime.instrumentation.EvoClassLoader - Keeping class: com.google.common.collect.AbstractMultimap$AsMap$AsMapEntries
+19:12:13.058 [main] INFO org.evosuite.runtime.instrumentation.EvoClassLoader - Seeing class for first time: com.google.javascript.rhino.jstype.VoidType
+19:12:13.058 [main] INFO org.evosuite.runtime.instrumentation.EvoClassLoader - Instrumenting class 'com.google.javascript.rhino.jstype.VoidType'.
+19:12:13.059 [main] INFO org.evosuite.runtime.instrumentation.MethodCallReplacementClassAdapter - Adding mock interface to class com/google/javascript/rhino/jstype/VoidType
+19:12:13.059 [main] INFO org.evosuite.runtime.instrumentation.CreateClassResetClassAdapter - Creating brand-new static initializer in class com/google/javascript/rhino/jstype/VoidType
+19:12:13.059 [main] INFO org.evosuite.runtime.instrumentation.EvoClassLoader - Keeping class: com.google.javascript.rhino.jstype.VoidType
+19:12:13.059 [main] INFO org.evosuite.runtime.instrumentation.EvoClassLoader - Seeing class for first time: com.google.javascript.rhino.Node$SiblingNodeIterable
+19:12:13.060 [main] INFO org.evosuite.runtime.instrumentation.EvoClassLoader - Instrumenting class 'com.google.javascript.rhino.Node$SiblingNodeIterable'.
+19:12:13.060 [main] INFO org.evosuite.runtime.instrumentation.MethodCallReplacementClassAdapter - Adding mock interface to class com/google/javascript/rhino/Node$SiblingNodeIterable
+19:12:13.060 [main] INFO org.evosuite.runtime.instrumentation.CreateClassResetClassAdapter - Creating brand-new static initializer in class com/google/javascript/rhino/Node$SiblingNodeIterable
+19:12:13.060 [main] INFO org.evosuite.runtime.instrumentation.EvoClassLoader - Keeping class: com.google.javascript.rhino.Node$SiblingNodeIterable
+19:12:13.061 [main] INFO org.evosuite.runtime.instrumentation.EvoClassLoader - Seeing class for first time: com.google.common.collect.Iterables
+19:12:13.061 [main] INFO org.evosuite.runtime.instrumentation.EvoClassLoader - Instrumenting class 'com.google.common.collect.Iterables'.
+19:12:13.061 [main] INFO org.evosuite.runtime.instrumentation.MethodCallReplacementClassAdapter - Adding mock interface to class com/google/common/collect/Iterables
+19:12:13.062 [main] INFO org.evosuite.runtime.instrumentation.CreateClassResetClassAdapter - Creating brand-new static initializer in class com/google/common/collect/Iterables
+19:12:13.063 [main] INFO org.evosuite.runtime.instrumentation.EvoClassLoader - Keeping class: com.google.common.collect.Iterables
+19:12:13.063 [main] INFO org.evosuite.runtime.instrumentation.EvoClassLoader - Seeing class for first time: com.google.common.collect.Iterables$3
+19:12:13.063 [main] INFO org.evosuite.runtime.instrumentation.EvoClassLoader - Instrumenting class 'com.google.common.collect.Iterables$3'.
+19:12:13.071 [main] INFO org.evosuite.runtime.instrumentation.MethodCallReplacementClassAdapter - Adding mock interface to class com/google/common/collect/Iterables$3
+19:12:13.071 [main] INFO org.evosuite.runtime.instrumentation.EvoClassLoader - Keeping class: com.google.common.collect.Iterables$3
+19:12:13.072 [main] INFO org.evosuite.runtime.instrumentation.EvoClassLoader - Seeing class for first time: com.google.common.collect.Iterables$IterableWithToString
+19:12:13.072 [main] INFO org.evosuite.runtime.instrumentation.EvoClassLoader - Instrumenting class 'com.google.common.collect.Iterables$IterableWithToString'.
+19:12:13.072 [main] INFO org.evosuite.runtime.instrumentation.MethodCallReplacementClassAdapter - Adding mock interface to class com/google/common/collect/Iterables$IterableWithToString
+19:12:13.073 [main] INFO org.evosuite.runtime.instrumentation.CreateClassResetClassAdapter - Creating brand-new static initializer in class com/google/common/collect/Iterables$IterableWithToString
+19:12:13.073 [main] INFO org.evosuite.runtime.instrumentation.EvoClassLoader - Keeping class: com.google.common.collect.Iterables$IterableWithToString
+19:12:13.073 [main] INFO org.evosuite.runtime.instrumentation.EvoClassLoader - Seeing class for first time: com.google.javascript.rhino.jstype.ProxyObjectType
+19:12:13.073 [main] INFO org.evosuite.runtime.instrumentation.EvoClassLoader - Instrumenting class 'com.google.javascript.rhino.jstype.ProxyObjectType'.
+19:12:13.074 [main] INFO org.evosuite.runtime.instrumentation.MethodCallReplacementClassAdapter - Adding mock interface to class com/google/javascript/rhino/jstype/ProxyObjectType
+19:12:13.075 [main] INFO org.evosuite.runtime.instrumentation.CreateClassResetClassAdapter - Creating brand-new static initializer in class com/google/javascript/rhino/jstype/ProxyObjectType
+19:12:13.075 [main] INFO org.evosuite.runtime.instrumentation.EvoClassLoader - Keeping class: com.google.javascript.rhino.jstype.ProxyObjectType
+19:12:13.076 [main] INFO org.evosuite.runtime.instrumentation.EvoClassLoader - Seeing class for first time: com.google.javascript.rhino.jstype.TemplateType
+19:12:13.076 [main] INFO org.evosuite.runtime.instrumentation.EvoClassLoader - Instrumenting class 'com.google.javascript.rhino.jstype.TemplateType'.
+19:12:13.084 [main] INFO org.evosuite.runtime.instrumentation.MethodCallReplacementClassAdapter - Adding mock interface to class com/google/javascript/rhino/jstype/TemplateType
+19:12:13.084 [main] INFO org.evosuite.runtime.instrumentation.CreateClassResetClassAdapter - Creating brand-new static initializer in class com/google/javascript/rhino/jstype/TemplateType
+19:12:13.085 [main] INFO org.evosuite.runtime.instrumentation.EvoClassLoader - Keeping class: com.google.javascript.rhino.jstype.TemplateType
+19:12:13.085 [main] INFO org.evosuite.runtime.instrumentation.EvoClassLoader - Seeing class for first time: com.google.javascript.rhino.jstype.NamedType
+19:12:13.085 [main] INFO org.evosuite.runtime.instrumentation.EvoClassLoader - Instrumenting class 'com.google.javascript.rhino.jstype.NamedType'.
+19:12:13.087 [main] INFO org.evosuite.runtime.instrumentation.MethodCallReplacementClassAdapter - Adding mock interface to class com/google/javascript/rhino/jstype/NamedType
+19:12:13.092 [main] INFO org.evosuite.runtime.instrumentation.CreateClassResetClassAdapter - Creating brand-new static initializer in class com/google/javascript/rhino/jstype/NamedType
+19:12:13.093 [main] INFO org.evosuite.runtime.instrumentation.EvoClassLoader - Keeping class: com.google.javascript.rhino.jstype.NamedType
+19:12:13.093 [main] INFO org.evosuite.runtime.instrumentation.EvoClassLoader - Seeing class for first time: com.google.javascript.rhino.jstype.EnumElementType
+19:12:13.093 [main] INFO org.evosuite.runtime.instrumentation.EvoClassLoader - Instrumenting class 'com.google.javascript.rhino.jstype.EnumElementType'.
+19:12:13.100 [main] INFO org.evosuite.runtime.instrumentation.MethodCallReplacementClassAdapter - Adding mock interface to class com/google/javascript/rhino/jstype/EnumElementType
+19:12:13.101 [main] INFO org.evosuite.runtime.instrumentation.CreateClassResetClassAdapter - Creating brand-new static initializer in class com/google/javascript/rhino/jstype/EnumElementType
+19:12:13.101 [main] INFO org.evosuite.runtime.instrumentation.EvoClassLoader - Keeping class: com.google.javascript.rhino.jstype.EnumElementType
+19:12:13.101 [main] INFO org.evosuite.runtime.instrumentation.EvoClassLoader - Seeing class for first time: com.google.common.collect.Iterators$14
+19:12:13.101 [main] INFO org.evosuite.runtime.instrumentation.EvoClassLoader - Instrumenting class 'com.google.common.collect.Iterators$14'.
+19:12:13.102 [main] INFO org.evosuite.runtime.instrumentation.MethodCallReplacementClassAdapter - Adding mock interface to class com/google/common/collect/Iterators$14
+19:12:13.102 [main] INFO org.evosuite.runtime.instrumentation.EvoClassLoader - Keeping class: com.google.common.collect.Iterators$14
+19:12:13.102 [main] INFO org.evosuite.runtime.instrumentation.EvoClassLoader - Seeing class for first time: com.google.common.collect.Iterators$13
+19:12:13.102 [main] INFO org.evosuite.runtime.instrumentation.EvoClassLoader - Instrumenting class 'com.google.common.collect.Iterators$13'.
+19:12:13.103 [main] INFO org.evosuite.runtime.instrumentation.MethodCallReplacementClassAdapter - Adding mock interface to class com/google/common/collect/Iterators$13
+19:12:13.103 [main] INFO org.evosuite.runtime.instrumentation.EvoClassLoader - Keeping class: com.google.common.collect.Iterators$13
+19:12:13.103 [main] INFO org.evosuite.runtime.instrumentation.EvoClassLoader - Seeing class for first time: com.google.javascript.rhino.InputId
+19:12:13.103 [main] INFO org.evosuite.runtime.instrumentation.EvoClassLoader - Instrumenting class 'com.google.javascript.rhino.InputId'.
+19:12:13.104 [main] INFO org.evosuite.runtime.instrumentation.MethodCallReplacementClassAdapter - Adding mock interface to class com/google/javascript/rhino/InputId
+19:12:13.104 [main] INFO org.evosuite.runtime.instrumentation.CreateClassResetClassAdapter - Creating brand-new static initializer in class com/google/javascript/rhino/InputId
+19:12:13.104 [main] INFO org.evosuite.runtime.instrumentation.EvoClassLoader - Keeping class: com.google.javascript.rhino.InputId
+19:12:13.104 [main] INFO org.evosuite.runtime.instrumentation.EvoClassLoader - Seeing class for first time: com.google.javascript.rhino.jstype.UnionTypeBuilder
+19:12:13.104 [main] INFO org.evosuite.runtime.instrumentation.EvoClassLoader - Instrumenting class 'com.google.javascript.rhino.jstype.UnionTypeBuilder'.
+19:12:13.105 [main] INFO org.evosuite.runtime.instrumentation.MethodCallReplacementClassAdapter - Adding mock interface to class com/google/javascript/rhino/jstype/UnionTypeBuilder
+19:12:13.105 [main] INFO org.evosuite.runtime.instrumentation.CreateClassResetClassAdapter - Creating brand-new static initializer in class com/google/javascript/rhino/jstype/UnionTypeBuilder
+19:12:13.105 [main] INFO org.evosuite.runtime.instrumentation.CreateClassResetClassAdapter - Adding bytecode for initializing field DEFAULT_MAX_UNION_SIZE
+19:12:13.105 [main] INFO org.evosuite.runtime.instrumentation.EvoClassLoader - Keeping class: com.google.javascript.rhino.jstype.UnionTypeBuilder
+19:12:13.105 [main] INFO org.evosuite.runtime.instrumentation.EvoClassLoader - Seeing class for first time: com.google.javascript.rhino.jstype.UnionType
+19:12:13.105 [main] INFO org.evosuite.runtime.instrumentation.EvoClassLoader - Instrumenting class 'com.google.javascript.rhino.jstype.UnionType'.
+19:12:13.106 [main] INFO org.evosuite.runtime.instrumentation.MethodCallReplacementClassAdapter - Adding mock interface to class com/google/javascript/rhino/jstype/UnionType
+19:12:13.108 [main] INFO org.evosuite.runtime.instrumentation.CreateClassResetClassAdapter - Creating brand-new static initializer in class com/google/javascript/rhino/jstype/UnionType
+19:12:13.108 [main] INFO org.evosuite.runtime.instrumentation.EvoClassLoader - Keeping class: com.google.javascript.rhino.jstype.UnionType
+19:12:13.109 [main] INFO org.evosuite.runtime.instrumentation.EvoClassLoader - Seeing class for first time: com.google.common.collect.Lists
+19:12:13.109 [main] INFO org.evosuite.runtime.instrumentation.EvoClassLoader - Instrumenting class 'com.google.common.collect.Lists'.
+19:12:13.110 [main] INFO org.evosuite.runtime.instrumentation.MethodCallReplacementClassAdapter - Adding mock interface to class com/google/common/collect/Lists
+19:12:13.112 [main] INFO org.evosuite.runtime.instrumentation.CreateClassResetClassAdapter - Creating brand-new static initializer in class com/google/common/collect/Lists
+19:12:13.112 [main] INFO org.evosuite.runtime.instrumentation.EvoClassLoader - Keeping class: com.google.common.collect.Lists
+19:12:13.113 [main] INFO org.evosuite.runtime.instrumentation.EvoClassLoader - Seeing class for first time: com.google.common.collect.Lists$1
+19:12:13.113 [main] INFO org.evosuite.runtime.instrumentation.EvoClassLoader - Instrumenting class 'com.google.common.collect.Lists$1'.
+19:12:13.113 [main] INFO org.evosuite.runtime.instrumentation.MethodCallReplacementClassAdapter - Adding mock interface to class com/google/common/collect/Lists$1
+19:12:13.113 [main] INFO org.evosuite.runtime.instrumentation.EvoClassLoader - Seeing class for first time: com.google.common.collect.Lists$RandomAccessListWrapper
+19:12:13.113 [main] INFO org.evosuite.runtime.instrumentation.EvoClassLoader - Instrumenting class 'com.google.common.collect.Lists$RandomAccessListWrapper'.
+19:12:13.113 [main] INFO org.evosuite.runtime.instrumentation.MethodCallReplacementClassAdapter - Adding mock interface to class com/google/common/collect/Lists$RandomAccessListWrapper
+19:12:13.113 [main] INFO org.evosuite.runtime.instrumentation.CreateClassResetClassAdapter - Creating brand-new static initializer in class com/google/common/collect/Lists$RandomAccessListWrapper
+19:12:13.113 [main] INFO org.evosuite.runtime.instrumentation.EvoClassLoader - Seeing class for first time: com.google.common.collect.Lists$AbstractListWrapper
+19:12:13.113 [main] INFO org.evosuite.runtime.instrumentation.EvoClassLoader - Instrumenting class 'com.google.common.collect.Lists$AbstractListWrapper'.
+19:12:13.114 [main] INFO org.evosuite.runtime.instrumentation.MethodCallReplacementClassAdapter - Adding mock interface to class com/google/common/collect/Lists$AbstractListWrapper
+19:12:13.114 [main] INFO org.evosuite.runtime.instrumentation.CreateClassResetClassAdapter - Creating brand-new static initializer in class com/google/common/collect/Lists$AbstractListWrapper
+19:12:13.114 [main] INFO org.evosuite.runtime.instrumentation.EvoClassLoader - Keeping class: com.google.common.collect.Lists$AbstractListWrapper
+19:12:13.114 [main] INFO org.evosuite.runtime.instrumentation.EvoClassLoader - Keeping class: com.google.common.collect.Lists$RandomAccessListWrapper
+19:12:13.114 [main] INFO org.evosuite.runtime.instrumentation.EvoClassLoader - Keeping class: com.google.common.collect.Lists$1
+19:12:13.114 [main] INFO org.evosuite.runtime.instrumentation.EvoClassLoader - Seeing class for first time: com.google.common.collect.Lists$2
+19:12:13.114 [main] INFO org.evosuite.runtime.instrumentation.EvoClassLoader - Instrumenting class 'com.google.common.collect.Lists$2'.
+19:12:13.114 [main] INFO org.evosuite.runtime.instrumentation.MethodCallReplacementClassAdapter - Adding mock interface to class com/google/common/collect/Lists$2
+19:12:13.114 [main] INFO org.evosuite.runtime.instrumentation.EvoClassLoader - Keeping class: com.google.common.collect.Lists$2
+19:12:13.115 [main] INFO org.evosuite.runtime.instrumentation.EvoClassLoader - Seeing class for first time: com.google.common.collect.Lists$StringAsImmutableList
+19:12:13.115 [main] INFO org.evosuite.runtime.instrumentation.EvoClassLoader - Instrumenting class 'com.google.common.collect.Lists$StringAsImmutableList'.
+19:12:13.115 [main] INFO org.evosuite.runtime.instrumentation.MethodCallReplacementClassAdapter - Adding mock interface to class com/google/common/collect/Lists$StringAsImmutableList
+19:12:13.116 [main] INFO org.evosuite.runtime.instrumentation.CreateClassResetClassAdapter - Creating brand-new static initializer in class com/google/common/collect/Lists$StringAsImmutableList
+19:12:13.116 [main] INFO org.evosuite.runtime.instrumentation.EvoClassLoader - Keeping class: com.google.common.collect.Lists$StringAsImmutableList
+19:12:13.116 [main] INFO org.evosuite.runtime.instrumentation.EvoClassLoader - Seeing class for first time: com.google.common.collect.Lists$TransformingSequentialList
+19:12:13.116 [main] INFO org.evosuite.runtime.instrumentation.EvoClassLoader - Instrumenting class 'com.google.common.collect.Lists$TransformingSequentialList'.
+19:12:13.116 [main] INFO org.evosuite.runtime.instrumentation.MethodCallReplacementClassAdapter - Adding mock interface to class com/google/common/collect/Lists$TransformingSequentialList
+19:12:13.116 [main] INFO org.evosuite.runtime.instrumentation.CreateClassResetClassAdapter - Creating brand-new static initializer in class com/google/common/collect/Lists$TransformingSequentialList
+19:12:13.116 [main] INFO org.evosuite.runtime.instrumentation.EvoClassLoader - Keeping class: com.google.common.collect.Lists$TransformingSequentialList
+19:12:13.117 [main] INFO org.evosuite.runtime.instrumentation.EvoClassLoader - Seeing class for first time: com.google.javascript.rhino.jstype.ParameterizedType
+19:12:13.117 [main] INFO org.evosuite.runtime.instrumentation.EvoClassLoader - Instrumenting class 'com.google.javascript.rhino.jstype.ParameterizedType'.
+19:12:13.117 [main] INFO org.evosuite.runtime.instrumentation.MethodCallReplacementClassAdapter - Adding mock interface to class com/google/javascript/rhino/jstype/ParameterizedType
+19:12:13.117 [main] INFO org.evosuite.runtime.instrumentation.CreateClassResetClassAdapter - Creating brand-new static initializer in class com/google/javascript/rhino/jstype/ParameterizedType
+19:12:13.117 [main] INFO org.evosuite.runtime.instrumentation.EvoClassLoader - Keeping class: com.google.javascript.rhino.jstype.ParameterizedType
+19:12:13.118 [main] INFO org.evosuite.runtime.instrumentation.EvoClassLoader - Seeing class for first time: com.google.javascript.rhino.Node$SideEffectFlags
+19:12:13.118 [main] INFO org.evosuite.runtime.instrumentation.EvoClassLoader - Instrumenting class 'com.google.javascript.rhino.Node$SideEffectFlags'.
+19:12:13.118 [main] INFO org.evosuite.runtime.instrumentation.MethodCallReplacementClassAdapter - Adding mock interface to class com/google/javascript/rhino/Node$SideEffectFlags
+19:12:13.118 [main] INFO org.evosuite.runtime.instrumentation.CreateClassResetClassAdapter - Creating brand-new static initializer in class com/google/javascript/rhino/Node$SideEffectFlags
+19:12:13.118 [main] INFO org.evosuite.runtime.instrumentation.EvoClassLoader - Keeping class: com.google.javascript.rhino.Node$SideEffectFlags
+19:12:13.119 [main] INFO org.evosuite.runtime.instrumentation.EvoClassLoader - Seeing class for first time: com.google.javascript.rhino.jstype.NullType
+19:12:13.119 [main] INFO org.evosuite.runtime.instrumentation.EvoClassLoader - Instrumenting class 'com.google.javascript.rhino.jstype.NullType'.
+19:12:13.119 [main] INFO org.evosuite.runtime.instrumentation.MethodCallReplacementClassAdapter - Adding mock interface to class com/google/javascript/rhino/jstype/NullType
+19:12:13.119 [main] INFO org.evosuite.runtime.instrumentation.CreateClassResetClassAdapter - Creating brand-new static initializer in class com/google/javascript/rhino/jstype/NullType
+19:12:13.119 [main] INFO org.evosuite.runtime.instrumentation.EvoClassLoader - Keeping class: com.google.javascript.rhino.jstype.NullType
+19:12:13.119 [main] INFO org.evosuite.runtime.instrumentation.EvoClassLoader - Seeing class for first time: com.google.common.collect.EmptyImmutableList$1
+19:12:13.119 [main] INFO org.evosuite.runtime.instrumentation.EvoClassLoader - Instrumenting class 'com.google.common.collect.EmptyImmutableList$1'.
+19:12:13.120 [main] INFO org.evosuite.runtime.instrumentation.MethodCallReplacementClassAdapter - Adding mock interface to class com/google/common/collect/EmptyImmutableList$1
+19:12:13.120 [main] INFO org.evosuite.runtime.instrumentation.EvoClassLoader - Keeping class: com.google.common.collect.EmptyImmutableList$1
+19:12:13.120 [main] INFO org.evosuite.runtime.instrumentation.EvoClassLoader - Seeing class for first time: com.google.javascript.rhino.jstype.UnknownType
+19:12:13.120 [main] INFO org.evosuite.runtime.instrumentation.EvoClassLoader - Instrumenting class 'com.google.javascript.rhino.jstype.UnknownType'.
+19:12:13.121 [main] INFO org.evosuite.runtime.instrumentation.MethodCallReplacementClassAdapter - Adding mock interface to class com/google/javascript/rhino/jstype/UnknownType
+19:12:13.121 [main] INFO org.evosuite.runtime.instrumentation.CreateClassResetClassAdapter - Creating brand-new static initializer in class com/google/javascript/rhino/jstype/UnknownType
+19:12:13.122 [main] INFO org.evosuite.runtime.instrumentation.EvoClassLoader - Keeping class: com.google.javascript.rhino.jstype.UnknownType
+19:12:13.122 [main] INFO org.evosuite.runtime.instrumentation.EvoClassLoader - Seeing class for first time: com.google.javascript.rhino.Node$FileLevelJsDocBuilder
+19:12:13.122 [main] INFO org.evosuite.runtime.instrumentation.EvoClassLoader - Instrumenting class 'com.google.javascript.rhino.Node$FileLevelJsDocBuilder'.
+19:12:13.123 [main] INFO org.evosuite.runtime.instrumentation.MethodCallReplacementClassAdapter - Adding mock interface to class com/google/javascript/rhino/Node$FileLevelJsDocBuilder
+19:12:13.123 [main] INFO org.evosuite.runtime.instrumentation.CreateClassResetClassAdapter - Creating brand-new static initializer in class com/google/javascript/rhino/Node$FileLevelJsDocBuilder
+19:12:13.123 [main] INFO org.evosuite.runtime.instrumentation.EvoClassLoader - Keeping class: com.google.javascript.rhino.Node$FileLevelJsDocBuilder
+19:12:13.123 [main] INFO org.evosuite.runtime.instrumentation.EvoClassLoader - Seeing class for first time: com.google.javascript.rhino.jstype.StaticSourceFile
+19:12:13.123 [main] INFO org.evosuite.runtime.instrumentation.EvoClassLoader - Instrumenting class 'com.google.javascript.rhino.jstype.StaticSourceFile'.
+19:12:13.123 [main] INFO org.evosuite.runtime.instrumentation.EvoClassLoader - Keeping class: com.google.javascript.rhino.jstype.StaticSourceFile
+19:12:13.124 [main] INFO org.evosuite.runtime.instrumentation.EvoClassLoader - Seeing class for first time: com.google.javascript.rhino.jstype.BooleanType
+19:12:13.124 [main] INFO org.evosuite.runtime.instrumentation.EvoClassLoader - Instrumenting class 'com.google.javascript.rhino.jstype.BooleanType'.
+19:12:13.124 [main] INFO org.evosuite.runtime.instrumentation.MethodCallReplacementClassAdapter - Adding mock interface to class com/google/javascript/rhino/jstype/BooleanType
+19:12:13.124 [main] INFO org.evosuite.runtime.instrumentation.CreateClassResetClassAdapter - Creating brand-new static initializer in class com/google/javascript/rhino/jstype/BooleanType
+19:12:13.124 [main] INFO org.evosuite.runtime.instrumentation.EvoClassLoader - Keeping class: com.google.javascript.rhino.jstype.BooleanType
+19:12:13.124 [main] INFO org.evosuite.runtime.instrumentation.EvoClassLoader - Seeing class for first time: com.google.common.collect.AbstractIterator
+19:12:13.124 [main] INFO org.evosuite.runtime.instrumentation.EvoClassLoader - Instrumenting class 'com.google.common.collect.AbstractIterator'.
+19:12:13.125 [main] INFO org.evosuite.runtime.instrumentation.MethodCallReplacementClassAdapter - Adding mock interface to class com/google/common/collect/AbstractIterator
+19:12:13.125 [main] INFO org.evosuite.runtime.instrumentation.CreateClassResetClassAdapter - Creating brand-new static initializer in class com/google/common/collect/AbstractIterator
+19:12:13.125 [main] INFO org.evosuite.runtime.instrumentation.EvoClassLoader - Keeping class: com.google.common.collect.AbstractIterator
+19:12:13.125 [main] INFO org.evosuite.runtime.instrumentation.EvoClassLoader - Seeing class for first time: com.google.javascript.rhino.jstype.FunctionBuilder
+19:12:13.125 [main] INFO org.evosuite.runtime.instrumentation.EvoClassLoader - Instrumenting class 'com.google.javascript.rhino.jstype.FunctionBuilder'.
+19:12:13.126 [main] INFO org.evosuite.runtime.instrumentation.MethodCallReplacementClassAdapter - Adding mock interface to class com/google/javascript/rhino/jstype/FunctionBuilder
+19:12:13.126 [main] INFO org.evosuite.runtime.instrumentation.CreateClassResetClassAdapter - Creating brand-new static initializer in class com/google/javascript/rhino/jstype/FunctionBuilder
+19:12:13.126 [main] INFO org.evosuite.runtime.instrumentation.EvoClassLoader - Keeping class: com.google.javascript.rhino.jstype.FunctionBuilder
+19:12:13.126 [main] INFO org.evosuite.runtime.instrumentation.EvoClassLoader - Seeing class for first time: com.google.javascript.rhino.jstype.JSType$TypePair
+19:12:13.126 [main] INFO org.evosuite.runtime.instrumentation.EvoClassLoader - Instrumenting class 'com.google.javascript.rhino.jstype.JSType$TypePair'.
+19:12:13.126 [main] INFO org.evosuite.runtime.instrumentation.MethodCallReplacementClassAdapter - Adding mock interface to class com/google/javascript/rhino/jstype/JSType$TypePair
+19:12:13.127 [main] INFO org.evosuite.runtime.instrumentation.CreateClassResetClassAdapter - Creating brand-new static initializer in class com/google/javascript/rhino/jstype/JSType$TypePair
+19:12:13.127 [main] INFO org.evosuite.runtime.instrumentation.EvoClassLoader - Keeping class: com.google.javascript.rhino.jstype.JSType$TypePair
+19:12:13.127 [main] INFO org.evosuite.runtime.instrumentation.EvoClassLoader - Seeing class for first time: com.google.common.base.Joiner$MapJoiner
+19:12:13.127 [main] INFO org.evosuite.runtime.instrumentation.EvoClassLoader - Instrumenting class 'com.google.common.base.Joiner$MapJoiner'.
+19:12:13.127 [main] INFO org.evosuite.runtime.instrumentation.MethodCallReplacementClassAdapter - Adding mock interface to class com/google/common/base/Joiner$MapJoiner
+19:12:13.127 [main] INFO org.evosuite.runtime.instrumentation.CreateClassResetClassAdapter - Creating brand-new static initializer in class com/google/common/base/Joiner$MapJoiner
+19:12:13.127 [main] INFO org.evosuite.runtime.instrumentation.EvoClassLoader - Keeping class: com.google.common.base.Joiner$MapJoiner
+19:12:13.128 [main] INFO org.evosuite.runtime.instrumentation.EvoClassLoader - Seeing class for first time: com.google.common.collect.MapDifference
+19:12:13.128 [main] INFO org.evosuite.runtime.instrumentation.EvoClassLoader - Instrumenting class 'com.google.common.collect.MapDifference'.
+19:12:13.128 [main] INFO org.evosuite.runtime.instrumentation.EvoClassLoader - Keeping class: com.google.common.collect.MapDifference
+19:12:13.128 [main] INFO org.evosuite.runtime.instrumentation.EvoClassLoader - Seeing class for first time: com.google.javascript.rhino.JSDocInfo
+19:12:13.128 [main] INFO org.evosuite.runtime.instrumentation.EvoClassLoader - Instrumenting class 'com.google.javascript.rhino.JSDocInfo'.
+19:12:13.129 [main] INFO org.evosuite.runtime.instrumentation.MethodCallReplacementClassAdapter - Adding mock interface to class com/google/javascript/rhino/JSDocInfo
+19:12:13.130 [main] INFO org.evosuite.runtime.instrumentation.CreateClassResetClassAdapter - Creating brand-new static initializer in class com/google/javascript/rhino/JSDocInfo
+19:12:13.130 [main] INFO org.evosuite.runtime.instrumentation.CreateClassResetClassAdapter - Adding bytecode for initializing field MASK_FLAGS
+19:12:13.130 [main] INFO org.evosuite.runtime.instrumentation.CreateClassResetClassAdapter - Adding bytecode for initializing field MASK_CONSTANT
+19:12:13.130 [main] INFO org.evosuite.runtime.instrumentation.CreateClassResetClassAdapter - Adding bytecode for initializing field MASK_CONSTRUCTOR
+19:12:13.130 [main] INFO org.evosuite.runtime.instrumentation.CreateClassResetClassAdapter - Adding bytecode for initializing field MASK_DEFINE
+19:12:13.130 [main] INFO org.evosuite.runtime.instrumentation.CreateClassResetClassAdapter - Adding bytecode for initializing field MASK_HIDDEN
+19:12:13.130 [main] INFO org.evosuite.runtime.instrumentation.CreateClassResetClassAdapter - Adding bytecode for initializing field MASK_PRESERVETRY
+19:12:13.130 [main] INFO org.evosuite.runtime.instrumentation.CreateClassResetClassAdapter - Adding bytecode for initializing field MASK_NOCHECK
+19:12:13.130 [main] INFO org.evosuite.runtime.instrumentation.CreateClassResetClassAdapter - Adding bytecode for initializing field MASK_OVERRIDE
+19:12:13.130 [main] INFO org.evosuite.runtime.instrumentation.CreateClassResetClassAdapter - Adding bytecode for initializing field MASK_NOALIAS
+19:12:13.130 [main] INFO org.evosuite.runtime.instrumentation.CreateClassResetClassAdapter - Adding bytecode for initializing field MASK_DEPRECATED
+19:12:13.130 [main] INFO org.evosuite.runtime.instrumentation.CreateClassResetClassAdapter - Adding bytecode for initializing field MASK_INTERFACE
+19:12:13.130 [main] INFO org.evosuite.runtime.instrumentation.CreateClassResetClassAdapter - Adding bytecode for initializing field MASK_EXPORT
+19:12:13.130 [main] INFO org.evosuite.runtime.instrumentation.CreateClassResetClassAdapter - Adding bytecode for initializing field MASK_NOSHADOW
+19:12:13.130 [main] INFO org.evosuite.runtime.instrumentation.CreateClassResetClassAdapter - Adding bytecode for initializing field MASK_FILEOVERVIEW
+19:12:13.131 [main] INFO org.evosuite.runtime.instrumentation.CreateClassResetClassAdapter - Adding bytecode for initializing field MASK_IMPLICITCAST
+19:12:13.131 [main] INFO org.evosuite.runtime.instrumentation.CreateClassResetClassAdapter - Adding bytecode for initializing field MASK_NOSIDEEFFECTS
+19:12:13.131 [main] INFO org.evosuite.runtime.instrumentation.CreateClassResetClassAdapter - Adding bytecode for initializing field MASK_EXTERNS
+19:12:13.131 [main] INFO org.evosuite.runtime.instrumentation.CreateClassResetClassAdapter - Adding bytecode for initializing field MASK_JAVADISPATCH
+19:12:13.131 [main] INFO org.evosuite.runtime.instrumentation.CreateClassResetClassAdapter - Adding bytecode for initializing field MASK_NOCOMPILE
+19:12:13.131 [main] INFO org.evosuite.runtime.instrumentation.CreateClassResetClassAdapter - Adding bytecode for initializing field MASK_CONSISTIDGEN
+19:12:13.131 [main] INFO org.evosuite.runtime.instrumentation.CreateClassResetClassAdapter - Adding bytecode for initializing field MASK_IDGEN
+19:12:13.131 [main] INFO org.evosuite.runtime.instrumentation.CreateClassResetClassAdapter - Adding bytecode for initializing field MASK_EXPOSE
+19:12:13.131 [main] INFO org.evosuite.runtime.instrumentation.CreateClassResetClassAdapter - Adding bytecode for initializing field MASK_TYPEFIELD
+19:12:13.131 [main] INFO org.evosuite.runtime.instrumentation.CreateClassResetClassAdapter - Adding bytecode for initializing field TYPEFIELD_TYPE
+19:12:13.131 [main] INFO org.evosuite.runtime.instrumentation.CreateClassResetClassAdapter - Adding bytecode for initializing field TYPEFIELD_RETURN
+19:12:13.131 [main] INFO org.evosuite.runtime.instrumentation.CreateClassResetClassAdapter - Adding bytecode for initializing field TYPEFIELD_ENUM
+19:12:13.131 [main] INFO org.evosuite.runtime.instrumentation.CreateClassResetClassAdapter - Adding bytecode for initializing field TYPEFIELD_TYPEDEF
+19:12:13.131 [main] INFO org.evosuite.runtime.instrumentation.EvoClassLoader - Keeping class: com.google.javascript.rhino.JSDocInfo
+19:12:13.132 [main] INFO org.evosuite.runtime.instrumentation.EvoClassLoader - Seeing class for first time: com.google.javascript.rhino.jstype.IndexedType
+19:12:13.132 [main] INFO org.evosuite.runtime.instrumentation.EvoClassLoader - Instrumenting class 'com.google.javascript.rhino.jstype.IndexedType'.
+19:12:13.133 [main] INFO org.evosuite.runtime.instrumentation.MethodCallReplacementClassAdapter - Adding mock interface to class com/google/javascript/rhino/jstype/IndexedType
+19:12:13.133 [main] INFO org.evosuite.runtime.instrumentation.CreateClassResetClassAdapter - Creating brand-new static initializer in class com/google/javascript/rhino/jstype/IndexedType
+19:12:13.133 [main] INFO org.evosuite.runtime.instrumentation.EvoClassLoader - Keeping class: com.google.javascript.rhino.jstype.IndexedType
+19:12:13.133 [main] INFO org.evosuite.runtime.instrumentation.EvoClassLoader - Seeing class for first time: com.google.javascript.rhino.Node$AncestorIterable
+19:12:13.133 [main] INFO org.evosuite.runtime.instrumentation.EvoClassLoader - Instrumenting class 'com.google.javascript.rhino.Node$AncestorIterable'.
+19:12:13.134 [main] INFO org.evosuite.runtime.instrumentation.MethodCallReplacementClassAdapter - Adding mock interface to class com/google/javascript/rhino/Node$AncestorIterable
+19:12:13.134 [main] INFO org.evosuite.runtime.instrumentation.CreateClassResetClassAdapter - Creating brand-new static initializer in class com/google/javascript/rhino/Node$AncestorIterable
+19:12:13.134 [main] INFO org.evosuite.runtime.instrumentation.EvoClassLoader - Keeping class: com.google.javascript.rhino.Node$AncestorIterable
+19:12:13.134 [main] INFO org.evosuite.runtime.instrumentation.EvoClassLoader - Seeing class for first time: com.google.common.collect.ImmutableEnumSet
+19:12:13.134 [main] INFO org.evosuite.runtime.instrumentation.EvoClassLoader - Instrumenting class 'com.google.common.collect.ImmutableEnumSet'.
+19:12:13.135 [main] INFO org.evosuite.runtime.instrumentation.MethodCallReplacementClassAdapter - Adding mock interface to class com/google/common/collect/ImmutableEnumSet
+19:12:13.135 [main] INFO org.evosuite.runtime.instrumentation.CreateClassResetClassAdapter - Creating brand-new static initializer in class com/google/common/collect/ImmutableEnumSet
+19:12:13.135 [main] INFO org.evosuite.runtime.instrumentation.EvoClassLoader - Keeping class: com.google.common.collect.ImmutableEnumSet
+19:12:13.135 [main] INFO org.evosuite.runtime.instrumentation.EvoClassLoader - Seeing class for first time: com.google.javascript.rhino.jstype.RecordTypeBuilder
+19:12:13.135 [main] INFO org.evosuite.runtime.instrumentation.EvoClassLoader - Instrumenting class 'com.google.javascript.rhino.jstype.RecordTypeBuilder'.
+19:12:13.136 [main] INFO org.evosuite.runtime.instrumentation.MethodCallReplacementClassAdapter - Adding mock interface to class com/google/javascript/rhino/jstype/RecordTypeBuilder
+19:12:13.136 [main] INFO org.evosuite.runtime.instrumentation.CreateClassResetClassAdapter - Creating brand-new static initializer in class com/google/javascript/rhino/jstype/RecordTypeBuilder
+19:12:13.136 [main] INFO org.evosuite.runtime.instrumentation.EvoClassLoader - Keeping class: com.google.javascript.rhino.jstype.RecordTypeBuilder
+19:12:13.136 [main] INFO org.evosuite.runtime.instrumentation.EvoClassLoader - Seeing class for first time: com.google.javascript.rhino.jstype.UnresolvedTypeExpression
+19:12:13.136 [main] INFO org.evosuite.runtime.instrumentation.EvoClassLoader - Instrumenting class 'com.google.javascript.rhino.jstype.UnresolvedTypeExpression'.
+19:12:13.136 [main] INFO org.evosuite.runtime.instrumentation.MethodCallReplacementClassAdapter - Adding mock interface to class com/google/javascript/rhino/jstype/UnresolvedTypeExpression
+19:12:13.137 [main] INFO org.evosuite.runtime.instrumentation.CreateClassResetClassAdapter - Creating brand-new static initializer in class com/google/javascript/rhino/jstype/UnresolvedTypeExpression
+19:12:13.137 [main] INFO org.evosuite.runtime.instrumentation.EvoClassLoader - Keeping class: com.google.javascript.rhino.jstype.UnresolvedTypeExpression
+19:12:13.137 [main] INFO org.evosuite.runtime.instrumentation.EvoClassLoader - Seeing class for first time: com.google.common.collect.ImmutableList$ReverseImmutableList$1
+19:12:13.137 [main] INFO org.evosuite.runtime.instrumentation.EvoClassLoader - Instrumenting class 'com.google.common.collect.ImmutableList$ReverseImmutableList$1'.
+19:12:13.137 [main] INFO org.evosuite.runtime.instrumentation.MethodCallReplacementClassAdapter - Adding mock interface to class com/google/common/collect/ImmutableList$ReverseImmutableList$1
+19:12:13.137 [main] INFO org.evosuite.runtime.instrumentation.EvoClassLoader - Keeping class: com.google.common.collect.ImmutableList$ReverseImmutableList$1
+19:12:13.138 [main] INFO org.evosuite.runtime.instrumentation.EvoClassLoader - Seeing class for first time: com.google.common.collect.SingletonImmutableList$1
+19:12:13.138 [main] INFO org.evosuite.runtime.instrumentation.EvoClassLoader - Instrumenting class 'com.google.common.collect.SingletonImmutableList$1'.
+19:12:13.139 [main] INFO org.evosuite.runtime.instrumentation.MethodCallReplacementClassAdapter - Adding mock interface to class com/google/common/collect/SingletonImmutableList$1
+19:12:13.139 [main] INFO org.evosuite.runtime.instrumentation.EvoClassLoader - Keeping class: com.google.common.collect.SingletonImmutableList$1
+19:12:13.139 [main] INFO org.evosuite.runtime.instrumentation.EvoClassLoader - Seeing class for first time: com.google.javascript.rhino.jstype.JSTypeRegistry$1
+19:12:13.139 [main] INFO org.evosuite.runtime.instrumentation.EvoClassLoader - Instrumenting class 'com.google.javascript.rhino.jstype.JSTypeRegistry$1'.
+19:12:13.140 [main] INFO org.evosuite.runtime.instrumentation.MethodCallReplacementClassAdapter - Adding mock interface to class com/google/javascript/rhino/jstype/JSTypeRegistry$1
+19:12:13.140 [main] INFO org.evosuite.runtime.instrumentation.EvoClassLoader - Keeping class: com.google.javascript.rhino.jstype.JSTypeRegistry$1
+19:12:13.140 [main] INFO org.evosuite.runtime.instrumentation.EvoClassLoader - Seeing class for first time: com.google.common.collect.ImmutableCollection$Builder
+19:12:13.140 [main] INFO org.evosuite.runtime.instrumentation.EvoClassLoader - Instrumenting class 'com.google.common.collect.ImmutableCollection$Builder'.
+19:12:13.141 [main] INFO org.evosuite.runtime.instrumentation.MethodCallReplacementClassAdapter - Adding mock interface to class com/google/common/collect/ImmutableCollection$Builder
+19:12:13.141 [main] INFO org.evosuite.runtime.instrumentation.CreateClassResetClassAdapter - Creating brand-new static initializer in class com/google/common/collect/ImmutableCollection$Builder
+19:12:13.141 [main] INFO org.evosuite.runtime.instrumentation.EvoClassLoader - Keeping class: com.google.common.collect.ImmutableCollection$Builder
+19:12:13.141 [main] INFO org.evosuite.runtime.instrumentation.EvoClassLoader - Seeing class for first time: com.google.common.collect.Iterators$6
+19:12:13.141 [main] INFO org.evosuite.runtime.instrumentation.EvoClassLoader - Instrumenting class 'com.google.common.collect.Iterators$6'.
+19:12:13.142 [main] INFO org.evosuite.runtime.instrumentation.MethodCallReplacementClassAdapter - Adding mock interface to class com/google/common/collect/Iterators$6
+19:12:13.142 [main] INFO org.evosuite.runtime.instrumentation.EvoClassLoader - Keeping class: com.google.common.collect.Iterators$6
+19:12:13.143 [main] INFO org.evosuite.runtime.instrumentation.EvoClassLoader - Seeing class for first time: com.google.common.collect.BiMap
+19:12:13.143 [main] INFO org.evosuite.runtime.instrumentation.EvoClassLoader - Instrumenting class 'com.google.common.collect.BiMap'.
+19:12:13.143 [main] INFO org.evosuite.runtime.instrumentation.EvoClassLoader - Keeping class: com.google.common.collect.BiMap
+19:12:13.143 [main] INFO org.evosuite.runtime.instrumentation.EvoClassLoader - Seeing class for first time: com.google.common.collect.Iterators$7
+19:12:13.143 [main] INFO org.evosuite.runtime.instrumentation.EvoClassLoader - Instrumenting class 'com.google.common.collect.Iterators$7'.
+19:12:13.143 [main] INFO org.evosuite.runtime.instrumentation.MethodCallReplacementClassAdapter - Adding mock interface to class com/google/common/collect/Iterators$7
+19:12:13.144 [main] INFO org.evosuite.runtime.instrumentation.EvoClassLoader - Keeping class: com.google.common.collect.Iterators$7
+19:12:13.144 [main] INFO org.evosuite.runtime.instrumentation.EvoClassLoader - Seeing class for first time: com.google.javascript.rhino.jstype.JSTypeRegistry$ResolveMode
+19:12:13.144 [main] INFO org.evosuite.runtime.instrumentation.EvoClassLoader - Instrumenting class 'com.google.javascript.rhino.jstype.JSTypeRegistry$ResolveMode'.
+19:12:13.144 [main] INFO org.evosuite.runtime.instrumentation.MethodCallReplacementClassAdapter - Adding mock interface to class com/google/javascript/rhino/jstype/JSTypeRegistry$ResolveMode
+19:12:13.145 [main] INFO org.evosuite.runtime.instrumentation.CreateClassResetClassAdapter - Found static initializer in class com/google/javascript/rhino/jstype/JSTypeRegistry$ResolveMode
+19:12:13.145 [main] INFO org.evosuite.runtime.instrumentation.EvoClassLoader - Keeping class: com.google.javascript.rhino.jstype.JSTypeRegistry$ResolveMode
+19:12:13.145 [main] INFO org.evosuite.runtime.instrumentation.EvoClassLoader - Seeing class for first time: com.google.javascript.rhino.jstype.EnumType
+19:12:13.145 [main] INFO org.evosuite.runtime.instrumentation.EvoClassLoader - Instrumenting class 'com.google.javascript.rhino.jstype.EnumType'.
+19:12:13.146 [main] INFO org.evosuite.runtime.instrumentation.MethodCallReplacementClassAdapter - Adding mock interface to class com/google/javascript/rhino/jstype/EnumType
+19:12:13.146 [main] INFO org.evosuite.runtime.instrumentation.CreateClassResetClassAdapter - Creating brand-new static initializer in class com/google/javascript/rhino/jstype/EnumType
+19:12:13.146 [main] INFO org.evosuite.runtime.instrumentation.EvoClassLoader - Keeping class: com.google.javascript.rhino.jstype.EnumType
+19:12:13.146 [main] INFO org.evosuite.runtime.instrumentation.EvoClassLoader - Seeing class for first time: com.google.common.collect.Iterators$1
+19:12:13.146 [main] INFO org.evosuite.runtime.instrumentation.EvoClassLoader - Instrumenting class 'com.google.common.collect.Iterators$1'.
+19:12:13.147 [main] INFO org.evosuite.runtime.instrumentation.MethodCallReplacementClassAdapter - Adding mock interface to class com/google/common/collect/Iterators$1
+19:12:13.147 [main] INFO org.evosuite.runtime.instrumentation.EvoClassLoader - Keeping class: com.google.common.collect.Iterators$1
+19:12:13.147 [main] INFO org.evosuite.runtime.instrumentation.EvoClassLoader - Seeing class for first time: com.google.common.collect.Iterators$2
+19:12:13.147 [main] INFO org.evosuite.runtime.instrumentation.EvoClassLoader - Instrumenting class 'com.google.common.collect.Iterators$2'.
+19:12:13.148 [main] INFO org.evosuite.runtime.instrumentation.MethodCallReplacementClassAdapter - Adding mock interface to class com/google/common/collect/Iterators$2
+19:12:13.148 [main] INFO org.evosuite.runtime.instrumentation.EvoClassLoader - Keeping class: com.google.common.collect.Iterators$2
+19:12:13.149 [main] INFO org.evosuite.runtime.instrumentation.EvoClassLoader - Seeing class for first time: com.google.common.collect.Iterators$3
+19:12:13.149 [main] INFO org.evosuite.runtime.instrumentation.EvoClassLoader - Instrumenting class 'com.google.common.collect.Iterators$3'.
+19:12:13.149 [main] INFO org.evosuite.runtime.instrumentation.MethodCallReplacementClassAdapter - Adding mock interface to class com/google/common/collect/Iterators$3
+19:12:13.149 [main] INFO org.evosuite.runtime.instrumentation.EvoClassLoader - Keeping class: com.google.common.collect.Iterators$3
+19:12:13.149 [main] INFO org.evosuite.runtime.instrumentation.EvoClassLoader - Seeing class for first time: com.google.common.collect.Sets
+19:12:13.149 [main] INFO org.evosuite.runtime.instrumentation.EvoClassLoader - Instrumenting class 'com.google.common.collect.Sets'.
+19:12:13.150 [main] INFO org.evosuite.runtime.instrumentation.MethodCallReplacementClassAdapter - Adding mock interface to class com/google/common/collect/Sets
+19:12:13.151 [main] INFO org.evosuite.runtime.instrumentation.CreateClassResetClassAdapter - Creating brand-new static initializer in class com/google/common/collect/Sets
+19:12:13.151 [main] INFO org.evosuite.runtime.instrumentation.EvoClassLoader - Keeping class: com.google.common.collect.Sets
+19:12:13.152 [main] INFO org.evosuite.runtime.instrumentation.EvoClassLoader - Seeing class for first time: com.google.common.collect.Iterators$5
+19:12:13.152 [main] INFO org.evosuite.runtime.instrumentation.EvoClassLoader - Instrumenting class 'com.google.common.collect.Iterators$5'.
+19:12:13.152 [main] INFO org.evosuite.runtime.instrumentation.MethodCallReplacementClassAdapter - Adding mock interface to class com/google/common/collect/Iterators$5
+19:12:13.153 [main] INFO org.evosuite.runtime.instrumentation.EvoClassLoader - Keeping class: com.google.common.collect.Iterators$5
+19:12:13.153 [main] INFO org.evosuite.runtime.instrumentation.EvoClassLoader - Seeing class for first time: com.google.javascript.rhino.Node$ObjectPropListItem
+19:12:13.153 [main] INFO org.evosuite.runtime.instrumentation.EvoClassLoader - Instrumenting class 'com.google.javascript.rhino.Node$ObjectPropListItem'.
+19:12:13.153 [main] INFO org.evosuite.runtime.instrumentation.MethodCallReplacementClassAdapter - Adding mock interface to class com/google/javascript/rhino/Node$ObjectPropListItem
+19:12:13.154 [main] INFO org.evosuite.runtime.instrumentation.CreateClassResetClassAdapter - Creating brand-new static initializer in class com/google/javascript/rhino/Node$ObjectPropListItem
+19:12:13.154 [main] INFO org.evosuite.runtime.instrumentation.EvoClassLoader - Keeping class: com.google.javascript.rhino.Node$ObjectPropListItem
+19:12:13.154 [main] INFO org.evosuite.runtime.instrumentation.EvoClassLoader - Seeing class for first time: com.google.common.collect.Lists$StringAsImmutableList$1
+19:12:13.154 [main] INFO org.evosuite.runtime.instrumentation.EvoClassLoader - Instrumenting class 'com.google.common.collect.Lists$StringAsImmutableList$1'.
+19:12:13.154 [main] INFO org.evosuite.runtime.instrumentation.MethodCallReplacementClassAdapter - Adding mock interface to class com/google/common/collect/Lists$StringAsImmutableList$1
+19:12:13.155 [main] INFO org.evosuite.runtime.instrumentation.EvoClassLoader - Keeping class: com.google.common.collect.Lists$StringAsImmutableList$1
+19:12:13.155 [main] INFO org.evosuite.runtime.instrumentation.EvoClassLoader - Seeing class for first time: com.google.javascript.rhino.jstype.BooleanLiteralSet
+19:12:13.155 [main] INFO org.evosuite.runtime.instrumentation.EvoClassLoader - Instrumenting class 'com.google.javascript.rhino.jstype.BooleanLiteralSet'.
+19:12:13.156 [main] INFO org.evosuite.runtime.instrumentation.MethodCallReplacementClassAdapter - Adding mock interface to class com/google/javascript/rhino/jstype/BooleanLiteralSet
+19:12:13.156 [main] INFO org.evosuite.runtime.instrumentation.CreateClassResetClassAdapter - Found static initializer in class com/google/javascript/rhino/jstype/BooleanLiteralSet
+19:12:13.156 [main] INFO org.evosuite.runtime.instrumentation.EvoClassLoader - Keeping class: com.google.javascript.rhino.jstype.BooleanLiteralSet
+19:12:13.157 [main] INFO org.evosuite.runtime.instrumentation.EvoClassLoader - Seeing class for first time: com.google.common.collect.ImmutableList$Builder
+19:12:13.157 [main] INFO org.evosuite.runtime.instrumentation.EvoClassLoader - Instrumenting class 'com.google.common.collect.ImmutableList$Builder'.
+19:12:13.157 [main] INFO org.evosuite.runtime.instrumentation.MethodCallReplacementClassAdapter - Adding mock interface to class com/google/common/collect/ImmutableList$Builder
+19:12:13.158 [main] INFO org.evosuite.runtime.instrumentation.CreateClassResetClassAdapter - Creating brand-new static initializer in class com/google/common/collect/ImmutableList$Builder
+19:12:13.158 [main] INFO org.evosuite.runtime.instrumentation.EvoClassLoader - Keeping class: com.google.common.collect.ImmutableList$Builder
+19:12:13.158 [main] INFO org.evosuite.runtime.instrumentation.EvoClassLoader - Seeing class for first time: com.google.javascript.rhino.jstype.StaticReference
+19:12:13.158 [main] INFO org.evosuite.runtime.instrumentation.EvoClassLoader - Instrumenting class 'com.google.javascript.rhino.jstype.StaticReference'.
+19:12:13.159 [main] INFO org.evosuite.runtime.instrumentation.EvoClassLoader - Keeping class: com.google.javascript.rhino.jstype.StaticReference
+19:12:13.159 [main] INFO org.evosuite.runtime.instrumentation.EvoClassLoader - Seeing class for first time: com.google.common.collect.Iterables$2
+19:12:13.159 [main] INFO org.evosuite.runtime.instrumentation.EvoClassLoader - Instrumenting class 'com.google.common.collect.Iterables$2'.
+19:12:13.159 [main] INFO org.evosuite.runtime.instrumentation.MethodCallReplacementClassAdapter - Adding mock interface to class com/google/common/collect/Iterables$2
+19:12:13.160 [main] INFO org.evosuite.runtime.instrumentation.EvoClassLoader - Keeping class: com.google.common.collect.Iterables$2
+19:12:13.160 [main] INFO org.evosuite.runtime.instrumentation.EvoClassLoader - Seeing class for first time: com.google.common.collect.Iterators
+19:12:13.160 [main] INFO org.evosuite.runtime.instrumentation.EvoClassLoader - Instrumenting class 'com.google.common.collect.Iterators'.
+19:12:13.161 [main] INFO org.evosuite.runtime.instrumentation.MethodCallReplacementClassAdapter - Adding mock interface to class com/google/common/collect/Iterators
+19:12:13.162 [main] INFO org.evosuite.runtime.instrumentation.CreateClassResetClassAdapter - Found static initializer in class com/google/common/collect/Iterators
+19:12:13.162 [main] INFO org.evosuite.runtime.instrumentation.EvoClassLoader - Keeping class: com.google.common.collect.Iterators
+19:12:13.163 [main] INFO org.evosuite.runtime.instrumentation.EvoClassLoader - Seeing class for first time: com.google.javascript.rhino.jstype.StringType
+19:12:13.163 [main] INFO org.evosuite.runtime.instrumentation.EvoClassLoader - Instrumenting class 'com.google.javascript.rhino.jstype.StringType'.
+19:12:13.164 [main] INFO org.evosuite.runtime.instrumentation.MethodCallReplacementClassAdapter - Adding mock interface to class com/google/javascript/rhino/jstype/StringType
+19:12:13.164 [main] INFO org.evosuite.runtime.instrumentation.CreateClassResetClassAdapter - Creating brand-new static initializer in class com/google/javascript/rhino/jstype/StringType
+19:12:13.164 [main] INFO org.evosuite.runtime.instrumentation.EvoClassLoader - Keeping class: com.google.javascript.rhino.jstype.StringType
+19:12:13.165 [main] INFO org.evosuite.runtime.instrumentation.EvoClassLoader - Seeing class for first time: com.google.javascript.rhino.jstype.ObjectType$Property
+19:12:13.165 [main] INFO org.evosuite.runtime.instrumentation.EvoClassLoader - Instrumenting class 'com.google.javascript.rhino.jstype.ObjectType$Property'.
+19:12:13.165 [main] INFO org.evosuite.runtime.instrumentation.MethodCallReplacementClassAdapter - Adding mock interface to class com/google/javascript/rhino/jstype/ObjectType$Property
+19:12:13.166 [main] INFO org.evosuite.runtime.instrumentation.CreateClassResetClassAdapter - Creating brand-new static initializer in class com/google/javascript/rhino/jstype/ObjectType$Property
+19:12:13.166 [main] INFO org.evosuite.runtime.instrumentation.EvoClassLoader - Keeping class: com.google.javascript.rhino.jstype.ObjectType$Property
+19:12:13.166 [main] INFO org.evosuite.runtime.instrumentation.EvoClassLoader - Seeing class for first time: com.google.javascript.rhino.jstype.JSTypeRegistry
+19:12:13.166 [main] INFO org.evosuite.runtime.instrumentation.EvoClassLoader - Instrumenting class 'com.google.javascript.rhino.jstype.JSTypeRegistry'.
+19:12:13.167 [main] INFO org.evosuite.runtime.instrumentation.MethodCallReplacementClassAdapter - Adding mock interface to class com/google/javascript/rhino/jstype/JSTypeRegistry
+19:12:13.171 [main] INFO org.evosuite.runtime.instrumentation.CreateClassResetClassAdapter - Creating brand-new static initializer in class com/google/javascript/rhino/jstype/JSTypeRegistry
+19:12:13.171 [main] INFO org.evosuite.runtime.instrumentation.CreateClassResetClassAdapter - Adding bytecode for initializing field PROPERTY_CHECKING_UNION_SIZE
+19:12:13.172 [main] INFO org.evosuite.runtime.instrumentation.EvoClassLoader - Keeping class: com.google.javascript.rhino.jstype.JSTypeRegistry
+19:12:13.172 [main] INFO org.evosuite.runtime.instrumentation.EvoClassLoader - Seeing class for first time: com.google.javascript.rhino.jstype.AllType
+19:12:13.172 [main] INFO org.evosuite.runtime.instrumentation.EvoClassLoader - Instrumenting class 'com.google.javascript.rhino.jstype.AllType'.
+19:12:13.176 [main] INFO org.evosuite.runtime.instrumentation.MethodCallReplacementClassAdapter - Adding mock interface to class com/google/javascript/rhino/jstype/AllType
+19:12:13.177 [main] INFO org.evosuite.runtime.instrumentation.CreateClassResetClassAdapter - Creating brand-new static initializer in class com/google/javascript/rhino/jstype/AllType
+19:12:13.177 [main] INFO org.evosuite.runtime.instrumentation.EvoClassLoader - Keeping class: com.google.javascript.rhino.jstype.AllType
+19:12:13.178 [main] INFO org.evosuite.runtime.instrumentation.EvoClassLoader - Seeing class for first time: com.google.javascript.rhino.jstype.RecordTypeBuilder$RecordProperty
+19:12:13.178 [main] INFO org.evosuite.runtime.instrumentation.EvoClassLoader - Instrumenting class 'com.google.javascript.rhino.jstype.RecordTypeBuilder$RecordProperty'.
+19:12:13.178 [main] INFO org.evosuite.runtime.instrumentation.MethodCallReplacementClassAdapter - Adding mock interface to class com/google/javascript/rhino/jstype/RecordTypeBuilder$RecordProperty
+19:12:13.178 [main] INFO org.evosuite.runtime.instrumentation.CreateClassResetClassAdapter - Creating brand-new static initializer in class com/google/javascript/rhino/jstype/RecordTypeBuilder$RecordProperty
+19:12:13.178 [main] INFO org.evosuite.runtime.instrumentation.EvoClassLoader - Keeping class: com.google.javascript.rhino.jstype.RecordTypeBuilder$RecordProperty
+19:12:13.178 [main] INFO org.evosuite.runtime.instrumentation.EvoClassLoader - Seeing class for first time: com.google.javascript.rhino.jstype.Visitor
+19:12:13.178 [main] INFO org.evosuite.runtime.instrumentation.EvoClassLoader - Instrumenting class 'com.google.javascript.rhino.jstype.Visitor'.
+19:12:13.179 [main] INFO org.evosuite.runtime.instrumentation.EvoClassLoader - Keeping class: com.google.javascript.rhino.jstype.Visitor
+19:12:13.179 [main] INFO org.evosuite.runtime.instrumentation.EvoClassLoader - Seeing class for first time: com.google.javascript.rhino.jstype.JSTypeNative
+19:12:13.179 [main] INFO org.evosuite.runtime.instrumentation.EvoClassLoader - Instrumenting class 'com.google.javascript.rhino.jstype.JSTypeNative'.
+19:12:13.180 [main] INFO org.evosuite.runtime.instrumentation.MethodCallReplacementClassAdapter - Adding mock interface to class com/google/javascript/rhino/jstype/JSTypeNative
+19:12:13.180 [main] INFO org.evosuite.runtime.instrumentation.CreateClassResetClassAdapter - Found static initializer in class com/google/javascript/rhino/jstype/JSTypeNative
+19:12:13.180 [main] INFO org.evosuite.runtime.instrumentation.EvoClassLoader - Keeping class: com.google.javascript.rhino.jstype.JSTypeNative
+19:12:13.181 [main] INFO org.evosuite.runtime.instrumentation.EvoClassLoader - Seeing class for first time: com.google.common.collect.Maps
+19:12:13.181 [main] INFO org.evosuite.runtime.instrumentation.EvoClassLoader - Instrumenting class 'com.google.common.collect.Maps'.
+19:12:13.182 [main] INFO org.evosuite.runtime.instrumentation.MethodCallReplacementClassAdapter - Adding mock interface to class com/google/common/collect/Maps
+19:12:13.183 [main] INFO org.evosuite.runtime.instrumentation.CreateClassResetClassAdapter - Found static initializer in class com/google/common/collect/Maps
+19:12:13.184 [main] INFO org.evosuite.runtime.instrumentation.EvoClassLoader - Keeping class: com.google.common.collect.Maps
+19:12:13.184 [main] INFO org.evosuite.runtime.instrumentation.EvoClassLoader - Seeing class for first time: com.google.common.collect.Maps$EntryTransformer
+19:12:13.184 [main] INFO org.evosuite.runtime.instrumentation.EvoClassLoader - Instrumenting class 'com.google.common.collect.Maps$EntryTransformer'.
+19:12:13.184 [main] INFO org.evosuite.runtime.instrumentation.EvoClassLoader - Keeping class: com.google.common.collect.Maps$EntryTransformer
+19:12:13.185 [main] INFO org.evosuite.runtime.instrumentation.EvoClassLoader - Seeing class for first time: com.google.javascript.rhino.jstype.FunctionType$Kind
+19:12:13.185 [main] INFO org.evosuite.runtime.instrumentation.EvoClassLoader - Instrumenting class 'com.google.javascript.rhino.jstype.FunctionType$Kind'.
+19:12:13.185 [main] INFO org.evosuite.runtime.instrumentation.MethodCallReplacementClassAdapter - Adding mock interface to class com/google/javascript/rhino/jstype/FunctionType$Kind
+19:12:13.185 [main] INFO org.evosuite.runtime.instrumentation.CreateClassResetClassAdapter - Found static initializer in class com/google/javascript/rhino/jstype/FunctionType$Kind
+19:12:13.186 [main] INFO org.evosuite.runtime.instrumentation.EvoClassLoader - Keeping class: com.google.javascript.rhino.jstype.FunctionType$Kind
+19:12:13.186 [main] INFO org.evosuite.runtime.instrumentation.EvoClassLoader - Seeing class for first time: com.google.javascript.rhino.JSTypeExpression
+19:12:13.186 [main] INFO org.evosuite.runtime.instrumentation.EvoClassLoader - Instrumenting class 'com.google.javascript.rhino.JSTypeExpression'.
+19:12:13.186 [main] INFO org.evosuite.runtime.instrumentation.MethodCallReplacementClassAdapter - Adding mock interface to class com/google/javascript/rhino/JSTypeExpression
+19:12:13.186 [main] INFO org.evosuite.runtime.instrumentation.CreateClassResetClassAdapter - Creating brand-new static initializer in class com/google/javascript/rhino/JSTypeExpression
+19:12:13.187 [main] INFO org.evosuite.runtime.instrumentation.EvoClassLoader - Keeping class: com.google.javascript.rhino.JSTypeExpression
+19:12:13.188 [main] INFO org.evosuite.runtime.instrumentation.EvoClassLoader - Seeing class for first time: com.google.javascript.rhino.JSDocInfo$Marker
+19:12:13.189 [main] INFO org.evosuite.runtime.instrumentation.EvoClassLoader - Instrumenting class 'com.google.javascript.rhino.JSDocInfo$Marker'.
+19:12:13.189 [main] INFO org.evosuite.runtime.instrumentation.MethodCallReplacementClassAdapter - Adding mock interface to class com/google/javascript/rhino/JSDocInfo$Marker
+19:12:13.189 [main] INFO org.evosuite.runtime.instrumentation.CreateClassResetClassAdapter - Creating brand-new static initializer in class com/google/javascript/rhino/JSDocInfo$Marker
+19:12:13.190 [main] INFO org.evosuite.runtime.instrumentation.EvoClassLoader - Keeping class: com.google.javascript.rhino.JSDocInfo$Marker
+19:12:13.190 [main] INFO org.evosuite.runtime.instrumentation.EvoClassLoader - Seeing class for first time: com.google.common.collect.ImmutableSet$Builder
+19:12:13.190 [main] INFO org.evosuite.runtime.instrumentation.EvoClassLoader - Instrumenting class 'com.google.common.collect.ImmutableSet$Builder'.
+19:12:13.190 [main] INFO org.evosuite.runtime.instrumentation.MethodCallReplacementClassAdapter - Adding mock interface to class com/google/common/collect/ImmutableSet$Builder
+19:12:13.191 [main] INFO org.evosuite.runtime.instrumentation.CreateClassResetClassAdapter - Creating brand-new static initializer in class com/google/common/collect/ImmutableSet$Builder
+19:12:13.191 [main] INFO org.evosuite.runtime.instrumentation.EvoClassLoader - Keeping class: com.google.common.collect.ImmutableSet$Builder
+19:12:13.191 [main] INFO org.evosuite.runtime.instrumentation.EvoClassLoader - Seeing class for first time: com.google.common.collect.Sets$InvertibleFunction
+19:12:13.191 [main] INFO org.evosuite.runtime.instrumentation.EvoClassLoader - Instrumenting class 'com.google.common.collect.Sets$InvertibleFunction'.
+19:12:13.192 [main] INFO org.evosuite.runtime.instrumentation.MethodCallReplacementClassAdapter - Adding mock interface to class com/google/common/collect/Sets$InvertibleFunction
+19:12:13.192 [main] INFO org.evosuite.runtime.instrumentation.CreateClassResetClassAdapter - Creating brand-new static initializer in class com/google/common/collect/Sets$InvertibleFunction
+19:12:13.192 [main] INFO org.evosuite.runtime.instrumentation.EvoClassLoader - Keeping class: com.google.common.collect.Sets$InvertibleFunction
+19:12:13.193 [main] INFO org.evosuite.runtime.instrumentation.EvoClassLoader - Seeing class for first time: com.google.common.base.Equivalence
+19:12:13.194 [main] INFO org.evosuite.runtime.instrumentation.EvoClassLoader - Instrumenting class 'com.google.common.base.Equivalence'.
+19:12:13.194 [main] INFO org.evosuite.runtime.instrumentation.MethodCallReplacementClassAdapter - Adding mock interface to class com/google/common/base/Equivalence
+19:12:13.194 [main] INFO org.evosuite.runtime.instrumentation.CreateClassResetClassAdapter - Creating brand-new static initializer in class com/google/common/base/Equivalence
+19:12:13.194 [main] INFO org.evosuite.runtime.instrumentation.EvoClassLoader - Keeping class: com.google.common.base.Equivalence
+19:12:13.195 [main] INFO org.evosuite.runtime.instrumentation.EvoClassLoader - Seeing class for first time: com.google.common.collect.ImmutableMap
+19:12:13.195 [main] INFO org.evosuite.runtime.instrumentation.EvoClassLoader - Instrumenting class 'com.google.common.collect.ImmutableMap'.
+19:12:13.195 [main] INFO org.evosuite.runtime.instrumentation.MethodCallReplacementClassAdapter - Adding mock interface to class com/google/common/collect/ImmutableMap
+19:12:13.195 [main] INFO org.evosuite.runtime.instrumentation.CreateClassResetClassAdapter - Creating brand-new static initializer in class com/google/common/collect/ImmutableMap
+19:12:13.196 [main] INFO org.evosuite.runtime.instrumentation.EvoClassLoader - Keeping class: com.google.common.collect.ImmutableMap
+19:12:13.196 [main] INFO org.evosuite.runtime.instrumentation.EvoClassLoader - Seeing class for first time: com.google.common.collect.Maps$AbstractFilteredMap
+19:12:13.196 [main] INFO org.evosuite.runtime.instrumentation.EvoClassLoader - Instrumenting class 'com.google.common.collect.Maps$AbstractFilteredMap'.
+19:12:13.196 [main] INFO org.evosuite.runtime.instrumentation.MethodCallReplacementClassAdapter - Adding mock interface to class com/google/common/collect/Maps$AbstractFilteredMap
+19:12:13.196 [main] INFO org.evosuite.runtime.instrumentation.CreateClassResetClassAdapter - Creating brand-new static initializer in class com/google/common/collect/Maps$AbstractFilteredMap
+19:12:13.196 [main] INFO org.evosuite.runtime.instrumentation.EvoClassLoader - Keeping class: com.google.common.collect.Maps$AbstractFilteredMap
+.19:12:13.206 [main] INFO org.evosuite.runtime.instrumentation.EvoClassLoader - Seeing class for first time: com.google.common.collect.ImmutableCollection$1
+19:12:13.206 [main] INFO org.evosuite.runtime.instrumentation.EvoClassLoader - Instrumenting class 'com.google.common.collect.ImmutableCollection$1'.
+19:12:13.206 [main] INFO org.evosuite.runtime.instrumentation.MethodCallReplacementClassAdapter - Adding mock interface to class com/google/common/collect/ImmutableCollection$1
+19:12:13.206 [main] INFO org.evosuite.runtime.instrumentation.EvoClassLoader - Keeping class: com.google.common.collect.ImmutableCollection$1
+19:12:13.206 [main] INFO org.evosuite.runtime.instrumentation.EvoClassLoader - Seeing class for first time: com.google.common.collect.ImmutableCollection$SerializedForm
+19:12:13.206 [main] INFO org.evosuite.runtime.instrumentation.EvoClassLoader - Instrumenting class 'com.google.common.collect.ImmutableCollection$SerializedForm'.
+19:12:13.207 [main] INFO org.evosuite.runtime.instrumentation.MethodCallReplacementClassAdapter - Adding mock interface to class com/google/common/collect/ImmutableCollection$SerializedForm
+19:12:13.207 [main] INFO org.evosuite.runtime.instrumentation.CreateClassResetClassAdapter - Creating brand-new static initializer in class com/google/common/collect/ImmutableCollection$SerializedForm
+19:12:13.208 [main] INFO org.evosuite.runtime.instrumentation.EvoClassLoader - Keeping class: com.google.common.collect.ImmutableCollection$SerializedForm
+19:12:13.208 [main] INFO org.evosuite.runtime.instrumentation.EvoClassLoader - Seeing class for first time: com.google.common.collect.ImmutableCollection$ArrayImmutableCollection
+19:12:13.208 [main] INFO org.evosuite.runtime.instrumentation.EvoClassLoader - Instrumenting class 'com.google.common.collect.ImmutableCollection$ArrayImmutableCollection'.
+19:12:13.208 [main] INFO org.evosuite.runtime.instrumentation.MethodCallReplacementClassAdapter - Adding mock interface to class com/google/common/collect/ImmutableCollection$ArrayImmutableCollection
+19:12:13.209 [main] INFO org.evosuite.runtime.instrumentation.CreateClassResetClassAdapter - Creating brand-new static initializer in class com/google/common/collect/ImmutableCollection$ArrayImmutableCollection
+19:12:13.209 [main] INFO org.evosuite.runtime.instrumentation.EvoClassLoader - Keeping class: com.google.common.collect.ImmutableCollection$ArrayImmutableCollection
+19:12:13.214 [main] INFO org.evosuite.runtime.instrumentation.EvoClassLoader - Seeing class for first time: com.google.javascript.rhino.jstype.JSType$2
+19:12:13.214 [main] INFO org.evosuite.runtime.instrumentation.EvoClassLoader - Instrumenting class 'com.google.javascript.rhino.jstype.JSType$2'.
+19:12:13.221 [main] INFO org.evosuite.runtime.instrumentation.MethodCallReplacementClassAdapter - Adding mock interface to class com/google/javascript/rhino/jstype/JSType$2
+19:12:13.222 [main] INFO org.evosuite.runtime.instrumentation.EvoClassLoader - Keeping class: com.google.javascript.rhino.jstype.JSType$2
+19:12:13.222 [main] INFO org.evosuite.runtime.instrumentation.EvoClassLoader - Seeing class for first time: com.google.javascript.rhino.jstype.SimpleSlot
+19:12:13.222 [main] INFO org.evosuite.runtime.instrumentation.EvoClassLoader - Instrumenting class 'com.google.javascript.rhino.jstype.SimpleSlot'.
+19:12:13.222 [main] INFO org.evosuite.runtime.instrumentation.MethodCallReplacementClassAdapter - Adding mock interface to class com/google/javascript/rhino/jstype/SimpleSlot
+19:12:13.223 [main] INFO org.evosuite.runtime.instrumentation.CreateClassResetClassAdapter - Creating brand-new static initializer in class com/google/javascript/rhino/jstype/SimpleSlot
+19:12:13.223 [main] INFO org.evosuite.runtime.instrumentation.EvoClassLoader - Keeping class: com.google.javascript.rhino.jstype.SimpleSlot
+19:12:13.223 [main] INFO org.evosuite.runtime.instrumentation.EvoClassLoader - Seeing class for first time: com.google.common.collect.ForwardingObject
+19:12:13.223 [main] INFO org.evosuite.runtime.instrumentation.EvoClassLoader - Instrumenting class 'com.google.common.collect.ForwardingObject'.
+19:12:13.223 [main] INFO org.evosuite.runtime.instrumentation.MethodCallReplacementClassAdapter - Adding mock interface to class com/google/common/collect/ForwardingObject
+19:12:13.223 [main] INFO org.evosuite.runtime.instrumentation.CreateClassResetClassAdapter - Creating brand-new static initializer in class com/google/common/collect/ForwardingObject
+19:12:13.223 [main] INFO org.evosuite.runtime.instrumentation.EvoClassLoader - Keeping class: com.google.common.collect.ForwardingObject
+19:12:13.224 [main] INFO org.evosuite.runtime.instrumentation.EvoClassLoader - Seeing class for first time: com.google.common.collect.ForwardingCollection
+19:12:13.224 [main] INFO org.evosuite.runtime.instrumentation.EvoClassLoader - Instrumenting class 'com.google.common.collect.ForwardingCollection'.
+19:12:13.224 [main] INFO org.evosuite.runtime.instrumentation.MethodCallReplacementClassAdapter - Adding mock interface to class com/google/common/collect/ForwardingCollection
+19:12:13.224 [main] INFO org.evosuite.runtime.instrumentation.CreateClassResetClassAdapter - Creating brand-new static initializer in class com/google/common/collect/ForwardingCollection
+19:12:13.224 [main] INFO org.evosuite.runtime.instrumentation.EvoClassLoader - Keeping class: com.google.common.collect.ForwardingCollection
+19:12:13.225 [main] INFO org.evosuite.runtime.instrumentation.EvoClassLoader - Seeing class for first time: com.google.common.collect.ForwardingSet
+19:12:13.225 [main] INFO org.evosuite.runtime.instrumentation.EvoClassLoader - Instrumenting class 'com.google.common.collect.ForwardingSet'.
+19:12:13.225 [main] INFO org.evosuite.runtime.instrumentation.MethodCallReplacementClassAdapter - Adding mock interface to class com/google/common/collect/ForwardingSet
+19:12:13.225 [main] INFO org.evosuite.runtime.instrumentation.CreateClassResetClassAdapter - Creating brand-new static initializer in class com/google/common/collect/ForwardingSet
+19:12:13.225 [main] INFO org.evosuite.runtime.instrumentation.EvoClassLoader - Keeping class: com.google.common.collect.ForwardingSet
+19:12:13.225 [main] INFO org.evosuite.runtime.instrumentation.EvoClassLoader - Seeing class for first time: com.google.common.collect.LinkedHashMultimap$SetDecorator
+19:12:13.225 [main] INFO org.evosuite.runtime.instrumentation.EvoClassLoader - Instrumenting class 'com.google.common.collect.LinkedHashMultimap$SetDecorator'.
+19:12:13.226 [main] INFO org.evosuite.runtime.instrumentation.MethodCallReplacementClassAdapter - Adding mock interface to class com/google/common/collect/LinkedHashMultimap$SetDecorator
+19:12:13.226 [main] INFO org.evosuite.runtime.instrumentation.CreateClassResetClassAdapter - Creating brand-new static initializer in class com/google/common/collect/LinkedHashMultimap$SetDecorator
+19:12:13.226 [main] INFO org.evosuite.runtime.instrumentation.EvoClassLoader - Keeping class: com.google.common.collect.LinkedHashMultimap$SetDecorator
+19:12:13.227 [main] INFO org.evosuite.runtime.instrumentation.EvoClassLoader - Seeing class for first time: com.google.common.collect.AbstractMapEntry
+19:12:13.227 [main] INFO org.evosuite.runtime.instrumentation.EvoClassLoader - Instrumenting class 'com.google.common.collect.AbstractMapEntry'.
+19:12:13.227 [main] INFO org.evosuite.runtime.instrumentation.MethodCallReplacementClassAdapter - Adding mock interface to class com/google/common/collect/AbstractMapEntry
+19:12:13.227 [main] INFO org.evosuite.runtime.instrumentation.CreateClassResetClassAdapter - Creating brand-new static initializer in class com/google/common/collect/AbstractMapEntry
+19:12:13.227 [main] INFO org.evosuite.runtime.instrumentation.EvoClassLoader - Keeping class: com.google.common.collect.AbstractMapEntry
+19:12:13.228 [main] INFO org.evosuite.runtime.instrumentation.EvoClassLoader - Seeing class for first time: com.google.common.collect.ImmutableEntry
+19:12:13.228 [main] INFO org.evosuite.runtime.instrumentation.EvoClassLoader - Instrumenting class 'com.google.common.collect.ImmutableEntry'.
+19:12:13.228 [main] INFO org.evosuite.runtime.instrumentation.MethodCallReplacementClassAdapter - Adding mock interface to class com/google/common/collect/ImmutableEntry
+19:12:13.228 [main] INFO org.evosuite.runtime.instrumentation.CreateClassResetClassAdapter - Creating brand-new static initializer in class com/google/common/collect/ImmutableEntry
+19:12:13.228 [main] INFO org.evosuite.runtime.instrumentation.EvoClassLoader - Keeping class: com.google.common.collect.ImmutableEntry
+19:12:13.229 [main] INFO org.evosuite.runtime.instrumentation.EvoClassLoader - Seeing class for first time: com.google.javascript.rhino.Token
+19:12:13.229 [main] INFO org.evosuite.runtime.instrumentation.EvoClassLoader - Instrumenting class 'com.google.javascript.rhino.Token'.
+19:12:13.229 [main] INFO org.evosuite.runtime.instrumentation.MethodCallReplacementClassAdapter - Adding mock interface to class com/google/javascript/rhino/Token
+19:12:13.230 [main] INFO org.evosuite.runtime.instrumentation.CreateClassResetClassAdapter - Creating brand-new static initializer in class com/google/javascript/rhino/Token
+19:12:13.230 [main] INFO org.evosuite.runtime.instrumentation.CreateClassResetClassAdapter - Adding bytecode for initializing field ERROR
+19:12:13.230 [main] INFO org.evosuite.runtime.instrumentation.CreateClassResetClassAdapter - Adding bytecode for initializing field RETURN
+19:12:13.230 [main] INFO org.evosuite.runtime.instrumentation.CreateClassResetClassAdapter - Adding bytecode for initializing field BITOR
+19:12:13.230 [main] INFO org.evosuite.runtime.instrumentation.CreateClassResetClassAdapter - Adding bytecode for initializing field BITXOR
+19:12:13.230 [main] INFO org.evosuite.runtime.instrumentation.CreateClassResetClassAdapter - Adding bytecode for initializing field BITAND
+19:12:13.230 [main] INFO org.evosuite.runtime.instrumentation.CreateClassResetClassAdapter - Adding bytecode for initializing field EQ
+19:12:13.230 [main] INFO org.evosuite.runtime.instrumentation.CreateClassResetClassAdapter - Adding bytecode for initializing field NE
+19:12:13.230 [main] INFO org.evosuite.runtime.instrumentation.CreateClassResetClassAdapter - Adding bytecode for initializing field LT
+19:12:13.230 [main] INFO org.evosuite.runtime.instrumentation.CreateClassResetClassAdapter - Adding bytecode for initializing field LE
+19:12:13.230 [main] INFO org.evosuite.runtime.instrumentation.CreateClassResetClassAdapter - Adding bytecode for initializing field GT
+19:12:13.230 [main] INFO org.evosuite.runtime.instrumentation.CreateClassResetClassAdapter - Adding bytecode for initializing field GE
+19:12:13.230 [main] INFO org.evosuite.runtime.instrumentation.CreateClassResetClassAdapter - Adding bytecode for initializing field LSH
+19:12:13.230 [main] INFO org.evosuite.runtime.instrumentation.CreateClassResetClassAdapter - Adding bytecode for initializing field RSH
+19:12:13.230 [main] INFO org.evosuite.runtime.instrumentation.CreateClassResetClassAdapter - Adding bytecode for initializing field URSH
+19:12:13.230 [main] INFO org.evosuite.runtime.instrumentation.CreateClassResetClassAdapter - Adding bytecode for initializing field ADD
+19:12:13.230 [main] INFO org.evosuite.runtime.instrumentation.CreateClassResetClassAdapter - Adding bytecode for initializing field SUB
+19:12:13.230 [main] INFO org.evosuite.runtime.instrumentation.CreateClassResetClassAdapter - Adding bytecode for initializing field MUL
+19:12:13.230 [main] INFO org.evosuite.runtime.instrumentation.CreateClassResetClassAdapter - Adding bytecode for initializing field DIV
+19:12:13.230 [main] INFO org.evosuite.runtime.instrumentation.CreateClassResetClassAdapter - Adding bytecode for initializing field MOD
+19:12:13.230 [main] INFO org.evosuite.runtime.instrumentation.CreateClassResetClassAdapter - Adding bytecode for initializing field NOT
+19:12:13.230 [main] INFO org.evosuite.runtime.instrumentation.CreateClassResetClassAdapter - Adding bytecode for initializing field BITNOT
+19:12:13.230 [main] INFO org.evosuite.runtime.instrumentation.CreateClassResetClassAdapter - Adding bytecode for initializing field POS
+19:12:13.230 [main] INFO org.evosuite.runtime.instrumentation.CreateClassResetClassAdapter - Adding bytecode for initializing field NEG
+19:12:13.230 [main] INFO org.evosuite.runtime.instrumentation.CreateClassResetClassAdapter - Adding bytecode for initializing field NEW
+19:12:13.230 [main] INFO org.evosuite.runtime.instrumentation.CreateClassResetClassAdapter - Adding bytecode for initializing field DELPROP
+19:12:13.230 [main] INFO org.evosuite.runtime.instrumentation.CreateClassResetClassAdapter - Adding bytecode for initializing field TYPEOF
+19:12:13.230 [main] INFO org.evosuite.runtime.instrumentation.CreateClassResetClassAdapter - Adding bytecode for initializing field GETPROP
+19:12:13.230 [main] INFO org.evosuite.runtime.instrumentation.CreateClassResetClassAdapter - Adding bytecode for initializing field GETELEM
+19:12:13.230 [main] INFO org.evosuite.runtime.instrumentation.CreateClassResetClassAdapter - Adding bytecode for initializing field CALL
+19:12:13.230 [main] INFO org.evosuite.runtime.instrumentation.CreateClassResetClassAdapter - Adding bytecode for initializing field NAME
+19:12:13.230 [main] INFO org.evosuite.runtime.instrumentation.CreateClassResetClassAdapter - Adding bytecode for initializing field NUMBER
+19:12:13.230 [main] INFO org.evosuite.runtime.instrumentation.CreateClassResetClassAdapter - Adding bytecode for initializing field STRING
+19:12:13.230 [main] INFO org.evosuite.runtime.instrumentation.CreateClassResetClassAdapter - Adding bytecode for initializing field NULL
+19:12:13.230 [main] INFO org.evosuite.runtime.instrumentation.CreateClassResetClassAdapter - Adding bytecode for initializing field THIS
+19:12:13.230 [main] INFO org.evosuite.runtime.instrumentation.CreateClassResetClassAdapter - Adding bytecode for initializing field FALSE
+19:12:13.230 [main] INFO org.evosuite.runtime.instrumentation.CreateClassResetClassAdapter - Adding bytecode for initializing field TRUE
+19:12:13.230 [main] INFO org.evosuite.runtime.instrumentation.CreateClassResetClassAdapter - Adding bytecode for initializing field SHEQ
+19:12:13.230 [main] INFO org.evosuite.runtime.instrumentation.CreateClassResetClassAdapter - Adding bytecode for initializing field SHNE
+19:12:13.230 [main] INFO org.evosuite.runtime.instrumentation.CreateClassResetClassAdapter - Adding bytecode for initializing field REGEXP
+19:12:13.230 [main] INFO org.evosuite.runtime.instrumentation.CreateClassResetClassAdapter - Adding bytecode for initializing field THROW
+19:12:13.230 [main] INFO org.evosuite.runtime.instrumentation.CreateClassResetClassAdapter - Adding bytecode for initializing field IN
+19:12:13.230 [main] INFO org.evosuite.runtime.instrumentation.CreateClassResetClassAdapter - Adding bytecode for initializing field INSTANCEOF
+19:12:13.230 [main] INFO org.evosuite.runtime.instrumentation.CreateClassResetClassAdapter - Adding bytecode for initializing field ARRAYLIT
+19:12:13.230 [main] INFO org.evosuite.runtime.instrumentation.CreateClassResetClassAdapter - Adding bytecode for initializing field OBJECTLIT
+19:12:13.230 [main] INFO org.evosuite.runtime.instrumentation.CreateClassResetClassAdapter - Adding bytecode for initializing field TRY
+19:12:13.230 [main] INFO org.evosuite.runtime.instrumentation.CreateClassResetClassAdapter - Adding bytecode for initializing field PARAM_LIST
+19:12:13.230 [main] INFO org.evosuite.runtime.instrumentation.CreateClassResetClassAdapter - Adding bytecode for initializing field COMMA
+19:12:13.230 [main] INFO org.evosuite.runtime.instrumentation.CreateClassResetClassAdapter - Adding bytecode for initializing field ASSIGN
+19:12:13.230 [main] INFO org.evosuite.runtime.instrumentation.CreateClassResetClassAdapter - Adding bytecode for initializing field ASSIGN_BITOR
+19:12:13.230 [main] INFO org.evosuite.runtime.instrumentation.CreateClassResetClassAdapter - Adding bytecode for initializing field ASSIGN_BITXOR
+19:12:13.230 [main] INFO org.evosuite.runtime.instrumentation.CreateClassResetClassAdapter - Adding bytecode for initializing field ASSIGN_BITAND
+19:12:13.230 [main] INFO org.evosuite.runtime.instrumentation.CreateClassResetClassAdapter - Adding bytecode for initializing field ASSIGN_LSH
+19:12:13.230 [main] INFO org.evosuite.runtime.instrumentation.CreateClassResetClassAdapter - Adding bytecode for initializing field ASSIGN_RSH
+19:12:13.230 [main] INFO org.evosuite.runtime.instrumentation.CreateClassResetClassAdapter - Adding bytecode for initializing field ASSIGN_URSH
+19:12:13.230 [main] INFO org.evosuite.runtime.instrumentation.CreateClassResetClassAdapter - Adding bytecode for initializing field ASSIGN_ADD
+19:12:13.230 [main] INFO org.evosuite.runtime.instrumentation.CreateClassResetClassAdapter - Adding bytecode for initializing field ASSIGN_SUB
+19:12:13.230 [main] INFO org.evosuite.runtime.instrumentation.CreateClassResetClassAdapter - Adding bytecode for initializing field ASSIGN_MUL
+19:12:13.230 [main] INFO org.evosuite.runtime.instrumentation.CreateClassResetClassAdapter - Adding bytecode for initializing field ASSIGN_DIV
+19:12:13.230 [main] INFO org.evosuite.runtime.instrumentation.CreateClassResetClassAdapter - Adding bytecode for initializing field ASSIGN_MOD
+19:12:13.230 [main] INFO org.evosuite.runtime.instrumentation.CreateClassResetClassAdapter - Adding bytecode for initializing field HOOK
+19:12:13.230 [main] INFO org.evosuite.runtime.instrumentation.CreateClassResetClassAdapter - Adding bytecode for initializing field OR
+19:12:13.230 [main] INFO org.evosuite.runtime.instrumentation.CreateClassResetClassAdapter - Adding bytecode for initializing field AND
+19:12:13.230 [main] INFO org.evosuite.runtime.instrumentation.CreateClassResetClassAdapter - Adding bytecode for initializing field INC
+19:12:13.230 [main] INFO org.evosuite.runtime.instrumentation.CreateClassResetClassAdapter - Adding bytecode for initializing field DEC
+19:12:13.230 [main] INFO org.evosuite.runtime.instrumentation.CreateClassResetClassAdapter - Adding bytecode for initializing field FUNCTION
+19:12:13.230 [main] INFO org.evosuite.runtime.instrumentation.CreateClassResetClassAdapter - Adding bytecode for initializing field IF
+19:12:13.230 [main] INFO org.evosuite.runtime.instrumentation.CreateClassResetClassAdapter - Adding bytecode for initializing field SWITCH
+19:12:13.230 [main] INFO org.evosuite.runtime.instrumentation.CreateClassResetClassAdapter - Adding bytecode for initializing field CASE
+19:12:13.230 [main] INFO org.evosuite.runtime.instrumentation.CreateClassResetClassAdapter - Adding bytecode for initializing field DEFAULT_CASE
+19:12:13.230 [main] INFO org.evosuite.runtime.instrumentation.CreateClassResetClassAdapter - Adding bytecode for initializing field WHILE
+19:12:13.230 [main] INFO org.evosuite.runtime.instrumentation.CreateClassResetClassAdapter - Adding bytecode for initializing field DO
+19:12:13.230 [main] INFO org.evosuite.runtime.instrumentation.CreateClassResetClassAdapter - Adding bytecode for initializing field FOR
+19:12:13.230 [main] INFO org.evosuite.runtime.instrumentation.CreateClassResetClassAdapter - Adding bytecode for initializing field BREAK
+19:12:13.230 [main] INFO org.evosuite.runtime.instrumentation.CreateClassResetClassAdapter - Adding bytecode for initializing field CONTINUE
+19:12:13.230 [main] INFO org.evosuite.runtime.instrumentation.CreateClassResetClassAdapter - Adding bytecode for initializing field VAR
+19:12:13.230 [main] INFO org.evosuite.runtime.instrumentation.CreateClassResetClassAdapter - Adding bytecode for initializing field WITH
+19:12:13.230 [main] INFO org.evosuite.runtime.instrumentation.CreateClassResetClassAdapter - Adding bytecode for initializing field CATCH
+19:12:13.230 [main] INFO org.evosuite.runtime.instrumentation.CreateClassResetClassAdapter - Adding bytecode for initializing field VOID
+19:12:13.230 [main] INFO org.evosuite.runtime.instrumentation.CreateClassResetClassAdapter - Adding bytecode for initializing field EMPTY
+19:12:13.230 [main] INFO org.evosuite.runtime.instrumentation.CreateClassResetClassAdapter - Adding bytecode for initializing field BLOCK
+19:12:13.230 [main] INFO org.evosuite.runtime.instrumentation.CreateClassResetClassAdapter - Adding bytecode for initializing field LABEL
+19:12:13.230 [main] INFO org.evosuite.runtime.instrumentation.CreateClassResetClassAdapter - Adding bytecode for initializing field EXPR_RESULT
+19:12:13.230 [main] INFO org.evosuite.runtime.instrumentation.CreateClassResetClassAdapter - Adding bytecode for initializing field SCRIPT
+19:12:13.230 [main] INFO org.evosuite.runtime.instrumentation.CreateClassResetClassAdapter - Adding bytecode for initializing field GETTER_DEF
+19:12:13.230 [main] INFO org.evosuite.runtime.instrumentation.CreateClassResetClassAdapter - Adding bytecode for initializing field SETTER_DEF
+19:12:13.230 [main] INFO org.evosuite.runtime.instrumentation.CreateClassResetClassAdapter - Adding bytecode for initializing field CONST
+19:12:13.230 [main] INFO org.evosuite.runtime.instrumentation.CreateClassResetClassAdapter - Adding bytecode for initializing field DEBUGGER
+19:12:13.230 [main] INFO org.evosuite.runtime.instrumentation.CreateClassResetClassAdapter - Adding bytecode for initializing field LABEL_NAME
+19:12:13.230 [main] INFO org.evosuite.runtime.instrumentation.CreateClassResetClassAdapter - Adding bytecode for initializing field ANNOTATION
+19:12:13.230 [main] INFO org.evosuite.runtime.instrumentation.CreateClassResetClassAdapter - Adding bytecode for initializing field PIPE
+19:12:13.230 [main] INFO org.evosuite.runtime.instrumentation.CreateClassResetClassAdapter - Adding bytecode for initializing field STAR
+19:12:13.230 [main] INFO org.evosuite.runtime.instrumentation.CreateClassResetClassAdapter - Adding bytecode for initializing field EOC
+19:12:13.230 [main] INFO org.evosuite.runtime.instrumentation.CreateClassResetClassAdapter - Adding bytecode for initializing field QMARK
+19:12:13.230 [main] INFO org.evosuite.runtime.instrumentation.CreateClassResetClassAdapter - Adding bytecode for initializing field ELLIPSIS
+19:12:13.230 [main] INFO org.evosuite.runtime.instrumentation.CreateClassResetClassAdapter - Adding bytecode for initializing field BANG
+19:12:13.230 [main] INFO org.evosuite.runtime.instrumentation.CreateClassResetClassAdapter - Adding bytecode for initializing field EQUALS
+19:12:13.230 [main] INFO org.evosuite.runtime.instrumentation.CreateClassResetClassAdapter - Adding bytecode for initializing field LB
+19:12:13.230 [main] INFO org.evosuite.runtime.instrumentation.CreateClassResetClassAdapter - Adding bytecode for initializing field LC
+19:12:13.230 [main] INFO org.evosuite.runtime.instrumentation.CreateClassResetClassAdapter - Adding bytecode for initializing field COLON
+19:12:13.230 [main] INFO org.evosuite.runtime.instrumentation.CreateClassResetClassAdapter - Adding bytecode for initializing field DEFAULT
+19:12:13.230 [main] INFO org.evosuite.runtime.instrumentation.CreateClassResetClassAdapter - Adding bytecode for initializing field GET
+19:12:13.230 [main] INFO org.evosuite.runtime.instrumentation.CreateClassResetClassAdapter - Adding bytecode for initializing field LP
+19:12:13.230 [main] INFO org.evosuite.runtime.instrumentation.CreateClassResetClassAdapter - Adding bytecode for initializing field SET
+19:12:13.231 [main] INFO org.evosuite.runtime.instrumentation.EvoClassLoader - Keeping class: com.google.javascript.rhino.Token
+19:12:13.231 [main] INFO org.evosuite.runtime.instrumentation.EvoClassLoader - Seeing class for first time: com.google.common.collect.Multimaps$Values
+19:12:13.231 [main] INFO org.evosuite.runtime.instrumentation.EvoClassLoader - Instrumenting class 'com.google.common.collect.Multimaps$Values'.
+19:12:13.232 [main] INFO org.evosuite.runtime.instrumentation.MethodCallReplacementClassAdapter - Adding mock interface to class com/google/common/collect/Multimaps$Values
+19:12:13.232 [main] INFO org.evosuite.runtime.instrumentation.CreateClassResetClassAdapter - Creating brand-new static initializer in class com/google/common/collect/Multimaps$Values
+19:12:13.232 [main] INFO org.evosuite.runtime.instrumentation.EvoClassLoader - Keeping class: com.google.common.collect.Multimaps$Values
+19:12:13.232 [main] INFO org.evosuite.runtime.instrumentation.EvoClassLoader - Seeing class for first time: com.google.common.collect.Multimaps
+19:12:13.232 [main] INFO org.evosuite.runtime.instrumentation.EvoClassLoader - Instrumenting class 'com.google.common.collect.Multimaps'.
+19:12:13.232 [main] INFO org.evosuite.runtime.instrumentation.MethodCallReplacementClassAdapter - Adding mock interface to class com/google/common/collect/Multimaps
+19:12:13.233 [main] INFO org.evosuite.runtime.instrumentation.CreateClassResetClassAdapter - Creating brand-new static initializer in class com/google/common/collect/Multimaps
+19:12:13.233 [main] INFO org.evosuite.runtime.instrumentation.EvoClassLoader - Keeping class: com.google.common.collect.Multimaps
+19:12:13.233 [main] INFO org.evosuite.runtime.instrumentation.EvoClassLoader - Seeing class for first time: com.google.common.collect.Multimaps$AsMap
+19:12:13.233 [main] INFO org.evosuite.runtime.instrumentation.EvoClassLoader - Instrumenting class 'com.google.common.collect.Multimaps$AsMap'.
+19:12:13.234 [main] INFO org.evosuite.runtime.instrumentation.MethodCallReplacementClassAdapter - Adding mock interface to class com/google/common/collect/Multimaps$AsMap
+19:12:13.234 [main] INFO org.evosuite.runtime.instrumentation.CreateClassResetClassAdapter - Creating brand-new static initializer in class com/google/common/collect/Multimaps$AsMap
+19:12:13.234 [main] INFO org.evosuite.runtime.instrumentation.EvoClassLoader - Seeing class for first time: com.google.common.collect.Maps$ImprovedAbstractMap
+19:12:13.234 [main] INFO org.evosuite.runtime.instrumentation.EvoClassLoader - Instrumenting class 'com.google.common.collect.Maps$ImprovedAbstractMap'.
+19:12:13.234 [main] INFO org.evosuite.runtime.instrumentation.MethodCallReplacementClassAdapter - Adding mock interface to class com/google/common/collect/Maps$ImprovedAbstractMap
+19:12:13.235 [main] INFO org.evosuite.runtime.instrumentation.CreateClassResetClassAdapter - Creating brand-new static initializer in class com/google/common/collect/Maps$ImprovedAbstractMap
+19:12:13.235 [main] INFO org.evosuite.runtime.instrumentation.EvoClassLoader - Keeping class: com.google.common.collect.Maps$ImprovedAbstractMap
+19:12:13.235 [main] INFO org.evosuite.runtime.instrumentation.EvoClassLoader - Keeping class: com.google.common.collect.Multimaps$AsMap
+19:12:13.235 [main] INFO org.evosuite.runtime.instrumentation.EvoClassLoader - Seeing class for first time: com.google.common.collect.Multimaps$EntrySet
+19:12:13.235 [main] INFO org.evosuite.runtime.instrumentation.EvoClassLoader - Instrumenting class 'com.google.common.collect.Multimaps$EntrySet'.
+19:12:13.235 [main] INFO org.evosuite.runtime.instrumentation.MethodCallReplacementClassAdapter - Adding mock interface to class com/google/common/collect/Multimaps$EntrySet
+19:12:13.235 [main] INFO org.evosuite.runtime.instrumentation.CreateClassResetClassAdapter - Creating brand-new static initializer in class com/google/common/collect/Multimaps$EntrySet
+19:12:13.235 [main] INFO org.evosuite.runtime.instrumentation.EvoClassLoader - Seeing class for first time: com.google.common.collect.Multimaps$Entries
+19:12:13.235 [main] INFO org.evosuite.runtime.instrumentation.EvoClassLoader - Instrumenting class 'com.google.common.collect.Multimaps$Entries'.
+19:12:13.235 [main] INFO org.evosuite.runtime.instrumentation.MethodCallReplacementClassAdapter - Adding mock interface to class com/google/common/collect/Multimaps$Entries
+19:12:13.236 [main] INFO org.evosuite.runtime.instrumentation.CreateClassResetClassAdapter - Creating brand-new static initializer in class com/google/common/collect/Multimaps$Entries
+19:12:13.236 [main] INFO org.evosuite.runtime.instrumentation.EvoClassLoader - Keeping class: com.google.common.collect.Multimaps$Entries
+19:12:13.236 [main] INFO org.evosuite.runtime.instrumentation.EvoClassLoader - Keeping class: com.google.common.collect.Multimaps$EntrySet
+19:12:13.236 [main] INFO org.evosuite.runtime.instrumentation.EvoClassLoader - Seeing class for first time: com.google.common.collect.AbstractMultimap$2
+19:12:13.236 [main] INFO org.evosuite.runtime.instrumentation.EvoClassLoader - Instrumenting class 'com.google.common.collect.AbstractMultimap$2'.
+19:12:13.236 [main] INFO org.evosuite.runtime.instrumentation.MethodCallReplacementClassAdapter - Adding mock interface to class com/google/common/collect/AbstractMultimap$2
+19:12:13.236 [main] INFO org.evosuite.runtime.instrumentation.EvoClassLoader - Keeping class: com.google.common.collect.AbstractMultimap$2
+19:12:13.237 [main] INFO org.evosuite.runtime.instrumentation.EvoClassLoader - Seeing class for first time: com.google.common.collect.AbstractMultimap$4
+19:12:13.237 [main] INFO org.evosuite.runtime.instrumentation.EvoClassLoader - Instrumenting class 'com.google.common.collect.AbstractMultimap$4'.
+19:12:13.237 [main] INFO org.evosuite.runtime.instrumentation.MethodCallReplacementClassAdapter - Adding mock interface to class com/google/common/collect/AbstractMultimap$4
+19:12:13.237 [main] INFO org.evosuite.runtime.instrumentation.EvoClassLoader - Keeping class: com.google.common.collect.AbstractMultimap$4
+19:12:13.237 [main] INFO org.evosuite.runtime.instrumentation.EvoClassLoader - Seeing class for first time: com.google.common.collect.AbstractMultimap$EntryIterator
+19:12:13.237 [main] INFO org.evosuite.runtime.instrumentation.EvoClassLoader - Instrumenting class 'com.google.common.collect.AbstractMultimap$EntryIterator'.
+19:12:13.237 [main] INFO org.evosuite.runtime.instrumentation.MethodCallReplacementClassAdapter - Adding mock interface to class com/google/common/collect/AbstractMultimap$EntryIterator
+19:12:13.238 [main] INFO org.evosuite.runtime.instrumentation.CreateClassResetClassAdapter - Creating brand-new static initializer in class com/google/common/collect/AbstractMultimap$EntryIterator
+19:12:13.238 [main] INFO org.evosuite.runtime.instrumentation.EvoClassLoader - Keeping class: com.google.common.collect.AbstractMultimap$EntryIterator
+19:12:13.238 [main] INFO org.evosuite.runtime.instrumentation.EvoClassLoader - Seeing class for first time: com.google.common.collect.Multimaps$Values$1
+19:12:13.238 [main] INFO org.evosuite.runtime.instrumentation.EvoClassLoader - Instrumenting class 'com.google.common.collect.Multimaps$Values$1'.
+19:12:13.238 [main] INFO org.evosuite.runtime.instrumentation.MethodCallReplacementClassAdapter - Adding mock interface to class com/google/common/collect/Multimaps$Values$1
+19:12:13.239 [main] INFO org.evosuite.runtime.instrumentation.EvoClassLoader - Keeping class: com.google.common.collect.Multimaps$Values$1
+19:12:13.239 [main] INFO org.evosuite.runtime.instrumentation.EvoClassLoader - Seeing class for first time: com.google.javascript.rhino.jstype.SimpleSourceFile
+19:12:13.239 [main] INFO org.evosuite.runtime.instrumentation.EvoClassLoader - Instrumenting class 'com.google.javascript.rhino.jstype.SimpleSourceFile'.
+19:12:13.239 [main] INFO org.evosuite.runtime.instrumentation.MethodCallReplacementClassAdapter - Adding mock interface to class com/google/javascript/rhino/jstype/SimpleSourceFile
+19:12:13.240 [main] INFO org.evosuite.runtime.instrumentation.CreateClassResetClassAdapter - Creating brand-new static initializer in class com/google/javascript/rhino/jstype/SimpleSourceFile
+19:12:13.240 [main] INFO org.evosuite.runtime.instrumentation.EvoClassLoader - Keeping class: com.google.javascript.rhino.jstype.SimpleSourceFile
+19:12:13.240 [main] INFO org.evosuite.runtime.instrumentation.EvoClassLoader - Seeing class for first time: com.google.common.collect.AbstractMultimap$WrappedSortedSet
+19:12:13.240 [main] INFO org.evosuite.runtime.instrumentation.EvoClassLoader - Instrumenting class 'com.google.common.collect.AbstractMultimap$WrappedSortedSet'.
+19:12:13.241 [main] INFO org.evosuite.runtime.instrumentation.MethodCallReplacementClassAdapter - Adding mock interface to class com/google/common/collect/AbstractMultimap$WrappedSortedSet
+19:12:13.241 [main] INFO org.evosuite.runtime.instrumentation.CreateClassResetClassAdapter - Creating brand-new static initializer in class com/google/common/collect/AbstractMultimap$WrappedSortedSet
+19:12:13.241 [main] INFO org.evosuite.runtime.instrumentation.EvoClassLoader - Keeping class: com.google.common.collect.AbstractMultimap$WrappedSortedSet
+19:12:13.241 [main] INFO org.evosuite.runtime.instrumentation.EvoClassLoader - Seeing class for first time: com.google.common.collect.AbstractMultimap$WrappedSet
+19:12:13.241 [main] INFO org.evosuite.runtime.instrumentation.EvoClassLoader - Instrumenting class 'com.google.common.collect.AbstractMultimap$WrappedSet'.
+19:12:13.242 [main] INFO org.evosuite.runtime.instrumentation.MethodCallReplacementClassAdapter - Adding mock interface to class com/google/common/collect/AbstractMultimap$WrappedSet
+19:12:13.242 [main] INFO org.evosuite.runtime.instrumentation.CreateClassResetClassAdapter - Creating brand-new static initializer in class com/google/common/collect/AbstractMultimap$WrappedSet
+19:12:13.242 [main] INFO org.evosuite.runtime.instrumentation.EvoClassLoader - Keeping class: com.google.common.collect.AbstractMultimap$WrappedSet
+19:12:13.242 [main] INFO org.evosuite.runtime.instrumentation.EvoClassLoader - Seeing class for first time: com.google.common.primitives.Ints
+19:12:13.242 [main] INFO org.evosuite.runtime.instrumentation.EvoClassLoader - Instrumenting class 'com.google.common.primitives.Ints'.
+19:12:13.251 [main] INFO org.evosuite.runtime.instrumentation.MethodCallReplacementClassAdapter - Adding mock interface to class com/google/common/primitives/Ints
+19:12:13.252 [main] INFO org.evosuite.runtime.instrumentation.CreateClassResetClassAdapter - Creating brand-new static initializer in class com/google/common/primitives/Ints
+19:12:13.252 [main] INFO org.evosuite.runtime.instrumentation.CreateClassResetClassAdapter - Adding bytecode for initializing field BYTES
+19:12:13.252 [main] INFO org.evosuite.runtime.instrumentation.CreateClassResetClassAdapter - Adding bytecode for initializing field MAX_POWER_OF_TWO
+19:12:13.252 [main] INFO org.evosuite.runtime.instrumentation.EvoClassLoader - Defined package (3): package com.google.common.primitives, 1398230951
+19:12:13.252 [main] INFO org.evosuite.runtime.instrumentation.EvoClassLoader - Keeping class: com.google.common.primitives.Ints
+19:12:13.253 [main] INFO org.evosuite.runtime.instrumentation.EvoClassLoader - Seeing class for first time: com.google.javascript.rhino.JSDocInfo$LazilyInitializedInfo
+19:12:13.253 [main] INFO org.evosuite.runtime.instrumentation.EvoClassLoader - Instrumenting class 'com.google.javascript.rhino.JSDocInfo$LazilyInitializedInfo'.
+19:12:13.253 [main] INFO org.evosuite.runtime.instrumentation.MethodCallReplacementClassAdapter - Adding mock interface to class com/google/javascript/rhino/JSDocInfo$LazilyInitializedInfo
+19:12:13.254 [main] INFO org.evosuite.runtime.instrumentation.CreateClassResetClassAdapter - Creating brand-new static initializer in class com/google/javascript/rhino/JSDocInfo$LazilyInitializedInfo
+19:12:13.254 [main] INFO org.evosuite.runtime.instrumentation.EvoClassLoader - Keeping class: com.google.javascript.rhino.JSDocInfo$LazilyInitializedInfo
+19:12:13.254 [main] INFO org.evosuite.runtime.instrumentation.EvoClassLoader - Seeing class for first time: com.google.javascript.rhino.JSDocInfo$1
+19:12:13.254 [main] INFO org.evosuite.runtime.instrumentation.EvoClassLoader - Instrumenting class 'com.google.javascript.rhino.JSDocInfo$1'.
+19:12:13.254 [main] INFO org.evosuite.runtime.instrumentation.MethodCallReplacementClassAdapter - Adding mock interface to class com/google/javascript/rhino/JSDocInfo$1
+19:12:13.254 [main] INFO org.evosuite.runtime.instrumentation.EvoClassLoader - Keeping class: com.google.javascript.rhino.JSDocInfo$1
+19:12:13.254 [main] INFO org.evosuite.runtime.instrumentation.EvoClassLoader - Seeing class for first time: com.google.javascript.rhino.JSDocInfo$TypePosition
+19:12:13.254 [main] INFO org.evosuite.runtime.instrumentation.EvoClassLoader - Instrumenting class 'com.google.javascript.rhino.JSDocInfo$TypePosition'.
+19:12:13.255 [main] INFO org.evosuite.runtime.instrumentation.MethodCallReplacementClassAdapter - Adding mock interface to class com/google/javascript/rhino/JSDocInfo$TypePosition
+19:12:13.255 [main] INFO org.evosuite.runtime.instrumentation.CreateClassResetClassAdapter - Creating brand-new static initializer in class com/google/javascript/rhino/JSDocInfo$TypePosition
+19:12:13.255 [main] INFO org.evosuite.runtime.instrumentation.EvoClassLoader - Seeing class for first time: com.google.javascript.rhino.SourcePosition
+19:12:13.255 [main] INFO org.evosuite.runtime.instrumentation.EvoClassLoader - Instrumenting class 'com.google.javascript.rhino.SourcePosition'.
+19:12:13.255 [main] INFO org.evosuite.runtime.instrumentation.MethodCallReplacementClassAdapter - Adding mock interface to class com/google/javascript/rhino/SourcePosition
+19:12:13.256 [main] INFO org.evosuite.runtime.instrumentation.CreateClassResetClassAdapter - Creating brand-new static initializer in class com/google/javascript/rhino/SourcePosition
+19:12:13.256 [main] INFO org.evosuite.runtime.instrumentation.EvoClassLoader - Keeping class: com.google.javascript.rhino.SourcePosition
+19:12:13.256 [main] INFO org.evosuite.runtime.instrumentation.EvoClassLoader - Keeping class: com.google.javascript.rhino.JSDocInfo$TypePosition
+19:12:13.256 [main] INFO org.evosuite.runtime.instrumentation.EvoClassLoader - Seeing class for first time: com.google.javascript.rhino.JSDocInfo$NamePosition
+19:12:13.256 [main] INFO org.evosuite.runtime.instrumentation.EvoClassLoader - Instrumenting class 'com.google.javascript.rhino.JSDocInfo$NamePosition'.
+19:12:13.257 [main] INFO org.evosuite.runtime.instrumentation.MethodCallReplacementClassAdapter - Adding mock interface to class com/google/javascript/rhino/JSDocInfo$NamePosition
+19:12:13.257 [main] INFO org.evosuite.runtime.instrumentation.CreateClassResetClassAdapter - Creating brand-new static initializer in class com/google/javascript/rhino/JSDocInfo$NamePosition
+19:12:13.257 [main] INFO org.evosuite.runtime.instrumentation.EvoClassLoader - Keeping class: com.google.javascript.rhino.JSDocInfo$NamePosition
+19:12:13.257 [main] INFO org.evosuite.runtime.instrumentation.EvoClassLoader - Seeing class for first time: com.google.javascript.rhino.JSDocInfo$TrimmedStringPosition
+19:12:13.257 [main] INFO org.evosuite.runtime.instrumentation.EvoClassLoader - Instrumenting class 'com.google.javascript.rhino.JSDocInfo$TrimmedStringPosition'.
+19:12:13.257 [main] INFO org.evosuite.runtime.instrumentation.MethodCallReplacementClassAdapter - Adding mock interface to class com/google/javascript/rhino/JSDocInfo$TrimmedStringPosition
+19:12:13.257 [main] INFO org.evosuite.runtime.instrumentation.CreateClassResetClassAdapter - Creating brand-new static initializer in class com/google/javascript/rhino/JSDocInfo$TrimmedStringPosition
+19:12:13.257 [main] INFO org.evosuite.runtime.instrumentation.EvoClassLoader - Seeing class for first time: com.google.javascript.rhino.JSDocInfo$StringPosition
+19:12:13.257 [main] INFO org.evosuite.runtime.instrumentation.EvoClassLoader - Instrumenting class 'com.google.javascript.rhino.JSDocInfo$StringPosition'.
+19:12:13.258 [main] INFO org.evosuite.runtime.instrumentation.MethodCallReplacementClassAdapter - Adding mock interface to class com/google/javascript/rhino/JSDocInfo$StringPosition
+19:12:13.258 [main] INFO org.evosuite.runtime.instrumentation.CreateClassResetClassAdapter - Creating brand-new static initializer in class com/google/javascript/rhino/JSDocInfo$StringPosition
+19:12:13.258 [main] INFO org.evosuite.runtime.instrumentation.EvoClassLoader - Keeping class: com.google.javascript.rhino.JSDocInfo$StringPosition
+19:12:13.258 [main] INFO org.evosuite.runtime.instrumentation.EvoClassLoader - Keeping class: com.google.javascript.rhino.JSDocInfo$TrimmedStringPosition
+19:12:13.258 [main] INFO org.evosuite.runtime.instrumentation.EvoClassLoader - Seeing class for first time: com.google.javascript.rhino.JSDocInfo$LazilyInitializedDocumentation
+19:12:13.258 [main] INFO org.evosuite.runtime.instrumentation.EvoClassLoader - Instrumenting class 'com.google.javascript.rhino.JSDocInfo$LazilyInitializedDocumentation'.
+19:12:13.258 [main] INFO org.evosuite.runtime.instrumentation.MethodCallReplacementClassAdapter - Adding mock interface to class com/google/javascript/rhino/JSDocInfo$LazilyInitializedDocumentation
+19:12:13.258 [main] INFO org.evosuite.runtime.instrumentation.CreateClassResetClassAdapter - Creating brand-new static initializer in class com/google/javascript/rhino/JSDocInfo$LazilyInitializedDocumentation
+19:12:13.259 [main] INFO org.evosuite.runtime.instrumentation.EvoClassLoader - Keeping class: com.google.javascript.rhino.JSDocInfo$LazilyInitializedDocumentation
+19:12:13.259 [main] INFO org.evosuite.runtime.instrumentation.EvoClassLoader - Seeing class for first time: com.google.common.collect.AbstractMultimap$WrappedCollection$WrappedIterator
+19:12:13.259 [main] INFO org.evosuite.runtime.instrumentation.EvoClassLoader - Instrumenting class 'com.google.common.collect.AbstractMultimap$WrappedCollection$WrappedIterator'.
+19:12:13.259 [main] INFO org.evosuite.runtime.instrumentation.MethodCallReplacementClassAdapter - Adding mock interface to class com/google/common/collect/AbstractMultimap$WrappedCollection$WrappedIterator
+19:12:13.260 [main] INFO org.evosuite.runtime.instrumentation.CreateClassResetClassAdapter - Creating brand-new static initializer in class com/google/common/collect/AbstractMultimap$WrappedCollection$WrappedIterator
+19:12:13.260 [main] INFO org.evosuite.runtime.instrumentation.EvoClassLoader - Keeping class: com.google.common.collect.AbstractMultimap$WrappedCollection$WrappedIterator
+19:12:13.261 [main] INFO org.evosuite.runtime.instrumentation.EvoClassLoader - Seeing class for first time: com.google.javascript.rhino.jstype.NamedType$PropertyContinuation
+19:12:13.261 [main] INFO org.evosuite.runtime.instrumentation.EvoClassLoader - Instrumenting class 'com.google.javascript.rhino.jstype.NamedType$PropertyContinuation'.
+19:12:13.261 [main] INFO org.evosuite.runtime.instrumentation.MethodCallReplacementClassAdapter - Adding mock interface to class com/google/javascript/rhino/jstype/NamedType$PropertyContinuation
+19:12:13.262 [main] INFO org.evosuite.runtime.instrumentation.CreateClassResetClassAdapter - Creating brand-new static initializer in class com/google/javascript/rhino/jstype/NamedType$PropertyContinuation
+19:12:13.262 [main] INFO org.evosuite.runtime.instrumentation.EvoClassLoader - Keeping class: com.google.javascript.rhino.jstype.NamedType$PropertyContinuation
+19:12:13.262 [main] INFO org.evosuite.runtime.instrumentation.EvoClassLoader - Seeing class for first time: com.google.javascript.rhino.jstype.NamedType$1
+19:12:13.262 [main] INFO org.evosuite.runtime.instrumentation.EvoClassLoader - Instrumenting class 'com.google.javascript.rhino.jstype.NamedType$1'.
+19:12:13.263 [main] INFO org.evosuite.runtime.instrumentation.MethodCallReplacementClassAdapter - Adding mock interface to class com/google/javascript/rhino/jstype/NamedType$1
+19:12:13.263 [main] INFO org.evosuite.runtime.instrumentation.EvoClassLoader - Keeping class: com.google.javascript.rhino.jstype.NamedType$1
+................................................
+Time: 0.651
+
+OK (49 tests)
+

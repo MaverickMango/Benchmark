@@ -1,4 +1,4 @@
-cd /home/liumengjiao/Desktop/CI/Benchmark/../bugs/Closure_59_buggy && timeout 300000 java -cp /home/liumengjiao/Desktop/defects4j/framework/lib/test_generation/generation/evosuite-current.jar:/home/liumengjiao/Desktop/CI/Evosuite/Closure/evosuite//1/:/home/liumengjiao/Desktop/CI/Evosuite/Closure/evosuite//0/:build/classes/:lib/* org.junit.runner.JUnitCore _ESTest >> evosuite-report-clz/test_run.log 2>&1
+cd /home/liumengjiao/Desktop/CI/Benchmark/../bugs/Closure_59_buggy && timeout 300000 java -cp /home/liumengjiao/Desktop/defects4j/framework/lib/test_generation/generation/evosuite-current.jar:/home/liumengjiao/Desktop/CI/Evosuite/Closure_59/Closure/evosuite//1/:/home/liumengjiao/Desktop/CI/Evosuite/Closure_59/Closure/evosuite//0/:build/classes/:lib/* org.junit.runner.JUnitCore _ESTest >> evosuite-report-clz/test_run.log 2>&1
 
 JUnit version 4.13
 .E

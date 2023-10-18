@@ -2,7 +2,7 @@ cd /home/liumengjiao/Desktop/CI/Benchmark/../bugs/Jsoup_27_buggy && timeout 3000
 
 JUnit version 4.13.2
 .E
-Time: 0.001
+Time: 0
 There was 1 failure:
 1) initializationError(org.junit.runner.JUnitCommandLineParseResult)
 java.lang.IllegalArgumentException: Could not find class [_ESTest]

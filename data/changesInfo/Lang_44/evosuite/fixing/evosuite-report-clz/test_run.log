@@ -1,4 +1,4 @@
-cd /home/liumengjiao/Desktop/CI/Benchmark/../bugs/Lang_44_buggy && timeout 300000 java -cp /home/liumengjiao/Desktop/defects4j/framework/lib/test_generation/generation/evosuite-current.jar:/home/liumengjiao/Desktop/CI/Evosuite/Lang/evosuite//1/:/home/liumengjiao/Desktop/CI/Evosuite/Lang/evosuite//0/:target/classes/* org.junit.runner.JUnitCore _ESTest >> evosuite-report-clz/test_run.log 2>&1
+cd /home/liumengjiao/Desktop/CI/Benchmark/../bugs/Lang_44_buggy && timeout 300000 java -cp /home/liumengjiao/Desktop/defects4j/framework/lib/test_generation/generation/evosuite-current.jar:/home/liumengjiao/Desktop/CI/Evosuite/Lang_44/Lang/evosuite//1/:/home/liumengjiao/Desktop/CI/Evosuite/Lang_44/Lang/evosuite//0/:target/classes/ org.junit.runner.JUnitCore _ESTest >> evosuite-report-clz/test_run.log 2>&1
 
 JUnit version 4.13
 .E
