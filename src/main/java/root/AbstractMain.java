@@ -3,7 +3,7 @@ package root;
 import org.apache.commons.cli.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import root.generation.helper.MutatorHelper;
+import root.generation.helper.Preparation;
 import root.util.ConfigurationProperties;
 
 import java.io.File;
@@ -31,16 +31,18 @@ public class AbstractMain {
 
     private final CommandLineParser parser = new DefaultParser();
 
-    public void initialize(String[] args) {
+    public Preparation initialize(String[] args) {
         boolean res = progressArguments(args);
         if (!res)
-            return;
+            return null;
         try {
-            MutatorHelper helper = new MutatorHelper();
+            Preparation helper = new Preparation();
             helper.initialize(true, false);
+            return helper;
         } catch (Exception e) {
             logger.error("Error occurred when MutatorHelper initialization: " + e.getMessage());
         }
+        return null;
     }
 
     private boolean progressArguments(String[] commandSummary) {

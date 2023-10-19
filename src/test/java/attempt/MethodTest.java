@@ -1,5 +1,6 @@
 package attempt;
 
+import org.junit.Assert;
 import org.junit.Test;
 import root.attempt.DiffMain;
 import root.util.FileUtils;
