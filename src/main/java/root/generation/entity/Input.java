@@ -1,37 +1,61 @@
 package root.generation.entity;
 
 import com.github.javaparser.ast.expr.Expression;
-import com.github.javaparser.ast.expr.NameExpr;
+import com.github.javaparser.ast.expr.MethodCallExpr;
+import root.generation.helper.MutatorHelper;
 
+import java.util.Objects;
+
+/**
+ * test input(method call expression's argument)
+ */
 public class Input {
 
-    private Class<? extends Expression> type;
-    private Expression inputExpr;
+    MethodCallExpr methodCallExpr;
+    String type;
+    Expression inputExpr;
+    boolean isPrimitive;
 
-    public Input(Expression inputExpr) {
-        this.inputExpr = inputExpr;
-        //todo: how to determine the type of inputExpr?
-        //this.type = ?
+    public Input(MethodCallExpr methodCallExpr, Expression inputExpr) {
+        this.methodCallExpr = methodCallExpr;
+        this.inputExpr = Objects.requireNonNull(inputExpr);
+        //todo: how to get its type if type cannot be resolved?
+        this.type = inputExpr.calculateResolvedType().asReferenceType().getQualifiedName();
+        setPrimitive(type);
     }
 
-    public Input(Class<? extends Expression> type, Expression inputExpr) {
-        this.type = type;
-        this.inputExpr = inputExpr;
+    public Input(MethodCallExpr methodCallExpr, Expression inputExpr, String type) {
+        this.methodCallExpr = methodCallExpr;
+        this.type = Objects.requireNonNull(type);
+        this.inputExpr = Objects.requireNonNull(inputExpr);
+        setPrimitive(type);
     }
 
-    public Class<? extends Expression> getType() {
+    public MethodCallExpr getMethodCallExpr() {
+        return methodCallExpr;
+    }
+
+    public String getType() {
         return type;
-    }
-
-    public void setType(Class<? extends Expression> type) {
-        this.type = type;
     }
 
     public Expression getInputExpr() {
         return inputExpr;
     }
 
-    public void setInputExpr(Expression inputExpr) {
-        this.inputExpr = inputExpr;
+    public boolean isPrimitive() {
+        return isPrimitive;
+    }
+
+    private void setPrimitive(String type) {
+        isPrimitive = MutatorHelper.isKnownType(type) && !"Object".equals(type) && !"java.lang.Object".equals(type);
+    }
+
+    @Override
+    public String toString() {
+        return "Input{" +
+                "type='" + type + '\'' +
+                ", inputExpr=" + inputExpr +
+                '}';
     }
 }

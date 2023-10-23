@@ -16,13 +16,17 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class InputExtractorTest extends PreparationTest {
 
+    String filePath = "src/main/java/root/generation/transformation/extractor/InputExtractor.java";
+    String methodName = "extractMethodByName";
+    int lineNumber = 40;
+
     @Test
     void extractMethodByName() {
         List<ImportDeclaration> importDeclarations = new ArrayList<>();
         MethodDeclaration extractInput = PreparationTest.preparation.inputExtractor
                 .extractMethodByName(
-                        new File("src/main/java/root/generation/extractor/InputExtractor.java").getAbsolutePath(),
-                        "extractInput", importDeclarations);
+                        new File(filePath).getAbsolutePath(),
+                        methodName, importDeclarations);
         assertNotNull(extractInput);
     }
 
@@ -31,8 +35,8 @@ class InputExtractorTest extends PreparationTest {
         List<ImportDeclaration> importDeclarations = new ArrayList<>();
         MethodDeclaration extractInput = PreparationTest.preparation.inputExtractor
                 .extractMethodByName(
-                        new File("src/main/java/root/generation/extractor/InputExtractor.java").getAbsolutePath(),
-                        "extractInput", importDeclarations);
+                        new File(filePath).getAbsolutePath(),
+                        methodName, importDeclarations);
         MethodCallExpr methodCallExpr = PreparationTest.preparation.inputExtractor
                 .extractMethodCallByLine(extractInput, 67);
         assertNotNull(methodCallExpr);
@@ -43,11 +47,11 @@ class InputExtractorTest extends PreparationTest {
         List<ImportDeclaration> importDeclarations = new ArrayList<>();
         MethodDeclaration extractInput = PreparationTest.preparation.inputExtractor
                 .extractMethodByName(
-                        new File("src/main/java/root/generation/extractor/InputExtractor.java").getAbsolutePath(),
-                        "extractInput", importDeclarations);
+                        new File(filePath).getAbsolutePath(),
+                        methodName, importDeclarations);
         MethodCallExpr methodCallExpr = PreparationTest.preparation.inputExtractor
-                .extractMethodCallByLine(extractInput, 67);
+                .extractMethodCallByLine(extractInput, lineNumber);
         Input input = PreparationTest.preparation.inputExtractor.extractInput(methodCallExpr);
-        assertEquals(StringLiteralExpr.class, input.getType());
+        assertEquals("Object", input.getType());
     }
 }

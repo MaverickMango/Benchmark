@@ -7,7 +7,7 @@ public class IntegerMutator extends AbstractInputMutator{
     private final Random random = new Random();
 
     @Override
-    Object getInput() {
+    public Object getNextInput() {
         this.addInputMutants(random.nextInt());
         return this.inputs.get(random.nextInt(this.inputs.size()));
     }

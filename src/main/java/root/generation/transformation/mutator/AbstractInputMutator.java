@@ -12,9 +12,9 @@ public abstract class AbstractInputMutator {
 
     List<Object> inputs = new ArrayList<>();
 
-    abstract Object getInput();
+    public abstract Object getNextInput();
 
-    List<Object> getInputs() {
+    public List<Object> getInputs() {
         return this.inputs;
     }
 

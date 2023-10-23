@@ -7,7 +7,7 @@ public class BooleanMutator extends AbstractInputMutator {
     private final Random random = new Random();
 
     @Override
-    protected Object getInput() {
+    public Object getNextInput() {
         //now is random, but not always!
         this.addInputMutants(random.nextBoolean());
         return this.inputs.get(random.nextInt(this.inputs.size()));

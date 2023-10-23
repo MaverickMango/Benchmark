@@ -11,7 +11,7 @@ public class StringMutator extends AbstractInputMutator{
     List<String> usedStrings = new ArrayList<>();
 
     @Override
-    protected Object getInput() {
+    public Object getNextInput() {
         this.addInputMutants(randomStrMutate(""));
         return this.inputs.get(random.nextInt(this.inputs.size()));
     }
