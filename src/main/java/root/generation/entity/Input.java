@@ -1,34 +1,53 @@
 package root.generation.entity;
 
+import com.github.javaparser.ast.body.MethodDeclaration;
 import com.github.javaparser.ast.expr.Expression;
 import com.github.javaparser.ast.expr.MethodCallExpr;
+import com.github.javaparser.quality.NotNull;
 import root.generation.helper.MutatorHelper;
 
 import java.util.Objects;
 
 /**
- * test input(method call expression's argument)
+ * <s>test input(method call expression's argument)</s>
  */
 public class Input {
 
-    MethodCallExpr methodCallExpr;
-    String type;
-    Expression inputExpr;
-    boolean isPrimitive;
+    private MethodCallExpr methodCallExpr;
+    private final String type;
+    private Expression inputExpr;
+    private int argIdx;
+    private boolean isPrimitive;
+    private boolean isCompleted;//是否需要到original版本获取断言，获取完或者不需要的为completed
 
-    public Input(MethodCallExpr methodCallExpr, Expression inputExpr) {
-        this.methodCallExpr = methodCallExpr;
-        this.inputExpr = Objects.requireNonNull(inputExpr);
+    public Input(@NotNull MethodCallExpr methodCallExpr,
+                 @NotNull Expression inputExpr, int argIdx) {
         //todo: how to get its type if type cannot be resolved?
         this.type = inputExpr.calculateResolvedType().asReferenceType().getQualifiedName();
+        setAttributes(methodCallExpr, inputExpr, argIdx);
         setPrimitive(type);
     }
 
-    public Input(MethodCallExpr methodCallExpr, Expression inputExpr, String type) {
-        this.methodCallExpr = methodCallExpr;
+    public Input(@NotNull MethodCallExpr methodCallExpr,
+                 @NotNull Expression inputExpr, String type, int argIdx) {
         this.type = Objects.requireNonNull(type);
-        this.inputExpr = Objects.requireNonNull(inputExpr);
+        setAttributes(methodCallExpr, inputExpr, argIdx);
         setPrimitive(type);
+    }
+
+    private void setAttributes(MethodCallExpr methodCallExpr,
+                               Expression inputExpr, int argIdx) {
+        Expression expression = methodCallExpr.getArguments().get(argIdx);
+        if (!inputExpr.equals(expression)) {
+            MethodCallExpr newMethodCallExpr = methodCallExpr.clone();
+            newMethodCallExpr.setArgument(argIdx, inputExpr);
+            this.methodCallExpr = newMethodCallExpr;
+        } else {
+            this.methodCallExpr = methodCallExpr;
+        }
+        this.inputExpr = inputExpr;
+        this.argIdx = argIdx;
+        this.isCompleted = methodCallExpr.getArguments().size() == 1;
     }
 
     public MethodCallExpr getMethodCallExpr() {
@@ -43,6 +62,10 @@ public class Input {
         return inputExpr;
     }
 
+    public int getArgIdx() {
+        return argIdx;
+    }
+
     public boolean isPrimitive() {
         return isPrimitive;
     }
@@ -51,11 +74,35 @@ public class Input {
         isPrimitive = MutatorHelper.isKnownType(type) && !"Object".equals(type) && !"java.lang.Object".equals(type);
     }
 
+    public boolean isCompleted() {
+        return isCompleted;
+    }
+
+    public void setCompleted(boolean completed) {
+        isCompleted = completed;
+    }
+
     @Override
     public String toString() {
         return "Input{" +
                 "type='" + type + '\'' +
                 ", inputExpr=" + inputExpr +
                 '}';
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (obj instanceof Input) {
+            Input that = (Input) obj;
+            if (this.isPrimitive() != that.isPrimitive())
+                return false;
+            if (!this.getInputExpr().equals(that.getInputExpr()))
+                return false;
+            if (this.getArgIdx() != that.getArgIdx())
+                return false;
+            return this.getMethodCallExpr().equals(that.getMethodCallExpr());
+        } else {
+            return super.equals(obj);
+        }
     }
 }

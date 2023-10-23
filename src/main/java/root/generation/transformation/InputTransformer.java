@@ -5,31 +5,29 @@ import com.github.javaparser.ast.expr.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import root.generation.entity.Input;
-import root.generation.entity.Prefix;
+import root.generation.entity.Skeleton;
 import root.generation.helper.MutatorHelper;
-import root.generation.parser.AbstractASTParser;
-import root.generation.transformation.extractor.InputExtractor;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 public class InputTransformer {
 
     private final Logger logger = LoggerFactory.getLogger(InputTransformer.class);
 
-    Map<MethodDeclaration, List<Prefix>> prefixes;//?应该是个什么列表
+    Map<MethodDeclaration, List<Skeleton>> skeletons;//?应该是个什么列表
 
-    public InputTransformer(MethodDeclaration methodDeclaration, int lineNumber) {
-        this.prefixes = new HashMap<>();
-        prefixes.put(methodDeclaration, new ArrayList<>());
-        prefixes.get(methodDeclaration).add(new Prefix(methodDeclaration, lineNumber));
+    public InputTransformer() {
+        this.skeletons = new HashMap<>();
     }
 
-    public void addMethodToProcess(MethodDeclaration methodDeclaration, int lineNumber) {
-        if (prefixes.containsKey(methodDeclaration)) {
-            List<Prefix> list = prefixes.get(methodDeclaration);
+    public InputTransformer(MethodDeclaration methodDeclaration) {
+        this.skeletons = new HashMap<>();
+        skeletons.put(methodDeclaration, new ArrayList<>());
+    }
+
+    public void addMethodToProcess(MethodDeclaration methodDeclaration) {
+        if (skeletons.containsKey(methodDeclaration)) {
+            List<Skeleton> list = skeletons.get(methodDeclaration);
             //todo compare prefix equality.
         }
     }
@@ -69,7 +67,8 @@ public class InputTransformer {
                 //todo: add support to Object.
                 throw new IllegalArgumentException("TBD. Unsupported type of Input has been given.");
             }
-            return new Input(oldInput.getMethodCallExpr(), newInputExpr, oldInput.getType());
+            return new Input(oldInput.getMethodCallExpr(),
+                    newInputExpr, oldInput.getType(), oldInput.getArgIdx());
         } catch (ClassCastException e) {
             logger.error("Error casting while generate new input by argument '" + value + "'! " + e.getMessage());
             logger.info("No newInput was generated. OldInput return.");
@@ -77,8 +76,26 @@ public class InputTransformer {
         }
     }
 
-    public void buildNewTestByInput(Input newInput) {
-        //todo first: 根据新生成的输入构建新的测试，还原回prefix里，有断言的执行一遍后再收取结果，没断言的直接完成一整个类的构建。
+    public void buildNewTestByInput(Skeleton skeleton, Input newInput) {
+        MethodDeclaration methodDeclaration = skeleton.getOriginalMethod();
+        skeleton.constructSkeleton(newInput);
+        if (this.skeletons.containsKey(methodDeclaration)) {
+            this.skeletons.get(methodDeclaration).add(skeleton);
+        } else {
+            List<Skeleton> list = new ArrayList<>();
+            list.add(skeleton);
+            this.skeletons.put(methodDeclaration, list);
+        }
+    }
+
+    public void buildNewTestByInputs(Skeleton skeleton, List<Input> newInputs) {
+        for (Input input :newInputs) {
+            buildNewTestByInput(skeleton, input);
+        }
+    }
+
+    public static void getOracle(List<Input> inputs) {
+        //todo:把需要获取oracle的函数放回到original版本运行
 
     }
 }

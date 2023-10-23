@@ -16,7 +16,7 @@ public class MutatorHelper {
     public static Map<String, List<Class<? extends Expression>>> INPUTS_BY_TYPE;
 
     public static void initialize() {
-        //todo: collect all values of different types in test file?
+        //todo: whether to collect all values of different types in test file?
         MUTATORS = new HashMap<>();
         MUTATORS.put(BooleanLiteralExpr.class, new BooleanMutator());
         MUTATORS.put(DoubleLiteralExpr.class, new DoubleMutator());
@@ -40,6 +40,12 @@ public class MutatorHelper {
                 DoubleLiteralExpr.class, StringLiteralExpr.class);
         INPUTS_BY_TYPE.put("Object", list);
         INPUTS_BY_TYPE.put("java.lang.Object", list);
+    }
+
+    public static Object getInputMutant(Input oldInput) {
+        List<Object> inputMutants = getInputMutants(oldInput);
+        Random random = new Random();
+        return inputMutants.get(random.nextInt(inputMutants.size()));
     }
 
     public static List<Object> getInputMutants(Input oldInput){

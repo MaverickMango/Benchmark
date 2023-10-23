@@ -14,20 +14,25 @@ import java.util.ArrayList;
 import java.util.List;
 import static org.junit.jupiter.api.Assertions.*;
 
-class InputExtractorTest extends PreparationTest {
+public class InputExtractorTest extends PreparationTest{
 
-    String filePath = "src/main/java/root/generation/transformation/extractor/InputExtractor.java";
-    String methodName = "extractMethodByName";
-    int lineNumber = 40;
+    public static String filePath = "src/main/java/root/analysis/StringFilter.java";
+    static String methodName = "addPattern";
+    static int lineNumber = 32;
 
     @Test
     void extractMethodByName() {
+        MethodDeclaration extractInput = getMethodDeclaration();
+        assertNotNull(extractInput);
+    }
+
+    public static MethodDeclaration getMethodDeclaration() {
         List<ImportDeclaration> importDeclarations = new ArrayList<>();
         MethodDeclaration extractInput = PreparationTest.preparation.inputExtractor
                 .extractMethodByName(
                         new File(filePath).getAbsolutePath(),
                         methodName, importDeclarations);
-        assertNotNull(extractInput);
+        return extractInput;
     }
 
     @Test
@@ -44,14 +49,14 @@ class InputExtractorTest extends PreparationTest {
 
     @Test
     void extractInput() {
-        List<ImportDeclaration> importDeclarations = new ArrayList<>();
-        MethodDeclaration extractInput = PreparationTest.preparation.inputExtractor
-                .extractMethodByName(
-                        new File(filePath).getAbsolutePath(),
-                        methodName, importDeclarations);
+        Input input = getInput();
+        assertEquals("java.lang.String", input.getType());
+    }
+
+    public static Input getInput() {
+        MethodDeclaration extractInput = getMethodDeclaration();
         MethodCallExpr methodCallExpr = PreparationTest.preparation.inputExtractor
                 .extractMethodCallByLine(extractInput, lineNumber);
-        Input input = PreparationTest.preparation.inputExtractor.extractInput(methodCallExpr);
-        assertEquals("Object", input.getType());
+        return PreparationTest.preparation.inputExtractor.extractInput(methodCallExpr);
     }
 }

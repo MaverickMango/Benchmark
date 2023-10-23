@@ -3,6 +3,7 @@ package root.generation.helper;
 import org.apache.commons.io.FileUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import root.generation.transformation.InputTransformer;
 import root.generation.transformation.extractor.InputExtractor;
 import root.generation.parser.ASTJavaParser;
 import root.generation.parser.AbstractASTParser;
@@ -30,6 +31,7 @@ public class Preparation {
     public Map<String, Object> ASTs;//CompilationUnit
     public List<String> compilerOptions;
     public InputExtractor inputExtractor;
+    public InputTransformer inputTransformer;
 
     public Preparation() {
         complianceLevel = ConfigurationProperties.getProperty("complianceLevel");
@@ -108,5 +110,6 @@ public class Preparation {
         //todo: test extractor/ assert / arguments
         inputExtractor = new InputExtractor(parser);
         MutatorHelper.initialize();
+        inputTransformer = new InputTransformer();
     }
 }

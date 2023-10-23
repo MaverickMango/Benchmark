@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
-  <component name="Encoding">
-    <file url="file://$PROJECT_DIR$/data/changesInfo/Compress_7/patches/7.test.patch" charset="ISO-8859-1" />
-    <file url="file://$PROJECT_DIR$/data/changesInfo/Lang_25/patches/25.src.patch" charset="ISO-8859-1" />
+  <component name="Encoding" defaultCharsetForPropertiesFiles="UTF-8">
+    <file url="file://$PROJECT_DIR$/data/changesInfo/Compress_7/patches/7.test.patch" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/data/changesInfo/Lang_25/patches/25.src.patch" charset="UTF-8" />
+    <file url="PROJECT" charset="UTF-8" />
   </component>
 </project>
