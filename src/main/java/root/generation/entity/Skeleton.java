@@ -5,6 +5,7 @@ import com.github.javaparser.ast.Node;
 import com.github.javaparser.ast.NodeList;
 import com.github.javaparser.ast.body.ClassOrInterfaceDeclaration;
 import com.github.javaparser.ast.body.MethodDeclaration;
+import com.github.javaparser.ast.expr.Expression;
 import com.github.javaparser.ast.nodeTypes.NodeWithSimpleName;
 import com.github.javaparser.ast.stmt.BlockStmt;
 import com.github.javaparser.ast.stmt.ExpressionStmt;
@@ -14,6 +15,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import root.generation.helper.Helper;
 import root.generation.transformation.InputTransformer;
+import root.generation.transformation.visitor.ModifiedVisitor;
 
 import java.util.*;
 import java.util.stream.Collectors;
@@ -28,6 +30,7 @@ public class Skeleton {
     CompilationUnit clazz;
     String clazzName;
     MethodDeclaration originalMethod;
+    MethodDeclaration transformedMethod;
     boolean isSplit;//是否完成对多余断言的删除
     List<Input> inputs;
     List<MethodDeclaration> methodDeclarations;
@@ -62,6 +65,10 @@ public class Skeleton {
         return originalMethod;
     }
 
+    public MethodDeclaration getTransformedMethod() {
+        return transformedMethod;
+    }
+
     public void addInput(Input input) {
         this.inputs.add(input);
     }
@@ -74,33 +81,10 @@ public class Skeleton {
         return inputs;
     }
 
-    public void constructSkeleton(List<Input> newInputs) {
-        if (!this.isSplit)
-            splitAssert();//删除原有的assert语句
-        setInputs(newInputs);
-
-        List<Input> collect = inputs.stream().filter(input -> !input.isCompleted()).collect(Collectors.toList());
-        if (!collect.isEmpty()) {
-            for (Input newInput :collect) {
-                newInput.getOracle();//需要oracle的语句则需要先执行一遍
-            }
-        }
-
-        collect = inputs.stream().filter(Input::isCompleted).collect(Collectors.toList());
-        addStatementsAtLast(collect);//对于不需要oracle的语句，直接根据input更新method
-
-        addMethodsAtCompilationUnit();//向原有类添加新的测试函数
+    public boolean isSplit() {
+        return isSplit;
     }
 
-    public void constructSkeleton(Input newInput) {
-        if (!this.isSplit)
-            splitAssert();//删除原有的assert语句
-        addInput(newInput);
-        if (!newInput.isCompleted())
-            newInput.getOracle();//需要oracle的语句则需要先执行一遍
-        MethodDeclaration methodDeclaration = addStatementAtLast(newInput);//对于不需要oracle的语句，直接根据input更新method
-        addMethodAtCompilationUnit(methodDeclaration);//向原有类添加新的测试函数
-    }
     public void splitAssert() {
         MethodDeclaration clone = this.getOriginalMethod().clone();
         (clone.getBody().get()).findAll(ExpressionStmt.class).forEach((stmt) -> {
@@ -109,12 +93,13 @@ public class Skeleton {
             }
         });
         this.originalMethod = clone;
+        this.transformedMethod = clone;
         this.isSplit = true;
     }
 
-    public MethodDeclaration addStatementAtLast(Input newInput) {
+    public MethodDeclaration addStatementAtLast(Expression expression) {
         ExpressionStmt stmt = new ExpressionStmt();
-        stmt.setExpression(newInput.getMethodCallExpr());
+        stmt.setExpression(expression);
         MethodDeclaration clone = this.getOriginalMethod().clone();
         clone.setName(getNewMethodName(clone.getNameAsString()));
         Optional<BlockStmt> body = clone.getBody();
@@ -133,7 +118,7 @@ public class Skeleton {
 
     public void addStatementsAtLast(List<Input> inputs) {
         for (Input newInput : inputs) {
-            addStatementAtLast(newInput);
+            addStatementAtLast(newInput.getMethodCallExpr());
         }
     }
 
@@ -153,5 +138,39 @@ public class Skeleton {
 
     private String getNewMethodName(String oldName) {
         return oldName + "_generatedTest" + generatedTestsIdx ++;
+    }
+
+    public void applyTransform(Input input) {
+        Expression inputExpr = input.getInputExpr().clone();
+        Expression basicExpr = input.getBasicExpr();
+        Expression transformed = input.getTransformed();
+        List<Expression> collector = new ArrayList<>();
+        ModifiedVisitor visitor = new ModifiedVisitor(inputExpr, basicExpr, transformed);
+        if (input instanceof ObjectInput) {
+            MethodDeclaration methodDeclaration = this.getTransformedMethod().clone();
+            methodDeclaration.accept(visitor, collector);
+            this.transformedMethod = methodDeclaration;
+        } else if (input instanceof BasicInput) {
+            inputExpr.accept(visitor, collector);
+        }
+    }
+
+    public void applyTransform(List<Input> inputs) {
+        for (Input input :inputs) {
+            applyTransform(input);
+        }
+    }
+
+    public void getOracle(Input input) {
+        //插入一个输出语句用于获取变量在original版本的oracle。
+        Expression expression = Helper.constructPrintStmt2Instr(input.inputExpr);
+        MethodDeclaration methodInstrumented = addStatementAtLast(expression);
+        //这个时候不需要插入断言
+//        MethodDeclaration methodDeclaration = addStatementAtLast(input.getMethodCallExpr());
+        addMethodAtCompilationUnit(methodInstrumented);
+
+        //todo 执行
+
+        input.setCompleted(true);
     }
 }

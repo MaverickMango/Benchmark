@@ -4,6 +4,9 @@ import com.github.javaparser.ast.body.MethodDeclaration;
 import com.github.javaparser.ast.expr.Expression;
 import com.github.javaparser.ast.expr.MethodCallExpr;
 import com.github.javaparser.quality.NotNull;
+import com.github.javaparser.resolution.UnsolvedSymbolException;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import root.generation.helper.MutatorHelper;
 
 import javax.annotation.Nullable;
@@ -15,17 +18,26 @@ import java.util.Objects;
  */
 public abstract class Input {
 
-    private MethodCallExpr methodCallExpr;
-    private final String type;
-    private Expression inputExpr;//assert语句的actual参数
-    private int argIdx;
-    private boolean isPrimitive;
-    private boolean isCompleted;//是否需要到original版本获取断言，获取完或者不需要的为completed
+    private final Logger logger = LoggerFactory.getLogger(Input.class);
+    MethodCallExpr methodCallExpr;
+    Expression inputExpr;//assert语句的actual参数
+    String type;
+    int argIdx;
+    boolean isPrimitive;
+    boolean isCompleted;//是否需要到original版本获取断言，获取完或者不需要的为completed
+    Expression basicExpr;//实际进行变异的内容
+    Expression transformed;
 
     public Input(@NotNull MethodCallExpr methodCallExpr,
                  @NotNull Expression inputExpr, int argIdx) {
+        String type1;
         //todo: how to get its type if type cannot be resolved?
-        this.type = inputExpr.calculateResolvedType().asReferenceType().getQualifiedName();
+        try {
+            type1 = inputExpr.calculateResolvedType().asReferenceType().getQualifiedName();
+        } catch (UnsolvedSymbolException e) {
+            type1 = "Object";
+        }
+        this.type = type1;
         setAttributes(methodCallExpr, inputExpr, argIdx);
         setPrimitive(type);
     }
@@ -76,13 +88,24 @@ public abstract class Input {
         isPrimitive = MutatorHelper.isKnownType(type) && !"Object".equals(type) && !"java.lang.Object".equals(type);
     }
 
+    public void setCompleted(boolean completed) {
+        isCompleted = completed;
+    }
+
     public boolean isCompleted() {
         return isCompleted;
     }
 
-    public void getOracle() {
-        //todo:把需要获取oracle的函数放回到original版本运行
-        this.isCompleted = true;
+    public Expression getBasicExpr() {
+        return basicExpr;
+    }
+
+    public Expression getTransformed() {
+        return transformed;
+    }
+
+    public void setBasicExprTransformed(Expression newInputExpr) {
+        this.transformed = newInputExpr;
     }
 
     @Override
@@ -107,5 +130,15 @@ public abstract class Input {
         } else {
             return super.equals(obj);
         }
+    }
+
+    @Override
+    public Input clone(){
+        try {
+            return (Input) super.clone();
+        } catch (CloneNotSupportedException e) {
+            logger.error("Clone not supported, original Object will be return!");
+        }
+        return this;
     }
 }

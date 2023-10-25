@@ -23,7 +23,7 @@ public class MutatorHelper {
         MUTATORS.put(IntegerLiteralExpr.class, new IntegerMutator());
         MUTATORS.put(LongLiteralExpr.class, new LongMutator());
         MUTATORS.put(StringLiteralExpr.class, new StringMutator());
-        MUTATORS.put(Expression.class, new UnknownTypeMutator());//?
+        MUTATORS.put(CharLiteralExpr.class, new CharMutator());
 
         INPUTS_BY_TYPE = new HashMap<>();
         INPUTS_BY_TYPE.put("boolean", Collections.singletonList(BooleanLiteralExpr.class));
@@ -50,8 +50,9 @@ public class MutatorHelper {
 
     public static List<Object> getInputMutants(Input oldInput){
         // check whether type is known class,and apply its mutator to get its mutants.
+        String qualifiedName = Helper.getType(oldInput.getBasicExpr());
         AbstractInputMutator mutator;
-        if (MutatorHelper.isKnownType(oldInput.getType())) {
+        if (MutatorHelper.isKnownType(qualifiedName)) {
             mutator = getKnownMutator(oldInput);
             Object nextInput = mutator.getNextInput();
             return mutator.getInputs();

@@ -7,6 +7,7 @@ import com.github.javaparser.ast.Node;
 import com.github.javaparser.ast.NodeList;
 import com.github.javaparser.ast.body.MethodDeclaration;
 import com.github.javaparser.ast.expr.Expression;
+import com.github.javaparser.ast.expr.LiteralExpr;
 import com.github.javaparser.ast.expr.MethodCallExpr;
 import com.github.javaparser.ast.stmt.Statement;
 import com.github.javaparser.resolution.UnsolvedSymbolException;
@@ -17,6 +18,7 @@ import org.slf4j.LoggerFactory;
 import root.generation.entity.BasicInput;
 import root.generation.entity.Input;
 import root.generation.entity.ObjectInput;
+import root.generation.helper.Helper;
 import root.generation.parser.AbstractASTParser;
 
 import java.util.List;
@@ -96,23 +98,24 @@ public class InputExtractor {
             logger.error("Wrong method to extract arguments! There is no arguments here.");
             throw new IllegalArgumentException("Illegal argument: " + methodCallExpr.getNameAsString());
         }
-        Expression actual = arguments.get(0);
+        Expression actual;
         int argIdx = 0;
-        try {
-            //如果只有一个参数，并且不是assert语句，就直接提取参数进行变异，变异后塞回去就行。
-            ResolvedReferenceType resolvedReferenceType = methodCallExpr.getArgument(0).calculateResolvedType().asReferenceType();
-            if (arguments.size() >= 2) {
-                //todo: 存在多个参数的情况时第几个是实际条件?
-                //如果是两个参数，一般第二个参数是实际值，提取后需要到original版本获取期望值。
-                actual = arguments.get(1);
-                resolvedReferenceType = methodCallExpr.getArgument(1).calculateResolvedType().asReferenceType();
-                argIdx = 1;
-            }
-            return new BasicInput(methodCallExpr, actual,
-                    resolvedReferenceType.getQualifiedName(), argIdx);
-        } catch (UnsolvedSymbolException e) {
-            logger.error("Dependencies lacking! " + e.getMessage() + ", Default 'Object' type Input will be created.");
+        String qualifiedName;
+        //如果只有一个参数，并且不是assert语句，就直接提取参数进行变异，变异后塞回去就行。
+        if (arguments.size() >= 2) {
+            //todo: 存在多个参数的情况时第几个是实际条件?
+            //如果是两个参数，一般第二个参数是实际值，提取后需要到original版本获取期望值。
+            actual = arguments.get(1);
+            argIdx = 1;
+        } else {
+            actual = arguments.get(0);
         }
-        return new ObjectInput(methodCallExpr, actual, "Object", argIdx);
+        qualifiedName = Helper.getType(actual);
+        List<LiteralExpr> all = actual.findAll(LiteralExpr.class);
+        if (!all.isEmpty()) {
+            return new BasicInput(methodCallExpr, actual, qualifiedName, argIdx);
+        } else {
+            return new ObjectInput(methodCallExpr, actual, qualifiedName, argIdx);
+        }
     }
 }

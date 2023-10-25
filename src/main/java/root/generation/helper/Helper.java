@@ -1,8 +1,14 @@
 package root.generation.helper;
 
-import com.github.javaparser.ast.expr.MethodCallExpr;
+import com.github.javaparser.ast.Node;
+import com.github.javaparser.ast.NodeList;
+import com.github.javaparser.ast.expr.*;
 import com.github.javaparser.ast.stmt.ExpressionStmt;
 import com.github.javaparser.ast.stmt.Statement;
+import com.github.javaparser.resolution.UnsolvedSymbolException;
+import com.github.javaparser.resolution.types.ResolvedType;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.io.File;
 import java.lang.reflect.Modifier;
@@ -11,6 +17,8 @@ import java.net.URL;
 import java.util.Collection;
 
 public class Helper {
+
+    private final static Logger logger = LoggerFactory.getLogger(Helper.class);
 
     public static URL[] getURLs(Collection<String> paths) throws MalformedURLException {
         URL[] urls = new URL[paths.size()];
@@ -53,6 +61,38 @@ public class Helper {
         }
 
         return false;
+    }
+
+    public static String getType(Expression node) {
+        String qualifiedName = "Object";
+        try {
+            ResolvedType resolvedType = node.calculateResolvedType();
+            if (resolvedType.isPrimitive()) {
+                qualifiedName = resolvedType.asPrimitive().getBoxTypeQName();
+            } else if (resolvedType.isReferenceType()) {
+                qualifiedName = resolvedType.asReferenceType().getQualifiedName();
+            } else {
+                logger.error("TBD. Unsupported type of node. 'Object' type will be return.");
+            }
+        } catch (UnsolvedSymbolException e) {
+            logger.error("Dependency lacking! " + e.getMessage() + ", 'Object' type will be returned.");
+        }
+        return qualifiedName;
+    }
+
+    public static Expression constructPrintStmt2Instr(Expression expression) {
+        MethodCallExpr methodCallExpr = new MethodCallExpr();
+        methodCallExpr.setName(new SimpleName("println"));
+        FieldAccessExpr fieldAccessExpr = new FieldAccessExpr();
+        fieldAccessExpr.setName(new SimpleName("out"));
+        NameExpr expr = new NameExpr();
+        expr.setName(new SimpleName("System"));
+        fieldAccessExpr.setScope(expr);
+        methodCallExpr.setScope(fieldAccessExpr);
+        NodeList<Expression> nodeList = new NodeList<>();
+        nodeList.add(expression);
+        methodCallExpr.setArguments(nodeList);
+        return methodCallExpr;
     }
 }
 

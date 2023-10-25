@@ -8,6 +8,7 @@ import org.junit.jupiter.api.Test;
 import root.generation.entity.Input;
 import root.generation.helper.Preparation;
 import root.generation.helper.PreparationTest;
+import root.generation.transformation.extractor.InputExtractor;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -17,8 +18,8 @@ import static org.junit.jupiter.api.Assertions.*;
 public class InputExtractorTest extends PreparationTest{
 
     public static String filePath = "src/test/java/root/generation/extractor/InputExtractorTest.java";
-    static String methodName = "extractInput";
-    static int lineNumber = 53;
+    static String methodName = "extractMethodCallByLine";
+    static int lineNumber = 48;
 
     @Test
     void extractMethodByName() {
@@ -42,15 +43,15 @@ public class InputExtractorTest extends PreparationTest{
                 .extractMethodByName(
                         new File(filePath).getAbsolutePath(),
                         methodName, importDeclarations);
-        MethodCallExpr methodCallExpr = PreparationTest.preparation.inputExtractor
-                .extractMethodCallByLine(extractInput, 67);
-        assertNotNull(methodCallExpr);
+        InputExtractor inputExtractor = PreparationTest.preparation.inputExtractor;
+        MethodCallExpr methodCallExpr = inputExtractor.extractMethodCallByLine(extractInput, 67);
+        assertEquals(0, methodCallExpr.getArguments().size());
     }
 
     @Test
     void extractInput() {
         Input input = getInput();
-        assertEquals("java.lang.String", input.getType());
+        assertEquals("Object", input.getType());
     }
 
     public static Input getInput() {
