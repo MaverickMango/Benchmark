@@ -16,9 +16,9 @@ import static org.junit.jupiter.api.Assertions.*;
 
 public class InputExtractorTest extends PreparationTest{
 
-    public static String filePath = "src/main/java/root/analysis/StringFilter.java";
-    static String methodName = "addPattern";
-    static int lineNumber = 32;
+    public static String filePath = "src/test/java/root/generation/extractor/InputExtractorTest.java";
+    static String methodName = "extractInput";
+    static int lineNumber = 53;
 
     @Test
     void extractMethodByName() {

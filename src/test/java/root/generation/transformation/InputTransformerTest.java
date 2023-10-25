@@ -38,7 +38,7 @@ class InputTransformerTest extends PreparationTest{
         MethodDeclaration methodDeclaration = InputExtractorTest.getMethodDeclaration();
         InputExtractor inputExtractor = PreparationTest.preparation.inputExtractor;
         CompilationUnit compilationUnit = inputExtractor.getCompilationUnit(new File(InputExtractorTest.filePath).getAbsolutePath());
-        Skeleton skeleton = new Skeleton(compilationUnit.getClassByName("StringFilter").get(), methodDeclaration, input);
+        Skeleton skeleton = new Skeleton(compilationUnit, methodDeclaration);
         inputTransformer.buildNewTestByInput(skeleton, newInput);
     }
 }

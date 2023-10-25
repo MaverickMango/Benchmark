@@ -1,9 +1,11 @@
 package root.generation.entity;
 
 import com.github.javaparser.ast.CompilationUnit;
+import com.github.javaparser.ast.Node;
 import com.github.javaparser.ast.NodeList;
 import com.github.javaparser.ast.body.ClassOrInterfaceDeclaration;
 import com.github.javaparser.ast.body.MethodDeclaration;
+import com.github.javaparser.ast.nodeTypes.NodeWithSimpleName;
 import com.github.javaparser.ast.stmt.BlockStmt;
 import com.github.javaparser.ast.stmt.ExpressionStmt;
 import com.github.javaparser.ast.stmt.Statement;
@@ -23,35 +25,37 @@ import java.util.stream.Collectors;
 public class Skeleton {
 
     private static final Logger logger = LoggerFactory.getLogger(Skeleton.class);
-    ClassOrInterfaceDeclaration clazz;
+    CompilationUnit clazz;
+    String clazzName;
     MethodDeclaration originalMethod;
     boolean isSplit;//是否完成对多余断言的删除
     List<Input> inputs;
     List<MethodDeclaration> methodDeclarations;
+    int generatedTestsIdx;
 
-    public Skeleton(@NotNull ClassOrInterfaceDeclaration clazz, @NotNull MethodDeclaration originalMethod) {
+    public Skeleton(@NotNull CompilationUnit clazz, @NotNull MethodDeclaration originalMethod) {
         this.clazz = clazz;
         this.originalMethod = originalMethod;
+        if (originalMethod.getParentNode().isEmpty()) {
+            throw new IllegalArgumentException("originalMethod " + originalMethod.getNameAsString() + " doesn't have parent node!");
+        }
+        if (!(originalMethod.getParentNode().get() instanceof ClassOrInterfaceDeclaration)) {
+            throw new IllegalArgumentException("Unsupported method type. " +
+                    "May be originalMethod " + originalMethod.getNameAsString() + " is anonymous!");
+        }
+        this.clazzName = ((ClassOrInterfaceDeclaration) originalMethod.getParentNode().get()).getNameAsString();
         this.isSplit = false;
         this.inputs = new ArrayList<>();
         this.methodDeclarations = new ArrayList<>();
+        this.generatedTestsIdx = 0;
     }
 
-    public Skeleton(@NotNull ClassOrInterfaceDeclaration clazz, @NotNull MethodDeclaration originalMethod, Input input) {
-        this.clazz = clazz;
-        this.originalMethod = originalMethod;
-        this.isSplit = false;
-        this.inputs = new ArrayList<>();
-        addInput(input);
-        this.methodDeclarations = new ArrayList<>();
-    }
-
-    public ClassOrInterfaceDeclaration getClazz() {
+    public CompilationUnit getClazz() {
         return clazz;
     }
 
-    public void setOriginalMethod(MethodDeclaration originalMethod) {
-        this.originalMethod = originalMethod;
+    public String getClazzName() {
+        return clazzName;
     }
 
     public MethodDeclaration getOriginalMethod() {
@@ -71,22 +75,31 @@ public class Skeleton {
     }
 
     public void constructSkeleton(List<Input> newInputs) {
-        MethodDeclaration methodDeclaration = getOriginalMethod();
+        if (!this.isSplit)
+            splitAssert();//删除原有的assert语句
         setInputs(newInputs);
-        splitAssert();//删除原有的assert语句
+
         List<Input> collect = inputs.stream().filter(input -> !input.isCompleted()).collect(Collectors.toList());
-        InputTransformer.getOracle(collect);//需要oracle的语句则需要先执行一遍
+        if (!collect.isEmpty()) {
+            for (Input newInput :collect) {
+                newInput.getOracle();//需要oracle的语句则需要先执行一遍
+            }
+        }
+
         collect = inputs.stream().filter(Input::isCompleted).collect(Collectors.toList());
-        addStatementAtLast(collect);//对于不需要oracle的语句，直接根据input更新method
-        addMethodAtCompilationUnit();//向原有类添加新的测试函数
+        addStatementsAtLast(collect);//对于不需要oracle的语句，直接根据input更新method
+
+        addMethodsAtCompilationUnit();//向原有类添加新的测试函数
     }
 
-    public void constructSkeleton(Input newInput) {//todo 怎么处理单个newInput?
-        MethodDeclaration methodDeclaration = getOriginalMethod();
-        splitAssert();//删除原有的assert语句
-        List<Input> collect = inputs.stream().filter(Input::isCompleted).collect(Collectors.toList());
-        addStatementAtLast(collect);//对于不需要oracle的语句，直接根据input更新method
-        addMethodAtCompilationUnit();//向原有类添加新的测试函数
+    public void constructSkeleton(Input newInput) {
+        if (!this.isSplit)
+            splitAssert();//删除原有的assert语句
+        addInput(newInput);
+        if (!newInput.isCompleted())
+            newInput.getOracle();//需要oracle的语句则需要先执行一遍
+        MethodDeclaration methodDeclaration = addStatementAtLast(newInput);//对于不需要oracle的语句，直接根据input更新method
+        addMethodAtCompilationUnit(methodDeclaration);//向原有类添加新的测试函数
     }
     public void splitAssert() {
         MethodDeclaration clone = this.getOriginalMethod().clone();
@@ -99,29 +112,46 @@ public class Skeleton {
         this.isSplit = true;
     }
 
-    public void addStatementAtLast(List<Input> inputs) {
-        for (int i = 0; i < inputs.size(); i++) {
-            Input newInput = inputs.get(i);
-            ExpressionStmt stmt = new ExpressionStmt();
-            stmt.setExpression(newInput.getMethodCallExpr());
-            MethodDeclaration clone = this.getOriginalMethod().clone();
-            clone.setName(clone.getNameAsString() + "_" + i);
-            Optional<BlockStmt> body = clone.getBody();
-            if (body.isPresent()) {
-                BlockStmt blockStmt = body.get();
-                NodeList<Statement> statements = blockStmt.getStatements();
-                statements.addLast(stmt);
-            } else {
-                logger.error("methodDeclaration in skeleton has been initialized with error. Empty skeleton will be create.");
-                BlockStmt blockStmt = new BlockStmt(new NodeList<>());
-                blockStmt.getStatements().addLast(stmt);
-            }
-            methodDeclarations.add(clone);
+    public MethodDeclaration addStatementAtLast(Input newInput) {
+        ExpressionStmt stmt = new ExpressionStmt();
+        stmt.setExpression(newInput.getMethodCallExpr());
+        MethodDeclaration clone = this.getOriginalMethod().clone();
+        clone.setName(getNewMethodName(clone.getNameAsString()));
+        Optional<BlockStmt> body = clone.getBody();
+        if (body.isPresent()) {
+            BlockStmt blockStmt = body.get();
+            NodeList<Statement> statements = blockStmt.getStatements();
+            statements.addLast(stmt);
+        } else {
+            logger.error("methodDeclaration in skeleton has been initialized with error. Empty skeleton will be create.");
+            BlockStmt blockStmt = new BlockStmt(new NodeList<>());
+            blockStmt.getStatements().addLast(stmt);
+        }
+        methodDeclarations.add(clone);
+        return clone;
+    }
+
+    public void addStatementsAtLast(List<Input> inputs) {
+        for (Input newInput : inputs) {
+            addStatementAtLast(newInput);
         }
     }
 
-    public void addMethodAtCompilationUnit() {
-        List<MethodDeclaration> methods = clazz.getMethods();
-        methods.addAll(methodDeclarations);//todo：不能直接这么修改类的函数
+    public void addMethodAtCompilationUnit(MethodDeclaration methodDeclaration) {
+        ClassOrInterfaceDeclaration classOrInterfaceDeclaration = clazz.getClassByName(clazzName).get();
+        List<String> collect = classOrInterfaceDeclaration.getMethods().stream()
+                .map(NodeWithSimpleName::getNameAsString).collect(Collectors.toList());
+        if (!collect.contains(methodDeclaration.getNameAsString()))
+            classOrInterfaceDeclaration.addMember(methodDeclaration);
+    }
+
+    public void addMethodsAtCompilationUnit() {
+        for (MethodDeclaration method :methodDeclarations) {
+            addMethodAtCompilationUnit(method);
+        }
+    }
+
+    private String getNewMethodName(String oldName) {
+        return oldName + "_generatedTest" + generatedTestsIdx ++;
     }
 }

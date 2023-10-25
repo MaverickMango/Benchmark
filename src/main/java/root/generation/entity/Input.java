@@ -6,16 +6,18 @@ import com.github.javaparser.ast.expr.MethodCallExpr;
 import com.github.javaparser.quality.NotNull;
 import root.generation.helper.MutatorHelper;
 
+import javax.annotation.Nullable;
+import java.util.List;
 import java.util.Objects;
 
 /**
  * <s>test input(method call expression's argument)</s>
  */
-public class Input {
+public abstract class Input {
 
     private MethodCallExpr methodCallExpr;
     private final String type;
-    private Expression inputExpr;
+    private Expression inputExpr;//assert语句的actual参数
     private int argIdx;
     private boolean isPrimitive;
     private boolean isCompleted;//是否需要到original版本获取断言，获取完或者不需要的为completed
@@ -29,8 +31,8 @@ public class Input {
     }
 
     public Input(@NotNull MethodCallExpr methodCallExpr,
-                 @NotNull Expression inputExpr, String type, int argIdx) {
-        this.type = Objects.requireNonNull(type);
+                 @NotNull Expression inputExpr, @NotNull String type, int argIdx) {
+        this.type = type;
         setAttributes(methodCallExpr, inputExpr, argIdx);
         setPrimitive(type);
     }
@@ -78,8 +80,9 @@ public class Input {
         return isCompleted;
     }
 
-    public void setCompleted(boolean completed) {
-        isCompleted = completed;
+    public void getOracle() {
+        //todo:把需要获取oracle的函数放回到original版本运行
+        this.isCompleted = true;
     }
 
     @Override

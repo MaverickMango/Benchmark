@@ -1,9 +1,11 @@
 package root.generation.transformation;
 
+import com.github.javaparser.ast.CompilationUnit;
 import com.github.javaparser.ast.body.MethodDeclaration;
 import com.github.javaparser.ast.expr.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import root.generation.entity.BasicInput;
 import root.generation.entity.Input;
 import root.generation.entity.Skeleton;
 import root.generation.helper.MutatorHelper;
@@ -14,22 +16,15 @@ public class InputTransformer {
 
     private final Logger logger = LoggerFactory.getLogger(InputTransformer.class);
 
-    Map<MethodDeclaration, List<Skeleton>> skeletons;//?应该是个什么列表
+    Map<String, Skeleton> skeletons;//<className, Skeleton>
 
     public InputTransformer() {
         this.skeletons = new HashMap<>();
     }
 
-    public InputTransformer(MethodDeclaration methodDeclaration) {
+    public InputTransformer(Skeleton skeleton) {
         this.skeletons = new HashMap<>();
-        skeletons.put(methodDeclaration, new ArrayList<>());
-    }
-
-    public void addMethodToProcess(MethodDeclaration methodDeclaration) {
-        if (skeletons.containsKey(methodDeclaration)) {
-            List<Skeleton> list = skeletons.get(methodDeclaration);
-            //todo compare prefix equality.
-        }
+        skeletons.put(skeleton.getClazzName(), skeleton);
     }
 
     public Input transformInput(Input oldInput, Object value) {
@@ -37,7 +32,7 @@ public class InputTransformer {
             logger.error("Node " + oldInput.getInputExpr() + " has lost its parent node, can't process further!");
             throw new IllegalArgumentException(oldInput.toString());
         }
-        logger.info("New input '" + value.toString() + "' transforming for " + oldInput);
+        logger.info("New input '" + value.toString() + "' has been transformed for " + oldInput);
         Expression inputExpr = oldInput.getInputExpr();//todo: generate surround old expression value?
         Expression newInputExpr = null;
         try {
@@ -67,7 +62,7 @@ public class InputTransformer {
                 //todo: add support to Object.
                 throw new IllegalArgumentException("TBD. Unsupported type of Input has been given.");
             }
-            return new Input(oldInput.getMethodCallExpr(),
+            return new BasicInput(oldInput.getMethodCallExpr(),
                     newInputExpr, oldInput.getType(), oldInput.getArgIdx());
         } catch (ClassCastException e) {
             logger.error("Error casting while generate new input by argument '" + value + "'! " + e.getMessage());
@@ -77,25 +72,18 @@ public class InputTransformer {
     }
 
     public void buildNewTestByInput(Skeleton skeleton, Input newInput) {
-        MethodDeclaration methodDeclaration = skeleton.getOriginalMethod();
-        skeleton.constructSkeleton(newInput);
-        if (this.skeletons.containsKey(methodDeclaration)) {
-            this.skeletons.get(methodDeclaration).add(skeleton);
+        String clazzName = skeleton.getClazzName();
+        if (this.skeletons.containsKey(clazzName)) {
+            skeleton = this.skeletons.get(clazzName);
         } else {
-            List<Skeleton> list = new ArrayList<>();
-            list.add(skeleton);
-            this.skeletons.put(methodDeclaration, list);
+            this.skeletons.put(clazzName, skeleton);
         }
+        skeleton.constructSkeleton(newInput);
     }
 
     public void buildNewTestByInputs(Skeleton skeleton, List<Input> newInputs) {
         for (Input input :newInputs) {
             buildNewTestByInput(skeleton, input);
         }
-    }
-
-    public static void getOracle(List<Input> inputs) {
-        //todo:把需要获取oracle的函数放回到original版本运行
-
     }
 }
