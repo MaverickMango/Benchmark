@@ -1,5 +1,6 @@
 package root.generation.helper;
 
+import com.github.javaparser.ast.CompilationUnit;
 import com.github.javaparser.ast.Node;
 import com.github.javaparser.ast.NodeList;
 import com.github.javaparser.ast.expr.*;
@@ -9,12 +10,16 @@ import com.github.javaparser.resolution.UnsolvedSymbolException;
 import com.github.javaparser.resolution.types.ResolvedType;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import root.generation.entity.Skeleton;
 
 import java.io.File;
 import java.lang.reflect.Modifier;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.Collection;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Random;
 
 public class Helper {
 
@@ -93,6 +98,31 @@ public class Helper {
         nodeList.add(expression);
         methodCallExpr.setArguments(nodeList);
         return methodCallExpr;
+    }
+
+    private static String characterTable[] = {"a", "b", "c", "d", "e", "f", "g", "h", "i",
+            "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y",
+            "z", "0", "1", "2", "3", "4", "5", "6", "7", "8", "9"};
+    public static String getRandomID() {
+        int count = 4;
+        String id = "";
+        for (int i = 0; i < count; i++) {
+            int index = new Random().nextInt(characterTable.length - 1);
+            id = (id + characterTable[index]);
+        }
+        return id;
+    }
+
+    public static Map<String, String> getJavaSources(Map<Skeleton, CompilationUnit> map) {
+        Map<String, String> javaSources = new HashMap<>();
+        for (Map.Entry<Skeleton, CompilationUnit> entry :map.entrySet()) {
+            String path = entry.getKey().getAbsolutePath();
+            if (!path.contains("\\\\") && path.contains("\\")) {
+                path = path.replaceAll("\\\\", "\\\\\\\\");
+            }
+            javaSources.put(path, map.toString());
+        }
+        return javaSources;
     }
 }
 

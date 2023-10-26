@@ -7,6 +7,7 @@ import com.github.javaparser.quality.NotNull;
 import com.github.javaparser.resolution.UnsolvedSymbolException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import root.generation.helper.Helper;
 import root.generation.helper.MutatorHelper;
 
 import javax.annotation.Nullable;
@@ -30,14 +31,7 @@ public abstract class Input {
 
     public Input(@NotNull MethodCallExpr methodCallExpr,
                  @NotNull Expression inputExpr, int argIdx) {
-        String type1;
-        //todo: how to get its type if type cannot be resolved?
-        try {
-            type1 = inputExpr.calculateResolvedType().asReferenceType().getQualifiedName();
-        } catch (UnsolvedSymbolException e) {
-            type1 = "Object";
-        }
-        this.type = type1;
+        this.type = Helper.getType(inputExpr);
         setAttributes(methodCallExpr, inputExpr, argIdx);
         setPrimitive(type);
     }

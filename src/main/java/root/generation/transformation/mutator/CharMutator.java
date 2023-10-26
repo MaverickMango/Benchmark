@@ -6,7 +6,7 @@ public class CharMutator extends AbstractInputMutator{
 
     private final Random random = new Random();
     private final String specialChars = "!@#$%^&*()+-=_[]{};:'\",./<>?|\\`~";
-    private final String vocabulary = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ";
+    private final String vocabulary = "1234567890abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ";
 
     @Override
     public Object getNextInput() {

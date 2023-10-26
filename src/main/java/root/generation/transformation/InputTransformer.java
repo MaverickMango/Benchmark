@@ -4,16 +4,12 @@ import com.github.javaparser.ast.CompilationUnit;
 import com.github.javaparser.ast.body.MethodDeclaration;
 import com.github.javaparser.ast.expr.*;
 import com.github.javaparser.quality.NotNull;
-import com.github.javaparser.resolution.types.ResolvedType;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import root.generation.entity.BasicInput;
 import root.generation.entity.Input;
-import root.generation.entity.ObjectInput;
 import root.generation.entity.Skeleton;
 import root.generation.helper.Helper;
 import root.generation.helper.MutatorHelper;
-import root.generation.transformation.visitor.ModifiedVisitor;
 
 import java.util.*;
 import java.util.stream.Collectors;
@@ -22,7 +18,7 @@ public class InputTransformer {
 
     private final Logger logger = LoggerFactory.getLogger(InputTransformer.class);
 
-    Map<String, Skeleton> skeletons;//<className, Skeleton>
+    Map<String, Skeleton> skeletons;//<absolutePath, Skeleton>
 
     public InputTransformer() {
         this.skeletons = new HashMap<>();
@@ -80,14 +76,15 @@ public class InputTransformer {
         return newInputExpr;
     }
 
-    public void buildNewTestByInput(Skeleton skeleton, Input newInput) {
-        String clazzName = skeleton.getClazzName();
-        if (this.skeletons.containsKey(clazzName)) {
-            skeleton = this.skeletons.get(clazzName);
+    public CompilationUnit buildNewTestByInput(Skeleton skeleton, Input newInput) {
+        String path = skeleton.getAbsolutePath();
+        if (this.skeletons.containsKey(path)) {
+            skeleton = this.skeletons.get(path);
         } else {
-            this.skeletons.put(clazzName, skeleton);
+            this.skeletons.put(path, skeleton);
         }
-        constructSkeleton(skeleton, newInput);
+        CompilationUnit compilationUnit = constructSkeleton(skeleton, newInput);
+        return compilationUnit;
     }
 
     public void buildNewTestByInputs(Skeleton skeleton, List<Input> newInputs) {
@@ -114,17 +111,19 @@ public class InputTransformer {
         skeleton.addMethodsAtCompilationUnit();//向原有类添加新的测试函数
     }
 
-    public void constructSkeleton(Skeleton skeleton, Input newInput) {
+    public CompilationUnit constructSkeleton(Skeleton skeleton, Input newInput) {
         if (!skeleton.isSplit())
             skeleton.splitAssert();//删除原有的assert语句
         skeleton.addInput(newInput);
         skeleton.applyTransform(newInput);
+        CompilationUnit newUnit;
         if (!newInput.isCompleted()) {
-            skeleton.getOracle(newInput);//需要oracle的语句则需要先执行一遍
+            newUnit = skeleton.getOracle(newInput);//需要oracle的语句则需要先执行一遍
         } else {
             MethodDeclaration methodDeclaration = skeleton.addStatementAtLast(newInput.getMethodCallExpr());//对于不需要oracle的语句，直接根据input更新method
-            skeleton.addMethodAtCompilationUnit(methodDeclaration);//向原有类添加新的测试函数
+            newUnit = skeleton.getTransformedCompilationUnit(methodDeclaration);//向原有类添加新的测试函数
         }
+        return newUnit;
     }
 
 }

@@ -29,9 +29,18 @@ public class AbstractMain {
         options.addOption("testClassesInfoPath", true, "");
     }
 
-    private final CommandLineParser parser = new DefaultParser();
+    public final CommandLineParser parser = new DefaultParser();
+    protected Preparation preparation;
 
-    public Preparation initialize(String[] args) {
+    public AbstractMain(String[] args) {
+        this.preparation = initialize(args);
+    }
+
+    public Preparation getPreparation() {
+        return preparation;
+    }
+
+    private Preparation initialize(String[] args) {
         boolean res = progressArguments(args);
         if (!res)
             return null;

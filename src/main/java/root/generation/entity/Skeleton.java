@@ -1,7 +1,6 @@
 package root.generation.entity;
 
 import com.github.javaparser.ast.CompilationUnit;
-import com.github.javaparser.ast.Node;
 import com.github.javaparser.ast.NodeList;
 import com.github.javaparser.ast.body.ClassOrInterfaceDeclaration;
 import com.github.javaparser.ast.body.MethodDeclaration;
@@ -14,7 +13,6 @@ import com.github.javaparser.quality.NotNull;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import root.generation.helper.Helper;
-import root.generation.transformation.InputTransformer;
 import root.generation.transformation.visitor.ModifiedVisitor;
 
 import java.util.*;
@@ -27,6 +25,7 @@ import java.util.stream.Collectors;
 public class Skeleton {
 
     private static final Logger logger = LoggerFactory.getLogger(Skeleton.class);
+    String absolutePath;
     CompilationUnit clazz;
     String clazzName;
     MethodDeclaration originalMethod;
@@ -36,7 +35,8 @@ public class Skeleton {
     List<MethodDeclaration> methodDeclarations;
     int generatedTestsIdx;
 
-    public Skeleton(@NotNull CompilationUnit clazz, @NotNull MethodDeclaration originalMethod) {
+    public Skeleton(@NotNull String absolutePath, @NotNull CompilationUnit clazz, @NotNull MethodDeclaration originalMethod) {
+        this.absolutePath = absolutePath;
         this.clazz = clazz;
         this.originalMethod = originalMethod;
         if (originalMethod.getParentNode().isEmpty()) {
@@ -51,6 +51,10 @@ public class Skeleton {
         this.inputs = new ArrayList<>();
         this.methodDeclarations = new ArrayList<>();
         this.generatedTestsIdx = 0;
+    }
+
+    public String getAbsolutePath() {
+        return absolutePath;
     }
 
     public CompilationUnit getClazz() {
@@ -122,6 +126,16 @@ public class Skeleton {
         }
     }
 
+    public CompilationUnit getTransformedCompilationUnit(MethodDeclaration methodDeclaration) {
+        CompilationUnit clone = clazz.clone();
+        ClassOrInterfaceDeclaration classOrInterfaceDeclaration = clone.getClassByName(clazzName).get();
+        List<String> collect = classOrInterfaceDeclaration.getMethods().stream()
+                .map(NodeWithSimpleName::getNameAsString).collect(Collectors.toList());
+        if (!collect.contains(methodDeclaration.getNameAsString()))
+            classOrInterfaceDeclaration.addMember(methodDeclaration);
+        return clone;
+    }
+
     public void addMethodAtCompilationUnit(MethodDeclaration methodDeclaration) {
         ClassOrInterfaceDeclaration classOrInterfaceDeclaration = clazz.getClassByName(clazzName).get();
         List<String> collect = classOrInterfaceDeclaration.getMethods().stream()
@@ -161,16 +175,17 @@ public class Skeleton {
         }
     }
 
-    public void getOracle(Input input) {
+    public CompilationUnit getOracle(Input input) {
         //插入一个输出语句用于获取变量在original版本的oracle。
         Expression expression = Helper.constructPrintStmt2Instr(input.inputExpr);
         MethodDeclaration methodInstrumented = addStatementAtLast(expression);
         //这个时候不需要插入断言
 //        MethodDeclaration methodDeclaration = addStatementAtLast(input.getMethodCallExpr());
-        addMethodAtCompilationUnit(methodInstrumented);
+        CompilationUnit transformedCompilationUnit = getTransformedCompilationUnit(methodInstrumented);
 
         //todo 执行
 
         input.setCompleted(true);
+        return transformedCompilationUnit;
     }
 }

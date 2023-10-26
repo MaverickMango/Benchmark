@@ -1,5 +1,6 @@
 package root.generation.helper;
 
+import org.junit.Test;
 import org.junit.jupiter.api.BeforeAll;
 import root.AbstractMain;
 import root.util.CommandSummary;
@@ -15,11 +16,13 @@ public class PreparationTest {
         cs.append("-binJavaDir", "build/classes/java/main");
         cs.append("-binTestDir", "build/classes/java/test");
     }
-    static AbstractMain main = new AbstractMain();
+    static AbstractMain main ;
     public static Preparation preparation;
 
     @BeforeAll
     static void beforeAll() {
-        preparation = main.initialize(cs.flat());
+        main = new AbstractMain(cs.flat());
+        preparation = main.getPreparation();
     }
+
 }

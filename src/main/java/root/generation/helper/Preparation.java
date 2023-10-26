@@ -3,17 +3,25 @@ package root.generation.helper;
 import org.apache.commons.io.FileUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import root.generation.compiler.JavaJDKCompiler;
+import root.generation.execution.ExternalTestExecutor;
+import root.generation.execution.ITestExecutor;
+import root.generation.execution.InternalTestExecutor;
 import root.generation.transformation.InputTransformer;
 import root.generation.transformation.extractor.InputExtractor;
 import root.generation.parser.ASTJavaParser;
 import root.generation.parser.AbstractASTParser;
 import root.util.ConfigurationProperties;
 
+import javax.management.JMException;
+import javax.tools.JavaFileObject;
 import java.io.File;
 import java.io.IOException;
+import java.net.URL;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.*;
+import java.net.MalformedURLException;
 
 public class Preparation {
     private static final Logger logger = LoggerFactory.getLogger(Preparation.class);
@@ -25,6 +33,13 @@ public class Preparation {
     public Set<String> dependencies;
     public String javaClassesInfoPath;
     public String testClassesInfoPath;
+    public String testExecutorName;
+    public String binWorkingRoot;
+    public String finalTestsInfoPath;
+    public String externalProjRoot;
+    public String jvmPath;
+    public int waitTime;
+    int globalID;
     public Set<String> binJavaClasses;
     public Set<String> binExecuteTestClasses;
     public AbstractASTParser parser;
@@ -32,8 +47,9 @@ public class Preparation {
     public List<String> compilerOptions;
     public InputExtractor inputExtractor;
     public InputTransformer inputTransformer;
+    URL[] progURLs;
 
-    public Preparation() {
+    public Preparation() throws IOException {
         complianceLevel = ConfigurationProperties.getProperty("complianceLevel");
         String location = ConfigurationProperties.getProperty("location");
         Path path = Paths.get(location).toAbsolutePath();
@@ -54,15 +70,43 @@ public class Preparation {
         }
         javaClassesInfoPath = ConfigurationProperties.getProperty("javaClassesInfoPath");
         testClassesInfoPath = ConfigurationProperties.getProperty("testClassesInfoPath");
+
+        testExecutorName = ConfigurationProperties.getProperty("testExecutorName");
+        if (testExecutorName == null)
+            testExecutorName = "ExternalTestExecutor";
+        binWorkingRoot = ConfigurationProperties.getProperty("binWorkingRoot");
+
+        String id = Helper.getRandomID();
+        if (binWorkingRoot == null)
+            binWorkingRoot = System.getProperty("java.io.tmpdir") + System.getProperty("file.separator") + "working_" + id;
+
+        finalTestsInfoPath = ConfigurationProperties.getProperty("finalTestsInfoPath");
+        if (finalTestsInfoPath == null)
+            finalTestsInfoPath = System.getProperty("java.io.tmpdir") + System.getProperty("file.separator") + "finalTests_" + id + ".txt";
+
+        externalProjRoot = ConfigurationProperties.getProperty("externalProjRoot");
+        if (externalProjRoot == null)
+            externalProjRoot = new File("external").getCanonicalPath();
+
+        jvmPath = ConfigurationProperties.getProperty("jvmPath");
+        if (jvmPath == null)
+            jvmPath = System.getProperty("java.home") + "/bin/java";
+
+        waitTime = ConfigurationProperties.getPropertyInt("waitTime");
+        if (waitTime == 0)
+            waitTime = 6000;
+
+        globalID = 0;
     }
 
     public void initialize(boolean sourceOnly, boolean testOnly) throws IOException, ClassNotFoundException {
         if (!sourceOnly) {
             invokeClassFinder();//?
-            invokeCompilerOptionInitializer(complianceLevel);
         }
+        invokeCompilerOptionInitializer(complianceLevel);
         invokeSourceASTParser(testOnly);
         invokeTransformation();
+        invokeProgURLsInitializer();
     }
 
     private void invokeClassFinder() throws ClassNotFoundException, IOException {
@@ -91,6 +135,15 @@ public class Preparation {
         logger.info("AST parsing is finished!");
     }
 
+    void invokeProgURLsInitializer() throws MalformedURLException {
+        List<String> tempList = new ArrayList<>();
+        tempList.add(binJavaDir);
+        tempList.add(binTestDir);
+        if (dependencies != null)
+            tempList.addAll(dependencies);
+        progURLs = Helper.getURLs(tempList);
+    }
+
     private void invokeCompilerOptionInitializer(String complianceLevel) {
         compilerOptions = new ArrayList<>();
         compilerOptions.add("-nowarn");
@@ -107,9 +160,42 @@ public class Preparation {
     }
 
     private void invokeTransformation() {
-        //todo: test extractor/ assert / arguments
         inputExtractor = new InputExtractor(parser);
         MutatorHelper.initialize();
         inputTransformer = new InputTransformer();
+    }
+
+    public Map<String, JavaFileObject> getCompiledClassesForTestExecution(Map<String, String> javaSources) {
+        JavaJDKCompiler compiler = new JavaJDKCompiler(ClassLoader.getSystemClassLoader(), compilerOptions);
+        try {
+            boolean isCompiled = compiler.compile(javaSources);
+            if (isCompiled)
+                return compiler.getClassLoader().getCompiledClasses();
+            else
+                return null;
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    protected ITestExecutor getTestExecutor(Map<String, JavaFileObject> compiledClasses, Set<String> executePosTests)
+            throws JMException, IOException {
+        if (testExecutorName.equalsIgnoreCase("ExternalTestExecutor")) {
+            File binWorkingDirFile = new File(binWorkingRoot, "bin_" + (globalID++));
+            IO.saveCompiledClasses(compiledClasses, binWorkingDirFile);
+            String binWorkingDir = binWorkingDirFile.getCanonicalPath();
+            //todo 这里需要区分原有的成功测试和失败测试么
+            String tempPath = null;// (executePosTests == positiveTests) ? finalTestsInfoPath : null;
+            return new ExternalTestExecutor(executePosTests, /*negativeTests*/null, tempPath, binJavaDir, binTestDir,
+                    dependencies, binWorkingDir, externalProjRoot, jvmPath, waitTime);
+
+        } else if (testExecutorName.equalsIgnoreCase("InternalTestExecutor")) {
+            CustomURLClassLoader urlClassLoader = new CustomURLClassLoader(progURLs, compiledClasses);
+            return new InternalTestExecutor(executePosTests, /*negativeTests*/null, urlClassLoader, waitTime);
+        } else {
+            logger.error("test executor name '" + testExecutorName + "' not found ");
+            throw new JMException("Exception in getTestExecutor()");
+        }
     }
 }

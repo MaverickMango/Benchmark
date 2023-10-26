@@ -82,7 +82,6 @@ public class InputExtractor {
     }
 
     public Input extractInput(MethodCallExpr methodCallExpr) {
-        //todo 实际应该收集的是当前assert语句的actual参数涉及到的变量的声明或者赋值过程中包含的参数
         if (methodCallExpr == null) {
             logger.error("Extracted method call expression is null! Process Interrupted.");
             throw new IllegalArgumentException("Illegal argument: Null");
@@ -103,7 +102,7 @@ public class InputExtractor {
         String qualifiedName;
         //如果只有一个参数，并且不是assert语句，就直接提取参数进行变异，变异后塞回去就行。
         if (arguments.size() >= 2) {
-            //todo: 存在多个参数的情况时第几个是实际条件?
+            //todo: 存在多个参数的情况时实际是第二个条件吗？
             //如果是两个参数，一般第二个参数是实际值，提取后需要到original版本获取期望值。
             actual = arguments.get(1);
             argIdx = 1;

@@ -11,6 +11,10 @@ import com.github.javaparser.ast.visitor.Visitable;
 import java.util.List;
 import java.util.Optional;
 
+/**
+ * 对应DependencyVisitor的右侧子节点
+ * todo 判断父节点是否包含inputExpr
+ */
 public class ModifiedVisitor extends ModifierVisitor<List<Expression>> {
 
     private Expression inputExpr;
@@ -21,14 +25,6 @@ public class ModifiedVisitor extends ModifierVisitor<List<Expression>> {
         this.inputExpr = inputExpr;
         this.basicExpr = basicExpr;
         this.transformed = transformed;
-    }
-
-    public Expression getBasicExpr() {
-        return basicExpr;
-    }
-
-    public Expression getTransformed() {
-        return transformed;
     }
 
     @Override

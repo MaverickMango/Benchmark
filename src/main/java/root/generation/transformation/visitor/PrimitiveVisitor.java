@@ -6,6 +6,9 @@ import com.github.javaparser.ast.visitor.VoidVisitorAdapter;
 import java.util.List;
 import java.util.Set;
 
+/**
+ * 对应mutator的数据类型
+ */
 public class PrimitiveVisitor extends VoidVisitorAdapter<Set<Expression>> {
 
     @Override
