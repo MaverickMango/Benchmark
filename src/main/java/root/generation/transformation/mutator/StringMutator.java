@@ -11,29 +11,25 @@ public class StringMutator extends AbstractInputMutator{
     List<String> usedStrings = new ArrayList<>();
 
     @Override
-    public Object getNextInput() {
-        this.addInputMutants(randomStrMutate(""));
-        return this.inputs.get(random.nextInt(this.inputs.size()));
-    }
-
-    protected Object getInput(String root) {
-        this.addInputMutants(randomStrMutate(root));
+    public Object getNextInput(Object oldValue) {
+        this.addInputMutants(randomStrMutate((String) oldValue));
         return this.inputs.get(random.nextInt(this.inputs.size()));
     }
 
     private Object randomStrMutate(String root) {
         String target = root;
         int idx;
-        if (usedStrings.size() > 0) {
-            idx = random.nextInt(usedStrings.size());
-            target = usedStrings.get(idx);
-        }
-
-        if (random.nextInt(5) == 0 && target.length() > 0) {
+//        if (usedStrings.size() > 0) {
+//            idx = random.nextInt(usedStrings.size());
+//            target = usedStrings.get(idx);
+//        }
+        usedStrings.add(root);
+        while (target.length() > 0 && usedStrings.contains(target)) {
             idx = random.nextInt(target.length());
             char randomChar = specialChars.charAt(random.nextInt(specialChars.length()));
             target = target.substring(0, idx) + randomChar + target.substring(idx);
         }
+        usedStrings.add(target);
         return "\"" + target + "\"";
     }
 }

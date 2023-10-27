@@ -39,7 +39,7 @@ public class JavaJDKCompiler {
 	}
 
 	public synchronized boolean compile(final Map<String, String> classes) throws Exception {
-		List<JavaFileObject> sources = new ArrayList<JavaFileObject>();
+		List<JavaFileObject> sources = new ArrayList<>();
 		for (Entry<String, String> entry : classes.entrySet()) {
 			String sourceFilePath = entry.getKey();
 			String sourceCode = entry.getValue();

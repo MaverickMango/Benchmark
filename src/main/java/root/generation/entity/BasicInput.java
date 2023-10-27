@@ -15,7 +15,7 @@ import java.util.*;
  */
 public class BasicInput extends Input {
 
-    private final VoidVisitorAdapter<Set<Expression>> visitor;
+    private VoidVisitorAdapter<Set<Expression>> visitor;
 
     public BasicInput(MethodCallExpr methodCallExpr, Expression inputExpr, int argIdx) {
         super(methodCallExpr, inputExpr, argIdx);
@@ -31,10 +31,7 @@ public class BasicInput extends Input {
 
     public void setBasicExpr(Expression inputExpr) {
         Set<Expression> collector = new HashSet<>();
-        List<MethodCallExpr> methodCallExprs = inputExpr.findAll(MethodCallExpr.class);
-        for (MethodCallExpr method :methodCallExprs) {
-            visitor.visit(method, collector);
-        }
+        inputExpr.accept(visitor, collector);
         Random random = new Random();
         List<Expression> tmp = new ArrayList<>(collector);
         this.basicExpr = tmp.get(random.nextInt(tmp.size()));

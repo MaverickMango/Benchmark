@@ -53,13 +53,13 @@ public class MutatorHelper {
         String qualifiedName = Helper.getType(oldInput.getBasicExpr());
         AbstractInputMutator mutator;
         if (MutatorHelper.isKnownType(qualifiedName)) {
-            mutator = getKnownMutator(oldInput);
-            Object nextInput = mutator.getNextInput();
-            return mutator.getInputs();
+            mutator = getKnownMutator(qualifiedName);
+            Object nextInput = mutator.getNextInput(oldInput.getBasicExpr().toString());
+            return mutator.getInputs();//todo 这里会一直取之前变异过的重复值，事实上每次都应该是一个新的变异集合
         } else {
             mutator = getUnknownMutator(oldInput);
-            mutator.getNextInput();
-            return mutator.getInputs();
+            mutator.getNextInput(oldInput.getBasicExpr().toString());
+            return mutator.getInputs();//todo 同上
         }
     }
 
@@ -67,9 +67,9 @@ public class MutatorHelper {
         return INPUTS_BY_TYPE.containsKey(className);
     }
 
-    public static AbstractInputMutator getKnownMutator(Input input) {
-        if (MutatorHelper.INPUTS_BY_TYPE.containsKey(input.getType())) {
-            List<Class<? extends Expression>> classes = MutatorHelper.INPUTS_BY_TYPE.get(input.getType());
+    public static AbstractInputMutator getKnownMutator(String type) {
+        if (MutatorHelper.INPUTS_BY_TYPE.containsKey(type)) {
+            List<Class<? extends Expression>> classes = MutatorHelper.INPUTS_BY_TYPE.get(type);
             //Now, here is a random getter for mutators.
             Random random = new Random();
             int idx = random.nextInt(classes.size());
@@ -77,7 +77,7 @@ public class MutatorHelper {
             return MutatorHelper.MUTATORS.get(target);
         } else {
             logger.error("Unsupported type of mutator!");
-            throw new IllegalArgumentException("Illegal argument: " + input.getType());
+            throw new IllegalArgumentException("Illegal argument: " + type);
         }
     }
 

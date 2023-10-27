@@ -23,6 +23,5 @@ public class FileASTRequestorImpl extends FileASTRequestor {
     @Override
     public void acceptBinding(String bindingKey, IBinding binding) {
         super.acceptBinding(bindingKey, binding);
-        System.out.println();
     }
 }

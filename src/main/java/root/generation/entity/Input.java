@@ -26,8 +26,9 @@ public abstract class Input {
     int argIdx;
     boolean isPrimitive;
     boolean isCompleted;//是否需要到original版本获取断言，获取完或者不需要的为completed
-    Expression basicExpr;//实际进行变异的内容
+    Expression basicExpr;//实际进行变异的内容,如果是basicInput则和inputExpr一致
     Expression transformed;
+    boolean isTransformed;
 
     public Input(@NotNull MethodCallExpr methodCallExpr,
                  @NotNull Expression inputExpr, int argIdx) {
@@ -56,6 +57,11 @@ public abstract class Input {
         this.inputExpr = inputExpr;
         this.argIdx = argIdx;
         this.isCompleted = methodCallExpr.getArguments().size() == 1;
+        this.isTransformed = false;
+    }
+
+    public void setMethodCallExpr(MethodCallExpr methodCallExpr) {
+        this.methodCallExpr = methodCallExpr;
     }
 
     public MethodCallExpr getMethodCallExpr() {
@@ -102,6 +108,14 @@ public abstract class Input {
         this.transformed = newInputExpr;
     }
 
+    public boolean isTransformed() {
+        return isTransformed;
+    }
+
+    public void setTransformed(boolean transformed) {
+        isTransformed = transformed;
+    }
+
     @Override
     public String toString() {
         return "Input{" +
@@ -126,13 +140,4 @@ public abstract class Input {
         }
     }
 
-    @Override
-    public Input clone(){
-        try {
-            return (Input) super.clone();
-        } catch (CloneNotSupportedException e) {
-            logger.error("Clone not supported, original Object will be return!");
-        }
-        return this;
-    }
 }

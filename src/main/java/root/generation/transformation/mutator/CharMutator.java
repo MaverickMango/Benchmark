@@ -9,7 +9,7 @@ public class CharMutator extends AbstractInputMutator{
     private final String vocabulary = "1234567890abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ";
 
     @Override
-    public Object getNextInput() {
+    public Object getNextInput(Object oldValue) {
         this.addInputMutants(randomCharMutate());
         return this.inputs.get(random.nextInt(this.inputs.size()));
     }

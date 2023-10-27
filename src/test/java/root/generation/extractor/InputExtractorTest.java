@@ -17,9 +17,9 @@ import static org.junit.jupiter.api.Assertions.*;
 
 public class InputExtractorTest extends PreparationTest{
 
-    public static String filePath = "src/test/java/root/generation/extractor/InputExtractorTest.java";
-    static String methodName = "extractMethodCallByLine";
-    static int lineNumber = 48;
+    public static String filePath = "/home/liumengjiao/Desktop/CI/bugs/Closure_10_bug/test/com/google/javascript/jscomp/PeepholeFoldConstantsTest.java";
+    static String methodName = "testIssue821";
+    static int lineNumber = 582;
 
     @Test
     void extractMethodByName() {

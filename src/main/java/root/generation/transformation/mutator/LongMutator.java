@@ -7,7 +7,7 @@ public class LongMutator extends AbstractInputMutator{
     private final Random random = new Random();
 
     @Override
-    public Object getNextInput() {
+    public Object getNextInput(Object oldValue) {
         this.addInputMutants(random.nextLong());
         return this.inputs.get(random.nextInt(this.inputs.size()));
     }

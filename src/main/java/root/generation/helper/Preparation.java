@@ -7,6 +7,7 @@ import root.generation.compiler.JavaJDKCompiler;
 import root.generation.execution.ExternalTestExecutor;
 import root.generation.execution.ITestExecutor;
 import root.generation.execution.InternalTestExecutor;
+import root.generation.parser.ASTJDTParser;
 import root.generation.transformation.InputTransformer;
 import root.generation.transformation.extractor.InputExtractor;
 import root.generation.parser.ASTJavaParser;
@@ -125,7 +126,7 @@ public class Preparation {
     private void invokeSourceASTParser(boolean testOnly) throws IOException {
         logger.info("Invoking source code ast parse...");
 
-        parser = new ASTJavaParser(srcJavaDir, srcTestDir, dependencies);//resolver是白给的么
+        parser = new ASTJavaParser(srcJavaDir, srcTestDir, dependencies, complianceLevel);//resolver是白给的么
 //        parser = new ASTJDTParser(srcJavaDir, srcTestDir, dependencies, new HashMap<>());//很好这两个都没有类型解析啊啊啊
         if (!testOnly)
             parser.parseASTs(srcJavaDir);
@@ -151,6 +152,7 @@ public class Preparation {
         compilerOptions.add(complianceLevel);
         compilerOptions.add("-cp");
         StringBuilder cpStr = new StringBuilder(binJavaDir);
+        cpStr.append(File.pathSeparator).append(binTestDir);
         if (dependencies != null) {
             for (String path: dependencies) {
                 cpStr.append(File.pathSeparator).append(path);

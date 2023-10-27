@@ -120,7 +120,7 @@ public class Helper {
             if (!path.contains("\\\\") && path.contains("\\")) {
                 path = path.replaceAll("\\\\", "\\\\\\\\");
             }
-            javaSources.put(path, map.toString());
+            javaSources.put(path, map.get(entry.getKey()).toString());
         }
         return javaSources;
     }

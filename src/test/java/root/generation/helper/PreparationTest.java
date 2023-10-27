@@ -10,11 +10,12 @@ import java.io.File;
 public class PreparationTest {
     static CommandSummary cs = new CommandSummary();
     static {
-        cs.append("-location", "./");
-        cs.append("-srcJavaDir", "src/main/java");
-        cs.append("-srcTestDir", "src/test/java");
-        cs.append("-binJavaDir", "build/classes/java/main");
-        cs.append("-binTestDir", "build/classes/java/test");
+        cs.append("-location", "/home/liumengjiao/Desktop/CI/bugs/Closure_10_bug");
+        cs.append("-srcJavaDir", "src");
+        cs.append("-srcTestDir", "test");
+        cs.append("-binJavaDir", "build/classes");
+        cs.append("-binTestDir", "build/test");
+        cs.append("-complianceLevel", "1.6");
     }
     static AbstractMain main ;
     public static Preparation preparation;

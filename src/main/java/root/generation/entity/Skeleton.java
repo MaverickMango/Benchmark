@@ -5,6 +5,7 @@ import com.github.javaparser.ast.NodeList;
 import com.github.javaparser.ast.body.ClassOrInterfaceDeclaration;
 import com.github.javaparser.ast.body.MethodDeclaration;
 import com.github.javaparser.ast.expr.Expression;
+import com.github.javaparser.ast.expr.MethodCallExpr;
 import com.github.javaparser.ast.nodeTypes.NodeWithSimpleName;
 import com.github.javaparser.ast.stmt.BlockStmt;
 import com.github.javaparser.ast.stmt.ExpressionStmt;
@@ -32,7 +33,7 @@ public class Skeleton {
     MethodDeclaration transformedMethod;
     boolean isSplit;//是否完成对多余断言的删除
     List<Input> inputs;
-    List<MethodDeclaration> methodDeclarations;
+    List<MethodDeclaration> generatedMethods;
     int generatedTestsIdx;
 
     public Skeleton(@NotNull String absolutePath, @NotNull CompilationUnit clazz, @NotNull MethodDeclaration originalMethod) {
@@ -49,7 +50,7 @@ public class Skeleton {
         this.clazzName = ((ClassOrInterfaceDeclaration) originalMethod.getParentNode().get()).getNameAsString();
         this.isSplit = false;
         this.inputs = new ArrayList<>();
-        this.methodDeclarations = new ArrayList<>();
+        this.generatedMethods = new ArrayList<>();
         this.generatedTestsIdx = 0;
     }
 
@@ -89,6 +90,10 @@ public class Skeleton {
         return isSplit;
     }
 
+    public List<MethodDeclaration> getGeneratedMethods() {
+        return generatedMethods;
+    }
+
     public void splitAssert() {
         MethodDeclaration clone = this.getOriginalMethod().clone();
         (clone.getBody().get()).findAll(ExpressionStmt.class).forEach((stmt) -> {
@@ -116,7 +121,7 @@ public class Skeleton {
             BlockStmt blockStmt = new BlockStmt(new NodeList<>());
             blockStmt.getStatements().addLast(stmt);
         }
-        methodDeclarations.add(clone);
+        generatedMethods.add(clone);
         return clone;
     }
 
@@ -145,7 +150,7 @@ public class Skeleton {
     }
 
     public void addMethodsAtCompilationUnit() {
-        for (MethodDeclaration method :methodDeclarations) {
+        for (MethodDeclaration method : generatedMethods) {
             addMethodAtCompilationUnit(method);
         }
     }
@@ -164,8 +169,12 @@ public class Skeleton {
             MethodDeclaration methodDeclaration = this.getTransformedMethod().clone();
             methodDeclaration.accept(visitor, collector);
             this.transformedMethod = methodDeclaration;
+            input.setTransformed(true);
         } else if (input instanceof BasicInput) {
-            inputExpr.accept(visitor, collector);
+            MethodCallExpr clone = input.getMethodCallExpr().clone();
+            clone.accept(visitor, collector);
+            input.setMethodCallExpr(clone);
+            input.setTransformed(true);
         }
     }
 
@@ -177,7 +186,11 @@ public class Skeleton {
 
     public CompilationUnit getOracle(Input input) {
         //插入一个输出语句用于获取变量在original版本的oracle。
-        Expression expression = Helper.constructPrintStmt2Instr(input.inputExpr);
+        Expression inputExpr = input.getInputExpr();
+        if (input instanceof BasicInput) {
+            inputExpr = input.getMethodCallExpr().getArgument(input.getArgIdx());
+        }
+        Expression expression = Helper.constructPrintStmt2Instr(inputExpr);
         MethodDeclaration methodInstrumented = addStatementAtLast(expression);
         //这个时候不需要插入断言
 //        MethodDeclaration methodDeclaration = addStatementAtLast(input.getMethodCallExpr());

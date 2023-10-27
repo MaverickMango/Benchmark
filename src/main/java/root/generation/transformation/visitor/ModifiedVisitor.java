@@ -32,6 +32,7 @@ public class ModifiedVisitor extends ModifierVisitor<List<Expression>> {
         Expression value = n.getIndex();
         if (value.getClass().equals(basicExpr.getClass()) && value.toString().equals(basicExpr.toString())) {
             n.setIndex(transformed);
+            return null;
         }
         return super.visit(n, arg);
     }
@@ -42,6 +43,7 @@ public class ModifiedVisitor extends ModifierVisitor<List<Expression>> {
         for (Expression value :values) {
             if (value.getClass().equals(basicExpr.getClass()) && value.toString().equals(basicExpr.toString())) {
                 values.replace(value, transformed);
+                return null;
             }
         }
         return super.visit(n, arg);
@@ -53,6 +55,7 @@ public class ModifiedVisitor extends ModifierVisitor<List<Expression>> {
         for (Expression value :arguments) {
             if (value.getClass().equals(basicExpr.getClass()) && value.toString().equals(basicExpr.toString())) {
                 arguments.replace(value, transformed);
+                return null;
             }
         }
         return super.visit(n, arg);
@@ -64,6 +67,7 @@ public class ModifiedVisitor extends ModifierVisitor<List<Expression>> {
         for (Expression value :arguments) {
             if (value.getClass().equals(basicExpr.getClass()) && value.toString().equals(basicExpr.toString())) {
                 arguments.replace(value, transformed);
+                return null;
             }
         }
         return super.visit(n, arg);

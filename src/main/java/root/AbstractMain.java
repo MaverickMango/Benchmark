@@ -46,7 +46,7 @@ public class AbstractMain {
             return null;
         try {
             Preparation helper = new Preparation();
-            helper.initialize(true, false);
+            helper.initialize(true, true);
             return helper;
         } catch (Exception e) {
             logger.error("Error occurred when MutatorHelper initialization: " + e.getMessage());

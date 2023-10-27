@@ -13,6 +13,7 @@ import root.generation.helper.MutatorHelper;
 import root.generation.helper.PreparationTest;
 import root.generation.transformation.extractor.InputExtractor;
 
+import javax.tools.JavaFileObject;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -62,6 +63,7 @@ class InputTransformerTest extends PreparationTest{
         Map<Skeleton, CompilationUnit> map = new HashMap<>();
         map.put(skeleton, buildNewTestByInput);
         Map<String, String> javaSources = Helper.getJavaSources(map);
-        preparation.getCompiledClassesForTestExecution(javaSources);
+        Map<String, JavaFileObject> compiledClassesForTestExecution = preparation.getCompiledClassesForTestExecution(javaSources);
+        assertNotNull(compiledClassesForTestExecution);
     }
 }

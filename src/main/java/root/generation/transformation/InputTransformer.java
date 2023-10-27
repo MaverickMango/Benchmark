@@ -32,11 +32,11 @@ public class InputTransformer {
         logger.info("New input '" + value.toString() + "' has been transformed for " + oldInput);
         Expression basicExpr = oldInput.getBasicExpr();
         Expression newInputExpr = transform(basicExpr, value);
-        Input newInput = oldInput.clone();//todo 现在clone完的新旧变量还是一个引用
-        newInput.setBasicExprTransformed(newInputExpr);
-        return newInput;
+        oldInput.setBasicExprTransformed(newInputExpr);
+        return oldInput;
     }
 
+    @SuppressWarnings("deprecation")
     private Expression transform(@NotNull Expression basicExpr, Object value) {
         String qualifiedName = Helper.getType(basicExpr);
         Class<? extends Expression> inputType = MutatorHelper.INPUTS_BY_TYPE.get(qualifiedName).get(0);
