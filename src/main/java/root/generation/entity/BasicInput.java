@@ -1,11 +1,8 @@
 package root.generation.entity;
 
-import com.github.javaparser.ast.body.MethodDeclaration;
 import com.github.javaparser.ast.expr.Expression;
 import com.github.javaparser.ast.expr.MethodCallExpr;
-import com.github.javaparser.ast.expr.NameExpr;
 import com.github.javaparser.ast.visitor.VoidVisitorAdapter;
-import javassist.expr.Expr;
 import root.generation.transformation.visitor.PrimitiveVisitor;
 
 import java.util.*;
@@ -20,16 +17,16 @@ public class BasicInput extends Input {
     public BasicInput(MethodCallExpr methodCallExpr, Expression inputExpr, int argIdx) {
         super(methodCallExpr, inputExpr, argIdx);
         visitor = new PrimitiveVisitor();
-        setBasicExpr(inputExpr);
+        initBasicExpr(inputExpr);
     }
 
     public BasicInput(MethodCallExpr methodCallExpr, Expression inputExpr, String type, int argIdx) {
         super(methodCallExpr, inputExpr, type, argIdx);
         visitor = new PrimitiveVisitor();
-        setBasicExpr(inputExpr);
+        initBasicExpr(inputExpr);
     }
 
-    public void setBasicExpr(Expression inputExpr) {
+    private void initBasicExpr(Expression inputExpr) {
         List<Expression> collector = new ArrayList<>();
         inputExpr.accept(visitor, collector);
         Random random = new Random();

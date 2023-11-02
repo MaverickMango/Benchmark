@@ -48,7 +48,7 @@ public class PreparationTest {
         String info = "/home/liumengjiao/Desktop/CI/Benchmark_py/info/patches_inputs.csv";
         List<List<String>> lists = FileUtils.readCsv(info, true);
         String location = "/home/liumengjiao/Desktop/CI/bugs/";
-        String bugName, srcJavaDir, srcTestDir, binJavaDir, binTestDir, testInfos, projectCP, complianceLevel;
+        String bugName, srcJavaDir, srcTestDir, binJavaDir, binTestDir, testInfos, projectCP, originalCommit, cleaned, complianceLevel;
         List<String> strings = lists.get(38);
         bugName = strings.get(0);
         srcJavaDir = strings.get(1);
@@ -57,6 +57,8 @@ public class PreparationTest {
         binTestDir = strings.get(4);
         testInfos = strings.get(5);
         projectCP = strings.get(6);
+        originalCommit = strings.get(7);
+        cleaned = strings.get(8);
         cs.append("-proj", bugName.split("_")[0]);
         cs.append("-id", bugName.split("_")[1]);
         cs.append("-location", location + bugName + "_bug");
@@ -66,6 +68,7 @@ public class PreparationTest {
         cs.append("-binTestDir", binTestDir);
         cs.append("-testInfos", testInfos);
         cs.append("-dependencies", projectCP);
+        cs.append("-originalCommit", originalCommit);
 //        cs.append("-complianceLevel", "1.6");
     }
 

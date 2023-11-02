@@ -23,6 +23,7 @@ public class AbstractMain {
         options.addOption("binJavaDir", true, "");
         options.addOption("binTestDir", true, "");
         options.addOption("testInfos", true, "");
+        options.addOption("originalCommit", true, "");
         options.addOption("dependencies", true, "separated by " + File.pathSeparator);
 
         //optional
@@ -98,6 +99,9 @@ public class AbstractMain {
         if (commandLine.hasOption("dependencies")) {
             String dependencies = commandLine.getOptionValue("dependencies");
             ConfigurationProperties.setProperty("dependencies", dependencies);
+        }
+        if (commandLine.hasOption("originalCommit")) {
+            ConfigurationProperties.setProperty("originalCommit", commandLine.getOptionValue("originalCommit"));
         }
         if (commandLine.hasOption("complianceLevel")) {
             ConfigurationProperties.setProperty("complianceLevel", commandLine.getOptionValue("complianceLevel"));

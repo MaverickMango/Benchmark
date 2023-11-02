@@ -23,14 +23,15 @@ public class UnaryMutator extends AbstractInputMutator {
     public Object getNextInput(Object oldValue) {
         UnaryExpr expr = (UnaryExpr) randomMutate((UnaryExpr) oldValue);
         this.addInputMutants(expr);
-        return this.inputs.get(random.nextInt(this.inputs.size()));
+        return expr;
     }
 
     private Object randomMutate(UnaryExpr oldValue) {
         UnaryExpr newValue = oldValue.clone();
         Expression expression = newValue.getExpression();
-        Expression nextInput = (Expression) MutatorHelper.getKnownMutator(Helper.getType(expression)).getNextInput(expression);
-        newValue.setExpression(nextInput);
+//        String type = Helper.getType(expression);//todo type must be resolved under a compilationUnit, now the oldValue is an orphan.
+//        Expression nextInput = (Expression) MutatorHelper.getKnownMutator(type).getNextInput(expression);
+//        newValue.setExpression(nextInput);
         UnaryExpr.Operator operator = newValue.getOperator();
         if (cans.contains(operator)) {
             int idx = random.nextInt(2);

@@ -9,7 +9,6 @@ import com.github.javaparser.quality.NotNull;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import root.generation.transformation.visitor.DependencyVisitor;
-import root.generation.transformation.visitor.PrimitiveVisitor;
 
 import java.util.*;
 import java.util.stream.Collectors;
@@ -24,15 +23,15 @@ public class ObjectInput extends Input{
 
     public ObjectInput(MethodCallExpr methodCallExpr, Expression inputExpr, int argIdx) {
         super(methodCallExpr, inputExpr, argIdx);
-        setBasicExpr(inputExpr);
+        initBasicExpr(inputExpr);
     }
 
     public ObjectInput(MethodCallExpr methodCallExpr, Expression inputExpr, String type, int argIdx) {
         super(methodCallExpr, inputExpr, type, argIdx);
-        setBasicExpr(inputExpr);
+        initBasicExpr(inputExpr);
     }
 
-    public void setBasicExpr(@NotNull MethodDeclaration methodDeclaration) {
+    public void initBasicExpr(@NotNull MethodDeclaration methodDeclaration) {
         List<String> all = getInputExpr().findAll(NameExpr.class).stream().
                 map(nameExpr -> nameExpr.getName().toString()).collect(Collectors.toList());
         List<Expression> collector = new ArrayList<>();
@@ -43,7 +42,7 @@ public class ObjectInput extends Input{
         this.basicExpr = tmp.get(random.nextInt(tmp.size()));
     }
 
-    private void setBasicExpr(Expression inputExpr) {
+    private void initBasicExpr(Expression inputExpr) {
         List<String> all = inputExpr.findAll(NameExpr.class).stream().
                 map(nameExpr -> nameExpr.getName().toString()).collect(Collectors.toList());
         List<Expression> collector = new ArrayList<>();

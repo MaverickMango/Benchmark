@@ -49,8 +49,6 @@ public class Preparation {
     public AbstractASTParser parser;
     public Map<String, Object> ASTs;//CompilationUnit
     public List<String> compilerOptions;
-    public InputExtractor inputExtractor;
-    public InputTransformer inputTransformer;
     URL[] progURLs;
 
     public Preparation() throws IOException {
@@ -133,10 +131,10 @@ public class Preparation {
 
         parser = new ASTJavaParser(srcJavaDir, srcTestDir, dependencies, complianceLevel);//resolver是白给的么
 //        parser = new ASTJDTParser(srcJavaDir, srcTestDir, dependencies, new HashMap<>());//很好这两个都没有类型解析啊啊啊
-        if (!testOnly)
-            parser.parseASTs(srcJavaDir);
-        parser.parseASTs(srcTestDir);
-        ASTs = parser.getASTs();
+//        if (!testOnly)
+//            parser.parseASTs(srcJavaDir);
+//        parser.parseASTs(srcTestDir);
+//        ASTs = parser.getASTs();
 
         logger.info("AST parsing is finished!");
     }
@@ -169,13 +167,11 @@ public class Preparation {
     }
 
     private void invokeTransformation() {
-        Defects4JBug defects4JBug = new Defects4JBug(ConfigurationProperties.getProperty("proj"),
-                ConfigurationProperties.getProperty("id"), ConfigurationProperties.getProperty("location"),
-                ConfigurationProperties.getProperty("fixingCommit"), ConfigurationProperties.getProperty("buggyCommit"),
-                ConfigurationProperties.getProperty("inducingCommit"), ConfigurationProperties.getProperty("originalCommit"));
-        BugRepository bugRepository = new BugRepository(defects4JBug);
-        inputTransformer = new InputTransformer(bugRepository);
-        inputExtractor = new InputExtractor(parser);
+        String proj = ConfigurationProperties.getProperty("proj");
+        String id = ConfigurationProperties.getProperty("id");
+        String workingDir = ConfigurationProperties.getProperty("location");
+        String originalCommit = ConfigurationProperties.getProperty("originalCommit");
+        TransformHelper.initialize(proj, id, workingDir, originalCommit, parser);
         MutatorHelper.initialize();
     }
 

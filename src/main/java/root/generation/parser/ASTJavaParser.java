@@ -103,6 +103,8 @@ public class ASTJavaParser extends AbstractASTParser {
             List<File> allFiles = FileUtils.findAllFiles(fileDir, ".java");
             for (File file : allFiles) {
                 filePath = file.getAbsolutePath();
+//                if (asts.containsKey(filePath))
+//                    continue;
                 CompilationUnit compilationUnit = StaticJavaParser.parse(file);
                 asts.put(file.getAbsolutePath(), compilationUnit);
             }

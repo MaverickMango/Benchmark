@@ -13,7 +13,7 @@ public class LongMutator extends AbstractInputMutator{
         LongLiteralExpr expr = new LongLiteralExpr();
         expr.setLong(random.nextLong());
         this.addInputMutants(expr);
-        return this.inputs.get(random.nextInt(this.inputs.size()));
+        return expr;
     }
 
 }

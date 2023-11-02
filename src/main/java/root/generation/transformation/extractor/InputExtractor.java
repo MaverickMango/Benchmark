@@ -20,6 +20,7 @@ import root.generation.entity.Input;
 import root.generation.entity.ObjectInput;
 import root.generation.helper.Helper;
 import root.generation.parser.AbstractASTParser;
+import root.util.FileUtils;
 
 import java.util.List;
 import java.util.Map;
@@ -37,6 +38,11 @@ public class InputExtractor {
     }
 
     public CompilationUnit getCompilationUnit(String classNormalAbsPath) {
+        if (FileUtils.notExists(classNormalAbsPath)) {
+            logger.error("File " + classNormalAbsPath + " does not exist!");
+            throw new IllegalArgumentException("Illegal Argument : " + classNormalAbsPath);
+        }
+        parser.parseASTs(classNormalAbsPath);
         Map<String, Object> asts = parser.getASTs();
         CompilationUnit compilationUnit = (CompilationUnit) asts.get(classNormalAbsPath);
         if (compilationUnit == null) {

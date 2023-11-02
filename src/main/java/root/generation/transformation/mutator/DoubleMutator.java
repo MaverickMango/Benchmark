@@ -13,6 +13,6 @@ public class DoubleMutator extends AbstractInputMutator{
         DoubleLiteralExpr expr = new DoubleLiteralExpr();
         expr.setDouble(random.nextDouble());
         this.addInputMutants(expr);
-        return this.inputs.get(random.nextInt(this.inputs.size()));
+        return expr;
     }
 }

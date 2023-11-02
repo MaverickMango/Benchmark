@@ -56,6 +56,22 @@ public class Defects4JBug extends CIBug implements GitAccess {
         this.properties = getProperties("/defects4j.build.properties");
     }
 
+    public Defects4JBug(String proj, String id, String workingDir, String originalCommit) {
+        this.proj = proj;
+        this.id = id;
+        this.workingDir = workingDir;
+        this.buggyCommit = getBuggyCommit();
+        this.fixingCommit = getFixingCommit();
+        this.inducingCommit = null;
+        this.originalCommit = originalCommit;
+        if (!(new File(workingDir).exists())) {
+            getGitRepository();
+        }
+        writeD4JFiles("b");
+        this.properties = getProperties("/defects4j.build.properties");
+    }
+
+
     public Defects4JBug(String proj, String id, String workingDir, String fixingCommit, String buggyCommit, String inducingCommit, String originalCommit) {
         this.proj = proj;
         this.id = id;

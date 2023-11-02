@@ -14,6 +14,6 @@ public class BooleanMutator extends AbstractInputMutator {
         BooleanLiteralExpr expr = new BooleanLiteralExpr();
         expr.setValue(random.nextBoolean());
         this.addInputMutants(expr);
-        return this.inputs.get(random.nextInt(this.inputs.size()));
+        return expr;
     }
 }

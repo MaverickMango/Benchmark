@@ -10,10 +10,11 @@ public class IntegerMutator extends AbstractInputMutator{
 
     @Override
     public Object getNextInput(Object oldValue) {
+        int old = Integer.parseInt(oldValue.toString());
         IntegerLiteralExpr expr = new IntegerLiteralExpr();
-        expr.setInt(random.nextInt());
+        expr.setInt(old - num + random.nextInt(old + num) + 1);
         this.addInputMutants(expr);
-        return this.inputs.get(random.nextInt(this.inputs.size()));
+        return expr;
     }
 
 }

@@ -17,7 +17,7 @@ public class StringMutator extends AbstractInputMutator{
         StringLiteralExpr expr = new StringLiteralExpr();
         expr.setString((String) randomStrMutate(oldValue.toString()));
         this.addInputMutants(expr);
-        return this.inputs.get(random.nextInt(this.inputs.size()));
+        return expr;
     }
 
     private Object randomStrMutate(String root) {

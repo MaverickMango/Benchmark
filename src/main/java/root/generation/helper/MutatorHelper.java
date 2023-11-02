@@ -45,23 +45,23 @@ public class MutatorHelper {
     }
 
     public static Object getInputMutant(Input oldInput) {
-        List<Object> inputMutants = getInputMutants(oldInput);
+        List<Object> inputMutants = getInputMutants(oldInput, 1);
         Random random = new Random();
         return inputMutants.get(random.nextInt(inputMutants.size()));
     }
 
-    public static List<Object> getInputMutants(Input oldInput){
+    public static List<Object> getInputMutants(Input oldInput, int num){
         // check whether type is known class,and apply its mutator to get its mutants.
         String qualifiedName = Helper.getType(oldInput.getBasicExpr());
         AbstractInputMutator mutator;
         if (MutatorHelper.isKnownType(qualifiedName)) {
             mutator = getKnownMutator(qualifiedName);
-            Object nextInput = mutator.getNextInput(oldInput.getBasicExpr());
-            return mutator.getInputs();//todo 这里会一直取之前变异过的重复值，事实上每次都应该是一个新的变异集合
+            List<Object> nextInputs = mutator.getNextInputs(oldInput.getBasicExpr(), num);
+            return nextInputs;
         } else {
             mutator = getUnknownMutator(oldInput);
-            mutator.getNextInput(oldInput.getBasicExpr());
-            return mutator.getInputs();//todo 同上
+            List<Object> nextInputs = mutator.getNextInputs(oldInput.getBasicExpr(), num);
+            return nextInputs;
         }
     }
 

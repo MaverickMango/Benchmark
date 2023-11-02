@@ -15,7 +15,7 @@ public class CharMutator extends AbstractInputMutator{
         CharLiteralExpr expr = new CharLiteralExpr();
         expr.setChar(randomCharMutate());
         this.addInputMutants(expr);
-        return this.inputs.get(random.nextInt(this.inputs.size()));
+        return expr;
     }
 
     private Character randomCharMutate() {

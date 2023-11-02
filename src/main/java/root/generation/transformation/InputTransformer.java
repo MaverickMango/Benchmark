@@ -12,6 +12,7 @@ import root.generation.entity.Input;
 import root.generation.entity.Skeleton;
 import root.generation.helper.Helper;
 import root.generation.helper.MutatorHelper;
+import root.generation.helper.TransformHelper;
 
 import java.util.*;
 import java.util.stream.Collectors;
@@ -21,11 +22,18 @@ public class InputTransformer {
     private final Logger logger = LoggerFactory.getLogger(InputTransformer.class);
 
     Map<String, Skeleton> skeletons;//<absolutePath, Skeleton>
-    BugRepository bugRepository;
 
-    public InputTransformer(BugRepository bugRepository) {
-        this.bugRepository = bugRepository;
+    public InputTransformer() {
         this.skeletons = new HashMap<>();
+    }
+
+    public List<Input> transformInput(Input oldInput, List<Object> values) {
+        List<Input> inputs = new ArrayList<>();
+        for (Object value :values) {
+            Input newInput = transformInput(oldInput, value);
+            inputs.add(newInput);
+        }
+        return inputs;
     }
 
     public Input transformInput(Input oldInput, Object value) {
@@ -34,10 +42,12 @@ public class InputTransformer {
             throw new IllegalArgumentException(oldInput.toString());
         }
         logger.info("New input '" + value.toString() + "' has been transformed for " + oldInput);
+        //todo test Input实现深拷贝
+        Input newInput = oldInput.clone();
         Expression basicExpr = oldInput.getBasicExpr();
         Expression newInputExpr = (Expression) value;//transform(basicExpr, value);
-        oldInput.setBasicExprTransformed(newInputExpr);
-        return oldInput;
+        newInput.setBasicExprTransformed(newInputExpr);
+        return newInput;
     }
 
     @SuppressWarnings("deprecation")
@@ -85,9 +95,7 @@ public class InputTransformer {
 
     public CompilationUnit buildNewTestByInput(Skeleton skeleton, Input newInput) {
         String path = skeleton.getAbsolutePath();
-        if (this.skeletons.containsKey(path)) {
-            skeleton = this.skeletons.get(path);
-        } else {
+        if (!this.skeletons.containsKey(path)) {
             this.skeletons.put(path, skeleton);
         }
         CompilationUnit compilationUnit = constructSkeleton(skeleton, newInput);
@@ -108,7 +116,7 @@ public class InputTransformer {
         List<Input> collect = skeleton.getInputs().stream().filter(input -> !input.isCompleted()).collect(Collectors.toList());
         if (!collect.isEmpty()) {
             for (Input newInput :collect) {
-                skeleton.getOracle(bugRepository, newInput);//需要oracle的语句则需要先执行一遍
+                skeleton.getOracle(TransformHelper.bugRepository, newInput);//需要oracle的语句则需要先执行一遍
             }
         }
 
@@ -125,7 +133,7 @@ public class InputTransformer {
         skeleton.applyTransform(newInput);
         CompilationUnit newUnit;
         if (!newInput.isCompleted()) {
-            newUnit = skeleton.getOracle(bugRepository, newInput);//需要oracle的语句则需要先执行一遍
+            newUnit = skeleton.getOracle(TransformHelper.bugRepository, newInput);//需要oracle的语句则需要先执行一遍
         } else {
             MethodDeclaration methodDeclaration = skeleton.addStatementAtLast(newInput.getMethodCallExpr());//对于不需要oracle的语句，直接根据input更新method
             newUnit = skeleton.getTransformedCompilationUnit(methodDeclaration);//向原有类添加新的测试函数

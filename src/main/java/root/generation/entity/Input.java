@@ -1,23 +1,17 @@
 package root.generation.entity;
 
-import com.github.javaparser.ast.body.MethodDeclaration;
 import com.github.javaparser.ast.expr.Expression;
 import com.github.javaparser.ast.expr.MethodCallExpr;
 import com.github.javaparser.quality.NotNull;
-import com.github.javaparser.resolution.UnsolvedSymbolException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import root.generation.helper.Helper;
 import root.generation.helper.MutatorHelper;
 
-import javax.annotation.Nullable;
-import java.util.List;
-import java.util.Objects;
-
 /**
  * <s>test input(method call expression's argument)</s>
  */
-public abstract class Input {
+public abstract class Input implements Cloneable{
 
     private final Logger logger = LoggerFactory.getLogger(Input.class);
     MethodCallExpr methodCallExpr;
@@ -27,7 +21,7 @@ public abstract class Input {
     boolean isPrimitive;
     boolean isCompleted;//是否需要到original版本获取断言，获取完或者不需要的为completed
     Expression basicExpr;//实际进行变异的内容,如果是basicInput则和inputExpr一致
-    Expression transformed;
+    Expression mutatedExpr;
     boolean isTransformed;
 
     public Input(@NotNull MethodCallExpr methodCallExpr,
@@ -72,6 +66,18 @@ public abstract class Input {
         return type;
     }
 
+    public void setInputExpr(Expression inputExpr) {
+        this.inputExpr = inputExpr;
+    }
+
+    public void setBasicExpr(Expression basicExpr) {
+        this.basicExpr = basicExpr;
+    }
+
+    public void setMutatedExpr(Expression mutatedExpr) {
+        this.mutatedExpr = mutatedExpr;
+    }
+
     public Expression getInputExpr() {
         return inputExpr;
     }
@@ -101,11 +107,11 @@ public abstract class Input {
     }
 
     public Expression getTransformed() {
-        return transformed;
+        return mutatedExpr;
     }
 
     public void setBasicExprTransformed(Expression newInputExpr) {
-        this.transformed = newInputExpr;
+        this.mutatedExpr = newInputExpr;
     }
 
     public boolean isTransformed() {
@@ -140,4 +146,18 @@ public abstract class Input {
         }
     }
 
+    @Override
+    public Input clone() {
+        try {
+            Input clone = (Input) super.clone();
+            // TODO: copy mutable state here, so the clone can't change the internals of the original
+            clone.setInputExpr(inputExpr.clone());
+            clone.setBasicExpr(basicExpr.clone());
+            clone.setMutatedExpr(mutatedExpr);
+            clone.setMethodCallExpr(methodCallExpr.clone());
+            return clone;
+        } catch (CloneNotSupportedException e) {
+            throw new AssertionError();
+        }
+    }
 }

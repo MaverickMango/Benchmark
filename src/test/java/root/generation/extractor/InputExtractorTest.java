@@ -11,6 +11,7 @@ import org.junit.jupiter.api.Test;
 import root.generation.entity.Input;
 import root.generation.helper.Preparation;
 import root.generation.helper.PreparationTest;
+import root.generation.helper.TransformHelper;
 import root.generation.transformation.extractor.InputExtractor;
 import root.util.ConfigurationProperties;
 
@@ -29,7 +30,7 @@ public class InputExtractorTest extends PreparationTest{
 
     public static MethodDeclaration getMethodDeclaration() {
         List<ImportDeclaration> importDeclarations = new ArrayList<>();
-        MethodDeclaration extractInput = PreparationTest.preparation.inputExtractor
+        MethodDeclaration extractInput = TransformHelper.inputExtractor
                 .extractMethodByName(
                         new File(filePath).getAbsolutePath(),
                         methodName, importDeclarations);
@@ -39,11 +40,11 @@ public class InputExtractorTest extends PreparationTest{
     @Test
     void extractMethodCallByLine() {
         List<ImportDeclaration> importDeclarations = new ArrayList<>();
-        MethodDeclaration extractInput = PreparationTest.preparation.inputExtractor
+        MethodDeclaration extractInput = TransformHelper.inputExtractor
                 .extractMethodByName(
                         new File(filePath).getAbsolutePath(),
                         methodName, importDeclarations);
-        InputExtractor inputExtractor = PreparationTest.preparation.inputExtractor;
+        InputExtractor inputExtractor = TransformHelper.inputExtractor;
         MethodCallExpr methodCallExpr = inputExtractor.extractMethodCallByLine(extractInput, lineNumber);
         assertEquals(3, methodCallExpr.getArguments().size());
     }
@@ -56,8 +57,8 @@ public class InputExtractorTest extends PreparationTest{
 
     public static Input getInput() {
         MethodDeclaration extractInput = getMethodDeclaration();
-        MethodCallExpr methodCallExpr = PreparationTest.preparation.inputExtractor
+        MethodCallExpr methodCallExpr = TransformHelper.inputExtractor
                 .extractMethodCallByLine(extractInput, lineNumber);
-        return PreparationTest.preparation.inputExtractor.extractInput(methodCallExpr);
+        return TransformHelper.inputExtractor.extractInput(methodCallExpr);
     }
 }

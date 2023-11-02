@@ -17,7 +17,9 @@ import org.slf4j.LoggerFactory;
 import root.bean.BugRepository;
 import root.generation.helper.Helper;
 import root.generation.transformation.visitor.ModifiedVisitor;
+import root.util.FileUtils;
 
+import java.io.File;
 import java.util.*;
 import java.util.concurrent.atomic.AtomicReference;
 import java.util.stream.Collectors;
@@ -205,16 +207,12 @@ public class Skeleton {
 //        MethodDeclaration methodDeclaration = addStatementAtLast(input.getMethodCallExpr());
         CompilationUnit transformedCompilationUnit = getTransformedCompilationUnit(methodInstrumented);
 
-        boolean res = bugRepository.switchToOrg();
-        if (!res) {
-            logger.error("Error occurred when getting oracle in original commit! May be it cannot be compiled successfully.\n Null will be returned");
-            return null;
-        }
+        //切换到org版本？在获取compilation的时候就应该改称原始版本的！
         Optional<PackageDeclaration> packageDeclaration = transformedCompilationUnit.getPackageDeclaration();
         AtomicReference<String> pack = new AtomicReference<>("");
         packageDeclaration.ifPresent(p -> pack.set(p.getNameAsString()));
         String testName = pack.get() + "." + getClazzName() + "::" + methodInstrumented.getNameAsString();
-        //todo 放回原目录
+        FileUtils.writeToFile(transformedCompilationUnit.toString(), getAbsolutePath(), false);
         bugRepository.test(testName);
         input.setCompleted(true);
         return transformedCompilationUnit;
