@@ -97,8 +97,23 @@
     {
       "test_class": "com.google.javascript.jscomp.PeepholeRemoveDeadCodeTest",
       "test_function": "testCall1",
+      "assertion_line": "544",
       "exception": "junit.framework.AssertionFailedError",
-      "message": "Expected: \nResult: Math.sin(0)Expected: \nResult: Math.sin(0)Expected: \nResult: Math.random()"
+      "message": "Expected: \nResult: Math.sin(0)"
+    },
+    {
+      "test_class": "com.google.javascript.jscomp.PeepholeRemoveDeadCodeTest",
+      "test_function": "testCall2",
+      "assertion_line": "548",
+      "exception": "junit.framework.AssertionFailedError",
+      "message": "Expected: \nResult: Math.sin(0)"
+    },
+    {
+      "test_class": "com.google.javascript.jscomp.PeepholeRemoveDeadCodeTest",
+      "test_function": "testRemoveUselessOps",
+      "assertion_line": "54",
+      "exception": "junit.framework.AssertionFailedError",
+      "message": "Expected: \nResult: Math.random()"
     }
   ],
   "fixing_changes": [

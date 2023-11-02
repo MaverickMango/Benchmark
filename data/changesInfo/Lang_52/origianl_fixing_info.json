@@ -49,6 +49,7 @@
     {
       "test_class": "org.apache.commons.lang.StringEscapeUtilsTest",
       "test_function": "testEscapeJavaScript",
+      "assertion_line": "187",
       "exception": "junit.framework.ComparisonFailure",
       "message": "expected:\u003c...ipt\u003ealert(\\\u0027aaa\\\u0027);\u003c[\\]/script\u003e\\\u0027;\u003e but was:\u003c...ipt\u003ealert(\\\u0027aaa\\\u0027);\u003c[]/script\u003e\\\u0027;\u003e"
     }

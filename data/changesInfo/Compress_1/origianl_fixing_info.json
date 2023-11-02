@@ -33,16 +33,16 @@
       "changed_functions": [
         {
           "qualified_names": [
-            "org.apache.commons.compress.archivers.ArchiveStreamFactory:createArchiveOutputStream:[final String archiverName, final OutputStream out]:ArchiveOutputStream",
             "org.apache.commons.compress.archivers.ArchiveStreamFactory:createArchiveInputStream:[final InputStream input]:ArchiveInputStream",
+            "org.apache.commons.compress.archivers.ArchiveStreamFactory:createArchiveOutputStream:[final String archiverName, final OutputStream out]:ArchiveOutputStream",
             "org.apache.commons.compress.archivers.ArchiveStreamFactory:createArchiveInputStream:[final String archiverName, final InputStream in]:ArchiveInputStream"
           ],
           "num": 3
         },
         {
           "qualified_names": [
-            "org.apache.commons.compress.archivers.ArchiveStreamFactory:createArchiveOutputStream:[final String archiverName, final OutputStream out]:ArchiveOutputStream",
             "org.apache.commons.compress.archivers.ArchiveStreamFactory:createArchiveInputStream:[final InputStream input]:ArchiveInputStream",
+            "org.apache.commons.compress.archivers.ArchiveStreamFactory:createArchiveOutputStream:[final String archiverName, final OutputStream out]:ArchiveOutputStream",
             "org.apache.commons.compress.archivers.ArchiveStreamFactory:createArchiveInputStream:[final String archiverName, final InputStream in]:ArchiveInputStream"
           ],
           "num": 3
@@ -205,7 +205,8 @@
     {
       "test_class": "org.apache.commons.compress.archivers.CpioTestCase",
       "test_function": "testCpioUnarchive",
-      "exception": "java.io.EOFExceptio",
+      "assertion_line": "82",
+      "exception": "java.io.EOFException",
       "message": ""
     }
   ],
@@ -219,21 +220,21 @@
       "changed_functions": [
         {
           "qualified_names": [
-            "org.apache.commons.compress.archivers.cpio.CpioArchiveOutputStream:putNextEntry:[final CpioArchiveEntry e]:void",
-            "org.apache.commons.compress.archivers.cpio.CpioArchiveOutputStream:closeEntry:[]:void",
             "org.apache.commons.compress.archivers.cpio.CpioArchiveOutputStream:closeArchiveEntry:[]:void",
+            "org.apache.commons.compress.archivers.cpio.CpioArchiveOutputStream:closeEntry:[]:void",
+            "org.apache.commons.compress.archivers.cpio.CpioArchiveOutputStream:finish:[]:void",
             "org.apache.commons.compress.archivers.cpio.CpioArchiveOutputStream:close:[]:void",
-            "org.apache.commons.compress.archivers.cpio.CpioArchiveOutputStream:finish:[]:void"
+            "org.apache.commons.compress.archivers.cpio.CpioArchiveOutputStream:putNextEntry:[final CpioArchiveEntry e]:void"
           ],
           "num": 5
         },
         {
           "qualified_names": [
+            "org.apache.commons.compress.archivers.cpio.CpioArchiveOutputStream:putNextEntry:[final CpioArchiveEntry e]:void",
             "org.apache.commons.compress.archivers.cpio.CpioArchiveOutputStream:close:[]:void",
             "org.apache.commons.compress.archivers.cpio.CpioArchiveOutputStream:putArchiveEntry:[ArchiveEntry entry]:void",
-            "org.apache.commons.compress.archivers.cpio.CpioArchiveOutputStream:closeArchiveEntry:[]:void",
-            "org.apache.commons.compress.archivers.cpio.CpioArchiveOutputStream:putNextEntry:[final CpioArchiveEntry e]:void",
-            "org.apache.commons.compress.archivers.cpio.CpioArchiveOutputStream:finish:[]:void"
+            "org.apache.commons.compress.archivers.cpio.CpioArchiveOutputStream:finish:[]:void",
+            "org.apache.commons.compress.archivers.cpio.CpioArchiveOutputStream:closeArchiveEntry:[]:void"
           ],
           "num": 5
         }

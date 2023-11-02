@@ -51,6 +51,7 @@
     {
       "test_class": "com.google.gson.stream.JsonWriterTest",
       "test_function": "testNonFiniteDoublesWhenLenient",
+      "assertion_line": "222",
       "exception": "java.lang.IllegalArgumentException",
       "message": "Numeric values must be finite, but was NaN"
     }

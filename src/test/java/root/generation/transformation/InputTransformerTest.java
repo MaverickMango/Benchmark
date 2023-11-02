@@ -30,7 +30,7 @@ class InputTransformerTest extends PreparationTest{
         Input input = InputExtractorTest.getInput();
         Object inputMutant = MutatorHelper.getInputMutant(input);
         Input newInput = inputTransformer.transformInput(input, inputMutant);
-        assertNotEquals(newInput, input);
+        assertNotEquals(newInput.getTransformed(), input.getBasicExpr());
     }
 
     @Test
@@ -45,7 +45,7 @@ class InputTransformerTest extends PreparationTest{
         CompilationUnit compilationUnit = inputExtractor.getCompilationUnit(absolutePath);
         Skeleton skeleton = new Skeleton(absolutePath, compilationUnit, methodDeclaration);
         CompilationUnit compilationUnit1 = inputTransformer.buildNewTestByInput(skeleton, newInput);
-        assertNotNull(compilationUnit1);
+        assertNotEquals(compilationUnit, compilationUnit1);
     }
 
     @Test

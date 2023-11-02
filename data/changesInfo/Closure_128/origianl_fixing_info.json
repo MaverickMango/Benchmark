@@ -105,6 +105,7 @@
     {
       "test_class": "com.google.javascript.jscomp.CodePrinterTest",
       "test_function": "testIssue942",
+      "assertion_line": "1423",
       "exception": "junit.framework.ComparisonFailure",
       "message": "expected:\u003cvar x\u003d{[0]:1}\u003e but was:\u003cvar x\u003d{[\"0\"]:1}\u003e"
     }

@@ -116,6 +116,7 @@
     {
       "test_class": "com.fasterxml.jackson.core.TestJsonPointer",
       "test_function": "testWonkyNumber173",
+      "assertion_line": "41",
       "exception": "java.lang.NumberFormatException",
       "message": "For input string: \"1e0\""
     }

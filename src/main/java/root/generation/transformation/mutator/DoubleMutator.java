@@ -1,5 +1,7 @@
 package root.generation.transformation.mutator;
 
+import com.github.javaparser.ast.expr.DoubleLiteralExpr;
+
 import java.util.Random;
 
 public class DoubleMutator extends AbstractInputMutator{
@@ -8,7 +10,9 @@ public class DoubleMutator extends AbstractInputMutator{
 
     @Override
     public Object getNextInput(Object oldValue) {
-        this.addInputMutants(random.nextDouble());
+        DoubleLiteralExpr expr = new DoubleLiteralExpr();
+        expr.setDouble(random.nextDouble());
+        this.addInputMutants(expr);
         return this.inputs.get(random.nextInt(this.inputs.size()));
     }
 }

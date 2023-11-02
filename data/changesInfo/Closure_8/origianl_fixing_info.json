@@ -41,10 +41,10 @@
         },
         {
           "qualified_names": [
+            "com.google.javascript.jscomp.CollapseVariableDeclarations:applyCollapses:[]:void",
             "com.google.javascript.jscomp.CollapseVariableDeclarations\\$Collapse:Collapse:[Node startNode, Node endNode, Node parent]:null",
             "com.google.javascript.jscomp.CollapseVariableDeclarations:canBeRedeclared:[Node n, Scope s]:boolean",
-            "com.google.javascript.jscomp.CollapseVariableDeclarations\\$GatherCollapses:visit:[NodeTraversal t, Node n, Node parent]:void",
-            "com.google.javascript.jscomp.CollapseVariableDeclarations:applyCollapses:[]:void"
+            "com.google.javascript.jscomp.CollapseVariableDeclarations\\$GatherCollapses:visit:[NodeTraversal t, Node n, Node parent]:void"
           ],
           "num": 4
         }
@@ -487,6 +487,7 @@
     {
       "test_class": "com.google.javascript.jscomp.CollapseVariableDeclarationsTest",
       "test_function": "testIssue820",
+      "assertion_line": "48",
       "exception": "junit.framework.AssertionFailedError",
       "message": "Expected: function f(a){var b\u003d1;a\u003d2;var c}\nResult: function f(a){var b\u003d1,a\u003d2,c}"
     }
@@ -507,8 +508,8 @@
         },
         {
           "qualified_names": [
-            "com.google.javascript.jscomp.CollapseVariableDeclarations:isNamedParameter:[Var v]:boolean",
-            "com.google.javascript.jscomp.CollapseVariableDeclarations\\$GatherCollapses:canBeRedeclared:[Node n, Scope s]:boolean"
+            "com.google.javascript.jscomp.CollapseVariableDeclarations\\$GatherCollapses:canBeRedeclared:[Node n, Scope s]:boolean",
+            "com.google.javascript.jscomp.CollapseVariableDeclarations:isNamedParameter:[Var v]:boolean"
           ],
           "num": 2
         }

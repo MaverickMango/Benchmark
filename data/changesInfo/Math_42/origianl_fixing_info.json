@@ -33,18 +33,18 @@
       "changed_functions": [
         {
           "qualified_names": [
+            "org.apache.commons.math.optimization.linear.SimplexTableau:getBasicRow:[final int col]:Integer",
             "org.apache.commons.math.optimization.linear.SimplexTableau:getSolution:[]:RealPointValuePair",
-            "org.apache.commons.math.optimization.linear.SimplexTableau:getRhsOffset:[]:int",
-            "org.apache.commons.math.optimization.linear.SimplexTableau:getBasicRow:[final int col]:Integer"
+            "org.apache.commons.math.optimization.linear.SimplexTableau:getRhsOffset:[]:int"
           ],
           "num": 3
         },
         {
           "qualified_names": [
-            "org.apache.commons.math.optimization.linear.SimplexTableau:getBasicRow:[final int col]:Integer",
-            "org.apache.commons.math.optimization.linear.SimplexTableau:getSolution:[]:RealPointValuePair",
-            "org.apache.commons.math.optimization.linear.SimplexTableau:getBasicRowForSolution:[final int col]:Integer",
             "org.apache.commons.math.optimization.linear.SimplexTableau:getNegativeDecisionVariableOffset:[]:int",
+            "org.apache.commons.math.optimization.linear.SimplexTableau:getBasicRowForSolution:[final int col]:Integer",
+            "org.apache.commons.math.optimization.linear.SimplexTableau:getSolution:[]:RealPointValuePair",
+            "org.apache.commons.math.optimization.linear.SimplexTableau:getBasicRow:[final int col]:Integer",
             "org.apache.commons.math.optimization.linear.SimplexTableau:getBasicRow:[final int col, boolean ignoreObjectiveRows]:Integer"
           ],
           "num": 5
@@ -456,7 +456,8 @@
     {
       "test_class": "org.apache.commons.math.optimization.linear.SimplexSolverTest",
       "test_function": "testMath713NegativeVariable",
-      "exception": "junit.framework.AssertionFailedErro",
+      "assertion_line": "43",
+      "exception": "junit.framework.AssertionFailedError",
       "message": ""
     }
   ],

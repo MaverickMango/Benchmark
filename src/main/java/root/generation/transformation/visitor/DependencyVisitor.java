@@ -13,10 +13,10 @@ import java.util.List;
 import java.util.Optional;
 import java.util.Set;
 
-public class DependencyVisitor extends VoidVisitorAdapter<Set<Expression>> {
+public class DependencyVisitor extends VoidVisitorAdapter<List<Expression>> {
 
     private final List<String> nameExprs;
-    private final VoidVisitorAdapter<Set<Expression>> visitor;
+    private final VoidVisitorAdapter<List<Expression>> visitor;
 
     public DependencyVisitor(@NotNull List<String> nameExprs) {
         this.nameExprs = nameExprs;
@@ -24,7 +24,7 @@ public class DependencyVisitor extends VoidVisitorAdapter<Set<Expression>> {
     }
 
     @Override
-    public void visit(AssignExpr n, Set<Expression> arg) {
+    public void visit(AssignExpr n, List<Expression> arg) {
         super.visit(n, arg);
         Expression target = n.getTarget();
         if (nameExprs.contains(target.toString())) {
@@ -33,7 +33,7 @@ public class DependencyVisitor extends VoidVisitorAdapter<Set<Expression>> {
     }
 
     @Override
-    public void visit(MethodCallExpr n, Set<Expression> arg) {
+    public void visit(MethodCallExpr n, List<Expression> arg) {
         super.visit(n, arg);
         Optional<Expression> scope = n.getScope();
         if (scope.isPresent() && nameExprs.contains(scope.get().toString())) {
@@ -42,7 +42,7 @@ public class DependencyVisitor extends VoidVisitorAdapter<Set<Expression>> {
     }
 
     @Override
-    public void visit(VariableDeclarator n, Set<Expression> arg) {
+    public void visit(VariableDeclarator n, List<Expression> arg) {
         super.visit(n, arg);
         SimpleName name = n.getName();
         if (nameExprs.contains(name.toString())) {

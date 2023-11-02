@@ -114,8 +114,37 @@
     {
       "test_class": "com.google.javascript.jscomp.InlineFunctionsTest",
       "test_function": "testBug4944818",
+      "assertion_line": "2060",
       "exception": "junit.framework.AssertionFailedError",
-      "message": "Expected: HangoutStarter.prototype.launchHangout\u003dfunction(){var self$$2\u003da.b;var JSCompiler_temp_const$$0\u003dgoog.Uri;var JSCompiler_inline_result$$1;var self$$inline_2\u003dself$$2;if(!self$$inline_2.domServices_)self$$inline_2.domServices_\u003dgoog$component$DomServices.get(self$$inline_2.appContext_);JSCompiler_inline_result$$1\u003dself$$inline_2.domServices_;var myUrl\u003dnew JSCompiler_temp_const$$0(JSCompiler_inline_result$$1.getDomHelper().getWindow().location.href)}\nResult: HangoutStarter.prototype.launchHangout\u003dfunction(){var self$$2\u003da.b;var JSCompiler_temp_const$$0\u003dgoog.Uri;var JSCompiler_inline_result$$1;var JSCompiler_inline_result$$0;var self$$inline_1\u003dself$$2;if(!self$$inline_1.domServices_)self$$inline_1.domServices_\u003dgoog$component$DomServices.get(self$$inline_1.appContext_);JSCompiler_inline_result$$0\u003dself$$inline_1.domServices_;JSCompiler_inline_result$$1\u003dJSCompiler_inline_result$$0.getDomHelper().getWindow();var myUrl\u003dnew JSCompiler_temp_const$$0(JSCompiler_inline_result$$1.location.href)}Expected: getWindow(x)\nResult: var foo\u003dfunction(a){return getWindow(a)};foo(x)Expected: o.x\u003d2\nResult: o.x\u003d2Expected: o[2]\u003d2\nResult: o[2]\u003d2Expected: alert(baz(foo(1+2)))\nResult: var JSCompiler_temp_const$$0\u003dalert;var JSCompiler_inline_result$$1;JSCompiler_inline_result$$1\u003dbaz(foo(1+2));JSCompiler_temp_const$$0(JSCompiler_inline_result$$1)"
+      "message": "Expected: HangoutStarter.prototype.launchHangout\u003dfunction(){var self$$2\u003da.b;var JSCompiler_temp_const$$0\u003dgoog.Uri;var JSCompiler_inline_result$$1;var self$$inline_2\u003dself$$2;if(!self$$inline_2.domServices_)self$$inline_2.domServices_\u003dgoog$component$DomServices.get(self$$inline_2.appContext_);JSCompiler_inline_result$$1\u003dself$$inline_2.domServices_;var myUrl\u003dnew JSCompiler_temp_const$$0(JSCompiler_inline_result$$1.getDomHelper().getWindow().location.href)}\nResult: HangoutStarter.prototype.launchHangout\u003dfunction(){var self$$2\u003da.b;var JSCompiler_temp_const$$0\u003dgoog.Uri;var JSCompiler_inline_result$$1;var JSCompiler_inline_result$$0;var self$$inline_1\u003dself$$2;if(!self$$inline_1.domServices_)self$$inline_1.domServices_\u003dgoog$component$DomServices.get(self$$inline_1.appContext_);JSCompiler_inline_result$$0\u003dself$$inline_1.domServices_;JSCompiler_inline_result$$1\u003dJSCompiler_inline_result$$0.getDomHelper().getWindow();var myUrl\u003dnew JSCompiler_temp_const$$0(JSCompiler_inline_result$$1.location.href)}"
+    },
+    {
+      "test_class": "com.google.javascript.jscomp.InlineFunctionsTest",
+      "test_function": "testDoubleInlining1",
+      "assertion_line": "1099",
+      "exception": "junit.framework.AssertionFailedError",
+      "message": "Expected: getWindow(x)\nResult: var foo\u003dfunction(a){return getWindow(a)};foo(x)"
+    },
+    {
+      "test_class": "com.google.javascript.jscomp.InlineFunctionsTest",
+      "test_function": "testNoInlineIfParametersModified8",
+      "assertion_line": "598",
+      "exception": "junit.framework.AssertionFailedError",
+      "message": "Expected: o.x\u003d2\nResult: o.x\u003d2"
+    },
+    {
+      "test_class": "com.google.javascript.jscomp.InlineFunctionsTest",
+      "test_function": "testNoInlineIfParametersModified9",
+      "assertion_line": "603",
+      "exception": "junit.framework.AssertionFailedError",
+      "message": "Expected: o[2]\u003d2\nResult: o[2]\u003d2"
+    },
+    {
+      "test_class": "com.google.javascript.jscomp.InlineFunctionsTest",
+      "test_function": "testInlineFunctions6",
+      "assertion_line": "152",
+      "exception": "junit.framework.AssertionFailedError",
+      "message": "Expected: alert(baz(foo(1+2)))\nResult: var JSCompiler_temp_const$$0\u003dalert;var JSCompiler_inline_result$$1;JSCompiler_inline_result$$1\u003dbaz(foo(1+2));JSCompiler_temp_const$$0(JSCompiler_inline_result$$1)"
     }
   ],
   "fixing_changes": [

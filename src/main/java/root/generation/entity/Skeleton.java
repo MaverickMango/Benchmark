@@ -2,6 +2,7 @@ package root.generation.entity;
 
 import com.github.javaparser.ast.CompilationUnit;
 import com.github.javaparser.ast.NodeList;
+import com.github.javaparser.ast.PackageDeclaration;
 import com.github.javaparser.ast.body.ClassOrInterfaceDeclaration;
 import com.github.javaparser.ast.body.MethodDeclaration;
 import com.github.javaparser.ast.expr.Expression;
@@ -13,10 +14,12 @@ import com.github.javaparser.ast.stmt.Statement;
 import com.github.javaparser.quality.NotNull;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import root.bean.BugRepository;
 import root.generation.helper.Helper;
 import root.generation.transformation.visitor.ModifiedVisitor;
 
 import java.util.*;
+import java.util.concurrent.atomic.AtomicReference;
 import java.util.stream.Collectors;
 
 /**
@@ -107,9 +110,13 @@ public class Skeleton {
     }
 
     public MethodDeclaration addStatementAtLast(Expression expression) {
+        return addStatementAtLast(this.getOriginalMethod(), expression);
+    }
+
+    public MethodDeclaration addStatementAtLast(MethodDeclaration methodDeclaration, Expression expression) {
         ExpressionStmt stmt = new ExpressionStmt();
         stmt.setExpression(expression);
-        MethodDeclaration clone = this.getOriginalMethod().clone();
+        MethodDeclaration clone = methodDeclaration.clone();
         clone.setName(getNewMethodName(clone.getNameAsString()));
         Optional<BlockStmt> body = clone.getBody();
         if (body.isPresent()) {
@@ -184,20 +191,31 @@ public class Skeleton {
         }
     }
 
-    public CompilationUnit getOracle(Input input) {
+    public CompilationUnit getOracle(BugRepository bugRepository, Input input) {
         //插入一个输出语句用于获取变量在original版本的oracle。
         Expression inputExpr = input.getInputExpr();
-        if (input instanceof BasicInput) {
-            inputExpr = input.getMethodCallExpr().getArgument(input.getArgIdx());
+        MethodDeclaration methodDeclaration = this.getOriginalMethod();
+        if (input instanceof ObjectInput) {
+            methodDeclaration = this.getTransformedMethod();
         }
+        inputExpr = input.getMethodCallExpr().getArgument(input.getArgIdx());
         Expression expression = Helper.constructPrintStmt2Instr(inputExpr);
-        MethodDeclaration methodInstrumented = addStatementAtLast(expression);
+        MethodDeclaration methodInstrumented = addStatementAtLast(methodDeclaration, expression);
         //这个时候不需要插入断言
 //        MethodDeclaration methodDeclaration = addStatementAtLast(input.getMethodCallExpr());
         CompilationUnit transformedCompilationUnit = getTransformedCompilationUnit(methodInstrumented);
 
-        //todo 执行
-
+        boolean res = bugRepository.switchToOrg();
+        if (!res) {
+            logger.error("Error occurred when getting oracle in original commit! May be it cannot be compiled successfully.\n Null will be returned");
+            return null;
+        }
+        Optional<PackageDeclaration> packageDeclaration = transformedCompilationUnit.getPackageDeclaration();
+        AtomicReference<String> pack = new AtomicReference<>("");
+        packageDeclaration.ifPresent(p -> pack.set(p.getNameAsString()));
+        String testName = pack.get() + "." + getClazzName() + "::" + methodInstrumented.getNameAsString();
+        //todo 放回原目录
+        bugRepository.test(testName);
         input.setCompleted(true);
         return transformedCompilationUnit;
     }

@@ -361,6 +361,7 @@
     {
       "test_class": "org.apache.commons.lang3.StringUtilsTest",
       "test_function": "testEscapeSurrogatePairs",
+      "assertion_line": "2187",
       "exception": "java.lang.StringIndexOutOfBoundsException",
       "message": "String index out of range: 2"
     }

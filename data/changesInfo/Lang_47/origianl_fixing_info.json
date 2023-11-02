@@ -48,7 +48,15 @@
     {
       "test_class": "org.apache.commons.lang.text.StrBuilderTest",
       "test_function": "testLang412Left",
-      "exception": "java.lang.NullPointerExceptio",
+      "assertion_line": "1761",
+      "exception": "java.lang.NullPointerException",
+      "message": ""
+    },
+    {
+      "test_class": "org.apache.commons.lang.text.StrBuilderTest",
+      "test_function": "testLang412Right",
+      "assertion_line": "1755",
+      "exception": "java.lang.NullPointerException",
       "message": ""
     }
   ],
@@ -69,8 +77,8 @@
         },
         {
           "qualified_names": [
-            "org.apache.commons.lang.text.StrBuilder:appendFixedWidthPadLeft:[Object obj, int width, char padChar]:StrBuilder",
-            "org.apache.commons.lang.text.StrBuilder:appendFixedWidthPadRight:[Object obj, int width, char padChar]:StrBuilder"
+            "org.apache.commons.lang.text.StrBuilder:appendFixedWidthPadRight:[Object obj, int width, char padChar]:StrBuilder",
+            "org.apache.commons.lang.text.StrBuilder:appendFixedWidthPadLeft:[Object obj, int width, char padChar]:StrBuilder"
           ],
           "num": 2
         }

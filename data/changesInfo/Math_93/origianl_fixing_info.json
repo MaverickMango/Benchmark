@@ -145,6 +145,7 @@
     {
       "test_class": "org.apache.commons.math.util.MathUtilsTest",
       "test_function": "testFactorial",
+      "assertion_line": "237",
       "exception": "junit.framework.AssertionFailedError",
       "message": "17!  expected:\u003c3.55687428096E14\u003e but was:\u003c3.55687428096001E14\u003e"
     }
@@ -159,10 +160,10 @@
       "changed_functions": [
         {
           "qualified_names": [
-            "org.apache.commons.math.util.MathUtils:equals:[double[] x, double[] y]:boolean",
             "org.apache.commons.math.util.MathUtils:factorialLog:[final int n]:double",
-            "org.apache.commons.math.util.MathUtils:factorialDouble:[final int n]:double",
-            "org.apache.commons.math.util.MathUtils:factorial:[final int n]:long"
+            "org.apache.commons.math.util.MathUtils:equals:[double[] x, double[] y]:boolean",
+            "org.apache.commons.math.util.MathUtils:factorial:[final int n]:long",
+            "org.apache.commons.math.util.MathUtils:factorialDouble:[final int n]:double"
           ],
           "num": 4
         },

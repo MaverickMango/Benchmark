@@ -344,6 +344,7 @@
     {
       "test_class": "com.google.javascript.jscomp.CodePrinterTest",
       "test_function": "testZero",
+      "assertion_line": "1231",
       "exception": "junit.framework.ComparisonFailure",
       "message": "expected:\u003cvar x\u003d\"\\0[00]\"\u003e but was:\u003cvar x\u003d\"\\0[]\"\u003e"
     }

@@ -145,6 +145,7 @@
     {
       "test_class": "org.apache.commons.math.special.GammaTest",
       "test_function": "testRegularizedGammaPositivePositive",
+      "assertion_line": "77",
       "exception": "junit.framework.AssertionFailedError",
       "message": "expected:\u003c0.632120558828558\u003e but was:\u003c0.6321205587649603\u003e"
     }

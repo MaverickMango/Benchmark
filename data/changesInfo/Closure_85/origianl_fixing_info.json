@@ -37,13 +37,13 @@
         },
         {
           "qualified_names": [
-            "com.google.javascript.jscomp.UnreachableCodeElimination:visit:[NodeTraversal t, Node n, Node parent]:void",
-            "com.google.javascript.jscomp.UnreachableCodeElimination:tryRemoveUnconditionalBranching:[Node n]:Node",
+            "com.google.javascript.jscomp.UnreachableCodeElimination:process:[Node externs, Node root]:void",
             "com.google.javascript.jscomp.UnreachableCodeElimination:enterScope:[NodeTraversal t]:void",
             "com.google.javascript.jscomp.UnreachableCodeElimination:exitScope:[NodeTraversal t]:void",
+            "com.google.javascript.jscomp.UnreachableCodeElimination:tryRemoveUnconditionalBranching:[Node n]:Node",
             "com.google.javascript.jscomp.UnreachableCodeElimination:removeDeadExprStatementSafely:[Node n]:void",
-            "com.google.javascript.jscomp.UnreachableCodeElimination:UnreachableCodeElimination:[AbstractCompiler compiler, boolean removeNoOpStatements]:null",
-            "com.google.javascript.jscomp.UnreachableCodeElimination:process:[Node externs, Node root]:void"
+            "com.google.javascript.jscomp.UnreachableCodeElimination:visit:[NodeTraversal t, Node n, Node parent]:void",
+            "com.google.javascript.jscomp.UnreachableCodeElimination:UnreachableCodeElimination:[AbstractCompiler compiler, boolean removeNoOpStatements]:null"
           ],
           "num": 7
         }
@@ -846,8 +846,16 @@
     {
       "test_class": "com.google.javascript.jscomp.UnreachableCodeEliminationTest",
       "test_function": "testCascadedRemovalOfUnlessUnconditonalJumps",
+      "assertion_line": "235",
       "exception": "junit.framework.AssertionFailedError",
       "message": "Expected: switch(a){case \"a\":break;case \"b\":case \"c\":}\nResult: switch(a){case \"a\":case \"b\":case \"c\":}"
+    },
+    {
+      "test_class": "com.google.javascript.jscomp.UnreachableCodeEliminationTest",
+      "test_function": "testIssue311",
+      "assertion_line": "253",
+      "exception": "java.lang.RuntimeException",
+      "message": "INTERNAL COMPILER ERROR."
     }
   ],
   "fixing_changes": [

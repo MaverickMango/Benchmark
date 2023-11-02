@@ -145,6 +145,7 @@
     {
       "test_class": "org.apache.commons.math.complex.ComplexTest",
       "test_function": "testMath221",
+      "assertion_line": "696",
       "exception": "junit.framework.AssertionFailedError",
       "message": "expected:\u003corg.apache.commons.math.complex.Complex@98b00000\u003e but was:\u003corg.apache.commons.math.complex.Complex@18b00000\u003e"
     }

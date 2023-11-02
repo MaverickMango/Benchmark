@@ -34,30 +34,30 @@
         {
           "qualified_names": [
             "com.google.javascript.rhino.JSDocInfo:getEnumParameterType:[]:JSTypeExpression",
-            "com.google.javascript.rhino.JSDocInfo:getReferences:[]:Collection\u003cString\u003e",
-            "com.google.javascript.rhino.JSDocInfo:isNoCompile:[]:boolean",
-            "com.google.javascript.rhino.JSDocInfo:setDeprecationReason:[String reason]:boolean",
             "com.google.javascript.rhino.JSDocInfo:addMarker:[]:Marker",
-            "com.google.javascript.rhino.JSDocInfo:getLendsName:[]:String"
+            "com.google.javascript.rhino.JSDocInfo:getLendsName:[]:String",
+            "com.google.javascript.rhino.JSDocInfo:isNoCompile:[]:boolean",
+            "com.google.javascript.rhino.JSDocInfo:getReferences:[]:Collection\u003cString\u003e",
+            "com.google.javascript.rhino.JSDocInfo:setDeprecationReason:[String reason]:boolean"
           ],
           "num": 6
         },
         {
           "qualified_names": [
-            "com.google.javascript.rhino.JSDocInfo:setLendsName:[String name]:void",
-            "com.google.javascript.rhino.JSDocInfo:setMeaning:[String meaning]:void",
-            "com.google.javascript.rhino.JSDocInfo:setModifies:[Set\u003cString\u003e modifies]:boolean",
             "com.google.javascript.rhino.JSDocInfo:getLicense:[]:String",
+            "com.google.javascript.rhino.JSDocInfo:hasDescriptionForParameter:[String name]:boolean",
             "com.google.javascript.rhino.JSDocInfo:containsDeclaration:[]:boolean",
-            "com.google.javascript.rhino.JSDocInfo:getLendsName:[]:String",
             "com.google.javascript.rhino.JSDocInfo:addModifies:[String modifies]:void",
-            "com.google.javascript.rhino.JSDocInfo:hasModifies:[]:boolean",
-            "com.google.javascript.rhino.JSDocInfo:documentVersion:[String version]:boolean",
-            "com.google.javascript.rhino.JSDocInfo:getModifies:[]:Set\u003cString\u003e",
-            "com.google.javascript.rhino.JSDocInfo:addSuppression:[String suppression]:void",
-            "com.google.javascript.rhino.JSDocInfo:setSuppressions:[Set\u003cString\u003e suppressions]:boolean",
             "com.google.javascript.rhino.JSDocInfo:getMeaning:[]:String",
-            "com.google.javascript.rhino.JSDocInfo:hasDescriptionForParameter:[String name]:boolean"
+            "com.google.javascript.rhino.JSDocInfo:setMeaning:[String meaning]:void",
+            "com.google.javascript.rhino.JSDocInfo:getLendsName:[]:String",
+            "com.google.javascript.rhino.JSDocInfo:setModifies:[Set\u003cString\u003e modifies]:boolean",
+            "com.google.javascript.rhino.JSDocInfo:setLendsName:[String name]:void",
+            "com.google.javascript.rhino.JSDocInfo:documentVersion:[String version]:boolean",
+            "com.google.javascript.rhino.JSDocInfo:addSuppression:[String suppression]:void",
+            "com.google.javascript.rhino.JSDocInfo:getModifies:[]:Set\u003cString\u003e",
+            "com.google.javascript.rhino.JSDocInfo:hasModifies:[]:boolean",
+            "com.google.javascript.rhino.JSDocInfo:setSuppressions:[Set\u003cString\u003e suppressions]:boolean"
           ],
           "num": 14
         }
@@ -219,17 +219,17 @@
       "changed_functions": [
         {
           "qualified_names": [
-            "com.google.javascript.rhino.jstype.AllType:isSubtype:[JSType that]:boolean",
-            "com.google.javascript.rhino.jstype.AllType:visit:[Visitor\u003cT\u003e visitor]:T"
+            "com.google.javascript.rhino.jstype.AllType:visit:[Visitor\u003cT\u003e visitor]:T",
+            "com.google.javascript.rhino.jstype.AllType:isSubtype:[JSType that]:boolean"
           ],
           "num": 2
         },
         {
           "qualified_names": [
-            "com.google.javascript.rhino.jstype.AllType:isSubtype:[JSType that]:boolean",
             "com.google.javascript.rhino.jstype.AllType:visit:[Visitor\u003cT\u003e visitor]:T",
+            "com.google.javascript.rhino.jstype.AllType:hasDisplayName:[]:boolean",
             "com.google.javascript.rhino.jstype.AllType:getDisplayName:[]:String",
-            "com.google.javascript.rhino.jstype.AllType:hasDisplayName:[]:boolean"
+            "com.google.javascript.rhino.jstype.AllType:isSubtype:[JSType that]:boolean"
           ],
           "num": 4
         }
@@ -294,9 +294,9 @@
         },
         {
           "qualified_names": [
-            "com.google.javascript.rhino.jstype.BooleanType:testForEquality:[JSType that]:TernaryValue",
+            "com.google.javascript.rhino.jstype.BooleanType:getDisplayName:[]:String",
             "com.google.javascript.rhino.jstype.BooleanType:toString:[]:String",
-            "com.google.javascript.rhino.jstype.BooleanType:getDisplayName:[]:String"
+            "com.google.javascript.rhino.jstype.BooleanType:testForEquality:[JSType that]:TernaryValue"
           ],
           "num": 3
         }
@@ -431,22 +431,22 @@
         {
           "qualified_names": [
             "com.google.javascript.rhino.jstype.JSType:forgiveUnknownNames:[]:void",
-            "com.google.javascript.rhino.jstype.JSType:isSubtype:[JSType thisType, JSType thatType]:boolean",
-            "com.google.javascript.rhino.jstype.JSType:testForEqualityHelper:[JSType aType, JSType bType]:TernaryValue",
+            "com.google.javascript.rhino.jstype.JSType:testForEquality:[JSType that]:TernaryValue",
             "com.google.javascript.rhino.jstype.JSType:safeResolve:[JSType type, ErrorReporter t, StaticScope\u003cJSType\u003e scope]:JSType",
-            "com.google.javascript.rhino.jstype.JSType:testForEquality:[JSType that]:TernaryValue"
+            "com.google.javascript.rhino.jstype.JSType:testForEqualityHelper:[JSType aType, JSType bType]:TernaryValue",
+            "com.google.javascript.rhino.jstype.JSType:isSubtype:[JSType thisType, JSType thatType]:boolean"
           ],
           "num": 5
         },
         {
           "qualified_names": [
-            "com.google.javascript.rhino.jstype.JSType:isSubtype:[JSType thisType, JSType thatType]:boolean",
             "com.google.javascript.rhino.jstype.JSType:forgiveUnknownNames:[]:void",
-            "com.google.javascript.rhino.jstype.JSType:testForEquality:[JSType that]:TernaryValue",
-            "com.google.javascript.rhino.jstype.JSType:getDisplayName:[]:String",
-            "com.google.javascript.rhino.jstype.JSType:testForEqualityHelper:[JSType aType, JSType bType]:TernaryValue",
+            "com.google.javascript.rhino.jstype.JSType:isSubtype:[JSType thisType, JSType thatType]:boolean",
             "com.google.javascript.rhino.jstype.JSType:hasDisplayName:[]:boolean",
-            "com.google.javascript.rhino.jstype.JSType:setValidator:[Predicate\u003cJSType\u003e validator]:boolean"
+            "com.google.javascript.rhino.jstype.JSType:testForEqualityHelper:[JSType aType, JSType bType]:TernaryValue",
+            "com.google.javascript.rhino.jstype.JSType:testForEquality:[JSType that]:TernaryValue",
+            "com.google.javascript.rhino.jstype.JSType:setValidator:[Predicate\u003cJSType\u003e validator]:boolean",
+            "com.google.javascript.rhino.jstype.JSType:getDisplayName:[]:String"
           ],
           "num": 7
         }
@@ -560,16 +560,16 @@
       "changed_functions": [
         {
           "qualified_names": [
-            "com.google.javascript.rhino.jstype.NullType:toString:[]:String",
-            "com.google.javascript.rhino.jstype.NullType:testForEquality:[JSType that]:TernaryValue"
+            "com.google.javascript.rhino.jstype.NullType:testForEquality:[JSType that]:TernaryValue",
+            "com.google.javascript.rhino.jstype.NullType:toString:[]:String"
           ],
           "num": 2
         },
         {
           "qualified_names": [
+            "com.google.javascript.rhino.jstype.NullType:toString:[]:String",
             "com.google.javascript.rhino.jstype.NullType:getDisplayName:[]:String",
-            "com.google.javascript.rhino.jstype.NullType:testForEquality:[JSType that]:TernaryValue",
-            "com.google.javascript.rhino.jstype.NullType:toString:[]:String"
+            "com.google.javascript.rhino.jstype.NullType:testForEquality:[JSType that]:TernaryValue"
           ],
           "num": 3
         }
@@ -652,15 +652,15 @@
       "changed_functions": [
         {
           "qualified_names": [
-            "com.google.javascript.rhino.jstype.NumberType:testForEquality:[JSType that]:TernaryValue",
-            "com.google.javascript.rhino.jstype.NumberType:toString:[]:String"
+            "com.google.javascript.rhino.jstype.NumberType:toString:[]:String",
+            "com.google.javascript.rhino.jstype.NumberType:testForEquality:[JSType that]:TernaryValue"
           ],
           "num": 2
         },
         {
           "qualified_names": [
-            "com.google.javascript.rhino.jstype.NumberType:toString:[]:String",
             "com.google.javascript.rhino.jstype.NumberType:testForEquality:[JSType that]:TernaryValue",
+            "com.google.javascript.rhino.jstype.NumberType:toString:[]:String",
             "com.google.javascript.rhino.jstype.NumberType:getDisplayName:[]:String"
           ],
           "num": 3
@@ -744,20 +744,20 @@
       "changed_functions": [
         {
           "qualified_names": [
-            "com.google.javascript.rhino.jstype.ObjectType:getPropertyType:[String propertyName]:JSType",
+            "com.google.javascript.rhino.jstype.ObjectType:isPropertyTypeDeclared:[String propertyName]:boolean",
             "com.google.javascript.rhino.jstype.ObjectType:getNormalizedReferenceName:[]:String",
-            "com.google.javascript.rhino.jstype.ObjectType:isPropertyTypeDeclared:[String propertyName]:boolean"
+            "com.google.javascript.rhino.jstype.ObjectType:getPropertyType:[String propertyName]:JSType"
           ],
           "num": 3
         },
         {
           "qualified_names": [
-            "com.google.javascript.rhino.jstype.ObjectType:hasReferenceName:[]:boolean",
-            "com.google.javascript.rhino.jstype.ObjectType:getNormalizedReferenceName:[]:String",
-            "com.google.javascript.rhino.jstype.ObjectType:getPropertyNames:[]:Set\u003cString\u003e",
             "com.google.javascript.rhino.jstype.ObjectType:getDisplayName:[]:String",
+            "com.google.javascript.rhino.jstype.ObjectType:createDelegateSuffix:[String suffix]:String",
+            "com.google.javascript.rhino.jstype.ObjectType:hasReferenceName:[]:boolean",
             "com.google.javascript.rhino.jstype.ObjectType:getOwnPropertyNames:[]:Set\u003cString\u003e",
-            "com.google.javascript.rhino.jstype.ObjectType:createDelegateSuffix:[String suffix]:String"
+            "com.google.javascript.rhino.jstype.ObjectType:getPropertyNames:[]:Set\u003cString\u003e",
+            "com.google.javascript.rhino.jstype.ObjectType:getNormalizedReferenceName:[]:String"
           ],
           "num": 6
         }
@@ -1046,8 +1046,8 @@
         },
         {
           "qualified_names": [
-            "com.google.javascript.rhino.jstype.VoidType:getDisplayName:[]:String",
-            "com.google.javascript.rhino.jstype.VoidType:toString:[]:String"
+            "com.google.javascript.rhino.jstype.VoidType:toString:[]:String",
+            "com.google.javascript.rhino.jstype.VoidType:getDisplayName:[]:String"
           ],
           "num": 2
         }
@@ -1209,8 +1209,16 @@
     {
       "test_class": "com.google.javascript.jscomp.TypeCheckTest",
       "test_function": "testIssue301",
+      "assertion_line": "4955",
       "exception": "junit.framework.AssertionFailedError",
       "message": "expected a warning"
+    },
+    {
+      "test_class": "com.google.javascript.rhino.jstype.FunctionTypeTest",
+      "test_function": "testEmptyFunctionTypes",
+      "assertion_line": "173",
+      "exception": "junit.framework.AssertionFailedError",
+      "message": ""
     }
   ],
   "fixing_changes": [

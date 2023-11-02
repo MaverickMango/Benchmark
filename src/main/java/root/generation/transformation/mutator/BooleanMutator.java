@@ -1,5 +1,7 @@
 package root.generation.transformation.mutator;
 
+import com.github.javaparser.ast.expr.BooleanLiteralExpr;
+
 import java.util.Random;
 
 public class BooleanMutator extends AbstractInputMutator {
@@ -9,7 +11,9 @@ public class BooleanMutator extends AbstractInputMutator {
     @Override
     public Object getNextInput(Object oldValue) {
         //now is random, but not always!
-        this.addInputMutants(random.nextBoolean());
+        BooleanLiteralExpr expr = new BooleanLiteralExpr();
+        expr.setValue(random.nextBoolean());
+        this.addInputMutants(expr);
         return this.inputs.get(random.nextInt(this.inputs.size()));
     }
 }

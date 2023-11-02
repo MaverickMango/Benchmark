@@ -20,7 +20,7 @@ import java.util.stream.Collectors;
 public class ObjectInput extends Input{
 
     private final Logger logger = LoggerFactory.getLogger(ObjectInput.class);
-    private VoidVisitorAdapter<Set<Expression>> visitor;
+    private VoidVisitorAdapter<List<Expression>> visitor;
 
     public ObjectInput(MethodCallExpr methodCallExpr, Expression inputExpr, int argIdx) {
         super(methodCallExpr, inputExpr, argIdx);
@@ -35,7 +35,7 @@ public class ObjectInput extends Input{
     public void setBasicExpr(@NotNull MethodDeclaration methodDeclaration) {
         List<String> all = getInputExpr().findAll(NameExpr.class).stream().
                 map(nameExpr -> nameExpr.getName().toString()).collect(Collectors.toList());
-        Set<Expression> collector = new HashSet<>();
+        List<Expression> collector = new ArrayList<>();
         visitor = new DependencyVisitor(all);
         visitor.visit(methodDeclaration, collector);
         Random random = new Random();
@@ -46,7 +46,7 @@ public class ObjectInput extends Input{
     private void setBasicExpr(Expression inputExpr) {
         List<String> all = inputExpr.findAll(NameExpr.class).stream().
                 map(nameExpr -> nameExpr.getName().toString()).collect(Collectors.toList());
-        Set<Expression> collector = new HashSet<>();
+        List<Expression> collector = new ArrayList<>();
         visitor = new DependencyVisitor(all);
         Optional<MethodDeclaration> ancestor = inputExpr.findAncestor(MethodDeclaration.class);
         if (ancestor.isPresent()) {
@@ -58,6 +58,7 @@ public class ObjectInput extends Input{
         }
         Random random = new Random();
         List<Expression> tmp = new ArrayList<>(collector);
-        this.basicExpr = tmp.get(random.nextInt(tmp.size()));
+        int idx = random.nextInt(tmp.size());
+        this.basicExpr = tmp.get(idx);
     }
 }

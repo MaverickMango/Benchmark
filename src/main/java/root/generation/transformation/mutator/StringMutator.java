@@ -1,5 +1,7 @@
 package root.generation.transformation.mutator;
 
+import com.github.javaparser.ast.expr.StringLiteralExpr;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
@@ -12,7 +14,9 @@ public class StringMutator extends AbstractInputMutator{
 
     @Override
     public Object getNextInput(Object oldValue) {
-        this.addInputMutants(randomStrMutate((String) oldValue));
+        StringLiteralExpr expr = new StringLiteralExpr();
+        expr.setString((String) randomStrMutate(oldValue.toString()));
+        this.addInputMutants(expr);
         return this.inputs.get(random.nextInt(this.inputs.size()));
     }
 

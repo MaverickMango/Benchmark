@@ -33,8 +33,8 @@
       "changed_functions": [
         {
           "qualified_names": [
-            "org.apache.commons.lang.text.translate.LookupTranslator:LookupTranslator:[CharSequence[][] lookup]:null",
-            "org.apache.commons.lang.text.translate.LookupTranslator:translate:[CharSequence input, int index, Writer out]:int"
+            "org.apache.commons.lang.text.translate.LookupTranslator:translate:[CharSequence input, int index, Writer out]:int",
+            "org.apache.commons.lang.text.translate.LookupTranslator:LookupTranslator:[CharSequence[][] lookup]:null"
           ],
           "num": 2
         },
@@ -359,6 +359,7 @@
     {
       "test_class": "org.apache.commons.lang3.text.translate.LookupTranslatorTest",
       "test_function": "testLang882",
+      "assertion_line": "48",
       "exception": "junit.framework.AssertionFailedError",
       "message": "Incorrect codepoint consumption expected:\u003c3\u003e but was:\u003c0\u003e"
     }
@@ -373,8 +374,8 @@
       "changed_functions": [
         {
           "qualified_names": [
-            "org.apache.commons.lang3.text.translate.LookupTranslator:translate:[final CharSequence input, final int index, final Writer out]:int",
-            "org.apache.commons.lang3.text.translate.LookupTranslator:LookupTranslator:[final CharSequence[]... lookup]:null"
+            "org.apache.commons.lang3.text.translate.LookupTranslator:LookupTranslator:[final CharSequence[]... lookup]:null",
+            "org.apache.commons.lang3.text.translate.LookupTranslator:translate:[final CharSequence input, final int index, final Writer out]:int"
           ],
           "num": 2
         },

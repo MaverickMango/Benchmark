@@ -33,21 +33,21 @@
       "changed_functions": [
         {
           "qualified_names": [
-            "org.apache.commons.math.stat.regression.SimpleRegression:getSumSquaredErrors:[double b1]:double",
-            "org.apache.commons.math.stat.regression.SimpleRegression:getRegressionSumSquares:[double slope]:double",
-            "org.apache.commons.math.stat.regression.SimpleRegression:getSumSquaredErrors:[]:double",
-            "org.apache.commons.math.stat.regression.SimpleRegression:getR:[]:double",
+            "org.apache.commons.math.stat.regression.SimpleRegression:getRSquare:[]:double",
             "org.apache.commons.math.stat.regression.SimpleRegression:getRSquare:[double b1]:double",
-            "org.apache.commons.math.stat.regression.SimpleRegression:getRSquare:[]:double"
+            "org.apache.commons.math.stat.regression.SimpleRegression:getR:[]:double",
+            "org.apache.commons.math.stat.regression.SimpleRegression:getSumSquaredErrors:[double b1]:double",
+            "org.apache.commons.math.stat.regression.SimpleRegression:getSumSquaredErrors:[]:double",
+            "org.apache.commons.math.stat.regression.SimpleRegression:getRegressionSumSquares:[double slope]:double"
           ],
           "num": 6
         },
         {
           "qualified_names": [
+            "org.apache.commons.math.stat.regression.SimpleRegression:getRSquare:[]:double",
             "org.apache.commons.math.stat.regression.SimpleRegression:getR:[]:double",
-            "org.apache.commons.math.stat.regression.SimpleRegression:getSumSquaredErrors:[]:double",
             "org.apache.commons.math.stat.regression.SimpleRegression:getIntercept:[double slope]:double",
-            "org.apache.commons.math.stat.regression.SimpleRegression:getRSquare:[]:double"
+            "org.apache.commons.math.stat.regression.SimpleRegression:getSumSquaredErrors:[]:double"
           ],
           "num": 4
         }
@@ -236,7 +236,8 @@
     {
       "test_class": "org.apache.commons.math.stat.regression.SimpleRegressionTest",
       "test_function": "testSSENonNegative",
-      "exception": "junit.framework.AssertionFailedErro",
+      "assertion_line": "275",
+      "exception": "junit.framework.AssertionFailedError",
       "message": ""
     }
   ],

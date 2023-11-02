@@ -39,8 +39,8 @@
         },
         {
           "qualified_names": [
-            "org.apache.commons.compress.archivers.ar.ArArchiveEntry:hashCode:[]:int",
-            "org.apache.commons.compress.archivers.ar.ArArchiveEntry:equals:[Object obj]:boolean"
+            "org.apache.commons.compress.archivers.ar.ArArchiveEntry:equals:[Object obj]:boolean",
+            "org.apache.commons.compress.archivers.ar.ArArchiveEntry:hashCode:[]:int"
           ],
           "num": 2
         }
@@ -343,7 +343,8 @@
     {
       "test_class": "org.apache.commons.compress.archivers.zip.ZipArchiveEntryTest",
       "test_function": "testNotEquals",
-      "exception": "junit.framework.AssertionFailedErro",
+      "assertion_line": "230",
+      "exception": "junit.framework.AssertionFailedError",
       "message": ""
     }
   ],
@@ -357,16 +358,16 @@
       "changed_functions": [
         {
           "qualified_names": [
-            "org.apache.commons.compress.archivers.zip.ZipArchiveEntry:ZipArchiveEntry:[String name]:null",
+            "org.apache.commons.compress.archivers.zip.ZipArchiveEntry:ZipArchiveEntry:[]:null",
             "org.apache.commons.compress.archivers.zip.ZipArchiveEntry:equals:[Object obj]:boolean",
-            "org.apache.commons.compress.archivers.zip.ZipArchiveEntry:ZipArchiveEntry:[]:null"
+            "org.apache.commons.compress.archivers.zip.ZipArchiveEntry:ZipArchiveEntry:[String name]:null"
           ],
           "num": 3
         },
         {
           "qualified_names": [
-            "org.apache.commons.compress.archivers.zip.ZipArchiveEntry:ZipArchiveEntry:[String name]:null",
             "org.apache.commons.compress.archivers.zip.ZipArchiveEntry:equals:[Object obj]:boolean",
+            "org.apache.commons.compress.archivers.zip.ZipArchiveEntry:ZipArchiveEntry:[String name]:null",
             "org.apache.commons.compress.archivers.zip.ZipArchiveEntry:ZipArchiveEntry:[]:null"
           ],
           "num": 3

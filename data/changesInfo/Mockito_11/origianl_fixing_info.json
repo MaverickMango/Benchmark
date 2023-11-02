@@ -33,8 +33,8 @@
       "changed_functions": [
         {
           "qualified_names": [
-            "org.mockito.internal.creation.MethodInterceptorFilter:intercept:[Object proxy, Method method, Object[] args, MethodProxy methodProxy]:Object",
-            "org.mockito.internal.creation.MethodInterceptorFilter:createMockitoMethodProxy:[MethodProxy methodProxy]:MockitoMethodProxy"
+            "org.mockito.internal.creation.MethodInterceptorFilter:createMockitoMethodProxy:[MethodProxy methodProxy]:MockitoMethodProxy",
+            "org.mockito.internal.creation.MethodInterceptorFilter:intercept:[Object proxy, Method method, Object[] args, MethodProxy methodProxy]:Object"
           ],
           "num": 2
         },
@@ -377,7 +377,15 @@
     {
       "test_class": "org.mockito.internal.creation.DelegatingMethodTest",
       "test_function": "equals_should_return_true_when_equal",
-      "exception": "junit.framework.AssertionFailedErro",
+      "assertion_line": "30",
+      "exception": "junit.framework.AssertionFailedError",
+      "message": ""
+    },
+    {
+      "test_class": "org.mockito.internal.creation.DelegatingMethodTest",
+      "test_function": "equals_should_return_true_when_self",
+      "assertion_line": "35",
+      "exception": "junit.framework.AssertionFailedError",
       "message": ""
     }
   ],
@@ -398,8 +406,8 @@
         },
         {
           "qualified_names": [
-            "org.mockito.internal.creation.DelegatingMethod:equals:[Object o]:boolean",
-            "org.mockito.internal.creation.DelegatingMethod:hashCode:[]:int"
+            "org.mockito.internal.creation.DelegatingMethod:hashCode:[]:int",
+            "org.mockito.internal.creation.DelegatingMethod:equals:[Object o]:boolean"
           ],
           "num": 2
         }

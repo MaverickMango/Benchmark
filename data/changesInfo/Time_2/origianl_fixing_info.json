@@ -100,6 +100,7 @@
     {
       "test_class": "org.joda.time.TestPartial_Basics",
       "test_function": "testWith_baseAndArgHaveNoRange",
+      "assertion_line": "469",
       "exception": "java.lang.IllegalArgumentException",
       "message": "Types array must not contain duplicate: era and year"
     }
@@ -121,8 +122,8 @@
         },
         {
           "qualified_names": [
-            "org.joda.time.Partial:Partial:[DateTimeFieldType[] types, int[] values, Chronology chronology]:null",
-            "org.joda.time.Partial:with:[DateTimeFieldType fieldType, int value]:Partial"
+            "org.joda.time.Partial:with:[DateTimeFieldType fieldType, int value]:Partial",
+            "org.joda.time.Partial:Partial:[DateTimeFieldType[] types, int[] values, Chronology chronology]:null"
           ],
           "num": 2
         }

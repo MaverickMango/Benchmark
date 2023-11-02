@@ -48,8 +48,16 @@
     {
       "test_class": "org.apache.commons.lang.text.StrBuilderTest",
       "test_function": "testIndexOfLang294",
+      "assertion_line": "1741",
       "exception": "junit.framework.AssertionFailedError",
       "message": "expected:\u003c-1\u003e but was:\u003c6\u003e"
+    },
+    {
+      "test_class": "org.apache.commons.lang.text.StrBuilderTest",
+      "test_function": "testLang294",
+      "assertion_line": "1734",
+      "exception": "java.lang.ArrayIndexOutOfBoundsException",
+      "message": ""
     }
   ],
   "fixing_changes": [

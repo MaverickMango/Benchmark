@@ -61,6 +61,7 @@
     {
       "test_class": "org.apache.commons.lang.NumberUtilsTest",
       "test_function": "testLang457",
+      "assertion_line": "528",
       "exception": "java.lang.StringIndexOutOfBoundsException",
       "message": "String index out of range: 0"
     }

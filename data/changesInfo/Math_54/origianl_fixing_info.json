@@ -51,6 +51,7 @@
     {
       "test_class": "org.apache.commons.math.dfp.DfpTest",
       "test_function": "testIssue567",
+      "assertion_line": "1512",
       "exception": "junit.framework.AssertionFailedError",
       "message": "expected:\u003c0.0\u003e but was:\u003c-Infinity\u003e"
     }
@@ -72,8 +73,8 @@
         },
         {
           "qualified_names": [
-            "org.apache.commons.math.dfp.Dfp:toDouble:[]:double",
-            "org.apache.commons.math.dfp.Dfp:Dfp:[final DfpField field, double x]:null"
+            "org.apache.commons.math.dfp.Dfp:Dfp:[final DfpField field, double x]:null",
+            "org.apache.commons.math.dfp.Dfp:toDouble:[]:double"
           ],
           "num": 2
         }

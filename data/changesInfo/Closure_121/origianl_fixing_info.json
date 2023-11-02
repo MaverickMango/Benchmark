@@ -143,28 +143,28 @@
       "changed_functions": [
         {
           "qualified_names": [
-            "com.google.javascript.jscomp.ExpressionDecomposer\\$SideEffected:SideEffected:[Set\u003cString\u003e additionalConsts]:null",
-            "com.google.javascript.jscomp.ExpressionDecomposer:isExpressionTreeUnsafe:[Node n, boolean followingSideEffectsExist]:boolean",
-            "com.google.javascript.jscomp.ExpressionDecomposer:canExposeExpression:[Node subExpression]:DecompositionType",
             "com.google.javascript.jscomp.ExpressionDecomposer:canBeSideEffected:[Node n]:boolean",
-            "com.google.javascript.jscomp.ExpressionDecomposer:exposeExpression:[Node expressionRoot, Node subExpression]:void",
             "com.google.javascript.jscomp.ExpressionDecomposer:maybeDecomposeExpression:[Node expression]:void",
+            "com.google.javascript.jscomp.ExpressionDecomposer:isExpressionTreeUnsafe:[Node n, boolean followingSideEffectsExist]:boolean",
             "com.google.javascript.jscomp.ExpressionDecomposer:findNonconditionalParent:[Node subExpression, Node expressionRoot]:Node",
-            "com.google.javascript.jscomp.ExpressionDecomposer:isSubexpressionMovable:[Node expressionRoot, Node subExpression]:boolean",
-            "com.google.javascript.jscomp.ExpressionDecomposer\\$SideEffected:apply:[Node n]:boolean"
+            "com.google.javascript.jscomp.ExpressionDecomposer\\$SideEffected:SideEffected:[Set\u003cString\u003e additionalConsts]:null",
+            "com.google.javascript.jscomp.ExpressionDecomposer\\$SideEffected:apply:[Node n]:boolean",
+            "com.google.javascript.jscomp.ExpressionDecomposer:canExposeExpression:[Node subExpression]:DecompositionType",
+            "com.google.javascript.jscomp.ExpressionDecomposer:exposeExpression:[Node expressionRoot, Node subExpression]:void",
+            "com.google.javascript.jscomp.ExpressionDecomposer:isSubexpressionMovable:[Node expressionRoot, Node subExpression]:boolean"
           ],
           "num": 9
         },
         {
           "qualified_names": [
-            "com.google.javascript.jscomp.ExpressionDecomposer:isExpressionTreeUnsafe:[Node n, boolean followingSideEffectsExist]:boolean",
             "com.google.javascript.jscomp.ExpressionDecomposer:exposeExpression:[Node expressionRoot, Node subExpression]:void",
-            "com.google.javascript.jscomp.ExpressionDecomposer:findNonconditionalParent:[Node subExpression, Node expressionRoot]:Node",
-            "com.google.javascript.jscomp.ExpressionDecomposer:canExposeExpression:[Node subExpression]:DecompositionType",
+            "com.google.javascript.jscomp.ExpressionDecomposer:maybeDecomposeExpression:[Node expression]:void",
+            "com.google.javascript.jscomp.ExpressionDecomposer:maybeExternMethod:[Node node]:boolean",
+            "com.google.javascript.jscomp.ExpressionDecomposer:isExpressionTreeUnsafe:[Node n, boolean followingSideEffectsExist]:boolean",
             "com.google.javascript.jscomp.ExpressionDecomposer:isSubexpressionMovable:[Node expressionRoot, Node subExpression]:DecompositionType",
             "com.google.javascript.jscomp.ExpressionDecomposer:isSafeAssign:[Node n, boolean seenSideEffects]:boolean",
-            "com.google.javascript.jscomp.ExpressionDecomposer:maybeDecomposeExpression:[Node expression]:void",
-            "com.google.javascript.jscomp.ExpressionDecomposer:maybeExternMethod:[Node node]:boolean"
+            "com.google.javascript.jscomp.ExpressionDecomposer:findNonconditionalParent:[Node subExpression, Node expressionRoot]:Node",
+            "com.google.javascript.jscomp.ExpressionDecomposer:canExposeExpression:[Node subExpression]:DecompositionType"
           ],
           "num": 8
         }
@@ -998,42 +998,42 @@
       "changed_functions": [
         {
           "qualified_names": [
-            "com.google.javascript.jscomp.InlineVariables\\$InliningBehavior:inlineNonConstants:[Scope scope, Var v, ReferenceCollection referenceInfo]:void",
             "com.google.javascript.jscomp.InlineVariables\\$InliningBehavior:canMoveAggressively:[Reference declaration]:boolean",
-            "com.google.javascript.jscomp.InlineVariables\\$InliningBehavior:inlineDeclaredConstant:[Var v, List\u003cReference\u003e refSet]:void",
+            "com.google.javascript.jscomp.InlineVariables\\$InliningBehavior:inlineNonConstants:[Scope scope, Var v, ReferenceCollection referenceInfo]:void",
+            "com.google.javascript.jscomp.InlineVariables\\$InliningBehavior:canInline:[Reference declaration, Reference reference]:boolean",
+            "com.google.javascript.jscomp.InlineVariables\\$InliningBehavior:inlineWellDefinedVariable:[Var v, List\u003cReference\u003e refSet]:void",
+            "com.google.javascript.jscomp.InlineVariables:process:[Node externs, Node root]:void",
             "com.google.javascript.jscomp.InlineVariables\\$InliningBehavior:inlineValue:[Var v, Reference ref, Node value]:void",
             "com.google.javascript.jscomp.InlineVariables\\$InliningBehavior:isValidDeclaration:[Reference declaration]:boolean",
             "com.google.javascript.jscomp.InlineVariables\\$InliningBehavior:canMoveModerately:[Reference declaration, Reference reference]:boolean",
-            "com.google.javascript.jscomp.InlineVariables\\$IdentifyConstants:apply:[Var var]:boolean",
-            "com.google.javascript.jscomp.InlineVariables\\$InliningBehavior:doInlinesForScope:[NodeTraversal t, Map\u003cVar,ReferenceCollection\u003e referenceMap]:void",
-            "com.google.javascript.jscomp.InlineVariables\\$InliningBehavior:isInlineableDeclaredConstant:[Var var, List\u003cReference\u003e refs]:boolean",
-            "com.google.javascript.jscomp.InlineVariables\\$InliningBehavior:canInline:[Reference declaration, Reference reference]:boolean",
-            "com.google.javascript.jscomp.InlineVariables\\$InliningBehavior:inlineWellDefinedVariable:[Var v, List\u003cReference\u003e refSet]:void",
-            "com.google.javascript.jscomp.InlineVariables\\$InliningBehavior:collectAliasCandidates:[NodeTraversal t, Map\u003cVar,ReferenceCollection\u003e referenceMap]:void",
             "com.google.javascript.jscomp.InlineVariables\\$InliningBehavior:inline:[Var v, Reference declaration, Reference reference]:void",
-            "com.google.javascript.jscomp.InlineVariables:process:[Node externs, Node root]:void",
-            "com.google.javascript.jscomp.InlineVariables\\$InliningBehavior:isImmutableAndWellDefinedVariable:[Var v, ReferenceCollection refInfo]:boolean"
+            "com.google.javascript.jscomp.InlineVariables\\$InliningBehavior:inlineDeclaredConstant:[Var v, List\u003cReference\u003e refSet]:void",
+            "com.google.javascript.jscomp.InlineVariables\\$InliningBehavior:doInlinesForScope:[NodeTraversal t, Map\u003cVar,ReferenceCollection\u003e referenceMap]:void",
+            "com.google.javascript.jscomp.InlineVariables\\$InliningBehavior:isImmutableAndWellDefinedVariable:[Var v, ReferenceCollection refInfo]:boolean",
+            "com.google.javascript.jscomp.InlineVariables\\$InliningBehavior:collectAliasCandidates:[NodeTraversal t, Map\u003cVar,ReferenceCollection\u003e referenceMap]:void",
+            "com.google.javascript.jscomp.InlineVariables\\$InliningBehavior:isInlineableDeclaredConstant:[Var var, List\u003cReference\u003e refs]:boolean",
+            "com.google.javascript.jscomp.InlineVariables\\$IdentifyConstants:apply:[Var var]:boolean"
           ],
           "num": 15
         },
         {
           "qualified_names": [
-            "com.google.javascript.jscomp.InlineVariables\\$InliningBehavior:inlineNonConstants:[Var v, ReferenceCollection referenceInfo]:void",
-            "com.google.javascript.jscomp.InlineVariables:process:[Node externs, Node root]:void",
-            "com.google.javascript.jscomp.InlineVariables\\$InliningBehavior:canMoveModerately:[Reference initialization, Reference reference]:boolean",
-            "com.google.javascript.jscomp.InlineVariables\\$InliningBehavior:canInline:[Reference declaration, Reference initialization, Reference reference]:boolean",
-            "com.google.javascript.jscomp.InlineVariables\\$InliningBehavior:inlineDeclaredConstant:[Var v, Node value, List\u003cReference\u003e refSet]:void",
-            "com.google.javascript.jscomp.InlineVariables\\$IdentifyConstants:apply:[Var var]:boolean",
-            "com.google.javascript.jscomp.InlineVariables\\$InliningBehavior:collectAliasCandidates:[NodeTraversal t, Map\u003cVar,ReferenceCollection\u003e referenceMap]:void",
-            "com.google.javascript.jscomp.InlineVariables\\$InliningBehavior:inlineValue:[Var v, Reference ref, Node value]:void",
-            "com.google.javascript.jscomp.InlineVariables\\$InliningBehavior:doInlinesForScope:[NodeTraversal t, Map\u003cVar,ReferenceCollection\u003e referenceMap]:void",
-            "com.google.javascript.jscomp.InlineVariables\\$InliningBehavior:inline:[Var v, Reference declaration, Reference init, Reference reference]:void",
-            "com.google.javascript.jscomp.InlineVariables\\$InliningBehavior:canMoveAggressively:[Node value]:boolean",
             "com.google.javascript.jscomp.InlineVariables\\$InliningBehavior:isImmutableAndWellDefinedVariable:[Var v, ReferenceCollection refInfo]:boolean",
-            "com.google.javascript.jscomp.InlineVariables\\$InliningBehavior:isValidDeclaration:[Reference declaration]:boolean",
             "com.google.javascript.jscomp.InlineVariables\\$InliningBehavior:isValidInitialization:[Reference initialization]:boolean",
+            "com.google.javascript.jscomp.InlineVariables\\$InliningBehavior:doInlinesForScope:[NodeTraversal t, Map\u003cVar,ReferenceCollection\u003e referenceMap]:void",
+            "com.google.javascript.jscomp.InlineVariables\\$InliningBehavior:inlineValue:[Var v, Reference ref, Node value]:void",
+            "com.google.javascript.jscomp.InlineVariables\\$InliningBehavior:inline:[Var v, Reference declaration, Reference init, Reference reference]:void",
+            "com.google.javascript.jscomp.InlineVariables\\$InliningBehavior:inlineNonConstants:[Var v, ReferenceCollection referenceInfo]:void",
+            "com.google.javascript.jscomp.InlineVariables\\$IdentifyConstants:apply:[Var var]:boolean",
+            "com.google.javascript.jscomp.InlineVariables\\$InliningBehavior:isValidDeclaration:[Reference declaration]:boolean",
+            "com.google.javascript.jscomp.InlineVariables\\$InliningBehavior:canInline:[Reference declaration, Reference initialization, Reference reference]:boolean",
+            "com.google.javascript.jscomp.InlineVariables\\$InliningBehavior:canMoveAggressively:[Node value]:boolean",
             "com.google.javascript.jscomp.InlineVariables\\$InliningBehavior:inlineWellDefinedVariable:[Var v, Node value, List\u003cReference\u003e refSet]:void",
-            "com.google.javascript.jscomp.InlineVariables\\$InliningBehavior:isInlineableDeclaredConstant:[Var var, ReferenceCollection refInfo]:boolean"
+            "com.google.javascript.jscomp.InlineVariables\\$InliningBehavior:collectAliasCandidates:[NodeTraversal t, Map\u003cVar,ReferenceCollection\u003e referenceMap]:void",
+            "com.google.javascript.jscomp.InlineVariables\\$InliningBehavior:isInlineableDeclaredConstant:[Var var, ReferenceCollection refInfo]:boolean",
+            "com.google.javascript.jscomp.InlineVariables:process:[Node externs, Node root]:void",
+            "com.google.javascript.jscomp.InlineVariables\\$InliningBehavior:inlineDeclaredConstant:[Var v, Node value, List\u003cReference\u003e refSet]:void",
+            "com.google.javascript.jscomp.InlineVariables\\$InliningBehavior:canMoveModerately:[Reference initialization, Reference reference]:boolean"
           ],
           "num": 16
         }
@@ -2142,8 +2142,8 @@
         },
         {
           "qualified_names": [
-            "com.google.javascript.jscomp.NodeIterators\\$LocalVarMotion:LocalVarMotion:[Node nameNode, FunctionlessLocalScope iterator]:null",
             "com.google.javascript.jscomp.NodeIterators\\$LocalVarMotion:forAssign:[Node name, Node assign, Node expr, Node block]:LocalVarMotion",
+            "com.google.javascript.jscomp.NodeIterators\\$LocalVarMotion:LocalVarMotion:[Node nameNode, FunctionlessLocalScope iterator]:null",
             "com.google.javascript.jscomp.NodeIterators\\$LocalVarMotion:forVar:[Node name, Node var, Node block]:LocalVarMotion"
           ],
           "num": 3
@@ -2314,18 +2314,18 @@
       "changed_functions": [
         {
           "qualified_names": [
-            "com.google.javascript.jscomp.NodeUtil:removeChild:[Node parent, Node node]:void",
-            "com.google.javascript.jscomp.NodeUtil:isString:[Node n]:boolean"
+            "com.google.javascript.jscomp.NodeUtil:isString:[Node n]:boolean",
+            "com.google.javascript.jscomp.NodeUtil:removeChild:[Node parent, Node node]:void"
           ],
           "num": 2
         },
         {
           "qualified_names": [
-            "com.google.javascript.jscomp.NodeUtil:removeChild:[Node parent, Node node]:void",
+            "com.google.javascript.jscomp.NodeUtil:getAssignedValue:[Node n]:Node",
             "com.google.javascript.jscomp.NodeUtil:canBeSideEffected:[Node n]:boolean",
-            "com.google.javascript.jscomp.NodeUtil:isString:[Node n]:boolean",
             "com.google.javascript.jscomp.NodeUtil:canBeSideEffected:[Node n, Set\u003cString\u003e knownConstants]:boolean",
-            "com.google.javascript.jscomp.NodeUtil:getAssignedValue:[Node n]:Node"
+            "com.google.javascript.jscomp.NodeUtil:removeChild:[Node parent, Node node]:void",
+            "com.google.javascript.jscomp.NodeUtil:isString:[Node n]:boolean"
           ],
           "num": 5
         }
@@ -2585,8 +2585,8 @@
         {
           "qualified_names": [
             "com.google.javascript.jscomp.Normalize:doStatementNormalizations:[NodeTraversal t, Node n, Node parent]:void",
-            "com.google.javascript.jscomp.Normalize:isCompoundAssignment:[Node n]:boolean",
-            "com.google.javascript.jscomp.Normalize:splitAssignments:[Node n]:void"
+            "com.google.javascript.jscomp.Normalize:splitAssignments:[Node n]:void",
+            "com.google.javascript.jscomp.Normalize:isCompoundAssignment:[Node n]:boolean"
           ],
           "num": 3
         },
@@ -2697,28 +2697,28 @@
       "changed_functions": [
         {
           "qualified_names": [
-            "com.google.javascript.jscomp.ReferenceCollectingCallback\\$ReferenceCollection:isNeverReassigned:[]:boolean",
-            "com.google.javascript.jscomp.ReferenceCollectingCallback\\$Reference:isLvalue:[]:boolean",
             "com.google.javascript.jscomp.ReferenceCollectingCallback\\$ReferenceCollection:isWellDefined:[]:boolean",
-            "com.google.javascript.jscomp.ReferenceCollectingCallback\\$Reference:isLhsOfForInExpression:[Node n]:boolean"
+            "com.google.javascript.jscomp.ReferenceCollectingCallback\\$ReferenceCollection:isNeverReassigned:[]:boolean",
+            "com.google.javascript.jscomp.ReferenceCollectingCallback\\$Reference:isLhsOfForInExpression:[Node n]:boolean",
+            "com.google.javascript.jscomp.ReferenceCollectingCallback\\$Reference:isLvalue:[]:boolean"
           ],
           "num": 4
         },
         {
           "qualified_names": [
-            "com.google.javascript.jscomp.ReferenceCollectingCallback\\$Reference:isSimpleAssignmentToName:[]:boolean",
-            "com.google.javascript.jscomp.ReferenceCollectingCallback\\$ReferenceCollection:isAssignedOnce:[]:boolean",
             "com.google.javascript.jscomp.ReferenceCollectingCallback\\$Reference:isHoistedFunction:[]:boolean",
-            "com.google.javascript.jscomp.ReferenceCollectingCallback\\$ReferenceCollection:isWellDefined:[]:boolean",
+            "com.google.javascript.jscomp.ReferenceCollectingCallback\\$Reference:isSimpleAssignmentToName:[]:boolean",
+            "com.google.javascript.jscomp.ReferenceCollectingCallback\\$Reference:isVarDeclaration:[]:boolean",
             "com.google.javascript.jscomp.ReferenceCollectingCallback\\$ReferenceCollection:getInitializingReferenceForConstants:[]:Reference",
             "com.google.javascript.jscomp.ReferenceCollectingCallback\\$ReferenceCollection:isInitializingDeclarationAt:[int index]:boolean",
-            "com.google.javascript.jscomp.ReferenceCollectingCallback\\$ReferenceCollection:isInitializingAssignmentAt:[int index]:boolean",
-            "com.google.javascript.jscomp.ReferenceCollectingCallback\\$ReferenceCollection:getInitializingReference:[]:Reference",
-            "com.google.javascript.jscomp.ReferenceCollectingCallback\\$Reference:isLvalue:[]:boolean",
-            "com.google.javascript.jscomp.ReferenceCollectingCallback\\$Reference:isVarDeclaration:[]:boolean",
             "com.google.javascript.jscomp.ReferenceCollectingCallback\\$Reference:isLhsOfForInExpression:[Node n]:boolean",
-            "com.google.javascript.jscomp.ReferenceCollectingCallback\\$Reference:getAssignedValue:[]:Node",
-            "com.google.javascript.jscomp.ReferenceCollectingCallback\\$ReferenceCollection:firstReferenceIsAssigningDeclaration:[]:boolean"
+            "com.google.javascript.jscomp.ReferenceCollectingCallback\\$ReferenceCollection:isWellDefined:[]:boolean",
+            "com.google.javascript.jscomp.ReferenceCollectingCallback\\$ReferenceCollection:isAssignedOnce:[]:boolean",
+            "com.google.javascript.jscomp.ReferenceCollectingCallback\\$ReferenceCollection:getInitializingReference:[]:Reference",
+            "com.google.javascript.jscomp.ReferenceCollectingCallback\\$ReferenceCollection:isInitializingAssignmentAt:[int index]:boolean",
+            "com.google.javascript.jscomp.ReferenceCollectingCallback\\$Reference:isLvalue:[]:boolean",
+            "com.google.javascript.jscomp.ReferenceCollectingCallback\\$ReferenceCollection:firstReferenceIsAssigningDeclaration:[]:boolean",
+            "com.google.javascript.jscomp.ReferenceCollectingCallback\\$Reference:getAssignedValue:[]:Node"
           ],
           "num": 13
         }
@@ -3434,6 +3434,7 @@
     {
       "test_class": "com.google.javascript.jscomp.InlineVariablesTest",
       "test_function": "testExternalIssue1053",
+      "assertion_line": "1069",
       "exception": "junit.framework.AssertionFailedError",
       "message": "Expected: var u;function f(){u\u003dRandom();var x\u003du;f();alert(x\u003d\u003d\u003du)}\nResult: var u;function f(){u\u003dRandom();f();alert(u\u003d\u003d\u003du)}"
     }
@@ -3505,8 +3506,8 @@
         },
         {
           "qualified_names": [
-            "com.google.javascript.jscomp.ReferenceCollectingCallback\\$ReferenceCollection:isOnlyAssignmentSameScopeAsDeclaration:[]:boolean",
-            "com.google.javascript.jscomp.ReferenceCollectingCallback\\$ReferenceCollection:isAssignedOnceInLifetime:[]:boolean"
+            "com.google.javascript.jscomp.ReferenceCollectingCallback\\$ReferenceCollection:isAssignedOnceInLifetime:[]:boolean",
+            "com.google.javascript.jscomp.ReferenceCollectingCallback\\$ReferenceCollection:isOnlyAssignmentSameScopeAsDeclaration:[]:boolean"
           ],
           "num": 2
         }

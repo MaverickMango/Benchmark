@@ -108,6 +108,7 @@
     {
       "test_class": "org.apache.commons.lang.StringEscapeUtilsTest",
       "test_function": "testEscapeJavaWithSlash",
+      "assertion_line": "113",
       "exception": "junit.framework.ComparisonFailure",
       "message": "expected:\u003c...tring with a slash ([]/) in it\u003e but was:\u003c...tring with a slash ([\\]/) in it\u003e"
     }
@@ -122,23 +123,23 @@
       "changed_functions": [
         {
           "qualified_names": [
-            "org.apache.commons.lang.StringEscapeUtils:escapeJavaStyleString:[Writer out, String str, boolean escapeSingleQuote]:void",
+            "org.apache.commons.lang.StringEscapeUtils:escapeJava:[String str]:String",
+            "org.apache.commons.lang.StringEscapeUtils:escapeJavaScript:[Writer out, String str]:void",
             "org.apache.commons.lang.StringEscapeUtils:escapeJavaScript:[String str]:String",
             "org.apache.commons.lang.StringEscapeUtils:escapeJavaStyleString:[String str, boolean escapeSingleQuotes]:String",
             "org.apache.commons.lang.StringEscapeUtils:escapeJava:[Writer out, String str]:void",
-            "org.apache.commons.lang.StringEscapeUtils:escapeJava:[String str]:String",
-            "org.apache.commons.lang.StringEscapeUtils:escapeJavaScript:[Writer out, String str]:void"
+            "org.apache.commons.lang.StringEscapeUtils:escapeJavaStyleString:[Writer out, String str, boolean escapeSingleQuote]:void"
           ],
           "num": 6
         },
         {
           "qualified_names": [
-            "org.apache.commons.lang.StringEscapeUtils:escapeJavaScript:[String str]:String",
             "org.apache.commons.lang.StringEscapeUtils:escapeJava:[Writer out, String str]:void",
-            "org.apache.commons.lang.StringEscapeUtils:escapeJavaStyleString:[Writer out, String str, boolean escapeSingleQuote, boolean escapeForwardSlash]:void",
+            "org.apache.commons.lang.StringEscapeUtils:escapeJavaScript:[String str]:String",
             "org.apache.commons.lang.StringEscapeUtils:escapeJavaScript:[Writer out, String str]:void",
-            "org.apache.commons.lang.StringEscapeUtils:escapeJava:[String str]:String",
-            "org.apache.commons.lang.StringEscapeUtils:escapeJavaStyleString:[String str, boolean escapeSingleQuotes, boolean escapeForwardSlash]:String"
+            "org.apache.commons.lang.StringEscapeUtils:escapeJavaStyleString:[Writer out, String str, boolean escapeSingleQuote, boolean escapeForwardSlash]:void",
+            "org.apache.commons.lang.StringEscapeUtils:escapeJavaStyleString:[String str, boolean escapeSingleQuotes, boolean escapeForwardSlash]:String",
+            "org.apache.commons.lang.StringEscapeUtils:escapeJava:[String str]:String"
           ],
           "num": 6
         }
@@ -284,8 +285,8 @@
     },
     "delete_functions": {
       "qualified_names": [
-        "org.apache.commons.lang.StringEscapeUtils:escapeJavaStyleString:[Writer out, String str, boolean escapeSingleQuote]:void",
-        "org.apache.commons.lang.StringEscapeUtils:escapeJavaStyleString:[String str, boolean escapeSingleQuotes]:String"
+        "org.apache.commons.lang.StringEscapeUtils:escapeJavaStyleString:[String str, boolean escapeSingleQuotes]:String",
+        "org.apache.commons.lang.StringEscapeUtils:escapeJavaStyleString:[Writer out, String str, boolean escapeSingleQuote]:void"
       ],
       "num": 2
     }

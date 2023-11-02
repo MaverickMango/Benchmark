@@ -33,15 +33,15 @@
       "changed_functions": [
         {
           "qualified_names": [
-            "org.apache.commons.math.optimization.linear.SimplexTableau:getDecisionVariableValue:[final int decisionVariable]:double",
-            "org.apache.commons.math.optimization.linear.SimplexTableau:setEntry:[final int row, final int column, final double value]:void"
+            "org.apache.commons.math.optimization.linear.SimplexTableau:setEntry:[final int row, final int column, final double value]:void",
+            "org.apache.commons.math.optimization.linear.SimplexTableau:getDecisionVariableValue:[final int decisionVariable]:double"
           ],
           "num": 2
         },
         {
           "qualified_names": [
-            "org.apache.commons.math.optimization.linear.SimplexTableau:getDecisionVariableValue:[final int decisionVariable]:double",
-            "org.apache.commons.math.optimization.linear.SimplexTableau:setEntry:[final int row, final int column, final double value]:void"
+            "org.apache.commons.math.optimization.linear.SimplexTableau:setEntry:[final int row, final int column, final double value]:void",
+            "org.apache.commons.math.optimization.linear.SimplexTableau:getDecisionVariableValue:[final int decisionVariable]:double"
           ],
           "num": 2
         }
@@ -164,6 +164,7 @@
     {
       "test_class": "org.apache.commons.math.optimization.linear.SimplexSolverTest",
       "test_function": "testMath272",
+      "assertion_line": "47",
       "exception": "junit.framework.AssertionFailedError",
       "message": "expected:\u003c1.0\u003e but was:\u003c0.0\u003e"
     }
@@ -178,9 +179,9 @@
       "changed_functions": [
         {
           "qualified_names": [
-            "org.apache.commons.math.optimization.linear.SimplexTableau:getSolution:[]:RealPointValuePair",
+            "org.apache.commons.math.optimization.linear.SimplexTableau:getDecisionVariableValue:[final int decisionVariable]:double",
             "org.apache.commons.math.optimization.linear.SimplexTableau:divideRow:[final int dividendRow, final double divisor]:void",
-            "org.apache.commons.math.optimization.linear.SimplexTableau:getDecisionVariableValue:[final int decisionVariable]:double"
+            "org.apache.commons.math.optimization.linear.SimplexTableau:getSolution:[]:RealPointValuePair"
           ],
           "num": 3
         },

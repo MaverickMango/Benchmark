@@ -121,7 +121,8 @@
     {
       "test_class": "com.fasterxml.jackson.core.util.TestTextBuffer",
       "test_function": "testEmpty",
-      "exception": "java.lang.NullPointerExceptio",
+      "assertion_line": "83",
+      "exception": "java.lang.NullPointerException",
       "message": ""
     }
   ],

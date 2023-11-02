@@ -5,6 +5,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import root.bean.benchmarks.Defects4JBug;
 import root.bean.ci.CIBug;
+import root.bean.ci.FailedTest;
 import root.bean.ci.PatchDiff;
 
 import java.io.File;
@@ -36,7 +37,8 @@ class BugBuilderTest {
     void extractTests() {
         //ConfigurationProperties.getProperty("defects4j") + "/framework/projects/"
         //                + ((Defects4JBug) defects4JBug).getProj() + "/trigger_tests/" + ((Defects4JBug) defects4JBug).getId()
-        BugBuilder.extractFailedTests("data/changesInfo/" + ciBug.getBugName() + "/properties/failing_tests/inducing");
+        List<FailedTest> failedTests = BugBuilder.extractFailedTests("/home/liumengjiao/Desktop/defects4j/framework/projects/Time/trigger_tests/11");
+        System.out.println(FileUtils.bean2Json(failedTests.get(0)));
     }
 
     @Ignore

@@ -48,6 +48,7 @@
     {
       "test_class": "org.apache.commons.lang.math.FractionTest",
       "test_function": "testReduce",
+      "assertion_line": "655",
       "exception": "junit.framework.AssertionFailedError",
       "message": "expected:\u003c1\u003e but was:\u003c100\u003e"
     }

@@ -33,21 +33,21 @@
       "changed_functions": [
         {
           "qualified_names": [
-            "com.fasterxml.jackson.core.io.IOContext:_verifyAlloc:[Object buffer]:void",
-            "com.fasterxml.jackson.core.io.IOContext:releaseConcatBuffer:[char[] buf]:void",
             "com.fasterxml.jackson.core.io.IOContext:_verifyRelease:[Object toRelease, Object src]:void",
-            "com.fasterxml.jackson.core.io.IOContext:releaseNameCopyBuffer:[char[] buf]:void"
+            "com.fasterxml.jackson.core.io.IOContext:_verifyAlloc:[Object buffer]:void",
+            "com.fasterxml.jackson.core.io.IOContext:releaseNameCopyBuffer:[char[] buf]:void",
+            "com.fasterxml.jackson.core.io.IOContext:releaseConcatBuffer:[char[] buf]:void"
           ],
           "num": 4
         },
         {
           "qualified_names": [
-            "com.fasterxml.jackson.core.io.IOContext:_verifyRelease:[byte[] toRelease, byte[] src]:void",
+            "com.fasterxml.jackson.core.io.IOContext:_verifyAlloc:[Object buffer]:void",
             "com.fasterxml.jackson.core.io.IOContext:releaseNameCopyBuffer:[char[] buf]:void",
-            "com.fasterxml.jackson.core.io.IOContext:_verifyRelease:[char[] toRelease, char[] src]:void",
-            "com.fasterxml.jackson.core.io.IOContext:releaseConcatBuffer:[char[] buf]:void",
             "com.fasterxml.jackson.core.io.IOContext:wrongBuf:[]:IllegalArgumentException",
-            "com.fasterxml.jackson.core.io.IOContext:_verifyAlloc:[Object buffer]:void"
+            "com.fasterxml.jackson.core.io.IOContext:releaseConcatBuffer:[char[] buf]:void",
+            "com.fasterxml.jackson.core.io.IOContext:_verifyRelease:[char[] toRelease, char[] src]:void",
+            "com.fasterxml.jackson.core.io.IOContext:_verifyRelease:[byte[] toRelease, byte[] src]:void"
           ],
           "num": 6
         }
@@ -137,6 +137,7 @@
     {
       "test_class": "com.fasterxml.jackson.core.io.TestIOContext",
       "test_function": "testAllocations",
+      "assertion_line": "27",
       "exception": "junit.framework.AssertionFailedError",
       "message": "Expected an exception with one of substrings ([smaller than original]): got one with message \"Trying to release buffer not owned by the context\""
     }
@@ -159,9 +160,9 @@
         },
         {
           "qualified_names": [
-            "com.fasterxml.jackson.core.io.IOContext:_verifyRelease:[byte[] toRelease, byte[] src]:void",
+            "com.fasterxml.jackson.core.io.IOContext:_verifyRelease:[char[] toRelease, char[] src]:void",
             "com.fasterxml.jackson.core.io.IOContext:wrongBuf:[]:IllegalArgumentException",
-            "com.fasterxml.jackson.core.io.IOContext:_verifyRelease:[char[] toRelease, char[] src]:void"
+            "com.fasterxml.jackson.core.io.IOContext:_verifyRelease:[byte[] toRelease, byte[] src]:void"
           ],
           "num": 3
         }

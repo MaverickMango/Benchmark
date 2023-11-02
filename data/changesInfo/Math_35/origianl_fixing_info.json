@@ -39,11 +39,11 @@
         },
         {
           "qualified_names": [
-            "org.apache.commons.math.genetics.Chromosome:getFitness:[]:double",
-            "org.apache.commons.math.genetics.Chromosome:searchForFitnessUpdate:[Population population]:void",
-            "org.apache.commons.math.genetics.Chromosome:compareTo:[Chromosome another]:int",
             "org.apache.commons.math.genetics.Chromosome:isSame:[Chromosome another]:boolean",
-            "org.apache.commons.math.genetics.Chromosome:findSameChromosome:[Population population]:Chromosome"
+            "org.apache.commons.math.genetics.Chromosome:findSameChromosome:[Population population]:Chromosome",
+            "org.apache.commons.math.genetics.Chromosome:compareTo:[Chromosome another]:int",
+            "org.apache.commons.math.genetics.Chromosome:searchForFitnessUpdate:[Population population]:void",
+            "org.apache.commons.math.genetics.Chromosome:getFitness:[]:double"
           ],
           "num": 5
         }
@@ -475,31 +475,31 @@
       "changed_functions": [
         {
           "qualified_names": [
-            "org.apache.commons.math.genetics.GeneticAlgorithm:setMutationPolicy:[MutationPolicy value]:void",
-            "org.apache.commons.math.genetics.GeneticAlgorithm:getSelectionPolicy:[]:SelectionPolicy",
             "org.apache.commons.math.genetics.GeneticAlgorithm:getCrossoverRate:[]:double",
+            "org.apache.commons.math.genetics.GeneticAlgorithm:getSelectionPolicy:[]:SelectionPolicy",
+            "org.apache.commons.math.genetics.GeneticAlgorithm:getCrossoverPolicy:[]:CrossoverPolicy",
             "org.apache.commons.math.genetics.GeneticAlgorithm:setCrossoverRate:[double value]:void",
+            "org.apache.commons.math.genetics.GeneticAlgorithm:getMutationPolicy:[]:MutationPolicy",
+            "org.apache.commons.math.genetics.GeneticAlgorithm:setMutationPolicy:[MutationPolicy value]:void",
+            "org.apache.commons.math.genetics.GeneticAlgorithm:nextGeneration:[Population current]:Population",
+            "org.apache.commons.math.genetics.GeneticAlgorithm:setSelectionPolicy:[SelectionPolicy value]:void",
             "org.apache.commons.math.genetics.GeneticAlgorithm:getMutationRate:[]:double",
             "org.apache.commons.math.genetics.GeneticAlgorithm:setCrossoverPolicy:[CrossoverPolicy value]:void",
-            "org.apache.commons.math.genetics.GeneticAlgorithm:getCrossoverPolicy:[]:CrossoverPolicy",
-            "org.apache.commons.math.genetics.GeneticAlgorithm:getMutationPolicy:[]:MutationPolicy",
-            "org.apache.commons.math.genetics.GeneticAlgorithm:setMutationRate:[double value]:void",
-            "org.apache.commons.math.genetics.GeneticAlgorithm:nextGeneration:[Population current]:Population",
-            "org.apache.commons.math.genetics.GeneticAlgorithm:setSelectionPolicy:[SelectionPolicy value]:void"
+            "org.apache.commons.math.genetics.GeneticAlgorithm:setMutationRate:[double value]:void"
           ],
           "num": 11
         },
         {
           "qualified_names": [
-            "org.apache.commons.math.genetics.GeneticAlgorithm:getRandomGenerator:[]:RandomGenerator",
             "org.apache.commons.math.genetics.GeneticAlgorithm:getMutationPolicy:[]:MutationPolicy",
-            "org.apache.commons.math.genetics.GeneticAlgorithm:GeneticAlgorithm:[CrossoverPolicy crossoverPolicy, double crossoverRate, MutationPolicy mutationPolicy, double mutationRate, SelectionPolicy selectionPolicy]:null",
             "org.apache.commons.math.genetics.GeneticAlgorithm:getMutationRate:[]:double",
-            "org.apache.commons.math.genetics.GeneticAlgorithm:getSelectionPolicy:[]:SelectionPolicy",
             "org.apache.commons.math.genetics.GeneticAlgorithm:getCrossoverRate:[]:double",
+            "org.apache.commons.math.genetics.GeneticAlgorithm:getSelectionPolicy:[]:SelectionPolicy",
+            "org.apache.commons.math.genetics.GeneticAlgorithm:getCrossoverPolicy:[]:CrossoverPolicy",
+            "org.apache.commons.math.genetics.GeneticAlgorithm:getRandomGenerator:[]:RandomGenerator",
+            "org.apache.commons.math.genetics.GeneticAlgorithm:GeneticAlgorithm:[CrossoverPolicy crossoverPolicy, double crossoverRate, MutationPolicy mutationPolicy, double mutationRate, SelectionPolicy selectionPolicy]:null",
             "org.apache.commons.math.genetics.GeneticAlgorithm:setRandomGenerator:[RandomGenerator random]:void",
-            "org.apache.commons.math.genetics.GeneticAlgorithm:nextGeneration:[Population current]:Population",
-            "org.apache.commons.math.genetics.GeneticAlgorithm:getCrossoverPolicy:[]:CrossoverPolicy"
+            "org.apache.commons.math.genetics.GeneticAlgorithm:nextGeneration:[Population current]:Population"
           ],
           "num": 9
         }

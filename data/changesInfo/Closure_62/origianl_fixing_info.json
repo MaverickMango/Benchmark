@@ -92,8 +92,16 @@
     {
       "test_class": "com.google.javascript.jscomp.LightweightMessageFormatterTest",
       "test_function": "testFormatErrorSpaceEndOfLine1",
+      "assertion_line": "91",
       "exception": "junit.framework.ComparisonFailure",
       "message": "expected:\u003c...ion here"
+    },
+    {
+      "test_class": "com.google.javascript.jscomp.LightweightMessageFormatterTest",
+      "test_function": "testFormatErrorSpaceEndOfLine2",
+      "assertion_line": "100",
+      "exception": "junit.framework.ComparisonFailure",
+      "message": "expected:\u003c...iption here"
     }
   ],
   "fixing_changes": [

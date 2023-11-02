@@ -646,7 +646,8 @@
     {
       "test_class": "com.google.javascript.jscomp.TypeCheckTest",
       "test_function": "testIssue1002",
-      "exception": "java.lang.IllegalStateExceptio",
+      "assertion_line": "6741",
+      "exception": "java.lang.IllegalStateException",
       "message": ""
     }
   ],

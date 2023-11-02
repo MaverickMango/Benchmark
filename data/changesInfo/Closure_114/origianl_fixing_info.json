@@ -33,15 +33,15 @@
       "changed_functions": [
         {
           "qualified_names": [
-            "com.google.javascript.jscomp.NameAnalyzer\\$FindDependencyScopes:visit:[NodeTraversal t, Node n, Node parent]:void",
-            "com.google.javascript.jscomp.NameAnalyzer:getEnclosingFunctionDependencyScope:[NodeTraversal t]:NameInformation"
+            "com.google.javascript.jscomp.NameAnalyzer:getEnclosingFunctionDependencyScope:[NodeTraversal t]:NameInformation",
+            "com.google.javascript.jscomp.NameAnalyzer\\$FindDependencyScopes:visit:[NodeTraversal t, Node n, Node parent]:void"
           ],
           "num": 2
         },
         {
           "qualified_names": [
-            "com.google.javascript.jscomp.NameAnalyzer\\$FindDependencyScopes:visit:[NodeTraversal t, Node n, Node parent]:void",
-            "com.google.javascript.jscomp.NameAnalyzer:getEnclosingFunctionDependencyScope:[NodeTraversal t]:NameInformation"
+            "com.google.javascript.jscomp.NameAnalyzer:getEnclosingFunctionDependencyScope:[NodeTraversal t]:NameInformation",
+            "com.google.javascript.jscomp.NameAnalyzer\\$FindDependencyScopes:visit:[NodeTraversal t, Node n, Node parent]:void"
           ],
           "num": 2
         }
@@ -127,6 +127,7 @@
     {
       "test_class": "com.google.javascript.jscomp.NameAnalyzerTest",
       "test_function": "testAssignWithCall",
+      "assertion_line": "1236",
       "exception": "junit.framework.AssertionFailedError",
       "message": "Expected: var x;(function(){x})()\nResult: (function(){x})()"
     }
@@ -149,9 +150,9 @@
         },
         {
           "qualified_names": [
-            "com.google.javascript.jscomp.NameAnalyzer\\$FindReferences:maybeRecordReferenceOrAlias:[NodeTraversal t, Node n, Node parent, NameInformation nameInfo, NameInformation referring]:void",
+            "com.google.javascript.jscomp.NameAnalyzer\\$FindDependencyScopes:recordAssignment:[NodeTraversal t, Node n, Node recordNode]:void",
             "com.google.javascript.jscomp.NameAnalyzer\\$FindReferences:visit:[NodeTraversal t, Node n, Node parent]:void",
-            "com.google.javascript.jscomp.NameAnalyzer\\$FindDependencyScopes:recordAssignment:[NodeTraversal t, Node n, Node recordNode]:void"
+            "com.google.javascript.jscomp.NameAnalyzer\\$FindReferences:maybeRecordReferenceOrAlias:[NodeTraversal t, Node n, Node parent, NameInformation nameInfo, NameInformation referring]:void"
           ],
           "num": 3
         }

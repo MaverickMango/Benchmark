@@ -39,9 +39,9 @@
         },
         {
           "qualified_names": [
+            "com.google.javascript.jscomp.FunctionTypeBuilder\\$ImplementedTypeValidator:apply:[JSType type]:boolean",
             "com.google.javascript.jscomp.FunctionTypeBuilder:inferInheritance:[@Nullable JSDocInfo info]:FunctionTypeBuilder",
-            "com.google.javascript.jscomp.FunctionTypeBuilder\\$ExtendedTypeValidator:apply:[JSType type]:boolean",
-            "com.google.javascript.jscomp.FunctionTypeBuilder\\$ImplementedTypeValidator:apply:[JSType type]:boolean"
+            "com.google.javascript.jscomp.FunctionTypeBuilder\\$ExtendedTypeValidator:apply:[JSType type]:boolean"
           ],
           "num": 3
         }
@@ -476,16 +476,16 @@
       "changed_functions": [
         {
           "qualified_names": [
-            "com.google.javascript.rhino.jstype.NamedType:setReferencedAndResolvedType:[JSType type, ErrorReporter t, StaticScope\u003cJSType\u003e enclosing]:void",
             "com.google.javascript.rhino.jstype.NamedType:getTypedefType:[ErrorReporter t, StaticSlot\u003cJSType\u003e slot, String name]:JSType",
+            "com.google.javascript.rhino.jstype.NamedType:setReferencedAndResolvedType:[JSType type, ErrorReporter t, StaticScope\u003cJSType\u003e enclosing]:void",
             "com.google.javascript.rhino.jstype.NamedType:handleUnresolvedType:[ErrorReporter t, boolean ignoreForwardReferencedTypes]:void"
           ],
           "num": 3
         },
         {
           "qualified_names": [
-            "com.google.javascript.rhino.jstype.NamedType:setValidator:[Predicate\u003cJSType\u003e validator]:boolean",
             "com.google.javascript.rhino.jstype.NamedType:setReferencedAndResolvedType:[JSType type, ErrorReporter t, StaticScope\u003cJSType\u003e enclosing]:void",
+            "com.google.javascript.rhino.jstype.NamedType:setValidator:[Predicate\u003cJSType\u003e validator]:boolean",
             "com.google.javascript.rhino.jstype.NamedType:handleUnresolvedType:[ErrorReporter t, boolean ignoreForwardReferencedTypes]:void"
           ],
           "num": 3
@@ -636,6 +636,7 @@
     {
       "test_class": "com.google.javascript.jscomp.ProcessClosurePrimitivesTest",
       "test_function": "testProvideInIndependentModules4",
+      "assertion_line": "777",
       "exception": "junit.framework.AssertionFailedError",
       "message": "Expected: var apps\u003d{};apps.foo\u003d{};apps.foo.bar\u003d{};apps.foo.bar.B\u003d{};apps.foo.bar.C\u003d{}\nResult: var apps\u003d{};apps.foo.bar\u003d{};apps.foo\u003d{};apps.foo.bar.B\u003d{};apps.foo.bar.C\u003d{}"
     }

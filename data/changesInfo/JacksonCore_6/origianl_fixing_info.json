@@ -116,6 +116,7 @@
     {
       "test_class": "com.fasterxml.jackson.core.TestJsonPointer",
       "test_function": "testIZeroIndex",
+      "assertion_line": "51",
       "exception": "junit.framework.AssertionFailedError",
       "message": "expected:\u003c-1\u003e but was:\u003c0\u003e"
     }

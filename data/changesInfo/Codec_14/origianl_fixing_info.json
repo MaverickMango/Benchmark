@@ -61,6 +61,7 @@
     {
       "test_class": "org.apache.commons.codec.language.bm.PhoneticEngineRegressionTest",
       "test_function": "testCompatibilityWithOriginalVersion",
+      "assertion_line": "190",
       "exception": "junit.framework.AssertionFailedError",
       "message": "expected:\u003c...dzn|bntsn|bnzn|vndzn[]\u003e but was:\u003c...dzn|bntsn|bnzn|vndzn[|vntsn]\u003e"
     }
@@ -202,15 +203,15 @@
       "changed_functions": [
         {
           "qualified_names": [
-            "org.apache.commons.codec.language.bm.Languages\\$LanguageSet:restrictTo:[LanguageSet other]:LanguageSet",
-            "org.apache.commons.codec.language.bm.Languages\\$SomeLanguages:toString:[]:String"
+            "org.apache.commons.codec.language.bm.Languages\\$SomeLanguages:toString:[]:String",
+            "org.apache.commons.codec.language.bm.Languages\\$LanguageSet:restrictTo:[LanguageSet other]:LanguageSet"
           ],
           "num": 2
         },
         {
           "qualified_names": [
-            "org.apache.commons.codec.language.bm.Languages\\$SomeLanguages:merge:[final LanguageSet other]:LanguageSet",
             "org.apache.commons.codec.language.bm.Languages\\$LanguageSet:merge:[LanguageSet other]:LanguageSet",
+            "org.apache.commons.codec.language.bm.Languages\\$SomeLanguages:merge:[final LanguageSet other]:LanguageSet",
             "org.apache.commons.codec.language.bm.Languages\\$SomeLanguages:toString:[]:String"
           ],
           "num": 3
@@ -409,16 +410,16 @@
       "changed_functions": [
         {
           "qualified_names": [
-            "org.apache.commons.codec.language.bm.Rule\\$Phoneme:join:[final Phoneme right]:Phoneme",
-            "org.apache.commons.codec.language.bm.Rule:parseRules:[final Scanner scanner, final String location]:Map\u003cString,List\u003cRule\u003e\u003e"
+            "org.apache.commons.codec.language.bm.Rule:parseRules:[final Scanner scanner, final String location]:Map\u003cString,List\u003cRule\u003e\u003e",
+            "org.apache.commons.codec.language.bm.Rule\\$Phoneme:join:[final Phoneme right]:Phoneme"
           ],
           "num": 2
         },
         {
           "qualified_names": [
-            "org.apache.commons.codec.language.bm.Rule\\$Phoneme:toString:[]:String",
+            "org.apache.commons.codec.language.bm.Rule:parseRules:[final Scanner scanner, final String location]:Map\u003cString,List\u003cRule\u003e\u003e",
             "org.apache.commons.codec.language.bm.Rule\\$Phoneme:mergeWithLanguage:[final LanguageSet lang]:Phoneme",
-            "org.apache.commons.codec.language.bm.Rule:parseRules:[final Scanner scanner, final String location]:Map\u003cString,List\u003cRule\u003e\u003e"
+            "org.apache.commons.codec.language.bm.Rule\\$Phoneme:toString:[]:String"
           ],
           "num": 3
         }

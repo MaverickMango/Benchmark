@@ -164,10 +164,10 @@
         },
         {
           "qualified_names": [
+            "org.jsoup.helper.Validate:noNullElements:[Object[] objects]:void",
             "org.jsoup.helper.Validate:isFalse:[boolean val, String msg]:void",
             "org.jsoup.helper.Validate:fail:[String msg]:void",
-            "org.jsoup.helper.Validate:isFalse:[boolean val]:void",
-            "org.jsoup.helper.Validate:noNullElements:[Object[] objects]:void"
+            "org.jsoup.helper.Validate:isFalse:[boolean val]:void"
           ],
           "num": 4
         }
@@ -241,30 +241,30 @@
       "changed_functions": [
         {
           "qualified_names": [
+            "org.jsoup.nodes.Attributes:addAll:[Attributes incoming]:void",
+            "org.jsoup.nodes.Attributes:html:[StringBuilder accum, Document.OutputSettings out]:void",
+            "org.jsoup.nodes.Attributes:hasKey:[String key]:boolean",
+            "org.jsoup.nodes.Attributes:size:[]:int",
+            "org.jsoup.nodes.Attributes:put:[Attribute attribute]:void",
+            "org.jsoup.nodes.Attributes:remove:[String key]:void",
             "org.jsoup.nodes.Attributes:get:[String key]:String",
             "org.jsoup.nodes.Attributes:asList:[]:List\u003cAttribute\u003e",
-            "org.jsoup.nodes.Attributes:size:[]:int",
-            "org.jsoup.nodes.Attributes:remove:[String key]:void",
-            "org.jsoup.nodes.Attributes:put:[Attribute attribute]:void",
-            "org.jsoup.nodes.Attributes:clone:[]:Attributes",
-            "org.jsoup.nodes.Attributes:hasKey:[String key]:boolean",
-            "org.jsoup.nodes.Attributes:html:[StringBuilder accum, Document.OutputSettings out]:void",
-            "org.jsoup.nodes.Attributes:addAll:[Attributes incoming]:void"
+            "org.jsoup.nodes.Attributes:clone:[]:Attributes"
           ],
           "num": 9
         },
         {
           "qualified_names": [
-            "org.jsoup.nodes.Attributes:put:[Attribute attribute]:void",
-            "org.jsoup.nodes.Attributes:remove:[String key]:void",
+            "org.jsoup.nodes.Attributes:addAll:[Attributes incoming]:void",
             "org.jsoup.nodes.Attributes:get:[String key]:String",
             "org.jsoup.nodes.Attributes:asList:[]:List\u003cAttribute\u003e",
             "org.jsoup.nodes.Attributes:html:[StringBuilder accum, Document.OutputSettings out]:void",
-            "org.jsoup.nodes.Attributes\\$Dataset:Dataset:[]:null",
-            "org.jsoup.nodes.Attributes:size:[]:int",
-            "org.jsoup.nodes.Attributes:clone:[]:Attributes",
             "org.jsoup.nodes.Attributes:hasKey:[String key]:boolean",
-            "org.jsoup.nodes.Attributes:addAll:[Attributes incoming]:void"
+            "org.jsoup.nodes.Attributes:remove:[String key]:void",
+            "org.jsoup.nodes.Attributes:clone:[]:Attributes",
+            "org.jsoup.nodes.Attributes:put:[Attribute attribute]:void",
+            "org.jsoup.nodes.Attributes:size:[]:int",
+            "org.jsoup.nodes.Attributes\\$Dataset:Dataset:[]:null"
           ],
           "num": 10
         }
@@ -422,8 +422,8 @@
         },
         {
           "qualified_names": [
-            "org.jsoup.nodes.Document:quirksMode:[QuirksMode quirksMode]:Document",
-            "org.jsoup.nodes.Document:quirksMode:[]:QuirksMode"
+            "org.jsoup.nodes.Document:quirksMode:[]:QuirksMode",
+            "org.jsoup.nodes.Document:quirksMode:[QuirksMode quirksMode]:Document"
           ],
           "num": 2
         }
@@ -489,28 +489,28 @@
       "changed_functions": [
         {
           "qualified_names": [
-            "org.jsoup.nodes.Element:className:[]:String",
-            "org.jsoup.nodes.Element:append:[String html]:Element",
-            "org.jsoup.nodes.Element:after:[String html]:Element",
             "org.jsoup.nodes.Element:prepend:[String html]:Element",
             "org.jsoup.nodes.Element:equals:[Object o]:boolean",
+            "org.jsoup.nodes.Element:after:[String html]:Element",
             "org.jsoup.nodes.Element:appendChild:[Node child]:Element",
-            "org.jsoup.nodes.Element:empty:[]:Element"
+            "org.jsoup.nodes.Element:append:[String html]:Element",
+            "org.jsoup.nodes.Element:empty:[]:Element",
+            "org.jsoup.nodes.Element:className:[]:String"
           ],
           "num": 7
         },
         {
           "qualified_names": [
-            "org.jsoup.nodes.Element:appendChild:[Node child]:Element",
-            "org.jsoup.nodes.Element:equals:[Object o]:boolean",
-            "org.jsoup.nodes.Element:className:[]:String",
+            "org.jsoup.nodes.Element:after:[Node node]:Element",
+            "org.jsoup.nodes.Element:append:[String html]:Element",
             "org.jsoup.nodes.Element:hashCode:[]:int",
             "org.jsoup.nodes.Element:before:[Node node]:Element",
-            "org.jsoup.nodes.Element:after:[String html]:Element",
-            "org.jsoup.nodes.Element:append:[String html]:Element",
-            "org.jsoup.nodes.Element:after:[Node node]:Element",
             "org.jsoup.nodes.Element:empty:[]:Element",
-            "org.jsoup.nodes.Element:prepend:[String html]:Element"
+            "org.jsoup.nodes.Element:className:[]:String",
+            "org.jsoup.nodes.Element:appendChild:[Node child]:Element",
+            "org.jsoup.nodes.Element:after:[String html]:Element",
+            "org.jsoup.nodes.Element:prepend:[String html]:Element",
+            "org.jsoup.nodes.Element:equals:[Object o]:boolean"
           ],
           "num": 10
         }
@@ -716,9 +716,9 @@
         {
           "qualified_names": [
             "org.jsoup.nodes.Entities:unescape:[String string, boolean strict]:String",
-            "org.jsoup.nodes.Entities:isNamedEntity:[String name]:boolean",
+            "org.jsoup.nodes.Entities:getCharacterByName:[String name]:Character",
             "org.jsoup.nodes.Entities:Entities:[]:null",
-            "org.jsoup.nodes.Entities:getCharacterByName:[String name]:Character"
+            "org.jsoup.nodes.Entities:isNamedEntity:[String name]:boolean"
           ],
           "num": 4
         }
@@ -786,21 +786,21 @@
       "changed_functions": [
         {
           "qualified_names": [
-            "org.jsoup.nodes.Node:before:[String html]:Node",
             "org.jsoup.nodes.Node:after:[String html]:Node",
-            "org.jsoup.nodes.Node:addSiblingHtml:[int index, String html]:void",
-            "org.jsoup.nodes.Node:wrap:[String html]:Node"
+            "org.jsoup.nodes.Node:wrap:[String html]:Node",
+            "org.jsoup.nodes.Node:before:[String html]:Node",
+            "org.jsoup.nodes.Node:addSiblingHtml:[int index, String html]:void"
           ],
           "num": 4
         },
         {
           "qualified_names": [
-            "org.jsoup.nodes.Node:before:[Node node]:Node",
-            "org.jsoup.nodes.Node:wrap:[String html]:Node",
             "org.jsoup.nodes.Node:after:[Node node]:Node",
             "org.jsoup.nodes.Node:addSiblingHtml:[int index, String html]:void",
             "org.jsoup.nodes.Node:before:[String html]:Node",
-            "org.jsoup.nodes.Node:after:[String html]:Node"
+            "org.jsoup.nodes.Node:after:[String html]:Node",
+            "org.jsoup.nodes.Node:before:[Node node]:Node",
+            "org.jsoup.nodes.Node:wrap:[String html]:Node"
           ],
           "num": 6
         }
@@ -1015,30 +1015,30 @@
         {
           "qualified_names": [
             "org.jsoup.parser.Parser:parseBodyFragmentRelaxed:[String bodyHtml, String baseUri]:Document",
-            "org.jsoup.parser.Parser:parse:[String html, String baseUri]:Document",
-            "org.jsoup.parser.Parser:parseStartTag:[]:void",
-            "org.jsoup.parser.Parser:parseEndTag:[]:void",
-            "org.jsoup.parser.Parser:parseTextNode:[]:void",
-            "org.jsoup.parser.Parser:parseXmlDecl:[]:void",
-            "org.jsoup.parser.Parser:parseCdata:[]:void",
-            "org.jsoup.parser.Parser:addChildToParent:[Element child, boolean isEmptyElement]:Element",
-            "org.jsoup.parser.Parser:popStackToSuitableContainer:[Tag tag]:Element",
-            "org.jsoup.parser.Parser:parseComment:[]:void",
-            "org.jsoup.parser.Parser:parse:[]:Document",
-            "org.jsoup.parser.Parser:last:[]:Element",
-            "org.jsoup.parser.Parser:stackHasValidParent:[Tag childTag]:boolean",
-            "org.jsoup.parser.Parser:popStackToClose:[Tag tag]:Element",
-            "org.jsoup.parser.Parser:Parser:[String html, String baseUri, boolean isBodyFragment]:null",
             "org.jsoup.parser.Parser:parseBodyFragment:[String bodyHtml, String baseUri]:Document",
-            "org.jsoup.parser.Parser:parseAttribute:[]:Attribute"
+            "org.jsoup.parser.Parser:parseCdata:[]:void",
+            "org.jsoup.parser.Parser:parseStartTag:[]:void",
+            "org.jsoup.parser.Parser:parseComment:[]:void",
+            "org.jsoup.parser.Parser:last:[]:Element",
+            "org.jsoup.parser.Parser:addChildToParent:[Element child, boolean isEmptyElement]:Element",
+            "org.jsoup.parser.Parser:parse:[String html, String baseUri]:Document",
+            "org.jsoup.parser.Parser:popStackToSuitableContainer:[Tag tag]:Element",
+            "org.jsoup.parser.Parser:parse:[]:Document",
+            "org.jsoup.parser.Parser:parseXmlDecl:[]:void",
+            "org.jsoup.parser.Parser:stackHasValidParent:[Tag childTag]:boolean",
+            "org.jsoup.parser.Parser:Parser:[String html, String baseUri, boolean isBodyFragment]:null",
+            "org.jsoup.parser.Parser:parseAttribute:[]:Attribute",
+            "org.jsoup.parser.Parser:parseTextNode:[]:void",
+            "org.jsoup.parser.Parser:popStackToClose:[Tag tag]:Element",
+            "org.jsoup.parser.Parser:parseEndTag:[]:void"
           ],
           "num": 17
         },
         {
           "qualified_names": [
-            "org.jsoup.parser.Parser:parse:[String html, String baseUri]:Document",
-            "org.jsoup.parser.Parser:parseBodyFragment:[String bodyHtml, String baseUri]:Document",
             "org.jsoup.parser.Parser:parseBodyFragmentRelaxed:[String bodyHtml, String baseUri]:Document",
+            "org.jsoup.parser.Parser:parseBodyFragment:[String bodyHtml, String baseUri]:Document",
+            "org.jsoup.parser.Parser:parse:[String html, String baseUri]:Document",
             "org.jsoup.parser.Parser:parseFragment:[String fragmentHtml, Element context, String baseUri]:List\u003cNode\u003e"
           ],
           "num": 4
@@ -1801,60 +1801,60 @@
       "changed_functions": [
         {
           "qualified_names": [
-            "org.jsoup.parser.Tag:setCanContainBlock:[]:Tag",
-            "org.jsoup.parser.Tag:canContain:[Tag child]:boolean",
+            "org.jsoup.parser.Tag:setLimitChildren:[]:Tag",
+            "org.jsoup.parser.Tag:equals:[Object o]:boolean",
+            "org.jsoup.parser.Tag:isValidParent:[Tag child]:boolean",
+            "org.jsoup.parser.Tag:setContainInlineOnly:[]:Tag",
+            "org.jsoup.parser.Tag:setExcludes:[String... tagNames]:Tag",
+            "org.jsoup.parser.Tag:createInline:[String tagName]:Tag",
+            "org.jsoup.parser.Tag:register:[Tag tag]:Tag",
+            "org.jsoup.parser.Tag:valueOf:[String tagName]:Tag",
+            "org.jsoup.parser.Tag:isInline:[]:boolean",
+            "org.jsoup.parser.Tag:isEmpty:[]:boolean",
+            "org.jsoup.parser.Tag:isIgnorableEndTag:[Tag child]:boolean",
+            "org.jsoup.parser.Tag:setEmpty:[]:Tag",
             "org.jsoup.parser.Tag:setKnownTag:[]:Tag",
             "org.jsoup.parser.Tag:isBlock:[]:boolean",
-            "org.jsoup.parser.Tag:isEmpty:[]:boolean",
-            "org.jsoup.parser.Tag:setContainInlineOnly:[]:Tag",
-            "org.jsoup.parser.Tag:setPreserveWhitespace:[]:Tag",
-            "org.jsoup.parser.Tag:canContainBlock:[]:boolean",
-            "org.jsoup.parser.Tag:setExcludes:[String... tagNames]:Tag",
-            "org.jsoup.parser.Tag:requiresSpecificParent:[]:boolean",
-            "org.jsoup.parser.Tag:isValidParent:[Tag child]:boolean",
-            "org.jsoup.parser.Tag:isKnownTag:[]:boolean",
-            "org.jsoup.parser.Tag:createBlock:[String tagName]:Tag",
-            "org.jsoup.parser.Tag:setContainDataOnly:[]:Tag",
-            "org.jsoup.parser.Tag:isValidAncestor:[Tag child]:boolean",
-            "org.jsoup.parser.Tag:equals:[Object o]:boolean",
             "org.jsoup.parser.Tag:setParent:[String... tagNames]:Tag",
-            "org.jsoup.parser.Tag:setAncestor:[String... tagNames]:Tag",
-            "org.jsoup.parser.Tag:valueOf:[String tagName]:Tag",
-            "org.jsoup.parser.Tag:setIgnoreEnd:[String... tagNames]:Tag",
-            "org.jsoup.parser.Tag:setEmpty:[]:Tag",
-            "org.jsoup.parser.Tag:createInline:[String tagName]:Tag",
-            "org.jsoup.parser.Tag:hashCode:[]:int",
             "org.jsoup.parser.Tag:preserveWhitespace:[]:boolean",
-            "org.jsoup.parser.Tag:setFormatAsInline:[]:Tag",
-            "org.jsoup.parser.Tag:setLimitChildren:[]:Tag",
-            "org.jsoup.parser.Tag:setSelfClosing:[]:Tag",
-            "org.jsoup.parser.Tag:register:[Tag tag]:Tag",
-            "org.jsoup.parser.Tag:setOptionalClosing:[]:Tag",
-            "org.jsoup.parser.Tag:formatAsBlock:[]:boolean",
             "org.jsoup.parser.Tag:isData:[]:boolean",
-            "org.jsoup.parser.Tag:isInline:[]:boolean",
+            "org.jsoup.parser.Tag:isKnownTag:[]:boolean",
+            "org.jsoup.parser.Tag:setContainDataOnly:[]:Tag",
+            "org.jsoup.parser.Tag:formatAsBlock:[]:boolean",
+            "org.jsoup.parser.Tag:createBlock:[String tagName]:Tag",
+            "org.jsoup.parser.Tag:setSelfClosing:[]:Tag",
+            "org.jsoup.parser.Tag:setOptionalClosing:[]:Tag",
+            "org.jsoup.parser.Tag:hashCode:[]:int",
+            "org.jsoup.parser.Tag:canContain:[Tag child]:boolean",
             "org.jsoup.parser.Tag:getImplicitParent:[]:Tag",
-            "org.jsoup.parser.Tag:isIgnorableEndTag:[Tag child]:boolean"
+            "org.jsoup.parser.Tag:setIgnoreEnd:[String... tagNames]:Tag",
+            "org.jsoup.parser.Tag:requiresSpecificParent:[]:boolean",
+            "org.jsoup.parser.Tag:isValidAncestor:[Tag child]:boolean",
+            "org.jsoup.parser.Tag:setCanContainBlock:[]:Tag",
+            "org.jsoup.parser.Tag:setAncestor:[String... tagNames]:Tag",
+            "org.jsoup.parser.Tag:canContainBlock:[]:boolean",
+            "org.jsoup.parser.Tag:setPreserveWhitespace:[]:Tag",
+            "org.jsoup.parser.Tag:setFormatAsInline:[]:Tag"
           ],
           "num": 34
         },
         {
           "qualified_names": [
-            "org.jsoup.parser.Tag:isKnownTag:[]:boolean",
             "org.jsoup.parser.Tag:valueOf:[String tagName]:Tag",
-            "org.jsoup.parser.Tag:isData:[]:boolean",
-            "org.jsoup.parser.Tag:equals:[Object o]:boolean",
-            "org.jsoup.parser.Tag:isKnownTag:[String tagName]:boolean",
-            "org.jsoup.parser.Tag:setSelfClosing:[]:Tag",
-            "org.jsoup.parser.Tag:formatAsBlock:[]:boolean",
-            "org.jsoup.parser.Tag:isEmpty:[]:boolean",
-            "org.jsoup.parser.Tag:isBlock:[]:boolean",
             "org.jsoup.parser.Tag:isInline:[]:boolean",
+            "org.jsoup.parser.Tag:equals:[Object o]:boolean",
             "org.jsoup.parser.Tag:hashCode:[]:int",
-            "org.jsoup.parser.Tag:canContainBlock:[]:boolean",
-            "org.jsoup.parser.Tag:preserveWhitespace:[]:boolean",
+            "org.jsoup.parser.Tag:formatAsBlock:[]:boolean",
             "org.jsoup.parser.Tag:getName:[]:String",
-            "org.jsoup.parser.Tag:isSelfClosing:[]:boolean"
+            "org.jsoup.parser.Tag:setSelfClosing:[]:Tag",
+            "org.jsoup.parser.Tag:canContainBlock:[]:boolean",
+            "org.jsoup.parser.Tag:isSelfClosing:[]:boolean",
+            "org.jsoup.parser.Tag:isBlock:[]:boolean",
+            "org.jsoup.parser.Tag:isData:[]:boolean",
+            "org.jsoup.parser.Tag:isEmpty:[]:boolean",
+            "org.jsoup.parser.Tag:preserveWhitespace:[]:boolean",
+            "org.jsoup.parser.Tag:isKnownTag:[]:boolean",
+            "org.jsoup.parser.Tag:isKnownTag:[String tagName]:boolean"
           ],
           "num": 15
         }
@@ -2871,8 +2871,8 @@
         "org.jsoup.parser.Tag:setOptionalClosing:[]:Tag",
         "org.jsoup.parser.Parser:parseStartTag:[]:void",
         "org.jsoup.nodes.Document:outputSettings:[]:OutputSettings",
-        "org.jsoup.parser.Tag:setAncestor:[String... tagNames]:Tag",
         "org.jsoup.parser.Tag:setIgnoreEnd:[String... tagNames]:Tag",
+        "org.jsoup.parser.Tag:setAncestor:[String... tagNames]:Tag",
         "org.jsoup.parser.Tag:setContainInlineOnly:[]:Tag",
         "org.jsoup.parser.Tag:setExcludes:[String... tagNames]:Tag",
         "org.jsoup.parser.Tag:isIgnorableEndTag:[Tag child]:boolean",
@@ -2891,7 +2891,8 @@
     {
       "test_class": "org.jsoup.safety.CleanerTest",
       "test_function": "handlesFramesets",
-      "exception": "java.lang.NullPointerExceptio",
+      "assertion_line": "176",
+      "exception": "java.lang.NullPointerException",
       "message": ""
     }
   ],

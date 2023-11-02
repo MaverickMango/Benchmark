@@ -33,8 +33,8 @@
       "changed_functions": [
         {
           "qualified_names": [
-            "org.mockito.internal.configuration.DefaultAnnotationEngine:typeToClass:[Type actual]:Class",
-            "org.mockito.internal.configuration.DefaultAnnotationEngine:processAnnotationOn:[Captor annotation, Field field]:Object"
+            "org.mockito.internal.configuration.DefaultAnnotationEngine:processAnnotationOn:[Captor annotation, Field field]:Object",
+            "org.mockito.internal.configuration.DefaultAnnotationEngine:typeToClass:[Type actual]:Class"
           ],
           "num": 2
         },
@@ -159,14 +159,7 @@
       "num": 1
     }
   },
-  "trigger_tests": [
-    {
-      "test_class": "org.mockito.internal.util.reflection.GenericMasterTest",
-      "test_function": "shouldDealWithNestedGenerics",
-      "exception": "java.lang.ClassCastException",
-      "message": "sun.reflect.generics.reflectiveObjects.ParameterizedTypeImpl cannot be cast to java.lang.Class"
-    }
-  ],
+  "trigger_tests": [],
   "fixing_changes": [
     {
       "changed_type": "UPDATE",

@@ -344,8 +344,23 @@
     {
       "test_class": "com.google.javascript.jscomp.PeepholeFoldConstantsTest",
       "test_function": "testFoldComparison3",
+      "assertion_line": "700",
       "exception": "junit.framework.AssertionFailedError",
       "message": "Expected: x\u003dfalse\nResult: x\u003d!1\u003d\u003d!0"
+    },
+    {
+      "test_class": "com.google.javascript.jscomp.PeepholeFoldConstantsTest",
+      "test_function": "testInvertibleOperators",
+      "assertion_line": "1184",
+      "exception": "junit.framework.ComparisonFailure",
+      "message": "Expressions did not fold the same"
+    },
+    {
+      "test_class": "com.google.javascript.jscomp.PeepholeFoldConstantsTest",
+      "test_function": "testCommutativeOperators",
+      "assertion_line": "1184",
+      "exception": "junit.framework.ComparisonFailure",
+      "message": "Expressions did not fold the same"
     }
   ],
   "fixing_changes": [
@@ -358,16 +373,16 @@
       "changed_functions": [
         {
           "qualified_names": [
-            "com.google.javascript.jscomp.PeepholeFoldConstants:compareAsNumbers:[int op, Node left, Node right]:Boolean",
-            "com.google.javascript.jscomp.PeepholeFoldConstants:tryFoldComparison:[Node n, Node left, Node right]:Node"
+            "com.google.javascript.jscomp.PeepholeFoldConstants:tryFoldComparison:[Node n, Node left, Node right]:Node",
+            "com.google.javascript.jscomp.PeepholeFoldConstants:compareAsNumbers:[int op, Node left, Node right]:Boolean"
           ],
           "num": 2
         },
         {
           "qualified_names": [
-            "com.google.javascript.jscomp.PeepholeFoldConstants:tryFoldComparison:[Node n, Node left, Node right]:Node",
             "com.google.javascript.jscomp.PeepholeFoldConstants:getNormalizedNodeType:[Node n]:int",
-            "com.google.javascript.jscomp.PeepholeFoldConstants:compareAsNumbers:[int op, Node left, Node right]:Boolean"
+            "com.google.javascript.jscomp.PeepholeFoldConstants:compareAsNumbers:[int op, Node left, Node right]:Boolean",
+            "com.google.javascript.jscomp.PeepholeFoldConstants:tryFoldComparison:[Node n, Node left, Node right]:Node"
           ],
           "num": 3
         }

@@ -69,6 +69,9 @@ public class Helper {
     }
 
     public static String getType(Expression node) {
+        if (node.isUnaryExpr()) {
+            return "Unary";
+        }
         String qualifiedName = "Object";
         try {
             ResolvedType resolvedType = node.calculateResolvedType();

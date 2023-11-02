@@ -304,6 +304,7 @@
     {
       "test_class": "com.google.javascript.rhino.jstype.UnionTypeTest",
       "test_function": "testGreatestSubtypeUnionTypes5",
+      "assertion_line": "159",
       "exception": "junit.framework.AssertionFailedError",
       "message": "expected:\u003cNoObject\u003e but was:\u003cNone\u003e"
     }

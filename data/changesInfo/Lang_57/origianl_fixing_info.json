@@ -33,22 +33,22 @@
       "changed_functions": [
         {
           "qualified_names": [
-            "org.apache.commons.lang.LocaleUtils:toLocale:[String str]:Locale",
-            "org.apache.commons.lang.LocaleUtils:countriesByLanguage:[String languageCode]:Set",
             "org.apache.commons.lang.LocaleUtils:localeLookupList:[Locale locale, Locale defaultLocale]:List",
-            "org.apache.commons.lang.LocaleUtils:languagesByCountry:[String countryCode]:Set",
-            "org.apache.commons.lang.LocaleUtils:localeLookupList:[Locale locale]:List"
+            "org.apache.commons.lang.LocaleUtils:toLocale:[String str]:Locale",
+            "org.apache.commons.lang.LocaleUtils:localeLookupList:[Locale locale]:List",
+            "org.apache.commons.lang.LocaleUtils:countriesByLanguage:[String languageCode]:Set",
+            "org.apache.commons.lang.LocaleUtils:languagesByCountry:[String countryCode]:Set"
           ],
           "num": 5
         },
         {
           "qualified_names": [
+            "org.apache.commons.lang.LocaleUtils:availableLocaleList:[]:List",
             "org.apache.commons.lang.LocaleUtils:localeLookupList:[Locale locale]:List",
             "org.apache.commons.lang.LocaleUtils:languagesByCountry:[String countryCode]:List",
             "org.apache.commons.lang.LocaleUtils:availableLocaleSet:[]:Set",
             "org.apache.commons.lang.LocaleUtils:toLocale:[String str]:Locale",
             "org.apache.commons.lang.LocaleUtils:localeLookupList:[Locale locale, Locale defaultLocale]:List",
-            "org.apache.commons.lang.LocaleUtils:availableLocaleList:[]:List",
             "org.apache.commons.lang.LocaleUtils:isAvailableLocale:[Locale locale]:boolean",
             "org.apache.commons.lang.LocaleUtils:countriesByLanguage:[String languageCode]:List"
           ],
@@ -1167,7 +1167,78 @@
     {
       "test_class": "org.apache.commons.lang.LocaleUtilsTest",
       "test_function": "testAvailableLocaleSet",
-      "exception": "java.lang.NullPointerExceptio",
+      "assertion_line": "82",
+      "exception": "java.lang.NullPointerException",
+      "message": ""
+    },
+    {
+      "test_class": "org.apache.commons.lang.LocaleUtilsTest",
+      "test_function": "testIsAvailableLocale",
+      "assertion_line": "82",
+      "exception": "java.lang.NullPointerException",
+      "message": ""
+    },
+    {
+      "test_class": "org.apache.commons.lang.LocaleUtilsTest",
+      "test_function": "testAvailableLocaleList",
+      "assertion_line": "82",
+      "exception": "java.lang.NullPointerException",
+      "message": ""
+    },
+    {
+      "test_class": "org.apache.commons.lang.LocaleUtilsTest",
+      "test_function": "testCountriesByLanguage",
+      "assertion_line": "82",
+      "exception": "java.lang.NullPointerException",
+      "message": ""
+    },
+    {
+      "test_class": "org.apache.commons.lang.LocaleUtilsTest",
+      "test_function": "testLocaleLookupList_LocaleLocale",
+      "assertion_line": "82",
+      "exception": "java.lang.NullPointerException",
+      "message": ""
+    },
+    {
+      "test_class": "org.apache.commons.lang.LocaleUtilsTest",
+      "test_function": "testLanguagesByCountry",
+      "assertion_line": "82",
+      "exception": "java.lang.NullPointerException",
+      "message": ""
+    },
+    {
+      "test_class": "org.apache.commons.lang.LocaleUtilsTest",
+      "test_function": "testToLocale_1Part",
+      "assertion_line": "82",
+      "exception": "java.lang.NullPointerException",
+      "message": ""
+    },
+    {
+      "test_class": "org.apache.commons.lang.LocaleUtilsTest",
+      "test_function": "testToLocale_2Part",
+      "assertion_line": "82",
+      "exception": "java.lang.NullPointerException",
+      "message": ""
+    },
+    {
+      "test_class": "org.apache.commons.lang.LocaleUtilsTest",
+      "test_function": "testToLocale_3Part",
+      "assertion_line": "82",
+      "exception": "java.lang.NullPointerException",
+      "message": ""
+    },
+    {
+      "test_class": "org.apache.commons.lang.LocaleUtilsTest",
+      "test_function": "testLocaleLookupList_Locale",
+      "assertion_line": "82",
+      "exception": "java.lang.NullPointerException",
+      "message": ""
+    },
+    {
+      "test_class": "org.apache.commons.lang.LocaleUtilsTest",
+      "test_function": "testConstructor",
+      "assertion_line": "82",
+      "exception": "java.lang.NullPointerException",
       "message": ""
     }
   ],

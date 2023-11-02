@@ -121,6 +121,7 @@
     {
       "test_class": "com.fasterxml.jackson.core.util.TestTextBuffer",
       "test_function": "testExpand",
+      "assertion_line": "76",
       "exception": "junit.framework.AssertionFailedError",
       "message": "Expected buffer of 262145 to expand, did not, length now 262144"
     }

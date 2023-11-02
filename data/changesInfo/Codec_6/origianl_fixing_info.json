@@ -33,27 +33,27 @@
       "changed_functions": [
         {
           "qualified_names": [
+            "org.apache.commons.codec.binary.Base64:decodeBase64:[byte[] base64Data]:byte[]",
             "org.apache.commons.codec.binary.Base64:encodeBase64:[byte[] binaryData, boolean isChunked]:byte[]",
-            "org.apache.commons.codec.binary.Base64:isBase64:[byte octect]:boolean",
-            "org.apache.commons.codec.binary.Base64:decodeBase64:[byte[] base64Data]:byte[]"
+            "org.apache.commons.codec.binary.Base64:isBase64:[byte octect]:boolean"
           ],
           "num": 3
         },
         {
           "qualified_names": [
-            "org.apache.commons.codec.binary.Base64:encodeBase64:[byte[] binaryData, boolean isChunked]:byte[]",
-            "org.apache.commons.codec.binary.Base64:Base64:[int lineLength, byte[] lineSeparator]:null",
-            "org.apache.commons.codec.binary.Base64:decodeBase64:[byte[] base64Data]:byte[]",
-            "org.apache.commons.codec.binary.Base64:setInitialBuffer:[byte[] out, int outPos, int outAvail]:void",
+            "org.apache.commons.codec.binary.Base64:avail:[]:int",
             "org.apache.commons.codec.binary.Base64:resizeBuf:[]:void",
             "org.apache.commons.codec.binary.Base64:isBase64:[byte octect]:boolean",
-            "org.apache.commons.codec.binary.Base64:encode:[byte[] in, int inPos, int inAvail]:void",
-            "org.apache.commons.codec.binary.Base64:readResults:[byte[] b, int bPos, int bAvail]:int",
-            "org.apache.commons.codec.binary.Base64:avail:[]:int",
             "org.apache.commons.codec.binary.Base64:Base64:[]:null",
+            "org.apache.commons.codec.binary.Base64:Base64:[int lineLength, byte[] lineSeparator]:null",
+            "org.apache.commons.codec.binary.Base64:encode:[byte[] in, int inPos, int inAvail]:void",
+            "org.apache.commons.codec.binary.Base64:hasData:[]:boolean",
+            "org.apache.commons.codec.binary.Base64:encodeBase64:[byte[] binaryData, boolean isChunked]:byte[]",
+            "org.apache.commons.codec.binary.Base64:decodeBase64:[byte[] base64Data]:byte[]",
             "org.apache.commons.codec.binary.Base64:decode:[byte[] in, int inPos, int inAvail]:void",
-            "org.apache.commons.codec.binary.Base64:Base64:[int lineLength]:null",
-            "org.apache.commons.codec.binary.Base64:hasData:[]:boolean"
+            "org.apache.commons.codec.binary.Base64:readResults:[byte[] b, int bPos, int bAvail]:int",
+            "org.apache.commons.codec.binary.Base64:setInitialBuffer:[byte[] out, int outPos, int outAvail]:void",
+            "org.apache.commons.codec.binary.Base64:Base64:[int lineLength]:null"
           ],
           "num": 13
         }
@@ -2289,8 +2289,8 @@
       "qualified_names": [
         "org.apache.commons.codec.binary.Base64:decode:[byte[] in, int inPos, int inAvail]:void",
         "org.apache.commons.codec.binary.Base64:resizeBuf:[]:void",
-        "org.apache.commons.codec.binary.Base64:Base64:[int lineLength, byte[] lineSeparator]:null",
         "org.apache.commons.codec.binary.Base64:Base64:[]:null",
+        "org.apache.commons.codec.binary.Base64:Base64:[int lineLength, byte[] lineSeparator]:null",
         "org.apache.commons.codec.binary.Base64:hasData:[]:boolean",
         "org.apache.commons.codec.binary.Base64:readResults:[byte[] b, int bPos, int bAvail]:int",
         "org.apache.commons.codec.binary.Base64:Base64:[int lineLength]:null",
@@ -2309,6 +2309,7 @@
     {
       "test_class": "org.apache.commons.codec.binary.Base64InputStreamTest",
       "test_function": "testCodec101",
+      "assertion_line": "61",
       "exception": "junit.framework.AssertionFailedError",
       "message": "Codec101: First read successful [c\u003d0]"
     }

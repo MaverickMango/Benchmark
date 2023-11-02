@@ -183,8 +183,8 @@
       "changed_functions": [
         {
           "qualified_names": [
-            "org.apache.commons.math.analysis.solvers.RegulaFalsiSolver:setAllowedSolutions:[final AllowedSolutions allowedSolutions]:void",
-            "org.apache.commons.math.analysis.solvers.RegulaFalsiSolver:getAllowedSolutions:[]:AllowedSolutions"
+            "org.apache.commons.math.analysis.solvers.RegulaFalsiSolver:getAllowedSolutions:[]:AllowedSolutions",
+            "org.apache.commons.math.analysis.solvers.RegulaFalsiSolver:setAllowedSolutions:[final AllowedSolutions allowedSolutions]:void"
           ],
           "num": 2
         },
@@ -306,9 +306,9 @@
         },
         {
           "qualified_names": [
+            "org.apache.commons.math.analysis.solvers.BaseSecantSolver:BaseSecantSolver:[final double absoluteAccuracy, final Method method]:null",
             "org.apache.commons.math.analysis.solvers.BaseSecantSolver:BaseSecantSolver:[final double relativeAccuracy, final double absoluteAccuracy, final Method method]:null",
-            "org.apache.commons.math.analysis.solvers.BaseSecantSolver:doSolve:[]:double",
-            "org.apache.commons.math.analysis.solvers.BaseSecantSolver:BaseSecantSolver:[final double absoluteAccuracy, final Method method]:null"
+            "org.apache.commons.math.analysis.solvers.BaseSecantSolver:doSolve:[]:double"
           ],
           "num": 3
         }
@@ -587,6 +587,7 @@
     {
       "test_class": "org.apache.commons.math.analysis.solvers.RegulaFalsiSolverTest",
       "test_function": "testIssue631",
+      "assertion_line": "54",
       "exception": "java.lang.Exception",
       "message": "Unexpected exception, expected\u003corg.apache.commons.math.exception.ConvergenceException\u003e but was\u003corg.apache.commons.math.exception.TooManyEvaluationsException\u003e"
     }
@@ -601,17 +602,17 @@
       "changed_functions": [
         {
           "qualified_names": [
+            "org.apache.commons.math.analysis.solvers.BaseSecantSolver:BaseSecantSolver:[final double absoluteAccuracy, final Method method]:null",
             "org.apache.commons.math.analysis.solvers.BaseSecantSolver:BaseSecantSolver:[final double relativeAccuracy, final double absoluteAccuracy, final Method method]:null",
-            "org.apache.commons.math.analysis.solvers.BaseSecantSolver:doSolve:[]:double",
-            "org.apache.commons.math.analysis.solvers.BaseSecantSolver:BaseSecantSolver:[final double absoluteAccuracy, final Method method]:null"
+            "org.apache.commons.math.analysis.solvers.BaseSecantSolver:doSolve:[]:double"
           ],
           "num": 3
         },
         {
           "qualified_names": [
-            "org.apache.commons.math.analysis.solvers.BaseSecantSolver:BaseSecantSolver:[final double relativeAccuracy, final double absoluteAccuracy, final Method method]:null",
+            "org.apache.commons.math.analysis.solvers.BaseSecantSolver:doSolve:[]:double",
             "org.apache.commons.math.analysis.solvers.BaseSecantSolver:BaseSecantSolver:[final double absoluteAccuracy, final Method method]:null",
-            "org.apache.commons.math.analysis.solvers.BaseSecantSolver:doSolve:[]:double"
+            "org.apache.commons.math.analysis.solvers.BaseSecantSolver:BaseSecantSolver:[final double relativeAccuracy, final double absoluteAccuracy, final Method method]:null"
           ],
           "num": 3
         }
@@ -694,16 +695,16 @@
       "changed_functions": [
         {
           "qualified_names": [
+            "org.apache.commons.math.analysis.solvers.IllinoisSolver:IllinoisSolver:[final double relativeAccuracy, final double absoluteAccuracy]:null",
             "org.apache.commons.math.analysis.solvers.IllinoisSolver:IllinoisSolver:[final double absoluteAccuracy]:null",
-            "org.apache.commons.math.analysis.solvers.IllinoisSolver:IllinoisSolver:[final double relativeAccuracy, final double absoluteAccuracy, final double functionValueAccuracy]:null",
-            "org.apache.commons.math.analysis.solvers.IllinoisSolver:IllinoisSolver:[final double relativeAccuracy, final double absoluteAccuracy]:null"
+            "org.apache.commons.math.analysis.solvers.IllinoisSolver:IllinoisSolver:[final double relativeAccuracy, final double absoluteAccuracy, final double functionValueAccuracy]:null"
           ],
           "num": 3
         },
         {
           "qualified_names": [
-            "org.apache.commons.math.analysis.solvers.IllinoisSolver:IllinoisSolver:[final double absoluteAccuracy]:null",
             "org.apache.commons.math.analysis.solvers.IllinoisSolver:IllinoisSolver:[final double relativeAccuracy, final double absoluteAccuracy]:null",
+            "org.apache.commons.math.analysis.solvers.IllinoisSolver:IllinoisSolver:[final double absoluteAccuracy]:null",
             "org.apache.commons.math.analysis.solvers.IllinoisSolver:IllinoisSolver:[final double relativeAccuracy, final double absoluteAccuracy, final double functionValueAccuracy]:null"
           ],
           "num": 3
@@ -790,16 +791,16 @@
       "changed_functions": [
         {
           "qualified_names": [
-            "org.apache.commons.math.analysis.solvers.PegasusSolver:PegasusSolver:[final double relativeAccuracy, final double absoluteAccuracy, final double functionValueAccuracy]:null",
             "org.apache.commons.math.analysis.solvers.PegasusSolver:PegasusSolver:[final double absoluteAccuracy]:null",
+            "org.apache.commons.math.analysis.solvers.PegasusSolver:PegasusSolver:[final double relativeAccuracy, final double absoluteAccuracy, final double functionValueAccuracy]:null",
             "org.apache.commons.math.analysis.solvers.PegasusSolver:PegasusSolver:[final double relativeAccuracy, final double absoluteAccuracy]:null"
           ],
           "num": 3
         },
         {
           "qualified_names": [
-            "org.apache.commons.math.analysis.solvers.PegasusSolver:PegasusSolver:[final double relativeAccuracy, final double absoluteAccuracy, final double functionValueAccuracy]:null",
             "org.apache.commons.math.analysis.solvers.PegasusSolver:PegasusSolver:[final double relativeAccuracy, final double absoluteAccuracy]:null",
+            "org.apache.commons.math.analysis.solvers.PegasusSolver:PegasusSolver:[final double relativeAccuracy, final double absoluteAccuracy, final double functionValueAccuracy]:null",
             "org.apache.commons.math.analysis.solvers.PegasusSolver:PegasusSolver:[final double absoluteAccuracy]:null"
           ],
           "num": 3
@@ -918,17 +919,17 @@
       "changed_functions": [
         {
           "qualified_names": [
+            "org.apache.commons.math.analysis.solvers.RegulaFalsiSolver:RegulaFalsiSolver:[final double relativeAccuracy, final double absoluteAccuracy, final double functionValueAccuracy]:null",
             "org.apache.commons.math.analysis.solvers.RegulaFalsiSolver:RegulaFalsiSolver:[final double absoluteAccuracy]:null",
-            "org.apache.commons.math.analysis.solvers.RegulaFalsiSolver:RegulaFalsiSolver:[final double relativeAccuracy, final double absoluteAccuracy]:null",
-            "org.apache.commons.math.analysis.solvers.RegulaFalsiSolver:RegulaFalsiSolver:[final double relativeAccuracy, final double absoluteAccuracy, final double functionValueAccuracy]:null"
+            "org.apache.commons.math.analysis.solvers.RegulaFalsiSolver:RegulaFalsiSolver:[final double relativeAccuracy, final double absoluteAccuracy]:null"
           ],
           "num": 3
         },
         {
           "qualified_names": [
-            "org.apache.commons.math.analysis.solvers.RegulaFalsiSolver:RegulaFalsiSolver:[final double relativeAccuracy, final double absoluteAccuracy, final double functionValueAccuracy]:null",
+            "org.apache.commons.math.analysis.solvers.RegulaFalsiSolver:RegulaFalsiSolver:[final double absoluteAccuracy]:null",
             "org.apache.commons.math.analysis.solvers.RegulaFalsiSolver:RegulaFalsiSolver:[final double relativeAccuracy, final double absoluteAccuracy]:null",
-            "org.apache.commons.math.analysis.solvers.RegulaFalsiSolver:RegulaFalsiSolver:[final double absoluteAccuracy]:null"
+            "org.apache.commons.math.analysis.solvers.RegulaFalsiSolver:RegulaFalsiSolver:[final double relativeAccuracy, final double absoluteAccuracy, final double functionValueAccuracy]:null"
           ],
           "num": 3
         }

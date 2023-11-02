@@ -192,6 +192,14 @@
     {
       "test_class": "org.apache.commons.codec.binary.StringUtilsTest",
       "test_function": "testEqualsCS1",
+      "assertion_line": "228",
+      "exception": "java.lang.StringIndexOutOfBoundsException",
+      "message": "String index out of range: 3"
+    },
+    {
+      "test_class": "org.apache.commons.codec.binary.StringUtilsTest",
+      "test_function": "testEqualsCS2",
+      "assertion_line": "236",
       "exception": "java.lang.StringIndexOutOfBoundsException",
       "message": "String index out of range: 3"
     }

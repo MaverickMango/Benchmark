@@ -43,10 +43,10 @@
           "qualified_names": [
             "org.apache.commons.lang.time.DateUtils:isSameDay:[Calendar cal1, Calendar cal2]:boolean",
             "org.apache.commons.lang.time.DateUtils:isSameDay:[Date date1, Date date2]:boolean",
-            "org.apache.commons.lang.time.DateUtils:round:[Date date, int field]:Date",
             "org.apache.commons.lang.time.DateUtils:isSameInstant:[Date date1, Date date2]:boolean",
-            "org.apache.commons.lang.time.DateUtils:isSameLocalTime:[Calendar cal1, Calendar cal2]:boolean",
-            "org.apache.commons.lang.time.DateUtils:isSameInstant:[Calendar cal1, Calendar cal2]:boolean"
+            "org.apache.commons.lang.time.DateUtils:round:[Date date, int field]:Date",
+            "org.apache.commons.lang.time.DateUtils:isSameInstant:[Calendar cal1, Calendar cal2]:boolean",
+            "org.apache.commons.lang.time.DateUtils:isSameLocalTime:[Calendar cal1, Calendar cal2]:boolean"
           ],
           "num": 6
         }
@@ -211,6 +211,7 @@
     {
       "test_class": "org.apache.commons.lang3.time.DateUtilsTest",
       "test_function": "testIsSameLocalTime_Cal",
+      "assertion_line": "237",
       "exception": "junit.framework.AssertionFailedError",
       "message": "LANG-677"
     }

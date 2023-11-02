@@ -39,8 +39,8 @@
         },
         {
           "qualified_names": [
-            "org.apache.commons.lang3.SerializationUtils:clone:[T object]:T",
             "org.apache.commons.lang3.SerializationUtils\\$ClassLoaderAwareObjectInputStream:ClassLoaderAwareObjectInputStream:[InputStream in, ClassLoader classLoader]:null",
+            "org.apache.commons.lang3.SerializationUtils:clone:[T object]:T",
             "org.apache.commons.lang3.SerializationUtils\\$ClassLoaderAwareObjectInputStream:resolveClass:[ObjectStreamClass desc]:Class\u003c?\u003e"
           ],
           "num": 3
@@ -287,6 +287,7 @@
     {
       "test_class": "org.apache.commons.lang3.SerializationUtilsTest",
       "test_function": "testPrimitiveTypeClassSerialization",
+      "assertion_line": "373",
       "exception": "org.apache.commons.lang3.SerializationException",
       "message": "ClassNotFoundException while reading cloned object data"
     }
@@ -301,15 +302,15 @@
       "changed_functions": [
         {
           "qualified_names": [
-            "org.apache.commons.lang3.SerializationUtils\\$ClassLoaderAwareObjectInputStream:ClassLoaderAwareObjectInputStream:[InputStream in, ClassLoader classLoader]:null",
-            "org.apache.commons.lang3.SerializationUtils\\$ClassLoaderAwareObjectInputStream:resolveClass:[ObjectStreamClass desc]:Class\u003c?\u003e"
+            "org.apache.commons.lang3.SerializationUtils\\$ClassLoaderAwareObjectInputStream:resolveClass:[ObjectStreamClass desc]:Class\u003c?\u003e",
+            "org.apache.commons.lang3.SerializationUtils\\$ClassLoaderAwareObjectInputStream:ClassLoaderAwareObjectInputStream:[InputStream in, ClassLoader classLoader]:null"
           ],
           "num": 2
         },
         {
           "qualified_names": [
-            "org.apache.commons.lang3.SerializationUtils\\$ClassLoaderAwareObjectInputStream:ClassLoaderAwareObjectInputStream:[InputStream in, ClassLoader classLoader]:null",
-            "org.apache.commons.lang3.SerializationUtils\\$ClassLoaderAwareObjectInputStream:resolveClass:[ObjectStreamClass desc]:Class\u003c?\u003e"
+            "org.apache.commons.lang3.SerializationUtils\\$ClassLoaderAwareObjectInputStream:resolveClass:[ObjectStreamClass desc]:Class\u003c?\u003e",
+            "org.apache.commons.lang3.SerializationUtils\\$ClassLoaderAwareObjectInputStream:ClassLoaderAwareObjectInputStream:[InputStream in, ClassLoader classLoader]:null"
           ],
           "num": 2
         }

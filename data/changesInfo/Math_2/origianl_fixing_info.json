@@ -33,17 +33,17 @@
       "changed_functions": [
         {
           "qualified_names": [
-            "org.apache.commons.math.distribution.AbstractIntegerDistribution:cumulativeProbability:[int x0, int x1]:double",
             "org.apache.commons.math.distribution.AbstractIntegerDistribution:getDomainLowerBound:[double p]:int",
             "org.apache.commons.math.distribution.AbstractIntegerDistribution:getDomainUpperBound:[double p]:int",
-            "org.apache.commons.math.distribution.AbstractIntegerDistribution:inverseCumulativeProbability:[final double p]:int"
+            "org.apache.commons.math.distribution.AbstractIntegerDistribution:inverseCumulativeProbability:[final double p]:int",
+            "org.apache.commons.math.distribution.AbstractIntegerDistribution:cumulativeProbability:[int x0, int x1]:double"
           ],
           "num": 4
         },
         {
           "qualified_names": [
-            "org.apache.commons.math.distribution.AbstractIntegerDistribution:inverseCumulativeProbability:[final double p]:int",
             "org.apache.commons.math.distribution.AbstractIntegerDistribution:cumulativeProbability:[int x0, int x1]:double",
+            "org.apache.commons.math.distribution.AbstractIntegerDistribution:inverseCumulativeProbability:[final double p]:int",
             "org.apache.commons.math.distribution.AbstractIntegerDistribution:solveInverseCumulativeProbability:[final double p, int lower, int upper]:int"
           ],
           "num": 3
@@ -766,24 +766,24 @@
       "changed_functions": [
         {
           "qualified_names": [
+            "org.apache.commons.math.distribution.BinomialDistribution:getSupportUpperBound:[]:int",
+            "org.apache.commons.math.distribution.BinomialDistribution:inverseCumulativeProbability:[final double p]:int",
+            "org.apache.commons.math.distribution.BinomialDistribution:getSupportLowerBound:[]:int",
+            "org.apache.commons.math.distribution.BinomialDistribution:getDomainUpperBound:[double p]:int",
+            "org.apache.commons.math.distribution.BinomialDistribution:getNumericalVariance:[]:double",
             "org.apache.commons.math.distribution.BinomialDistribution:cumulativeProbability:[int x]:double",
             "org.apache.commons.math.distribution.BinomialDistribution:getDomainLowerBound:[double p]:int",
-            "org.apache.commons.math.distribution.BinomialDistribution:getDomainUpperBound:[double p]:int",
-            "org.apache.commons.math.distribution.BinomialDistribution:inverseCumulativeProbability:[final double p]:int",
-            "org.apache.commons.math.distribution.BinomialDistribution:getSupportUpperBound:[]:int",
-            "org.apache.commons.math.distribution.BinomialDistribution:getSupportLowerBound:[]:int",
-            "org.apache.commons.math.distribution.BinomialDistribution:getNumericalMean:[]:double",
-            "org.apache.commons.math.distribution.BinomialDistribution:getNumericalVariance:[]:double"
+            "org.apache.commons.math.distribution.BinomialDistribution:getNumericalMean:[]:double"
           ],
           "num": 8
         },
         {
           "qualified_names": [
+            "org.apache.commons.math.distribution.BinomialDistribution:getSupportLowerBound:[]:int",
+            "org.apache.commons.math.distribution.BinomialDistribution:getSupportUpperBound:[]:int",
             "org.apache.commons.math.distribution.BinomialDistribution:cumulativeProbability:[int x]:double",
             "org.apache.commons.math.distribution.BinomialDistribution:getNumericalMean:[]:double",
-            "org.apache.commons.math.distribution.BinomialDistribution:getNumericalVariance:[]:double",
-            "org.apache.commons.math.distribution.BinomialDistribution:getSupportLowerBound:[]:int",
-            "org.apache.commons.math.distribution.BinomialDistribution:getSupportUpperBound:[]:int"
+            "org.apache.commons.math.distribution.BinomialDistribution:getNumericalVariance:[]:double"
           ],
           "num": 5
         }
@@ -1088,8 +1088,8 @@
       "changed_functions": [
         {
           "qualified_names": [
-            "org.apache.commons.math.distribution.HypergeometricDistribution:getDomainLowerBound:[double p]:int",
-            "org.apache.commons.math.distribution.HypergeometricDistribution:getDomainUpperBound:[double p]:int"
+            "org.apache.commons.math.distribution.HypergeometricDistribution:getDomainUpperBound:[double p]:int",
+            "org.apache.commons.math.distribution.HypergeometricDistribution:getDomainLowerBound:[double p]:int"
           ],
           "num": 2
         },
@@ -1146,23 +1146,23 @@
       "changed_functions": [
         {
           "qualified_names": [
-            "org.apache.commons.math.distribution.IntegerDistribution:probability:[int x]:double",
-            "org.apache.commons.math.distribution.IntegerDistribution:getSupportUpperBound:[]:int",
-            "org.apache.commons.math.distribution.IntegerDistribution:cumulativeProbability:[int x0, int x1]:double",
-            "org.apache.commons.math.distribution.IntegerDistribution:getSupportLowerBound:[]:int",
             "org.apache.commons.math.distribution.IntegerDistribution:cumulativeProbability:[int x]:double",
+            "org.apache.commons.math.distribution.IntegerDistribution:probability:[int x]:double",
+            "org.apache.commons.math.distribution.IntegerDistribution:cumulativeProbability:[int x0, int x1]:double",
+            "org.apache.commons.math.distribution.IntegerDistribution:getSupportUpperBound:[]:int",
+            "org.apache.commons.math.distribution.IntegerDistribution:getSupportLowerBound:[]:int",
             "org.apache.commons.math.distribution.IntegerDistribution:inverseCumulativeProbability:[double p]:int"
           ],
           "num": 6
         },
         {
           "qualified_names": [
-            "org.apache.commons.math.distribution.IntegerDistribution:getSupportLowerBound:[]:int",
-            "org.apache.commons.math.distribution.IntegerDistribution:probability:[int x]:double",
-            "org.apache.commons.math.distribution.IntegerDistribution:getSupportUpperBound:[]:int",
             "org.apache.commons.math.distribution.IntegerDistribution:cumulativeProbability:[int x]:double",
             "org.apache.commons.math.distribution.IntegerDistribution:cumulativeProbability:[int x0, int x1]:double",
-            "org.apache.commons.math.distribution.IntegerDistribution:inverseCumulativeProbability:[double p]:int"
+            "org.apache.commons.math.distribution.IntegerDistribution:getSupportLowerBound:[]:int",
+            "org.apache.commons.math.distribution.IntegerDistribution:inverseCumulativeProbability:[double p]:int",
+            "org.apache.commons.math.distribution.IntegerDistribution:probability:[int x]:double",
+            "org.apache.commons.math.distribution.IntegerDistribution:getSupportUpperBound:[]:int"
           ],
           "num": 6
         }
@@ -1855,20 +1855,20 @@
       "changed_functions": [
         {
           "qualified_names": [
-            "org.apache.commons.math.distribution.PascalDistribution:getDomainLowerBound:[double p]:int",
-            "org.apache.commons.math.distribution.PascalDistribution:inverseCumulativeProbability:[final double p]:int",
-            "org.apache.commons.math.distribution.PascalDistribution:getDomainUpperBound:[double p]:int",
-            "org.apache.commons.math.distribution.PascalDistribution:PascalDistribution:[int r, double p]:null",
             "org.apache.commons.math.distribution.PascalDistribution:getSupportUpperBound:[]:int",
+            "org.apache.commons.math.distribution.PascalDistribution:inverseCumulativeProbability:[final double p]:int",
+            "org.apache.commons.math.distribution.PascalDistribution:getDomainLowerBound:[double p]:int",
+            "org.apache.commons.math.distribution.PascalDistribution:PascalDistribution:[int r, double p]:null",
+            "org.apache.commons.math.distribution.PascalDistribution:getDomainUpperBound:[double p]:int",
             "org.apache.commons.math.distribution.PascalDistribution:getNumericalMean:[]:double"
           ],
           "num": 6
         },
         {
           "qualified_names": [
-            "org.apache.commons.math.distribution.PascalDistribution:getSupportUpperBound:[]:int",
+            "org.apache.commons.math.distribution.PascalDistribution:getNumericalMean:[]:double",
             "org.apache.commons.math.distribution.PascalDistribution:PascalDistribution:[int r, double p]:null",
-            "org.apache.commons.math.distribution.PascalDistribution:getNumericalMean:[]:double"
+            "org.apache.commons.math.distribution.PascalDistribution:getSupportUpperBound:[]:int"
           ],
           "num": 3
         }
@@ -2008,8 +2008,8 @@
       "changed_functions": [
         {
           "qualified_names": [
-            "org.apache.commons.math.distribution.PoissonDistribution:getDomainLowerBound:[double p]:int",
-            "org.apache.commons.math.distribution.PoissonDistribution:getDomainUpperBound:[double p]:int"
+            "org.apache.commons.math.distribution.PoissonDistribution:getDomainUpperBound:[double p]:int",
+            "org.apache.commons.math.distribution.PoissonDistribution:getDomainLowerBound:[double p]:int"
           ],
           "num": 2
         },
@@ -2066,9 +2066,9 @@
       "changed_functions": [
         {
           "qualified_names": [
-            "org.apache.commons.math.distribution.ZipfDistribution:getDomainLowerBound:[final double p]:int",
             "org.apache.commons.math.distribution.ZipfDistribution:getDomainUpperBound:[final double p]:int",
-            "org.apache.commons.math.distribution.ZipfDistribution:calculateNumericalVariance:[]:double"
+            "org.apache.commons.math.distribution.ZipfDistribution:calculateNumericalVariance:[]:double",
+            "org.apache.commons.math.distribution.ZipfDistribution:getDomainLowerBound:[final double p]:int"
           ],
           "num": 3
         },
@@ -2309,6 +2309,7 @@
     {
       "test_class": "org.apache.commons.math3.distribution.HypergeometricDistributionTest",
       "test_function": "testMath1021",
+      "assertion_line": "297",
       "exception": "junit.framework.AssertionFailedError",
       "message": "sample\u003d-50"
     }

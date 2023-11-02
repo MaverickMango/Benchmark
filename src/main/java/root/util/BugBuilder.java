@@ -16,6 +16,8 @@ import root.bean.ci.*;
 
 import java.io.File;
 import java.util.*;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
@@ -280,22 +282,38 @@ public class BugBuilder implements GitAccess {
                     failedTest.setTestFunction(split[1]);
                 int j = 1;
                 failedTest.setMessage("");
-                for (; j < failings.size(); j++) {
+                for (; j < failings.size() - 1; j++) {
                     line = failings.get(i + j);
                     if (j == 1) {
                         int splitPos = line.indexOf(":") == line.length() - 1 ? line.length() - 2 : line.indexOf(":");
-                        if (splitPos < 0)
-                            splitPos = line.length() - 1;
+                        if (splitPos < 0) {
+                            splitPos = line.length();
+                        } else {
+                            String message = line.substring(splitPos + 1).trim();
+                            failedTest.setMessage(message);
+                        }
                         String exception = line.substring(0, splitPos).trim();
-                        String message = line.substring(splitPos + 1).trim();
                         failedTest.setException(exception);
-                        failedTest.setMessage(message);
                     }
                     if (line.startsWith("Expected")) {
                         failedTest.setMessage(failedTest.getMessage() + line);
                     }
                     if (line.startsWith("Result")) {
                         failedTest.setMessage(failedTest.getMessage() + "\n" + line);
+                    }
+                    if (line.startsWith("\tat")) {
+                        String[] split1 = failedTest.getTestClass().split("\\.");
+                        String regex = "\\(" + split1[split1.length - 1] + "\\.java:(\\d+)\\)";
+                        Pattern pattern = Pattern.compile(regex);
+                        Matcher matcher = pattern.matcher(line);
+                        if (matcher.find()) {
+                            String lineNumber = matcher.group(1);
+                            String temp = failings.get(j + 1);
+                            if (temp.endsWith("invoke0(Native Method)") || !pattern.matcher(temp).find()) {
+                                failedTest.setLineNumber(lineNumber);
+                                break;
+                            }
+                        }
                     }
                 }
                 i += j - 1;

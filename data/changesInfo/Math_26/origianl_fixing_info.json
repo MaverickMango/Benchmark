@@ -39,8 +39,8 @@
         },
         {
           "qualified_names": [
-            "org.apache.commons.math.fraction.Fraction:Fraction:[double value, int denominatorDigits]:null",
             "org.apache.commons.math.fraction.Fraction:Fraction:[double value, double epsilon, int maxIterations]:null",
+            "org.apache.commons.math.fraction.Fraction:Fraction:[double value, int denominatorDigits]:null",
             "org.apache.commons.math.fraction.Fraction:maxDenominator:[int denominatorDigits]:int",
             "org.apache.commons.math.fraction.Fraction:Fraction:[double value, double epsilon, int maxDenominator, int maxIterations]:null"
           ],
@@ -312,6 +312,7 @@
     {
       "test_class": "org.apache.commons.math3.fraction.FractionTest",
       "test_function": "testIntegerOverflow",
+      "assertion_line": "138",
       "exception": "junit.framework.AssertionFailedError",
       "message": "an exception should have been thrown"
     }

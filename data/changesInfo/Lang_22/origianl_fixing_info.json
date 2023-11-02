@@ -93,6 +93,14 @@
     {
       "test_class": "org.apache.commons.lang3.math.FractionTest",
       "test_function": "testReducedFactory_int_int",
+      "assertion_line": "336",
+      "exception": "junit.framework.AssertionFailedError",
+      "message": "expected:\u003c-1073741824\u003e but was:\u003c-2147483648\u003e"
+    },
+    {
+      "test_class": "org.apache.commons.lang3.math.FractionTest",
+      "test_function": "testReduce",
+      "assertion_line": "654",
       "exception": "junit.framework.AssertionFailedError",
       "message": "expected:\u003c-1073741824\u003e but was:\u003c-2147483648\u003e"
     }

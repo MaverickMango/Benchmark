@@ -48,7 +48,8 @@
     {
       "test_class": "org.apache.commons.lang.time.StopWatchTest",
       "test_function": "testLang315",
-      "exception": "junit.framework.AssertionFailedErro",
+      "assertion_line": "120",
+      "exception": "junit.framework.AssertionFailedError",
       "message": ""
     }
   ],

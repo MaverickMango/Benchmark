@@ -108,6 +108,7 @@
     {
       "test_class": "com.google.javascript.jscomp.VarCheckTest",
       "test_function": "testNoUndeclaredVarWhenUsingClosurePass",
+      "assertion_line": "371",
       "exception": "junit.framework.AssertionFailedError",
       "message": "There should be one error. required \"namespace.Class1\" namespace never provided"
     }

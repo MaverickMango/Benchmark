@@ -64,7 +64,7 @@ public class InputExtractor {
         if (methodDeclaration == null) {
             logger.error("Extracted method declaration is null! Process Interrupted.");
             throw new IllegalArgumentException("Illegal Argument: " + methodDeclaration);
-        }
+        }//todo 如果没有line Number就提取第一个assert？
         List<Statement> collect = methodDeclaration.findAll(Statement.class).stream().filter(stmt ->
                 stmt.getRange().isPresent() && stmt.getRange().get().begin.line == lineNumber
         ).collect(Collectors.toList());

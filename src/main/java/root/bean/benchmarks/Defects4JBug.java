@@ -11,6 +11,7 @@ import root.bean.ci.CIBug;
 import root.util.*;
 
 import java.io.*;
+import java.nio.file.Path;
 import java.util.*;
 import java.util.stream.Collectors;
 
@@ -48,6 +49,9 @@ public class Defects4JBug extends CIBug implements GitAccess {
         this.proj = proj;
         this.id = id;
         this.workingDir = workingDir;
+        if (!(new File(workingDir).exists())) {
+            getGitRepository();
+        }
         writeD4JFiles("b");
         this.properties = getProperties("/defects4j.build.properties");
     }
@@ -60,6 +64,9 @@ public class Defects4JBug extends CIBug implements GitAccess {
         this.buggyCommit = buggyCommit;
         this.inducingCommit = inducingCommit;
         this.originalCommit = originalCommit;
+        if (!(new File(workingDir).exists())) {
+            getGitRepository();
+        }
         writeD4JFiles("b");
         this.properties = getProperties("/defects4j.build.properties");
     }
@@ -411,6 +418,10 @@ public class Defects4JBug extends CIBug implements GitAccess {
         return res;
     }
 
+    @Override
+    public Repository getGitRepository() {
+        return getGitRepository("b");
+    }
 
     public Repository getGitRepository(String version) {
         if (FileUtils.notExists(workingDir) && !checkout(version)) {

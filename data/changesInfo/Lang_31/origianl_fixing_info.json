@@ -37,8 +37,8 @@
         },
         {
           "qualified_names": [
-            "org.apache.commons.lang.StringUtils:containsAny:[String str, char[] searchChars]:boolean",
-            "org.apache.commons.lang.StringUtils:containsAny:[String str, String searchChars]:boolean"
+            "org.apache.commons.lang.StringUtils:containsAny:[String str, String searchChars]:boolean",
+            "org.apache.commons.lang.StringUtils:containsAny:[String str, char[] searchChars]:boolean"
           ],
           "num": 2
         }
@@ -182,6 +182,14 @@
     {
       "test_class": "org.apache.commons.lang3.StringUtilsEqualsIndexOfTest",
       "test_function": "testContainsAnyCharArrayWithSupplementaryChars",
+      "assertion_line": "696",
+      "exception": "junit.framework.AssertionFailedError",
+      "message": "expected:\u003cfalse\u003e but was:\u003ctrue\u003e"
+    },
+    {
+      "test_class": "org.apache.commons.lang3.StringUtilsEqualsIndexOfTest",
+      "test_function": "testContainsAnyStringWithSupplementaryChars",
+      "assertion_line": "680",
       "exception": "junit.framework.AssertionFailedError",
       "message": "expected:\u003cfalse\u003e but was:\u003ctrue\u003e"
     }

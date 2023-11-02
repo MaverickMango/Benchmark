@@ -131,17 +131,17 @@
         {
           "qualified_names": [
             "org.joda.time.tz.ZoneInfoCompiler:printUsage:[]:void",
-            "org.joda.time.tz.ZoneInfoCompiler:main:[String[] args]:void",
-            "org.joda.time.tz.ZoneInfoCompiler:compile:[File outputDir, File[] sources]:Map\u003cString,DateTimeZone\u003e"
+            "org.joda.time.tz.ZoneInfoCompiler:compile:[File outputDir, File[] sources]:Map\u003cString,DateTimeZone\u003e",
+            "org.joda.time.tz.ZoneInfoCompiler:main:[String[] args]:void"
           ],
           "num": 3
         },
         {
           "qualified_names": [
             "org.joda.time.tz.ZoneInfoCompiler:main:[String[] args]:void",
-            "org.joda.time.tz.ZoneInfoCompiler:verbose:[]:boolean",
+            "org.joda.time.tz.ZoneInfoCompiler:compile:[File outputDir, File[] sources]:Map\u003cString,DateTimeZone\u003e",
             "org.joda.time.tz.ZoneInfoCompiler:printUsage:[]:void",
-            "org.joda.time.tz.ZoneInfoCompiler:compile:[File outputDir, File[] sources]:Map\u003cString,DateTimeZone\u003e"
+            "org.joda.time.tz.ZoneInfoCompiler:verbose:[]:boolean"
           ],
           "num": 4
         }
@@ -301,7 +301,8 @@
     {
       "test_class": "org.joda.time.tz.TestCompiler",
       "test_function": "testDateTimeZoneBuilder",
-      "exception": "junit.framework.AssertionFailedErro",
+      "assertion_line": "99",
+      "exception": "junit.framework.AssertionFailedError",
       "message": ""
     }
   ],

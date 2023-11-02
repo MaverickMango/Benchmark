@@ -105,7 +105,8 @@
     {
       "test_class": "org.mockito.internal.matchers.EqualityTest",
       "test_function": "shouldKnowIfObjectsAreEqual",
-      "exception": "java.lang.RuntimeExceptio",
+      "assertion_line": "34",
+      "exception": "java.lang.RuntimeException",
       "message": ""
     }
   ],

@@ -742,6 +742,7 @@
     {
       "test_class": "com.google.javascript.jscomp.parsing.JsDocInfoParserTest",
       "test_function": "testTextExtents",
+      "assertion_line": "2756",
       "exception": "java.lang.IllegalStateException",
       "message": "Recorded bad position information"
     }
@@ -756,18 +757,18 @@
       "changed_functions": [
         {
           "qualified_names": [
-            "com.google.javascript.jscomp.parsing.JsDocInfoParser:extractMultilineTextualBlock:[JsDocToken token, WhitespaceOption option]:ExtractionInfo",
+            "com.google.javascript.jscomp.parsing.JsDocInfoParser:extractSingleLineBlock:[]:ExtractionInfo",
             "com.google.javascript.jscomp.parsing.JsDocInfoParser:hasParsedFileOverviewDocInfo:[]:boolean",
             "com.google.javascript.jscomp.parsing.JsDocInfoParser:extractBlockComment:[JsDocToken token]:ExtractionInfo",
-            "com.google.javascript.jscomp.parsing.JsDocInfoParser:extractSingleLineBlock:[]:ExtractionInfo"
+            "com.google.javascript.jscomp.parsing.JsDocInfoParser:extractMultilineTextualBlock:[JsDocToken token, WhitespaceOption option]:ExtractionInfo"
           ],
           "num": 4
         },
         {
           "qualified_names": [
-            "com.google.javascript.jscomp.parsing.JsDocInfoParser:extractBlockComment:[JsDocToken token]:ExtractionInfo",
-            "com.google.javascript.jscomp.parsing.JsDocInfoParser:extractMultilineTextualBlock:[JsDocToken token, WhitespaceOption option]:ExtractionInfo",
             "com.google.javascript.jscomp.parsing.JsDocInfoParser:hasParsedFileOverviewDocInfo:[]:boolean",
+            "com.google.javascript.jscomp.parsing.JsDocInfoParser:extractMultilineTextualBlock:[JsDocToken token, WhitespaceOption option]:ExtractionInfo",
+            "com.google.javascript.jscomp.parsing.JsDocInfoParser:extractBlockComment:[JsDocToken token]:ExtractionInfo",
             "com.google.javascript.jscomp.parsing.JsDocInfoParser:getRemainingJSDocLine:[]:String",
             "com.google.javascript.jscomp.parsing.JsDocInfoParser:extractSingleLineBlock:[]:ExtractionInfo"
           ],

@@ -15,11 +15,14 @@ public class AbstractMain {
 
     static {
         //must-have
+        options.addOption("proj", true, "");
+        options.addOption("id", true, "");
         options.addOption("location", true, "");
         options.addOption("srcJavaDir", true, "");
         options.addOption("srcTestDir", true, "");
         options.addOption("binJavaDir", true, "");
         options.addOption("binTestDir", true, "");
+        options.addOption("testInfos", true, "");
         options.addOption("dependencies", true, "separated by " + File.pathSeparator);
 
         //optional
@@ -37,7 +40,7 @@ public class AbstractMain {
     }
 
     public Preparation getPreparation() {
-        return preparation;
+        return this.preparation;
     }
 
     private Preparation initialize(String[] args) {
@@ -68,6 +71,12 @@ public class AbstractMain {
             help();
             return false;
         }
+        if (commandLine.hasOption("proj")) {
+            ConfigurationProperties.setProperty("proj", commandLine.getOptionValue("proj"));
+        }
+        if (commandLine.hasOption("id")) {
+            ConfigurationProperties.setProperty("id", commandLine.getOptionValue("id"));
+        }
         if (commandLine.hasOption("location")) {
             ConfigurationProperties.setProperty("location", commandLine.getOptionValue("location"));
         }
@@ -82,6 +91,9 @@ public class AbstractMain {
         }
         if (commandLine.hasOption("binTestDir")) {
             ConfigurationProperties.setProperty("binTestDir", commandLine.getOptionValue("binTestDir"));
+        }
+        if (commandLine.hasOption("testInfos")) {
+            ConfigurationProperties.setProperty("testInfos", commandLine.getOptionValue("testInfos"));
         }
         if (commandLine.hasOption("dependencies")) {
             String dependencies = commandLine.getOptionValue("dependencies");

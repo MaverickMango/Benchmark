@@ -34,24 +34,24 @@
         {
           "qualified_names": [
             "com.google.javascript.jscomp.PeepholeFoldConstants:tryFoldUnaryOperator:[Node n]:Node",
+            "com.google.javascript.jscomp.PeepholeFoldConstants:tryFoldArithmeticOp:[Node n, Node left, Node right]:Node",
             "com.google.javascript.jscomp.PeepholeFoldConstants:optimizeSubtree:[Node subtree]:Node",
             "com.google.javascript.jscomp.PeepholeFoldConstants:isValidInt:[double val]:boolean",
-            "com.google.javascript.jscomp.PeepholeFoldConstants:tryFoldArithmeticOp:[Node n, Node left, Node right]:Node",
-            "com.google.javascript.jscomp.PeepholeFoldConstants:areValidInts:[double val1, double val2]:boolean",
+            "com.google.javascript.jscomp.PeepholeFoldConstants:performArithmeticOp:[int opType, Node left, Node right]:Node",
             "com.google.javascript.jscomp.PeepholeFoldConstants:tryFoldLeftChildOp:[Node n, Node left, Node right]:Node",
-            "com.google.javascript.jscomp.PeepholeFoldConstants:performArithmeticOp:[int opType, Node left, Node right]:Node"
+            "com.google.javascript.jscomp.PeepholeFoldConstants:areValidInts:[double val1, double val2]:boolean"
           ],
           "num": 7
         },
         {
           "qualified_names": [
-            "com.google.javascript.jscomp.PeepholeFoldConstants:tryFoldArithmeticOp:[Node n, Node left, Node right]:Node",
             "com.google.javascript.jscomp.PeepholeFoldConstants:performArithmeticOp:[int opType, Node left, Node right]:Node",
             "com.google.javascript.jscomp.PeepholeFoldConstants:tryFoldAndOr:[Node n, Node left, Node right]:Node",
-            "com.google.javascript.jscomp.PeepholeFoldConstants:tryFoldUnaryOperator:[Node n]:Node",
+            "com.google.javascript.jscomp.PeepholeFoldConstants:tryReduceOperandsForOp:[Node n]:void",
+            "com.google.javascript.jscomp.PeepholeFoldConstants:tryFoldArithmeticOp:[Node n, Node left, Node right]:Node",
             "com.google.javascript.jscomp.PeepholeFoldConstants:tryConvertToNumber:[Node n]:void",
             "com.google.javascript.jscomp.PeepholeFoldConstants:tryFoldLeftChildOp:[Node n, Node left, Node right]:Node",
-            "com.google.javascript.jscomp.PeepholeFoldConstants:tryReduceOperandsForOp:[Node n]:void",
+            "com.google.javascript.jscomp.PeepholeFoldConstants:tryFoldUnaryOperator:[Node n]:Node",
             "com.google.javascript.jscomp.PeepholeFoldConstants:optimizeSubtree:[Node subtree]:Node",
             "com.google.javascript.jscomp.PeepholeFoldConstants:tryConvertOperandsToNumber:[Node n]:void"
           ],
@@ -710,6 +710,7 @@
     {
       "test_class": "com.google.javascript.jscomp.PeepholeFoldConstantsTest",
       "test_function": "testIEString",
+      "assertion_line": "992",
       "exception": "junit.framework.AssertionFailedError",
       "message": "Expected: !+\"\\u000b1\"\nResult: !1"
     }
@@ -724,17 +725,17 @@
       "changed_functions": [
         {
           "qualified_names": [
+            "com.google.javascript.jscomp.NodeUtil:isStrWhiteSpaceChar:[int c]:boolean",
             "com.google.javascript.jscomp.NodeUtil:trimJsWhiteSpace:[String s]:String",
-            "com.google.javascript.jscomp.NodeUtil:getStringNumberValue:[String rawJsString]:Double",
-            "com.google.javascript.jscomp.NodeUtil:isStrWhiteSpaceChar:[int c]:boolean"
+            "com.google.javascript.jscomp.NodeUtil:getStringNumberValue:[String rawJsString]:Double"
           ],
           "num": 3
         },
         {
           "qualified_names": [
+            "com.google.javascript.jscomp.NodeUtil:trimJsWhiteSpace:[String s]:String",
             "com.google.javascript.jscomp.NodeUtil:isStrWhiteSpaceChar:[int c]:TernaryValue",
-            "com.google.javascript.jscomp.NodeUtil:getStringNumberValue:[String rawJsString]:Double",
-            "com.google.javascript.jscomp.NodeUtil:trimJsWhiteSpace:[String s]:String"
+            "com.google.javascript.jscomp.NodeUtil:getStringNumberValue:[String rawJsString]:Double"
           ],
           "num": 3
         }

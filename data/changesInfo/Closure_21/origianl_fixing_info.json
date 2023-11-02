@@ -300,6 +300,7 @@
     {
       "test_class": "com.google.javascript.jscomp.CheckSideEffectsTest",
       "test_function": "testUselessCode",
+      "assertion_line": "71",
       "exception": "junit.framework.AssertionFailedError",
       "message": "There should be one warning, repeated 1 time(s). expected:\u003c1\u003e but was:\u003c0\u003e"
     }

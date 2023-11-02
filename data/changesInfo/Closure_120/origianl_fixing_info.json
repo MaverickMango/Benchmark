@@ -84,8 +84,8 @@
       "changed_functions": [
         {
           "qualified_names": [
-            "com.google.javascript.jscomp.ReferenceCollectingCallback\\$ReferenceCollection:isAssignedOnceInLifetime:[]:boolean",
-            "com.google.javascript.jscomp.ReferenceCollectingCallback\\$ReferenceCollection:isOnlyAssignmentSameScopeAsDeclaration:[]:boolean"
+            "com.google.javascript.jscomp.ReferenceCollectingCallback\\$ReferenceCollection:isOnlyAssignmentSameScopeAsDeclaration:[]:boolean",
+            "com.google.javascript.jscomp.ReferenceCollectingCallback\\$ReferenceCollection:isAssignedOnceInLifetime:[]:boolean"
           ],
           "num": 2
         },
@@ -168,6 +168,7 @@
     {
       "test_class": "com.google.javascript.jscomp.InlineVariablesTest",
       "test_function": "testExternalIssue1053",
+      "assertion_line": "1069",
       "exception": "junit.framework.AssertionFailedError",
       "message": "Expected: var u;function f(){u\u003dRandom();var x\u003du;f();alert(x\u003d\u003d\u003du)}\nResult: var u;function f(){u\u003dRandom();f();alert(u\u003d\u003d\u003du)}"
     }

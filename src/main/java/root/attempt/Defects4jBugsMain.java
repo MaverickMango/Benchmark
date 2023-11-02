@@ -52,7 +52,7 @@ public class Defects4jBugsMain implements GitAccess {
         FileUtils.writeToFile(FileUtils.jsonFormatter(addClasses.toString()), "data/changesInfo/info.json", false);
     }
 
-    public static void functionExtractor(String[] args) {//functionExtractor
+    public static void functionExtractor(String[] args) {//
         String bugInfo = "src/test/resources/BugFixInfo_total.csv";
         List<List<String>> d4jinfos = FileUtils.readCsv(bugInfo, false);
         for (int i = 0; i < d4jinfos.size(); i ++) {

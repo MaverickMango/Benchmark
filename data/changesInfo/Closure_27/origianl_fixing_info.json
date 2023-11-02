@@ -48,7 +48,22 @@
     {
       "test_class": "com.google.javascript.rhino.IRTest",
       "test_function": "testIssue727_1",
-      "exception": "java.lang.IllegalStateExceptio",
+      "assertion_line": "48",
+      "exception": "java.lang.IllegalStateException",
+      "message": ""
+    },
+    {
+      "test_class": "com.google.javascript.rhino.IRTest",
+      "test_function": "testIssue727_2",
+      "assertion_line": "59",
+      "exception": "java.lang.IllegalStateException",
+      "message": ""
+    },
+    {
+      "test_class": "com.google.javascript.rhino.IRTest",
+      "test_function": "testIssue727_3",
+      "assertion_line": "74",
+      "exception": "java.lang.IllegalStateException",
       "message": ""
     }
   ],
@@ -63,15 +78,15 @@
         {
           "qualified_names": [
             "com.google.javascript.rhino.IR:tryFinally:[Node tryBody, Node finallyBody]:Node",
-            "com.google.javascript.rhino.IR:tryCatchFinally:[Node tryBody, Node catchNode, Node finallyBody]:Node",
-            "com.google.javascript.rhino.IR:tryCatch:[Node tryBody, Node catchNode]:Node"
+            "com.google.javascript.rhino.IR:tryCatch:[Node tryBody, Node catchNode]:Node",
+            "com.google.javascript.rhino.IR:tryCatchFinally:[Node tryBody, Node catchNode, Node finallyBody]:Node"
           ],
           "num": 3
         },
         {
           "qualified_names": [
-            "com.google.javascript.rhino.IR:tryFinally:[Node tryBody, Node finallyBody]:Node",
             "com.google.javascript.rhino.IR:tryCatch:[Node tryBody, Node catchNode]:Node",
+            "com.google.javascript.rhino.IR:tryFinally:[Node tryBody, Node finallyBody]:Node",
             "com.google.javascript.rhino.IR:blockUnchecked:[Node stmt]:Node",
             "com.google.javascript.rhino.IR:tryCatchFinally:[Node tryBody, Node catchNode, Node finallyBody]:Node"
           ],

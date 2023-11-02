@@ -33,29 +33,29 @@
       "changed_functions": [
         {
           "qualified_names": [
-            "com.google.javascript.jscomp.AbstractCommandLineRunner:writeOutput:[PrintStream out, Compiler compiler, String code, String wrapper, String codePlaceholder]:void",
-            "com.google.javascript.jscomp.AbstractCommandLineRunner\\$RunTimeStats:outputBestPhaseOrdering:[]:void",
-            "com.google.javascript.jscomp.AbstractCommandLineRunner:outputManifest:[]:void",
-            "com.google.javascript.jscomp.AbstractCommandLineRunner:openExternExportsStream:[B options, String path]:PrintStream",
-            "com.google.javascript.jscomp.AbstractCommandLineRunner:toPrintStream:[String fileName, String charSet]:PrintStream",
-            "com.google.javascript.jscomp.AbstractCommandLineRunner:processResults:[Result result, JSModule[] modules, B options]:int",
             "com.google.javascript.jscomp.AbstractCommandLineRunner:toPrintStream:[String fileName]:PrintStream",
             "com.google.javascript.jscomp.AbstractCommandLineRunner:doRun:[]:int",
-            "com.google.javascript.jscomp.AbstractCommandLineRunner:outputSourceMap:[B options]:void"
+            "com.google.javascript.jscomp.AbstractCommandLineRunner:toPrintStream:[String fileName, String charSet]:PrintStream",
+            "com.google.javascript.jscomp.AbstractCommandLineRunner:outputManifest:[]:void",
+            "com.google.javascript.jscomp.AbstractCommandLineRunner\\$RunTimeStats:outputBestPhaseOrdering:[]:void",
+            "com.google.javascript.jscomp.AbstractCommandLineRunner:writeOutput:[PrintStream out, Compiler compiler, String code, String wrapper, String codePlaceholder]:void",
+            "com.google.javascript.jscomp.AbstractCommandLineRunner:openExternExportsStream:[B options, String path]:PrintStream",
+            "com.google.javascript.jscomp.AbstractCommandLineRunner:outputSourceMap:[B options]:void",
+            "com.google.javascript.jscomp.AbstractCommandLineRunner:processResults:[Result result, JSModule[] modules, B options]:int"
           ],
           "num": 9
         },
         {
           "qualified_names": [
+            "com.google.javascript.jscomp.AbstractCommandLineRunner:toWriter:[String fileName]:Writer",
+            "com.google.javascript.jscomp.AbstractCommandLineRunner:outputManifest:[]:void",
+            "com.google.javascript.jscomp.AbstractCommandLineRunner:toWriter:[String fileName, String charSet]:Writer",
+            "com.google.javascript.jscomp.AbstractCommandLineRunner:processResults:[Result result, JSModule[] modules, B options]:int",
+            "com.google.javascript.jscomp.AbstractCommandLineRunner:doRun:[]:int",
+            "com.google.javascript.jscomp.AbstractCommandLineRunner:openExternExportsStream:[B options, String path]:Writer",
             "com.google.javascript.jscomp.AbstractCommandLineRunner:writeOutput:[Appendable out, Compiler compiler, String code, String wrapper, String codePlaceholder]:void",
             "com.google.javascript.jscomp.AbstractCommandLineRunner\\$RunTimeStats:outputBestPhaseOrdering:[]:void",
-            "com.google.javascript.jscomp.AbstractCommandLineRunner:doRun:[]:int",
-            "com.google.javascript.jscomp.AbstractCommandLineRunner:toWriter:[String fileName, String charSet]:Writer",
-            "com.google.javascript.jscomp.AbstractCommandLineRunner:openExternExportsStream:[B options, String path]:Writer",
-            "com.google.javascript.jscomp.AbstractCommandLineRunner:outputManifest:[]:void",
-            "com.google.javascript.jscomp.AbstractCommandLineRunner:outputSourceMap:[B options]:void",
-            "com.google.javascript.jscomp.AbstractCommandLineRunner:toWriter:[String fileName]:Writer",
-            "com.google.javascript.jscomp.AbstractCommandLineRunner:processResults:[Result result, JSModule[] modules, B options]:int"
+            "com.google.javascript.jscomp.AbstractCommandLineRunner:outputSourceMap:[B options]:void"
           ],
           "num": 9
         }
@@ -723,6 +723,7 @@
     {
       "test_class": "com.google.javascript.jscomp.CheckGlobalThisTest",
       "test_function": "testLendsAnnotation3",
+      "assertion_line": "236",
       "exception": "junit.framework.AssertionFailedError",
       "message": "Unexpected error(s): JSC_USED_GLOBAL_THIS. dangerous use of the global this object at testcode line 1 : 110 expected:\u003c0\u003e but was:\u003c1\u003e"
     }

@@ -141,6 +141,7 @@
     {
       "test_class": "com.google.javascript.jscomp.CommandLineRunnerTest",
       "test_function": "testGetMsgWiringNoWarnings",
+      "assertion_line": "395",
       "exception": "junit.framework.AssertionFailedError",
       "message": "Expected no warnings or errors"
     }

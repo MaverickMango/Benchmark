@@ -145,6 +145,7 @@
     {
       "test_class": "org.apache.commons.math.util.MathUtilsTest",
       "test_function": "testBinomialCoefficientLarge",
+      "assertion_line": "195",
       "exception": "junit.framework.AssertionFailedError",
       "message": "48,22 expected:\u003c27385657281648\u003e but was:\u003c27385657281647\u003e"
     }
@@ -159,17 +160,17 @@
       "changed_functions": [
         {
           "qualified_names": [
-            "org.apache.commons.math.util.MathUtils:binomialCoefficientDouble:[final int n, final int k]:double",
+            "org.apache.commons.math.util.MathUtils:binomialCoefficientLog:[final int n, final int k]:double",
             "org.apache.commons.math.util.MathUtils:binomialCoefficient:[final int n, final int k]:long",
-            "org.apache.commons.math.util.MathUtils:binomialCoefficientLog:[final int n, final int k]:double"
+            "org.apache.commons.math.util.MathUtils:binomialCoefficientDouble:[final int n, final int k]:double"
           ],
           "num": 3
         },
         {
           "qualified_names": [
-            "org.apache.commons.math.util.MathUtils:binomialCoefficientLog:[final int n, final int k]:double",
             "org.apache.commons.math.util.MathUtils:binomialCoefficientDouble:[final int n, final int k]:double",
-            "org.apache.commons.math.util.MathUtils:binomialCoefficient:[final int n, final int k]:long"
+            "org.apache.commons.math.util.MathUtils:binomialCoefficient:[final int n, final int k]:long",
+            "org.apache.commons.math.util.MathUtils:binomialCoefficientLog:[final int n, final int k]:double"
           ],
           "num": 3
         }

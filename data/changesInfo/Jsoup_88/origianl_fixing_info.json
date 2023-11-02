@@ -132,38 +132,38 @@
       "changed_functions": [
         {
           "qualified_names": [
-            "org.jsoup.nodes.Attribute:shouldCollapseAttribute:[Document.OutputSettings out]:boolean",
-            "org.jsoup.nodes.Attribute:createFromEncoded:[String unencodedKey, String encodedValue]:Attribute",
             "org.jsoup.nodes.Attribute:equals:[Object o]:boolean",
-            "org.jsoup.nodes.Attribute:html:[Appendable accum, Document.OutputSettings out]:void",
-            "org.jsoup.nodes.Attribute:setValue:[String value]:String",
-            "org.jsoup.nodes.Attribute:Attribute:[String key, String value]:null",
+            "org.jsoup.nodes.Attribute:shouldCollapseAttribute:[Document.OutputSettings out]:boolean",
             "org.jsoup.nodes.Attribute:hashCode:[]:int",
+            "org.jsoup.nodes.Attribute:setValue:[String value]:String",
+            "org.jsoup.nodes.Attribute:html:[Appendable accum, Document.OutputSettings out]:void",
             "org.jsoup.nodes.Attribute:getValue:[]:String",
-            "org.jsoup.nodes.Attribute:setKey:[String key]:void",
-            "org.jsoup.nodes.Attribute:clone:[]:Attribute"
+            "org.jsoup.nodes.Attribute:createFromEncoded:[String unencodedKey, String encodedValue]:Attribute",
+            "org.jsoup.nodes.Attribute:clone:[]:Attribute",
+            "org.jsoup.nodes.Attribute:Attribute:[String key, String value]:null",
+            "org.jsoup.nodes.Attribute:setKey:[String key]:void"
           ],
           "num": 10
         },
         {
           "qualified_names": [
-            "org.jsoup.nodes.Attribute:equals:[Object o]:boolean",
-            "org.jsoup.nodes.Attribute:isBooleanAttribute:[final String key]:boolean",
-            "org.jsoup.nodes.Attribute:setValue:[String val]:String",
+            "org.jsoup.nodes.Attribute:isDataAttribute:[String key]:boolean",
             "org.jsoup.nodes.Attribute:hashCode:[]:int",
             "org.jsoup.nodes.Attribute:shouldCollapseAttribute:[Document.OutputSettings out]:boolean",
-            "org.jsoup.nodes.Attribute:shouldCollapseAttribute:[String key, String val, Document.OutputSettings out]:boolean",
-            "org.jsoup.nodes.Attribute:isDataAttribute:[String key]:boolean",
-            "org.jsoup.nodes.Attribute:isBooleanAttribute:[]:boolean",
-            "org.jsoup.nodes.Attribute:Attribute:[String key, String val, Attributes parent]:null",
             "org.jsoup.nodes.Attribute:clone:[]:Attribute",
-            "org.jsoup.nodes.Attribute:setKey:[String key]:void",
-            "org.jsoup.nodes.Attribute:isDataAttribute:[]:boolean",
             "org.jsoup.nodes.Attribute:html:[Appendable accum, Document.OutputSettings out]:void",
-            "org.jsoup.nodes.Attribute:getValue:[]:String",
+            "org.jsoup.nodes.Attribute:setKey:[String key]:void",
+            "org.jsoup.nodes.Attribute:isBooleanAttribute:[]:boolean",
+            "org.jsoup.nodes.Attribute:createFromEncoded:[String unencodedKey, String encodedValue]:Attribute",
+            "org.jsoup.nodes.Attribute:setValue:[String val]:String",
             "org.jsoup.nodes.Attribute:html:[String key, String val, Appendable accum, Document.OutputSettings out]:void",
+            "org.jsoup.nodes.Attribute:getValue:[]:String",
+            "org.jsoup.nodes.Attribute:isDataAttribute:[]:boolean",
             "org.jsoup.nodes.Attribute:Attribute:[String key, String value]:null",
-            "org.jsoup.nodes.Attribute:createFromEncoded:[String unencodedKey, String encodedValue]:Attribute"
+            "org.jsoup.nodes.Attribute:equals:[Object o]:boolean",
+            "org.jsoup.nodes.Attribute:isBooleanAttribute:[final String key]:boolean",
+            "org.jsoup.nodes.Attribute:Attribute:[String key, String val, Attributes parent]:null",
+            "org.jsoup.nodes.Attribute:shouldCollapseAttribute:[String key, String val, Document.OutputSettings out]:boolean"
           ],
           "num": 17
         }
@@ -689,63 +689,63 @@
       "changed_functions": [
         {
           "qualified_names": [
-            "org.jsoup.nodes.Attributes:equals:[Object o]:boolean",
-            "org.jsoup.nodes.Attributes:hasKey:[String key]:boolean",
-            "org.jsoup.nodes.Attributes:getIgnoreCase:[String key]:String",
-            "org.jsoup.nodes.Attributes:put:[Attribute attribute]:Attributes",
-            "org.jsoup.nodes.Attributes:size:[]:int",
-            "org.jsoup.nodes.Attributes:remove:[String key]:void",
-            "org.jsoup.nodes.Attributes:dataset:[]:Map\u003cString,String\u003e",
-            "org.jsoup.nodes.Attributes:put:[String key, boolean value]:Attributes",
-            "org.jsoup.nodes.Attributes:hasKeyIgnoreCase:[String key]:boolean",
-            "org.jsoup.nodes.Attributes\\$Dataset\\$EntrySet:size:[]:int",
-            "org.jsoup.nodes.Attributes:putIgnoreCase:[String key, String value]:void",
-            "org.jsoup.nodes.Attributes:removeIgnoreCase:[String key]:void",
-            "org.jsoup.nodes.Attributes:html:[Appendable accum, Document.OutputSettings out]:void",
             "org.jsoup.nodes.Attributes:addAll:[Attributes incoming]:void",
-            "org.jsoup.nodes.Attributes:get:[String key]:String",
-            "org.jsoup.nodes.Attributes\\$Dataset:Dataset:[]:null",
-            "org.jsoup.nodes.Attributes:iterator:[]:Iterator\u003cAttribute\u003e",
-            "org.jsoup.nodes.Attributes:clone:[]:Attributes",
             "org.jsoup.nodes.Attributes\\$Dataset:put:[String key, String value]:String",
-            "org.jsoup.nodes.Attributes:put:[String key, String value]:Attributes",
+            "org.jsoup.nodes.Attributes:dataset:[]:Map\u003cString,String\u003e",
+            "org.jsoup.nodes.Attributes:removeIgnoreCase:[String key]:void",
             "org.jsoup.nodes.Attributes:getAttributeIgnoreCase:[String key]:Attribute",
+            "org.jsoup.nodes.Attributes:get:[String key]:String",
+            "org.jsoup.nodes.Attributes\\$Dataset\\$EntrySet:size:[]:int",
+            "org.jsoup.nodes.Attributes:equals:[Object o]:boolean",
+            "org.jsoup.nodes.Attributes:put:[Attribute attribute]:Attributes",
+            "org.jsoup.nodes.Attributes:asList:[]:List\u003cAttribute\u003e",
+            "org.jsoup.nodes.Attributes:putIgnoreCase:[String key, String value]:void",
+            "org.jsoup.nodes.Attributes\\$Dataset:Dataset:[]:null",
+            "org.jsoup.nodes.Attributes:put:[String key, String value]:Attributes",
+            "org.jsoup.nodes.Attributes:iterator:[]:Iterator\u003cAttribute\u003e",
+            "org.jsoup.nodes.Attributes:getIgnoreCase:[String key]:String",
+            "org.jsoup.nodes.Attributes:hasKey:[String key]:boolean",
             "org.jsoup.nodes.Attributes:hashCode:[]:int",
-            "org.jsoup.nodes.Attributes:asList:[]:List\u003cAttribute\u003e"
+            "org.jsoup.nodes.Attributes:html:[Appendable accum, Document.OutputSettings out]:void",
+            "org.jsoup.nodes.Attributes:hasKeyIgnoreCase:[String key]:boolean",
+            "org.jsoup.nodes.Attributes:clone:[]:Attributes",
+            "org.jsoup.nodes.Attributes:put:[String key, boolean value]:Attributes",
+            "org.jsoup.nodes.Attributes:remove:[String key]:void",
+            "org.jsoup.nodes.Attributes:size:[]:int"
           ],
           "num": 23
         },
         {
           "qualified_names": [
-            "org.jsoup.nodes.Attributes:html:[final Appendable accum, final Document.OutputSettings out]:void",
-            "org.jsoup.nodes.Attributes:normalize:[]:void",
-            "org.jsoup.nodes.Attributes:hasKey:[String key]:boolean",
             "org.jsoup.nodes.Attributes:checkNotNull:[String val]:String",
-            "org.jsoup.nodes.Attributes:remove:[String key]:void",
-            "org.jsoup.nodes.Attributes\\$Dataset\\$EntrySet:size:[]:int",
-            "org.jsoup.nodes.Attributes:put:[String key, boolean value]:Attributes",
-            "org.jsoup.nodes.Attributes:clone:[]:Attributes",
-            "org.jsoup.nodes.Attributes:indexOfKey:[String key]:int",
-            "org.jsoup.nodes.Attributes\\$Dataset:Dataset:[Attributes attributes]:null",
-            "org.jsoup.nodes.Attributes:put:[Attribute attribute]:Attributes",
-            "org.jsoup.nodes.Attributes:size:[]:int",
-            "org.jsoup.nodes.Attributes:addAll:[Attributes incoming]:void",
-            "org.jsoup.nodes.Attributes:getIgnoreCase:[String key]:String",
-            "org.jsoup.nodes.Attributes:iterator:[]:Iterator\u003cAttribute\u003e",
-            "org.jsoup.nodes.Attributes:indexOfKeyIgnoreCase:[String key]:int",
-            "org.jsoup.nodes.Attributes:putIgnoreCase:[String key, String value]:void",
+            "org.jsoup.nodes.Attributes:hasKeyIgnoreCase:[String key]:boolean",
             "org.jsoup.nodes.Attributes:add:[String key, String value]:void",
-            "org.jsoup.nodes.Attributes:hashCode:[]:int",
+            "org.jsoup.nodes.Attributes:putIgnoreCase:[String key, String value]:void",
             "org.jsoup.nodes.Attributes:dataset:[]:Map\u003cString,String\u003e",
-            "org.jsoup.nodes.Attributes:removeIgnoreCase:[String key]:void",
+            "org.jsoup.nodes.Attributes:html:[final Appendable accum, final Document.OutputSettings out]:void",
+            "org.jsoup.nodes.Attributes:size:[]:int",
+            "org.jsoup.nodes.Attributes:indexOfKeyIgnoreCase:[String key]:int",
+            "org.jsoup.nodes.Attributes\\$Dataset\\$EntrySet:size:[]:int",
+            "org.jsoup.nodes.Attributes:addAll:[Attributes incoming]:void",
             "org.jsoup.nodes.Attributes:get:[String key]:String",
+            "org.jsoup.nodes.Attributes:normalize:[]:void",
+            "org.jsoup.nodes.Attributes\\$Dataset:put:[String key, String value]:String",
+            "org.jsoup.nodes.Attributes:put:[Attribute attribute]:Attributes",
             "org.jsoup.nodes.Attributes:asList:[]:List\u003cAttribute\u003e",
-            "org.jsoup.nodes.Attributes:remove:[int index]:void",
-            "org.jsoup.nodes.Attributes:checkCapacity:[int minNewSize]:void",
+            "org.jsoup.nodes.Attributes:remove:[String key]:void",
+            "org.jsoup.nodes.Attributes:hashCode:[]:int",
             "org.jsoup.nodes.Attributes:put:[String key, String value]:Attributes",
             "org.jsoup.nodes.Attributes:equals:[Object o]:boolean",
-            "org.jsoup.nodes.Attributes\\$Dataset:put:[String key, String value]:String",
-            "org.jsoup.nodes.Attributes:hasKeyIgnoreCase:[String key]:boolean"
+            "org.jsoup.nodes.Attributes:hasKey:[String key]:boolean",
+            "org.jsoup.nodes.Attributes:indexOfKey:[String key]:int",
+            "org.jsoup.nodes.Attributes:put:[String key, boolean value]:Attributes",
+            "org.jsoup.nodes.Attributes:remove:[int index]:void",
+            "org.jsoup.nodes.Attributes\\$Dataset:Dataset:[Attributes attributes]:null",
+            "org.jsoup.nodes.Attributes:iterator:[]:Iterator\u003cAttribute\u003e",
+            "org.jsoup.nodes.Attributes:clone:[]:Attributes",
+            "org.jsoup.nodes.Attributes:checkCapacity:[int minNewSize]:void",
+            "org.jsoup.nodes.Attributes:removeIgnoreCase:[String key]:void",
+            "org.jsoup.nodes.Attributes:getIgnoreCase:[String key]:String"
           ],
           "num": 29
         }
@@ -2141,8 +2141,8 @@
       "changed_functions": [
         {
           "qualified_names": [
-            "org.jsoup.nodes.Document\\$OutputSettings:encoder:[]:CharsetEncoder",
-            "org.jsoup.nodes.Document\\$OutputSettings:charset:[Charset charset]:OutputSettings"
+            "org.jsoup.nodes.Document\\$OutputSettings:charset:[Charset charset]:OutputSettings",
+            "org.jsoup.nodes.Document\\$OutputSettings:encoder:[]:CharsetEncoder"
           ],
           "num": 2
         },
@@ -2311,17 +2311,17 @@
       "changed_functions": [
         {
           "qualified_names": [
-            "org.jsoup.nodes.Element:text:[]:String",
             "org.jsoup.nodes.Element:outerHtmlHead:[Appendable accum, int depth, Document.OutputSettings out]:void",
+            "org.jsoup.nodes.Element:text:[]:String",
             "org.jsoup.nodes.Element:outerHtmlTail:[Appendable accum, int depth, Document.OutputSettings out]:void"
           ],
           "num": 3
         },
         {
           "qualified_names": [
-            "org.jsoup.nodes.Element:text:[]:String",
+            "org.jsoup.nodes.Element:outerHtmlHead:[final Appendable accum, int depth, final Document.OutputSettings out]:void",
             "org.jsoup.nodes.Element:outerHtmlTail:[Appendable accum, int depth, Document.OutputSettings out]:void",
-            "org.jsoup.nodes.Element:outerHtmlHead:[final Appendable accum, int depth, final Document.OutputSettings out]:void"
+            "org.jsoup.nodes.Element:text:[]:String"
           ],
           "num": 3
         }
@@ -2507,21 +2507,21 @@
       "changed_functions": [
         {
           "qualified_names": [
-            "org.jsoup.nodes.Node:outerHtmlHead:[Appendable accum, int depth, Document.OutputSettings out]:void",
             "org.jsoup.nodes.Node:outerHtmlTail:[Appendable accum, int depth, Document.OutputSettings out]:void",
+            "org.jsoup.nodes.Node:outerHtmlHead:[Appendable accum, int depth, Document.OutputSettings out]:void",
+            "org.jsoup.nodes.Node:indent:[Appendable accum, int depth, Document.OutputSettings out]:void",
             "org.jsoup.nodes.Node:attr:[String attributeKey]:String",
-            "org.jsoup.nodes.Node\\$OuterHtmlVisitor:OuterHtmlVisitor:[Appendable accum, Document.OutputSettings out]:null",
-            "org.jsoup.nodes.Node:indent:[Appendable accum, int depth, Document.OutputSettings out]:void"
+            "org.jsoup.nodes.Node\\$OuterHtmlVisitor:OuterHtmlVisitor:[Appendable accum, Document.OutputSettings out]:null"
           ],
           "num": 5
         },
         {
           "qualified_names": [
-            "org.jsoup.nodes.Node:attr:[String attributeKey]:String",
-            "org.jsoup.nodes.Node:indent:[Appendable accum, int depth, Document.OutputSettings out]:void",
-            "org.jsoup.nodes.Node:outerHtmlTail:[final Appendable accum, int depth, final Document.OutputSettings out]:void",
+            "org.jsoup.nodes.Node\\$OuterHtmlVisitor:OuterHtmlVisitor:[Appendable accum, Document.OutputSettings out]:null",
             "org.jsoup.nodes.Node:outerHtmlHead:[final Appendable accum, int depth, final Document.OutputSettings out]:void",
-            "org.jsoup.nodes.Node\\$OuterHtmlVisitor:OuterHtmlVisitor:[Appendable accum, Document.OutputSettings out]:null"
+            "org.jsoup.nodes.Node:outerHtmlTail:[final Appendable accum, int depth, final Document.OutputSettings out]:void",
+            "org.jsoup.nodes.Node:indent:[Appendable accum, int depth, Document.OutputSettings out]:void",
+            "org.jsoup.nodes.Node:attr:[String attributeKey]:String"
           ],
           "num": 5
         }
@@ -2840,6 +2840,7 @@
     {
       "test_class": "org.jsoup.nodes.AttributeTest",
       "test_function": "booleanAttributesAreEmptyStringValues",
+      "assertion_line": "38",
       "exception": "junit.framework.AssertionFailedError",
       "message": "expected:\u003c\u003e but was:\u003cnull\u003e"
     }

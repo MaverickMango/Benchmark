@@ -40,10 +40,10 @@
         },
         {
           "qualified_names": [
-            "org.joda.time.Period:plus:[ReadablePeriod period]:Period",
+            "org.joda.time.Period:minus:[ReadablePeriod period]:Period",
             "org.joda.time.Period:normalizedStandard:[PeriodType type]:Period",
-            "org.joda.time.Period:normalizedStandard:[]:Period",
-            "org.joda.time.Period:minus:[ReadablePeriod period]:Period"
+            "org.joda.time.Period:plus:[ReadablePeriod period]:Period",
+            "org.joda.time.Period:normalizedStandard:[]:Period"
           ],
           "num": 4
         }
@@ -277,6 +277,21 @@
     {
       "test_class": "org.joda.time.TestPeriod_Basics",
       "test_function": "testNormalizedStandard_periodType_months1",
+      "assertion_line": "1522",
+      "exception": "java.lang.UnsupportedOperationException",
+      "message": "Field is not supported"
+    },
+    {
+      "test_class": "org.joda.time.TestPeriod_Basics",
+      "test_function": "testNormalizedStandard_periodType_months2",
+      "assertion_line": "1529",
+      "exception": "java.lang.UnsupportedOperationException",
+      "message": "Field is not supported"
+    },
+    {
+      "test_class": "org.joda.time.TestPeriod_Basics",
+      "test_function": "testNormalizedStandard_periodType_monthsWeeks",
+      "assertion_line": "1557",
       "exception": "java.lang.UnsupportedOperationException",
       "message": "Field is not supported"
     }

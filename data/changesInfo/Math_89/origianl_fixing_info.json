@@ -180,6 +180,7 @@
     {
       "test_class": "org.apache.commons.math.stat.FrequencyTest",
       "test_function": "testAddNonComparable",
+      "assertion_line": "195",
       "exception": "java.lang.ClassCastException",
       "message": "java.lang.Object cannot be cast to java.lang.Comparable"
     }

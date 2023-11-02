@@ -48,6 +48,7 @@
     {
       "test_class": "org.apache.commons.lang3.time.FastDateFormatTest",
       "test_function": "testLang645",
+      "assertion_line": "337",
       "exception": "junit.framework.ComparisonFailure",
       "message": "expected:\u003cfredag, week [53]\u003e but was:\u003cfredag, week [01]\u003e"
     }

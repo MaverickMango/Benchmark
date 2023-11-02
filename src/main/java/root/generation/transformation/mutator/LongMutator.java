@@ -1,5 +1,7 @@
 package root.generation.transformation.mutator;
 
+import com.github.javaparser.ast.expr.LongLiteralExpr;
+
 import java.util.Random;
 
 public class LongMutator extends AbstractInputMutator{
@@ -8,7 +10,9 @@ public class LongMutator extends AbstractInputMutator{
 
     @Override
     public Object getNextInput(Object oldValue) {
-        this.addInputMutants(random.nextLong());
+        LongLiteralExpr expr = new LongLiteralExpr();
+        expr.setLong(random.nextLong());
+        this.addInputMutants(expr);
         return this.inputs.get(random.nextInt(this.inputs.size()));
     }
 

@@ -33,8 +33,8 @@
       "changed_functions": [
         {
           "qualified_names": [
-            "org.joda.time.Partial:Partial:[DateTimeFieldType[] types, int[] values, Chronology chronology]:null",
-            "org.joda.time.Partial:with:[DateTimeFieldType fieldType, int value]:Partial"
+            "org.joda.time.Partial:with:[DateTimeFieldType fieldType, int value]:Partial",
+            "org.joda.time.Partial:Partial:[DateTimeFieldType[] types, int[] values, Chronology chronology]:null"
           ],
           "num": 2
         },
@@ -187,7 +187,8 @@
     {
       "test_class": "org.joda.time.TestPartial_Constructors",
       "test_function": "testConstructorEx7_TypeArray_intArray",
-      "exception": "junit.framework.AssertionFailedErro",
+      "assertion_line": "284",
+      "exception": "junit.framework.AssertionFailedError",
       "message": ""
     }
   ],

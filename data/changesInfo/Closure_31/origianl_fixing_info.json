@@ -117,28 +117,28 @@
       "changed_functions": [
         {
           "qualified_names": [
-            "com.google.javascript.jscomp.Compiler:parseTestCode:[String js]:Node",
-            "com.google.javascript.jscomp.Compiler:newExternInput:[String name]:CompilerInput",
-            "com.google.javascript.jscomp.Compiler:initInputsByIdMap:[]:void",
-            "com.google.javascript.jscomp.Compiler:addNewSourceAst:[JsAst ast]:boolean",
-            "com.google.javascript.jscomp.Compiler:parseInputs:[]:Node",
             "com.google.javascript.jscomp.Compiler:replaceIncrementalSourceAst:[JsAst ast]:boolean",
             "com.google.javascript.jscomp.Compiler:parseSyntheticCode:[String js]:Node",
-            "com.google.javascript.jscomp.Compiler:addIncrementalSourceAst:[JsAst ast]:void"
+            "com.google.javascript.jscomp.Compiler:newExternInput:[String name]:CompilerInput",
+            "com.google.javascript.jscomp.Compiler:addNewSourceAst:[JsAst ast]:boolean",
+            "com.google.javascript.jscomp.Compiler:addIncrementalSourceAst:[JsAst ast]:void",
+            "com.google.javascript.jscomp.Compiler:parseInputs:[]:Node",
+            "com.google.javascript.jscomp.Compiler:initInputsByIdMap:[]:void",
+            "com.google.javascript.jscomp.Compiler:parseTestCode:[String js]:Node"
           ],
           "num": 8
         },
         {
           "qualified_names": [
             "com.google.javascript.jscomp.Compiler:addNewSourceAst:[JsAst ast]:boolean",
+            "com.google.javascript.jscomp.Compiler:parseInputs:[]:Node",
             "com.google.javascript.jscomp.Compiler:initInputsByIdMap:[]:void",
-            "com.google.javascript.jscomp.Compiler:parseSyntheticCode:[String js]:Node",
             "com.google.javascript.jscomp.Compiler:newExternInput:[String name]:CompilerInput",
-            "com.google.javascript.jscomp.Compiler:putCompilerInput:[InputId id, CompilerInput input]:CompilerInput",
-            "com.google.javascript.jscomp.Compiler:replaceIncrementalSourceAst:[JsAst ast]:boolean",
-            "com.google.javascript.jscomp.Compiler:parseTestCode:[String js]:Node",
             "com.google.javascript.jscomp.Compiler:addIncrementalSourceAst:[JsAst ast]:void",
-            "com.google.javascript.jscomp.Compiler:parseInputs:[]:Node"
+            "com.google.javascript.jscomp.Compiler:replaceIncrementalSourceAst:[JsAst ast]:boolean",
+            "com.google.javascript.jscomp.Compiler:putCompilerInput:[InputId id, CompilerInput input]:CompilerInput",
+            "com.google.javascript.jscomp.Compiler:parseTestCode:[String js]:Node",
+            "com.google.javascript.jscomp.Compiler:parseSyntheticCode:[String js]:Node"
           ],
           "num": 9
         }
@@ -400,21 +400,21 @@
       "changed_functions": [
         {
           "qualified_names": [
-            "com.google.javascript.jscomp.CompilerInput:regenerateDependencyInfoIfNecessary:[]:void",
-            "com.google.javascript.jscomp.CompilerInput:setErrorManager:[ErrorManager errorManager]:void",
             "com.google.javascript.jscomp.CompilerInput:getRequires:[]:Collection\u003cString\u003e",
-            "com.google.javascript.jscomp.CompilerInput:setCompiler:[AbstractCompiler compiler]:void",
-            "com.google.javascript.jscomp.CompilerInput:getProvides:[]:Collection\u003cString\u003e"
+            "com.google.javascript.jscomp.CompilerInput:getProvides:[]:Collection\u003cString\u003e",
+            "com.google.javascript.jscomp.CompilerInput:setErrorManager:[ErrorManager errorManager]:void",
+            "com.google.javascript.jscomp.CompilerInput:regenerateDependencyInfoIfNecessary:[]:void",
+            "com.google.javascript.jscomp.CompilerInput:setCompiler:[AbstractCompiler compiler]:void"
           ],
           "num": 5
         },
         {
           "qualified_names": [
-            "com.google.javascript.jscomp.CompilerInput:regenerateDependencyInfoIfNecessary:[]:void",
-            "com.google.javascript.jscomp.CompilerInput:checkErrorManager:[]:void",
             "com.google.javascript.jscomp.CompilerInput:setCompiler:[AbstractCompiler compiler]:void",
-            "com.google.javascript.jscomp.CompilerInput:getRequires:[]:Collection\u003cString\u003e",
-            "com.google.javascript.jscomp.CompilerInput:getProvides:[]:Collection\u003cString\u003e"
+            "com.google.javascript.jscomp.CompilerInput:getProvides:[]:Collection\u003cString\u003e",
+            "com.google.javascript.jscomp.CompilerInput:checkErrorManager:[]:void",
+            "com.google.javascript.jscomp.CompilerInput:regenerateDependencyInfoIfNecessary:[]:void",
+            "com.google.javascript.jscomp.CompilerInput:getRequires:[]:Collection\u003cString\u003e"
           ],
           "num": 5
         }
@@ -655,6 +655,7 @@
     {
       "test_class": "com.google.javascript.jscomp.CommandLineRunnerTest",
       "test_function": "testDependencySortingWhitespaceMode",
+      "assertion_line": "627",
       "exception": "junit.framework.AssertionFailedError",
       "message": "Expected: goog.provide(\"hops\");goog.provide(\"beer\");goog.require(\"hops\");goog.require(\"beer\")\nResult: goog.require(\"beer\");goog.provide(\"beer\");goog.require(\"hops\");goog.provide(\"hops\")"
     }

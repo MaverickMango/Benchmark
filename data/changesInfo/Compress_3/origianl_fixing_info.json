@@ -228,6 +228,7 @@
     {
       "test_class": "org.apache.commons.compress.archivers.ArchiveOutputStreamTest",
       "test_function": "testFinish",
+      "assertion_line": "67",
       "exception": "junit.framework.AssertionFailedError",
       "message": "After putArchive should follow closeArchive"
     }
@@ -292,8 +293,8 @@
       "changed_functions": [
         {
           "qualified_names": [
-            "org.apache.commons.compress.archivers.ar.ArArchiveOutputStream:finish:[]:void",
-            "org.apache.commons.compress.archivers.ar.ArArchiveOutputStream:close:[]:void"
+            "org.apache.commons.compress.archivers.ar.ArArchiveOutputStream:close:[]:void",
+            "org.apache.commons.compress.archivers.ar.ArArchiveOutputStream:finish:[]:void"
           ],
           "num": 2
         },
@@ -394,9 +395,9 @@
       "changed_functions": [
         {
           "qualified_names": [
-            "org.apache.commons.compress.archivers.tar.TarArchiveOutputStream:putArchiveEntry:[ArchiveEntry archiveEntry]:void",
+            "org.apache.commons.compress.archivers.tar.TarArchiveOutputStream:closeArchiveEntry:[]:void",
             "org.apache.commons.compress.archivers.tar.TarArchiveOutputStream:finish:[]:void",
-            "org.apache.commons.compress.archivers.tar.TarArchiveOutputStream:closeArchiveEntry:[]:void"
+            "org.apache.commons.compress.archivers.tar.TarArchiveOutputStream:putArchiveEntry:[ArchiveEntry archiveEntry]:void"
           ],
           "num": 3
         },

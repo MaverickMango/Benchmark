@@ -225,19 +225,19 @@
       "changed_functions": [
         {
           "qualified_names": [
-            "org.apache.commons.math3.optim.nonlinear.vector.MultivariateVectorOptimizer:getWeight:[]:RealMatrix",
-            "org.apache.commons.math3.optim.nonlinear.vector.MultivariateVectorOptimizer:optimize:[OptimizationData... optData]:PointVectorValuePair",
-            "org.apache.commons.math3.optim.nonlinear.vector.MultivariateVectorOptimizer:getNonCorrelatedWeight:[]:double[]",
+            "org.apache.commons.math3.optim.nonlinear.vector.MultivariateVectorOptimizer:parseOptimizationData:[OptimizationData... optData]:void",
             "org.apache.commons.math3.optim.nonlinear.vector.MultivariateVectorOptimizer:checkParameters:[]:void",
-            "org.apache.commons.math3.optim.nonlinear.vector.MultivariateVectorOptimizer:parseOptimizationData:[OptimizationData... optData]:void"
+            "org.apache.commons.math3.optim.nonlinear.vector.MultivariateVectorOptimizer:optimize:[OptimizationData... optData]:PointVectorValuePair",
+            "org.apache.commons.math3.optim.nonlinear.vector.MultivariateVectorOptimizer:getWeight:[]:RealMatrix",
+            "org.apache.commons.math3.optim.nonlinear.vector.MultivariateVectorOptimizer:getNonCorrelatedWeight:[]:double[]"
           ],
           "num": 5
         },
         {
           "qualified_names": [
             "org.apache.commons.math3.optim.nonlinear.vector.MultivariateVectorOptimizer:parseOptimizationData:[OptimizationData... optData]:void",
-            "org.apache.commons.math3.optim.nonlinear.vector.MultivariateVectorOptimizer:optimize:[OptimizationData... optData]:PointVectorValuePair",
-            "org.apache.commons.math3.optim.nonlinear.vector.MultivariateVectorOptimizer:checkParameters:[]:void"
+            "org.apache.commons.math3.optim.nonlinear.vector.MultivariateVectorOptimizer:checkParameters:[]:void",
+            "org.apache.commons.math3.optim.nonlinear.vector.MultivariateVectorOptimizer:optimize:[OptimizationData... optData]:PointVectorValuePair"
           ],
           "num": 3
         }
@@ -528,8 +528,8 @@
         },
         {
           "qualified_names": [
-            "org.apache.commons.math3.optim.nonlinear.vector.Weight:Weight:[double[] weight]:null",
-            "org.apache.commons.math3.optim.nonlinear.vector.Weight:getWeight:[]:RealMatrix"
+            "org.apache.commons.math3.optim.nonlinear.vector.Weight:getWeight:[]:RealMatrix",
+            "org.apache.commons.math3.optim.nonlinear.vector.Weight:Weight:[double[] weight]:null"
           ],
           "num": 2
         }
@@ -607,22 +607,22 @@
       "changed_functions": [
         {
           "qualified_names": [
-            "org.apache.commons.math3.optim.nonlinear.vector.jacobian.AbstractLeastSquaresOptimizer:parseOptimizationData:[OptimizationData... optData]:void",
-            "org.apache.commons.math3.optim.nonlinear.vector.jacobian.AbstractLeastSquaresOptimizer:computeWeightedJacobian:[double[] params]:RealMatrix",
-            "org.apache.commons.math3.optim.nonlinear.vector.jacobian.AbstractLeastSquaresOptimizer:getWeightSquareRoot:[]:RealMatrix",
             "org.apache.commons.math3.optim.nonlinear.vector.jacobian.AbstractLeastSquaresOptimizer:optimize:[OptimizationData... optData]:PointVectorValuePair",
-            "org.apache.commons.math3.optim.nonlinear.vector.jacobian.AbstractLeastSquaresOptimizer:computeCost:[double[] residuals]:double"
+            "org.apache.commons.math3.optim.nonlinear.vector.jacobian.AbstractLeastSquaresOptimizer:computeWeightedJacobian:[double[] params]:RealMatrix",
+            "org.apache.commons.math3.optim.nonlinear.vector.jacobian.AbstractLeastSquaresOptimizer:parseOptimizationData:[OptimizationData... optData]:void",
+            "org.apache.commons.math3.optim.nonlinear.vector.jacobian.AbstractLeastSquaresOptimizer:computeCost:[double[] residuals]:double",
+            "org.apache.commons.math3.optim.nonlinear.vector.jacobian.AbstractLeastSquaresOptimizer:getWeightSquareRoot:[]:RealMatrix"
           ],
           "num": 5
         },
         {
           "qualified_names": [
-            "org.apache.commons.math3.optim.nonlinear.vector.jacobian.AbstractLeastSquaresOptimizer:computeWeightedJacobian:[double[] params]:RealMatrix",
-            "org.apache.commons.math3.optim.nonlinear.vector.jacobian.AbstractLeastSquaresOptimizer:optimize:[OptimizationData... optData]:PointVectorValuePair",
             "org.apache.commons.math3.optim.nonlinear.vector.jacobian.AbstractLeastSquaresOptimizer:squareRoot:[RealMatrix m]:RealMatrix",
+            "org.apache.commons.math3.optim.nonlinear.vector.jacobian.AbstractLeastSquaresOptimizer:computeCost:[double[] residuals]:double",
             "org.apache.commons.math3.optim.nonlinear.vector.jacobian.AbstractLeastSquaresOptimizer:computeSigma:[double[] params, double covarianceSingularityThreshold]:double[]",
             "org.apache.commons.math3.optim.nonlinear.vector.jacobian.AbstractLeastSquaresOptimizer:parseOptimizationData:[OptimizationData... optData]:void",
-            "org.apache.commons.math3.optim.nonlinear.vector.jacobian.AbstractLeastSquaresOptimizer:computeCost:[double[] residuals]:double"
+            "org.apache.commons.math3.optim.nonlinear.vector.jacobian.AbstractLeastSquaresOptimizer:optimize:[OptimizationData... optData]:PointVectorValuePair",
+            "org.apache.commons.math3.optim.nonlinear.vector.jacobian.AbstractLeastSquaresOptimizer:computeWeightedJacobian:[double[] params]:RealMatrix"
           ],
           "num": 6
         }
@@ -1133,6 +1133,7 @@
     {
       "test_class": "org.apache.commons.math3.fitting.PolynomialFitterTest",
       "test_function": "testLargeSample",
+      "assertion_line": "238",
       "exception": "java.lang.OutOfMemoryError",
       "message": "Java heap space"
     }

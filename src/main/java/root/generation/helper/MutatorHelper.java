@@ -24,6 +24,7 @@ public class MutatorHelper {
         MUTATORS.put(LongLiteralExpr.class, new LongMutator());
         MUTATORS.put(StringLiteralExpr.class, new StringMutator());
         MUTATORS.put(CharLiteralExpr.class, new CharMutator());
+        MUTATORS.put(UnaryExpr.class, new UnaryMutator());
 
         INPUTS_BY_TYPE = new HashMap<>();
         INPUTS_BY_TYPE.put("boolean", Collections.singletonList(BooleanLiteralExpr.class));
@@ -35,6 +36,7 @@ public class MutatorHelper {
         INPUTS_BY_TYPE.put("long", Collections.singletonList(LongLiteralExpr.class));
         INPUTS_BY_TYPE.put("java.lang.Long", Collections.singletonList(DoubleLiteralExpr.class));
         INPUTS_BY_TYPE.put("java.lang.String", Collections.singletonList(StringLiteralExpr.class));
+        INPUTS_BY_TYPE.put("Unary", Collections.singletonList(UnaryExpr.class));
         List<Class<? extends Expression>> list = Arrays.asList(
                 BooleanLiteralExpr.class, IntegerLiteralExpr.class,
                 DoubleLiteralExpr.class, StringLiteralExpr.class);
@@ -54,11 +56,11 @@ public class MutatorHelper {
         AbstractInputMutator mutator;
         if (MutatorHelper.isKnownType(qualifiedName)) {
             mutator = getKnownMutator(qualifiedName);
-            Object nextInput = mutator.getNextInput(oldInput.getBasicExpr().toString());
+            Object nextInput = mutator.getNextInput(oldInput.getBasicExpr());
             return mutator.getInputs();//todo 这里会一直取之前变异过的重复值，事实上每次都应该是一个新的变异集合
         } else {
             mutator = getUnknownMutator(oldInput);
-            mutator.getNextInput(oldInput.getBasicExpr().toString());
+            mutator.getNextInput(oldInput.getBasicExpr());
             return mutator.getInputs();//todo 同上
         }
     }

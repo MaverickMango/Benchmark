@@ -119,6 +119,7 @@
     {
       "test_class": "org.apache.commons.lang.StringUtilsEqualsIndexOfTest",
       "test_function": "testContainsIgnoreCase_LocaleIndependence",
+      "assertion_line": "341",
       "exception": "junit.framework.AssertionFailedError",
       "message": "en: 0 ß SS"
     }

@@ -153,6 +153,7 @@
     {
       "test_class": "org.apache.commons.codec.language.CaverphoneTest",
       "test_function": "testEndMb",
+      "assertion_line": "335",
       "exception": "junit.framework.ComparisonFailure",
       "message": "Source: mbmb expected:\u003cM[PM]1111111\u003e but was:\u003cM[MP]1111111\u003e"
     }

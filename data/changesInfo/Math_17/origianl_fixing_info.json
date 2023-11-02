@@ -51,6 +51,7 @@
     {
       "test_class": "org.apache.commons.math3.dfp.DfpTest",
       "test_function": "testMultiply",
+      "assertion_line": "909",
       "exception": "junit.framework.AssertionFailedError",
       "message": "assersion failed Multiply #37 x \u003d NaN flags \u003d 1"
     }
@@ -71,8 +72,8 @@
         },
         {
           "qualified_names": [
-            "org.apache.commons.math3.dfp.Dfp:multiplyFast:[final int x]:Dfp",
-            "org.apache.commons.math3.dfp.Dfp:multiply:[final int x]:Dfp"
+            "org.apache.commons.math3.dfp.Dfp:multiply:[final int x]:Dfp",
+            "org.apache.commons.math3.dfp.Dfp:multiplyFast:[final int x]:Dfp"
           ],
           "num": 2
         }

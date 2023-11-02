@@ -14,6 +14,8 @@ public class FailedTest {
     private String testClass;
     @SerializedName("test_function")
     private String testFunction;
+    @SerializedName("assertion_line")
+    private String lineNumber;
     @SerializedName("exception")
     private String exception;
     @SerializedName("message")
@@ -41,6 +43,14 @@ public class FailedTest {
 
     public void setTestFunction(String testFunction) {
         this.testFunction = testFunction;
+    }
+
+    public String getLineNumber() {
+        return lineNumber;
+    }
+
+    public void setLineNumber(String lineNumber) {
+        this.lineNumber = lineNumber;
     }
 
     public String getMessage() {

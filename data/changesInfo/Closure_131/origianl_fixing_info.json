@@ -221,63 +221,63 @@
       "changed_functions": [
         {
           "qualified_names": [
-            "com.google.javascript.jscomp.SideEffectsAnalysis\\$VariableUseDeclarationMap:mapUses:[Node root]:void",
+            "com.google.javascript.jscomp.SideEffectsAnalysis:nodeHasAncestor:[Node node, Node possibleAncestor]:boolean",
+            "com.google.javascript.jscomp.SideEffectsAnalysis\\$VisibilityLocationAbstraction:storageNodeIsRValue:[Node node]:boolean",
+            "com.google.javascript.jscomp.SideEffectsAnalysis:safeToMoveBefore:[Node source, AbstractMotionEnvironment environment, Node destination]:boolean",
+            "com.google.javascript.jscomp.SideEffectsAnalysis\\$LocationAbstraction:getBottomLocation:[]:EffectLocation",
+            "com.google.javascript.jscomp.SideEffectsAnalysis\\$CrossModuleMotionEnvironment:CrossModuleMotionEnvironment:[Node sourceNode, JSModule sourceModule, Node destinationNode, JSModule destinationModule, JSModuleGraph moduleGraph]:null",
+            "com.google.javascript.jscomp.SideEffectsAnalysis\\$VariableUseDeclarationMap:findDeclaringNameNodeForUse:[Node usingNameNode]:Node",
+            "com.google.javascript.jscomp.SideEffectsAnalysis\\$LocationAbstraction:calculateLocationSummary:[Set\u003cNode\u003e nodes]:LocationSummary",
             "com.google.javascript.jscomp.SideEffectsAnalysis\\$LocationSummary:getRefSet:[]:EffectLocation",
+            "com.google.javascript.jscomp.SideEffectsAnalysis:createVisibilityAbstraction:[Node externs, Node root]:LocationAbstraction",
+            "com.google.javascript.jscomp.SideEffectsAnalysis\\$IntraproceduralMotionEnvironment:calculateEnvironment:[]:Set\u003cNode\u003e",
+            "com.google.javascript.jscomp.SideEffectsAnalysis\\$VariableUseDeclarationMap:mapUses:[Node root]:void",
+            "com.google.javascript.jscomp.SideEffectsAnalysis\\$EffectLocation:intersectsLocation:[EffectLocation otherLocation]:boolean",
             "com.google.javascript.jscomp.SideEffectsAnalysis\\$VisibilityLocationAbstraction:isStorageNode:[Node node]:boolean",
             "com.google.javascript.jscomp.SideEffectsAnalysis:SideEffectsAnalysis:[AbstractCompiler compiler, LocationAbstractionMode locationAbstractionMode]:null",
-            "com.google.javascript.jscomp.SideEffectsAnalysis:isPure:[Node node]:boolean",
-            "com.google.javascript.jscomp.SideEffectsAnalysis:closestControlDependentAncestor:[Node node]:Node",
-            "com.google.javascript.jscomp.SideEffectsAnalysis\\$VisibilityLocationAbstraction:effectMaskForVariableReference:[Node variableReference]:int",
             "com.google.javascript.jscomp.SideEffectsAnalysis:isControlDependentChild:[Node child]:boolean",
-            "com.google.javascript.jscomp.SideEffectsAnalysis\\$LocationAbstraction:calculateLocationSummary:[Set\u003cNode\u003e nodes]:LocationSummary",
-            "com.google.javascript.jscomp.SideEffectsAnalysis:createVisibilityAbstraction:[Node externs, Node root]:LocationAbstraction",
-            "com.google.javascript.jscomp.SideEffectsAnalysis:process:[Node externs, Node root]:void",
-            "com.google.javascript.jscomp.SideEffectsAnalysis\\$LocationAbstraction:getBottomLocation:[]:EffectLocation",
-            "com.google.javascript.jscomp.SideEffectsAnalysis\\$VisibilityLocationAbstraction:calculateLocationSummary:[Node node]:LocationSummary",
-            "com.google.javascript.jscomp.SideEffectsAnalysis:nodesHaveSameControlFlow:[Node node1, Node node2]:boolean",
             "com.google.javascript.jscomp.SideEffectsAnalysis\\$VisibilityLocationAbstraction\\$VisibilityBasedEffectLocation:intersectsLocation:[EffectLocation otherLocation]:boolean",
-            "com.google.javascript.jscomp.SideEffectsAnalysis\\$CrossModuleMotionEnvironment:CrossModuleMotionEnvironment:[Node sourceNode, JSModule sourceModule, Node destinationNode, JSModule destinationModule, JSModuleGraph moduleGraph]:null",
-            "com.google.javascript.jscomp.SideEffectsAnalysis\\$VisibilityLocationAbstraction:storageNodeIsRValue:[Node node]:boolean",
-            "com.google.javascript.jscomp.SideEffectsAnalysis:nodeHasAncestor:[Node node, Node possibleAncestor]:boolean",
-            "com.google.javascript.jscomp.SideEffectsAnalysis:safeToMoveBefore:[Node source, AbstractMotionEnvironment environment, Node destination]:boolean",
-            "com.google.javascript.jscomp.SideEffectsAnalysis\\$IntraproceduralMotionEnvironment:calculateEnvironment:[]:Set\u003cNode\u003e",
-            "com.google.javascript.jscomp.SideEffectsAnalysis\\$VisibilityLocationAbstraction:storageNodeIsLValue:[Node node]:boolean",
-            "com.google.javascript.jscomp.SideEffectsAnalysis\\$VisibilityLocationAbstraction:findStorageLocationReferences:[Node root]:Set\u003cNode\u003e",
-            "com.google.javascript.jscomp.SideEffectsAnalysis\\$VariableUseDeclarationMap:findDeclaringNameNodeForUse:[Node usingNameNode]:Node",
+            "com.google.javascript.jscomp.SideEffectsAnalysis:isPure:[Node node]:boolean",
             "com.google.javascript.jscomp.SideEffectsAnalysis\\$VisibilityLocationAbstraction\\$VisibilityBasedEffectLocation:join:[EffectLocation otherLocation]:EffectLocation",
+            "com.google.javascript.jscomp.SideEffectsAnalysis\\$VisibilityLocationAbstraction:findStorageLocationReferences:[Node root]:Set\u003cNode\u003e",
+            "com.google.javascript.jscomp.SideEffectsAnalysis\\$VisibilityLocationAbstraction:effectMaskForVariableReference:[Node variableReference]:int",
+            "com.google.javascript.jscomp.SideEffectsAnalysis\\$VisibilityLocationAbstraction:storageNodeIsLValue:[Node node]:boolean",
+            "com.google.javascript.jscomp.SideEffectsAnalysis:nodesHaveSameControlFlow:[Node node1, Node node2]:boolean",
+            "com.google.javascript.jscomp.SideEffectsAnalysis:process:[Node externs, Node root]:void",
             "com.google.javascript.jscomp.SideEffectsAnalysis\\$IntraproceduralMotionEnvironment:IntraproceduralMotionEnvironment:[ControlFlowGraph\u003cNode\u003e controlFlowGraph, Node cfgSource, Node cfgDestination]:null",
-            "com.google.javascript.jscomp.SideEffectsAnalysis\\$EffectLocation:intersectsLocation:[EffectLocation otherLocation]:boolean"
+            "com.google.javascript.jscomp.SideEffectsAnalysis:closestControlDependentAncestor:[Node node]:Node",
+            "com.google.javascript.jscomp.SideEffectsAnalysis\\$VisibilityLocationAbstraction:calculateLocationSummary:[Node node]:LocationSummary"
           ],
           "num": 26
         },
         {
           "qualified_names": [
-            "com.google.javascript.jscomp.SideEffectsAnalysis\\$VisibilityLocationAbstraction\\$VisibilityBasedEffectLocation:intersectsLocation:[EffectLocation otherLocation]:boolean",
-            "com.google.javascript.jscomp.SideEffectsAnalysis\\$LocationAbstraction:getBottomLocation:[]:EffectLocation",
-            "com.google.javascript.jscomp.SideEffectsAnalysis\\$VisibilityLocationAbstraction\\$VisibilityBasedEffectLocation:join:[EffectLocation otherLocation]:EffectLocation",
             "com.google.javascript.jscomp.SideEffectsAnalysis:isControlDependentChild:[Node child]:boolean",
-            "com.google.javascript.jscomp.SideEffectsAnalysis:process:[Node externs, Node root]:void",
-            "com.google.javascript.jscomp.SideEffectsAnalysis\\$VisibilityLocationAbstraction:isStorageNode:[Node node]:boolean",
-            "com.google.javascript.jscomp.SideEffectsAnalysis\\$IntraproceduralMotionEnvironment:IntraproceduralMotionEnvironment:[ControlFlowGraph\u003cNode\u003e controlFlowGraph, Node cfgSource, Node cfgDestination]:null",
-            "com.google.javascript.jscomp.SideEffectsAnalysis:nodeHasAncestor:[Node node, Node possibleAncestor]:boolean",
-            "com.google.javascript.jscomp.SideEffectsAnalysis\\$VariableUseDeclarationMap:mapUses:[Node root]:void",
-            "com.google.javascript.jscomp.SideEffectsAnalysis\\$VisibilityLocationAbstraction:storageNodeIsRValue:[Node node]:boolean",
+            "com.google.javascript.jscomp.SideEffectsAnalysis:closestControlDependentAncestor:[Node node]:Node",
             "com.google.javascript.jscomp.SideEffectsAnalysis\\$VisibilityLocationAbstraction:findStorageLocationReferences:[Node root]:Set\u003cNode\u003e",
+            "com.google.javascript.jscomp.SideEffectsAnalysis\\$VisibilityLocationAbstraction:storageNodeIsRValue:[Node node]:boolean",
+            "com.google.javascript.jscomp.SideEffectsAnalysis:safeToMoveBefore:[Node source, AbstractMotionEnvironment environment, Node destination]:boolean",
+            "com.google.javascript.jscomp.SideEffectsAnalysis:nodeHasAncestor:[Node node, Node possibleAncestor]:boolean",
+            "com.google.javascript.jscomp.SideEffectsAnalysis:isPure:[Node node]:boolean",
+            "com.google.javascript.jscomp.SideEffectsAnalysis:process:[Node externs, Node root]:void",
+            "com.google.javascript.jscomp.SideEffectsAnalysis\\$LocationAbstraction:getBottomLocation:[]:EffectLocation",
+            "com.google.javascript.jscomp.SideEffectsAnalysis\\$VisibilityLocationAbstraction:storageNodeIsLValue:[Node node]:boolean",
+            "com.google.javascript.jscomp.SideEffectsAnalysis\\$EffectLocation:intersectsLocation:[EffectLocation otherLocation]:boolean",
+            "com.google.javascript.jscomp.SideEffectsAnalysis\\$VisibilityLocationAbstraction\\$VisibilityBasedEffectLocation:intersectsLocation:[EffectLocation otherLocation]:boolean",
+            "com.google.javascript.jscomp.SideEffectsAnalysis\\$VariableUseDeclarationMap:findDeclaringNameNodeForUse:[Node usingNameNode]:Node",
             "com.google.javascript.jscomp.SideEffectsAnalysis\\$IntraproceduralMotionEnvironment:calculateEnvironment:[]:Set\u003cNode\u003e",
-            "com.google.javascript.jscomp.SideEffectsAnalysis\\$LocationSummary:getRefSet:[]:EffectLocation",
+            "com.google.javascript.jscomp.SideEffectsAnalysis\\$VisibilityLocationAbstraction\\$VisibilityBasedEffectLocation:join:[EffectLocation otherLocation]:EffectLocation",
+            "com.google.javascript.jscomp.SideEffectsAnalysis\\$VisibilityLocationAbstraction:isStorageNode:[Node node]:boolean",
+            "com.google.javascript.jscomp.SideEffectsAnalysis\\$CrossModuleMotionEnvironment:CrossModuleMotionEnvironment:[Node sourceNode, JSModule sourceModule, Node destinationNode, JSModule destinationModule, JSModuleGraph moduleGraph]:null",
+            "com.google.javascript.jscomp.SideEffectsAnalysis\\$VisibilityLocationAbstraction:calculateLocationSummary:[Node node]:LocationSummary",
             "com.google.javascript.jscomp.SideEffectsAnalysis\\$VisibilityLocationAbstraction:effectMaskForVariableReference:[Node variableReference]:int",
             "com.google.javascript.jscomp.SideEffectsAnalysis:createVisibilityAbstraction:[Node externs, Node root]:LocationAbstraction",
-            "com.google.javascript.jscomp.SideEffectsAnalysis:closestControlDependentAncestor:[Node node]:Node",
-            "com.google.javascript.jscomp.SideEffectsAnalysis:safeToMoveBefore:[Node source, AbstractMotionEnvironment environment, Node destination]:boolean",
-            "com.google.javascript.jscomp.SideEffectsAnalysis\\$VisibilityLocationAbstraction:calculateLocationSummary:[Node node]:LocationSummary",
-            "com.google.javascript.jscomp.SideEffectsAnalysis:SideEffectsAnalysis:[AbstractCompiler compiler, LocationAbstractionMode locationAbstractionMode]:null",
-            "com.google.javascript.jscomp.SideEffectsAnalysis\\$VariableUseDeclarationMap:findDeclaringNameNodeForUse:[Node usingNameNode]:Node",
-            "com.google.javascript.jscomp.SideEffectsAnalysis:isPure:[Node node]:boolean",
-            "com.google.javascript.jscomp.SideEffectsAnalysis:nodesHaveSameControlFlow:[Node node1, Node node2]:boolean",
-            "com.google.javascript.jscomp.SideEffectsAnalysis\\$EffectLocation:intersectsLocation:[EffectLocation otherLocation]:boolean",
             "com.google.javascript.jscomp.SideEffectsAnalysis\\$LocationAbstraction:calculateLocationSummary:[Set\u003cNode\u003e nodes]:LocationSummary",
-            "com.google.javascript.jscomp.SideEffectsAnalysis\\$CrossModuleMotionEnvironment:CrossModuleMotionEnvironment:[Node sourceNode, JSModule sourceModule, Node destinationNode, JSModule destinationModule, JSModuleGraph moduleGraph]:null",
-            "com.google.javascript.jscomp.SideEffectsAnalysis\\$VisibilityLocationAbstraction:storageNodeIsLValue:[Node node]:boolean"
+            "com.google.javascript.jscomp.SideEffectsAnalysis\\$VariableUseDeclarationMap:mapUses:[Node root]:void",
+            "com.google.javascript.jscomp.SideEffectsAnalysis:SideEffectsAnalysis:[AbstractCompiler compiler, LocationAbstractionMode locationAbstractionMode]:null",
+            "com.google.javascript.jscomp.SideEffectsAnalysis\\$LocationSummary:getRefSet:[]:EffectLocation",
+            "com.google.javascript.jscomp.SideEffectsAnalysis\\$IntraproceduralMotionEnvironment:IntraproceduralMotionEnvironment:[ControlFlowGraph\u003cNode\u003e controlFlowGraph, Node cfgSource, Node cfgDestination]:null",
+            "com.google.javascript.jscomp.SideEffectsAnalysis:nodesHaveSameControlFlow:[Node node1, Node node2]:boolean"
           ],
           "num": 26
         }
@@ -779,8 +779,8 @@
       "changed_functions": [
         {
           "qualified_names": [
-            "com.google.javascript.jscomp.SimpleFunctionAliasAnalysis:isExposedToCallOrApply:[Node functionNode]:boolean",
             "com.google.javascript.jscomp.SimpleFunctionAliasAnalysis:updateFunctionForUse:[Node function, Node useNode]:void",
+            "com.google.javascript.jscomp.SimpleFunctionAliasAnalysis:isExposedToCallOrApply:[Node functionNode]:boolean",
             "com.google.javascript.jscomp.SimpleFunctionAliasAnalysis:isAliased:[Node functionNode]:boolean",
             "com.google.javascript.jscomp.SimpleFunctionAliasAnalysis:analyze:[SimpleDefinitionFinder finder]:void"
           ],
@@ -788,10 +788,10 @@
         },
         {
           "qualified_names": [
-            "com.google.javascript.jscomp.SimpleFunctionAliasAnalysis:updateFunctionForUse:[Node function, Node useNode]:void",
-            "com.google.javascript.jscomp.SimpleFunctionAliasAnalysis:isExposedToCallOrApply:[Node functionNode]:boolean",
             "com.google.javascript.jscomp.SimpleFunctionAliasAnalysis:analyze:[SimpleDefinitionFinder finder]:void",
-            "com.google.javascript.jscomp.SimpleFunctionAliasAnalysis:isAliased:[Node functionNode]:boolean"
+            "com.google.javascript.jscomp.SimpleFunctionAliasAnalysis:isAliased:[Node functionNode]:boolean",
+            "com.google.javascript.jscomp.SimpleFunctionAliasAnalysis:updateFunctionForUse:[Node function, Node useNode]:void",
+            "com.google.javascript.jscomp.SimpleFunctionAliasAnalysis:isExposedToCallOrApply:[Node functionNode]:boolean"
           ],
           "num": 4
         }
@@ -862,31 +862,31 @@
       "changed_functions": [
         {
           "qualified_names": [
-            "com.google.javascript.jscomp.Tracer\\$TracingStatistic:start:[Thread thread]:long",
             "com.google.javascript.jscomp.Tracer:addTracingStatistic:[TracingStatistic tracingStatistic]:int",
-            "com.google.javascript.jscomp.Tracer\\$ThreadTrace:endEvent:[Tracer t, int silenceThreshold]:void",
-            "com.google.javascript.jscomp.Tracer\\$TracingStatistic:stop:[Thread thread]:long",
-            "com.google.javascript.jscomp.Tracer\\$AtomicTracerStatMap:incrementBy:[String key, long delta]:void",
-            "com.google.javascript.jscomp.Tracer:stop:[int silence_threshold]:long",
-            "com.google.javascript.jscomp.Tracer\\$TracingStatistic:getUnits:[]:String",
+            "com.google.javascript.jscomp.Tracer\\$TracingStatistic:start:[Thread thread]:long",
             "com.google.javascript.jscomp.Tracer:clearTracingStatisticsTestingOnly:[]:void",
+            "com.google.javascript.jscomp.Tracer\\$AtomicTracerStatMap:incrementBy:[String key, long delta]:void",
+            "com.google.javascript.jscomp.Tracer\\$TracingStatistic:getUnits:[]:String",
+            "com.google.javascript.jscomp.Tracer\\$ThreadTrace:endEvent:[Tracer t, int silenceThreshold]:void",
+            "com.google.javascript.jscomp.Tracer:stop:[int silence_threshold]:long",
             "com.google.javascript.jscomp.Tracer\\$Event:toString:[long prevEventTime, String indent, int digitsColWidth]:String",
-            "com.google.javascript.jscomp.Tracer\\$TracingStatistic:enable:[]:boolean"
+            "com.google.javascript.jscomp.Tracer\\$TracingStatistic:enable:[]:boolean",
+            "com.google.javascript.jscomp.Tracer\\$TracingStatistic:stop:[Thread thread]:long"
           ],
           "num": 10
         },
         {
           "qualified_names": [
-            "com.google.javascript.jscomp.Tracer\\$TracingStatistic:stop:[Thread thread]:long",
-            "com.google.javascript.jscomp.Tracer\\$TracingStatistic:enable:[]:boolean",
-            "com.google.javascript.jscomp.Tracer\\$Event:toString:[long prevEventTime, String indent, int digitsColWidth]:String",
-            "com.google.javascript.jscomp.Tracer\\$TracingStatistic:getUnits:[]:String",
-            "com.google.javascript.jscomp.Tracer:addTracingStatistic:[TracingStatistic tracingStatistic]:int",
+            "com.google.javascript.jscomp.Tracer\\$TracingStatistic:start:[Thread thread]:long",
             "com.google.javascript.jscomp.Tracer:clearTracingStatisticsTestingOnly:[]:void",
             "com.google.javascript.jscomp.Tracer\\$ThreadTrace:endEvent:[Tracer t, int silenceThreshold]:void",
+            "com.google.javascript.jscomp.Tracer\\$TracingStatistic:enable:[]:boolean",
+            "com.google.javascript.jscomp.Tracer\\$AtomicTracerStatMap:incrementBy:[String key, long delta]:void",
+            "com.google.javascript.jscomp.Tracer\\$TracingStatistic:getUnits:[]:String",
+            "com.google.javascript.jscomp.Tracer\\$TracingStatistic:stop:[Thread thread]:long",
             "com.google.javascript.jscomp.Tracer:stop:[int silence_threshold]:long",
-            "com.google.javascript.jscomp.Tracer\\$TracingStatistic:start:[Thread thread]:long",
-            "com.google.javascript.jscomp.Tracer\\$AtomicTracerStatMap:incrementBy:[String key, long delta]:void"
+            "com.google.javascript.jscomp.Tracer:addTracingStatistic:[TracingStatistic tracingStatistic]:int",
+            "com.google.javascript.jscomp.Tracer\\$Event:toString:[long prevEventTime, String indent, int digitsColWidth]:String"
           ],
           "num": 10
         }
@@ -1384,18 +1384,18 @@
         {
           "qualified_names": [
             "com.google.javascript.jscomp.VariableVisibilityAnalysis:getVariableVisibility:[Node declaringNameNode]:VariableVisibility",
-            "com.google.javascript.jscomp.VariableVisibilityAnalysis:VariableVisibilityAnalysis:[AbstractCompiler compiler]:null",
+            "com.google.javascript.jscomp.VariableVisibilityAnalysis:variableIsParameter:[Var variable]:boolean",
             "com.google.javascript.jscomp.VariableVisibilityAnalysis:process:[Node externs, Node root]:void",
-            "com.google.javascript.jscomp.VariableVisibilityAnalysis:variableIsParameter:[Var variable]:boolean"
+            "com.google.javascript.jscomp.VariableVisibilityAnalysis:VariableVisibilityAnalysis:[AbstractCompiler compiler]:null"
           ],
           "num": 4
         },
         {
           "qualified_names": [
-            "com.google.javascript.jscomp.VariableVisibilityAnalysis:getVariableVisibility:[Node declaringNameNode]:VariableVisibility",
             "com.google.javascript.jscomp.VariableVisibilityAnalysis:variableIsParameter:[Var variable]:boolean",
             "com.google.javascript.jscomp.VariableVisibilityAnalysis:process:[Node externs, Node root]:void",
-            "com.google.javascript.jscomp.VariableVisibilityAnalysis:VariableVisibilityAnalysis:[AbstractCompiler compiler]:null"
+            "com.google.javascript.jscomp.VariableVisibilityAnalysis:VariableVisibilityAnalysis:[AbstractCompiler compiler]:null",
+            "com.google.javascript.jscomp.VariableVisibilityAnalysis:getVariableVisibility:[Node declaringNameNode]:VariableVisibility"
           ],
           "num": 4
         }
@@ -1505,19 +1505,19 @@
           "qualified_names": [
             "com.google.javascript.jscomp.deps.JsFunctionParser:JsFunctionParser:[Collection\u003cString\u003e functions, ErrorManager errorManager]:null",
             "com.google.javascript.jscomp.deps.JsFunctionParser:getPattern:[Collection\u003cString\u003e functions]:Pattern",
-            "com.google.javascript.jscomp.deps.JsFunctionParser:parseFile:[String filePath, String fileContents]:Collection\u003cSymbolInfo\u003e",
             "com.google.javascript.jscomp.deps.JsFunctionParser:parseReader:[String filePath, Reader fileContents]:Collection\u003cSymbolInfo\u003e",
-            "com.google.javascript.jscomp.deps.JsFunctionParser:parseLine:[String line]:boolean"
+            "com.google.javascript.jscomp.deps.JsFunctionParser:parseLine:[String line]:boolean",
+            "com.google.javascript.jscomp.deps.JsFunctionParser:parseFile:[String filePath, String fileContents]:Collection\u003cSymbolInfo\u003e"
           ],
           "num": 5
         },
         {
           "qualified_names": [
             "com.google.javascript.jscomp.deps.JsFunctionParser:parseFile:[String filePath, String fileContents]:Collection\u003cSymbolInfo\u003e",
-            "com.google.javascript.jscomp.deps.JsFunctionParser:parseReader:[String filePath, Reader fileContents]:Collection\u003cSymbolInfo\u003e",
-            "com.google.javascript.jscomp.deps.JsFunctionParser:JsFunctionParser:[Collection\u003cString\u003e functions, ErrorManager errorManager]:null",
             "com.google.javascript.jscomp.deps.JsFunctionParser:getPattern:[Collection\u003cString\u003e functions]:Pattern",
-            "com.google.javascript.jscomp.deps.JsFunctionParser:parseLine:[String line]:boolean"
+            "com.google.javascript.jscomp.deps.JsFunctionParser:parseLine:[String line]:boolean",
+            "com.google.javascript.jscomp.deps.JsFunctionParser:parseReader:[String filePath, Reader fileContents]:Collection\u003cSymbolInfo\u003e",
+            "com.google.javascript.jscomp.deps.JsFunctionParser:JsFunctionParser:[Collection\u003cString\u003e functions, ErrorManager errorManager]:null"
           ],
           "num": 5
         }
@@ -1654,19 +1654,19 @@
       "changed_functions": [
         {
           "qualified_names": [
-            "com.google.javascript.rhino.JSDocInfoBuilder:markTypeNode:[Node typeNode, int lineno, int startCharno, int endCharno, boolean hasLC]:void",
             "com.google.javascript.rhino.JSDocInfoBuilder:markText:[String text, int startLineno, int startCharno, int endLineno, int endCharno]:void",
-            "com.google.javascript.rhino.JSDocInfoBuilder:recordParameterDescription:[String parameterName, String description]:boolean",
-            "com.google.javascript.rhino.JSDocInfoBuilder:recordThrowDescription:[JSTypeExpression type, String description]:boolean"
+            "com.google.javascript.rhino.JSDocInfoBuilder:markTypeNode:[Node typeNode, int lineno, int startCharno, int endCharno, boolean hasLC]:void",
+            "com.google.javascript.rhino.JSDocInfoBuilder:recordThrowDescription:[JSTypeExpression type, String description]:boolean",
+            "com.google.javascript.rhino.JSDocInfoBuilder:recordParameterDescription:[String parameterName, String description]:boolean"
           ],
           "num": 4
         },
         {
           "qualified_names": [
-            "com.google.javascript.rhino.JSDocInfoBuilder:markText:[String text, int startLineno, int startCharno, int endLineno, int endCharno]:void",
-            "com.google.javascript.rhino.JSDocInfoBuilder:recordThrowDescription:[JSTypeExpression type, String description]:boolean",
             "com.google.javascript.rhino.JSDocInfoBuilder:recordParameterDescription:[String parameterName, String description]:boolean",
-            "com.google.javascript.rhino.JSDocInfoBuilder:markTypeNode:[Node typeNode, int lineno, int startCharno, int endCharno, boolean hasLC]:void"
+            "com.google.javascript.rhino.JSDocInfoBuilder:markText:[String text, int startLineno, int startCharno, int endLineno, int endCharno]:void",
+            "com.google.javascript.rhino.JSDocInfoBuilder:markTypeNode:[Node typeNode, int lineno, int startCharno, int endCharno, boolean hasLC]:void",
+            "com.google.javascript.rhino.JSDocInfoBuilder:recordThrowDescription:[JSTypeExpression type, String description]:boolean"
           ],
           "num": 4
         }
@@ -1793,18 +1793,18 @@
       "changed_functions": [
         {
           "qualified_names": [
-            "com.google.javascript.rhino.Parser:memberExpr:[boolean allowCallSyntax]:Node",
-            "com.google.javascript.rhino.Parser:memberExprTail:[boolean allowCallSyntax, Node pn]:Node",
             "com.google.javascript.rhino.Parser:bitXorExpr:[boolean inForInit]:Node",
-            "com.google.javascript.rhino.Parser:statementHelper:[Node statementLabel]:Node"
+            "com.google.javascript.rhino.Parser:memberExprTail:[boolean allowCallSyntax, Node pn]:Node",
+            "com.google.javascript.rhino.Parser:statementHelper:[Node statementLabel]:Node",
+            "com.google.javascript.rhino.Parser:memberExpr:[boolean allowCallSyntax]:Node"
           ],
           "num": 4
         },
         {
           "qualified_names": [
             "com.google.javascript.rhino.Parser:statementHelper:[Node statementLabel]:Node",
-            "com.google.javascript.rhino.Parser:memberExpr:[boolean allowCallSyntax]:Node",
             "com.google.javascript.rhino.Parser:bitXorExpr:[boolean inForInit]:Node",
+            "com.google.javascript.rhino.Parser:memberExpr:[boolean allowCallSyntax]:Node",
             "com.google.javascript.rhino.Parser:memberExprTail:[boolean allowCallSyntax, Node pn]:Node"
           ],
           "num": 4
@@ -2008,8 +2008,16 @@
     {
       "test_class": "com.google.javascript.jscomp.ConvertToDottedPropertiesTest",
       "test_function": "testQuotedProps",
+      "assertion_line": "72",
       "exception": "junit.framework.AssertionFailedError",
-      "message": "Expected: ({\"a\\u0004b\":0})\nResult: ({a\u0004b:0})Expected: a[\"A\\u0004\"]\nResult: a.A\u0004"
+      "message": "Expected: ({\"a\\u0004b\":0})\nResult: ({a\u0004b:0})"
+    },
+    {
+      "test_class": "com.google.javascript.jscomp.ConvertToDottedPropertiesTest",
+      "test_function": "testDoNotConvert",
+      "assertion_line": "58",
+      "exception": "junit.framework.AssertionFailedError",
+      "message": "Expected: a[\"A\\u0004\"]\nResult: a.A\u0004"
     }
   ],
   "fixing_changes": [

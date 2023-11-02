@@ -30,9 +30,9 @@ public class ModifiedVisitor extends ModifierVisitor<List<Expression>> {
     @Override
     public Visitable visit(ArrayAccessExpr n, List<Expression> arg) {
         Expression value = n.getIndex();
-        if (value.getClass().equals(basicExpr.getClass()) && value.toString().equals(basicExpr.toString())) {
+        if (value.getRange().equals(basicExpr.getRange()) &&
+                value.getClass().equals(basicExpr.getClass()) && value.toString().equals(basicExpr.toString())) {
             n.setIndex(transformed);
-            return null;
         }
         return super.visit(n, arg);
     }
@@ -41,9 +41,9 @@ public class ModifiedVisitor extends ModifierVisitor<List<Expression>> {
     public Visitable visit(ArrayInitializerExpr n, List<Expression> arg) {
         NodeList<Expression> values = n.getValues();
         for (Expression value :values) {
-            if (value.getClass().equals(basicExpr.getClass()) && value.toString().equals(basicExpr.toString())) {
+            if (value.getRange().equals(basicExpr.getRange()) &&
+                    value.getClass().equals(basicExpr.getClass()) && value.toString().equals(basicExpr.toString())) {
                 values.replace(value, transformed);
-                return null;
             }
         }
         return super.visit(n, arg);
@@ -53,9 +53,9 @@ public class ModifiedVisitor extends ModifierVisitor<List<Expression>> {
     public Visitable visit(MethodCallExpr n, List<Expression> arg) {
         NodeList<Expression> arguments = n.getArguments();
         for (Expression value :arguments) {
-            if (value.getClass().equals(basicExpr.getClass()) && value.toString().equals(basicExpr.toString())) {
+            if (value.getRange().equals(basicExpr.getRange()) &&
+                    value.getClass().equals(basicExpr.getClass()) && value.toString().equals(basicExpr.toString())) {
                 arguments.replace(value, transformed);
-                return null;
             }
         }
         return super.visit(n, arg);
@@ -65,9 +65,9 @@ public class ModifiedVisitor extends ModifierVisitor<List<Expression>> {
     public Visitable visit(ObjectCreationExpr n, List<Expression> arg) {
         NodeList<Expression> arguments = n.getArguments();
         for (Expression value :arguments) {
-            if (value.getClass().equals(basicExpr.getClass()) && value.toString().equals(basicExpr.toString())) {
+            if (value.getRange().equals(basicExpr.getRange()) &&
+                    value.getClass().equals(basicExpr.getClass()) && value.toString().equals(basicExpr.toString())) {
                 arguments.replace(value, transformed);
-                return null;
             }
         }
         return super.visit(n, arg);

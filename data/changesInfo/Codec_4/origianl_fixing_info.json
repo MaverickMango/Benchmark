@@ -33,26 +33,26 @@
       "changed_functions": [
         {
           "qualified_names": [
-            "org.apache.commons.codec.binary.Base64:encodeBase64:[byte[] binaryData, boolean isChunked, boolean urlSafe, int maxResultSize]:byte[]",
             "org.apache.commons.codec.binary.Base64:decode:[Object pObject]:Object",
-            "org.apache.commons.codec.binary.Base64:decode:[byte[] pArray]:byte[]",
-            "org.apache.commons.codec.binary.Base64:encode:[byte[] pArray]:byte[]",
             "org.apache.commons.codec.binary.Base64:Base64:[int lineLength]:null",
             "org.apache.commons.codec.binary.Base64:Base64:[int lineLength, byte[] lineSeparator]:null",
+            "org.apache.commons.codec.binary.Base64:encodeBase64:[byte[] binaryData, boolean isChunked, boolean urlSafe, int maxResultSize]:byte[]",
+            "org.apache.commons.codec.binary.Base64:encode:[byte[] pArray]:byte[]",
             "org.apache.commons.codec.binary.Base64:Base64:[int lineLength, byte[] lineSeparator, boolean urlSafe]:null",
+            "org.apache.commons.codec.binary.Base64:decode:[byte[] pArray]:byte[]",
             "org.apache.commons.codec.binary.Base64:decodeBase64:[byte[] base64Data]:byte[]"
           ],
           "num": 8
         },
         {
           "qualified_names": [
-            "org.apache.commons.codec.binary.Base64:decode:[byte[] pArray]:byte[]",
-            "org.apache.commons.codec.binary.Base64:Base64:[int lineLength, byte[] lineSeparator]:null",
-            "org.apache.commons.codec.binary.Base64:decodeBase64:[byte[] base64Data]:byte[]",
-            "org.apache.commons.codec.binary.Base64:Base64:[int lineLength, byte[] lineSeparator, boolean urlSafe]:null",
-            "org.apache.commons.codec.binary.Base64:Base64:[int lineLength]:null",
-            "org.apache.commons.codec.binary.Base64:encodeBase64:[byte[] binaryData, boolean isChunked, boolean urlSafe, int maxResultSize]:byte[]",
             "org.apache.commons.codec.binary.Base64:getEncodeLength:[byte[] pArray, int chunkSize, byte[] chunkSeparator]:long",
+            "org.apache.commons.codec.binary.Base64:decode:[byte[] pArray]:byte[]",
+            "org.apache.commons.codec.binary.Base64:decodeBase64:[byte[] base64Data]:byte[]",
+            "org.apache.commons.codec.binary.Base64:encodeBase64:[byte[] binaryData, boolean isChunked, boolean urlSafe, int maxResultSize]:byte[]",
+            "org.apache.commons.codec.binary.Base64:Base64:[int lineLength, byte[] lineSeparator, boolean urlSafe]:null",
+            "org.apache.commons.codec.binary.Base64:Base64:[int lineLength, byte[] lineSeparator]:null",
+            "org.apache.commons.codec.binary.Base64:Base64:[int lineLength]:null",
             "org.apache.commons.codec.binary.Base64:decode:[Object pObject]:Object",
             "org.apache.commons.codec.binary.Base64:encode:[byte[] pArray]:byte[]"
           ],
@@ -739,23 +739,23 @@
       "changed_functions": [
         {
           "qualified_names": [
-            "org.apache.commons.codec.binary.Base64InputStream:read:[byte b[], int offset, int len]:int",
-            "org.apache.commons.codec.binary.Base64InputStream:Base64InputStream:[InputStream in, boolean doEncode]:null",
             "org.apache.commons.codec.binary.Base64InputStream:Base64InputStream:[InputStream in, boolean doEncode, int lineLength, byte[] lineSeparator]:null",
             "org.apache.commons.codec.binary.Base64InputStream:markSupported:[]:boolean",
-            "org.apache.commons.codec.binary.Base64InputStream:read:[]:int",
-            "org.apache.commons.codec.binary.Base64InputStream:Base64InputStream:[InputStream in]:null"
+            "org.apache.commons.codec.binary.Base64InputStream:read:[byte b[], int offset, int len]:int",
+            "org.apache.commons.codec.binary.Base64InputStream:Base64InputStream:[InputStream in, boolean doEncode]:null",
+            "org.apache.commons.codec.binary.Base64InputStream:Base64InputStream:[InputStream in]:null",
+            "org.apache.commons.codec.binary.Base64InputStream:read:[]:int"
           ],
           "num": 6
         },
         {
           "qualified_names": [
             "org.apache.commons.codec.binary.Base64InputStream:Base64InputStream:[InputStream in, boolean doEncode]:null",
-            "org.apache.commons.codec.binary.Base64InputStream:read:[]:int",
-            "org.apache.commons.codec.binary.Base64InputStream:markSupported:[]:boolean",
             "org.apache.commons.codec.binary.Base64InputStream:Base64InputStream:[InputStream in]:null",
-            "org.apache.commons.codec.binary.Base64InputStream:Base64InputStream:[InputStream in, boolean doEncode, int lineLength, byte[] lineSeparator]:null",
-            "org.apache.commons.codec.binary.Base64InputStream:read:[byte b[], int offset, int len]:int"
+            "org.apache.commons.codec.binary.Base64InputStream:read:[]:int",
+            "org.apache.commons.codec.binary.Base64InputStream:read:[byte b[], int offset, int len]:int",
+            "org.apache.commons.codec.binary.Base64InputStream:markSupported:[]:boolean",
+            "org.apache.commons.codec.binary.Base64InputStream:Base64InputStream:[InputStream in, boolean doEncode, int lineLength, byte[] lineSeparator]:null"
           ],
           "num": 6
         }
@@ -1250,27 +1250,27 @@
       "changed_functions": [
         {
           "qualified_names": [
+            "org.apache.commons.codec.binary.Base64OutputStream:close:[]:void",
             "org.apache.commons.codec.binary.Base64OutputStream:write:[byte b[], int offset, int len]:void",
-            "org.apache.commons.codec.binary.Base64OutputStream:flush:[]:void",
+            "org.apache.commons.codec.binary.Base64OutputStream:Base64OutputStream:[OutputStream out]:null",
             "org.apache.commons.codec.binary.Base64OutputStream:flush:[boolean propogate]:void",
             "org.apache.commons.codec.binary.Base64OutputStream:Base64OutputStream:[OutputStream out, boolean doEncode, int lineLength, byte[] lineSeparator]:null",
             "org.apache.commons.codec.binary.Base64OutputStream:Base64OutputStream:[OutputStream out, boolean doEncode]:null",
-            "org.apache.commons.codec.binary.Base64OutputStream:Base64OutputStream:[OutputStream out]:null",
-            "org.apache.commons.codec.binary.Base64OutputStream:write:[int i]:void",
-            "org.apache.commons.codec.binary.Base64OutputStream:close:[]:void"
+            "org.apache.commons.codec.binary.Base64OutputStream:flush:[]:void",
+            "org.apache.commons.codec.binary.Base64OutputStream:write:[int i]:void"
           ],
           "num": 8
         },
         {
           "qualified_names": [
-            "org.apache.commons.codec.binary.Base64OutputStream:Base64OutputStream:[OutputStream out]:null",
-            "org.apache.commons.codec.binary.Base64OutputStream:write:[int i]:void",
-            "org.apache.commons.codec.binary.Base64OutputStream:flush:[]:void",
-            "org.apache.commons.codec.binary.Base64OutputStream:flush:[boolean propogate]:void",
             "org.apache.commons.codec.binary.Base64OutputStream:Base64OutputStream:[OutputStream out, boolean doEncode, int lineLength, byte[] lineSeparator]:null",
-            "org.apache.commons.codec.binary.Base64OutputStream:close:[]:void",
+            "org.apache.commons.codec.binary.Base64OutputStream:flush:[]:void",
             "org.apache.commons.codec.binary.Base64OutputStream:Base64OutputStream:[OutputStream out, boolean doEncode]:null",
-            "org.apache.commons.codec.binary.Base64OutputStream:write:[byte b[], int offset, int len]:void"
+            "org.apache.commons.codec.binary.Base64OutputStream:close:[]:void",
+            "org.apache.commons.codec.binary.Base64OutputStream:flush:[boolean propogate]:void",
+            "org.apache.commons.codec.binary.Base64OutputStream:write:[byte b[], int offset, int len]:void",
+            "org.apache.commons.codec.binary.Base64OutputStream:Base64OutputStream:[OutputStream out]:null",
+            "org.apache.commons.codec.binary.Base64OutputStream:write:[int i]:void"
           ],
           "num": 8
         }
@@ -1999,15 +1999,15 @@
       "changed_functions": [
         {
           "qualified_names": [
-            "org.apache.commons.codec.net.URLCodec:decode:[String pString, String charset]:String",
-            "org.apache.commons.codec.net.URLCodec:encode:[String pString, String charset]:String"
+            "org.apache.commons.codec.net.URLCodec:encode:[String pString, String charset]:String",
+            "org.apache.commons.codec.net.URLCodec:decode:[String pString, String charset]:String"
           ],
           "num": 2
         },
         {
           "qualified_names": [
-            "org.apache.commons.codec.net.URLCodec:encode:[String pString, String charset]:String",
-            "org.apache.commons.codec.net.URLCodec:decode:[String pString, String charset]:String"
+            "org.apache.commons.codec.net.URLCodec:decode:[String pString, String charset]:String",
+            "org.apache.commons.codec.net.URLCodec:encode:[String pString, String charset]:String"
           ],
           "num": 2
         }
@@ -2067,22 +2067,22 @@
         },
         {
           "qualified_names": [
-            "org.apache.commons.codec.binary.StringUtils:getBytesUtf16Be:[String string]:byte[]",
-            "org.apache.commons.codec.binary.StringUtils:newStringIso8859_1:[byte[] bytes]:String",
-            "org.apache.commons.codec.binary.StringUtils:newStringUtf16Le:[byte[] bytes]:String",
-            "org.apache.commons.codec.binary.StringUtils:StringUtils:[]:null",
             "org.apache.commons.codec.binary.StringUtils:getBytesUtf16:[String string]:byte[]",
-            "org.apache.commons.codec.binary.StringUtils:newString:[byte[] bytes, String charsetName]:String",
-            "org.apache.commons.codec.binary.StringUtils:getBytesUtf8:[String string]:byte[]",
-            "org.apache.commons.codec.binary.StringUtils:newStringUtf8:[byte[] bytes]:String",
-            "org.apache.commons.codec.binary.StringUtils:getBytesUsAscii:[String string]:byte[]",
-            "org.apache.commons.codec.binary.StringUtils:getBytesIso8859_1:[String string]:byte[]",
             "org.apache.commons.codec.binary.StringUtils:newIllegalStateException:[String charsetName, UnsupportedEncodingException e]:IllegalStateException",
-            "org.apache.commons.codec.binary.StringUtils:newStringUtf16:[byte[] bytes]:String",
-            "org.apache.commons.codec.binary.StringUtils:newStringUtf16Be:[byte[] bytes]:String",
-            "org.apache.commons.codec.binary.StringUtils:getSupportedBytes:[String string, String charsetName]:byte[]",
+            "org.apache.commons.codec.binary.StringUtils:getBytesIso8859_1:[String string]:byte[]",
+            "org.apache.commons.codec.binary.StringUtils:newStringIso8859_1:[byte[] bytes]:String",
+            "org.apache.commons.codec.binary.StringUtils:StringUtils:[]:null",
             "org.apache.commons.codec.binary.StringUtils:newStringUsAscii:[byte[] bytes]:String",
-            "org.apache.commons.codec.binary.StringUtils:getBytesUtf16Le:[String string]:byte[]"
+            "org.apache.commons.codec.binary.StringUtils:getBytesUtf16Le:[String string]:byte[]",
+            "org.apache.commons.codec.binary.StringUtils:newStringUtf16Le:[byte[] bytes]:String",
+            "org.apache.commons.codec.binary.StringUtils:newStringUtf8:[byte[] bytes]:String",
+            "org.apache.commons.codec.binary.StringUtils:getBytesUtf16Be:[String string]:byte[]",
+            "org.apache.commons.codec.binary.StringUtils:newStringUtf16Be:[byte[] bytes]:String",
+            "org.apache.commons.codec.binary.StringUtils:getBytesUsAscii:[String string]:byte[]",
+            "org.apache.commons.codec.binary.StringUtils:newStringUtf16:[byte[] bytes]:String",
+            "org.apache.commons.codec.binary.StringUtils:getSupportedBytes:[String string, String charsetName]:byte[]",
+            "org.apache.commons.codec.binary.StringUtils:getBytesUtf8:[String string]:byte[]",
+            "org.apache.commons.codec.binary.StringUtils:newString:[byte[] bytes, String charsetName]:String"
           ],
           "num": 16
         }
@@ -2522,8 +2522,8 @@
         "org.apache.commons.codec.binary.StringUtils:newStringUtf16Le:[byte[] bytes]:String",
         "org.apache.commons.codec.binary.StringUtils:getBytesUsAscii:[String string]:byte[]",
         "org.apache.commons.codec.binary.StringUtils:newStringUtf16Be:[byte[] bytes]:String",
-        "org.apache.commons.codec.binary.StringUtils:StringUtils:[]:null",
         "org.apache.commons.codec.binary.StringUtils:getBytesUtf16:[String string]:byte[]",
+        "org.apache.commons.codec.binary.StringUtils:StringUtils:[]:null",
         "org.apache.commons.codec.binary.Base64:getEncodeLength:[byte[] pArray, int chunkSize, byte[] chunkSeparator]:long",
         "org.apache.commons.codec.binary.StringUtils:newString:[byte[] bytes, String charsetName]:String",
         "org.apache.commons.codec.binary.StringUtils:getBytesUtf8:[String string]:byte[]",
@@ -2540,8 +2540,16 @@
     {
       "test_class": "org.apache.commons.codec.binary.Base64Codec13Test",
       "test_function": "testEncoder",
+      "assertion_line": "378",
       "exception": "junit.framework.AssertionFailedError",
       "message": "Encoder test-1"
+    },
+    {
+      "test_class": "org.apache.commons.codec.binary.Base64Codec13Test",
+      "test_function": "testBinaryEncoder",
+      "assertion_line": "414",
+      "exception": "junit.framework.AssertionFailedError",
+      "message": "BinaryEncoder test-1"
     }
   ],
   "fixing_changes": [

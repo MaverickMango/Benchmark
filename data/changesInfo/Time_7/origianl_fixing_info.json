@@ -33,39 +33,39 @@
       "changed_functions": [
         {
           "qualified_names": [
-            "org.joda.time.format.DateTimeFormatter:parseDateTime:[String text]:DateTime",
-            "org.joda.time.format.DateTimeFormatter:parseLocalDateTime:[String text]:LocalDateTime",
-            "org.joda.time.format.DateTimeFormatter:withZone:[DateTimeZone zone]:DateTimeFormatter",
+            "org.joda.time.format.DateTimeFormatter:printTo:[StringBuffer buf, ReadableInstant instant]:void",
             "org.joda.time.format.DateTimeFormatter:parseInto:[ReadWritableInstant instant, String text, int position]:int",
-            "org.joda.time.format.DateTimeFormatter:withOffsetParsed:[]:DateTimeFormatter",
-            "org.joda.time.format.DateTimeFormatter:parseMillis:[String text]:long",
-            "org.joda.time.format.DateTimeFormatter:DateTimeFormatter:[DateTimePrinter printer, DateTimeParser parser, Locale locale, boolean offsetParsed, Chronology chrono, DateTimeZone zone, Integer pivotYear]:null",
-            "org.joda.time.format.DateTimeFormatter:withChronology:[Chronology chrono]:DateTimeFormatter",
-            "org.joda.time.format.DateTimeFormatter:parseMutableDateTime:[String text]:MutableDateTime",
             "org.joda.time.format.DateTimeFormatter:DateTimeFormatter:[DateTimePrinter printer, DateTimeParser parser]:null",
-            "org.joda.time.format.DateTimeFormatter:withPivotYear:[Integer pivotYear]:DateTimeFormatter",
+            "org.joda.time.format.DateTimeFormatter:DateTimeFormatter:[DateTimePrinter printer, DateTimeParser parser, Locale locale, boolean offsetParsed, Chronology chrono, DateTimeZone zone, Integer pivotYear]:null",
+            "org.joda.time.format.DateTimeFormatter:parseDateTime:[String text]:DateTime",
+            "org.joda.time.format.DateTimeFormatter:parseMillis:[String text]:long",
+            "org.joda.time.format.DateTimeFormatter:withChronology:[Chronology chrono]:DateTimeFormatter",
             "org.joda.time.format.DateTimeFormatter:withLocale:[Locale locale]:DateTimeFormatter",
-            "org.joda.time.format.DateTimeFormatter:printTo:[StringBuffer buf, ReadableInstant instant]:void"
+            "org.joda.time.format.DateTimeFormatter:parseMutableDateTime:[String text]:MutableDateTime",
+            "org.joda.time.format.DateTimeFormatter:withZone:[DateTimeZone zone]:DateTimeFormatter",
+            "org.joda.time.format.DateTimeFormatter:withOffsetParsed:[]:DateTimeFormatter",
+            "org.joda.time.format.DateTimeFormatter:parseLocalDateTime:[String text]:LocalDateTime",
+            "org.joda.time.format.DateTimeFormatter:withPivotYear:[Integer pivotYear]:DateTimeFormatter"
           ],
           "num": 13
         },
         {
           "qualified_names": [
-            "org.joda.time.format.DateTimeFormatter:parseInto:[ReadWritableInstant instant, String text, int position]:int",
+            "org.joda.time.format.DateTimeFormatter:DateTimeFormatter:[DateTimePrinter printer, DateTimeParser parser]:null",
             "org.joda.time.format.DateTimeFormatter:parseMillis:[String text]:long",
+            "org.joda.time.format.DateTimeFormatter:parseMutableDateTime:[String text]:MutableDateTime",
             "org.joda.time.format.DateTimeFormatter:withLocale:[Locale locale]:DateTimeFormatter",
+            "org.joda.time.format.DateTimeFormatter:withZone:[DateTimeZone zone]:DateTimeFormatter",
+            "org.joda.time.format.DateTimeFormatter:printTo:[StringBuffer buf, ReadableInstant instant]:void",
+            "org.joda.time.format.DateTimeFormatter:parseLocalDateTime:[String text]:LocalDateTime",
             "org.joda.time.format.DateTimeFormatter:withOffsetParsed:[]:DateTimeFormatter",
             "org.joda.time.format.DateTimeFormatter:withChronology:[Chronology chrono]:DateTimeFormatter",
-            "org.joda.time.format.DateTimeFormatter:DateTimeFormatter:[DateTimePrinter printer, DateTimeParser parser]:null",
-            "org.joda.time.format.DateTimeFormatter:parseMutableDateTime:[String text]:MutableDateTime",
-            "org.joda.time.format.DateTimeFormatter:parseLocalDateTime:[String text]:LocalDateTime",
-            "org.joda.time.format.DateTimeFormatter:withDefaultYear:[int defaultYear]:DateTimeFormatter",
             "org.joda.time.format.DateTimeFormatter:DateTimeFormatter:[DateTimePrinter printer, DateTimeParser parser, Locale locale, boolean offsetParsed, Chronology chrono, DateTimeZone zone, Integer pivotYear, int defaultYear]:null",
-            "org.joda.time.format.DateTimeFormatter:withZone:[DateTimeZone zone]:DateTimeFormatter",
+            "org.joda.time.format.DateTimeFormatter:withDefaultYear:[int defaultYear]:DateTimeFormatter",
             "org.joda.time.format.DateTimeFormatter:getDefaultYear:[]:int",
-            "org.joda.time.format.DateTimeFormatter:withPivotYear:[Integer pivotYear]:DateTimeFormatter",
             "org.joda.time.format.DateTimeFormatter:parseDateTime:[String text]:DateTime",
-            "org.joda.time.format.DateTimeFormatter:printTo:[StringBuffer buf, ReadableInstant instant]:void"
+            "org.joda.time.format.DateTimeFormatter:withPivotYear:[Integer pivotYear]:DateTimeFormatter",
+            "org.joda.time.format.DateTimeFormatter:parseInto:[ReadWritableInstant instant, String text, int position]:int"
           ],
           "num": 15
         }
@@ -247,21 +247,21 @@
       "changed_functions": [
         {
           "qualified_names": [
-            "org.joda.time.format.DateTimeParserBucket:DateTimeParserBucket:[long instantLocal, Chronology chrono, Locale locale]:null",
             "org.joda.time.format.DateTimeParserBucket\\$SavedField:compareReverse:[DurationField a, DurationField b]:int",
             "org.joda.time.format.DateTimeParserBucket:getPivotYear:[]:Integer",
+            "org.joda.time.format.DateTimeParserBucket:computeMillis:[boolean resetFields, String text]:long",
             "org.joda.time.format.DateTimeParserBucket:DateTimeParserBucket:[long instantLocal, Chronology chrono, Locale locale, Integer pivotYear]:null",
-            "org.joda.time.format.DateTimeParserBucket:computeMillis:[boolean resetFields, String text]:long"
+            "org.joda.time.format.DateTimeParserBucket:DateTimeParserBucket:[long instantLocal, Chronology chrono, Locale locale]:null"
           ],
           "num": 5
         },
         {
           "qualified_names": [
-            "org.joda.time.format.DateTimeParserBucket:getPivotYear:[]:Integer",
-            "org.joda.time.format.DateTimeParserBucket:DateTimeParserBucket:[long instantLocal, Chronology chrono, Locale locale, Integer pivotYear]:null",
-            "org.joda.time.format.DateTimeParserBucket:computeMillis:[boolean resetFields, String text]:long",
             "org.joda.time.format.DateTimeParserBucket:DateTimeParserBucket:[long instantLocal, Chronology chrono, Locale locale]:null",
+            "org.joda.time.format.DateTimeParserBucket:computeMillis:[boolean resetFields, String text]:long",
             "org.joda.time.format.DateTimeParserBucket:compareReverse:[DurationField a, DurationField b]:int",
+            "org.joda.time.format.DateTimeParserBucket:DateTimeParserBucket:[long instantLocal, Chronology chrono, Locale locale, Integer pivotYear]:null",
+            "org.joda.time.format.DateTimeParserBucket:getPivotYear:[]:Integer",
             "org.joda.time.format.DateTimeParserBucket:DateTimeParserBucket:[long instantLocal, Chronology chrono, Locale locale, Integer pivotYear, int defaultYear]:null"
           ],
           "num": 6
@@ -527,6 +527,14 @@
     {
       "test_class": "org.joda.time.format.TestDateTimeFormatter",
       "test_function": "testParseInto_monthDay_feb29_newYork_startOfYear",
+      "assertion_line": "932",
+      "exception": "org.joda.time.IllegalFieldValueException",
+      "message": "Cannot parse \"2 29\": Value 29 for dayOfMonth must be in the range [1,28]"
+    },
+    {
+      "test_class": "org.joda.time.format.TestDateTimeFormatter",
+      "test_function": "testParseInto_monthDay_feb29_tokyo_endOfYear",
+      "assertion_line": "960",
       "exception": "org.joda.time.IllegalFieldValueException",
       "message": "Cannot parse \"2 29\": Value 29 for dayOfMonth must be in the range [1,28]"
     }

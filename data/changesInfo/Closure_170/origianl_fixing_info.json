@@ -93,6 +93,7 @@
     {
       "test_class": "com.google.javascript.jscomp.FlowSensitiveInlineVariablesTest",
       "test_function": "testVarAssinInsideHookIssue965",
+      "assertion_line": "578",
       "exception": "junit.framework.AssertionFailedError",
       "message": "Expected: function _func(){var i\u003d0;return 1?i\u003d5:0,i}\nResult: function _func(){var i;return 1?i\u003d5:0,0}"
     }
@@ -158,16 +159,16 @@
       "changed_functions": [
         {
           "qualified_names": [
-            "com.google.javascript.jscomp.FlowSensitiveInlineVariables\\$Candidate:canInline:[final Scope scope]:boolean",
+            "com.google.javascript.jscomp.FlowSensitiveInlineVariables:checkLeftOf:[Node n, Node expressionRoot, Predicate\u003cNode\u003e predicate]:boolean",
             "com.google.javascript.jscomp.FlowSensitiveInlineVariables\\$Candidate:getNumUseInUseCfgNode:[Node n]:void",
-            "com.google.javascript.jscomp.FlowSensitiveInlineVariables:checkLeftOf:[Node n, Node expressionRoot, Predicate\u003cNode\u003e predicate]:boolean"
+            "com.google.javascript.jscomp.FlowSensitiveInlineVariables\\$Candidate:canInline:[final Scope scope]:boolean"
           ],
           "num": 3
         },
         {
           "qualified_names": [
-            "com.google.javascript.jscomp.FlowSensitiveInlineVariables\\$Candidate:getNumUseInUseCfgNode:[final Node cfgNode]:void",
             "com.google.javascript.jscomp.FlowSensitiveInlineVariables\\$Candidate:canInline:[final Scope scope]:boolean",
+            "com.google.javascript.jscomp.FlowSensitiveInlineVariables\\$Candidate:getNumUseInUseCfgNode:[final Node cfgNode]:void",
             "com.google.javascript.jscomp.FlowSensitiveInlineVariables:checkLeftOf:[Node n, Node expressionRoot, Predicate\u003cNode\u003e predicate]:boolean"
           ],
           "num": 3

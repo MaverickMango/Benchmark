@@ -33,11 +33,11 @@
       "changed_functions": [
         {
           "qualified_names": [
-            "org.apache.commons.math.fraction.Fraction:subtract:[Fraction rhs]:Fraction",
             "org.apache.commons.math.fraction.Fraction:add:[Fraction rhs]:Fraction",
             "org.apache.commons.math.fraction.Fraction:negate:[]:Fraction",
-            "org.apache.commons.math.fraction.Fraction:divide:[Fraction rhs]:Fraction",
             "org.apache.commons.math.fraction.Fraction:compareTo:[Object object]:int",
+            "org.apache.commons.math.fraction.Fraction:subtract:[Fraction rhs]:Fraction",
+            "org.apache.commons.math.fraction.Fraction:divide:[Fraction rhs]:Fraction",
             "org.apache.commons.math.fraction.Fraction:Fraction:[int num, int den]:null",
             "org.apache.commons.math.fraction.Fraction:multiply:[Fraction rhs]:Fraction"
           ],
@@ -45,15 +45,15 @@
         },
         {
           "qualified_names": [
-            "org.apache.commons.math.fraction.Fraction:getReducedFraction:[int numerator, int denominator]:Fraction",
-            "org.apache.commons.math.fraction.Fraction:Fraction:[int num, int den]:null",
-            "org.apache.commons.math.fraction.Fraction:subtract:[Fraction fraction]:Fraction",
-            "org.apache.commons.math.fraction.Fraction:add:[Fraction fraction]:Fraction",
-            "org.apache.commons.math.fraction.Fraction:multiply:[Fraction fraction]:Fraction",
             "org.apache.commons.math.fraction.Fraction:negate:[]:Fraction",
+            "org.apache.commons.math.fraction.Fraction:subtract:[Fraction fraction]:Fraction",
+            "org.apache.commons.math.fraction.Fraction:divide:[Fraction fraction]:Fraction",
+            "org.apache.commons.math.fraction.Fraction:getReducedFraction:[int numerator, int denominator]:Fraction",
             "org.apache.commons.math.fraction.Fraction:addSub:[Fraction fraction, boolean isAdd]:Fraction",
+            "org.apache.commons.math.fraction.Fraction:Fraction:[int num, int den]:null",
             "org.apache.commons.math.fraction.Fraction:doubleValue:[]:double",
-            "org.apache.commons.math.fraction.Fraction:divide:[Fraction fraction]:Fraction"
+            "org.apache.commons.math.fraction.Fraction:add:[Fraction fraction]:Fraction",
+            "org.apache.commons.math.fraction.Fraction:multiply:[Fraction fraction]:Fraction"
           ],
           "num": 9
         }
@@ -971,6 +971,7 @@
     {
       "test_class": "org.apache.commons.math.util.MathUtilsTest",
       "test_function": "testGcd",
+      "assertion_line": "295",
       "exception": "junit.framework.AssertionFailedError",
       "message": "expected:\u003c98304\u003e but was:\u003c3440640\u003e"
     }
@@ -1015,6 +1016,11 @@
         {
           "type": "insert-node",
           "from": "",
+          "to": "InfixExpression [13873,13893]"
+        },
+        {
+          "type": "insert-node",
+          "from": "",
           "to": "ParenthesizedExpression [13873,13881]"
         },
         {
@@ -1028,9 +1034,9 @@
           "to": "ParenthesizedExpression [13885,13893]"
         },
         {
-          "type": "insert-node",
+          "type": "move-tree",
           "from": "",
-          "to": "InfixExpression [13874,13880]"
+          "to": ""
         },
         {
           "type": "insert-node",
@@ -1050,22 +1056,12 @@
         {
           "type": "insert-node",
           "from": "",
-          "to": "NumberLiteral: 0 [13879,13880]"
-        },
-        {
-          "type": "move-tree",
-          "from": "",
-          "to": ""
+          "to": "INFIX_EXPRESSION_OPERATOR: \u003d\u003d [13888,13890]"
         },
         {
           "type": "insert-node",
           "from": "",
-          "to": "INFIX_EXPRESSION_OPERATOR: \u003d\u003d [13888,13890]"
-        },
-        {
-          "type": "move-tree",
-          "from": "",
-          "to": ""
+          "to": "NumberLiteral: 0 [13891,13892]"
         },
         {
           "type": "delete-node",

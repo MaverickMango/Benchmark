@@ -48,6 +48,7 @@
     {
       "test_class": "org.apache.commons.codec.language.DoubleMetaphone2Test",
       "test_function": "testDoubleMetaphoneAlternate",
+      "assertion_line": "84",
       "exception": "junit.framework.ComparisonFailure",
       "message": "Test [19]\u003dAngier expected:\u003cAN[J]R\u003e but was:\u003cAN[K]R\u003e"
     }
@@ -62,19 +63,19 @@
       "changed_functions": [
         {
           "qualified_names": [
-            "org.apache.commons.codec.language.DoubleMetaphone:handleL:[String value, DoubleMetaphoneResult result, int index]:int",
             "org.apache.commons.codec.language.DoubleMetaphone:conditionL0:[String value, int index]:boolean",
             "org.apache.commons.codec.language.DoubleMetaphone:contains:[String value, int start, int length, String[] criteria]:boolean",
-            "org.apache.commons.codec.language.DoubleMetaphone:handleG:[String value, DoubleMetaphoneResult result, int index, boolean slavoGermanic]:int"
+            "org.apache.commons.codec.language.DoubleMetaphone:handleG:[String value, DoubleMetaphoneResult result, int index, boolean slavoGermanic]:int",
+            "org.apache.commons.codec.language.DoubleMetaphone:handleL:[String value, DoubleMetaphoneResult result, int index]:int"
           ],
           "num": 4
         },
         {
           "qualified_names": [
+            "org.apache.commons.codec.language.DoubleMetaphone:handleL:[String value, DoubleMetaphoneResult result, int index]:int",
             "org.apache.commons.codec.language.DoubleMetaphone:conditionL0:[String value, int index]:boolean",
-            "org.apache.commons.codec.language.DoubleMetaphone:contains:[String value, int start, int length, String[] criteria]:boolean",
             "org.apache.commons.codec.language.DoubleMetaphone:handleG:[String value, DoubleMetaphoneResult result, int index, boolean slavoGermanic]:int",
-            "org.apache.commons.codec.language.DoubleMetaphone:handleL:[String value, DoubleMetaphoneResult result, int index]:int"
+            "org.apache.commons.codec.language.DoubleMetaphone:contains:[String value, int start, int length, String[] criteria]:boolean"
           ],
           "num": 4
         }

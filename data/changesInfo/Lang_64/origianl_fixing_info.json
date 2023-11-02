@@ -213,7 +213,8 @@
     {
       "test_class": "org.apache.commons.lang.enums.ValuedEnumTest",
       "test_function": "testCompareTo_otherEnumType",
-      "exception": "junit.framework.AssertionFailedErro",
+      "assertion_line": "108",
+      "exception": "junit.framework.AssertionFailedError",
       "message": ""
     }
   ],
@@ -234,8 +235,8 @@
         {
           "qualified_names": [
             "org.apache.commons.lang.enums.ValuedEnum:toString:[]:String",
-            "org.apache.commons.lang.enums.ValuedEnum:compareTo:[Object other]:int",
-            "org.apache.commons.lang.enums.ValuedEnum:getValueInOtherClassLoader:[Object other]:int"
+            "org.apache.commons.lang.enums.ValuedEnum:getValueInOtherClassLoader:[Object other]:int",
+            "org.apache.commons.lang.enums.ValuedEnum:compareTo:[Object other]:int"
           ],
           "num": 3
         }

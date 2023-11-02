@@ -160,17 +160,17 @@
       "changed_functions": [
         {
           "qualified_names": [
-            "com.google.javascript.jscomp.RhinoErrorReporter:RhinoErrorReporter:[AbstractCompiler compiler]:null",
             "com.google.javascript.jscomp.RhinoErrorReporter:makeError:[String message, String sourceName, int line, int lineOffset, CheckLevel defaultLevel]:JSError",
-            "com.google.javascript.jscomp.RhinoErrorReporter:replacePlaceHolders:[String s]:String"
+            "com.google.javascript.jscomp.RhinoErrorReporter:replacePlaceHolders:[String s]:String",
+            "com.google.javascript.jscomp.RhinoErrorReporter:RhinoErrorReporter:[AbstractCompiler compiler]:null"
           ],
           "num": 3
         },
         {
           "qualified_names": [
-            "com.google.javascript.jscomp.RhinoErrorReporter:replacePlaceHolders:[String s]:Pattern",
             "com.google.javascript.jscomp.RhinoErrorReporter:RhinoErrorReporter:[AbstractCompiler compiler]:null",
-            "com.google.javascript.jscomp.RhinoErrorReporter:makeError:[String message, String sourceName, int line, int lineOffset, CheckLevel defaultLevel]:JSError"
+            "com.google.javascript.jscomp.RhinoErrorReporter:makeError:[String message, String sourceName, int line, int lineOffset, CheckLevel defaultLevel]:JSError",
+            "com.google.javascript.jscomp.RhinoErrorReporter:replacePlaceHolders:[String s]:Pattern"
           ],
           "num": 3
         }
@@ -350,25 +350,25 @@
         {
           "qualified_names": [
             "com.google.javascript.jscomp.parsing.JsDocInfoParser\\$ErrorReporterParser:addWarning:[String messageId, String messageArg, int lineno, int charno]:void",
-            "com.google.javascript.jscomp.parsing.JsDocInfoParser:parseModifiesTag:[JsDocToken token]:JsDocToken",
             "com.google.javascript.jscomp.parsing.JsDocInfoParser:parseTypeString:[String typeString]:Node",
-            "com.google.javascript.jscomp.parsing.JsDocInfoParser:parse:[]:boolean",
             "com.google.javascript.jscomp.parsing.JsDocInfoParser:reportTypeSyntaxWarning:[String warning]:Node",
+            "com.google.javascript.jscomp.parsing.JsDocInfoParser:parseModifiesTag:[JsDocToken token]:JsDocToken",
+            "com.google.javascript.jscomp.parsing.JsDocInfoParser:parse:[]:boolean",
             "com.google.javascript.jscomp.parsing.JsDocInfoParser:parseSuppressTag:[JsDocToken token]:JsDocToken"
           ],
           "num": 6
         },
         {
           "qualified_names": [
-            "com.google.javascript.jscomp.parsing.JsDocInfoParser\\$ErrorReporterParser:addTypeWarning:[String messageId, int lineno, int charno]:void",
-            "com.google.javascript.jscomp.parsing.JsDocInfoParser:reportTypeSyntaxWarning:[String warning]:Node",
-            "com.google.javascript.jscomp.parsing.JsDocInfoParser:parseTypeString:[String typeString]:Node",
+            "com.google.javascript.jscomp.parsing.JsDocInfoParser:parseSuppressTag:[JsDocToken token]:JsDocToken",
             "com.google.javascript.jscomp.parsing.JsDocInfoParser:parseModifiesTag:[JsDocToken token]:JsDocToken",
-            "com.google.javascript.jscomp.parsing.JsDocInfoParser\\$ErrorReporterParser:addParserWarning:[String messageId, int lineno, int charno]:void",
-            "com.google.javascript.jscomp.parsing.JsDocInfoParser\\$ErrorReporterParser:addParserWarning:[String messageId, String messageArg, int lineno, int charno]:void",
             "com.google.javascript.jscomp.parsing.JsDocInfoParser\\$ErrorReporterParser:addTypeWarning:[String messageId, String messageArg, int lineno, int charno]:void",
+            "com.google.javascript.jscomp.parsing.JsDocInfoParser\\$ErrorReporterParser:addParserWarning:[String messageId, String messageArg, int lineno, int charno]:void",
+            "com.google.javascript.jscomp.parsing.JsDocInfoParser\\$ErrorReporterParser:addTypeWarning:[String messageId, int lineno, int charno]:void",
             "com.google.javascript.jscomp.parsing.JsDocInfoParser:parse:[]:boolean",
-            "com.google.javascript.jscomp.parsing.JsDocInfoParser:parseSuppressTag:[JsDocToken token]:JsDocToken"
+            "com.google.javascript.jscomp.parsing.JsDocInfoParser\\$ErrorReporterParser:addParserWarning:[String messageId, int lineno, int charno]:void",
+            "com.google.javascript.jscomp.parsing.JsDocInfoParser:reportTypeSyntaxWarning:[String warning]:Node",
+            "com.google.javascript.jscomp.parsing.JsDocInfoParser:parseTypeString:[String typeString]:Node"
           ],
           "num": 9
         }
@@ -1030,22 +1030,22 @@
       "changed_functions": [
         {
           "qualified_names": [
-            "com.google.javascript.rhino.jstype.NamedType:handleUnresolvedType:[ErrorReporter t, boolean ignoreForwardReferencedTypes]:void",
-            "com.google.javascript.rhino.jstype.NamedType:lookupViaProperties:[ErrorReporter t, StaticScope\u003cJSType\u003e enclosing]:JSType",
             "com.google.javascript.rhino.jstype.NamedType:isEquivalentTo:[JSType that]:boolean",
-            "com.google.javascript.rhino.jstype.NamedType:NamedType:[JSTypeRegistry registry, String reference, String sourceName, int lineno, int charno]:null"
+            "com.google.javascript.rhino.jstype.NamedType:handleUnresolvedType:[ErrorReporter t, boolean ignoreForwardReferencedTypes]:void",
+            "com.google.javascript.rhino.jstype.NamedType:NamedType:[JSTypeRegistry registry, String reference, String sourceName, int lineno, int charno]:null",
+            "com.google.javascript.rhino.jstype.NamedType:lookupViaProperties:[ErrorReporter t, StaticScope\u003cJSType\u003e enclosing]:JSType"
           ],
           "num": 4
         },
         {
           "qualified_names": [
-            "com.google.javascript.rhino.jstype.NamedType:handleUnresolvedType:[ErrorReporter t, boolean ignoreForwardReferencedTypes]:void",
-            "com.google.javascript.rhino.jstype.NamedType:NamedType:[JSTypeRegistry registry, String reference, String sourceName, int lineno, int charno]:null",
-            "com.google.javascript.rhino.jstype.NamedType\\$PropertyContinuation:PropertyContinuation:[String propertyName, JSType type, boolean inferred, boolean inExterns, Node propertyNode]:null",
+            "com.google.javascript.rhino.jstype.NamedType:defineProperty:[String propertyName, JSType type, boolean inferred, boolean inExterns, Node propertyNode]:boolean",
             "com.google.javascript.rhino.jstype.NamedType:finishPropertyContinuations:[]:void",
             "com.google.javascript.rhino.jstype.NamedType\\$PropertyContinuation:commit:[ObjectType target]:void",
-            "com.google.javascript.rhino.jstype.NamedType:defineProperty:[String propertyName, JSType type, boolean inferred, boolean inExterns, Node propertyNode]:boolean",
-            "com.google.javascript.rhino.jstype.NamedType:resolveInternal:[ErrorReporter t, StaticScope\u003cJSType\u003e enclosing]:JSType"
+            "com.google.javascript.rhino.jstype.NamedType:NamedType:[JSTypeRegistry registry, String reference, String sourceName, int lineno, int charno]:null",
+            "com.google.javascript.rhino.jstype.NamedType\\$PropertyContinuation:PropertyContinuation:[String propertyName, JSType type, boolean inferred, boolean inExterns, Node propertyNode]:null",
+            "com.google.javascript.rhino.jstype.NamedType:resolveInternal:[ErrorReporter t, StaticScope\u003cJSType\u003e enclosing]:JSType",
+            "com.google.javascript.rhino.jstype.NamedType:handleUnresolvedType:[ErrorReporter t, boolean ignoreForwardReferencedTypes]:void"
           ],
           "num": 7
         }
@@ -1191,6 +1191,7 @@
     {
       "test_class": "com.google.javascript.jscomp.parsing.JsDocInfoParserTest",
       "test_function": "testIssue477",
+      "assertion_line": "509",
       "exception": "junit.framework.AssertionFailedError",
       "message": "extra warning: Unexpected end of file"
     }
@@ -1205,16 +1206,16 @@
       "changed_functions": [
         {
           "qualified_names": [
-            "com.google.javascript.jscomp.parsing.JsDocInfoParser:parseBasicTypeExpression:[JsDocToken token]:Node",
+            "com.google.javascript.jscomp.parsing.JsDocInfoParser:parseFunctionType:[JsDocToken token]:Node",
             "com.google.javascript.jscomp.parsing.JsDocInfoParser:parse:[]:boolean",
-            "com.google.javascript.jscomp.parsing.JsDocInfoParser:parseFunctionType:[JsDocToken token]:Node"
+            "com.google.javascript.jscomp.parsing.JsDocInfoParser:parseBasicTypeExpression:[JsDocToken token]:Node"
           ],
           "num": 3
         },
         {
           "qualified_names": [
-            "com.google.javascript.jscomp.parsing.JsDocInfoParser:parse:[]:boolean",
             "com.google.javascript.jscomp.parsing.JsDocInfoParser:parseFunctionType:[JsDocToken token]:Node",
+            "com.google.javascript.jscomp.parsing.JsDocInfoParser:parse:[]:boolean",
             "com.google.javascript.jscomp.parsing.JsDocInfoParser:parseBasicTypeExpression:[JsDocToken token]:Node"
           ],
           "num": 3

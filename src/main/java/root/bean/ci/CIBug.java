@@ -1,6 +1,7 @@
 package root.bean.ci;
 
 import com.google.gson.annotations.SerializedName;
+import org.eclipse.jgit.lib.Repository;
 
 import java.util.List;
 
@@ -194,5 +195,13 @@ public class CIBug {
 
     public void setPatchChangedMths(NameList patchChangedMths) {
         this.patchChangedMths = patchChangedMths;
+    }
+
+    public Repository getGitRepository() {
+        return null;
+    }
+
+    public boolean compile() {
+        return false;
     }
 }

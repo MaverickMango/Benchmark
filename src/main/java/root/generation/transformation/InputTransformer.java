@@ -6,6 +6,8 @@ import com.github.javaparser.ast.expr.*;
 import com.github.javaparser.quality.NotNull;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import root.bean.BugRepository;
+import root.bean.ci.CIBug;
 import root.generation.entity.Input;
 import root.generation.entity.Skeleton;
 import root.generation.helper.Helper;
@@ -19,8 +21,10 @@ public class InputTransformer {
     private final Logger logger = LoggerFactory.getLogger(InputTransformer.class);
 
     Map<String, Skeleton> skeletons;//<absolutePath, Skeleton>
+    BugRepository bugRepository;
 
-    public InputTransformer() {
+    public InputTransformer(BugRepository bugRepository) {
+        this.bugRepository = bugRepository;
         this.skeletons = new HashMap<>();
     }
 
@@ -31,7 +35,7 @@ public class InputTransformer {
         }
         logger.info("New input '" + value.toString() + "' has been transformed for " + oldInput);
         Expression basicExpr = oldInput.getBasicExpr();
-        Expression newInputExpr = transform(basicExpr, value);
+        Expression newInputExpr = (Expression) value;//transform(basicExpr, value);
         oldInput.setBasicExprTransformed(newInputExpr);
         return oldInput;
     }
@@ -65,6 +69,9 @@ public class InputTransformer {
             if (inputType.equals(StringLiteralExpr.class)) {
                 newInputExpr = new StringLiteralExpr();
                 ((StringLiteralExpr) newInputExpr).setString((String) value);
+            }
+            if (inputType.equals(UnaryExpr.class)) {
+                newInputExpr = (UnaryExpr) value;
             }
         } catch (ClassCastException e) {
             logger.error("Error casting while generate new input by argument '" + value + "'! " + e.getMessage());
@@ -101,7 +108,7 @@ public class InputTransformer {
         List<Input> collect = skeleton.getInputs().stream().filter(input -> !input.isCompleted()).collect(Collectors.toList());
         if (!collect.isEmpty()) {
             for (Input newInput :collect) {
-                skeleton.getOracle(newInput);//需要oracle的语句则需要先执行一遍
+                skeleton.getOracle(bugRepository, newInput);//需要oracle的语句则需要先执行一遍
             }
         }
 
@@ -118,7 +125,7 @@ public class InputTransformer {
         skeleton.applyTransform(newInput);
         CompilationUnit newUnit;
         if (!newInput.isCompleted()) {
-            newUnit = skeleton.getOracle(newInput);//需要oracle的语句则需要先执行一遍
+            newUnit = skeleton.getOracle(bugRepository, newInput);//需要oracle的语句则需要先执行一遍
         } else {
             MethodDeclaration methodDeclaration = skeleton.addStatementAtLast(newInput.getMethodCallExpr());//对于不需要oracle的语句，直接根据input更新method
             newUnit = skeleton.getTransformedCompilationUnit(methodDeclaration);//向原有类添加新的测试函数

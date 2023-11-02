@@ -48,6 +48,7 @@
     {
       "test_class": "org.apache.commons.lang.text.StrBuilderTest",
       "test_function": "testLang295",
+      "assertion_line": "1748",
       "exception": "junit.framework.AssertionFailedError",
       "message": "The contains(char) method is looking beyond the end of the string"
     }
@@ -69,8 +70,8 @@
         },
         {
           "qualified_names": [
-            "org.apache.commons.lang.text.StrBuilder:contains:[char ch]:boolean",
-            "org.apache.commons.lang.text.StrBuilder:indexOf:[char ch, int startIndex]:int"
+            "org.apache.commons.lang.text.StrBuilder:indexOf:[char ch, int startIndex]:int",
+            "org.apache.commons.lang.text.StrBuilder:contains:[char ch]:boolean"
           ],
           "num": 2
         }

@@ -105,20 +105,20 @@
       "changed_functions": [
         {
           "qualified_names": [
+            "com.google.javascript.jscomp.Compiler:toSource:[Node n]:String",
             "com.google.javascript.jscomp.Compiler:isIdeMode:[]:boolean",
             "com.google.javascript.jscomp.Compiler:initOptions:[CompilerOptions options]:void",
-            "com.google.javascript.jscomp.Compiler:reportCodeChange:[]:void",
-            "com.google.javascript.jscomp.Compiler:toSource:[Node n]:String"
+            "com.google.javascript.jscomp.Compiler:reportCodeChange:[]:void"
           ],
           "num": 4
         },
         {
           "qualified_names": [
+            "com.google.javascript.jscomp.Compiler:languageMode:[]:LanguageMode",
+            "com.google.javascript.jscomp.Compiler:getParserConfig:[]:Config",
             "com.google.javascript.jscomp.Compiler:toSource:[Node n, SourceMap sourceMap]:String",
             "com.google.javascript.jscomp.Compiler:initOptions:[CompilerOptions options]:void",
-            "com.google.javascript.jscomp.Compiler:getParserConfig:[]:Config",
-            "com.google.javascript.jscomp.Compiler:acceptEcmaScript5:[]:boolean",
-            "com.google.javascript.jscomp.Compiler:languageMode:[]:LanguageMode"
+            "com.google.javascript.jscomp.Compiler:acceptEcmaScript5:[]:boolean"
           ],
           "num": 5
         }
@@ -207,8 +207,8 @@
       "changed_functions": [
         {
           "qualified_names": [
-            "com.google.javascript.jscomp.DefaultPassConfig:getOptimizations:[]:List\u003cPassFactory\u003e",
             "com.google.javascript.jscomp.DefaultPassConfig:getMainOptimizationLoop:[]:List\u003cPassFactory\u003e",
+            "com.google.javascript.jscomp.DefaultPassConfig:getOptimizations:[]:List\u003cPassFactory\u003e",
             "com.google.javascript.jscomp.DefaultPassConfig:getChecks:[]:List\u003cPassFactory\u003e"
           ],
           "num": 3
@@ -529,8 +529,8 @@
       "qualified_names": [
         "com.google.javascript.jscomp.CheckGlobalThis:CheckGlobalThis:[AbstractCompiler compiler, CheckLevel level]:null",
         "com.google.javascript.jscomp.Compiler:isIdeMode:[]:boolean",
-        "com.google.javascript.jscomp.Compiler:reportCodeChange:[]:void",
-        "com.google.javascript.jscomp.Compiler:toSource:[Node n]:String"
+        "com.google.javascript.jscomp.Compiler:toSource:[Node n]:String",
+        "com.google.javascript.jscomp.Compiler:reportCodeChange:[]:void"
       ],
       "num": 4
     }
@@ -539,6 +539,7 @@
     {
       "test_class": "com.google.javascript.jscomp.CommandLineRunnerTest",
       "test_function": "testCheckGlobalThisOff",
+      "assertion_line": "160",
       "exception": "junit.framework.AssertionFailedError",
       "message": "Expected no warnings or errors"
     }

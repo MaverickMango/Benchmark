@@ -33,16 +33,16 @@
       "changed_functions": [
         {
           "qualified_names": [
-            "org.apache.commons.compress.compressors.lz4.FramedLZ4CompressorInputStream:verifyContentChecksum:[]:void",
             "org.apache.commons.compress.compressors.lz4.FramedLZ4CompressorInputStream:nextBlock:[]:void",
-            "org.apache.commons.compress.compressors.lz4.FramedLZ4CompressorInputStream:maybeFinishCurrentBlock:[]:void"
+            "org.apache.commons.compress.compressors.lz4.FramedLZ4CompressorInputStream:maybeFinishCurrentBlock:[]:void",
+            "org.apache.commons.compress.compressors.lz4.FramedLZ4CompressorInputStream:verifyContentChecksum:[]:void"
           ],
           "num": 3
         },
         {
           "qualified_names": [
-            "org.apache.commons.compress.compressors.lz4.FramedLZ4CompressorInputStream:nextBlock:[]:void",
             "org.apache.commons.compress.compressors.lz4.FramedLZ4CompressorInputStream:verifyContentChecksum:[]:void",
+            "org.apache.commons.compress.compressors.lz4.FramedLZ4CompressorInputStream:nextBlock:[]:void",
             "org.apache.commons.compress.compressors.lz4.FramedLZ4CompressorInputStream:maybeFinishCurrentBlock:[]:void",
             "org.apache.commons.compress.compressors.lz4.FramedLZ4CompressorInputStream:verifyChecksum:[XXHash32 hash, String kind]:void"
           ],

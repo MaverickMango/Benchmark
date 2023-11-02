@@ -463,6 +463,7 @@
     {
       "test_class": "org.jsoup.nodes.EntitiesTest",
       "test_function": "unescape",
+      "assertion_line": "27",
       "exception": "junit.framework.AssertionFailedError",
       "message": "expected:\u003c...\u003c\u003e Å π π 新 there \u0026! [¾]\u003e but was:\u003c...\u003c\u003e Å π π 新 there \u0026! [\u0026frac34;]\u003e"
     }

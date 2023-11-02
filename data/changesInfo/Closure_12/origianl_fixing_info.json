@@ -93,6 +93,7 @@
     {
       "test_class": "com.google.javascript.jscomp.FlowSensitiveInlineVariablesTest",
       "test_function": "testIssue794b",
+      "assertion_line": "513",
       "exception": "junit.framework.AssertionFailedError",
       "message": "Expected: function _func(){var x\u003d1;try{x\u003dx+someFunction()}catch(e){}x\u003dx+1;try{x\u003dx+someFunction()}catch(e$$1){}return x}\nResult: function _func(){var x;try{x\u003d1+someFunction()}catch(e){}try{x\u003dx+1+someFunction()}catch(e$$1){}return x}"
     }
@@ -113,8 +114,8 @@
         },
         {
           "qualified_names": [
-            "com.google.javascript.jscomp.MaybeReachingVariableUse:hasExceptionHandler:[Node cfgNode]:boolean",
-            "com.google.javascript.jscomp.MaybeReachingVariableUse:flowThrough:[Node n, ReachingUses input]:ReachingUses"
+            "com.google.javascript.jscomp.MaybeReachingVariableUse:flowThrough:[Node n, ReachingUses input]:ReachingUses",
+            "com.google.javascript.jscomp.MaybeReachingVariableUse:hasExceptionHandler:[Node cfgNode]:boolean"
           ],
           "num": 2
         }

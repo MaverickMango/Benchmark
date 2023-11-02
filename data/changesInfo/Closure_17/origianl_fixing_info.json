@@ -33,9 +33,9 @@
       "changed_functions": [
         {
           "qualified_names": [
-            "com.google.javascript.jscomp.TypedScopeCreator\\$AbstractScopeBuilder:getDeclaredType:[String sourceName, JSDocInfo info, Node lValue, @Nullable Node rValue]:JSType",
+            "com.google.javascript.jscomp.TypedScopeCreator\\$AbstractScopeBuilder:defineObjectLiteral:[NodeTraversal t, Node objectLit]:void",
             "com.google.javascript.jscomp.TypedScopeCreator\\$AbstractScopeBuilder:maybeDeclareQualifiedName:[NodeTraversal t, JSDocInfo info, Node n, Node parent, Node rhsValue]:void",
-            "com.google.javascript.jscomp.TypedScopeCreator\\$AbstractScopeBuilder:defineObjectLiteral:[NodeTraversal t, Node objectLit]:void"
+            "com.google.javascript.jscomp.TypedScopeCreator\\$AbstractScopeBuilder:getDeclaredType:[String sourceName, JSDocInfo info, Node lValue, @Nullable Node rValue]:JSType"
           ],
           "num": 3
         },
@@ -252,6 +252,7 @@
     {
       "test_class": "com.google.javascript.jscomp.TypeCheckTest",
       "test_function": "testIssue688",
+      "assertion_line": "5906",
       "exception": "junit.framework.ComparisonFailure",
       "message": "expected:\u003cin[consistent return type"
     }

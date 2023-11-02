@@ -34,23 +34,23 @@
         {
           "qualified_names": [
             "org.apache.commons.lang.LocaleUtils:toLocale:[String str]:Locale",
-            "org.apache.commons.lang.LocaleUtils:localeLookupList:[Locale locale, Locale defaultLocale]:List",
-            "org.apache.commons.lang.LocaleUtils:countriesByLanguage:[String languageCode]:Set",
             "org.apache.commons.lang.LocaleUtils:localeLookupList:[Locale locale]:List",
-            "org.apache.commons.lang.LocaleUtils:languagesByCountry:[String countryCode]:Set"
+            "org.apache.commons.lang.LocaleUtils:languagesByCountry:[String countryCode]:Set",
+            "org.apache.commons.lang.LocaleUtils:localeLookupList:[Locale locale, Locale defaultLocale]:List",
+            "org.apache.commons.lang.LocaleUtils:countriesByLanguage:[String languageCode]:Set"
           ],
           "num": 5
         },
         {
           "qualified_names": [
-            "org.apache.commons.lang.LocaleUtils:localeLookupList:[Locale locale]:List",
             "org.apache.commons.lang.LocaleUtils:localeLookupList:[Locale locale, Locale defaultLocale]:List",
+            "org.apache.commons.lang.LocaleUtils:availableLocaleList:[]:List",
+            "org.apache.commons.lang.LocaleUtils:languagesByCountry:[String countryCode]:List",
+            "org.apache.commons.lang.LocaleUtils:toLocale:[String str]:Locale",
             "org.apache.commons.lang.LocaleUtils:availableLocaleSet:[]:Set",
             "org.apache.commons.lang.LocaleUtils:countriesByLanguage:[String languageCode]:List",
-            "org.apache.commons.lang.LocaleUtils:availableLocaleList:[]:List",
-            "org.apache.commons.lang.LocaleUtils:toLocale:[String str]:Locale",
-            "org.apache.commons.lang.LocaleUtils:languagesByCountry:[String countryCode]:List",
-            "org.apache.commons.lang.LocaleUtils:isAvailableLocale:[Locale locale]:boolean"
+            "org.apache.commons.lang.LocaleUtils:isAvailableLocale:[Locale locale]:boolean",
+            "org.apache.commons.lang.LocaleUtils:localeLookupList:[Locale locale]:List"
           ],
           "num": 8
         }
@@ -1167,6 +1167,7 @@
     {
       "test_class": "org.apache.commons.lang.LocaleUtilsTest",
       "test_function": "testLang328",
+      "assertion_line": "505",
       "exception": "java.lang.IllegalArgumentException",
       "message": "Invalid locale format: fr__POSIX"
     }

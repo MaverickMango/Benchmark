@@ -33,16 +33,16 @@
       "changed_functions": [
         {
           "qualified_names": [
-            "org.jsoup.DataUtil:readInputStream:[InputStream inStream, String charsetName]:String",
-            "org.jsoup.DataUtil:load:[URL url, int timeoutMillis]:String"
+            "org.jsoup.DataUtil:load:[URL url, int timeoutMillis]:String",
+            "org.jsoup.DataUtil:readInputStream:[InputStream inStream, String charsetName]:String"
           ],
           "num": 2
         },
         {
           "qualified_names": [
             "org.jsoup.DataUtil:load:[URL url, int timeoutMillis]:String",
-            "org.jsoup.DataUtil:getCharsetFromContentType:[String contentType]:String",
-            "org.jsoup.DataUtil:readInputStream:[InputStream inStream, String charsetName]:String"
+            "org.jsoup.DataUtil:readInputStream:[InputStream inStream, String charsetName]:String",
+            "org.jsoup.DataUtil:getCharsetFromContentType:[String contentType]:String"
           ],
           "num": 3
         }
@@ -309,8 +309,8 @@
         },
         {
           "qualified_names": [
-            "org.jsoup.Jsoup:parse:[File in, String charsetName]:Document",
             "org.jsoup.Jsoup:parse:[File in, String charsetName, String baseUri]:Document",
+            "org.jsoup.Jsoup:parse:[File in, String charsetName]:Document",
             "org.jsoup.Jsoup:parse:[URL url, int timeoutMillis]:Document"
           ],
           "num": 3
@@ -426,6 +426,14 @@
     {
       "test_class": "org.jsoup.helper.DataUtilTest",
       "test_function": "testCharset",
+      "assertion_line": "15",
+      "exception": "junit.framework.AssertionFailedError",
+      "message": "expected:\u003c[utf]-8\u003e but was:\u003c[UTF]-8\u003e"
+    },
+    {
+      "test_class": "org.jsoup.helper.DataUtilTest",
+      "test_function": "testQuotedCharset",
+      "assertion_line": "24",
       "exception": "junit.framework.AssertionFailedError",
       "message": "expected:\u003c[utf]-8\u003e but was:\u003c[UTF]-8\u003e"
     }

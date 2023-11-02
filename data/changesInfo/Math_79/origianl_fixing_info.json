@@ -37,12 +37,12 @@
         },
         {
           "qualified_names": [
-            "org.apache.commons.math.util.MathUtils:distance1:[double[] p1, double[] p2]:double",
             "org.apache.commons.math.util.MathUtils:distanceInf:[double[] p1, double[] p2]:double",
-            "org.apache.commons.math.util.MathUtils:distance1:[int[] p1, int[] p2]:int",
             "org.apache.commons.math.util.MathUtils:distance:[double[] p1, double[] p2]:double",
+            "org.apache.commons.math.util.MathUtils:distanceInf:[int[] p1, int[] p2]:int",
             "org.apache.commons.math.util.MathUtils:distance:[int[] p1, int[] p2]:double",
-            "org.apache.commons.math.util.MathUtils:distanceInf:[int[] p1, int[] p2]:int"
+            "org.apache.commons.math.util.MathUtils:distance1:[double[] p1, double[] p2]:double",
+            "org.apache.commons.math.util.MathUtils:distance1:[int[] p1, int[] p2]:int"
           ],
           "num": 6
         }
@@ -217,7 +217,8 @@
     {
       "test_class": "org.apache.commons.math.stat.clustering.KMeansPlusPlusClustererTest",
       "test_function": "testPerformClusterAnalysisDegenerate",
-      "exception": "java.lang.NullPointerExceptio",
+      "assertion_line": "109",
+      "exception": "java.lang.NullPointerException",
       "message": ""
     }
   ],

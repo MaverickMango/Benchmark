@@ -41,9 +41,9 @@
         },
         {
           "qualified_names": [
-            "org.apache.commons.math.complex.Complex:divide:[double divisor]:Complex",
+            "org.apache.commons.math.complex.Complex:divide:[Complex divisor]:Complex",
             "org.apache.commons.math.complex.Complex:Complex:[double real, double imaginary]:null",
-            "org.apache.commons.math.complex.Complex:divide:[Complex divisor]:Complex"
+            "org.apache.commons.math.complex.Complex:divide:[double divisor]:Complex"
           ],
           "num": 3
         }
@@ -238,8 +238,16 @@
     {
       "test_class": "org.apache.commons.math.complex.ComplexTest",
       "test_function": "testAtanI",
-      "exception": "junit.framework.AssertionFailedErro",
+      "assertion_line": "577",
+      "exception": "junit.framework.AssertionFailedError",
       "message": ""
+    },
+    {
+      "test_class": "org.apache.commons.math.complex.ComplexTest",
+      "test_function": "testDivideZero",
+      "assertion_line": "233",
+      "exception": "junit.framework.AssertionFailedError",
+      "message": "expected:\u003c(Infinity, Infinity)\u003e but was:\u003c(NaN, NaN)\u003e"
     }
   ],
   "fixing_changes": [
@@ -259,8 +267,8 @@
         },
         {
           "qualified_names": [
-            "org.apache.commons.math.complex.Complex:divide:[double divisor]:Complex",
-            "org.apache.commons.math.complex.Complex:divide:[Complex divisor]:Complex"
+            "org.apache.commons.math.complex.Complex:divide:[Complex divisor]:Complex",
+            "org.apache.commons.math.complex.Complex:divide:[double divisor]:Complex"
           ],
           "num": 2
         }

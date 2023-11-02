@@ -152,6 +152,7 @@
     {
       "test_class": "org.apache.commons.math.fraction.FractionFormatTest",
       "test_function": "testParseProperInvalidMinus",
+      "assertion_line": "236",
       "exception": "junit.framework.AssertionFailedError",
       "message": "invalid minus in improper fraction."
     }

@@ -1,5 +1,7 @@
 package root.generation.transformation.mutator;
 
+import com.github.javaparser.ast.expr.IntegerLiteralExpr;
+
 import java.util.Random;
 
 public class IntegerMutator extends AbstractInputMutator{
@@ -8,7 +10,9 @@ public class IntegerMutator extends AbstractInputMutator{
 
     @Override
     public Object getNextInput(Object oldValue) {
-        this.addInputMutants(random.nextInt());
+        IntegerLiteralExpr expr = new IntegerLiteralExpr();
+        expr.setInt(random.nextInt());
+        this.addInputMutants(expr);
         return this.inputs.get(random.nextInt(this.inputs.size()));
     }
 

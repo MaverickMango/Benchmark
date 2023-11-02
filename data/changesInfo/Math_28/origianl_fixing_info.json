@@ -33,16 +33,16 @@
       "changed_functions": [
         {
           "qualified_names": [
-            "org.apache.commons.math3.optimization.linear.SimplexSolver:doIteration:[final SimplexTableau tableau]:void",
             "org.apache.commons.math3.optimization.linear.SimplexSolver:getPivotColumn:[SimplexTableau tableau]:Integer",
-            "org.apache.commons.math3.optimization.linear.SimplexSolver:getPivotRow:[SimplexTableau tableau, final int col]:Integer"
+            "org.apache.commons.math3.optimization.linear.SimplexSolver:getPivotRow:[SimplexTableau tableau, final int col]:Integer",
+            "org.apache.commons.math3.optimization.linear.SimplexSolver:doIteration:[final SimplexTableau tableau]:void"
           ],
           "num": 3
         },
         {
           "qualified_names": [
-            "org.apache.commons.math3.optimization.linear.SimplexSolver:getPivotColumn:[SimplexTableau tableau]:Integer",
             "org.apache.commons.math3.optimization.linear.SimplexSolver:doIteration:[final SimplexTableau tableau]:void",
+            "org.apache.commons.math3.optimization.linear.SimplexSolver:getPivotColumn:[SimplexTableau tableau]:Integer",
             "org.apache.commons.math3.optimization.linear.SimplexSolver:getPivotRow:[SimplexTableau tableau, final int col]:Integer"
           ],
           "num": 3
@@ -294,6 +294,7 @@
     {
       "test_class": "org.apache.commons.math3.optimization.linear.SimplexSolverTest",
       "test_function": "testMath828Cycle",
+      "assertion_line": "70",
       "exception": "org.apache.commons.math3.exception.MaxCountExceededException",
       "message": "illegal state: maximal count (100) exceeded"
     }

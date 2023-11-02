@@ -179,8 +179,16 @@
     {
       "test_class": "com.google.javascript.jscomp.NormalizeTest",
       "test_function": "testDuplicateVarInExterns",
+      "assertion_line": "95",
       "exception": "junit.framework.AssertionFailedError",
-      "message": "Expected: var extern\u003d3\nResult: extern\u003d3Expected: var window\nResult: "
+      "message": "Expected: var extern\u003d3\nResult: extern\u003d3"
+    },
+    {
+      "test_class": "com.google.javascript.jscomp.NormalizeTest",
+      "test_function": "testMakeLocalNamesUnique",
+      "assertion_line": "259",
+      "exception": "junit.framework.AssertionFailedError",
+      "message": "Expected: var window\nResult: "
     }
   ],
   "fixing_changes": [
@@ -444,21 +452,21 @@
       "changed_functions": [
         {
           "qualified_names": [
-            "com.google.javascript.jscomp.SyntacticScopeCreator:declareVar:[String name, Node n, Node parent, Node gramps, JSType declaredType, Node nodeWithLineNumber]:void",
-            "com.google.javascript.jscomp.SyntacticScopeCreator\\$DefaultRedeclarationHandler:onRedeclaration:[Scope s, String name, Node n, Node parent, Node gramps, Node nodeWithLineNumber]:void",
-            "com.google.javascript.jscomp.SyntacticScopeCreator\\$RedeclarationHandler:onRedeclaration:[Scope s, String name, Node n, Node parent, Node gramps, Node nodeWithLineNumber]:void",
             "com.google.javascript.jscomp.SyntacticScopeCreator:scanRoot:[Node n, Scope parent]:void",
-            "com.google.javascript.jscomp.SyntacticScopeCreator:scanVars:[Node n, Node parent]:void"
+            "com.google.javascript.jscomp.SyntacticScopeCreator\\$RedeclarationHandler:onRedeclaration:[Scope s, String name, Node n, Node parent, Node gramps, Node nodeWithLineNumber]:void",
+            "com.google.javascript.jscomp.SyntacticScopeCreator:scanVars:[Node n, Node parent]:void",
+            "com.google.javascript.jscomp.SyntacticScopeCreator:declareVar:[String name, Node n, Node parent, Node gramps, JSType declaredType, Node nodeWithLineNumber]:void",
+            "com.google.javascript.jscomp.SyntacticScopeCreator\\$DefaultRedeclarationHandler:onRedeclaration:[Scope s, String name, Node n, Node parent, Node gramps, Node nodeWithLineNumber]:void"
           ],
           "num": 5
         },
         {
           "qualified_names": [
-            "com.google.javascript.jscomp.SyntacticScopeCreator:declareVar:[Node n]:void",
+            "com.google.javascript.jscomp.SyntacticScopeCreator:scanRoot:[Node n, Scope parent]:void",
             "com.google.javascript.jscomp.SyntacticScopeCreator:scanVars:[Node n, Node parent]:void",
             "com.google.javascript.jscomp.SyntacticScopeCreator\\$RedeclarationHandler:onRedeclaration:[Scope s, String name, Node n, CompilerInput input]:void",
-            "com.google.javascript.jscomp.SyntacticScopeCreator:scanRoot:[Node n, Scope parent]:void",
-            "com.google.javascript.jscomp.SyntacticScopeCreator\\$DefaultRedeclarationHandler:onRedeclaration:[Scope s, String name, Node n, CompilerInput input]:void"
+            "com.google.javascript.jscomp.SyntacticScopeCreator\\$DefaultRedeclarationHandler:onRedeclaration:[Scope s, String name, Node n, CompilerInput input]:void",
+            "com.google.javascript.jscomp.SyntacticScopeCreator:declareVar:[Node n]:void"
           ],
           "num": 5
         }

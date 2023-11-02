@@ -39,12 +39,12 @@
         },
         {
           "qualified_names": [
-            "org.jsoup.nodes.Document\\$OutputSettings:escapeMode:[Entities.EscapeMode escapeMode]:OutputSettings",
-            "org.jsoup.nodes.Document\\$OutputSettings:charset:[Charset charset]:OutputSettings",
             "org.jsoup.nodes.Document\\$OutputSettings:escapeMode:[]:Entities.EscapeMode",
-            "org.jsoup.nodes.Document\\$OutputSettings:OutputSettings:[]:null",
             "org.jsoup.nodes.Document\\$OutputSettings:charset:[String charset]:OutputSettings",
-            "org.jsoup.nodes.Document\\$OutputSettings:charset:[]:Charset"
+            "org.jsoup.nodes.Document\\$OutputSettings:escapeMode:[Entities.EscapeMode escapeMode]:OutputSettings",
+            "org.jsoup.nodes.Document\\$OutputSettings:charset:[]:Charset",
+            "org.jsoup.nodes.Document\\$OutputSettings:OutputSettings:[]:null",
+            "org.jsoup.nodes.Document\\$OutputSettings:charset:[Charset charset]:OutputSettings"
           ],
           "num": 6
         }
@@ -126,8 +126,8 @@
         },
         {
           "qualified_names": [
-            "org.jsoup.parser.TokenQueue:advance:[]:void",
-            "org.jsoup.parser.TokenQueue:consume:[]:Character"
+            "org.jsoup.parser.TokenQueue:consume:[]:Character",
+            "org.jsoup.parser.TokenQueue:advance:[]:void"
           ],
           "num": 2
         }
@@ -2825,8 +2825,16 @@
     {
       "test_class": "org.jsoup.nodes.EntitiesTest",
       "test_function": "escape",
+      "assertion_line": "17",
       "exception": "junit.framework.AssertionFailedError",
       "message": "expected:\u003c...ello \u0026amp;\u0026lt;\u0026gt; \u0026[A]ring; \u0026aring; \u0026#960;...\u003e but was:\u003c...ello \u0026amp;\u0026lt;\u0026gt; \u0026[a]ring; \u0026aring; \u0026#960;...\u003e"
+    },
+    {
+      "test_class": "org.jsoup.nodes.EntitiesTest",
+      "test_function": "caseSensitive",
+      "assertion_line": "32",
+      "exception": "junit.framework.AssertionFailedError",
+      "message": "expected:\u003c\u0026[U]uml; \u0026uuml; \u0026amp; \u0026a...\u003e but was:\u003c\u0026[u]uml; \u0026uuml; \u0026amp; \u0026a...\u003e"
     }
   ],
   "fixing_changes": [

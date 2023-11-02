@@ -96,9 +96,9 @@
         },
         {
           "qualified_names": [
-            "org.mockito.internal.reporting.PrintSettings:verboseMatchers:[Integer... verboselyPrinted]:PrintSettings",
+            "org.mockito.internal.reporting.PrintSettings:setMatchersToBePrintedVerbosely:[Integer[] toBePrintedVerbosely]:void",
             "org.mockito.internal.reporting.PrintSettings:printsVerbosely:[int argumentIndex]:boolean",
-            "org.mockito.internal.reporting.PrintSettings:setMatchersToBePrintedVerbosely:[Integer[] toBePrintedVerbosely]:void"
+            "org.mockito.internal.reporting.PrintSettings:verboseMatchers:[Integer... verboselyPrinted]:PrintSettings"
           ],
           "num": 3
         }
@@ -385,7 +385,15 @@
     {
       "test_class": "org.mockito.internal.verification.argumentmatching.ArgumentMatchingToolTest",
       "test_function": "shouldWorkFineWhenGivenArgIsNull",
-      "exception": "java.lang.NullPointerExceptio",
+      "assertion_line": "82",
+      "exception": "java.lang.NullPointerException",
+      "message": ""
+    },
+    {
+      "test_class": "org.mockitousage.bugs.ActualInvocationHasNullArgumentNPEBugTest",
+      "test_function": "shouldAllowPassingNullArgument",
+      "assertion_line": "30",
+      "exception": "java.lang.NullPointerException",
       "message": ""
     }
   ],

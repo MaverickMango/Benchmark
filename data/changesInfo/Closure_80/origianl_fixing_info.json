@@ -33,40 +33,40 @@
       "changed_functions": [
         {
           "qualified_names": [
-            "com.google.javascript.jscomp.NodeUtil:isStatementBlock:[Node n]:boolean",
+            "com.google.javascript.jscomp.NodeUtil:isLabelName:[Node n]:boolean",
             "com.google.javascript.jscomp.NodeUtil:getInfoForNameNode:[Node nameNode]:JSDocInfo",
             "com.google.javascript.jscomp.NodeUtil:constructorCallHasSideEffects:[Node callNode]:boolean",
-            "com.google.javascript.jscomp.NodeUtil:isStatement:[Node n]:boolean",
+            "com.google.javascript.jscomp.NodeUtil:isStatementBlock:[Node n]:boolean",
             "com.google.javascript.jscomp.NodeUtil:isObjectCallMethod:[Node callNode, String methodName]:boolean",
-            "com.google.javascript.jscomp.NodeUtil:getStringValue:[Node n]:String",
-            "com.google.javascript.jscomp.NodeUtil:functionCallHasSideEffects:[Node callNode, @Nullable AbstractCompiler compiler]:boolean",
             "com.google.javascript.jscomp.NodeUtil:precedence:[int type]:int",
-            "com.google.javascript.jscomp.NodeUtil:isLabelName:[Node n]:boolean"
+            "com.google.javascript.jscomp.NodeUtil:functionCallHasSideEffects:[Node callNode, @Nullable AbstractCompiler compiler]:boolean",
+            "com.google.javascript.jscomp.NodeUtil:isStatement:[Node n]:boolean",
+            "com.google.javascript.jscomp.NodeUtil:getStringValue:[Node n]:String"
           ],
           "num": 9
         },
         {
           "qualified_names": [
-            "com.google.javascript.jscomp.NodeUtil:maybeAddFinally:[Node tryNode]:void",
-            "com.google.javascript.jscomp.NodeUtil:evaluatesToLocalValue:[Node value, Predicate\u003cNode\u003e locals]:boolean",
-            "com.google.javascript.jscomp.NodeUtil:isGetOrSetKey:[Node node]:boolean",
-            "com.google.javascript.jscomp.NodeUtil:isCommutative:[int type]:boolean",
-            "com.google.javascript.jscomp.NodeUtil:isObjectLitKey:[Node node, Node parent]:boolean",
-            "com.google.javascript.jscomp.NodeUtil:removeChild:[Node parent, Node node]:void",
-            "com.google.javascript.jscomp.NodeUtil:isNull:[Node n]:boolean",
-            "com.google.javascript.jscomp.NodeUtil:tryMergeBlock:[Node block]:boolean",
-            "com.google.javascript.jscomp.NodeUtil:mayBeString:[Node n]:boolean",
-            "com.google.javascript.jscomp.NodeUtil:getStringValue:[Node n]:String",
-            "com.google.javascript.jscomp.NodeUtil:isTryCatchNodeContainer:[Node n]:boolean",
-            "com.google.javascript.jscomp.NodeUtil:functionCallHasSideEffects:[Node callNode]:boolean",
-            "com.google.javascript.jscomp.NodeUtil:isBooleanResult:[Node n]:boolean",
-            "com.google.javascript.jscomp.NodeUtil:getFunctionName:[Node n]:String",
-            "com.google.javascript.jscomp.NodeUtil:isUndefined:[Node n]:boolean",
             "com.google.javascript.jscomp.NodeUtil:isAssociative:[int type]:boolean",
-            "com.google.javascript.jscomp.NodeUtil:getNumberValue:[Node n]:Double",
-            "com.google.javascript.jscomp.NodeUtil:newHasLocalResult:[Node n]:boolean",
+            "com.google.javascript.jscomp.NodeUtil:functionCallHasSideEffects:[Node callNode]:boolean",
             "com.google.javascript.jscomp.NodeUtil:nodeTypeMayHaveSideEffects:[Node n]:boolean",
-            "com.google.javascript.jscomp.NodeUtil:isNumericResult:[Node n]:boolean"
+            "com.google.javascript.jscomp.NodeUtil:getFunctionName:[Node n]:String",
+            "com.google.javascript.jscomp.NodeUtil:getNumberValue:[Node n]:Double",
+            "com.google.javascript.jscomp.NodeUtil:isUndefined:[Node n]:boolean",
+            "com.google.javascript.jscomp.NodeUtil:isNumericResult:[Node n]:boolean",
+            "com.google.javascript.jscomp.NodeUtil:isNull:[Node n]:boolean",
+            "com.google.javascript.jscomp.NodeUtil:maybeAddFinally:[Node tryNode]:void",
+            "com.google.javascript.jscomp.NodeUtil:newHasLocalResult:[Node n]:boolean",
+            "com.google.javascript.jscomp.NodeUtil:getStringValue:[Node n]:String",
+            "com.google.javascript.jscomp.NodeUtil:isObjectLitKey:[Node node, Node parent]:boolean",
+            "com.google.javascript.jscomp.NodeUtil:isBooleanResult:[Node n]:boolean",
+            "com.google.javascript.jscomp.NodeUtil:removeChild:[Node parent, Node node]:void",
+            "com.google.javascript.jscomp.NodeUtil:isCommutative:[int type]:boolean",
+            "com.google.javascript.jscomp.NodeUtil:isGetOrSetKey:[Node node]:boolean",
+            "com.google.javascript.jscomp.NodeUtil:mayBeString:[Node n]:boolean",
+            "com.google.javascript.jscomp.NodeUtil:isTryCatchNodeContainer:[Node n]:boolean",
+            "com.google.javascript.jscomp.NodeUtil:evaluatesToLocalValue:[Node value, Predicate\u003cNode\u003e locals]:boolean",
+            "com.google.javascript.jscomp.NodeUtil:tryMergeBlock:[Node block]:boolean"
           ],
           "num": 20
         }
@@ -438,20 +438,20 @@
     "add_functions": {
       "qualified_names": [
         "com.google.javascript.jscomp.NodeUtil:isNull:[Node n]:boolean",
-        "com.google.javascript.jscomp.NodeUtil:isBooleanResult:[Node n]:boolean",
         "com.google.javascript.jscomp.NodeUtil:getFunctionName:[Node n]:String",
+        "com.google.javascript.jscomp.NodeUtil:isBooleanResult:[Node n]:boolean",
         "com.google.javascript.jscomp.NodeUtil:evaluatesToLocalValue:[Node value, Predicate\u003cNode\u003e locals]:boolean",
+        "com.google.javascript.jscomp.NodeUtil:isNumericResult:[Node n]:boolean",
         "com.google.javascript.jscomp.NodeUtil:removeChild:[Node parent, Node node]:void",
         "com.google.javascript.jscomp.NodeUtil:isTryCatchNodeContainer:[Node n]:boolean",
-        "com.google.javascript.jscomp.NodeUtil:isNumericResult:[Node n]:boolean",
         "com.google.javascript.jscomp.NodeUtil:tryMergeBlock:[Node block]:boolean",
         "com.google.javascript.jscomp.NodeUtil:nodeTypeMayHaveSideEffects:[Node n]:boolean",
         "com.google.javascript.jscomp.NodeUtil:isCommutative:[int type]:boolean",
         "com.google.javascript.jscomp.NodeUtil:functionCallHasSideEffects:[Node callNode]:boolean",
-        "com.google.javascript.jscomp.NodeUtil:isObjectLitKey:[Node node, Node parent]:boolean",
         "com.google.javascript.jscomp.NodeUtil:newHasLocalResult:[Node n]:boolean",
-        "com.google.javascript.jscomp.NodeUtil:mayBeString:[Node n]:boolean",
+        "com.google.javascript.jscomp.NodeUtil:isObjectLitKey:[Node node, Node parent]:boolean",
         "com.google.javascript.jscomp.NodeUtil:isUndefined:[Node n]:boolean",
+        "com.google.javascript.jscomp.NodeUtil:mayBeString:[Node n]:boolean",
         "com.google.javascript.jscomp.NodeUtil:getNumberValue:[Node n]:Double",
         "com.google.javascript.jscomp.NodeUtil:maybeAddFinally:[Node tryNode]:void",
         "com.google.javascript.jscomp.NodeUtil:isGetOrSetKey:[Node node]:boolean",
@@ -463,8 +463,8 @@
       "qualified_names": [
         "com.google.javascript.jscomp.NodeUtil:isObjectCallMethod:[Node callNode, String methodName]:boolean",
         "com.google.javascript.jscomp.NodeUtil:isLabelName:[Node n]:boolean",
-        "com.google.javascript.jscomp.NodeUtil:isStatementBlock:[Node n]:boolean",
         "com.google.javascript.jscomp.NodeUtil:constructorCallHasSideEffects:[Node callNode]:boolean",
+        "com.google.javascript.jscomp.NodeUtil:isStatementBlock:[Node n]:boolean",
         "com.google.javascript.jscomp.NodeUtil:isStatement:[Node n]:boolean",
         "com.google.javascript.jscomp.NodeUtil:functionCallHasSideEffects:[Node callNode, @Nullable AbstractCompiler compiler]:boolean",
         "com.google.javascript.jscomp.NodeUtil:precedence:[int type]:int",
@@ -477,8 +477,16 @@
     {
       "test_class": "com.google.javascript.jscomp.NodeUtilTest",
       "test_function": "testIsBooleanResult",
-      "exception": "junit.framework.AssertionFailedErro",
+      "assertion_line": "1504",
+      "exception": "junit.framework.AssertionFailedError",
       "message": ""
+    },
+    {
+      "test_class": "com.google.javascript.jscomp.NodeUtilTest",
+      "test_function": "testLocalValue1",
+      "assertion_line": "1169",
+      "exception": "java.lang.IllegalStateException",
+      "message": "Unexpected expression nodeDELPROP 1 [sourcename:  [testcode] ] [parenthesized: true]"
     }
   ],
   "fixing_changes": [
@@ -491,8 +499,8 @@
       "changed_functions": [
         {
           "qualified_names": [
-            "com.google.javascript.jscomp.NodeUtil:evaluatesToLocalValue:[Node value, Predicate\u003cNode\u003e locals]:boolean",
-            "com.google.javascript.jscomp.NodeUtil:isBooleanResultHelper:[Node n]:boolean"
+            "com.google.javascript.jscomp.NodeUtil:isBooleanResultHelper:[Node n]:boolean",
+            "com.google.javascript.jscomp.NodeUtil:evaluatesToLocalValue:[Node value, Predicate\u003cNode\u003e locals]:boolean"
           ],
           "num": 2
         },

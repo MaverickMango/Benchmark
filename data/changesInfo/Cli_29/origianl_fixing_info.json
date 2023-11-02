@@ -208,6 +208,7 @@
     {
       "test_class": "org.apache.commons.cli.UtilTest",
       "test_function": "testStripLeadingAndTrailingQuotes",
+      "assertion_line": "38",
       "exception": "junit.framework.ComparisonFailure",
       "message": "expected:\u003cfoo \"bar[\"]\u003e but was:\u003cfoo \"bar[]\u003e"
     }

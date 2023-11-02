@@ -33,32 +33,32 @@
       "changed_functions": [
         {
           "qualified_names": [
-            "org.apache.commons.math.stat.Frequency:getPct:[Object v]:double",
-            "org.apache.commons.math.stat.Frequency:toString:[]:String",
-            "org.apache.commons.math.stat.Frequency:getCumFreq:[Object v]:long",
-            "org.apache.commons.math.stat.Frequency\\$NaturalComparator:compare:[Object o1, Object o2]:int",
             "org.apache.commons.math.stat.Frequency:getSumFreq:[]:long",
-            "org.apache.commons.math.stat.Frequency:getCount:[Object v]:long",
             "org.apache.commons.math.stat.Frequency:equals:[Object obj]:boolean",
+            "org.apache.commons.math.stat.Frequency:getCount:[Object v]:long",
             "org.apache.commons.math.stat.Frequency:Frequency:[Comparator comparator]:null",
-            "org.apache.commons.math.stat.Frequency:getCumPct:[Object v]:double"
+            "org.apache.commons.math.stat.Frequency:toString:[]:String",
+            "org.apache.commons.math.stat.Frequency:getPct:[Object v]:double",
+            "org.apache.commons.math.stat.Frequency:getCumFreq:[Object v]:long",
+            "org.apache.commons.math.stat.Frequency:getCumPct:[Object v]:double",
+            "org.apache.commons.math.stat.Frequency\\$NaturalComparator:compare:[Object o1, Object o2]:int"
           ],
           "num": 9
         },
         {
           "qualified_names": [
-            "org.apache.commons.math.stat.Frequency:getPct:[Comparable\u003c?\u003e v]:double",
             "org.apache.commons.math.stat.Frequency:getCount:[Comparable\u003c?\u003e v]:long",
-            "org.apache.commons.math.stat.Frequency:getPct:[Object v]:double",
-            "org.apache.commons.math.stat.Frequency:getCumFreq:[Comparable\u003c?\u003e v]:long",
-            "org.apache.commons.math.stat.Frequency:getSumFreq:[]:long",
-            "org.apache.commons.math.stat.Frequency:getCount:[Object v]:long",
-            "org.apache.commons.math.stat.Frequency:getCumPct:[Object v]:double",
-            "org.apache.commons.math.stat.Frequency\\$NaturalComparator:compare:[Comparable\u003cT\u003e o1, Comparable\u003cT\u003e o2]:int",
-            "org.apache.commons.math.stat.Frequency:toString:[]:String",
-            "org.apache.commons.math.stat.Frequency:getCumPct:[Comparable\u003c?\u003e v]:double",
             "org.apache.commons.math.stat.Frequency:Frequency:[Comparator\u003c?\u003e comparator]:null",
-            "org.apache.commons.math.stat.Frequency:getCumFreq:[Object v]:long"
+            "org.apache.commons.math.stat.Frequency\\$NaturalComparator:compare:[Comparable\u003cT\u003e o1, Comparable\u003cT\u003e o2]:int",
+            "org.apache.commons.math.stat.Frequency:getCount:[Object v]:long",
+            "org.apache.commons.math.stat.Frequency:getPct:[Object v]:double",
+            "org.apache.commons.math.stat.Frequency:getPct:[Comparable\u003c?\u003e v]:double",
+            "org.apache.commons.math.stat.Frequency:getCumFreq:[Object v]:long",
+            "org.apache.commons.math.stat.Frequency:getSumFreq:[]:long",
+            "org.apache.commons.math.stat.Frequency:getCumFreq:[Comparable\u003c?\u003e v]:long",
+            "org.apache.commons.math.stat.Frequency:getCumPct:[Comparable\u003c?\u003e v]:double",
+            "org.apache.commons.math.stat.Frequency:getCumPct:[Object v]:double",
+            "org.apache.commons.math.stat.Frequency:toString:[]:String"
           ],
           "num": 12
         }
@@ -650,8 +650,8 @@
       "qualified_names": [
         "org.apache.commons.math.stat.Frequency:getPct:[Comparable\u003c?\u003e v]:double",
         "org.apache.commons.math.stat.Frequency\\$NaturalComparator:compare:[Comparable\u003cT\u003e o1, Comparable\u003cT\u003e o2]:int",
-        "org.apache.commons.math.stat.Frequency:getCumPct:[Comparable\u003c?\u003e v]:double",
         "org.apache.commons.math.stat.Frequency:Frequency:[Comparator\u003c?\u003e comparator]:null",
+        "org.apache.commons.math.stat.Frequency:getCumPct:[Comparable\u003c?\u003e v]:double",
         "org.apache.commons.math.stat.Frequency:getCount:[Comparable\u003c?\u003e v]:long",
         "org.apache.commons.math.stat.Frequency:getCumFreq:[Comparable\u003c?\u003e v]:long"
       ],
@@ -670,6 +670,7 @@
     {
       "test_class": "org.apache.commons.math.stat.FrequencyTest",
       "test_function": "testPcts",
+      "assertion_line": "148",
       "exception": "junit.framework.AssertionFailedError",
       "message": "three (Object) pct expected:\u003c0.5\u003e but was:\u003c1.0\u003e"
     }

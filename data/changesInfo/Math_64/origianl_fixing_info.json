@@ -33,21 +33,21 @@
       "changed_functions": [
         {
           "qualified_names": [
+            "org.apache.commons.math.optimization.general.LevenbergMarquardtOptimizer:LevenbergMarquardtOptimizer:[]:null",
+            "org.apache.commons.math.optimization.general.LevenbergMarquardtOptimizer:setOrthoTolerance:[double orthoTolerance]:void",
             "org.apache.commons.math.optimization.general.LevenbergMarquardtOptimizer:doOptimize:[]:VectorialPointValuePair",
             "org.apache.commons.math.optimization.general.LevenbergMarquardtOptimizer:setCostRelativeTolerance:[double costRelativeTolerance]:void",
-            "org.apache.commons.math.optimization.general.LevenbergMarquardtOptimizer:LevenbergMarquardtOptimizer:[]:null",
-            "org.apache.commons.math.optimization.general.LevenbergMarquardtOptimizer:setParRelativeTolerance:[double parRelativeTolerance]:void",
-            "org.apache.commons.math.optimization.general.LevenbergMarquardtOptimizer:setOrthoTolerance:[double orthoTolerance]:void"
+            "org.apache.commons.math.optimization.general.LevenbergMarquardtOptimizer:setParRelativeTolerance:[double parRelativeTolerance]:void"
           ],
           "num": 5
         },
         {
           "qualified_names": [
-            "org.apache.commons.math.optimization.general.LevenbergMarquardtOptimizer:LevenbergMarquardtOptimizer:[]:null",
+            "org.apache.commons.math.optimization.general.LevenbergMarquardtOptimizer:setCostRelativeTolerance:[double costRelativeTolerance]:void",
             "org.apache.commons.math.optimization.general.LevenbergMarquardtOptimizer:setParRelativeTolerance:[double parRelativeTolerance]:void",
             "org.apache.commons.math.optimization.general.LevenbergMarquardtOptimizer:setOrthoTolerance:[double orthoTolerance]:void",
-            "org.apache.commons.math.optimization.general.LevenbergMarquardtOptimizer:doOptimize:[]:VectorialPointValuePair",
-            "org.apache.commons.math.optimization.general.LevenbergMarquardtOptimizer:setCostRelativeTolerance:[double costRelativeTolerance]:void"
+            "org.apache.commons.math.optimization.general.LevenbergMarquardtOptimizer:LevenbergMarquardtOptimizer:[]:null",
+            "org.apache.commons.math.optimization.general.LevenbergMarquardtOptimizer:doOptimize:[]:VectorialPointValuePair"
           ],
           "num": 5
         }
@@ -412,8 +412,16 @@
     {
       "test_class": "org.apache.commons.math.optimization.general.MinpackTest",
       "test_function": "testMinpackJennrichSampson",
+      "assertion_line": "325",
       "exception": "junit.framework.AssertionFailedError",
       "message": "expected:\u003c0.2578199266368004\u003e but was:\u003c0.2578330049004441\u003e"
+    },
+    {
+      "test_class": "org.apache.commons.math.optimization.general.MinpackTest",
+      "test_function": "testMinpackFreudensteinRoth",
+      "assertion_line": "152",
+      "exception": "junit.framework.AssertionFailedError",
+      "message": "expected:\u003c11.41300466147456\u003e but was:\u003c11.4121122022341\u003e"
     }
   ],
   "fixing_changes": [

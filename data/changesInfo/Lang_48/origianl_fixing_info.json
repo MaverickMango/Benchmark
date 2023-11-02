@@ -48,7 +48,8 @@
     {
       "test_class": "org.apache.commons.lang.builder.EqualsBuilderTest",
       "test_function": "testBigDecimal",
-      "exception": "junit.framework.AssertionFailedErro",
+      "assertion_line": "385",
+      "exception": "junit.framework.AssertionFailedError",
       "message": ""
     }
   ],

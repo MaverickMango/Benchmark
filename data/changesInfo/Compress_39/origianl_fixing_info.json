@@ -221,6 +221,7 @@
     {
       "test_class": "org.apache.commons.compress.ArchiveUtilsTest",
       "test_function": "sanitizeShortensString",
+      "assertion_line": "82",
       "exception": "junit.framework.AssertionFailedError",
       "message": "expected:\u003c...23456789012345678901[...]\u003e but was:\u003c...23456789012345678901[234567890123456789012345678901234567890123456789]\u003e"
     }

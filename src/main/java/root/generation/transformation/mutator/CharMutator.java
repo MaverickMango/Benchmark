@@ -1,5 +1,7 @@
 package root.generation.transformation.mutator;
 
+import com.github.javaparser.ast.expr.CharLiteralExpr;
+
 import java.util.Random;
 
 public class CharMutator extends AbstractInputMutator{
@@ -10,7 +12,9 @@ public class CharMutator extends AbstractInputMutator{
 
     @Override
     public Object getNextInput(Object oldValue) {
-        this.addInputMutants(randomCharMutate());
+        CharLiteralExpr expr = new CharLiteralExpr();
+        expr.setChar(randomCharMutate());
+        this.addInputMutants(expr);
         return this.inputs.get(random.nextInt(this.inputs.size()));
     }
 

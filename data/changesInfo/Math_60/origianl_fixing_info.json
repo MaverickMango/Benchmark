@@ -520,36 +520,36 @@
       "changed_functions": [
         {
           "qualified_names": [
-            "org.apache.commons.math.complex.Complex:abs:[]:double",
-            "org.apache.commons.math.complex.Complex:isNaN:[]:boolean",
-            "org.apache.commons.math.complex.Complex:subtract:[Complex rhs]:Complex",
-            "org.apache.commons.math.complex.Complex:equals:[Object other]:boolean",
-            "org.apache.commons.math.complex.Complex:Complex:[double real, double imaginary]:null",
-            "org.apache.commons.math.complex.Complex:divide:[Complex rhs]:Complex",
+            "org.apache.commons.math.complex.Complex:negate:[]:Complex",
             "org.apache.commons.math.complex.Complex:add:[Complex rhs]:Complex",
+            "org.apache.commons.math.complex.Complex:getReal:[]:double",
+            "org.apache.commons.math.complex.Complex:equals:[Object other]:boolean",
+            "org.apache.commons.math.complex.Complex:isNaN:[]:boolean",
+            "org.apache.commons.math.complex.Complex:Complex:[double real, double imaginary]:null",
             "org.apache.commons.math.complex.Complex:conjugate:[]:Complex",
             "org.apache.commons.math.complex.Complex:getImaginary:[]:double",
-            "org.apache.commons.math.complex.Complex:getReal:[]:double",
-            "org.apache.commons.math.complex.Complex:negate:[]:Complex",
-            "org.apache.commons.math.complex.Complex:multiply:[Complex rhs]:Complex"
+            "org.apache.commons.math.complex.Complex:divide:[Complex rhs]:Complex",
+            "org.apache.commons.math.complex.Complex:abs:[]:double",
+            "org.apache.commons.math.complex.Complex:multiply:[Complex rhs]:Complex",
+            "org.apache.commons.math.complex.Complex:subtract:[Complex rhs]:Complex"
           ],
           "num": 12
         },
         {
           "qualified_names": [
+            "org.apache.commons.math.complex.Complex:subtract:[Complex rhs]:Complex",
+            "org.apache.commons.math.complex.Complex:abs:[]:double",
+            "org.apache.commons.math.complex.Complex:add:[Complex rhs]:Complex",
+            "org.apache.commons.math.complex.Complex:getImaginary:[]:double",
+            "org.apache.commons.math.complex.Complex:isInfinite:[]:boolean",
+            "org.apache.commons.math.complex.Complex:multiply:[Complex rhs]:Complex",
+            "org.apache.commons.math.complex.Complex:isNaN:[]:boolean",
+            "org.apache.commons.math.complex.Complex:Complex:[double real, double imaginary]:null",
+            "org.apache.commons.math.complex.Complex:equals:[Object other]:boolean",
             "org.apache.commons.math.complex.Complex:conjugate:[]:Complex",
             "org.apache.commons.math.complex.Complex:negate:[]:Complex",
-            "org.apache.commons.math.complex.Complex:Complex:[double real, double imaginary]:null",
-            "org.apache.commons.math.complex.Complex:abs:[]:double",
-            "org.apache.commons.math.complex.Complex:isInfinite:[]:boolean",
-            "org.apache.commons.math.complex.Complex:subtract:[Complex rhs]:Complex",
             "org.apache.commons.math.complex.Complex:divide:[Complex rhs]:Complex",
-            "org.apache.commons.math.complex.Complex:getReal:[]:double",
-            "org.apache.commons.math.complex.Complex:equals:[Object other]:boolean",
-            "org.apache.commons.math.complex.Complex:getImaginary:[]:double",
-            "org.apache.commons.math.complex.Complex:add:[Complex rhs]:Complex",
-            "org.apache.commons.math.complex.Complex:multiply:[Complex rhs]:Complex",
-            "org.apache.commons.math.complex.Complex:isNaN:[]:boolean"
+            "org.apache.commons.math.complex.Complex:getReal:[]:double"
           ],
           "num": 13
         }
@@ -1805,40 +1805,40 @@
       "changed_functions": [
         {
           "qualified_names": [
-            "org.apache.commons.math.complex.ComplexUtils:cosh:[Complex z]:Complex",
-            "org.apache.commons.math.complex.ComplexUtils:exp:[Complex z]:Complex",
-            "org.apache.commons.math.complex.ComplexUtils:sinh:[Complex z]:Complex",
-            "org.apache.commons.math.complex.ComplexUtils:tan:[Complex z]:Complex",
-            "org.apache.commons.math.complex.ComplexUtils:tanh:[Complex z]:Complex",
-            "org.apache.commons.math.complex.ComplexUtils:sqrt1z:[Complex z]:Complex",
-            "org.apache.commons.math.complex.ComplexUtils:cos:[Complex z]:Complex",
-            "org.apache.commons.math.complex.ComplexUtils:sin:[Complex z]:Complex",
+            "org.apache.commons.math.complex.ComplexUtils:atan:[Complex z]:Complex",
             "org.apache.commons.math.complex.ComplexUtils:log:[Complex z]:Complex",
-            "org.apache.commons.math.complex.ComplexUtils:acos:[Complex z]:Complex",
-            "org.apache.commons.math.complex.ComplexUtils:asin:[Complex z]:Complex",
             "org.apache.commons.math.complex.ComplexUtils:pow:[Complex y, Complex x]:Complex",
+            "org.apache.commons.math.complex.ComplexUtils:sqrt1z:[Complex z]:Complex",
+            "org.apache.commons.math.complex.ComplexUtils:acos:[Complex z]:Complex",
+            "org.apache.commons.math.complex.ComplexUtils:cos:[Complex z]:Complex",
+            "org.apache.commons.math.complex.ComplexUtils:exp:[Complex z]:Complex",
             "org.apache.commons.math.complex.ComplexUtils:sqrt:[Complex z]:Complex",
-            "org.apache.commons.math.complex.ComplexUtils:atan:[Complex z]:Complex"
+            "org.apache.commons.math.complex.ComplexUtils:cosh:[Complex z]:Complex",
+            "org.apache.commons.math.complex.ComplexUtils:tanh:[Complex z]:Complex",
+            "org.apache.commons.math.complex.ComplexUtils:sinh:[Complex z]:Complex",
+            "org.apache.commons.math.complex.ComplexUtils:asin:[Complex z]:Complex",
+            "org.apache.commons.math.complex.ComplexUtils:sin:[Complex z]:Complex",
+            "org.apache.commons.math.complex.ComplexUtils:tan:[Complex z]:Complex"
           ],
           "num": 14
         },
         {
           "qualified_names": [
-            "org.apache.commons.math.complex.ComplexUtils:asin:[Complex z]:Complex",
-            "org.apache.commons.math.complex.ComplexUtils:cosh:[Complex z]:Complex",
-            "org.apache.commons.math.complex.ComplexUtils:pow:[Complex y, Complex x]:Complex",
-            "org.apache.commons.math.complex.ComplexUtils:sin:[Complex z]:Complex",
-            "org.apache.commons.math.complex.ComplexUtils:tan:[Complex z]:Complex",
-            "org.apache.commons.math.complex.ComplexUtils:atan:[Complex z]:Complex",
-            "org.apache.commons.math.complex.ComplexUtils:exp:[Complex z]:Complex",
-            "org.apache.commons.math.complex.ComplexUtils:polar2Complex:[double r, double theta]:Complex",
             "org.apache.commons.math.complex.ComplexUtils:acos:[Complex z]:Complex",
-            "org.apache.commons.math.complex.ComplexUtils:sqrt1z:[Complex z]:Complex",
-            "org.apache.commons.math.complex.ComplexUtils:log:[Complex z]:Complex",
+            "org.apache.commons.math.complex.ComplexUtils:tan:[Complex z]:Complex",
             "org.apache.commons.math.complex.ComplexUtils:sqrt:[Complex z]:Complex",
+            "org.apache.commons.math.complex.ComplexUtils:tanh:[Complex z]:Complex",
+            "org.apache.commons.math.complex.ComplexUtils:asin:[Complex z]:Complex",
+            "org.apache.commons.math.complex.ComplexUtils:polar2Complex:[double r, double theta]:Complex",
+            "org.apache.commons.math.complex.ComplexUtils:pow:[Complex y, Complex x]:Complex",
             "org.apache.commons.math.complex.ComplexUtils:cos:[Complex z]:Complex",
+            "org.apache.commons.math.complex.ComplexUtils:sin:[Complex z]:Complex",
             "org.apache.commons.math.complex.ComplexUtils:sinh:[Complex z]:Complex",
-            "org.apache.commons.math.complex.ComplexUtils:tanh:[Complex z]:Complex"
+            "org.apache.commons.math.complex.ComplexUtils:atan:[Complex z]:Complex",
+            "org.apache.commons.math.complex.ComplexUtils:log:[Complex z]:Complex",
+            "org.apache.commons.math.complex.ComplexUtils:exp:[Complex z]:Complex",
+            "org.apache.commons.math.complex.ComplexUtils:cosh:[Complex z]:Complex",
+            "org.apache.commons.math.complex.ComplexUtils:sqrt1z:[Complex z]:Complex"
           ],
           "num": 15
         }
@@ -4821,19 +4821,19 @@
       "changed_functions": [
         {
           "qualified_names": [
-            "org.apache.commons.math.distribution.HypergeometricDistributionImpl:setSampleSize:[int size]:void",
-            "org.apache.commons.math.distribution.HypergeometricDistributionImpl:upperCumulativeProbability:[int x]:double",
+            "org.apache.commons.math.distribution.HypergeometricDistributionImpl:HypergeometricDistributionImpl:[int populationSize, int numberOfSuccesses, int sampleSize]:null",
             "org.apache.commons.math.distribution.HypergeometricDistributionImpl:innerCumulativeProbability:[int x0, int x1, int dx, int n, int m, int k]:double",
-            "org.apache.commons.math.distribution.HypergeometricDistributionImpl:HypergeometricDistributionImpl:[int populationSize, int numberOfSuccesses, int sampleSize]:null"
+            "org.apache.commons.math.distribution.HypergeometricDistributionImpl:upperCumulativeProbability:[int x]:double",
+            "org.apache.commons.math.distribution.HypergeometricDistributionImpl:setSampleSize:[int size]:void"
           ],
           "num": 4
         },
         {
           "qualified_names": [
-            "org.apache.commons.math.distribution.HypergeometricDistributionImpl:HypergeometricDistributionImpl:[int populationSize, int numberOfSuccesses, int sampleSize]:null",
-            "org.apache.commons.math.distribution.HypergeometricDistributionImpl:innerCumulativeProbability:[int x0, int x1, int dx, int n, int m, int k]:double",
             "org.apache.commons.math.distribution.HypergeometricDistributionImpl:upperCumulativeProbability:[int x]:double",
-            "org.apache.commons.math.distribution.HypergeometricDistributionImpl:setSampleSize:[int size]:void"
+            "org.apache.commons.math.distribution.HypergeometricDistributionImpl:setSampleSize:[int size]:void",
+            "org.apache.commons.math.distribution.HypergeometricDistributionImpl:innerCumulativeProbability:[int x0, int x1, int dx, int n, int m, int k]:double",
+            "org.apache.commons.math.distribution.HypergeometricDistributionImpl:HypergeometricDistributionImpl:[int populationSize, int numberOfSuccesses, int sampleSize]:null"
           ],
           "num": 4
         }
@@ -5352,15 +5352,15 @@
       "changed_functions": [
         {
           "qualified_names": [
-            "org.apache.commons.math.random.EmpiricalDistributionImpl:findBin:[double min, double value, double delta]:int",
-            "org.apache.commons.math.random.EmpiricalDistributionImpl:getUpperBounds:[]:double[]"
+            "org.apache.commons.math.random.EmpiricalDistributionImpl:getUpperBounds:[]:double[]",
+            "org.apache.commons.math.random.EmpiricalDistributionImpl:findBin:[double min, double value, double delta]:int"
           ],
           "num": 2
         },
         {
           "qualified_names": [
-            "org.apache.commons.math.random.EmpiricalDistributionImpl:findBin:[double min, double value, double delta]:int",
-            "org.apache.commons.math.random.EmpiricalDistributionImpl:getUpperBounds:[]:double[]"
+            "org.apache.commons.math.random.EmpiricalDistributionImpl:getUpperBounds:[]:double[]",
+            "org.apache.commons.math.random.EmpiricalDistributionImpl:findBin:[double min, double value, double delta]:int"
           ],
           "num": 2
         }
@@ -6811,6 +6811,7 @@
     {
       "test_class": "org.apache.commons.math.distribution.NormalDistributionTest",
       "test_function": "testExtremeValues",
+      "assertion_line": "174",
       "exception": "org.apache.commons.math.ConvergenceException",
       "message": "Continued fraction diverged to NaN for value ∞"
     }

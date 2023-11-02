@@ -335,6 +335,7 @@
     {
       "test_class": "com.google.javascript.jscomp.TypeCheckTest",
       "test_function": "testIssue700",
+      "assertion_line": "5777",
       "exception": "junit.framework.AssertionFailedError",
       "message": "unexpected warnings(s):"
     }

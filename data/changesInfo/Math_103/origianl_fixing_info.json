@@ -50,6 +50,7 @@
     {
       "test_class": "org.apache.commons.math.distribution.NormalDistributionTest",
       "test_function": "testExtremeValues",
+      "assertion_line": "133",
       "exception": "org.apache.commons.math.MaxIterationsExceededException",
       "message": "Maximal number of iterations (10,000) exceeded"
     }

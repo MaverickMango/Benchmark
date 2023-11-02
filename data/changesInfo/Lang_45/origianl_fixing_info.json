@@ -144,6 +144,7 @@
     {
       "test_class": "org.apache.commons.lang.WordUtilsTest",
       "test_function": "testAbbreviate",
+      "assertion_line": "390",
       "exception": "java.lang.StringIndexOutOfBoundsException",
       "message": "String index out of range: 15"
     }

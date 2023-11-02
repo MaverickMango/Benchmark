@@ -37,8 +37,8 @@
         },
         {
           "qualified_names": [
-            "org.jsoup.nodes.Attributes:equals:[Object o]:boolean",
-            "org.jsoup.nodes.Attributes:hashCode:[]:int"
+            "org.jsoup.nodes.Attributes:hashCode:[]:int",
+            "org.jsoup.nodes.Attributes:equals:[Object o]:boolean"
           ],
           "num": 2
         }
@@ -91,18 +91,18 @@
       "changed_functions": [
         {
           "qualified_names": [
-            "org.jsoup.nodes.Element:clone:[]:Element",
             "org.jsoup.nodes.Element:appendChild:[Node child]:Element",
             "org.jsoup.nodes.Element:equals:[Object o]:boolean",
-            "org.jsoup.nodes.Element:hashCode:[]:int"
+            "org.jsoup.nodes.Element:hashCode:[]:int",
+            "org.jsoup.nodes.Element:clone:[]:Element"
           ],
           "num": 4
         },
         {
           "qualified_names": [
+            "org.jsoup.nodes.Element:equals:[Object o]:boolean",
             "org.jsoup.nodes.Element:clone:[]:Element",
-            "org.jsoup.nodes.Element:appendChild:[Node child]:Element",
-            "org.jsoup.nodes.Element:equals:[Object o]:boolean"
+            "org.jsoup.nodes.Element:appendChild:[Node child]:Element"
           ],
           "num": 3
         }
@@ -211,8 +211,8 @@
       "changed_functions": [
         {
           "qualified_names": [
-            "org.jsoup.nodes.Node:equals:[Object o]:boolean",
             "org.jsoup.nodes.Node:after:[String html]:Node",
+            "org.jsoup.nodes.Node:equals:[Object o]:boolean",
             "org.jsoup.nodes.Node:hashCode:[]:int",
             "org.jsoup.nodes.Node:after:[Node node]:Node"
           ],
@@ -220,9 +220,9 @@
         },
         {
           "qualified_names": [
-            "org.jsoup.nodes.Node:after:[String html]:Node",
             "org.jsoup.nodes.Node:after:[Node node]:Node",
             "org.jsoup.nodes.Node:hashCode:[]:int",
+            "org.jsoup.nodes.Node:after:[String html]:Node",
             "org.jsoup.nodes.Node:equals:[Object o]:boolean"
           ],
           "num": 4
@@ -415,14 +415,7 @@
       "num": 2
     }
   },
-  "trigger_tests": [
-    {
-      "test_class": "org.jsoup.nodes.ElementTest",
-      "test_function": "testElementSiblingIndexSameContent",
-      "exception": "junit.framework.AssertionFailedErro",
-      "message": ""
-    }
-  ],
+  "trigger_tests": [],
   "fixing_changes": [
     {
       "changed_type": "UPDATE",

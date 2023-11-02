@@ -3,6 +3,8 @@ package root.generation.helper;
 import org.apache.commons.io.FileUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import root.bean.BugRepository;
+import root.bean.benchmarks.Defects4JBug;
 import root.generation.compiler.JavaJDKCompiler;
 import root.generation.execution.ExternalTestExecutor;
 import root.generation.execution.ITestExecutor;
@@ -23,6 +25,7 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.*;
 import java.net.MalformedURLException;
+import java.util.stream.Collectors;
 
 public class Preparation {
     private static final Logger logger = LoggerFactory.getLogger(Preparation.class);
@@ -51,8 +54,8 @@ public class Preparation {
     URL[] progURLs;
 
     public Preparation() throws IOException {
-        complianceLevel = ConfigurationProperties.getProperty("complianceLevel");
         String location = ConfigurationProperties.getProperty("location");
+        complianceLevel = ConfigurationProperties.getProperty("complianceLevel");
         Path path = Paths.get(location).toAbsolutePath();
         binJavaDir = path.resolve(ConfigurationProperties.getProperty("binJavaDir")).normalize().toString();
         binTestDir = path.resolve(ConfigurationProperties.getProperty("binTestDir")).normalize().toString();
@@ -61,7 +64,9 @@ public class Preparation {
         String tmp = ConfigurationProperties.getProperty("dependencies");
         if (tmp != null) {
             dependencies = new HashSet<>();
-            dependencies.addAll(Arrays.asList(tmp.split(File.pathSeparator)));
+            dependencies.addAll(Arrays.stream(tmp.split(File.pathSeparator)).map(
+                    de -> path.resolve(de).normalize().toString()
+            ).collect(Collectors.toList()));
         }
 
         tmp = ConfigurationProperties.getProperty("binExecuteTestClasses");
@@ -151,20 +156,27 @@ public class Preparation {
         compilerOptions.add("-source");
         compilerOptions.add(complianceLevel);
         compilerOptions.add("-cp");
-        StringBuilder cpStr = new StringBuilder(binJavaDir);
-        cpStr.append(File.pathSeparator).append(binTestDir);
+        StringBuilder cpStr = new StringBuilder();
         if (dependencies != null) {
             for (String path: dependencies) {
                 cpStr.append(File.pathSeparator).append(path);
             }
+        } else {
+            cpStr.append(File.pathSeparator).append(binJavaDir);
+            cpStr.append(File.pathSeparator).append(binTestDir);
         }
         compilerOptions.add(cpStr.toString());
     }
 
     private void invokeTransformation() {
+        Defects4JBug defects4JBug = new Defects4JBug(ConfigurationProperties.getProperty("proj"),
+                ConfigurationProperties.getProperty("id"), ConfigurationProperties.getProperty("location"),
+                ConfigurationProperties.getProperty("fixingCommit"), ConfigurationProperties.getProperty("buggyCommit"),
+                ConfigurationProperties.getProperty("inducingCommit"), ConfigurationProperties.getProperty("originalCommit"));
+        BugRepository bugRepository = new BugRepository(defects4JBug);
+        inputTransformer = new InputTransformer(bugRepository);
         inputExtractor = new InputExtractor(parser);
         MutatorHelper.initialize();
-        inputTransformer = new InputTransformer();
     }
 
     public Map<String, JavaFileObject> getCompiledClassesForTestExecution(Map<String, String> javaSources) {
@@ -181,6 +193,9 @@ public class Preparation {
         return null;
     }
 
+    public void compileClassesForTestExecution(Map<String, String> javaSources) {
+
+    }
     protected ITestExecutor getTestExecutor(Map<String, JavaFileObject> compiledClasses, Set<String> executePosTests)
             throws JMException, IOException {
         if (testExecutorName.equalsIgnoreCase("ExternalTestExecutor")) {

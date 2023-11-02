@@ -40,8 +40,8 @@
         },
         {
           "qualified_names": [
-            "org.apache.commons.lang.BooleanUtils:toBooleanObject:[String str]:Boolean",
-            "org.apache.commons.lang.BooleanUtils:toBoolean:[String str]:boolean"
+            "org.apache.commons.lang.BooleanUtils:toBoolean:[String str]:boolean",
+            "org.apache.commons.lang.BooleanUtils:toBooleanObject:[String str]:Boolean"
           ],
           "num": 2
         }
@@ -286,6 +286,7 @@
     {
       "test_class": "org.apache.commons.lang.BooleanUtilsTest",
       "test_function": "test_toBoolean_String",
+      "assertion_line": "334",
       "exception": "java.lang.StringIndexOutOfBoundsException",
       "message": "String index out of range: 3"
     }

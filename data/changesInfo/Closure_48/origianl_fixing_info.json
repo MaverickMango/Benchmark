@@ -33,42 +33,42 @@
       "changed_functions": [
         {
           "qualified_names": [
-            "com.google.javascript.jscomp.TypedScopeCreator\\$GlobalScopeBuilder:visit:[NodeTraversal t, Node n, Node parent]:void",
-            "com.google.javascript.jscomp.TypedScopeCreator\\$GlobalScopeBuilder:getObjectSlot:[String slotName]:ObjectType",
-            "com.google.javascript.jscomp.TypedScopeCreator\\$GlobalScopeBuilder\\$CollectProperties:visit:[NodeTraversal t, Node n, Node parent]:void",
-            "com.google.javascript.jscomp.TypedScopeCreator\\$AbstractScopeBuilder:visit:[NodeTraversal t, Node n, Node parent]:void",
-            "com.google.javascript.jscomp.TypedScopeCreator\\$GlobalScopeBuilder\\$CollectProperties:CollectProperties:[ObjectType thisType]:null",
-            "com.google.javascript.jscomp.TypedScopeCreator\\$GlobalScopeBuilder:checkForTypedef:[NodeTraversal t, Node candidate, JSDocInfo info]:void",
-            "com.google.javascript.jscomp.TypedScopeCreator\\$GlobalScopeBuilder\\$CollectProperties:maybeCollectMember:[NodeTraversal t, Node member, Node nodeWithJsDocInfo]:void",
-            "com.google.javascript.jscomp.TypedScopeCreator:createScope:[Node root, Scope parent]:Scope",
             "com.google.javascript.jscomp.TypedScopeCreator\\$GlobalScopeBuilder\\$StubDeclaration:StubDeclaration:[Node node, boolean isExtern, String ownerName]:null",
             "com.google.javascript.jscomp.TypedScopeCreator\\$AbstractScopeBuilder:getFunctionType:[String name, Node rValue, JSDocInfo info, @Nullable Node lvalueNode]:FunctionType",
+            "com.google.javascript.jscomp.TypedScopeCreator\\$GlobalScopeBuilder:maybeDeclareQualifiedName:[NodeTraversal t, JSDocInfo info, Node n, Node parent, Node rhsValue]:void",
+            "com.google.javascript.jscomp.TypedScopeCreator\\$AbstractScopeBuilder:visit:[NodeTraversal t, Node n, Node parent]:void",
+            "com.google.javascript.jscomp.TypedScopeCreator\\$GlobalScopeBuilder:visit:[NodeTraversal t, Node n, Node parent]:void",
+            "com.google.javascript.jscomp.TypedScopeCreator\\$GlobalScopeBuilder:checkForTypedef:[NodeTraversal t, Node candidate, JSDocInfo info]:void",
+            "com.google.javascript.jscomp.TypedScopeCreator\\$LocalScopeBuilder:visit:[NodeTraversal t, Node n, Node parent]:void",
+            "com.google.javascript.jscomp.TypedScopeCreator\\$GlobalScopeBuilder:getDeclaredGetPropType:[NodeTraversal t, JSDocInfo info, Node n, Node rhsValue]:JSType",
+            "com.google.javascript.jscomp.TypedScopeCreator:createScope:[Node root, Scope parent]:Scope",
             "com.google.javascript.jscomp.TypedScopeCreator\\$GlobalScopeBuilder:GlobalScopeBuilder:[Scope scope]:null",
             "com.google.javascript.jscomp.TypedScopeCreator\\$GlobalScopeBuilder:resolveStubDeclarations:[]:void",
-            "com.google.javascript.jscomp.TypedScopeCreator\\$GlobalScopeBuilder:getDeclaredGetPropType:[NodeTraversal t, JSDocInfo info, Node n, Node rhsValue]:JSType",
-            "com.google.javascript.jscomp.TypedScopeCreator\\$GlobalScopeBuilder:maybeDeclareQualifiedName:[NodeTraversal t, JSDocInfo info, Node n, Node parent, Node rhsValue]:void",
-            "com.google.javascript.jscomp.TypedScopeCreator\\$LocalScopeBuilder:visit:[NodeTraversal t, Node n, Node parent]:void"
+            "com.google.javascript.jscomp.TypedScopeCreator\\$GlobalScopeBuilder:getObjectSlot:[String slotName]:ObjectType",
+            "com.google.javascript.jscomp.TypedScopeCreator\\$GlobalScopeBuilder\\$CollectProperties:CollectProperties:[ObjectType thisType]:null",
+            "com.google.javascript.jscomp.TypedScopeCreator\\$GlobalScopeBuilder\\$CollectProperties:visit:[NodeTraversal t, Node n, Node parent]:void",
+            "com.google.javascript.jscomp.TypedScopeCreator\\$GlobalScopeBuilder\\$CollectProperties:maybeCollectMember:[NodeTraversal t, Node member, Node nodeWithJsDocInfo]:void"
           ],
           "num": 15
         },
         {
           "qualified_names": [
-            "com.google.javascript.jscomp.TypedScopeCreator\\$AbstractScopeBuilder:getFunctionType:[String name, Node rValue, JSDocInfo info, @Nullable Node lvalueNode]:FunctionType",
-            "com.google.javascript.jscomp.TypedScopeCreator\\$AbstractScopeBuilder:getObjectSlot:[String slotName]:ObjectType",
-            "com.google.javascript.jscomp.TypedScopeCreator\\$StubDeclaration:StubDeclaration:[Node node, boolean isExtern, String ownerName]:null",
-            "com.google.javascript.jscomp.TypedScopeCreator\\$LocalScopeBuilder:visit:[NodeTraversal t, Node n, Node parent]:void",
-            "com.google.javascript.jscomp.TypedScopeCreator\\$AbstractScopeBuilder:resolveStubDeclarations:[]:void",
-            "com.google.javascript.jscomp.TypedScopeCreator\\$GlobalScopeBuilder:visit:[NodeTraversal t, Node n, Node parent]:void",
-            "com.google.javascript.jscomp.TypedScopeCreator\\$AbstractScopeBuilder:maybeDeclareQualifiedName:[NodeTraversal t, JSDocInfo info, Node n, Node parent, Node rhsValue]:void",
-            "com.google.javascript.jscomp.TypedScopeCreator\\$GlobalScopeBuilder:GlobalScopeBuilder:[Scope scope]:null",
-            "com.google.javascript.jscomp.TypedScopeCreator\\$AbstractScopeBuilder:getDeclaredGetPropType:[NodeTraversal t, JSDocInfo info, Node n, Node rhsValue]:JSType",
-            "com.google.javascript.jscomp.TypedScopeCreator\\$GlobalScopeBuilder:checkForTypedef:[NodeTraversal t, Node candidate, JSDocInfo info]:void",
-            "com.google.javascript.jscomp.TypedScopeCreator:createScope:[Node root, Scope parent]:Scope",
-            "com.google.javascript.jscomp.TypedScopeCreator\\$AbstractScopeBuilder\\$CollectProperties:CollectProperties:[ObjectType thisType]:null",
             "com.google.javascript.jscomp.TypedScopeCreator\\$GlobalScopeBuilder:maybeDeclareQualifiedName:[NodeTraversal t, JSDocInfo info, Node n, Node parent, Node rhsValue]:void",
             "com.google.javascript.jscomp.TypedScopeCreator\\$AbstractScopeBuilder:defineSlot:[Node n, Node parent, JSType type, boolean inferred]:void",
-            "com.google.javascript.jscomp.TypedScopeCreator\\$AbstractScopeBuilder\\$CollectProperties:visit:[NodeTraversal t, Node n, Node parent]:void",
+            "com.google.javascript.jscomp.TypedScopeCreator\\$LocalScopeBuilder:visit:[NodeTraversal t, Node n, Node parent]:void",
+            "com.google.javascript.jscomp.TypedScopeCreator\\$AbstractScopeBuilder:getDeclaredGetPropType:[NodeTraversal t, JSDocInfo info, Node n, Node rhsValue]:JSType",
+            "com.google.javascript.jscomp.TypedScopeCreator\\$AbstractScopeBuilder\\$CollectProperties:CollectProperties:[ObjectType thisType]:null",
+            "com.google.javascript.jscomp.TypedScopeCreator\\$AbstractScopeBuilder:resolveStubDeclarations:[]:void",
+            "com.google.javascript.jscomp.TypedScopeCreator\\$GlobalScopeBuilder:checkForTypedef:[NodeTraversal t, Node candidate, JSDocInfo info]:void",
             "com.google.javascript.jscomp.TypedScopeCreator\\$AbstractScopeBuilder:visit:[NodeTraversal t, Node n, Node parent]:void",
+            "com.google.javascript.jscomp.TypedScopeCreator\\$AbstractScopeBuilder:getFunctionType:[String name, Node rValue, JSDocInfo info, @Nullable Node lvalueNode]:FunctionType",
+            "com.google.javascript.jscomp.TypedScopeCreator\\$StubDeclaration:StubDeclaration:[Node node, boolean isExtern, String ownerName]:null",
+            "com.google.javascript.jscomp.TypedScopeCreator\\$AbstractScopeBuilder:getObjectSlot:[String slotName]:ObjectType",
+            "com.google.javascript.jscomp.TypedScopeCreator:createScope:[Node root, Scope parent]:Scope",
+            "com.google.javascript.jscomp.TypedScopeCreator\\$AbstractScopeBuilder\\$CollectProperties:visit:[NodeTraversal t, Node n, Node parent]:void",
+            "com.google.javascript.jscomp.TypedScopeCreator\\$GlobalScopeBuilder:GlobalScopeBuilder:[Scope scope]:null",
+            "com.google.javascript.jscomp.TypedScopeCreator\\$GlobalScopeBuilder:visit:[NodeTraversal t, Node n, Node parent]:void",
+            "com.google.javascript.jscomp.TypedScopeCreator\\$AbstractScopeBuilder:maybeDeclareQualifiedName:[NodeTraversal t, JSDocInfo info, Node n, Node parent, Node rhsValue]:void",
             "com.google.javascript.jscomp.TypedScopeCreator\\$AbstractScopeBuilder\\$CollectProperties:maybeCollectMember:[NodeTraversal t, Node member, Node nodeWithJsDocInfo]:void"
           ],
           "num": 17
@@ -1294,6 +1294,7 @@
     {
       "test_class": "com.google.javascript.jscomp.TypeCheckTest",
       "test_function": "testIssue586",
+      "assertion_line": "5443",
       "exception": "junit.framework.AssertionFailedError",
       "message": "expected a warning"
     }
@@ -1308,16 +1309,16 @@
       "changed_functions": [
         {
           "qualified_names": [
-            "com.google.javascript.jscomp.TypedScopeCreator\\$AbstractScopeBuilder:isQnameRootedInGlobalScope:[Node n]:boolean",
-            "com.google.javascript.jscomp.TypedScopeCreator\\$AbstractScopeBuilder:maybeDeclareQualifiedName:[NodeTraversal t, JSDocInfo info, Node n, Node parent, Node rhsValue]:void"
+            "com.google.javascript.jscomp.TypedScopeCreator\\$AbstractScopeBuilder:maybeDeclareQualifiedName:[NodeTraversal t, JSDocInfo info, Node n, Node parent, Node rhsValue]:void",
+            "com.google.javascript.jscomp.TypedScopeCreator\\$AbstractScopeBuilder:isQnameRootedInGlobalScope:[Node n]:boolean"
           ],
           "num": 2
         },
         {
           "qualified_names": [
+            "com.google.javascript.jscomp.TypedScopeCreator\\$AbstractScopeBuilder:getQnameRootScope:[Node n]:Scope",
             "com.google.javascript.jscomp.TypedScopeCreator\\$AbstractScopeBuilder:maybeDeclareQualifiedName:[NodeTraversal t, JSDocInfo info, Node n, Node parent, Node rhsValue]:void",
-            "com.google.javascript.jscomp.TypedScopeCreator\\$AbstractScopeBuilder:isQnameRootedInGlobalScope:[Node n]:boolean",
-            "com.google.javascript.jscomp.TypedScopeCreator\\$AbstractScopeBuilder:getQnameRootScope:[Node n]:Scope"
+            "com.google.javascript.jscomp.TypedScopeCreator\\$AbstractScopeBuilder:isQnameRootedInGlobalScope:[Node n]:boolean"
           ],
           "num": 3
         }

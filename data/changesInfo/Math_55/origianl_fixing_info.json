@@ -189,6 +189,7 @@
     {
       "test_class": "org.apache.commons.math.geometry.Vector3DTest",
       "test_function": "testCrossProductCancellation",
+      "assertion_line": "159",
       "exception": "junit.framework.AssertionFailedError",
       "message": "expected:\u003c1.0\u003e but was:\u003c0.0\u003e"
     }
