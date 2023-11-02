@@ -3,6 +3,8 @@ package root.generation.transformation;
 import com.github.javaparser.ast.CompilationUnit;
 import com.github.javaparser.ast.body.MethodDeclaration;
 import com.github.javaparser.ast.expr.*;
+import com.github.javaparser.ast.stmt.ExpressionStmt;
+import com.github.javaparser.ast.stmt.Statement;
 import com.github.javaparser.quality.NotNull;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -115,9 +117,7 @@ public class InputTransformer {
 
         List<Input> collect = skeleton.getInputs().stream().filter(input -> !input.isCompleted()).collect(Collectors.toList());
         if (!collect.isEmpty()) {
-            for (Input newInput :collect) {
-                skeleton.getOracle(TransformHelper.bugRepository, newInput);//需要oracle的语句则需要先执行一遍
-            }
+            skeleton.getOracle(TransformHelper.bugRepository, newInputs);//需要oracle的语句则需要先执行一遍
         }
 
         collect = skeleton.getInputs().stream().filter(Input::isCompleted).collect(Collectors.toList());
@@ -135,7 +135,9 @@ public class InputTransformer {
         if (!newInput.isCompleted()) {
             newUnit = skeleton.getOracle(TransformHelper.bugRepository, newInput);//需要oracle的语句则需要先执行一遍
         } else {
-            MethodDeclaration methodDeclaration = skeleton.addStatementAtLast(newInput.getMethodCallExpr());//对于不需要oracle的语句，直接根据input更新method
+            MethodCallExpr methodCallExpr = newInput.getMethodCallExpr();
+            ExpressionStmt stmt = new ExpressionStmt(methodCallExpr);
+            MethodDeclaration methodDeclaration = skeleton.addStatementAtLast(stmt);//对于不需要oracle的语句，直接根据input更新method
             newUnit = skeleton.getTransformedCompilationUnit(methodDeclaration);//向原有类添加新的测试函数
         }
         return newUnit;

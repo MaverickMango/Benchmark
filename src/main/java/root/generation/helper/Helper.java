@@ -3,19 +3,26 @@ package root.generation.helper;
 import com.github.javaparser.ast.CompilationUnit;
 import com.github.javaparser.ast.Node;
 import com.github.javaparser.ast.NodeList;
+import com.github.javaparser.ast.body.Parameter;
+import com.github.javaparser.ast.body.TypeDeclaration;
+import com.github.javaparser.ast.body.VariableDeclarator;
 import com.github.javaparser.ast.expr.*;
-import com.github.javaparser.ast.stmt.ExpressionStmt;
-import com.github.javaparser.ast.stmt.Statement;
+import com.github.javaparser.ast.stmt.*;
 import com.github.javaparser.resolution.UnsolvedSymbolException;
 import com.github.javaparser.resolution.types.ResolvedType;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import root.generation.entity.Skeleton;
+import root.util.FileUtils;
 
+import java.io.BufferedOutputStream;
 import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.lang.reflect.Modifier;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.nio.charset.StandardCharsets;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
@@ -88,7 +95,126 @@ public class Helper {
         return qualifiedName;
     }
 
-    public static Expression constructPrintStmt2Instr(Expression expression) {
+    public static Statement constructFileOutputStmt2Instr(String filePath, Expression expression) {
+        BlockStmt blockStmt = new BlockStmt();
+        NodeList<Statement> statements = new NodeList<>();
+        /*
+        File file = new File(filename);
+        */
+        ExpressionStmt expressionStmt = new ExpressionStmt();
+        VariableDeclarationExpr variableDeclarationExpr = new VariableDeclarationExpr();
+        NodeList<VariableDeclarator> vars = new NodeList<>();
+        VariableDeclarator variableDeclarator = new VariableDeclarator();
+        variableDeclarator.setName(new SimpleName("file"));
+        variableDeclarator.setType("File");
+        ObjectCreationExpr objectCreationExpr = new ObjectCreationExpr();
+        objectCreationExpr.setType("File");
+        NodeList<Expression> nodeList = new NodeList<>();
+        StringLiteralExpr stringLiteralExpr = new StringLiteralExpr(filePath);
+        nodeList.add(stringLiteralExpr);
+        objectCreationExpr.setArguments(nodeList);
+        variableDeclarator.setInitializer(objectCreationExpr);
+        vars.add(variableDeclarator);
+        variableDeclarationExpr.setVariables(vars);
+        expressionStmt.setExpression(variableDeclarationExpr);
+        statements.add(expressionStmt);
+        /*
+        try {
+            BufferedOutputStream buff = new BufferedOutputStream(new FileOutputStream(filename, true));
+            buff.write(expression.getBytes(StandardCharsets.UTF_8));
+            buff.flush();
+            buff.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+         */
+        TryStmt tryStmt = new TryStmt();
+        BlockStmt blockStmt0 = new BlockStmt();
+        NodeList<Statement> blockStmts = new NodeList<>();
+        variableDeclarationExpr = new VariableDeclarationExpr();
+        vars = new NodeList<>();
+        variableDeclarator = new VariableDeclarator();
+        variableDeclarator.setName("buff");
+        variableDeclarator.setType("BufferedOutputStream");
+        objectCreationExpr = new ObjectCreationExpr();
+        objectCreationExpr.setType("BufferedOutputStream");
+        nodeList = new NodeList<>();
+        ObjectCreationExpr objectCreationExpr1 = new ObjectCreationExpr();
+        objectCreationExpr1.setType("FileOutputStream");
+        NodeList<Expression> nodeList1 = new NodeList<>();
+        nodeList1.add(stringLiteralExpr);
+        nodeList1.add(new BooleanLiteralExpr(true));
+        objectCreationExpr1.setArguments(nodeList1);
+        nodeList.add(objectCreationExpr1);
+        objectCreationExpr.setArguments(nodeList);
+        variableDeclarator.setInitializer(objectCreationExpr);
+        vars.add(variableDeclarator);
+        variableDeclarationExpr.setVariables(vars);
+        blockStmts.add(new ExpressionStmt(variableDeclarationExpr));
+
+        expressionStmt = new ExpressionStmt();
+        MethodCallExpr methodCallExpr = new MethodCallExpr();
+        methodCallExpr.setScope(new NameExpr("buff"));
+        methodCallExpr.setName("write");
+        nodeList = new NodeList<>();
+        MethodCallExpr methodCallExpr1 = new MethodCallExpr();
+        methodCallExpr1.setScope(expression);
+        methodCallExpr1.setName("getBytes");
+        nodeList1 = new NodeList<>();
+        FieldAccessExpr fieldAccessExpr = new FieldAccessExpr();
+        fieldAccessExpr.setScope(new NameExpr("StandardCharsets"));
+        fieldAccessExpr.setName("UTF_8");
+        nodeList1.add(fieldAccessExpr);
+        methodCallExpr1.setArguments(nodeList1);
+        nodeList.add(methodCallExpr1);
+        methodCallExpr.setArguments(nodeList);
+        expressionStmt.setExpression(methodCallExpr);
+        blockStmts.add(expressionStmt);
+
+        expressionStmt = new ExpressionStmt();
+        methodCallExpr = new MethodCallExpr();
+        methodCallExpr.setScope(new NameExpr("buff"));
+        methodCallExpr.setName("flush");
+        expressionStmt.setExpression(methodCallExpr);
+        blockStmts.add(expressionStmt);
+
+        expressionStmt = new ExpressionStmt();
+        methodCallExpr = new MethodCallExpr();
+        methodCallExpr.setScope(new NameExpr("buff"));
+        methodCallExpr.setName("close");
+        expressionStmt.setExpression(methodCallExpr);
+        blockStmts.add(expressionStmt);
+
+        blockStmt0.setStatements(blockStmts);
+        tryStmt.setTryBlock(blockStmt0);
+
+        NodeList<CatchClause> catchClauses = new NodeList<>();
+        CatchClause catchClause = new CatchClause();
+        BlockStmt blockStmt1 = new BlockStmt();
+        NodeList<Statement> catchStmts = new NodeList<>();
+        methodCallExpr = new MethodCallExpr();
+        NameExpr nameExpr = new NameExpr("e");
+        methodCallExpr.setScope(nameExpr);
+        methodCallExpr.setName("printStackTrace");
+        expressionStmt = new ExpressionStmt(methodCallExpr);
+        catchStmts.add(expressionStmt);
+        blockStmt1.setStatements(catchStmts);
+        catchClause.setBody(blockStmt1);
+        Parameter exception = new Parameter();
+        exception.setName(new SimpleName("e"));
+        exception.setType("IOException");
+        catchClause.setParameter(exception);
+        catchClauses.add(catchClause);
+        tryStmt.setCatchClauses(catchClauses);
+
+        statements.add(tryStmt);
+        blockStmt.setStatements(statements);
+        return blockStmt;
+    }
+
+    public static Statement constructPrintStmt2Instr(Expression expression) {
+        //can't get this from defects4j: System.out.println(${expression});
+        ExpressionStmt stmt = new ExpressionStmt();
         MethodCallExpr methodCallExpr = new MethodCallExpr();
         methodCallExpr.setName(new SimpleName("println"));
         FieldAccessExpr fieldAccessExpr = new FieldAccessExpr();
@@ -100,7 +226,8 @@ public class Helper {
         NodeList<Expression> nodeList = new NodeList<>();
         nodeList.add(expression);
         methodCallExpr.setArguments(nodeList);
-        return methodCallExpr;
+        stmt.setExpression(methodCallExpr);
+        return stmt;
     }
 
     private static String characterTable[] = {"a", "b", "c", "d", "e", "f", "g", "h", "i",

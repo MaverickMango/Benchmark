@@ -24,6 +24,10 @@ public class BugRepository implements GitAccess {
         this.bug.compile();
     }
 
+    public CIBug getBug() {
+        return bug;
+    }
+
     public boolean test(String testName) {
         boolean res = false;
         if (!(bug instanceof Defects4JBug))
