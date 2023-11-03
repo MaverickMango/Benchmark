@@ -20,6 +20,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -64,7 +65,26 @@ class InputTransformerTest extends PreparationTest{
         MethodDeclaration methodDeclaration = InputExtractorTest.getMethodDeclaration();
         String absolutePath = new File(InputExtractorTest.filePath).getAbsolutePath();
         Skeleton skeleton = TransformHelper.createASkeleton(absolutePath, methodDeclaration);
-        CompilationUnit compilationUnit1 = inputTransformer.buildNewTestByInput(skeleton, newInput);
+        assert skeleton != null;
+        Map<CompilationUnit, String[]> compilationUnitMap = inputTransformer.buildNewTestByInput(skeleton, newInput);
+        CompilationUnit compilationUnit1 = new ArrayList<>(compilationUnitMap.keySet()).get(0);
+        CompilationUnit compilationUnit = inputExtractor.getCompilationUnit(absolutePath);
+        assertNotEquals(compilationUnit, compilationUnit1);
+    }
+
+    @Test
+    void buildNewTestByInputs() {
+        InputTransformer inputTransformer = TransformHelper.inputTransformer;
+        InputExtractor inputExtractor = TransformHelper.inputExtractor;
+        Input input = InputExtractorTest.getInput();
+        List<Object> inputMutants = MutatorHelper.getInputMutants(input, 10);
+        List<Input> newInputs = inputTransformer.transformInput(input, inputMutants);
+        MethodDeclaration methodDeclaration = InputExtractorTest.getMethodDeclaration();
+        String absolutePath = new File(InputExtractorTest.filePath).getAbsolutePath();
+        Skeleton skeleton = TransformHelper.createASkeleton(absolutePath, methodDeclaration);
+        assert skeleton != null;
+        Map<CompilationUnit, String[]> compilationUnitMap = inputTransformer.buildNewTestByInputs(skeleton, newInputs);
+        CompilationUnit compilationUnit1 = new ArrayList<>(compilationUnitMap.keySet()).get(0);
         CompilationUnit compilationUnit = inputExtractor.getCompilationUnit(absolutePath);
         assertNotEquals(compilationUnit, compilationUnit1);
     }
@@ -80,7 +100,8 @@ class InputTransformerTest extends PreparationTest{
         String absolutePath = new File(InputExtractorTest.filePath).getAbsolutePath();
         CompilationUnit compilationUnit = inputExtractor.getCompilationUnit(absolutePath);
         Skeleton skeleton = new Skeleton(absolutePath, compilationUnit, methodDeclaration);
-        CompilationUnit buildNewTestByInput = inputTransformer.buildNewTestByInput(skeleton, newInput);
+        Map<CompilationUnit, String[]> compilationUnitMap = inputTransformer.buildNewTestByInput(skeleton, newInput);
+        CompilationUnit buildNewTestByInput = new ArrayList<>(compilationUnitMap.keySet()).get(0);
         Map<Skeleton, CompilationUnit> map = new HashMap<>();
         map.put(skeleton, buildNewTestByInput);
         Map<String, String> javaSources = Helper.getJavaSources(map);

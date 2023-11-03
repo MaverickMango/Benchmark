@@ -12,7 +12,8 @@ public class IntegerMutator extends AbstractInputMutator{
     public Object getNextInput(Object oldValue) {
         int old = Integer.parseInt(oldValue.toString());
         IntegerLiteralExpr expr = new IntegerLiteralExpr();
-        expr.setInt(old - num + random.nextInt(old + num) + 1);
+        int newOne = old - num - 1 + random.nextInt(old + num) + 2;
+        expr.setInt(newOne);
         this.addInputMutants(expr);
         return expr;
     }

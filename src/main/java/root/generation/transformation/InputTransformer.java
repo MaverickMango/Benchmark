@@ -4,18 +4,16 @@ import com.github.javaparser.ast.CompilationUnit;
 import com.github.javaparser.ast.body.MethodDeclaration;
 import com.github.javaparser.ast.expr.*;
 import com.github.javaparser.ast.stmt.ExpressionStmt;
-import com.github.javaparser.ast.stmt.Statement;
 import com.github.javaparser.quality.NotNull;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import root.bean.BugRepository;
-import root.bean.ci.CIBug;
 import root.generation.entity.Input;
 import root.generation.entity.Skeleton;
 import root.generation.helper.Helper;
 import root.generation.helper.MutatorHelper;
 import root.generation.helper.TransformHelper;
 
+import java.io.File;
 import java.util.*;
 import java.util.stream.Collectors;
 
@@ -44,7 +42,6 @@ public class InputTransformer {
             throw new IllegalArgumentException(oldInput.toString());
         }
         logger.info("New input '" + value.toString() + "' has been transformed for " + oldInput);
-        //todo test Input实现深拷贝
         Input newInput = oldInput.clone();
         Expression basicExpr = oldInput.getBasicExpr();
         Expression newInputExpr = (Expression) value;//transform(basicExpr, value);
@@ -53,9 +50,14 @@ public class InputTransformer {
     }
 
     @SuppressWarnings("deprecation")
-    private Expression transform(@NotNull Expression basicExpr, Object value) {
-        String qualifiedName = Helper.getType(basicExpr);
-        Class<? extends Expression> inputType = MutatorHelper.INPUTS_BY_TYPE.get(qualifiedName).get(0);
+    public Expression transform(@NotNull Expression basicExpr, Object value) {
+        Class<? extends Expression> inputType;
+        try {
+            String qualifiedName = Helper.getType(basicExpr);
+            inputType = MutatorHelper.INPUTS_BY_TYPE.get(qualifiedName).get(0);
+        } catch (IllegalStateException e) {
+            inputType = basicExpr.getClass();
+        }
         Expression newInputExpr = null;
         try {
             if (inputType.equals(BooleanLiteralExpr.class)) {
@@ -95,52 +97,61 @@ public class InputTransformer {
         return newInputExpr;
     }
 
-    public CompilationUnit buildNewTestByInput(Skeleton skeleton, Input newInput) {
+    public Map<CompilationUnit, String[]> buildNewTestByInput(Skeleton skeleton, Input newInput) {
         String path = skeleton.getAbsolutePath();
         if (!this.skeletons.containsKey(path)) {
             this.skeletons.put(path, skeleton);
         }
-        CompilationUnit compilationUnit = constructSkeleton(skeleton, newInput);
-        return compilationUnit;
+        Map<CompilationUnit, String[]> compilationUnitMap = constructSkeleton(skeleton, newInput);
+        return compilationUnitMap;
     }
 
-    public void buildNewTestByInputs(Skeleton skeleton, List<Input> newInputs) {
-        for (Input input :newInputs) {
-            buildNewTestByInput(skeleton, input);
-        }
+    public Map<CompilationUnit, String[]> buildNewTestByInputs(Skeleton skeleton, List<Input> newInputs) {
+        Map<CompilationUnit, String[]> map = constructSkeleton(skeleton, newInputs);
+        return map;
     }
-    public void constructSkeleton(Skeleton skeleton, List<Input> newInputs) {
+    public Map<CompilationUnit, String[]> constructSkeleton(Skeleton skeleton, List<Input> newInputs) {
         if (!skeleton.isSplit())
             skeleton.splitAssert();//删除原有的assert语句
         skeleton.setInputs(newInputs);
         skeleton.applyTransform(newInputs);
-
+        Map<CompilationUnit, String[]> map = new HashMap<>();
         List<Input> collect = skeleton.getInputs().stream().filter(input -> !input.isCompleted()).collect(Collectors.toList());
+        List<Input> collect1 = skeleton.getInputs().stream().filter(Input::isCompleted).collect(Collectors.toList());
         if (!collect.isEmpty()) {
-            skeleton.getOracle(TransformHelper.bugRepository, newInputs);//需要oracle的语句则需要先执行一遍
+            Map<CompilationUnit, String[]> oracle = skeleton.getOracle(TransformHelper.bugRepository, newInputs);//需要oracle的语句则需要先执行一遍
+            map.putAll(oracle);
         }
-
-        collect = skeleton.getInputs().stream().filter(Input::isCompleted).collect(Collectors.toList());
-        skeleton.addStatementsAtLast(collect);//对于不需要oracle的语句，直接根据input更新method
-
-        skeleton.addMethodsAtCompilationUnit();//向原有类添加新的测试函数
+        if (!collect1.isEmpty()) {
+            Map<MethodDeclaration, Input> methodDeclarationInputMap = skeleton.addStatementsAtLast(collect1);//对于不需要oracle的语句，直接根据input更新method
+            CompilationUnit compilationUnit = skeleton.addMethods2CompilationUnit(methodDeclarationInputMap);
+            List<String> names = new ArrayList<>();
+            for (Map.Entry<MethodDeclaration, Input> entry: methodDeclarationInputMap.entrySet()) {
+                String testNamePrefix = skeleton.getTestNamePrefix(compilationUnit, entry.getKey().getNameAsString());
+                names.add(testNamePrefix);
+            }
+            map.put(compilationUnit, names.toArray(new String[0]));
+        }
+        return map;
     }
 
-    public CompilationUnit constructSkeleton(Skeleton skeleton, Input newInput) {
+    public Map<CompilationUnit, String[]> constructSkeleton(Skeleton skeleton, Input newInput) {
         if (!skeleton.isSplit())
             skeleton.splitAssert();//删除原有的assert语句
         skeleton.addInput(newInput);
         skeleton.applyTransform(newInput);
-        CompilationUnit newUnit;
+        Map<CompilationUnit, String[]> newUnit;
         if (!newInput.isCompleted()) {
             newUnit = skeleton.getOracle(TransformHelper.bugRepository, newInput);//需要oracle的语句则需要先执行一遍
         } else {
             MethodCallExpr methodCallExpr = newInput.getMethodCallExpr();
             ExpressionStmt stmt = new ExpressionStmt(methodCallExpr);
             MethodDeclaration methodDeclaration = skeleton.addStatementAtLast(stmt);//对于不需要oracle的语句，直接根据input更新method
-            newUnit = skeleton.getTransformedCompilationUnit(methodDeclaration);//向原有类添加新的测试函数
+            CompilationUnit compilationUnit = skeleton.addMethod2CompilationUnit(methodDeclaration);//向原有类添加新的测试函数
+            String testNamePrefix = skeleton.getTestNamePrefix(compilationUnit, methodDeclaration.getNameAsString());
+            newUnit = new HashMap<>();
+            newUnit.put(compilationUnit, new String[] {testNamePrefix});
         }
         return newUnit;
     }
-
 }
