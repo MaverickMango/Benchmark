@@ -7,7 +7,7 @@ import org.refactoringminer.astDiff.actions.ASTDiff;
 import org.refactoringminer.rm1.GitHistoryRefactoringMinerImpl;
 import root.analysis.CompilationUnitManipulator;
 import root.bean.otherdataset.BugFixCommit;
-import root.bean.BugFunction;
+import root.bean.ci.BugFunction;
 import root.bean.otherdataset.CommitInfo;
 import root.bean.benchmarks.Defects4JBug;
 import root.util.BugBuilder;

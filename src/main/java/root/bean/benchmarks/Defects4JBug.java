@@ -11,7 +11,6 @@ import root.bean.ci.CIBug;
 import root.util.*;
 
 import java.io.*;
-import java.nio.file.Path;
 import java.util.*;
 import java.util.stream.Collectors;
 
@@ -189,7 +188,7 @@ public class Defects4JBug extends CIBug implements GitAccess {
         return res == 0;
     }
 
-    public boolean singleTest(String testMethod) {
+    public boolean specifiedTest(String testMethod) {
         CommandSummary cs = new CommandSummary();
         cs.append("/bin/bash", "-c");
         cs.append("timeout " + timeoutSecond * 1000 + " " + d4jCmd + " test -t " + testMethod, null);
@@ -200,6 +199,17 @@ public class Defects4JBug extends CIBug implements GitAccess {
             logger.info("test Timeout!");
         }
         return res == 0;
+    }
+
+
+    public List<String> specifiedTestWithRes(String testMethod) {
+        CommandSummary cs = new CommandSummary();
+        cs.append("/bin/bash", "-c");
+        cs.append("timeout " + timeoutSecond * 1000 + " " + d4jCmd + " test -t " + testMethod, null);
+        String[] cmd = cs.flat();
+        List<String> res = FileUtils.execute(cmd, new File(workingDir).getAbsolutePath(), timeoutSecond
+                , Map.of("JAVA_HOME", ConfigurationProperties.getProperty("jdk8")));
+        return res;
     }
 
     public boolean commitChangesAndTag(String tagName) {
@@ -646,7 +656,7 @@ public class Defects4JBug extends CIBug implements GitAccess {
             // test for each single trigger test
             int count = 0;
             for (String triggerTest : triggerTests) {
-                res = singleTest(triggerTest);
+                res = specifiedTest(triggerTest);
                 if (!res) {
                     logger.info("---------- " + bugName + " went wrong after changing tests.");
                     FileUtils.executeCommand(new String[]{"/bin/bash", "-c", "git add . && git stash && git stash drop"}, workingDir, 300, null);
@@ -795,7 +805,7 @@ public class Defects4JBug extends CIBug implements GitAccess {
                 // test for each single trigger test
                 int count = 0;
                 for (String triggerTest: triggerTests) {
-                    res = singleTest(triggerTest);
+                    res = specifiedTest(triggerTest);
                     if (!res) {
                         logger.info("---------- " + bugName + " failed after changing tests.");
                         return false;

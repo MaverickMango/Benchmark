@@ -11,9 +11,8 @@ import root.generation.entity.Input;
 import root.generation.entity.Skeleton;
 import root.generation.helper.Helper;
 import root.generation.helper.MutatorHelper;
-import root.generation.helper.TransformHelper;
+import root.util.FileUtils;
 
-import java.io.File;
 import java.util.*;
 import java.util.stream.Collectors;
 
@@ -97,60 +96,60 @@ public class InputTransformer {
         return newInputExpr;
     }
 
-    public Map<CompilationUnit, String[]> buildNewTestByInput(Skeleton skeleton, Input newInput) {
+    public Map<String, MethodDeclaration> buildNewTestByInput(Skeleton skeleton, Input newInput) {
         String path = skeleton.getAbsolutePath();
         if (!this.skeletons.containsKey(path)) {
             this.skeletons.put(path, skeleton);
         }
-        Map<CompilationUnit, String[]> compilationUnitMap = constructSkeleton(skeleton, newInput);
+        Map<String, MethodDeclaration> compilationUnitMap = constructSkeleton(skeleton, newInput);
         return compilationUnitMap;
     }
 
-    public Map<CompilationUnit, String[]> buildNewTestByInputs(Skeleton skeleton, List<Input> newInputs) {
-        Map<CompilationUnit, String[]> map = constructSkeleton(skeleton, newInputs);
+    public Map<String, MethodDeclaration> buildNewTestByInputs(Skeleton skeleton, List<Input> newInputs) {
+        String path = skeleton.getAbsolutePath();
+        if (!this.skeletons.containsKey(path)) {
+            this.skeletons.put(path, skeleton);
+        }
+        Map<String, MethodDeclaration> map = constructSkeleton(skeleton, newInputs);
         return map;
     }
-    public Map<CompilationUnit, String[]> constructSkeleton(Skeleton skeleton, List<Input> newInputs) {
+    public Map<String, MethodDeclaration> constructSkeleton(Skeleton skeleton, List<Input> newInputs) {
         if (!skeleton.isSplit())
             skeleton.splitAssert();//删除原有的assert语句
         skeleton.setInputs(newInputs);
         skeleton.applyTransform(newInputs);
-        Map<CompilationUnit, String[]> map = new HashMap<>();
+        Map<String, MethodDeclaration> map = new HashMap<>();
         List<Input> collect = skeleton.getInputs().stream().filter(input -> !input.isCompleted()).collect(Collectors.toList());
         List<Input> collect1 = skeleton.getInputs().stream().filter(Input::isCompleted).collect(Collectors.toList());
         if (!collect.isEmpty()) {
-            Map<CompilationUnit, String[]> oracle = skeleton.getOracle(TransformHelper.bugRepository, newInputs);//需要oracle的语句则需要先执行一遍
+            Map<String, MethodDeclaration> oracle = skeleton.getOracle(TransformHelper.bugRepository, newInputs);//需要oracle的语句则需要先执行一遍
             map.putAll(oracle);
         }
         if (!collect1.isEmpty()) {
-            Map<MethodDeclaration, Input> methodDeclarationInputMap = skeleton.addStatementsAtLast(collect1);//对于不需要oracle的语句，直接根据input更新method
-            CompilationUnit compilationUnit = skeleton.addMethods2CompilationUnit(methodDeclarationInputMap);
-            List<String> names = new ArrayList<>();
-            for (Map.Entry<MethodDeclaration, Input> entry: methodDeclarationInputMap.entrySet()) {
-                String testNamePrefix = skeleton.getTestNamePrefix(compilationUnit, entry.getKey().getNameAsString());
-                names.add(testNamePrefix);
+            Map<Input, MethodDeclaration> methodDeclarationInputMap = skeleton.addStatementsAtLast(collect1);//对于不需要oracle的语句，直接根据input更新method
+            for (Map.Entry<Input, MethodDeclaration> entry: methodDeclarationInputMap.entrySet()) {
+                String testNamePrefix = skeleton.getTestNamePrefix(skeleton.getClazz(), entry.getValue().getNameAsString());
+                map.putIfAbsent(testNamePrefix, entry.getValue());
             }
-            map.put(compilationUnit, names.toArray(new String[0]));
         }
         return map;
     }
 
-    public Map<CompilationUnit, String[]> constructSkeleton(Skeleton skeleton, Input newInput) {
+    public Map<String, MethodDeclaration> constructSkeleton(Skeleton skeleton, Input newInput) {
         if (!skeleton.isSplit())
             skeleton.splitAssert();//删除原有的assert语句
         skeleton.addInput(newInput);
         skeleton.applyTransform(newInput);
-        Map<CompilationUnit, String[]> newUnit;
+        Map<String, MethodDeclaration> newUnit;
         if (!newInput.isCompleted()) {
             newUnit = skeleton.getOracle(TransformHelper.bugRepository, newInput);//需要oracle的语句则需要先执行一遍
         } else {
             MethodCallExpr methodCallExpr = newInput.getMethodCallExpr();
             ExpressionStmt stmt = new ExpressionStmt(methodCallExpr);
-            MethodDeclaration methodDeclaration = skeleton.addStatementAtLast(stmt);//对于不需要oracle的语句，直接根据input更新method
-            CompilationUnit compilationUnit = skeleton.addMethod2CompilationUnit(methodDeclaration);//向原有类添加新的测试函数
-            String testNamePrefix = skeleton.getTestNamePrefix(compilationUnit, methodDeclaration.getNameAsString());
+            MethodDeclaration methodDeclaration = skeleton.addStatementAtLast(newInput, stmt);//对于不需要oracle的语句，直接根据input更新method
+            String testNamePrefix = skeleton.getTestNamePrefix(skeleton.getClazz(), methodDeclaration.getNameAsString());
             newUnit = new HashMap<>();
-            newUnit.put(compilationUnit, new String[] {testNamePrefix});
+            newUnit.put(testNamePrefix, methodDeclaration);
         }
         return newUnit;
     }

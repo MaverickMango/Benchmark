@@ -3,17 +3,11 @@ package root.generation.extractor;
 import com.github.javaparser.ast.ImportDeclaration;
 import com.github.javaparser.ast.body.MethodDeclaration;
 import com.github.javaparser.ast.expr.MethodCallExpr;
-import com.github.javaparser.ast.expr.StringLiteralExpr;
-import org.junit.Assert;
-import org.junit.jupiter.api.BeforeAll;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import root.generation.entity.Input;
-import root.generation.helper.Preparation;
 import root.generation.helper.PreparationTest;
-import root.generation.helper.TransformHelper;
+import root.generation.transformation.TransformHelper;
 import root.generation.transformation.extractor.InputExtractor;
-import root.util.ConfigurationProperties;
 
 import java.io.File;
 import java.util.ArrayList;

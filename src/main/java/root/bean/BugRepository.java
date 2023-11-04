@@ -10,7 +10,7 @@ import root.util.FileUtils;
 import root.util.GitAccess;
 
 import java.io.File;
-import java.util.Map;
+import java.util.List;
 
 public class BugRepository implements GitAccess {
 
@@ -33,7 +33,30 @@ public class BugRepository implements GitAccess {
         if (!(bug instanceof Defects4JBug))
             return res;
         Defects4JBug defects4JBug = (Defects4JBug) bug;
-        res = defects4JBug.singleTest(testName);
+        res = defects4JBug.specifiedTest(testName);
+        return res;
+    }
+
+    public List<String> testWithRes(String testName) {
+        List<String> res = null;
+        if (!(bug instanceof Defects4JBug))
+            return res;
+        Defects4JBug defects4JBug = (Defects4JBug) bug;
+        res = defects4JBug.specifiedTestWithRes(testName);
+        return res;
+    }
+
+    public boolean switchToBug() {
+        boolean res = false;
+        if (!(bug instanceof Defects4JBug))
+            return res;
+        Defects4JBug defects4JBug = (Defects4JBug) bug;
+        try {
+            logger.debug("Switch to commit " + defects4JBug.getD4JBuggy());
+            res = gitAccess.checkoutf(defects4JBug.getWorkingDir(), defects4JBug.getD4JBuggy());
+        } catch (Exception e) {
+            logger.error(e.getMessage());
+        }
         return res;
     }
 

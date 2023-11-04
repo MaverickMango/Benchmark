@@ -1,19 +1,17 @@
-package root.generation.helper;
+package root.generation;
 
+import com.github.javaparser.ParseProblemException;
 import org.apache.commons.io.FileUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import root.bean.BugRepository;
-import root.bean.benchmarks.Defects4JBug;
 import root.generation.compiler.JavaJDKCompiler;
 import root.generation.execution.ExternalTestExecutor;
 import root.generation.execution.ITestExecutor;
 import root.generation.execution.InternalTestExecutor;
-import root.generation.parser.ASTJDTParser;
-import root.generation.transformation.InputTransformer;
-import root.generation.transformation.extractor.InputExtractor;
+import root.generation.helper.*;
 import root.generation.parser.ASTJavaParser;
 import root.generation.parser.AbstractASTParser;
+import root.generation.transformation.TransformHelper;
 import root.util.ConfigurationProperties;
 
 import javax.management.JMException;
@@ -27,14 +25,15 @@ import java.util.*;
 import java.net.MalformedURLException;
 import java.util.stream.Collectors;
 
-public class Preparation {
-    private static final Logger logger = LoggerFactory.getLogger(Preparation.class);
+public class ProjectPreparation {
+    private static final Logger logger = LoggerFactory.getLogger(ProjectPreparation.class);
     public String complianceLevel;
     public String srcJavaDir;
     public String srcTestDir;
     public String binJavaDir;
     public String binTestDir;
     public Set<String> dependencies;
+    public String patchesDir;
     public String javaClassesInfoPath;
     public String testClassesInfoPath;
     public String testExecutorName;
@@ -50,8 +49,9 @@ public class Preparation {
     public Map<String, Object> ASTs;//CompilationUnit
     public List<String> compilerOptions;
     URL[] progURLs;
+    public Map<String, Object> patches;
 
-    public Preparation() throws IOException {
+    public ProjectPreparation() throws IOException {
         String location = ConfigurationProperties.getProperty("location");
         complianceLevel = ConfigurationProperties.getProperty("complianceLevel");
         Path path = Paths.get(location).toAbsolutePath();
@@ -59,6 +59,7 @@ public class Preparation {
         binTestDir = path.resolve(ConfigurationProperties.getProperty("binTestDir")).normalize().toString();
         srcJavaDir = path.resolve(ConfigurationProperties.getProperty("srcJavaDir")).normalize().toString();
         srcTestDir = path.resolve(ConfigurationProperties.getProperty("srcTestDir")).normalize().toString();
+
         String tmp = ConfigurationProperties.getProperty("dependencies");
         if (tmp != null) {
             dependencies = new HashSet<>();
@@ -66,6 +67,8 @@ public class Preparation {
                     de -> path.resolve(de).normalize().toString()
             ).collect(Collectors.toList()));
         }
+        tmp = ConfigurationProperties.getProperty("patchesDir");
+        patchesDir = Paths.get(tmp).toAbsolutePath().toString();
 
         tmp = ConfigurationProperties.getProperty("binExecuteTestClasses");
         if (tmp != null) {
@@ -110,6 +113,7 @@ public class Preparation {
         invokeCompilerOptionInitializer(complianceLevel);
         invokeSourceASTParser(testOnly);
         invokeTransformation();
+        invokePatches(patchesDir);
         invokeProgURLsInitializer();
     }
 
@@ -173,6 +177,26 @@ public class Preparation {
         String originalCommit = ConfigurationProperties.getProperty("originalCommit");
         TransformHelper.initialize(proj, id, workingDir, originalCommit, parser);
         MutatorHelper.initialize();
+    }
+
+    private void invokePatches(String patchesDir) {
+        try {
+            AbstractASTParser astParser = new ASTJavaParser(srcJavaDir, srcTestDir, dependencies, complianceLevel);
+            astParser.parseASTs(patchesDir);
+            Map<String, Object> patches = astParser.getASTs();
+            if (patches.isEmpty()) {
+                logger.error("No patch file found!");
+                return;
+            }
+            this.patches = patches;
+        } catch (Exception e) {
+            if (e instanceof ParseProblemException) {
+                //when parsing occurred error, it will be treated as a diff file!
+                //TODO: parse the diff file and get the patch file
+            } else {
+                logger.error("Invalid patch file path: " + e.getMessage());
+            }
+        }
     }
 
     public Map<String, JavaFileObject> getCompiledClassesForTestExecution(Map<String, String> javaSources) {

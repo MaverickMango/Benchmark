@@ -3,7 +3,7 @@ package root;
 import org.apache.commons.cli.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import root.generation.helper.Preparation;
+import root.generation.ProjectPreparation;
 import root.util.ConfigurationProperties;
 
 import java.io.File;
@@ -25,6 +25,7 @@ public class AbstractMain {
         options.addOption("testInfos", true, "");
         options.addOption("originalCommit", true, "");
         options.addOption("dependencies", true, "separated by " + File.pathSeparator);
+        options.addOption("patchesDir", true, "patches directory");
 
         //optional
         options.addOption("complianceLevel", true, "default 1.8");
@@ -33,23 +34,14 @@ public class AbstractMain {
         options.addOption("testClassesInfoPath", true, "");
     }
 
-    public final CommandLineParser parser = new DefaultParser();
-    protected Preparation preparation;
+    public static final CommandLineParser parser = new DefaultParser();
 
-    public AbstractMain(String[] args) {
-        this.preparation = initialize(args);
-    }
-
-    public Preparation getPreparation() {
-        return this.preparation;
-    }
-
-    private Preparation initialize(String[] args) {
+    public ProjectPreparation initialize(String[] args) {
         boolean res = progressArguments(args);
         if (!res)
             return null;
         try {
-            Preparation helper = new Preparation();
+            ProjectPreparation helper = new ProjectPreparation();
             helper.initialize(true, true);
             return helper;
         } catch (Exception e) {

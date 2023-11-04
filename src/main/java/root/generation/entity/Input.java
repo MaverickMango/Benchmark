@@ -14,6 +14,7 @@ import root.generation.helper.MutatorHelper;
 public abstract class Input implements Cloneable{
 
     private final Logger logger = LoggerFactory.getLogger(Input.class);
+    String identifier;
     MethodCallExpr methodCallExpr;
     Expression inputExpr;//assert语句的actual参数
     String type;
@@ -52,6 +53,11 @@ public abstract class Input implements Cloneable{
         this.argIdx = argIdx;
         this.isCompleted = methodCallExpr.getArguments().size() == 1;
         this.isTransformed = false;
+        this.identifier = methodCallExpr.getNameAsString() + "_" + argIdx;
+    }
+
+    public String getIdentifier() {
+        return identifier;
     }
 
     public void setMethodCallExpr(MethodCallExpr methodCallExpr) {

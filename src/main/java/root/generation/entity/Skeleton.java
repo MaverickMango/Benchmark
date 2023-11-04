@@ -12,12 +12,11 @@ import com.github.javaparser.ast.nodeTypes.NodeWithSimpleName;
 import com.github.javaparser.ast.stmt.BlockStmt;
 import com.github.javaparser.ast.stmt.ExpressionStmt;
 import com.github.javaparser.ast.stmt.Statement;
-import com.github.javaparser.quality.NotNull;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import root.bean.BugRepository;
 import root.generation.helper.Helper;
-import root.generation.helper.TransformHelper;
+import root.generation.transformation.TransformHelper;
 import root.generation.transformation.visitor.ModifiedVisitor;
 import root.util.ConfigurationProperties;
 import root.util.FileUtils;
@@ -37,29 +36,45 @@ public class Skeleton {
     String absolutePath;
     CompilationUnit clazz;
     String clazzName;
-    MethodDeclaration originalMethod;
-    MethodDeclaration transformedMethod;
+    Map<String, MethodDeclaration> originalMethod;//key: input's identifier
+    Map<String, MethodDeclaration> transformedMethod;//key: input's identifier
     boolean isSplit;//是否完成对多余断言的删除
     List<Input> inputs;
-    List<MethodDeclaration> generatedMethods;
+    Map<Input, MethodDeclaration> generatedMethods;
     int generatedTestsIdx;
     int generatedClazzIdx;
 
-    public Skeleton(@NotNull String absolutePath, @NotNull CompilationUnit clazz, @NotNull MethodDeclaration originalMethod) {
+    public Skeleton(String absolutePath, CompilationUnit clazz, String clazzName) {
         this.absolutePath = absolutePath;
         this.clazz = clazz;
-        this.originalMethod = originalMethod;
-        if (originalMethod.getParentNode().isEmpty()) {
-            throw new IllegalArgumentException("originalMethod " + originalMethod.getNameAsString() + " doesn't have parent node!");
-        }
-        if (!(originalMethod.getParentNode().get() instanceof ClassOrInterfaceDeclaration)) {
-            throw new IllegalArgumentException("Unsupported method type. " +
-                    "May be originalMethod " + originalMethod.getNameAsString() + " is anonymous!");
-        }
-        this.clazzName = ((ClassOrInterfaceDeclaration) originalMethod.getParentNode().get()).getNameAsString();
+        this.originalMethod = new HashMap<>();
+        this.clazzName = clazzName;
         this.isSplit = false;
         this.inputs = new ArrayList<>();
-        this.generatedMethods = new ArrayList<>();
+        this.generatedMethods = new HashMap<>();
+        this.generatedTestsIdx = 0;
+        this.generatedClazzIdx = 0;
+        File file = new File(filePath);
+        if (file.exists()) {
+            file.delete();
+        }
+    }
+
+    public Skeleton(String absolutePath, CompilationUnit clazz, String clazzName, List<Input> inputs) {
+//        if (originalMethod.keySet().stream().anyMatch(n -> n.getParentNode().isEmpty())) {
+//            throw new IllegalArgumentException("one of the originalMethod doesn't have parent node!");
+//        }
+//        if (originalMethod.keySet().stream().anyMatch(n -> !(n.getParentNode().get() instanceof ClassOrInterfaceDeclaration))) {
+//            throw new IllegalArgumentException("Unsupported method type. May be one of the originalMethod is anonymous!");
+//        }
+        this.absolutePath = absolutePath;
+        this.clazz = clazz;
+        this.originalMethod = new HashMap<>();
+        setInputs(inputs);
+        this.clazzName = clazzName;
+        this.isSplit = false;
+        this.inputs = new ArrayList<>();
+        this.generatedMethods = new HashMap<>();
         this.generatedTestsIdx = 0;
         this.generatedClazzIdx = 0;
         File file = new File(filePath);
@@ -72,6 +87,10 @@ public class Skeleton {
         return absolutePath;
     }
 
+    public void setClazz(CompilationUnit clazz) {
+        this.clazz = clazz;
+    }
+
     public CompilationUnit getClazz() {
         return clazz;
     }
@@ -80,53 +99,68 @@ public class Skeleton {
         return clazzName;
     }
 
-    public MethodDeclaration getOriginalMethod() {
+    public Map<String, MethodDeclaration> getOriginalMethod() {
         return originalMethod;
     }
 
-    public MethodDeclaration getTransformedMethod() {
+    public Map<String, MethodDeclaration> getTransformedMethod() {
         return transformedMethod;
     }
 
     public void addInput(Input input) {
+        Optional<MethodDeclaration> ancestor = input.getMethodCallExpr().findAncestor(MethodDeclaration.class);
+        if (ancestor.isPresent()) {
+            MethodDeclaration methodDeclaration = ancestor.get();
+            this.originalMethod.putIfAbsent(input.getIdentifier(), methodDeclaration);
+        }
         this.inputs.add(input);
     }
 
     public void setInputs(List<Input> inputs) {
-        this.inputs.addAll(inputs);
+        for (Input input :inputs) {
+            addInput(input);
+        }
     }
 
     public List<Input> getInputs() {
-        return inputs;
+        return this.inputs;
     }
 
     public boolean isSplit() {
         return isSplit;
     }
 
-    public List<MethodDeclaration> getGeneratedMethods() {
+    public MethodDeclaration getGeneratedMethod(Input input) {
+        return generatedMethods.get(input);
+    }
+    public Map<Input, MethodDeclaration> getGeneratedMethods() {
         return generatedMethods;
     }
 
     public void splitAssert() {
-        MethodDeclaration clone = this.getOriginalMethod().clone();
-        (clone.getBody().get()).findAll(ExpressionStmt.class).forEach((stmt) -> {
-            if (Helper.isAssertion(stmt)) {
-                stmt.remove();
-            }
-        });
-        this.originalMethod = clone;
-        this.transformedMethod = clone;
+        Map<String, MethodDeclaration> map = new HashMap<>();
+        for (String identifier :originalMethod.keySet()) {
+            MethodDeclaration clone = originalMethod.get(identifier).clone();
+            (clone.getBody().get()).findAll(ExpressionStmt.class).forEach((stmt) -> {
+                if (Helper.isAssertion(stmt)) {
+                    stmt.remove();
+                }
+            });
+            map.put(identifier, originalMethod.get(identifier));
+        }
+        this.originalMethod = map;
+        this.transformedMethod = map;
         this.isSplit = true;
     }
 
-    public MethodDeclaration addStatementAtLast(Statement stmt) {
-        String newMethodName = getNewMethodName(this.getOriginalMethod().getNameAsString());
-        return addStatementAtLast(newMethodName, this.getOriginalMethod(), stmt);
+    public MethodDeclaration addStatementAtLast(Input input, Statement stmt) {
+        MethodDeclaration methodDeclaration = originalMethod.get(input);
+        return addStatementAtLast(input, methodDeclaration, stmt);
     }
 
-    public MethodDeclaration addStatementAtLast(String methodNewName, MethodDeclaration methodDeclaration, Statement stmt) {
+    public MethodDeclaration addStatementAtLast(Input input, MethodDeclaration methodDeclaration, Statement stmt) {
         MethodDeclaration clone = methodDeclaration.clone();
+        String methodNewName = getNewMethodName(methodDeclaration.getNameAsString());
         clone.setName(methodNewName);
         Optional<BlockStmt> body = clone.getBody();
         if (body.isPresent()) {
@@ -138,23 +172,23 @@ public class Skeleton {
             BlockStmt blockStmt = new BlockStmt(new NodeList<>());
             blockStmt.getStatements().addLast(stmt);
         }
-        generatedMethods.add(clone);
+        generatedMethods.putIfAbsent(input, clone);
         return clone;
     }
 
-    public Map<MethodDeclaration, Input> addStatementsAtLast(List<Input> inputs) {
-        Map<MethodDeclaration, Input> methodDeclarations = new HashMap<>();
+    public Map<Input, MethodDeclaration> addStatementsAtLast(List<Input> inputs) {
+        Map<Input, MethodDeclaration> methodDeclarations = new HashMap<>();
         for (Input newInput : inputs) {
             MethodCallExpr methodCallExpr = newInput.getMethodCallExpr();
             ExpressionStmt stmt = new ExpressionStmt(methodCallExpr);
-            MethodDeclaration methodDeclaration = addStatementAtLast(stmt);
-            methodDeclarations.put(methodDeclaration, newInput);
+            MethodDeclaration methodDeclaration = addStatementAtLast(newInput, stmt);
+            methodDeclarations.put(newInput, methodDeclaration);
         }
         return methodDeclarations;
     }
 
-    public CompilationUnit addMethods2CompilationUnit(Map<MethodDeclaration, Input> methodDeclarations) {
-        CompilationUnit clone = clazz.clone();
+    public CompilationUnit addMethods2CompilationUnit(CompilationUnit unit, Collection<MethodDeclaration> methodDeclarations) {
+        CompilationUnit clone = unit.clone();
         ClassOrInterfaceDeclaration classOrInterfaceDeclaration = clone.getClassByName(clazzName).get();
         List<String> collect = classOrInterfaceDeclaration.getMethods().stream()
                 .map(NodeWithSimpleName::getNameAsString).collect(Collectors.toList());
@@ -163,15 +197,15 @@ public class Skeleton {
         imports.add(importDeclaration);
         importDeclaration = new ImportDeclaration("java.nio.charset.StandardCharsets", false, false);
         imports.add(importDeclaration);
-        for (MethodDeclaration methodDeclaration: methodDeclarations.keySet()) {
+        for (MethodDeclaration methodDeclaration: methodDeclarations) {
             if (!collect.contains(methodDeclaration.getNameAsString()))
                 classOrInterfaceDeclaration.addMember(methodDeclaration);
         }
         return clone;
     }
 
-    public CompilationUnit addMethod2CompilationUnit(MethodDeclaration methodDeclaration) {
-        CompilationUnit clone = clazz.clone();
+    public CompilationUnit addMethod2CompilationUnit(CompilationUnit unit, MethodDeclaration methodDeclaration) {
+        CompilationUnit clone = unit.clone();
         ClassOrInterfaceDeclaration classOrInterfaceDeclaration = clone.getClassByName(clazzName).get();
         List<String> collect = classOrInterfaceDeclaration.getMethods().stream()
                 .map(NodeWithSimpleName::getNameAsString).collect(Collectors.toList());
@@ -198,22 +232,23 @@ public class Skeleton {
         return oldName + "_generatedTest" + generatedClazzIdx ++;
     }
 
-    public void applyTransform(Input input) {
-        Expression inputExpr = input.getInputExpr().clone();
-        Expression basicExpr = input.getBasicExpr();
-        Expression transformed = input.getTransformed();
+    public void applyTransform(Input transformedInput) {
+        Expression inputExpr = transformedInput.getInputExpr().clone();
+        Expression basicExpr = transformedInput.getBasicExpr();
+        Expression transformed = transformedInput.getTransformed();
         List<Expression> collector = new ArrayList<>();
         ModifiedVisitor visitor = new ModifiedVisitor(inputExpr, basicExpr, transformed);
-        if (input instanceof ObjectInput) {
-            MethodDeclaration methodDeclaration = this.getTransformedMethod().clone();
+        if (transformedInput instanceof ObjectInput) {
+            MethodDeclaration preTransformedMethod = transformedMethod.get(transformedInput.getIdentifier());
+            MethodDeclaration methodDeclaration = preTransformedMethod.clone();
             methodDeclaration.accept(visitor, collector);
-            this.transformedMethod = methodDeclaration;
-            input.setTransformed(true);
-        } else if (input instanceof BasicInput) {
-            MethodCallExpr clone = input.getMethodCallExpr().clone();
+            this.transformedMethod.put(transformedInput.getIdentifier(), methodDeclaration);
+            transformedInput.setTransformed(true);
+        } else if (transformedInput instanceof BasicInput) {
+            MethodCallExpr clone = transformedInput.getMethodCallExpr().clone();
             clone.accept(visitor, collector);
-            input.setMethodCallExpr(clone);
-            input.setTransformed(true);
+            transformedInput.setMethodCallExpr(clone);
+            transformedInput.setTransformed(true);
         }
     }
 
@@ -223,59 +258,7 @@ public class Skeleton {
         }
     }
 
-    public Map<CompilationUnit, String[]> getOracle(BugRepository bugRepository, List<Input> inputs) {
-        Map<MethodDeclaration, Input> methodintrs = new HashMap<>();
-        for (Input input :inputs) {
-            MethodDeclaration methodInstrumented = getMethodInstrumented(input);
-            methodintrs.put(methodInstrumented, input);
-        }
-        CompilationUnit transformedCompilationUnit = addMethods2CompilationUnit(methodintrs);
-
-        Optional<PackageDeclaration> packageDeclaration = transformedCompilationUnit.getPackageDeclaration();
-        AtomicReference<String> pack = new AtomicReference<>("");
-        packageDeclaration.ifPresent(p -> pack.set(p.getNameAsString()));
-        StringBuilder testName = new StringBuilder();
-        for (MethodDeclaration method :methodintrs.keySet()) {
-            testName.append(pack.get() + "." + getClazzName() + "::" + method.getNameAsString() + " ");
-        }
-        FileUtils.writeToFile(transformedCompilationUnit.toString(), getAbsolutePath(), false);
-        bugRepository.test(testName.toString());
-        inputs.forEach(input -> input.setCompleted(true));
-        CompilationUnit oracleWithAssert = getOracleWithAssert(transformedCompilationUnit,
-                methodintrs, testName.toString().split(" "));
-        HashMap<CompilationUnit, String[]> listHashMap = new HashMap<>();
-        listHashMap.put(oracleWithAssert, testName.toString().split(" "));
-        return listHashMap;
-    }
-
-    public String getTestNamePrefix(CompilationUnit compilationUnit, String methodName) {
-        Optional<PackageDeclaration> packageDeclaration = compilationUnit.getPackageDeclaration();
-        AtomicReference<String> pack = new AtomicReference<>("");
-        packageDeclaration.ifPresent(p -> pack.set(p.getNameAsString()));
-        String testName = pack.get() + "." + getClazzName() + "::" + methodName;
-        return testName;
-    }
-
     String filePath = ConfigurationProperties.getProperty("location") + File.separator + "generatedOracles.txt";
-
-    public Map<CompilationUnit, String[]> getOracle(BugRepository bugRepository, Input input) {
-        MethodDeclaration methodInstrumented = getMethodInstrumented(input);
-        //这个时候不需要插入断言
-//        MethodDeclaration methodDeclaration = addStatementAtLast(input.getMethodCallExpr());
-        CompilationUnit transformedCompilationUnit = addMethod2CompilationUnit(methodInstrumented);
-
-        String testName = getTestNamePrefix(transformedCompilationUnit, methodInstrumented.getNameAsString());
-        FileUtils.writeToFile(transformedCompilationUnit.toString(), getAbsolutePath(), false);
-        bugRepository.test(testName);
-        input.setCompleted(true);
-        HashMap<MethodDeclaration, Input> map = new HashMap<>();
-        map.put(methodInstrumented, input);
-        String[] testNames = {testName};
-        CompilationUnit oracleWithAssert = getOracleWithAssert(transformedCompilationUnit, map, testNames);
-        HashMap<CompilationUnit, String[]> listHashMap = new HashMap<>();
-        listHashMap.put(oracleWithAssert, testNames);
-        return listHashMap;
-    }
 
     public Statement getSkeletonStmt(CompilationUnit compilationUnit, String methodName, Expression expression) {
         EnclosedExpr expr = new EnclosedExpr();
@@ -291,31 +274,90 @@ public class Skeleton {
     private MethodDeclaration getMethodInstrumented(Input input) {
         //插入一个输出语句用于获取变量在original版本的oracle。
         Expression inputExpr = input.getInputExpr();
-        MethodDeclaration methodDeclaration = this.getOriginalMethod();
+        MethodDeclaration methodDeclaration = this.getOriginalMethod().get(input.getIdentifier());
         if (input instanceof ObjectInput) {
-            methodDeclaration = this.getTransformedMethod();
+            methodDeclaration = this.getTransformedMethod().get(input.getIdentifier());
         }
         inputExpr = input.getMethodCallExpr().getArgument(input.getArgIdx());
         String newMethodName = getNewMethodName(methodDeclaration.getNameAsString());
         Statement stmt = getSkeletonStmt(clazz, newMethodName, inputExpr);
-        MethodDeclaration methodInstrumented = addStatementAtLast(newMethodName, methodDeclaration, stmt);
+        MethodDeclaration methodInstrumented = addStatementAtLast(input, methodDeclaration, stmt);
         return methodInstrumented;
     }
 
-    public CompilationUnit getOracleWithAssert(CompilationUnit instr,
-                                               Map<MethodDeclaration, Input> methodDeclarations,
-                                               String[] testNames) {
+    public Map<String, MethodDeclaration> getOracle(BugRepository bugRepository, List<Input> inputs) {
+        Map<Input, MethodDeclaration> methodintrs = new HashMap<>();
+        for (Input input :inputs) {
+            MethodDeclaration methodInstrumented = getMethodInstrumented(input);
+            methodintrs.put(input, methodInstrumented);
+        }
+        CompilationUnit transformedCompilationUnit = addMethods2CompilationUnit(clazz, methodintrs.values());
+
+        StringBuilder testName = new StringBuilder();
+        for (MethodDeclaration method :methodintrs.values()) {
+            testName.append(getTestNamePrefix(transformedCompilationUnit, method.getNameAsString()) + " ");
+        }
+        //todo internal test?
+        FileUtils.writeToFile(transformedCompilationUnit.toString(), getAbsolutePath(), false);
+        bugRepository.test(testName.toString());
+        inputs.forEach(input -> input.setCompleted(true));
+
+        Map<String, MethodDeclaration> oracleWithAssert = getOracleWithAssert(transformedCompilationUnit, methodintrs);
+        return oracleWithAssert;
+    }
+
+    public Map<String, MethodDeclaration> getOracle(BugRepository bugRepository, Input input) {
+        MethodDeclaration methodInstrumented = getMethodInstrumented(input);
+        //这个时候不需要插入断言
+//        MethodDeclaration methodDeclaration = addStatementAtLast(input.getMethodCallExpr());
+        CompilationUnit transformedCompilationUnit = addMethod2CompilationUnit(clazz, methodInstrumented);
+
+        String testName = getTestNamePrefix(transformedCompilationUnit, methodInstrumented.getNameAsString());
+        //todo internal test?
+        FileUtils.writeToFile(transformedCompilationUnit.toString(), getAbsolutePath(), false);
+        bugRepository.test(testName);
+        input.setCompleted(true);
+        Map<Input, MethodDeclaration> map = new HashMap<>();
+        map.put(input, methodInstrumented);
+        Map<String, MethodDeclaration> oracleWithAssert = getOracleWithAssert(transformedCompilationUnit, map);
+        return oracleWithAssert;
+    }
+
+    public List<String> applyPatch(BugRepository bugRepository, Map<String, MethodDeclaration> map) {
+        CompilationUnit transformedCompilationUnit = addMethods2CompilationUnit(clazz, map.values());
+
+        StringBuilder testNames = new StringBuilder();
+        for (String testName :map.keySet()) {
+            testNames.append(testName).append(" ");
+        }
+        //todo internal test?
+        FileUtils.writeToFile(transformedCompilationUnit.toString(), getAbsolutePath(), false);
+        List<String> res = bugRepository.testWithRes(testNames.toString());
+        return res;
+    }
+
+    public String getTestNamePrefix(CompilationUnit compilationUnit, String methodName) {
+        Optional<PackageDeclaration> packageDeclaration = compilationUnit.getPackageDeclaration();
+        AtomicReference<String> pack = new AtomicReference<>("");
+        packageDeclaration.ifPresent(p -> pack.set(p.getNameAsString()));
+        String testName = pack.get() + "." + getClazzName() + "::" + methodName;
+        return testName;
+    }
+
+    private Map<String, MethodDeclaration> getOracleWithAssert(CompilationUnit instr,
+                                               Map<Input, MethodDeclaration> methodDeclarations) {
         List<String> oracles = FileUtils.readEachLine(filePath);
-        for (Map.Entry<MethodDeclaration, Input> entry :methodDeclarations.entrySet()) {
-            MethodDeclaration methodDeclaration = entry.getKey();
-            Input input = methodDeclarations.get(methodDeclaration);
+        Map<String, MethodDeclaration> map  = new HashMap<>();
+        for (Map.Entry<Input, MethodDeclaration> entry :methodDeclarations.entrySet()) {
+            MethodDeclaration methodDeclaration = entry.getValue();
+            Input input = entry.getKey();
             List<String> collect = oracles.stream().filter(line -> !line.equals("") &&
                     line.substring(0, line.lastIndexOf("::")).equals(methodDeclaration.getNameAsString())).collect(Collectors.toList());
             if (collect.isEmpty()) {
                 ExpressionStmt stmt = new ExpressionStmt(input.getMethodCallExpr());
                 LineComment comment = new LineComment("execution failed, original oracle is set.");
                 stmt.setComment(comment);
-                repalceLastStmt(methodDeclaration, input, stmt);
+                replaceLastStmt(methodDeclaration, input, stmt);
                 continue;
             }
             String line = collect.get(0);
@@ -326,12 +368,13 @@ public class Skeleton {
             Expression newOracle = TransformHelper.inputTransformer.transform(oldOracle, oracle);
             arguments.replace(oldOracle, newOracle);
             ExpressionStmt stmt = new ExpressionStmt(methodCallExpr);
-            repalceLastStmt(methodDeclaration, input, stmt);
+            replaceLastStmt(methodDeclaration, input, stmt);
+            map.put(getTestNamePrefix(instr, methodDeclaration.getNameAsString()), methodDeclaration);
         }
-        return instr;
+        return map;
     }
 
-    private void repalceLastStmt(MethodDeclaration methodDeclaration, Input input, ExpressionStmt stmt) {
+    private void replaceLastStmt(MethodDeclaration methodDeclaration, Input input, ExpressionStmt stmt) {
         Optional<BlockStmt> body = methodDeclaration.getBody();
         body.ifPresent(blockStmt -> {
             NodeList<Statement> statements = blockStmt.getStatements();

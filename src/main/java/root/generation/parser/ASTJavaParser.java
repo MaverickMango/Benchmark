@@ -7,6 +7,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+import com.github.javaparser.ParseProblemException;
 import com.github.javaparser.ParserConfiguration;
 import com.github.javaparser.StaticJavaParser;
 import com.github.javaparser.ast.CompilationUnit;
@@ -97,19 +98,15 @@ public class ASTJavaParser extends AbstractASTParser {
      * @param fileDir java source code directory
      */
     @Override
-    public void parseASTs(String fileDir) {
+    public void parseASTs(String fileDir) throws IOException, ParseProblemException {
         String filePath = "";
-        try {
-            List<File> allFiles = FileUtils.findAllFiles(fileDir, ".java");
-            for (File file : allFiles) {
-                filePath = file.getAbsolutePath();
+        List<File> allFiles = FileUtils.findAllFiles(fileDir, ".java");
+        for (File file : allFiles) {
+            filePath = file.getAbsolutePath();
 //                if (asts.containsKey(filePath))
 //                    continue;
-                CompilationUnit compilationUnit = StaticJavaParser.parse(file);
-                asts.put(file.getAbsolutePath(), compilationUnit);
-            }
-        } catch (Exception e) {
-            logger.error("Error occurred when parsing AST: " + filePath + ": " + e.getMessage());
+            CompilationUnit compilationUnit = StaticJavaParser.parse(file);
+            asts.put(file.getAbsolutePath(), compilationUnit);
         }
     }
 

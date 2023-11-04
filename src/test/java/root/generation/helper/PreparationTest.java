@@ -1,8 +1,8 @@
 package root.generation.helper;
 
 import org.junit.jupiter.api.BeforeAll;
-import org.junit.jupiter.api.BeforeEach;
 import root.AbstractMain;
+import root.generation.ProjectPreparation;
 import root.util.CommandSummary;
 import root.util.ConfigurationProperties;
 import root.util.FileUtils;
@@ -12,8 +12,7 @@ import java.util.List;
 
 public class PreparationTest {
     public static CommandSummary cs = new CommandSummary();
-    public static AbstractMain main ;
-    public static Preparation preparation;
+    public static ProjectPreparation projectPreparation;
     public static String filePath;// = "/home/liumengjiao/Desktop/CI/bugs/Closure_10_bug/test/com/google/javascript/jscomp/PeepholeFoldConstantsTest.java";
     public static String methodName;// = "testIssue821";
     public static int lineNumber;// = 582;
@@ -27,15 +26,15 @@ public class PreparationTest {
 //        cs.append("-binTestDir", "build/test");
 //        cs.append("-complianceLevel", "1.6");
         setInputs();
-        main = new AbstractMain(cs.flat());
-        preparation = main.getPreparation();
+        AbstractMain main = new AbstractMain();
+        projectPreparation = main.initialize(cs.flat());
 
         String testInfos = ConfigurationProperties.getProperty("testInfos");
         String[] split = testInfos.split("#");
         if (split.length >= 1) {
             String triggerTest1 = split[0];
             String[] split1 = triggerTest1.split(":");
-            filePath = PreparationTest.preparation.srcTestDir + File.separator +
+            filePath = projectPreparation.srcTestDir + File.separator +
                     split1[0].replaceAll("\\.", File.separator) + ".java";
             methodName = split1[1];
             if (split1.length == 3) {
