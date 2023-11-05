@@ -68,7 +68,9 @@ public class ProjectPreparation {
             ).collect(Collectors.toList()));
         }
         tmp = ConfigurationProperties.getProperty("patchesDir");
-        patchesDir = Paths.get(tmp).toAbsolutePath().toString();
+        if (tmp != null) {
+            patchesDir = Paths.get(tmp).toAbsolutePath().toString();
+        }
 
         tmp = ConfigurationProperties.getProperty("binExecuteTestClasses");
         if (tmp != null) {

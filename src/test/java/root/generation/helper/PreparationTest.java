@@ -69,6 +69,7 @@ public class PreparationTest {
         cs.append("-dependencies", projectCP);
         cs.append("-originalCommit", originalCommit);
 //        cs.append("-complianceLevel", "1.6");
+        cs.append("-patchesDir", "/home/liumengjiao/Desktop/CI/patches/patches_correct/Math/Math_10/");
     }
 
 }

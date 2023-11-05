@@ -1,6 +1,7 @@
 package root.generation.helper;
 
 import com.github.javaparser.ast.expr.*;
+import com.github.javaparser.utils.Pair;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import root.generation.entity.Input;
@@ -44,25 +45,34 @@ public class MutatorHelper {
         INPUTS_BY_TYPE.put("java.lang.Object", list);
     }
 
-    public static Object getInputMutant(Input oldInput) {
-        List<Object> inputMutants = getInputMutants(oldInput, 1);
-        Random random = new Random();
-        return inputMutants.get(random.nextInt(inputMutants.size()));
+    public static Pair<Expression, Object> getInputMutant(Input oldInput) {
+        Random random = new Random(new Date().getTime());
+        List<Pair<Expression, Object>> inputMutants = getInputMutants(oldInput, 1);
+        int idx = random.nextInt(inputMutants.size());
+        return inputMutants.get(idx);
     }
 
-    public static List<Object> getInputMutants(Input oldInput, int num){
-        // check whether type is known class,and apply its mutator to get its mutants.
-        String qualifiedName = Helper.getType(oldInput.getBasicExpr());
+    public static List<Pair<Expression, Object>> getInputMutants(Input oldInput, int num){
+        Random random = new Random(new Date().getTime());
+        List<Expression> basicExprs = oldInput.getBasicExpr();
+        Set<Pair<Expression, Object>> mutants = new HashSet<>();
         AbstractInputMutator mutator;
-        if (MutatorHelper.isKnownType(qualifiedName)) {
-            mutator = getKnownMutator(qualifiedName);
-            List<Object> nextInputs = mutator.getNextInputs(oldInput.getBasicExpr(), num);
-            return nextInputs;
-        } else {
-            mutator = getUnknownMutator(oldInput);
-            List<Object> nextInputs = mutator.getNextInputs(oldInput.getBasicExpr(), num);
-            return nextInputs;
+        while (mutants.size() < num) {
+            int idx = random.nextInt(basicExprs.size());
+            Expression basicExpr = basicExprs.get(idx);
+            // check whether type is known class,and apply its mutator to get its mutants.
+            String qualifiedName = Helper.getType(basicExpr);
+            if (MutatorHelper.isKnownType(qualifiedName)) {
+                mutator = getKnownMutator(qualifiedName);
+                Object nextInput = mutator.getNextInputWithRange(basicExpr);
+                mutants.add(new Pair<>(basicExpr, nextInput));
+            } else {
+                mutator = getUnknownMutator(oldInput);
+                Object nextInput = mutator.getNextInputWithRange(basicExpr);
+                mutants.add(new Pair<>(basicExpr, nextInput));
+            }
         }
+        return new ArrayList<>(mutants);
     }
 
     public static boolean isKnownType(String className) {

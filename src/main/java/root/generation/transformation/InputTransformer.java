@@ -5,6 +5,7 @@ import com.github.javaparser.ast.body.MethodDeclaration;
 import com.github.javaparser.ast.expr.*;
 import com.github.javaparser.ast.stmt.ExpressionStmt;
 import com.github.javaparser.quality.NotNull;
+import com.github.javaparser.utils.Pair;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import root.generation.entity.Input;
@@ -26,25 +27,24 @@ public class InputTransformer {
         this.skeletons = new HashMap<>();
     }
 
-    public List<Input> transformInput(Input oldInput, List<Object> values) {
+    public List<Input> transformInput(Input oldInput, List<Pair<Expression, Object>> values) {
         List<Input> inputs = new ArrayList<>();
-        for (Object value :values) {
-            Input newInput = transformInput(oldInput, value);
+        for (Pair<Expression, Object> value :values) {
+            Input newInput = transformInput(oldInput, value.a, value.b);
             inputs.add(newInput);
         }
         return inputs;
     }
 
-    public Input transformInput(Input oldInput, Object value) {
+    public Input transformInput(Input oldInput, Expression basicExpr, Object value) {
         if (oldInput.getInputExpr().getParentNode().isEmpty()) {
             logger.error("Node " + oldInput.getInputExpr() + " has lost its parent node, can't process further!");
             throw new IllegalArgumentException(oldInput.toString());
         }
         logger.info("New input '" + value.toString() + "' has been transformed for " + oldInput);
         Input newInput = oldInput.clone();
-        Expression basicExpr = oldInput.getBasicExpr();
         Expression newInputExpr = (Expression) value;//transform(basicExpr, value);
-        newInput.setBasicExprTransformed(newInputExpr);
+        newInput.setBasicExprTransformed(basicExpr, newInputExpr);
         return newInput;
     }
 
@@ -113,16 +113,16 @@ public class InputTransformer {
         Map<String, MethodDeclaration> map = constructSkeleton(skeleton, newInputs);
         return map;
     }
+
     public Map<String, MethodDeclaration> constructSkeleton(Skeleton skeleton, List<Input> newInputs) {
         if (!skeleton.isSplit())
             skeleton.splitAssert();//删除原有的assert语句
-        skeleton.setInputs(newInputs);
         skeleton.applyTransform(newInputs);
         Map<String, MethodDeclaration> map = new HashMap<>();
         List<Input> collect = skeleton.getInputs().stream().filter(input -> !input.isCompleted()).collect(Collectors.toList());
         List<Input> collect1 = skeleton.getInputs().stream().filter(Input::isCompleted).collect(Collectors.toList());
         if (!collect.isEmpty()) {
-            Map<String, MethodDeclaration> oracle = skeleton.getOracle(TransformHelper.bugRepository, newInputs);//需要oracle的语句则需要先执行一遍
+            Map<String, MethodDeclaration> oracle = skeleton.getOracle(newInputs);//需要oracle的语句则需要先执行一遍
             map.putAll(oracle);
         }
         if (!collect1.isEmpty()) {
@@ -138,11 +138,10 @@ public class InputTransformer {
     public Map<String, MethodDeclaration> constructSkeleton(Skeleton skeleton, Input newInput) {
         if (!skeleton.isSplit())
             skeleton.splitAssert();//删除原有的assert语句
-        skeleton.addInput(newInput);
         skeleton.applyTransform(newInput);
         Map<String, MethodDeclaration> newUnit;
         if (!newInput.isCompleted()) {
-            newUnit = skeleton.getOracle(TransformHelper.bugRepository, newInput);//需要oracle的语句则需要先执行一遍
+            newUnit = skeleton.getOracle(newInput);//需要oracle的语句则需要先执行一遍
         } else {
             MethodCallExpr methodCallExpr = newInput.getMethodCallExpr();
             ExpressionStmt stmt = new ExpressionStmt(methodCallExpr);

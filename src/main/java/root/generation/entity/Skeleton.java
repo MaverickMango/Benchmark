@@ -14,7 +14,6 @@ import com.github.javaparser.ast.stmt.ExpressionStmt;
 import com.github.javaparser.ast.stmt.Statement;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import root.bean.BugRepository;
 import root.generation.helper.Helper;
 import root.generation.transformation.TransformHelper;
 import root.generation.transformation.visitor.ModifiedVisitor;
@@ -33,11 +32,13 @@ import java.util.stream.Collectors;
 public class Skeleton {
 
     private static final Logger logger = LoggerFactory.getLogger(Skeleton.class);
+
+    String oracleFilePath = ConfigurationProperties.getProperty("location") + File.separator + "generatedOracles.txt";
     String absolutePath;
     CompilationUnit clazz;
     String clazzName;
     Map<String, MethodDeclaration> originalMethod;//key: input's identifier
-    Map<String, MethodDeclaration> transformedMethod;//key: input's identifier
+    Map<Input, MethodDeclaration> transformedMethod;//key: input's identifier
     boolean isSplit;//是否完成对多余断言的删除
     List<Input> inputs;
     Map<Input, MethodDeclaration> generatedMethods;
@@ -54,7 +55,7 @@ public class Skeleton {
         this.generatedMethods = new HashMap<>();
         this.generatedTestsIdx = 0;
         this.generatedClazzIdx = 0;
-        File file = new File(filePath);
+        File file = new File(oracleFilePath);
         if (file.exists()) {
             file.delete();
         }
@@ -70,17 +71,21 @@ public class Skeleton {
         this.absolutePath = absolutePath;
         this.clazz = clazz;
         this.originalMethod = new HashMap<>();
+        this.inputs = new ArrayList<>();
         setInputs(inputs);
         this.clazzName = clazzName;
         this.isSplit = false;
-        this.inputs = new ArrayList<>();
         this.generatedMethods = new HashMap<>();
         this.generatedTestsIdx = 0;
         this.generatedClazzIdx = 0;
-        File file = new File(filePath);
+        File file = new File(oracleFilePath);
         if (file.exists()) {
             file.delete();
         }
+    }
+
+    public String getOracleFilePath() {
+        return oracleFilePath;
     }
 
     public String getAbsolutePath() {
@@ -103,7 +108,7 @@ public class Skeleton {
         return originalMethod;
     }
 
-    public Map<String, MethodDeclaration> getTransformedMethod() {
+    public Map<Input, MethodDeclaration> getTransformedMethod() {
         return transformedMethod;
     }
 
@@ -146,22 +151,23 @@ public class Skeleton {
                     stmt.remove();
                 }
             });
-            map.put(identifier, originalMethod.get(identifier));
+            map.put(identifier, clone);
         }
         this.originalMethod = map;
-        this.transformedMethod = map;
+        this.transformedMethod = new HashMap<>();
         this.isSplit = true;
     }
 
     public MethodDeclaration addStatementAtLast(Input input, Statement stmt) {
-        MethodDeclaration methodDeclaration = originalMethod.get(input);
-        return addStatementAtLast(input, methodDeclaration, stmt);
+        MethodDeclaration methodDeclaration = transformedMethod.get(input);
+        MethodDeclaration clone = methodDeclaration.clone();
+        String newMethodName = getNewMethodName(clone.getNameAsString());
+        clone.setName(newMethodName);
+        addStatementAtLast(input, clone, stmt);
+        return clone;
     }
 
-    public MethodDeclaration addStatementAtLast(Input input, MethodDeclaration methodDeclaration, Statement stmt) {
-        MethodDeclaration clone = methodDeclaration.clone();
-        String methodNewName = getNewMethodName(methodDeclaration.getNameAsString());
-        clone.setName(methodNewName);
+    public void addStatementAtLast(Input input, MethodDeclaration clone, Statement stmt) {
         Optional<BlockStmt> body = clone.getBody();
         if (body.isPresent()) {
             BlockStmt blockStmt = body.get();
@@ -173,7 +179,6 @@ public class Skeleton {
             blockStmt.getStatements().addLast(stmt);
         }
         generatedMethods.putIfAbsent(input, clone);
-        return clone;
     }
 
     public Map<Input, MethodDeclaration> addStatementsAtLast(List<Input> inputs) {
@@ -234,21 +239,22 @@ public class Skeleton {
 
     public void applyTransform(Input transformedInput) {
         Expression inputExpr = transformedInput.getInputExpr().clone();
-        Expression basicExpr = transformedInput.getBasicExpr();
-        Expression transformed = transformedInput.getTransformed();
+        Expression basicExpr = transformedInput.getTransformed().a;
+        Expression transformed = transformedInput.getTransformed().b;
         List<Expression> collector = new ArrayList<>();
         ModifiedVisitor visitor = new ModifiedVisitor(inputExpr, basicExpr, transformed);
         if (transformedInput instanceof ObjectInput) {
-            MethodDeclaration preTransformedMethod = transformedMethod.get(transformedInput.getIdentifier());
+            MethodDeclaration preTransformedMethod = originalMethod.get(transformedInput.getIdentifier());
             MethodDeclaration methodDeclaration = preTransformedMethod.clone();
             methodDeclaration.accept(visitor, collector);
-            this.transformedMethod.put(transformedInput.getIdentifier(), methodDeclaration);
+            this.transformedMethod.put(transformedInput, methodDeclaration);
             transformedInput.setTransformed(true);
         } else if (transformedInput instanceof BasicInput) {
             MethodCallExpr clone = transformedInput.getMethodCallExpr().clone();
             clone.accept(visitor, collector);
             transformedInput.setMethodCallExpr(clone);
             transformedInput.setTransformed(true);
+            this.transformedMethod.put(transformedInput, originalMethod.get(transformedInput.getIdentifier()));
         }
     }
 
@@ -258,8 +264,6 @@ public class Skeleton {
         }
     }
 
-    String filePath = ConfigurationProperties.getProperty("location") + File.separator + "generatedOracles.txt";
-
     public Statement getSkeletonStmt(CompilationUnit compilationUnit, String methodName, Expression expression) {
         EnclosedExpr expr = new EnclosedExpr();
         BinaryExpr binaryExpr = new BinaryExpr();
@@ -268,24 +272,23 @@ public class Skeleton {
         StringLiteralExpr stringLiteralExpr = new StringLiteralExpr("\n" + getTestNamePrefix(compilationUnit, methodName) + "::");
         binaryExpr.setLeft(stringLiteralExpr);
         expr.setInner(binaryExpr);
-        return Helper.constructFileOutputStmt2Instr(filePath, expr);
+        return Helper.constructFileOutputStmt2Instr(oracleFilePath, expr);
     }
 
     private MethodDeclaration getMethodInstrumented(Input input) {
         //插入一个输出语句用于获取变量在original版本的oracle。
         Expression inputExpr = input.getInputExpr();
-        MethodDeclaration methodDeclaration = this.getOriginalMethod().get(input.getIdentifier());
-        if (input instanceof ObjectInput) {
-            methodDeclaration = this.getTransformedMethod().get(input.getIdentifier());
-        }
+        MethodDeclaration methodDeclaration = transformedMethod.get(input);
         inputExpr = input.getMethodCallExpr().getArgument(input.getArgIdx());
         String newMethodName = getNewMethodName(methodDeclaration.getNameAsString());
+        MethodDeclaration clone = methodDeclaration.clone();
+        clone.setName(newMethodName);
         Statement stmt = getSkeletonStmt(clazz, newMethodName, inputExpr);
-        MethodDeclaration methodInstrumented = addStatementAtLast(input, methodDeclaration, stmt);
-        return methodInstrumented;
+        addStatementAtLast(input, clone, stmt);
+        return clone;
     }
 
-    public Map<String, MethodDeclaration> getOracle(BugRepository bugRepository, List<Input> inputs) {
+    public Map<String, MethodDeclaration> getOracle(List<Input> inputs) {
         Map<Input, MethodDeclaration> methodintrs = new HashMap<>();
         for (Input input :inputs) {
             MethodDeclaration methodInstrumented = getMethodInstrumented(input);
@@ -297,43 +300,47 @@ public class Skeleton {
         for (MethodDeclaration method :methodintrs.values()) {
             testName.append(getTestNamePrefix(transformedCompilationUnit, method.getNameAsString()) + " ");
         }
-        //todo internal test?
-        FileUtils.writeToFile(transformedCompilationUnit.toString(), getAbsolutePath(), false);
-        bugRepository.test(testName.toString());
+        List<String> failed = TransformHelper.saveAndTest(transformedCompilationUnit, getAbsolutePath(), testName.toString());
+        //失败的测试就不需要了
+        Map<Input, MethodDeclaration> withOracle = new HashMap<>();
+        for (Map.Entry<Input, MethodDeclaration> entry : methodintrs.entrySet()) {
+            if (!failed.contains(entry.getValue().getName().toString())) {
+                withOracle.put(entry.getKey(), entry.getValue());
+            }
+        }
         inputs.forEach(input -> input.setCompleted(true));
 
-        Map<String, MethodDeclaration> oracleWithAssert = getOracleWithAssert(transformedCompilationUnit, methodintrs);
+        Map<String, MethodDeclaration> oracleWithAssert = getOracleWithAssert(transformedCompilationUnit, withOracle);
         return oracleWithAssert;
     }
 
-    public Map<String, MethodDeclaration> getOracle(BugRepository bugRepository, Input input) {
+    public Map<String, MethodDeclaration> getOracle(Input input) {
         MethodDeclaration methodInstrumented = getMethodInstrumented(input);
         //这个时候不需要插入断言
 //        MethodDeclaration methodDeclaration = addStatementAtLast(input.getMethodCallExpr());
         CompilationUnit transformedCompilationUnit = addMethod2CompilationUnit(clazz, methodInstrumented);
 
-        String testName = getTestNamePrefix(transformedCompilationUnit, methodInstrumented.getNameAsString());
-        //todo internal test?
-        FileUtils.writeToFile(transformedCompilationUnit.toString(), getAbsolutePath(), false);
-        bugRepository.test(testName);
         input.setCompleted(true);
+        String testName = getTestNamePrefix(transformedCompilationUnit, methodInstrumented.getNameAsString());
+        List<String> failed = TransformHelper.saveAndTest(transformedCompilationUnit, getAbsolutePath(), testName);
+        //失败的测试就不需要了
+        if (!failed.contains(methodInstrumented.getNameAsString()))
+            return null;
         Map<Input, MethodDeclaration> map = new HashMap<>();
         map.put(input, methodInstrumented);
         Map<String, MethodDeclaration> oracleWithAssert = getOracleWithAssert(transformedCompilationUnit, map);
         return oracleWithAssert;
     }
 
-    public List<String> applyPatch(BugRepository bugRepository, Map<String, MethodDeclaration> map) {
+    public List<String> applyPatch(Map<String, MethodDeclaration> map) {
         CompilationUnit transformedCompilationUnit = addMethods2CompilationUnit(clazz, map.values());
 
         StringBuilder testNames = new StringBuilder();
         for (String testName :map.keySet()) {
             testNames.append(testName).append(" ");
         }
-        //todo internal test?
-        FileUtils.writeToFile(transformedCompilationUnit.toString(), getAbsolutePath(), false);
-        List<String> res = bugRepository.testWithRes(testNames.toString());
-        return res;
+        List<String> failed = TransformHelper.saveAndTest(transformedCompilationUnit, getAbsolutePath(), testNames.toString());
+        return failed;
     }
 
     public String getTestNamePrefix(CompilationUnit compilationUnit, String methodName) {
@@ -346,7 +353,7 @@ public class Skeleton {
 
     private Map<String, MethodDeclaration> getOracleWithAssert(CompilationUnit instr,
                                                Map<Input, MethodDeclaration> methodDeclarations) {
-        List<String> oracles = FileUtils.readEachLine(filePath);
+        List<String> oracles = FileUtils.readEachLine(oracleFilePath);
         Map<String, MethodDeclaration> map  = new HashMap<>();
         for (Map.Entry<Input, MethodDeclaration> entry :methodDeclarations.entrySet()) {
             MethodDeclaration methodDeclaration = entry.getValue();
@@ -358,6 +365,7 @@ public class Skeleton {
                 LineComment comment = new LineComment("execution failed, original oracle is set.");
                 stmt.setComment(comment);
                 replaceLastStmt(methodDeclaration, input, stmt);
+                map.put(getTestNamePrefix(instr, methodDeclaration.getNameAsString()), methodDeclaration);
                 continue;
             }
             String line = collect.get(0);

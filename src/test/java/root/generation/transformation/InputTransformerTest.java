@@ -3,7 +3,9 @@ package root.generation.transformation;
 import com.github.javaparser.ast.CompilationUnit;
 import com.github.javaparser.ast.body.ClassOrInterfaceDeclaration;
 import com.github.javaparser.ast.body.MethodDeclaration;
+import com.github.javaparser.ast.expr.Expression;
 import com.github.javaparser.ast.expr.MethodCallExpr;
+import com.github.javaparser.utils.Pair;
 import org.junit.Ignore;
 import org.junit.jupiter.api.Test;
 import root.generation.entity.Input;
@@ -13,6 +15,7 @@ import root.generation.helper.Helper;
 import root.generation.helper.MutatorHelper;
 import root.generation.helper.PreparationTest;
 import root.generation.transformation.extractor.InputExtractor;
+import root.util.ConfigurationProperties;
 
 import javax.tools.JavaFileObject;
 import java.io.File;
@@ -26,8 +29,8 @@ class InputTransformerTest extends PreparationTest{
     void transformInput() {
         InputTransformer inputTransformer = TransformHelper.inputTransformer;
         Input input = InputExtractorTest.getInput();
-        Object inputMutant = MutatorHelper.getInputMutant(input);
-        Input newInput = inputTransformer.transformInput(input, inputMutant);
+        Pair<Expression, Object> inputMutant = MutatorHelper.getInputMutant(input);
+        Input newInput = inputTransformer.transformInput(input, inputMutant.a, inputMutant.b);
         assertNotEquals(newInput.getTransformed(), input.getBasicExpr());
     }
 
@@ -35,7 +38,7 @@ class InputTransformerTest extends PreparationTest{
     void transformInputs() {
         InputTransformer inputTransformer = TransformHelper.inputTransformer;
         Input input = InputExtractorTest.getInput();
-        List<Object> inputMutants = MutatorHelper.getInputMutants(input, 10);
+        List<Pair<Expression, Object>> inputMutants = MutatorHelper.getInputMutants(input, 10);
         assertEquals(10, inputMutants.size());
         List<Input> newInputs = inputTransformer.transformInput(input, inputMutants);
         for (Input newInput :newInputs) {
@@ -69,8 +72,8 @@ class InputTransformerTest extends PreparationTest{
                 .extractMethodCallByLine(methodDeclaration, lineNumber);
         Input input =  TransformHelper.inputExtractor.extractInput(methodCallExpr);
         String absolutePath = new File(InputExtractorTest.filePath).getAbsolutePath();
-        Object inputMutant = MutatorHelper.getInputMutant(input);
-        Input newInput = inputTransformer.transformInput(input, inputMutant);
+        Pair<Expression, Object> inputMutant = MutatorHelper.getInputMutant(input);
+        Input newInput = inputTransformer.transformInput(input, inputMutant.a, inputMutant.b);
         Optional<ClassOrInterfaceDeclaration> ancestor = methodDeclaration.findAncestor(ClassOrInterfaceDeclaration.class);
         String clazzName = ancestor.get().getName().toString();
         Skeleton skeleton = TransformHelper.createASkeleton(absolutePath, clazzName, input);
@@ -86,7 +89,7 @@ class InputTransformerTest extends PreparationTest{
         MethodCallExpr methodCallExpr = TransformHelper.inputExtractor
                 .extractMethodCallByLine(methodDeclaration, lineNumber);
         Input input =  TransformHelper.inputExtractor.extractInput(methodCallExpr);
-        List<Object> inputMutants = MutatorHelper.getInputMutants(input, 10);
+        List<Pair<Expression, Object>> inputMutants = MutatorHelper.getInputMutants(input, 10);
         List<Input> newInputs = inputTransformer.transformInput(input, inputMutants);
         String absolutePath = new File(InputExtractorTest.filePath).getAbsolutePath();
         Optional<ClassOrInterfaceDeclaration> ancestor = methodDeclaration.findAncestor(ClassOrInterfaceDeclaration.class);
@@ -94,7 +97,31 @@ class InputTransformerTest extends PreparationTest{
         Skeleton skeleton = TransformHelper.createASkeleton(absolutePath, clazzName, input);
         assert skeleton != null;
         Map<String, MethodDeclaration> compilationUnitMap = inputTransformer.buildNewTestByInputs(skeleton, newInputs);
-        assertNotNull(compilationUnitMap);
+        assertEquals(10, compilationUnitMap.size());
+    }
+
+    @Test
+    void mutateTest() {
+        String absolutePath = new File(InputExtractorTest.filePath).getAbsolutePath();
+        CompilationUnit compilationUnit = TransformHelper.inputExtractor.getCompilationUnit(absolutePath);
+        String testInfos = ConfigurationProperties.getProperty("testInfos");
+        String[] split = testInfos.split("#")[0].split(":")[0].split("\\.");
+        Skeleton skeleton = new Skeleton(absolutePath, compilationUnit, split[split.length - 1]);
+        Input input = InputExtractorTest.getInput();
+        Map<String, MethodDeclaration> stringMethodDeclarationMap = TransformHelper.mutateTest(skeleton, Collections.singletonList(input), 10);
+        assertEquals(10, stringMethodDeclarationMap.size());
+    }
+
+    @Test
+    void applyPatch() {String absolutePath = new File(InputExtractorTest.filePath).getAbsolutePath();
+        CompilationUnit compilationUnit = TransformHelper.inputExtractor.getCompilationUnit(absolutePath);
+        String testInfos = ConfigurationProperties.getProperty("testInfos");
+        String[] split = testInfos.split("#")[0].split(":")[0].split("\\.");
+        Skeleton skeleton = new Skeleton(absolutePath, compilationUnit, split[split.length - 1]);
+        Input input = InputExtractorTest.getInput();
+        Map<String, MethodDeclaration> stringMethodDeclarationMap = TransformHelper.mutateTest(skeleton, Collections.singletonList(input), 10);
+        boolean res = TransformHelper.applyPatch(skeleton, stringMethodDeclarationMap);
+        assertTrue(res);
     }
 
     @Ignore
@@ -106,8 +133,8 @@ class InputTransformerTest extends PreparationTest{
                 .extractMethodCallByLine(methodDeclaration, lineNumber);
         Input input =  TransformHelper.inputExtractor.extractInput(methodCallExpr);
         String absolutePath = new File(InputExtractorTest.filePath).getAbsolutePath();
-        Object inputMutant = MutatorHelper.getInputMutant(input);
-        Input newInput = inputTransformer.transformInput(input, inputMutant);
+        Pair<Expression, Object> inputMutant = MutatorHelper.getInputMutant(input);
+        Input newInput = inputTransformer.transformInput(input, inputMutant.a, inputMutant.b);
         Optional<ClassOrInterfaceDeclaration> ancestor = methodDeclaration.findAncestor(ClassOrInterfaceDeclaration.class);
         String clazzName = ancestor.get().getName().toString();
         Skeleton skeleton = TransformHelper.createASkeleton(absolutePath, clazzName, input);

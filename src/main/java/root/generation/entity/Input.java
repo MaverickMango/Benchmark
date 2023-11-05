@@ -3,10 +3,14 @@ package root.generation.entity;
 import com.github.javaparser.ast.expr.Expression;
 import com.github.javaparser.ast.expr.MethodCallExpr;
 import com.github.javaparser.quality.NotNull;
+import com.github.javaparser.utils.Pair;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import root.generation.helper.Helper;
 import root.generation.helper.MutatorHelper;
+
+import java.util.List;
+import java.util.Map;
 
 /**
  * <s>test input(method call expression's argument)</s>
@@ -21,8 +25,8 @@ public abstract class Input implements Cloneable{
     int argIdx;
     boolean isPrimitive;
     boolean isCompleted;//是否需要到original版本获取断言，获取完或者不需要的为completed
-    Expression basicExpr;//实际进行变异的内容,如果是basicInput则和inputExpr一致
-    Expression mutatedExpr;
+    List<Expression> basicExpr;//实际进行变异的内容,如果是basicInput则和inputExpr一致
+    Pair<Expression, Expression> mutatedExpr;//<key, value>: basicExpr, mutated
     boolean isTransformed;
 
     public Input(@NotNull MethodCallExpr methodCallExpr,
@@ -53,7 +57,7 @@ public abstract class Input implements Cloneable{
         this.argIdx = argIdx;
         this.isCompleted = methodCallExpr.getArguments().size() == 1;
         this.isTransformed = false;
-        this.identifier = methodCallExpr.getNameAsString() + "_" + argIdx;
+        this.identifier = methodCallExpr.getRange().toString() + "_" + argIdx;
     }
 
     public String getIdentifier() {
@@ -76,11 +80,11 @@ public abstract class Input implements Cloneable{
         this.inputExpr = inputExpr;
     }
 
-    public void setBasicExpr(Expression basicExpr) {
+    public void setBasicExpr(List<Expression> basicExpr) {
         this.basicExpr = basicExpr;
     }
 
-    public void setMutatedExpr(Expression mutatedExpr) {
+    public void setMutatedExpr(Pair<Expression, Expression> mutatedExpr) {
         this.mutatedExpr = mutatedExpr;
     }
 
@@ -108,16 +112,16 @@ public abstract class Input implements Cloneable{
         return isCompleted;
     }
 
-    public Expression getBasicExpr() {
+    public List<Expression> getBasicExpr() {
         return basicExpr;
     }
 
-    public Expression getTransformed() {
+    public Pair<Expression, Expression> getTransformed() {
         return mutatedExpr;
     }
 
-    public void setBasicExprTransformed(Expression newInputExpr) {
-        this.mutatedExpr = newInputExpr;
+    public void setBasicExprTransformed(Expression baicExpr, Expression newInputExpr) {
+        this.mutatedExpr = new Pair<>(baicExpr, newInputExpr);
     }
 
     public boolean isTransformed() {
@@ -158,8 +162,6 @@ public abstract class Input implements Cloneable{
             Input clone = (Input) super.clone();
             // TODO: copy mutable state here, so the clone can't change the internals of the original
             clone.setInputExpr(inputExpr.clone());
-            clone.setBasicExpr(basicExpr.clone());
-            clone.setMutatedExpr(mutatedExpr);
             clone.setMethodCallExpr(methodCallExpr.clone());
             return clone;
         } catch (CloneNotSupportedException e) {

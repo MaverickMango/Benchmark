@@ -7,6 +7,8 @@ import root.generation.ProjectPreparation;
 import root.util.ConfigurationProperties;
 
 import java.io.File;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 
 public class AbstractMain {
     private static final Logger logger = LoggerFactory.getLogger(AbstractMain.class);
@@ -32,6 +34,7 @@ public class AbstractMain {
         options.addOption("binExecuteTestClasses", true, "");
         options.addOption("javaClassesInfoPath", true, "");
         options.addOption("testClassesInfoPath", true, "");
+        options.addOption("resultOutput", true, "");
     }
 
     public static final CommandLineParser parser = new DefaultParser();
@@ -92,6 +95,9 @@ public class AbstractMain {
             String dependencies = commandLine.getOptionValue("dependencies");
             ConfigurationProperties.setProperty("dependencies", dependencies);
         }
+        if (commandLine.hasOption("patchesDir")) {
+            ConfigurationProperties.setProperty("patchesDir", commandLine.getOptionValue("patchesDir"));
+        }
         if (commandLine.hasOption("originalCommit")) {
             ConfigurationProperties.setProperty("originalCommit", commandLine.getOptionValue("originalCommit"));
         }
@@ -99,6 +105,11 @@ public class AbstractMain {
             ConfigurationProperties.setProperty("complianceLevel", commandLine.getOptionValue("complianceLevel"));
         } else {
             ConfigurationProperties.setProperty("complianceLevel", "1.8");
+        }
+        if (commandLine.hasOption("resultOutput")) {
+            ConfigurationProperties.setProperty("resultOutput", commandLine.getOptionValue("resultOutput"));
+        } else {
+            ConfigurationProperties.setProperty("resultOutput", Paths.get("./").toAbsolutePath().toString());
         }
 
         return true;

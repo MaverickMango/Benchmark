@@ -358,7 +358,7 @@ public class FileUtils {
                 list.add(tempString);
             }
         } catch (IOException e) {
-            e.printStackTrace();
+            logger.error("File not Found!: " + file.getAbsolutePath());
         } finally {
             if (reader != null) {
                 try {

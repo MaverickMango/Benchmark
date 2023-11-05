@@ -2,6 +2,8 @@ package root.generation.transformation;
 
 import com.github.javaparser.ast.CompilationUnit;
 import com.github.javaparser.ast.body.MethodDeclaration;
+import com.github.javaparser.ast.expr.Expression;
+import com.github.javaparser.utils.Pair;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import root.bean.BugRepository;
@@ -11,8 +13,10 @@ import root.generation.entity.Skeleton;
 import root.generation.helper.MutatorHelper;
 import root.generation.parser.AbstractASTParser;
 import root.generation.transformation.extractor.InputExtractor;
+import root.util.ConfigurationProperties;
 import root.util.FileUtils;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -33,8 +37,8 @@ public class TransformHelper {
 
     public static Map<String, MethodDeclaration> mutateTest(Skeleton skeleton, List<Input> inputs, int mutantsNum) {
         List<Input> newInputs = new ArrayList<>();
-        for (Input input :inputs) {//todo test inputs build
-            List<Object> inputMutants = MutatorHelper.getInputMutants(input, mutantsNum);
+        for (Input input :inputs) {
+            List<Pair<Expression, Object>> inputMutants = MutatorHelper.getInputMutants(input, mutantsNum);
             List<Input> tmp = inputTransformer.transformInput(input, inputMutants);
             newInputs.addAll(tmp);
             skeleton.addInput(input);
@@ -45,7 +49,7 @@ public class TransformHelper {
 
     public static Map<String, MethodDeclaration> mutateTest(String fileAbsPath, String methodName, int lineNumber, int mutantsNum) {
         Input input = inputExtractor.extractInput(fileAbsPath, methodName, lineNumber);
-        List<Object> inputMutants = MutatorHelper.getInputMutants(input, mutantsNum);
+        List<Pair<Expression, Object>> inputMutants = MutatorHelper.getInputMutants(input, mutantsNum);
         List<Input> newInputs = inputTransformer.transformInput(input, inputMutants);
         Skeleton skeleton = createASkeleton(fileAbsPath, methodName, input);
         if (skeleton == null) {
@@ -72,7 +76,34 @@ public class TransformHelper {
         return skeleton;
     }
 
+    public static List<String> saveAndTest(CompilationUnit unit, String targetPath, String testNames) {
+        //todo internal test?
+        FileUtils.writeToFile(unit.toString(), targetPath, false);
+        List<String> tests = new ArrayList<>();
+        boolean flag = false;
+        for (String test :testNames.split(" ")) {
+            List<String> r = bugRepository.testWithRes(test);
+            if (r.isEmpty() || !r.get(0).equals("0")) {
+                logger.info("Test execution error! :\n" + FileUtils.getStrOfIterable(r, "\n"));
+                continue;
+            }
+            if (r.size() != 3) {//大于3说明有失败测试
+                tests.add(test);
+            }
+            flag = true;
+        }
+        if (!flag) {
+            return null;
+        }
+        return tests;
+    }
+
     public static boolean applyPatch(Skeleton skeleton, Map<String, MethodDeclaration> map) {
+        //save the generatedOracle file.
+        String bugName = bugRepository.getBug().getBugName();
+        String target = ConfigurationProperties.getProperty("resultOutput") + File.separator
+                + bugName + File.separator + "generatedOracles" + File.separator;
+        FileUtils.copy(new File(skeleton.getOracleFilePath()), new File(target));
         boolean res = bugRepository.switchToBug();
         if (!res) {
             logger.error("Error occurred when switching to buggy version!");
@@ -84,9 +115,12 @@ public class TransformHelper {
             CompilationUnit unit = (CompilationUnit) inputExtractor.getParser().getASTs().get(path);
             skeleton.setClazz(unit);
         } catch (Exception ignored) {}
-        List<String> list = skeleton.applyPatch(bugRepository, map);
-        //todo check patch execution result
-        res = !list.isEmpty() && list.get(0).equals("0");
+        List<String> failed = skeleton.applyPatch(map);
+        if (failed == null) {
+            logger.info("Test execution error in patched version!");
+            return false;
+        }
+        res = failed.isEmpty();//failed为空贼说明没有失败测试，是一个正确的补丁。
         return res;
     }
 }

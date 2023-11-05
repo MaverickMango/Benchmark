@@ -22,6 +22,11 @@ public abstract class AbstractInputMutator {
         return getInputs();
     }
 
+    public Object getNextInputWithRange(Object oldValue) {
+        this.num = 50;
+        return this.getNextInput(oldValue);
+    }
+
     public List<Object> getInputs() {
         return Arrays.asList(this.inputs.toArray());
     }

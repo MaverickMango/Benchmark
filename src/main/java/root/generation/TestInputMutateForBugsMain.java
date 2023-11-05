@@ -51,7 +51,7 @@ public class TestInputMutateForBugsMain extends AbstractMain {
         return cs;
     }
 
-    public static void main(String[] args) {
+    public static void main0(String[] args) {
         String location = args[0]; // "/home/liumengjiao/Desktop/CI/bugs/";
         String info = args[1]; // "/home/liumengjiao/Desktop/CI/Benchmark_py/info/patches_inputs.csv";
         String patchesRootDir = args[2];
@@ -67,6 +67,11 @@ public class TestInputMutateForBugsMain extends AbstractMain {
                 continue;
             }
         }
+    }
+
+    public static void main(String[] args) {
+        CommandSummary cs = new CommandSummary(args);
+        boolean res = process(cs);
     }
 
     private static boolean process(CommandSummary cs) {
@@ -87,6 +92,7 @@ public class TestInputMutateForBugsMain extends AbstractMain {
             }
             testsByClazz.get(clazzName).add(methodName + ":" + lineNumber);
         }
+        boolean allCorrect = true;
         for (Map.Entry<String, List<String>> entry :testsByClazz.entrySet()) {
             String clazzName = entry.getKey();
             String filePath = projectPreparation.srcTestDir + File.separator +
@@ -103,10 +109,10 @@ public class TestInputMutateForBugsMain extends AbstractMain {
                 inputs.add(input);
             }
             Map<String, MethodDeclaration> compilationUnitMap = TransformHelper.mutateTest(skeleton, inputs, 10);
-            //todo test patch
-            TransformHelper.applyPatch(skeleton, compilationUnitMap);
+            boolean correct = TransformHelper.applyPatch(skeleton, compilationUnitMap);
+            allCorrect &= correct;
         }
-        return true;
+        return allCorrect;
     }
 
     private static String getPatchDirByBug(String bugName, String patchesRootDir) {

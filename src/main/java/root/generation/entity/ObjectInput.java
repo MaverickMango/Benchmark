@@ -37,9 +37,7 @@ public class ObjectInput extends Input{
         List<Expression> collector = new ArrayList<>();
         visitor = new DependencyVisitor(all);
         visitor.visit(methodDeclaration, collector);
-        Random random = new Random();
-        List<Expression> tmp = new ArrayList<>(collector);
-        this.basicExpr = tmp.get(random.nextInt(tmp.size()));
+        this.basicExpr = collector;
     }
 
     private void initBasicExpr(Expression inputExpr) {
@@ -55,9 +53,7 @@ public class ObjectInput extends Input{
             logger.error("Input Expression lost its ancestor node while creating objectInput! ");
             throw new IllegalArgumentException("Illegal Argument: " + inputExpr);
         }
-        Random random = new Random();
         List<Expression> tmp = new ArrayList<>(collector);
-        int idx = random.nextInt(tmp.size());
-        this.basicExpr = tmp.get(idx);
+        this.basicExpr = tmp;
     }
 }

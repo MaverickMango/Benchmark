@@ -29,9 +29,8 @@ public class BasicInput extends Input {
     private void initBasicExpr(Expression inputExpr) {
         List<Expression> collector = new ArrayList<>();
         inputExpr.accept(visitor, collector);
-        Random random = new Random();
         List<Expression> tmp = new ArrayList<>(collector);
-        this.basicExpr = tmp.get(random.nextInt(tmp.size()));
+        this.basicExpr = tmp;
     }
 
 }

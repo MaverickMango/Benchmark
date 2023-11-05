@@ -18,8 +18,9 @@ public class BugRepository implements GitAccess {
     CIBug bug;
     Repository repository;
 
-    public BugRepository(CIBug bug) {
+    public BugRepository(Defects4JBug bug) {
         this.bug = bug;
+        bug.setBugName(bug.getProj() + "_" + bug.getId());
         this.repository = bug.getGitRepository();
         this.bug.compile();
     }

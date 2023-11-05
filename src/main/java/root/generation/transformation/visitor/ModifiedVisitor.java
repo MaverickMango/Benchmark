@@ -30,6 +30,13 @@ public class ModifiedVisitor extends ModifierVisitor<List<Expression>> {
     @Override
     public Visitable visit(ArrayAccessExpr n, List<Expression> arg) {
         Expression value = n.getIndex();
+        if (value.isUnaryExpr()) {
+            Expression expression = value.asUnaryExpr().getExpression();
+            if (expression.getRange().equals(basicExpr.getRange()) &&
+                    expression.getClass().equals(basicExpr.getClass()) && expression.toString().equals(basicExpr.toString())) {
+                value.asUnaryExpr().setExpression(transformed);
+            }
+        }
         if (value.getRange().equals(basicExpr.getRange()) &&
                 value.getClass().equals(basicExpr.getClass()) && value.toString().equals(basicExpr.toString())) {
             n.setIndex(transformed);
@@ -41,6 +48,13 @@ public class ModifiedVisitor extends ModifierVisitor<List<Expression>> {
     public Visitable visit(ArrayInitializerExpr n, List<Expression> arg) {
         NodeList<Expression> values = n.getValues();
         for (Expression value :values) {
+            if (value.isUnaryExpr()) {
+                Expression expression = value.asUnaryExpr().getExpression();
+                if (expression.getRange().equals(basicExpr.getRange()) &&
+                        expression.getClass().equals(basicExpr.getClass()) && expression.toString().equals(basicExpr.toString())) {
+                    value.asUnaryExpr().setExpression(transformed);
+                }
+            }
             if (value.getRange().equals(basicExpr.getRange()) &&
                     value.getClass().equals(basicExpr.getClass()) && value.toString().equals(basicExpr.toString())) {
                 values.replace(value, transformed);
@@ -50,9 +64,35 @@ public class ModifiedVisitor extends ModifierVisitor<List<Expression>> {
     }
 
     @Override
+    public Visitable visit(VariableDeclarator n, List<Expression> arg) {
+        Optional<Expression> initializer = n.getInitializer();
+        initializer.ifPresent(value -> {
+            if (value.isUnaryExpr()) {
+                Expression expression = value.asUnaryExpr().getExpression();
+                if (expression.getRange().equals(basicExpr.getRange()) &&
+                        expression.getClass().equals(basicExpr.getClass()) && expression.toString().equals(basicExpr.toString())) {
+                    value.asUnaryExpr().setExpression(transformed);
+                }
+            }
+            if (value.getRange().equals(basicExpr.getRange()) &&
+                    value.getClass().equals(basicExpr.getClass()) && value.toString().equals(basicExpr.toString())) {
+                n.replace(value, transformed);
+            }
+        });
+        return super.visit(n, arg);
+    }
+
+    @Override
     public Visitable visit(MethodCallExpr n, List<Expression> arg) {
         NodeList<Expression> arguments = n.getArguments();
         for (Expression value :arguments) {
+            if (value.isUnaryExpr()) {
+                Expression expression = value.asUnaryExpr().getExpression();
+                if (expression.getRange().equals(basicExpr.getRange()) &&
+                        expression.getClass().equals(basicExpr.getClass()) && expression.toString().equals(basicExpr.toString())) {
+                    value.asUnaryExpr().setExpression(transformed);
+                }
+            }
             if (value.getRange().equals(basicExpr.getRange()) &&
                     value.getClass().equals(basicExpr.getClass()) && value.toString().equals(basicExpr.toString())) {
                 arguments.replace(value, transformed);
@@ -65,6 +105,13 @@ public class ModifiedVisitor extends ModifierVisitor<List<Expression>> {
     public Visitable visit(ObjectCreationExpr n, List<Expression> arg) {
         NodeList<Expression> arguments = n.getArguments();
         for (Expression value :arguments) {
+            if (value.isUnaryExpr()) {
+                Expression expression = value.asUnaryExpr().getExpression();
+                if (expression.getRange().equals(basicExpr.getRange()) &&
+                        expression.getClass().equals(basicExpr.getClass()) && expression.toString().equals(basicExpr.toString())) {
+                    value.asUnaryExpr().setExpression(transformed);
+                }
+            }
             if (value.getRange().equals(basicExpr.getRange()) &&
                     value.getClass().equals(basicExpr.getClass()) && value.toString().equals(basicExpr.toString())) {
                 arguments.replace(value, transformed);

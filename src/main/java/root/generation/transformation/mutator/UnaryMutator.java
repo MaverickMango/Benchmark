@@ -34,8 +34,7 @@ public class UnaryMutator extends AbstractInputMutator {
 //        newValue.setExpression(nextInput);
         UnaryExpr.Operator operator = newValue.getOperator();
         if (cans.contains(operator)) {
-            int idx = random.nextInt(2);
-            operator = cans.get(idx);
+            operator = cans.get(0) == newValue.getOperator() ? cans.get(1) : cans.get(0);
             newValue.setOperator(operator);
         }
         return newValue;
