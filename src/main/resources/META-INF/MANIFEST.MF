@@ -1,3 +1,3 @@
 Manifest-Version: 1.0
-Main-Class: root.attempt.Main
+Main-Class: root.generation.TestInputMutateForBugsMain
 

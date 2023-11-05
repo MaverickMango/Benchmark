@@ -29,7 +29,7 @@ import java.util.stream.Collectors;
  * a method declaration of test, the last statement is the one before trigger assert.
  * if all statements before are $ASSERT, Prefix will have an empty body.
  */
-public class Skeleton {
+public class Skeleton implements Cloneable {
 
     private static final Logger logger = LoggerFactory.getLogger(Skeleton.class);
 
@@ -194,6 +194,10 @@ public class Skeleton {
 
     public CompilationUnit addMethods2CompilationUnit(CompilationUnit unit, Collection<MethodDeclaration> methodDeclarations) {
         CompilationUnit clone = unit.clone();
+        if (clone.getClassByName(clazzName).isEmpty()) {
+            logger.error("unit: \n" + unit.toString());
+            logger.error("clazzName: " + clazzName);
+        }
         ClassOrInterfaceDeclaration classOrInterfaceDeclaration = clone.getClassByName(clazzName).get();
         List<String> collect = classOrInterfaceDeclaration.getMethods().stream()
                 .map(NodeWithSimpleName::getNameAsString).collect(Collectors.toList());
@@ -300,6 +304,7 @@ public class Skeleton {
         for (MethodDeclaration method :methodintrs.values()) {
             testName.append(getTestNamePrefix(transformedCompilationUnit, method.getNameAsString()) + " ");
         }
+        logger.info("Executing tests in original commit...");
         List<String> failed = TransformHelper.saveAndTest(transformedCompilationUnit, getAbsolutePath(), testName.toString());
         //失败的测试就不需要了
         Map<Input, MethodDeclaration> withOracle = new HashMap<>();
@@ -309,7 +314,7 @@ public class Skeleton {
             }
         }
         inputs.forEach(input -> input.setCompleted(true));
-
+        logger.info("Constructing methods with oracles....");
         Map<String, MethodDeclaration> oracleWithAssert = getOracleWithAssert(transformedCompilationUnit, withOracle);
         return oracleWithAssert;
     }
@@ -333,12 +338,14 @@ public class Skeleton {
     }
 
     public List<String> applyPatch(Map<String, MethodDeclaration> map) {
+        logger.info("Transforming test for buggy version, add generated methods.");
         CompilationUnit transformedCompilationUnit = addMethods2CompilationUnit(clazz, map.values());
 
         StringBuilder testNames = new StringBuilder();
         for (String testName :map.keySet()) {
             testNames.append(testName).append(" ");
         }
+        logger.info("Running test to predict patch correctness...");
         List<String> failed = TransformHelper.saveAndTest(transformedCompilationUnit, getAbsolutePath(), testNames.toString());
         return failed;
     }
@@ -393,5 +400,15 @@ public class Skeleton {
                 }
             });
         });
+    }
+
+    @Override
+    public Skeleton clone() {
+        try {
+            Skeleton clone = (Skeleton) super.clone();
+            return clone;
+        } catch (CloneNotSupportedException e) {
+            throw new AssertionError();
+        }
     }
 }

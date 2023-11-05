@@ -44,11 +44,11 @@ public class PreparationTest {
     }
 
     private static void setInputs() {
-        String info = "/home/liumengjiao/Desktop/CI/Benchmark_py/info/patches_inputs.csv";
+        String info = "/home/liumengjiao/Desktop/CI/Benchmark_py/generation/info/patches_inputs.csv";
         List<List<String>> lists = FileUtils.readCsv(info, true);
         String location = "/home/liumengjiao/Desktop/CI/bugs/";
         String bugName, srcJavaDir, srcTestDir, binJavaDir, binTestDir, testInfos, projectCP, originalCommit, cleaned, complianceLevel;
-        List<String> strings = lists.get(38);
+        List<String> strings = lists.get(0);
         bugName = strings.get(0);
         srcJavaDir = strings.get(1);
         srcTestDir = strings.get(2);
@@ -60,7 +60,7 @@ public class PreparationTest {
         cleaned = strings.get(8);
         cs.append("-proj", bugName.split("_")[0]);
         cs.append("-id", bugName.split("_")[1]);
-        cs.append("-location", location + bugName + "_bug");
+        cs.append("-location", location + bugName + "_buggy");
         cs.append("-srcJavaDir", srcJavaDir);
         cs.append("-srcTestDir", srcTestDir);
         cs.append("-binJavaDir", binJavaDir);
@@ -69,7 +69,7 @@ public class PreparationTest {
         cs.append("-dependencies", projectCP);
         cs.append("-originalCommit", originalCommit);
 //        cs.append("-complianceLevel", "1.6");
-        cs.append("-patchesDir", "/home/liumengjiao/Desktop/CI/patches/patches_correct/Math/Math_10/");
+        cs.append("-patchesDir", "/home/liumengjiao/Desktop/CI/patches/patches_plausible/Closure/Closure_8/");
     }
 
 }

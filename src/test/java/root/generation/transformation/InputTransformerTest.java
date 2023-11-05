@@ -120,7 +120,7 @@ class InputTransformerTest extends PreparationTest{
         Skeleton skeleton = new Skeleton(absolutePath, compilationUnit, split[split.length - 1]);
         Input input = InputExtractorTest.getInput();
         Map<String, MethodDeclaration> stringMethodDeclarationMap = TransformHelper.mutateTest(skeleton, Collections.singletonList(input), 10);
-        boolean res = TransformHelper.applyPatch(skeleton, stringMethodDeclarationMap);
+        boolean res = TransformHelper.applyPatch(projectPreparation.patches, skeleton, stringMethodDeclarationMap);
         assertTrue(res);
     }
 

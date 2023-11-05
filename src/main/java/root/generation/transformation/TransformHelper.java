@@ -37,12 +37,16 @@ public class TransformHelper {
 
     public static Map<String, MethodDeclaration> mutateTest(Skeleton skeleton, List<Input> inputs, int mutantsNum) {
         List<Input> newInputs = new ArrayList<>();
+        logger.info("Mutating test inputs... Expected num for each: " + mutantsNum + ", total inputs num: " + inputs.size());
         for (Input input :inputs) {
+            logger.info("mutating...");
             List<Pair<Expression, Object>> inputMutants = MutatorHelper.getInputMutants(input, mutantsNum);
+            logger.info("transforming...");
             List<Input> tmp = inputTransformer.transformInput(input, inputMutants);
             newInputs.addAll(tmp);
             skeleton.addInput(input);
         }
+        logger.info("Building all new inputs...");
         Map<String, MethodDeclaration> map = inputTransformer.buildNewTestByInputs(skeleton, newInputs);
         return map;
     }
@@ -98,29 +102,37 @@ public class TransformHelper {
         return tests;
     }
 
-    public static boolean applyPatch(Skeleton skeleton, Map<String, MethodDeclaration> map) {
+    public static boolean applyPatch(Map<String, Object> patches, Skeleton skeleton, Map<String, MethodDeclaration> map) {
         //save the generatedOracle file.
         String bugName = bugRepository.getBug().getBugName();
         String target = ConfigurationProperties.getProperty("resultOutput") + File.separator
                 + bugName + File.separator + "generatedOracles" + File.separator;
         FileUtils.copy(new File(skeleton.getOracleFilePath()), new File(target));
-        boolean res = bugRepository.switchToBug();
-        if (!res) {
-            logger.error("Error occurred when switching to buggy version!");
-            return res;
+        target = ConfigurationProperties.getProperty("resultOutput") + File.separator
+                + bugName + File.separator + "result";
+        boolean res = false;
+        for (Map.Entry<String, Object> entry: patches.entrySet()) {
+            res = bugRepository.switchToBug();
+            if (!res) {
+                logger.error("Error occurred when switching to buggy version!");
+                return res;
+            }
+            res = false;
+            String patchPath = entry.getKey();
+            logger.info("Applying patch: " + patchPath);
+            CompilationUnit unit = (CompilationUnit) entry.getValue();
+            FileUtils.writeToFile(unit.toString(), patchPath, false);
+            List<String> failed = skeleton.applyPatch(map);
+            if (failed == null) {
+                logger.info("Test execution error in patched version!");
+                continue;
+            }
+            res = failed.isEmpty();//failed为空贼说明没有失败测试，是一个正确的补丁。
+            String correctness = res ? "correct" : "incorrect";
+            logger.info("Patch correctness: " + correctness);
+            String content = patchPath + "#" + correctness + "\n";
+            FileUtils.writeToFile(content, target, true);
         }
-        String path = skeleton.getAbsolutePath();
-        try {
-            inputExtractor.getParser().parseASTs(path);
-            CompilationUnit unit = (CompilationUnit) inputExtractor.getParser().getASTs().get(path);
-            skeleton.setClazz(unit);
-        } catch (Exception ignored) {}
-        List<String> failed = skeleton.applyPatch(map);
-        if (failed == null) {
-            logger.info("Test execution error in patched version!");
-            return false;
-        }
-        res = failed.isEmpty();//failed为空贼说明没有失败测试，是一个正确的补丁。
         return res;
     }
 }

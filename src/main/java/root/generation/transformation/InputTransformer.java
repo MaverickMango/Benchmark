@@ -115,17 +115,24 @@ public class InputTransformer {
     }
 
     public Map<String, MethodDeclaration> constructSkeleton(Skeleton skeleton, List<Input> newInputs) {
-        if (!skeleton.isSplit())
+        logger.info("Constructing Skeleton...");
+        if (!skeleton.isSplit()) {
+            logger.info("Removing Assertion in test method...");
             skeleton.splitAssert();//删除原有的assert语句
+        }
+        logger.info("Apply all new inputs, transforming test method...");
         skeleton.applyTransform(newInputs);
         Map<String, MethodDeclaration> map = new HashMap<>();
-        List<Input> collect = skeleton.getInputs().stream().filter(input -> !input.isCompleted()).collect(Collectors.toList());
-        List<Input> collect1 = skeleton.getInputs().stream().filter(Input::isCompleted).collect(Collectors.toList());
+        List<Input> collect = newInputs.stream().filter(input -> !input.isCompleted()).collect(Collectors.toList());
+        List<Input> collect1 = newInputs.stream().filter(Input::isCompleted).collect(Collectors.toList());
         if (!collect.isEmpty()) {
+            logger.info("Getting oracles...");
             Map<String, MethodDeclaration> oracle = skeleton.getOracle(newInputs);//需要oracle的语句则需要先执行一遍
+            // todo 并不能通过参数数量来确定是否需要oracle，还可能是assertrue这种
             map.putAll(oracle);
         }
         if (!collect1.isEmpty()) {
+            logger.info("Constructing methods without oracle...");
             Map<Input, MethodDeclaration> methodDeclarationInputMap = skeleton.addStatementsAtLast(collect1);//对于不需要oracle的语句，直接根据input更新method
             for (Map.Entry<Input, MethodDeclaration> entry: methodDeclarationInputMap.entrySet()) {
                 String testNamePrefix = skeleton.getTestNamePrefix(skeleton.getClazz(), entry.getValue().getNameAsString());

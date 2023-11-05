@@ -184,7 +184,10 @@ public class ProjectPreparation {
     private void invokePatches(String patchesDir) {
         try {
             AbstractASTParser astParser = new ASTJavaParser(srcJavaDir, srcTestDir, dependencies, complianceLevel);
-            astParser.parseASTs(patchesDir);
+            String[] split = patchesDir.split(File.pathSeparator);
+            for (String dir :split) {
+                astParser.parseASTs(dir);
+            }
             Map<String, Object> patches = astParser.getASTs();
             if (patches.isEmpty()) {
                 logger.error("No patch file found!");

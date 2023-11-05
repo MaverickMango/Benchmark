@@ -63,9 +63,6 @@ public class TestInputMutateForBugsMain extends AbstractMain {
             String patchesDir = getPatchDirByBug(strings.get(0), patchesRootDir);
             cs.append("-patchesDir", patchesDir);
             boolean res = process(cs);
-            if (!res) {
-                continue;
-            }
         }
     }
 
@@ -82,6 +79,7 @@ public class TestInputMutateForBugsMain extends AbstractMain {
         String testInfos = ConfigurationProperties.getProperty("testInfos");
         String[] tests = testInfos.split("#");
         Map<String, List<String>> testsByClazz = new HashMap<>();
+        logger.info("Split test one by one...");
         for (String triggerTest : tests) {
             String[] split1 = triggerTest.split(":");
             String clazzName = split1[0].replaceAll("\\.", File.separator);
@@ -93,25 +91,34 @@ public class TestInputMutateForBugsMain extends AbstractMain {
             testsByClazz.get(clazzName).add(methodName + ":" + lineNumber);
         }
         boolean allCorrect = true;
+        logger.info("Processing each Test Classes...");
         for (Map.Entry<String, List<String>> entry :testsByClazz.entrySet()) {
             String clazzName = entry.getKey();
             String filePath = projectPreparation.srcTestDir + File.separator +
                     clazzName + ".java";
             String absolutePath = new File(filePath).getAbsolutePath();
+            logger.info("For Test Class " + absolutePath);
             CompilationUnit compilationUnit = TransformHelper.inputExtractor.getCompilationUnit(absolutePath);
-            Skeleton skeleton = new Skeleton(absolutePath, compilationUnit, clazzName);
+            logger.info("Creating Skeleton...");
+            String[] s = clazzName.split(File.separator);
+            Skeleton skeleton = new Skeleton(absolutePath, compilationUnit, s[s.length - 1]);
             List<Input> inputs = new ArrayList<>();
+            logger.info("Processing each test methods...");
             for (String testMths : entry.getValue()) {
                 String[] split = testMths.split(":");
                 String methodName = split[0];
                 int lineNumber = split.length == 2 ? Integer.parseInt(split[1]) : 0;
+                logger.info("Extracting test input for test " + methodName);
                 Input input = TransformHelper.inputExtractor.extractInput(absolutePath, methodName, lineNumber);
                 inputs.add(input);
             }
+            logger.info("Mutating all test inputs...");
             Map<String, MethodDeclaration> compilationUnitMap = TransformHelper.mutateTest(skeleton, inputs, 10);
-            boolean correct = TransformHelper.applyPatch(skeleton, compilationUnitMap);
+            logger.info("Applying patches...");
+            boolean correct = TransformHelper.applyPatch(projectPreparation.patches, skeleton, compilationUnitMap);
             allCorrect &= correct;
         }
+        logger.info("Finish.");
         return allCorrect;
     }
 
