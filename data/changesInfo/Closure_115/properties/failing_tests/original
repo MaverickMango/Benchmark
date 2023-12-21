@@ -1147,10 +1147,7 @@ java.lang.RuntimeException: java.lang.StackOverflowError
 	at org.apache.tools.ant.launch.Launcher.run(Launcher.java:280)
 	at org.apache.tools.ant.launch.Launcher.main(Launcher.java:109)
 Caused by: java.lang.StackOverflowError
-	at com.google.javascript.jscomp.parsing.IRFactory.access$100(IRFactory.java:83)
-	at com.google.javascript.jscomp.parsing.IRFactory$TransformDispatcher.processInfixExpression(IRFactory.java:863)
-	at com.google.javascript.jscomp.parsing.IRFactory$TransformDispatcher.processInfixExpression(IRFactory.java:529)
-	at com.google.javascript.jscomp.parsing.TypeSafeDispatcher.process(TypeSafeDispatcher.java:146)
+	at com.google.javascript.jscomp.parsing.TypeSafeDispatcher.process(TypeSafeDispatcher.java:121)
 	at com.google.javascript.jscomp.parsing.IRFactory.justTransform(IRFactory.java:526)
 	at com.google.javascript.jscomp.parsing.IRFactory.transform(IRFactory.java:367)
 	at com.google.javascript.jscomp.parsing.IRFactory.access$300(IRFactory.java:83)
@@ -2171,3 +2168,6 @@ Caused by: java.lang.StackOverflowError
 	at com.google.javascript.jscomp.parsing.IRFactory$TransformDispatcher.processInfixExpression(IRFactory.java:863)
 	at com.google.javascript.jscomp.parsing.IRFactory$TransformDispatcher.processInfixExpression(IRFactory.java:529)
 	at com.google.javascript.jscomp.parsing.TypeSafeDispatcher.process(TypeSafeDispatcher.java:146)
+	at com.google.javascript.jscomp.parsing.IRFactory.justTransform(IRFactory.java:526)
+	at com.google.javascript.jscomp.parsing.IRFactory.transform(IRFactory.java:367)
+	at com.google.javascript.jscomp.parsing.IRFactory.access$300(IRFactory.java:83)

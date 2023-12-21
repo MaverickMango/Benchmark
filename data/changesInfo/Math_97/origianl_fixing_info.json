@@ -16,8 +16,8 @@
   "id": "97",
   "workingDir": "../bugs/Math_97_buggy",
   "buggyCommit": "7cf0c980d5d814daf187502bc07da0542ed7a828",
-  "inducingCommit": "4f1e69b5313761cb95909359a408d13e6aa29635",
-  "originalCommit": "6013c8da1956cd765e28061b7cdc94a33fff5fd4",
+  "inducingCommit": "6a978ea29f680a87dfc380c760adf2e17b2e7c9c",
+  "originalCommit": "01aa3293c5238d5300300d93f5fe8253a8c668bc",
   "bug_name": "Math_97",
   "derive": "defects4j",
   "original_fixing_commit": "ed492bd0c5c5c3a0258a65cb31cc8723d8f011fd",
@@ -180,7 +180,7 @@
     }
   ],
   "fixing_changes": [
-    {
+    { 
       "changed_type": "UPDATE",
       "changed_class": [
         "src/java/org/apache/commons/math/analysis/BrentSolver.java",

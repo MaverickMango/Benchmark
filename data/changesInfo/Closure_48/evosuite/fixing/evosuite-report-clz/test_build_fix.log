@@ -1,2 +1,3 @@
-cd /home/liumengjiao/Desktop/CI/Benchmark/../bugs/Closure_48_fix && timeout 300000 javac -cp  /home/liumengjiao/Desktop/defects4j/framework/lib/test_generation/generation/evosuite-current.jar:build/classes/:build/lib/*:lib/*  /home/liumengjiao/Desktop/CI/Evosuite/Closure_48/Closure/evosuite/3/com/google/javascript/jscomp/TypedScopeCreator_ESTest.java /home/liumengjiao/Desktop/CI/Evosuite/Closure_48/Closure/evosuite/3/com/google/javascript/jscomp/TypedScopeCreator_ESTest_scaffolding.java >> evosuite-report-clz/test_build_fix.log 2>&1
-
+javac: no source files
+Usage: javac <options> <source files>
+use -help for a list of possible options

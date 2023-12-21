@@ -12,6 +12,11 @@ public class Main {
         String targetCommit = args[4];
         Defects4JBug defects4JBug = new Defects4JBug(proj, id, workingDir);
         Repository b = defects4JBug.getGitRepository("b");
-        defects4JBug.switchAndClean(b, targetCommit, version, null);
+        boolean res = defects4JBug.switchAndClean(b, targetCommit, version, null);
+        if (!res) {
+            System.out.println(-1);
+            System.exit(-1);
+        }
+        System.out.println(0);
     }
 }

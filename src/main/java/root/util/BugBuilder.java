@@ -25,6 +25,53 @@ public class BugBuilder implements GitAccess {
 
     private static final Logger logger = LoggerFactory.getLogger(BugBuilder.class);
 
+
+    public static void buildD4JBug(CIBug ciBug, String dataDir) {
+        boolean originalFixing = true;
+        if (!(ciBug instanceof Defects4JBug)) {
+            return;
+        }
+        Repository repository = ((Defects4JBug) ciBug).getGitRepository("b");
+        String fixingCommit = ((Defects4JBug) ciBug).getD4JFix();
+        String buggyCommit = ((Defects4JBug) ciBug).getD4JBuggy();
+
+        List<PatchDiff> patchDiffs = new ArrayList<>();
+        Actions actions = new Actions();
+        //2. extract fixing infos
+        logger.info("extract fixing infos...");
+        patchDiffs = new ArrayList<>();
+        actions = new Actions();
+        try {
+            if (!originalFixing) {
+                //do nothing
+            } else {
+                extractChangesFromCommits(repository, fixingCommit, buggyCommit, patchDiffs, actions);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        ciBug.setFixingChanges(patchDiffs);
+        ciBug.setFixingType(actions);
+
+        //3. failing test
+        logger.info("extract failing test...");
+        List<FailedTest> failedTests = new ArrayList<>();
+        try {
+            String failing_tests = null;
+            if (!originalFixing) {
+                //do nothing
+            } else {
+                failing_tests = ConfigurationProperties.getProperty("defects4j") + "/framework/projects/"
+                        + ((Defects4JBug) ciBug).getProj() + "/trigger_tests/" + ((Defects4JBug) ciBug).getId();
+            }
+            //extract message
+            failedTests = extractFailedTests(failing_tests);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        ciBug.setTriggerTests(failedTests);
+    }
+
     public static void buildCIBug(CIBug ciBug, String dataDir, boolean originalFixing) {
         if (!(ciBug instanceof Defects4JBug)) {
             return;
@@ -111,7 +158,7 @@ public class BugBuilder implements GitAccess {
         if (originalFixing) {
             logger.info("get method descriptors for originalFixing...");
             String d4JFix = ((Defects4JBug) ciBug).getD4JFix();
-            boolean res = ((Defects4JBug) ciBug).switchAndCompile("f");
+            boolean res = ((Defects4JBug) ciBug).checkAndCompile("f");
             String d4jinfoDir = ConfigurationProperties.getProperty("d4jinfo");
             if (d4jinfoDir != null ){
                 d4jinfoDir += ((Defects4JBug) ciBug).getProj().toLowerCase() + File.separator + ((Defects4JBug) ciBug).getId() + ".txt";
@@ -282,7 +329,7 @@ public class BugBuilder implements GitAccess {
                     failedTest.setTestFunction(split[1]);
                 int j = 1;
                 failedTest.setMessage("");
-                for (; j < failings.size() - 1; j++) {
+                for (; i + j < failings.size(); j++) {
                     line = failings.get(i + j);
                     if (j == 1) {
                         int splitPos = line.indexOf(":") == line.length() - 1 ? line.length() - 2 : line.indexOf(":");

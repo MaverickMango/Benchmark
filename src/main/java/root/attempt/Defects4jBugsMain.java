@@ -19,7 +19,7 @@ public class Defects4jBugsMain implements GitAccess {
 
     private static final Logger logger = LoggerFactory.getLogger(Defects4jBugsMain.class);
 
-    public static void main(String[] args) {//jsonAnalyzer
+    public static void jsonAnalyzer(String[] args) {//jsonAnalyzer
         String bugInfo = "src/test/resources/BugFixInfo_total.csv";
         List<List<String>> d4jinfos = FileUtils.readCsv(bugInfo, true);
         List<String> addClasses = new ArrayList<>();
@@ -50,6 +50,28 @@ public class Defects4jBugsMain implements GitAccess {
 //            }
         }
         FileUtils.writeToFile(FileUtils.jsonFormatter(addClasses.toString()), "data/changesInfo/info.json", false);
+    }
+
+    public static void getFixInfo4AllD4J2Bugs(String[] args) {
+        String bugInfo = "/home/liumengjiao/Desktop/vbaprinfo/bugs2_All.csv";
+        List<String> d4jinfos = FileUtils.readEachLine(bugInfo);
+        for (int i = 0; i < d4jinfos.size(); i ++) {
+            String bugName = d4jinfos.get(i);
+            String proj = bugName.split(":")[0];
+            String[] ids = bugName.split(":")[1].split(",");
+            for (String id :ids) {
+                String bug_tag = proj + "_" + id;
+                String workingDir = "../bugs/" + bug_tag + "_tmp";
+                CIBug defects4JBug = new Defects4JBug(proj, id,  workingDir);
+                defects4JBug.setBugName(bug_tag);
+                defects4JBug.setDerive("defects4j");
+
+                BugBuilder.buildD4JBug(defects4JBug, "data/d4j_all/");
+                FileUtils.writeToFile(FileUtils.jsonFormatter(FileUtils.bean2Json(defects4JBug)),
+                        ((Defects4JBug) defects4JBug).getDataDir() + "/tmp/" + defects4JBug.getBugName() + "/buggy_fix_info.json", false);
+                FileUtils.executeCommand(new String[]{"/bin/bash", "-c", "rm -rf " + workingDir});
+            }
+        }
     }
 
     public static void functionExtractor(String[] args) {//
@@ -145,9 +167,6 @@ public class Defects4jBugsMain implements GitAccess {
             boolean res = false;
             try {
                 Defects4JBug defects4JBug = new Defects4JBug(proj, id, "data/bugs/" + bugName);
-                if (proj.equals("Time")) {
-                    defects4JBug.setWorkingDir(defects4JBug.getWorkingDir() + "/JodaTime");
-                }
                 Repository repository = defects4JBug.getGitRepository("b");
                 gitAccess.checkoutf(defects4JBug.getWorkingDir(), bug.get(6));
 //                if (!res) {

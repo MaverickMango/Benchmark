@@ -48,6 +48,6 @@ test {
 
 shadowJar {
     manifest {
-        attributes 'Main-Class': 'root.generation.TestInputMutateForBugsMain'
+        attributes 'Main-Class': 'root.attempt.Main'
     }
 }
