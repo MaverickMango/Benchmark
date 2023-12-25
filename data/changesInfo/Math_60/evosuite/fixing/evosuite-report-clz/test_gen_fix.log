@@ -422,3 +422,603 @@ Creating output directory.................................................. OK
 Executed command: mkdir -p /home/liumengjiao/Desktop/CI/Evosuite/Math_60//Math/evosuite/3
 Moving test suite archive to /home/liumengjiao/Desktop/CI/Evosuite/Math_60/ OK
 Executed command: mv /tmp/gen_tests.pl_507828_1695206176/Math-60f-evosuite.3.tar.bz2 /home/liumengjiao/Desktop/CI/Evosuite/Math_60//Math/evosuite/3
+cd /home/liumengjiao/Desktop/CI/Benchmark/../bugs/Math_60_fix && /home/liumengjiao/Desktop/defects4j/framework/bin/gen_tests.pl -g evosuite -p Math -v 60f -n 0 -o /home/liumengjiao/Desktop/CI/Evosuite//Math_60 -b 3600 >> evosuite-report-clz/test_gen_fix.log 2>&1
+
+Checking out 9054aac4 to /tmp/gen_tests.pl_3159762_1703343429.............. OK
+Init local repository...................................................... OK
+Tag post-fix revision...................................................... OK
+Excluding broken/flaky tests............................................... OK
+Excluding broken/flaky tests............................................... OK
+Initialize fixed program version........................................... OK
+Apply patch................................................................ OK
+Initialize buggy program version........................................... OK
+Diff 9054aac4:87430634..................................................... OK
+Apply patch................................................................ OK
+Tag pre-fix revision....................................................... OK
+Check out program version: Math-60f........................................ OK
+Running ant (compile)...................................................... OK
+Creating temporary output directory........................................ OK
+Generating (regression) tests with: evosuite............................... OK
+Creating test suite archive................................................ OK
+Creating output directory.................................................. OK
+Moving test suite archive to /home/liumengjiao/Desktop/CI/Evosuite//Math_60 OK
+cd /home/liumengjiao/Desktop/CI/Benchmark/../bugs/Math_60_fix && /home/liumengjiao/Desktop/defects4j/framework/bin/gen_tests.pl -g evosuite -p Math -v 60f -n 1 -o /home/liumengjiao/Desktop/CI/Evosuite//Math_60 -b 3600 >> evosuite-report-clz/test_gen_fix.log 2>&1
+
+Checking out 9054aac4 to /tmp/gen_tests.pl_3160073_1703343438.............. OK
+Init local repository...................................................... OK
+Tag post-fix revision...................................................... OK
+Excluding broken/flaky tests............................................... OK
+Excluding broken/flaky tests............................................... OK
+Initialize fixed program version........................................... OK
+Apply patch................................................................ OK
+Initialize buggy program version........................................... OK
+Diff 9054aac4:87430634..................................................... OK
+Apply patch................................................................ OK
+Tag pre-fix revision....................................................... OK
+Check out program version: Math-60f........................................ OK
+Running ant (compile)...................................................... OK
+Creating temporary output directory........................................ OK
+Generating (regression) tests with: evosuite............................... OK
+Creating test suite archive................................................ OK
+Creating output directory.................................................. OK
+Moving test suite archive to /home/liumengjiao/Desktop/CI/Evosuite//Math_60 OK
+cd /home/liumengjiao/Desktop/CI/Benchmark/../bugs/Math_60_fix && /home/liumengjiao/Desktop/defects4j/framework/bin/gen_tests.pl -g evosuite -p Math -v 60f -n 2 -o /home/liumengjiao/Desktop/CI/Evosuite//Math_60 -b 3600 >> evosuite-report-clz/test_gen_fix.log 2>&1
+
+Checking out 9054aac4 to /tmp/gen_tests.pl_3160384_1703343447.............. OK
+Init local repository...................................................... OK
+Tag post-fix revision...................................................... OK
+Excluding broken/flaky tests............................................... OK
+Excluding broken/flaky tests............................................... OK
+Initialize fixed program version........................................... OK
+Apply patch................................................................ OK
+Initialize buggy program version........................................... OK
+Diff 9054aac4:87430634..................................................... OK
+Apply patch................................................................ OK
+Tag pre-fix revision....................................................... OK
+Check out program version: Math-60f........................................ OK
+Running ant (compile)...................................................... OK
+Creating temporary output directory........................................ OK
+Generating (regression) tests with: evosuite............................... OK
+Creating test suite archive................................................ OK
+Creating output directory.................................................. OK
+Moving test suite archive to /home/liumengjiao/Desktop/CI/Evosuite//Math_60 OK
+cd /home/liumengjiao/Desktop/CI/Benchmark/../bugs/Math_60_fix && /home/liumengjiao/Desktop/defects4j/framework/bin/gen_tests.pl -g evosuite -p Math -v 60f -n 3 -o /home/liumengjiao/Desktop/CI/Evosuite//Math_60 -b 3600 >> evosuite-report-clz/test_gen_fix.log 2>&1
+
+Checking out 9054aac4 to /tmp/gen_tests.pl_3160704_1703343456.............. OK
+Init local repository...................................................... OK
+Tag post-fix revision...................................................... OK
+Excluding broken/flaky tests............................................... OK
+Excluding broken/flaky tests............................................... OK
+Initialize fixed program version........................................... OK
+Apply patch................................................................ OK
+Initialize buggy program version........................................... OK
+Diff 9054aac4:87430634..................................................... OK
+Apply patch................................................................ OK
+Tag pre-fix revision....................................................... OK
+Check out program version: Math-60f........................................ OK
+Running ant (compile)...................................................... OK
+Creating temporary output directory........................................ OK
+Generating (regression) tests with: evosuite............................... OK
+Creating test suite archive................................................ OK
+Creating output directory.................................................. OK
+Moving test suite archive to /home/liumengjiao/Desktop/CI/Evosuite//Math_60 OK
+cd /home/liumengjiao/Desktop/CI/Benchmark/../bugs/Math_60_fix && /home/liumengjiao/Desktop/defects4j/framework/bin/gen_tests.pl -g evosuite -p Math -v 60f -n 4 -o /home/liumengjiao/Desktop/CI/Evosuite//Math_60 -b 3600 >> evosuite-report-clz/test_gen_fix.log 2>&1
+
+Checking out 9054aac4 to /tmp/gen_tests.pl_3161015_1703343465.............. OK
+Init local repository...................................................... OK
+Tag post-fix revision...................................................... OK
+Excluding broken/flaky tests............................................... OK
+Excluding broken/flaky tests............................................... OK
+Initialize fixed program version........................................... OK
+Apply patch................................................................ OK
+Initialize buggy program version........................................... OK
+Diff 9054aac4:87430634..................................................... OK
+Apply patch................................................................ OK
+Tag pre-fix revision....................................................... OK
+Check out program version: Math-60f........................................ OK
+Running ant (compile)...................................................... OK
+Creating temporary output directory........................................ OK
+Generating (regression) tests with: evosuite............................... OK
+Creating test suite archive................................................ OK
+Creating output directory.................................................. OK
+Moving test suite archive to /home/liumengjiao/Desktop/CI/Evosuite//Math_60 OK
+cd /home/liumengjiao/Desktop/CI/Benchmark/../bugs/Math_60_fix && /home/liumengjiao/Desktop/defects4j/framework/bin/gen_tests.pl -g evosuite -p Math -v 60f -n 5 -o /home/liumengjiao/Desktop/CI/Evosuite//Math_60 -b 3600 >> evosuite-report-clz/test_gen_fix.log 2>&1
+
+Checking out 9054aac4 to /tmp/gen_tests.pl_3161332_1703343474.............. OK
+Init local repository...................................................... OK
+Tag post-fix revision...................................................... OK
+Excluding broken/flaky tests............................................... OK
+Excluding broken/flaky tests............................................... OK
+Initialize fixed program version........................................... OK
+Apply patch................................................................ OK
+Initialize buggy program version........................................... OK
+Diff 9054aac4:87430634..................................................... OK
+Apply patch................................................................ OK
+Tag pre-fix revision....................................................... OK
+Check out program version: Math-60f........................................ OK
+Running ant (compile)...................................................... OK
+Creating temporary output directory........................................ OK
+Generating (regression) tests with: evosuite............................... OK
+Creating test suite archive................................................ OK
+Creating output directory.................................................. OK
+Moving test suite archive to /home/liumengjiao/Desktop/CI/Evosuite//Math_60 OK
+cd /home/liumengjiao/Desktop/CI/Benchmark/../bugs/Math_60_fix && /home/liumengjiao/Desktop/defects4j/framework/bin/gen_tests.pl -g evosuite -p Math -v 60f -n 6 -o /home/liumengjiao/Desktop/CI/Evosuite//Math_60 -b 3600 >> evosuite-report-clz/test_gen_fix.log 2>&1
+
+Checking out 9054aac4 to /tmp/gen_tests.pl_3161643_1703343483.............. OK
+Init local repository...................................................... OK
+Tag post-fix revision...................................................... OK
+Excluding broken/flaky tests............................................... OK
+Excluding broken/flaky tests............................................... OK
+Initialize fixed program version........................................... OK
+Apply patch................................................................ OK
+Initialize buggy program version........................................... OK
+Diff 9054aac4:87430634..................................................... OK
+Apply patch................................................................ OK
+Tag pre-fix revision....................................................... OK
+Check out program version: Math-60f........................................ OK
+Running ant (compile)...................................................... OK
+Creating temporary output directory........................................ OK
+Generating (regression) tests with: evosuite............................... OK
+Creating test suite archive................................................ OK
+Creating output directory.................................................. OK
+Moving test suite archive to /home/liumengjiao/Desktop/CI/Evosuite//Math_60 OK
+cd /home/liumengjiao/Desktop/CI/Benchmark/../bugs/Math_60_fix && /home/liumengjiao/Desktop/defects4j/framework/bin/gen_tests.pl -g evosuite -p Math -v 60f -n 7 -o /home/liumengjiao/Desktop/CI/Evosuite//Math_60 -b 3600 >> evosuite-report-clz/test_gen_fix.log 2>&1
+
+Checking out 9054aac4 to /tmp/gen_tests.pl_3161962_1703343492.............. OK
+Init local repository...................................................... OK
+Tag post-fix revision...................................................... OK
+Excluding broken/flaky tests............................................... OK
+Excluding broken/flaky tests............................................... OK
+Initialize fixed program version........................................... OK
+Apply patch................................................................ OK
+Initialize buggy program version........................................... OK
+Diff 9054aac4:87430634..................................................... OK
+Apply patch................................................................ OK
+Tag pre-fix revision....................................................... OK
+Check out program version: Math-60f........................................ OK
+Running ant (compile)...................................................... OK
+Creating temporary output directory........................................ OK
+Generating (regression) tests with: evosuite............................... OK
+Creating test suite archive................................................ OK
+Creating output directory.................................................. OK
+Moving test suite archive to /home/liumengjiao/Desktop/CI/Evosuite//Math_60 OK
+cd /home/liumengjiao/Desktop/CI/Benchmark/../bugs/Math_60_fix && /home/liumengjiao/Desktop/defects4j/framework/bin/gen_tests.pl -g evosuite -p Math -v 60f -n 8 -o /home/liumengjiao/Desktop/CI/Evosuite//Math_60 -b 3600 >> evosuite-report-clz/test_gen_fix.log 2>&1
+
+Checking out 9054aac4 to /tmp/gen_tests.pl_3162275_1703343502.............. OK
+Init local repository...................................................... OK
+Tag post-fix revision...................................................... OK
+Excluding broken/flaky tests............................................... OK
+Excluding broken/flaky tests............................................... OK
+Initialize fixed program version........................................... OK
+Apply patch................................................................ OK
+Initialize buggy program version........................................... OK
+Diff 9054aac4:87430634..................................................... OK
+Apply patch................................................................ OK
+Tag pre-fix revision....................................................... OK
+Check out program version: Math-60f........................................ OK
+Running ant (compile)...................................................... OK
+Creating temporary output directory........................................ OK
+Generating (regression) tests with: evosuite............................... OK
+Creating test suite archive................................................ OK
+Creating output directory.................................................. OK
+Moving test suite archive to /home/liumengjiao/Desktop/CI/Evosuite//Math_60 OK
+cd /home/liumengjiao/Desktop/CI/Benchmark/../bugs/Math_60_fix && /home/liumengjiao/Desktop/defects4j/framework/bin/gen_tests.pl -g evosuite -p Math -v 60f -n 9 -o /home/liumengjiao/Desktop/CI/Evosuite//Math_60 -b 3600 >> evosuite-report-clz/test_gen_fix.log 2>&1
+
+Checking out 9054aac4 to /tmp/gen_tests.pl_3162586_1703343511.............. OK
+Init local repository...................................................... OK
+Tag post-fix revision...................................................... OK
+Excluding broken/flaky tests............................................... OK
+Excluding broken/flaky tests............................................... OK
+Initialize fixed program version........................................... OK
+Apply patch................................................................ OK
+Initialize buggy program version........................................... OK
+Diff 9054aac4:87430634..................................................... OK
+Apply patch................................................................ OK
+Tag pre-fix revision....................................................... OK
+Check out program version: Math-60f........................................ OK
+Running ant (compile)...................................................... OK
+Creating temporary output directory........................................ OK
+Generating (regression) tests with: evosuite............................... OK
+Creating test suite archive................................................ OK
+Creating output directory.................................................. OK
+Moving test suite archive to /home/liumengjiao/Desktop/CI/Evosuite//Math_60 OK
+cd /home/liumengjiao/Desktop/CI/Benchmark/../bugs/Math_60_fix && /home/liumengjiao/Desktop/defects4j/framework/bin/gen_tests.pl -g evosuite -p Math -v 60f -n 10 -o /home/liumengjiao/Desktop/CI/Evosuite//Math_60 -b 3600 >> evosuite-report-clz/test_gen_fix.log 2>&1
+
+Checking out 9054aac4 to /tmp/gen_tests.pl_3162908_1703343520.............. OK
+Init local repository...................................................... OK
+Tag post-fix revision...................................................... OK
+Excluding broken/flaky tests............................................... OK
+Excluding broken/flaky tests............................................... OK
+Initialize fixed program version........................................... OK
+Apply patch................................................................ OK
+Initialize buggy program version........................................... OK
+Diff 9054aac4:87430634..................................................... OK
+Apply patch................................................................ OK
+Tag pre-fix revision....................................................... OK
+Check out program version: Math-60f........................................ OK
+Running ant (compile)...................................................... OK
+Creating temporary output directory........................................ OK
+Generating (regression) tests with: evosuite............................... OK
+Creating test suite archive................................................ OK
+Creating output directory.................................................. OK
+Moving test suite archive to /home/liumengjiao/Desktop/CI/Evosuite//Math_60 OK
+cd /home/liumengjiao/Desktop/CI/Benchmark/../bugs/Math_60_fix && /home/liumengjiao/Desktop/defects4j/framework/bin/gen_tests.pl -g evosuite -p Math -v 60f -n 11 -o /home/liumengjiao/Desktop/CI/Evosuite//Math_60 -b 3600 >> evosuite-report-clz/test_gen_fix.log 2>&1
+
+Checking out 9054aac4 to /tmp/gen_tests.pl_3163219_1703343529.............. OK
+Init local repository...................................................... OK
+Tag post-fix revision...................................................... OK
+Excluding broken/flaky tests............................................... OK
+Excluding broken/flaky tests............................................... OK
+Initialize fixed program version........................................... OK
+Apply patch................................................................ OK
+Initialize buggy program version........................................... OK
+Diff 9054aac4:87430634..................................................... OK
+Apply patch................................................................ OK
+Tag pre-fix revision....................................................... OK
+Check out program version: Math-60f........................................ OK
+Running ant (compile)...................................................... OK
+Creating temporary output directory........................................ OK
+Generating (regression) tests with: evosuite............................... OK
+Creating test suite archive................................................ OK
+Creating output directory.................................................. OK
+Moving test suite archive to /home/liumengjiao/Desktop/CI/Evosuite//Math_60 OK
+cd /home/liumengjiao/Desktop/CI/Benchmark/../bugs/Math_60_fix && /home/liumengjiao/Desktop/defects4j/framework/bin/gen_tests.pl -g evosuite -p Math -v 60f -n 12 -o /home/liumengjiao/Desktop/CI/Evosuite//Math_60 -b 3600 >> evosuite-report-clz/test_gen_fix.log 2>&1
+
+Checking out 9054aac4 to /tmp/gen_tests.pl_3163530_1703343539.............. OK
+Init local repository...................................................... OK
+Tag post-fix revision...................................................... OK
+Excluding broken/flaky tests............................................... OK
+Excluding broken/flaky tests............................................... OK
+Initialize fixed program version........................................... OK
+Apply patch................................................................ OK
+Initialize buggy program version........................................... OK
+Diff 9054aac4:87430634..................................................... OK
+Apply patch................................................................ OK
+Tag pre-fix revision....................................................... OK
+Check out program version: Math-60f........................................ OK
+Running ant (compile)...................................................... OK
+Creating temporary output directory........................................ OK
+Generating (regression) tests with: evosuite............................... OK
+Creating test suite archive................................................ OK
+Creating output directory.................................................. OK
+Moving test suite archive to /home/liumengjiao/Desktop/CI/Evosuite//Math_60 OK
+cd /home/liumengjiao/Desktop/CI/Benchmark/../bugs/Math_60_fix && /home/liumengjiao/Desktop/defects4j/framework/bin/gen_tests.pl -g evosuite -p Math -v 60f -n 13 -o /home/liumengjiao/Desktop/CI/Evosuite//Math_60 -b 3600 >> evosuite-report-clz/test_gen_fix.log 2>&1
+
+Checking out 9054aac4 to /tmp/gen_tests.pl_3163850_1703343548.............. OK
+Init local repository...................................................... OK
+Tag post-fix revision...................................................... OK
+Excluding broken/flaky tests............................................... OK
+Excluding broken/flaky tests............................................... OK
+Initialize fixed program version........................................... OK
+Apply patch................................................................ OK
+Initialize buggy program version........................................... OK
+Diff 9054aac4:87430634..................................................... OK
+Apply patch................................................................ OK
+Tag pre-fix revision....................................................... OK
+Check out program version: Math-60f........................................ OK
+Running ant (compile)...................................................... OK
+Creating temporary output directory........................................ OK
+Generating (regression) tests with: evosuite............................... OK
+Creating test suite archive................................................ OK
+Creating output directory.................................................. OK
+Moving test suite archive to /home/liumengjiao/Desktop/CI/Evosuite//Math_60 OK
+cd /home/liumengjiao/Desktop/CI/Benchmark/../bugs/Math_60_fix && /home/liumengjiao/Desktop/defects4j/framework/bin/gen_tests.pl -g evosuite -p Math -v 60f -n 14 -o /home/liumengjiao/Desktop/CI/Evosuite//Math_60 -b 3600 >> evosuite-report-clz/test_gen_fix.log 2>&1
+
+Checking out 9054aac4 to /tmp/gen_tests.pl_3164161_1703343556.............. OK
+Init local repository...................................................... OK
+Tag post-fix revision...................................................... OK
+Excluding broken/flaky tests............................................... OK
+Excluding broken/flaky tests............................................... OK
+Initialize fixed program version........................................... OK
+Apply patch................................................................ OK
+Initialize buggy program version........................................... OK
+Diff 9054aac4:87430634..................................................... OK
+Apply patch................................................................ OK
+Tag pre-fix revision....................................................... OK
+Check out program version: Math-60f........................................ OK
+Running ant (compile)...................................................... OK
+Creating temporary output directory........................................ OK
+Generating (regression) tests with: evosuite............................... OK
+Creating test suite archive................................................ OK
+Creating output directory.................................................. OK
+Moving test suite archive to /home/liumengjiao/Desktop/CI/Evosuite//Math_60 OK
+cd /home/liumengjiao/Desktop/CI/Benchmark/../bugs/Math_60_fix && /home/liumengjiao/Desktop/defects4j/framework/bin/gen_tests.pl -g evosuite -p Math -v 60f -n 15 -o /home/liumengjiao/Desktop/CI/Evosuite//Math_60 -b 3600 >> evosuite-report-clz/test_gen_fix.log 2>&1
+
+Checking out 9054aac4 to /tmp/gen_tests.pl_3164478_1703343566.............. OK
+Init local repository...................................................... OK
+Tag post-fix revision...................................................... OK
+Excluding broken/flaky tests............................................... OK
+Excluding broken/flaky tests............................................... OK
+Initialize fixed program version........................................... OK
+Apply patch................................................................ OK
+Initialize buggy program version........................................... OK
+Diff 9054aac4:87430634..................................................... OK
+Apply patch................................................................ OK
+Tag pre-fix revision....................................................... OK
+Check out program version: Math-60f........................................ OK
+Running ant (compile)...................................................... OK
+Creating temporary output directory........................................ OK
+Generating (regression) tests with: evosuite............................... OK
+Creating test suite archive................................................ OK
+Creating output directory.................................................. OK
+Moving test suite archive to /home/liumengjiao/Desktop/CI/Evosuite//Math_60 OK
+cd /home/liumengjiao/Desktop/CI/Benchmark/../bugs/Math_60_fix && /home/liumengjiao/Desktop/defects4j/framework/bin/gen_tests.pl -g evosuite -p Math -v 60f -n 16 -o /home/liumengjiao/Desktop/CI/Evosuite//Math_60 -b 3600 >> evosuite-report-clz/test_gen_fix.log 2>&1
+
+Checking out 9054aac4 to /tmp/gen_tests.pl_3164794_1703343575.............. OK
+Init local repository...................................................... OK
+Tag post-fix revision...................................................... OK
+Excluding broken/flaky tests............................................... OK
+Excluding broken/flaky tests............................................... OK
+Initialize fixed program version........................................... OK
+Apply patch................................................................ OK
+Initialize buggy program version........................................... OK
+Diff 9054aac4:87430634..................................................... OK
+Apply patch................................................................ OK
+Tag pre-fix revision....................................................... OK
+Check out program version: Math-60f........................................ OK
+Running ant (compile)...................................................... OK
+Creating temporary output directory........................................ OK
+Generating (regression) tests with: evosuite............................... OK
+Creating test suite archive................................................ OK
+Creating output directory.................................................. OK
+Moving test suite archive to /home/liumengjiao/Desktop/CI/Evosuite//Math_60 OK
+cd /home/liumengjiao/Desktop/CI/Benchmark/../bugs/Math_60_fix && /home/liumengjiao/Desktop/defects4j/framework/bin/gen_tests.pl -g evosuite -p Math -v 60f -n 17 -o /home/liumengjiao/Desktop/CI/Evosuite//Math_60 -b 3600 >> evosuite-report-clz/test_gen_fix.log 2>&1
+
+Checking out 9054aac4 to /tmp/gen_tests.pl_3165110_1703343585.............. OK
+Init local repository...................................................... OK
+Tag post-fix revision...................................................... OK
+Excluding broken/flaky tests............................................... OK
+Excluding broken/flaky tests............................................... OK
+Initialize fixed program version........................................... OK
+Apply patch................................................................ OK
+Initialize buggy program version........................................... OK
+Diff 9054aac4:87430634..................................................... OK
+Apply patch................................................................ OK
+Tag pre-fix revision....................................................... OK
+Check out program version: Math-60f........................................ OK
+Running ant (compile)...................................................... OK
+Creating temporary output directory........................................ OK
+Generating (regression) tests with: evosuite............................... OK
+Creating test suite archive................................................ OK
+Creating output directory.................................................. OK
+Moving test suite archive to /home/liumengjiao/Desktop/CI/Evosuite//Math_60 OK
+cd /home/liumengjiao/Desktop/CI/Benchmark/../bugs/Math_60_fix && /home/liumengjiao/Desktop/defects4j/framework/bin/gen_tests.pl -g evosuite -p Math -v 60f -n 18 -o /home/liumengjiao/Desktop/CI/Evosuite//Math_60 -b 3600 >> evosuite-report-clz/test_gen_fix.log 2>&1
+
+Checking out 9054aac4 to /tmp/gen_tests.pl_3165423_1703343594.............. OK
+Init local repository...................................................... OK
+Tag post-fix revision...................................................... OK
+Excluding broken/flaky tests............................................... OK
+Excluding broken/flaky tests............................................... OK
+Initialize fixed program version........................................... OK
+Apply patch................................................................ OK
+Initialize buggy program version........................................... OK
+Diff 9054aac4:87430634..................................................... OK
+Apply patch................................................................ OK
+Tag pre-fix revision....................................................... OK
+Check out program version: Math-60f........................................ OK
+Running ant (compile)...................................................... OK
+Creating temporary output directory........................................ OK
+Generating (regression) tests with: evosuite............................... OK
+Creating test suite archive................................................ OK
+Creating output directory.................................................. OK
+Moving test suite archive to /home/liumengjiao/Desktop/CI/Evosuite//Math_60 OK
+cd /home/liumengjiao/Desktop/CI/Benchmark/../bugs/Math_60_fix && /home/liumengjiao/Desktop/defects4j/framework/bin/gen_tests.pl -g evosuite -p Math -v 60f -n 19 -o /home/liumengjiao/Desktop/CI/Evosuite//Math_60 -b 3600 >> evosuite-report-clz/test_gen_fix.log 2>&1
+
+Checking out 9054aac4 to /tmp/gen_tests.pl_3165734_1703343603.............. OK
+Init local repository...................................................... OK
+Tag post-fix revision...................................................... OK
+Excluding broken/flaky tests............................................... OK
+Excluding broken/flaky tests............................................... OK
+Initialize fixed program version........................................... OK
+Apply patch................................................................ OK
+Initialize buggy program version........................................... OK
+Diff 9054aac4:87430634..................................................... OK
+Apply patch................................................................ OK
+Tag pre-fix revision....................................................... OK
+Check out program version: Math-60f........................................ OK
+Running ant (compile)...................................................... OK
+Creating temporary output directory........................................ OK
+Generating (regression) tests with: evosuite............................... OK
+Creating test suite archive................................................ OK
+Creating output directory.................................................. OK
+Moving test suite archive to /home/liumengjiao/Desktop/CI/Evosuite//Math_60 OK
+cd /home/liumengjiao/Desktop/CI/Benchmark/../bugs/Math_60_fix && /home/liumengjiao/Desktop/defects4j/framework/bin/gen_tests.pl -g evosuite -p Math -v 60f -n 20 -o /home/liumengjiao/Desktop/CI/Evosuite//Math_60 -b 3600 >> evosuite-report-clz/test_gen_fix.log 2>&1
+
+Checking out 9054aac4 to /tmp/gen_tests.pl_3166054_1703343613.............. OK
+Init local repository...................................................... OK
+Tag post-fix revision...................................................... OK
+Excluding broken/flaky tests............................................... OK
+Excluding broken/flaky tests............................................... OK
+Initialize fixed program version........................................... OK
+Apply patch................................................................ OK
+Initialize buggy program version........................................... OK
+Diff 9054aac4:87430634..................................................... OK
+Apply patch................................................................ OK
+Tag pre-fix revision....................................................... OK
+Check out program version: Math-60f........................................ OK
+Running ant (compile)...................................................... OK
+Creating temporary output directory........................................ OK
+Generating (regression) tests with: evosuite............................... OK
+Creating test suite archive................................................ OK
+Creating output directory.................................................. OK
+Moving test suite archive to /home/liumengjiao/Desktop/CI/Evosuite//Math_60 OK
+cd /home/liumengjiao/Desktop/CI/Benchmark/../bugs/Math_60_fix && /home/liumengjiao/Desktop/defects4j/framework/bin/gen_tests.pl -g evosuite -p Math -v 60f -n 21 -o /home/liumengjiao/Desktop/CI/Evosuite//Math_60 -b 3600 >> evosuite-report-clz/test_gen_fix.log 2>&1
+
+Checking out 9054aac4 to /tmp/gen_tests.pl_3166365_1703343623.............. OK
+Init local repository...................................................... OK
+Tag post-fix revision...................................................... OK
+Excluding broken/flaky tests............................................... OK
+Excluding broken/flaky tests............................................... OK
+Initialize fixed program version........................................... OK
+Apply patch................................................................ OK
+Initialize buggy program version........................................... OK
+Diff 9054aac4:87430634..................................................... OK
+Apply patch................................................................ OK
+Tag pre-fix revision....................................................... OK
+Check out program version: Math-60f........................................ OK
+Running ant (compile)...................................................... OK
+Creating temporary output directory........................................ OK
+Generating (regression) tests with: evosuite............................... OK
+Creating test suite archive................................................ OK
+Creating output directory.................................................. OK
+Moving test suite archive to /home/liumengjiao/Desktop/CI/Evosuite//Math_60 OK
+cd /home/liumengjiao/Desktop/CI/Benchmark/../bugs/Math_60_fix && /home/liumengjiao/Desktop/defects4j/framework/bin/gen_tests.pl -g evosuite -p Math -v 60f -n 22 -o /home/liumengjiao/Desktop/CI/Evosuite//Math_60 -b 3600 >> evosuite-report-clz/test_gen_fix.log 2>&1
+
+Checking out 9054aac4 to /tmp/gen_tests.pl_3166682_1703343632.............. OK
+Init local repository...................................................... OK
+Tag post-fix revision...................................................... OK
+Excluding broken/flaky tests............................................... OK
+Excluding broken/flaky tests............................................... OK
+Initialize fixed program version........................................... OK
+Apply patch................................................................ OK
+Initialize buggy program version........................................... OK
+Diff 9054aac4:87430634..................................................... OK
+Apply patch................................................................ OK
+Tag pre-fix revision....................................................... OK
+Check out program version: Math-60f........................................ OK
+Running ant (compile)...................................................... OK
+Creating temporary output directory........................................ OK
+Generating (regression) tests with: evosuite............................... OK
+Creating test suite archive................................................ OK
+Creating output directory.................................................. OK
+Moving test suite archive to /home/liumengjiao/Desktop/CI/Evosuite//Math_60 OK
+cd /home/liumengjiao/Desktop/CI/Benchmark/../bugs/Math_60_fix && /home/liumengjiao/Desktop/defects4j/framework/bin/gen_tests.pl -g evosuite -p Math -v 60f -n 23 -o /home/liumengjiao/Desktop/CI/Evosuite//Math_60 -b 3600 >> evosuite-report-clz/test_gen_fix.log 2>&1
+
+Checking out 9054aac4 to /tmp/gen_tests.pl_3167002_1703343641.............. OK
+Init local repository...................................................... OK
+Tag post-fix revision...................................................... OK
+Excluding broken/flaky tests............................................... OK
+Excluding broken/flaky tests............................................... OK
+Initialize fixed program version........................................... OK
+Apply patch................................................................ OK
+Initialize buggy program version........................................... OK
+Diff 9054aac4:87430634..................................................... OK
+Apply patch................................................................ OK
+Tag pre-fix revision....................................................... OK
+Check out program version: Math-60f........................................ OK
+Running ant (compile)...................................................... OK
+Creating temporary output directory........................................ OK
+Generating (regression) tests with: evosuite............................... OK
+Creating test suite archive................................................ OK
+Creating output directory.................................................. OK
+Moving test suite archive to /home/liumengjiao/Desktop/CI/Evosuite//Math_60 OK
+cd /home/liumengjiao/Desktop/CI/Benchmark/../bugs/Math_60_fix && /home/liumengjiao/Desktop/defects4j/framework/bin/gen_tests.pl -g evosuite -p Math -v 60f -n 24 -o /home/liumengjiao/Desktop/CI/Evosuite//Math_60 -b 3600 >> evosuite-report-clz/test_gen_fix.log 2>&1
+
+Checking out 9054aac4 to /tmp/gen_tests.pl_3167314_1703343649.............. OK
+Init local repository...................................................... OK
+Tag post-fix revision...................................................... OK
+Excluding broken/flaky tests............................................... OK
+Excluding broken/flaky tests............................................... OK
+Initialize fixed program version........................................... OK
+Apply patch................................................................ OK
+Initialize buggy program version........................................... OK
+Diff 9054aac4:87430634..................................................... OK
+Apply patch................................................................ OK
+Tag pre-fix revision....................................................... OK
+Check out program version: Math-60f........................................ OK
+Running ant (compile)...................................................... OK
+Creating temporary output directory........................................ OK
+Generating (regression) tests with: evosuite............................... OK
+Creating test suite archive................................................ OK
+Creating output directory.................................................. OK
+Moving test suite archive to /home/liumengjiao/Desktop/CI/Evosuite//Math_60 OK
+cd /home/liumengjiao/Desktop/CI/Benchmark/../bugs/Math_60_fix && /home/liumengjiao/Desktop/defects4j/framework/bin/gen_tests.pl -g evosuite -p Math -v 60f -n 25 -o /home/liumengjiao/Desktop/CI/Evosuite//Math_60 -b 3600 >> evosuite-report-clz/test_gen_fix.log 2>&1
+
+Checking out 9054aac4 to /tmp/gen_tests.pl_3167630_1703343658.............. OK
+Init local repository...................................................... OK
+Tag post-fix revision...................................................... OK
+Excluding broken/flaky tests............................................... OK
+Excluding broken/flaky tests............................................... OK
+Initialize fixed program version........................................... OK
+Apply patch................................................................ OK
+Initialize buggy program version........................................... OK
+Diff 9054aac4:87430634..................................................... OK
+Apply patch................................................................ OK
+Tag pre-fix revision....................................................... OK
+Check out program version: Math-60f........................................ OK
+Running ant (compile)...................................................... OK
+Creating temporary output directory........................................ OK
+Generating (regression) tests with: evosuite............................... OK
+Creating test suite archive................................................ OK
+Creating output directory.................................................. OK
+Moving test suite archive to /home/liumengjiao/Desktop/CI/Evosuite//Math_60 OK
+cd /home/liumengjiao/Desktop/CI/Benchmark/../bugs/Math_60_fix && /home/liumengjiao/Desktop/defects4j/framework/bin/gen_tests.pl -g evosuite -p Math -v 60f -n 26 -o /home/liumengjiao/Desktop/CI/Evosuite//Math_60 -b 3600 >> evosuite-report-clz/test_gen_fix.log 2>&1
+
+Checking out 9054aac4 to /tmp/gen_tests.pl_3167949_1703343668.............. OK
+Init local repository...................................................... OK
+Tag post-fix revision...................................................... OK
+Excluding broken/flaky tests............................................... OK
+Excluding broken/flaky tests............................................... OK
+Initialize fixed program version........................................... OK
+Apply patch................................................................ OK
+Initialize buggy program version........................................... OK
+Diff 9054aac4:87430634..................................................... OK
+Apply patch................................................................ OK
+Tag pre-fix revision....................................................... OK
+Check out program version: Math-60f........................................ OK
+Running ant (compile)...................................................... OK
+Creating temporary output directory........................................ OK
+Generating (regression) tests with: evosuite............................... OK
+Creating test suite archive................................................ OK
+Creating output directory.................................................. OK
+Moving test suite archive to /home/liumengjiao/Desktop/CI/Evosuite//Math_60 OK
+cd /home/liumengjiao/Desktop/CI/Benchmark/../bugs/Math_60_fix && /home/liumengjiao/Desktop/defects4j/framework/bin/gen_tests.pl -g evosuite -p Math -v 60f -n 27 -o /home/liumengjiao/Desktop/CI/Evosuite//Math_60 -b 3600 >> evosuite-report-clz/test_gen_fix.log 2>&1
+
+Checking out 9054aac4 to /tmp/gen_tests.pl_3168262_1703343676.............. OK
+Init local repository...................................................... OK
+Tag post-fix revision...................................................... OK
+Excluding broken/flaky tests............................................... OK
+Excluding broken/flaky tests............................................... OK
+Initialize fixed program version........................................... OK
+Apply patch................................................................ OK
+Initialize buggy program version........................................... OK
+Diff 9054aac4:87430634..................................................... OK
+Apply patch................................................................ OK
+Tag pre-fix revision....................................................... OK
+Check out program version: Math-60f........................................ OK
+Running ant (compile)...................................................... OK
+Creating temporary output directory........................................ OK
+Generating (regression) tests with: evosuite............................... OK
+Creating test suite archive................................................ OK
+Creating output directory.................................................. OK
+Moving test suite archive to /home/liumengjiao/Desktop/CI/Evosuite//Math_60 OK
+cd /home/liumengjiao/Desktop/CI/Benchmark/../bugs/Math_60_fix && /home/liumengjiao/Desktop/defects4j/framework/bin/gen_tests.pl -g evosuite -p Math -v 60f -n 28 -o /home/liumengjiao/Desktop/CI/Evosuite//Math_60 -b 3600 >> evosuite-report-clz/test_gen_fix.log 2>&1
+
+Checking out 9054aac4 to /tmp/gen_tests.pl_3168575_1703343685.............. OK
+Init local repository...................................................... OK
+Tag post-fix revision...................................................... OK
+Excluding broken/flaky tests............................................... OK
+Excluding broken/flaky tests............................................... OK
+Initialize fixed program version........................................... OK
+Apply patch................................................................ OK
+Initialize buggy program version........................................... OK
+Diff 9054aac4:87430634..................................................... OK
+Apply patch................................................................ OK
+Tag pre-fix revision....................................................... OK
+Check out program version: Math-60f........................................ OK
+Running ant (compile)...................................................... OK
+Creating temporary output directory........................................ OK
+Generating (regression) tests with: evosuite............................... OK
+Creating test suite archive................................................ OK
+Creating output directory.................................................. OK
+Moving test suite archive to /home/liumengjiao/Desktop/CI/Evosuite//Math_60 OK
+cd /home/liumengjiao/Desktop/CI/Benchmark/../bugs/Math_60_fix && /home/liumengjiao/Desktop/defects4j/framework/bin/gen_tests.pl -g evosuite -p Math -v 60f -n 29 -o /home/liumengjiao/Desktop/CI/Evosuite//Math_60 -b 3600 >> evosuite-report-clz/test_gen_fix.log 2>&1
+
+Checking out 9054aac4 to /tmp/gen_tests.pl_3168887_1703343695.............. OK
+Init local repository...................................................... OK
+Tag post-fix revision...................................................... OK
+Excluding broken/flaky tests............................................... OK
+Excluding broken/flaky tests............................................... OK
+Initialize fixed program version........................................... OK
+Apply patch................................................................ OK
+Initialize buggy program version........................................... OK
+Diff 9054aac4:87430634..................................................... OK
+Apply patch................................................................ OK
+Tag pre-fix revision....................................................... OK
+Check out program version: Math-60f........................................ OK
+Running ant (compile)...................................................... OK
+Creating temporary output directory........................................ OK
+Generating (regression) tests with: evosuite............................... OK
+Creating test suite archive................................................ OK
+Creating output directory.................................................. OK
+Moving test suite archive to /home/liumengjiao/Desktop/CI/Evosuite//Math_60 OK

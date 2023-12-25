@@ -373,3 +373,633 @@ Creating output directory.................................................. OK
 Executed command: mkdir -p /home/liumengjiao/Desktop/CI/Evosuite/Math_53//Math/evosuite/3
 Moving test suite archive to /home/liumengjiao/Desktop/CI/Evosuite/Math_53/ OK
 Executed command: mv /tmp/gen_tests.pl_507188_1695205989/Math-53f-evosuite.3.tar.bz2 /home/liumengjiao/Desktop/CI/Evosuite/Math_53//Math/evosuite/3
+cd /home/liumengjiao/Desktop/CI/Benchmark/../bugs/Math_53_fix && /home/liumengjiao/Desktop/defects4j/framework/bin/gen_tests.pl -g evosuite -p Math -v 53f -n 0 -o /home/liumengjiao/Desktop/CI/Evosuite//Math_53 -b 3600 >> evosuite-report-clz/test_gen_fix.log 2>&1
+
+Checking out 7707b0bb to /tmp/gen_tests.pl_3116564_1703288837.............. OK
+Init local repository...................................................... OK
+Tag post-fix revision...................................................... OK
+Excluding broken/flaky tests............................................... OK
+Excluding broken/flaky tests............................................... OK
+Excluding broken/flaky tests............................................... OK
+Initialize fixed program version........................................... OK
+Apply patch................................................................ OK
+Initialize buggy program version........................................... OK
+Diff 7707b0bb:3eb3573c..................................................... OK
+Apply patch................................................................ OK
+Tag pre-fix revision....................................................... OK
+Check out program version: Math-53f........................................ OK
+Running ant (compile)...................................................... OK
+Creating temporary output directory........................................ OK
+Generating (regression) tests with: evosuite............................... OK
+Creating test suite archive................................................ OK
+Creating output directory.................................................. OK
+Moving test suite archive to /home/liumengjiao/Desktop/CI/Evosuite//Math_53 OK
+cd /home/liumengjiao/Desktop/CI/Benchmark/../bugs/Math_53_fix && /home/liumengjiao/Desktop/defects4j/framework/bin/gen_tests.pl -g evosuite -p Math -v 53f -n 1 -o /home/liumengjiao/Desktop/CI/Evosuite//Math_53 -b 3600 >> evosuite-report-clz/test_gen_fix.log 2>&1
+
+Checking out 7707b0bb to /tmp/gen_tests.pl_3117717_1703290654.............. OK
+Init local repository...................................................... OK
+Tag post-fix revision...................................................... OK
+Excluding broken/flaky tests............................................... OK
+Excluding broken/flaky tests............................................... OK
+Excluding broken/flaky tests............................................... OK
+Initialize fixed program version........................................... OK
+Apply patch................................................................ OK
+Initialize buggy program version........................................... OK
+Diff 7707b0bb:3eb3573c..................................................... OK
+Apply patch................................................................ OK
+Tag pre-fix revision....................................................... OK
+Check out program version: Math-53f........................................ OK
+Running ant (compile)...................................................... OK
+Creating temporary output directory........................................ OK
+Generating (regression) tests with: evosuite............................... OK
+Creating test suite archive................................................ OK
+Creating output directory.................................................. OK
+Moving test suite archive to /home/liumengjiao/Desktop/CI/Evosuite//Math_53 OK
+cd /home/liumengjiao/Desktop/CI/Benchmark/../bugs/Math_53_fix && /home/liumengjiao/Desktop/defects4j/framework/bin/gen_tests.pl -g evosuite -p Math -v 53f -n 2 -o /home/liumengjiao/Desktop/CI/Evosuite//Math_53 -b 3600 >> evosuite-report-clz/test_gen_fix.log 2>&1
+
+Checking out 7707b0bb to /tmp/gen_tests.pl_3118891_1703292470.............. OK
+Init local repository...................................................... OK
+Tag post-fix revision...................................................... OK
+Excluding broken/flaky tests............................................... OK
+Excluding broken/flaky tests............................................... OK
+Excluding broken/flaky tests............................................... OK
+Initialize fixed program version........................................... OK
+Apply patch................................................................ OK
+Initialize buggy program version........................................... OK
+Diff 7707b0bb:3eb3573c..................................................... OK
+Apply patch................................................................ OK
+Tag pre-fix revision....................................................... OK
+Check out program version: Math-53f........................................ OK
+Running ant (compile)...................................................... OK
+Creating temporary output directory........................................ OK
+Generating (regression) tests with: evosuite............................... OK
+Creating test suite archive................................................ OK
+Creating output directory.................................................. OK
+Moving test suite archive to /home/liumengjiao/Desktop/CI/Evosuite//Math_53 OK
+cd /home/liumengjiao/Desktop/CI/Benchmark/../bugs/Math_53_fix && /home/liumengjiao/Desktop/defects4j/framework/bin/gen_tests.pl -g evosuite -p Math -v 53f -n 3 -o /home/liumengjiao/Desktop/CI/Evosuite//Math_53 -b 3600 >> evosuite-report-clz/test_gen_fix.log 2>&1
+
+Checking out 7707b0bb to /tmp/gen_tests.pl_3121115_1703294301.............. OK
+Init local repository...................................................... OK
+Tag post-fix revision...................................................... OK
+Excluding broken/flaky tests............................................... OK
+Excluding broken/flaky tests............................................... OK
+Excluding broken/flaky tests............................................... OK
+Initialize fixed program version........................................... OK
+Apply patch................................................................ OK
+Initialize buggy program version........................................... OK
+Diff 7707b0bb:3eb3573c..................................................... OK
+Apply patch................................................................ OK
+Tag pre-fix revision....................................................... OK
+Check out program version: Math-53f........................................ OK
+Running ant (compile)...................................................... OK
+Creating temporary output directory........................................ OK
+Generating (regression) tests with: evosuite............................... OK
+Creating test suite archive................................................ OK
+Creating output directory.................................................. OK
+Moving test suite archive to /home/liumengjiao/Desktop/CI/Evosuite//Math_53 OK
+cd /home/liumengjiao/Desktop/CI/Benchmark/../bugs/Math_53_fix && /home/liumengjiao/Desktop/defects4j/framework/bin/gen_tests.pl -g evosuite -p Math -v 53f -n 4 -o /home/liumengjiao/Desktop/CI/Evosuite//Math_53 -b 3600 >> evosuite-report-clz/test_gen_fix.log 2>&1
+
+Checking out 7707b0bb to /tmp/gen_tests.pl_3122310_1703296137.............. OK
+Init local repository...................................................... OK
+Tag post-fix revision...................................................... OK
+Excluding broken/flaky tests............................................... OK
+Excluding broken/flaky tests............................................... OK
+Excluding broken/flaky tests............................................... OK
+Initialize fixed program version........................................... OK
+Apply patch................................................................ OK
+Initialize buggy program version........................................... OK
+Diff 7707b0bb:3eb3573c..................................................... OK
+Apply patch................................................................ OK
+Tag pre-fix revision....................................................... OK
+Check out program version: Math-53f........................................ OK
+Running ant (compile)...................................................... OK
+Creating temporary output directory........................................ OK
+Generating (regression) tests with: evosuite............................... OK
+Creating test suite archive................................................ OK
+Creating output directory.................................................. OK
+Moving test suite archive to /home/liumengjiao/Desktop/CI/Evosuite//Math_53 OK
+cd /home/liumengjiao/Desktop/CI/Benchmark/../bugs/Math_53_fix && /home/liumengjiao/Desktop/defects4j/framework/bin/gen_tests.pl -g evosuite -p Math -v 53f -n 5 -o /home/liumengjiao/Desktop/CI/Evosuite//Math_53 -b 3600 >> evosuite-report-clz/test_gen_fix.log 2>&1
+
+Checking out 7707b0bb to /tmp/gen_tests.pl_3123472_1703297952.............. OK
+Init local repository...................................................... OK
+Tag post-fix revision...................................................... OK
+Excluding broken/flaky tests............................................... OK
+Excluding broken/flaky tests............................................... OK
+Excluding broken/flaky tests............................................... OK
+Initialize fixed program version........................................... OK
+Apply patch................................................................ OK
+Initialize buggy program version........................................... OK
+Diff 7707b0bb:3eb3573c..................................................... OK
+Apply patch................................................................ OK
+Tag pre-fix revision....................................................... OK
+Check out program version: Math-53f........................................ OK
+Running ant (compile)...................................................... OK
+Creating temporary output directory........................................ OK
+Generating (regression) tests with: evosuite............................... OK
+Creating test suite archive................................................ OK
+Creating output directory.................................................. OK
+Moving test suite archive to /home/liumengjiao/Desktop/CI/Evosuite//Math_53 OK
+cd /home/liumengjiao/Desktop/CI/Benchmark/../bugs/Math_53_fix && /home/liumengjiao/Desktop/defects4j/framework/bin/gen_tests.pl -g evosuite -p Math -v 53f -n 6 -o /home/liumengjiao/Desktop/CI/Evosuite//Math_53 -b 3600 >> evosuite-report-clz/test_gen_fix.log 2>&1
+
+Checking out 7707b0bb to /tmp/gen_tests.pl_3124640_1703299769.............. OK
+Init local repository...................................................... OK
+Tag post-fix revision...................................................... OK
+Excluding broken/flaky tests............................................... OK
+Excluding broken/flaky tests............................................... OK
+Excluding broken/flaky tests............................................... OK
+Initialize fixed program version........................................... OK
+Apply patch................................................................ OK
+Initialize buggy program version........................................... OK
+Diff 7707b0bb:3eb3573c..................................................... OK
+Apply patch................................................................ OK
+Tag pre-fix revision....................................................... OK
+Check out program version: Math-53f........................................ OK
+Running ant (compile)...................................................... OK
+Creating temporary output directory........................................ OK
+Generating (regression) tests with: evosuite............................... OK
+Creating test suite archive................................................ OK
+Creating output directory.................................................. OK
+Moving test suite archive to /home/liumengjiao/Desktop/CI/Evosuite//Math_53 OK
+cd /home/liumengjiao/Desktop/CI/Benchmark/../bugs/Math_53_fix && /home/liumengjiao/Desktop/defects4j/framework/bin/gen_tests.pl -g evosuite -p Math -v 53f -n 7 -o /home/liumengjiao/Desktop/CI/Evosuite//Math_53 -b 3600 >> evosuite-report-clz/test_gen_fix.log 2>&1
+
+Checking out 7707b0bb to /tmp/gen_tests.pl_3125820_1703301587.............. OK
+Init local repository...................................................... OK
+Tag post-fix revision...................................................... OK
+Excluding broken/flaky tests............................................... OK
+Excluding broken/flaky tests............................................... OK
+Excluding broken/flaky tests............................................... OK
+Initialize fixed program version........................................... OK
+Apply patch................................................................ OK
+Initialize buggy program version........................................... OK
+Diff 7707b0bb:3eb3573c..................................................... OK
+Apply patch................................................................ OK
+Tag pre-fix revision....................................................... OK
+Check out program version: Math-53f........................................ OK
+Running ant (compile)...................................................... OK
+Creating temporary output directory........................................ OK
+Generating (regression) tests with: evosuite............................... OK
+Creating test suite archive................................................ OK
+Creating output directory.................................................. OK
+Moving test suite archive to /home/liumengjiao/Desktop/CI/Evosuite//Math_53 OK
+cd /home/liumengjiao/Desktop/CI/Benchmark/../bugs/Math_53_fix && /home/liumengjiao/Desktop/defects4j/framework/bin/gen_tests.pl -g evosuite -p Math -v 53f -n 8 -o /home/liumengjiao/Desktop/CI/Evosuite//Math_53 -b 3600 >> evosuite-report-clz/test_gen_fix.log 2>&1
+
+Checking out 7707b0bb to /tmp/gen_tests.pl_3127020_1703303407.............. OK
+Init local repository...................................................... OK
+Tag post-fix revision...................................................... OK
+Excluding broken/flaky tests............................................... OK
+Excluding broken/flaky tests............................................... OK
+Excluding broken/flaky tests............................................... OK
+Initialize fixed program version........................................... OK
+Apply patch................................................................ OK
+Initialize buggy program version........................................... OK
+Diff 7707b0bb:3eb3573c..................................................... OK
+Apply patch................................................................ OK
+Tag pre-fix revision....................................................... OK
+Check out program version: Math-53f........................................ OK
+Running ant (compile)...................................................... OK
+Creating temporary output directory........................................ OK
+Generating (regression) tests with: evosuite............................... OK
+Creating test suite archive................................................ OK
+Creating output directory.................................................. OK
+Moving test suite archive to /home/liumengjiao/Desktop/CI/Evosuite//Math_53 OK
+cd /home/liumengjiao/Desktop/CI/Benchmark/../bugs/Math_53_fix && /home/liumengjiao/Desktop/defects4j/framework/bin/gen_tests.pl -g evosuite -p Math -v 53f -n 9 -o /home/liumengjiao/Desktop/CI/Evosuite//Math_53 -b 3600 >> evosuite-report-clz/test_gen_fix.log 2>&1
+
+Checking out 7707b0bb to /tmp/gen_tests.pl_3128188_1703305226.............. OK
+Init local repository...................................................... OK
+Tag post-fix revision...................................................... OK
+Excluding broken/flaky tests............................................... OK
+Excluding broken/flaky tests............................................... OK
+Excluding broken/flaky tests............................................... OK
+Initialize fixed program version........................................... OK
+Apply patch................................................................ OK
+Initialize buggy program version........................................... OK
+Diff 7707b0bb:3eb3573c..................................................... OK
+Apply patch................................................................ OK
+Tag pre-fix revision....................................................... OK
+Check out program version: Math-53f........................................ OK
+Running ant (compile)...................................................... OK
+Creating temporary output directory........................................ OK
+Generating (regression) tests with: evosuite............................... OK
+Creating test suite archive................................................ OK
+Creating output directory.................................................. OK
+Moving test suite archive to /home/liumengjiao/Desktop/CI/Evosuite//Math_53 OK
+cd /home/liumengjiao/Desktop/CI/Benchmark/../bugs/Math_53_fix && /home/liumengjiao/Desktop/defects4j/framework/bin/gen_tests.pl -g evosuite -p Math -v 53f -n 10 -o /home/liumengjiao/Desktop/CI/Evosuite//Math_53 -b 3600 >> evosuite-report-clz/test_gen_fix.log 2>&1
+
+Checking out 7707b0bb to /tmp/gen_tests.pl_3129354_1703307047.............. OK
+Init local repository...................................................... OK
+Tag post-fix revision...................................................... OK
+Excluding broken/flaky tests............................................... OK
+Excluding broken/flaky tests............................................... OK
+Excluding broken/flaky tests............................................... OK
+Initialize fixed program version........................................... OK
+Apply patch................................................................ OK
+Initialize buggy program version........................................... OK
+Diff 7707b0bb:3eb3573c..................................................... OK
+Apply patch................................................................ OK
+Tag pre-fix revision....................................................... OK
+Check out program version: Math-53f........................................ OK
+Running ant (compile)...................................................... OK
+Creating temporary output directory........................................ OK
+Generating (regression) tests with: evosuite............................... OK
+Creating test suite archive................................................ OK
+Creating output directory.................................................. OK
+Moving test suite archive to /home/liumengjiao/Desktop/CI/Evosuite//Math_53 OK
+cd /home/liumengjiao/Desktop/CI/Benchmark/../bugs/Math_53_fix && /home/liumengjiao/Desktop/defects4j/framework/bin/gen_tests.pl -g evosuite -p Math -v 53f -n 11 -o /home/liumengjiao/Desktop/CI/Evosuite//Math_53 -b 3600 >> evosuite-report-clz/test_gen_fix.log 2>&1
+
+Checking out 7707b0bb to /tmp/gen_tests.pl_3130513_1703308869.............. OK
+Init local repository...................................................... OK
+Tag post-fix revision...................................................... OK
+Excluding broken/flaky tests............................................... OK
+Excluding broken/flaky tests............................................... OK
+Excluding broken/flaky tests............................................... OK
+Initialize fixed program version........................................... OK
+Apply patch................................................................ OK
+Initialize buggy program version........................................... OK
+Diff 7707b0bb:3eb3573c..................................................... OK
+Apply patch................................................................ OK
+Tag pre-fix revision....................................................... OK
+Check out program version: Math-53f........................................ OK
+Running ant (compile)...................................................... OK
+Creating temporary output directory........................................ OK
+Generating (regression) tests with: evosuite............................... OK
+Creating test suite archive................................................ OK
+Creating output directory.................................................. OK
+Moving test suite archive to /home/liumengjiao/Desktop/CI/Evosuite//Math_53 OK
+cd /home/liumengjiao/Desktop/CI/Benchmark/../bugs/Math_53_fix && /home/liumengjiao/Desktop/defects4j/framework/bin/gen_tests.pl -g evosuite -p Math -v 53f -n 12 -o /home/liumengjiao/Desktop/CI/Evosuite//Math_53 -b 3600 >> evosuite-report-clz/test_gen_fix.log 2>&1
+
+Checking out 7707b0bb to /tmp/gen_tests.pl_3131689_1703310686.............. OK
+Init local repository...................................................... OK
+Tag post-fix revision...................................................... OK
+Excluding broken/flaky tests............................................... OK
+Excluding broken/flaky tests............................................... OK
+Excluding broken/flaky tests............................................... OK
+Initialize fixed program version........................................... OK
+Apply patch................................................................ OK
+Initialize buggy program version........................................... OK
+Diff 7707b0bb:3eb3573c..................................................... OK
+Apply patch................................................................ OK
+Tag pre-fix revision....................................................... OK
+Check out program version: Math-53f........................................ OK
+Running ant (compile)...................................................... OK
+Creating temporary output directory........................................ OK
+Generating (regression) tests with: evosuite............................... OK
+Creating test suite archive................................................ OK
+Creating output directory.................................................. OK
+Moving test suite archive to /home/liumengjiao/Desktop/CI/Evosuite//Math_53 OK
+cd /home/liumengjiao/Desktop/CI/Benchmark/../bugs/Math_53_fix && /home/liumengjiao/Desktop/defects4j/framework/bin/gen_tests.pl -g evosuite -p Math -v 53f -n 13 -o /home/liumengjiao/Desktop/CI/Evosuite//Math_53 -b 3600 >> evosuite-report-clz/test_gen_fix.log 2>&1
+
+Checking out 7707b0bb to /tmp/gen_tests.pl_3132840_1703312504.............. OK
+Init local repository...................................................... OK
+Tag post-fix revision...................................................... OK
+Excluding broken/flaky tests............................................... OK
+Excluding broken/flaky tests............................................... OK
+Excluding broken/flaky tests............................................... OK
+Initialize fixed program version........................................... OK
+Apply patch................................................................ OK
+Initialize buggy program version........................................... OK
+Diff 7707b0bb:3eb3573c..................................................... OK
+Apply patch................................................................ OK
+Tag pre-fix revision....................................................... OK
+Check out program version: Math-53f........................................ OK
+Running ant (compile)...................................................... OK
+Creating temporary output directory........................................ OK
+Generating (regression) tests with: evosuite............................... OK
+Creating test suite archive................................................ OK
+Creating output directory.................................................. OK
+Moving test suite archive to /home/liumengjiao/Desktop/CI/Evosuite//Math_53 OK
+cd /home/liumengjiao/Desktop/CI/Benchmark/../bugs/Math_53_fix && /home/liumengjiao/Desktop/defects4j/framework/bin/gen_tests.pl -g evosuite -p Math -v 53f -n 14 -o /home/liumengjiao/Desktop/CI/Evosuite//Math_53 -b 3600 >> evosuite-report-clz/test_gen_fix.log 2>&1
+
+Checking out 7707b0bb to /tmp/gen_tests.pl_3134012_1703314337.............. OK
+Init local repository...................................................... OK
+Tag post-fix revision...................................................... OK
+Excluding broken/flaky tests............................................... OK
+Excluding broken/flaky tests............................................... OK
+Excluding broken/flaky tests............................................... OK
+Initialize fixed program version........................................... OK
+Apply patch................................................................ OK
+Initialize buggy program version........................................... OK
+Diff 7707b0bb:3eb3573c..................................................... OK
+Apply patch................................................................ OK
+Tag pre-fix revision....................................................... OK
+Check out program version: Math-53f........................................ OK
+Running ant (compile)...................................................... OK
+Creating temporary output directory........................................ OK
+Generating (regression) tests with: evosuite............................... OK
+Creating test suite archive................................................ OK
+Creating output directory.................................................. OK
+Moving test suite archive to /home/liumengjiao/Desktop/CI/Evosuite//Math_53 OK
+cd /home/liumengjiao/Desktop/CI/Benchmark/../bugs/Math_53_fix && /home/liumengjiao/Desktop/defects4j/framework/bin/gen_tests.pl -g evosuite -p Math -v 53f -n 15 -o /home/liumengjiao/Desktop/CI/Evosuite//Math_53 -b 3600 >> evosuite-report-clz/test_gen_fix.log 2>&1
+
+Checking out 7707b0bb to /tmp/gen_tests.pl_3135174_1703316154.............. OK
+Init local repository...................................................... OK
+Tag post-fix revision...................................................... OK
+Excluding broken/flaky tests............................................... OK
+Excluding broken/flaky tests............................................... OK
+Excluding broken/flaky tests............................................... OK
+Initialize fixed program version........................................... OK
+Apply patch................................................................ OK
+Initialize buggy program version........................................... OK
+Diff 7707b0bb:3eb3573c..................................................... OK
+Apply patch................................................................ OK
+Tag pre-fix revision....................................................... OK
+Check out program version: Math-53f........................................ OK
+Running ant (compile)...................................................... OK
+Creating temporary output directory........................................ OK
+Generating (regression) tests with: evosuite............................... OK
+Creating test suite archive................................................ OK
+Creating output directory.................................................. OK
+Moving test suite archive to /home/liumengjiao/Desktop/CI/Evosuite//Math_53 OK
+cd /home/liumengjiao/Desktop/CI/Benchmark/../bugs/Math_53_fix && /home/liumengjiao/Desktop/defects4j/framework/bin/gen_tests.pl -g evosuite -p Math -v 53f -n 16 -o /home/liumengjiao/Desktop/CI/Evosuite//Math_53 -b 3600 >> evosuite-report-clz/test_gen_fix.log 2>&1
+
+Checking out 7707b0bb to /tmp/gen_tests.pl_3136346_1703317970.............. OK
+Init local repository...................................................... OK
+Tag post-fix revision...................................................... OK
+Excluding broken/flaky tests............................................... OK
+Excluding broken/flaky tests............................................... OK
+Excluding broken/flaky tests............................................... OK
+Initialize fixed program version........................................... OK
+Apply patch................................................................ OK
+Initialize buggy program version........................................... OK
+Diff 7707b0bb:3eb3573c..................................................... OK
+Apply patch................................................................ OK
+Tag pre-fix revision....................................................... OK
+Check out program version: Math-53f........................................ OK
+Running ant (compile)...................................................... OK
+Creating temporary output directory........................................ OK
+Generating (regression) tests with: evosuite............................... OK
+Creating test suite archive................................................ OK
+Creating output directory.................................................. OK
+Moving test suite archive to /home/liumengjiao/Desktop/CI/Evosuite//Math_53 OK
+cd /home/liumengjiao/Desktop/CI/Benchmark/../bugs/Math_53_fix && /home/liumengjiao/Desktop/defects4j/framework/bin/gen_tests.pl -g evosuite -p Math -v 53f -n 17 -o /home/liumengjiao/Desktop/CI/Evosuite//Math_53 -b 3600 >> evosuite-report-clz/test_gen_fix.log 2>&1
+
+Checking out 7707b0bb to /tmp/gen_tests.pl_3137509_1703319791.............. OK
+Init local repository...................................................... OK
+Tag post-fix revision...................................................... OK
+Excluding broken/flaky tests............................................... OK
+Excluding broken/flaky tests............................................... OK
+Excluding broken/flaky tests............................................... OK
+Initialize fixed program version........................................... OK
+Apply patch................................................................ OK
+Initialize buggy program version........................................... OK
+Diff 7707b0bb:3eb3573c..................................................... OK
+Apply patch................................................................ OK
+Tag pre-fix revision....................................................... OK
+Check out program version: Math-53f........................................ OK
+Running ant (compile)...................................................... OK
+Creating temporary output directory........................................ OK
+Generating (regression) tests with: evosuite............................... OK
+Creating test suite archive................................................ OK
+Creating output directory.................................................. OK
+Moving test suite archive to /home/liumengjiao/Desktop/CI/Evosuite//Math_53 OK
+cd /home/liumengjiao/Desktop/CI/Benchmark/../bugs/Math_53_fix && /home/liumengjiao/Desktop/defects4j/framework/bin/gen_tests.pl -g evosuite -p Math -v 53f -n 18 -o /home/liumengjiao/Desktop/CI/Evosuite//Math_53 -b 3600 >> evosuite-report-clz/test_gen_fix.log 2>&1
+
+Checking out 7707b0bb to /tmp/gen_tests.pl_3138666_1703321612.............. OK
+Init local repository...................................................... OK
+Tag post-fix revision...................................................... OK
+Excluding broken/flaky tests............................................... OK
+Excluding broken/flaky tests............................................... OK
+Excluding broken/flaky tests............................................... OK
+Initialize fixed program version........................................... OK
+Apply patch................................................................ OK
+Initialize buggy program version........................................... OK
+Diff 7707b0bb:3eb3573c..................................................... OK
+Apply patch................................................................ OK
+Tag pre-fix revision....................................................... OK
+Check out program version: Math-53f........................................ OK
+Running ant (compile)...................................................... OK
+Creating temporary output directory........................................ OK
+Generating (regression) tests with: evosuite............................... OK
+Creating test suite archive................................................ OK
+Creating output directory.................................................. OK
+Moving test suite archive to /home/liumengjiao/Desktop/CI/Evosuite//Math_53 OK
+cd /home/liumengjiao/Desktop/CI/Benchmark/../bugs/Math_53_fix && /home/liumengjiao/Desktop/defects4j/framework/bin/gen_tests.pl -g evosuite -p Math -v 53f -n 19 -o /home/liumengjiao/Desktop/CI/Evosuite//Math_53 -b 3600 >> evosuite-report-clz/test_gen_fix.log 2>&1
+
+Checking out 7707b0bb to /tmp/gen_tests.pl_3139826_1703323430.............. OK
+Init local repository...................................................... OK
+Tag post-fix revision...................................................... OK
+Excluding broken/flaky tests............................................... OK
+Excluding broken/flaky tests............................................... OK
+Excluding broken/flaky tests............................................... OK
+Initialize fixed program version........................................... OK
+Apply patch................................................................ OK
+Initialize buggy program version........................................... OK
+Diff 7707b0bb:3eb3573c..................................................... OK
+Apply patch................................................................ OK
+Tag pre-fix revision....................................................... OK
+Check out program version: Math-53f........................................ OK
+Running ant (compile)...................................................... OK
+Creating temporary output directory........................................ OK
+Generating (regression) tests with: evosuite............................... OK
+Creating test suite archive................................................ OK
+Creating output directory.................................................. OK
+Moving test suite archive to /home/liumengjiao/Desktop/CI/Evosuite//Math_53 OK
+cd /home/liumengjiao/Desktop/CI/Benchmark/../bugs/Math_53_fix && /home/liumengjiao/Desktop/defects4j/framework/bin/gen_tests.pl -g evosuite -p Math -v 53f -n 20 -o /home/liumengjiao/Desktop/CI/Evosuite//Math_53 -b 3600 >> evosuite-report-clz/test_gen_fix.log 2>&1
+
+Checking out 7707b0bb to /tmp/gen_tests.pl_3140997_1703325246.............. OK
+Init local repository...................................................... OK
+Tag post-fix revision...................................................... OK
+Excluding broken/flaky tests............................................... OK
+Excluding broken/flaky tests............................................... OK
+Excluding broken/flaky tests............................................... OK
+Initialize fixed program version........................................... OK
+Apply patch................................................................ OK
+Initialize buggy program version........................................... OK
+Diff 7707b0bb:3eb3573c..................................................... OK
+Apply patch................................................................ OK
+Tag pre-fix revision....................................................... OK
+Check out program version: Math-53f........................................ OK
+Running ant (compile)...................................................... OK
+Creating temporary output directory........................................ OK
+Generating (regression) tests with: evosuite............................... OK
+Creating test suite archive................................................ OK
+Creating output directory.................................................. OK
+Moving test suite archive to /home/liumengjiao/Desktop/CI/Evosuite//Math_53 OK
+cd /home/liumengjiao/Desktop/CI/Benchmark/../bugs/Math_53_fix && /home/liumengjiao/Desktop/defects4j/framework/bin/gen_tests.pl -g evosuite -p Math -v 53f -n 21 -o /home/liumengjiao/Desktop/CI/Evosuite//Math_53 -b 3600 >> evosuite-report-clz/test_gen_fix.log 2>&1
+
+Checking out 7707b0bb to /tmp/gen_tests.pl_3142190_1703327063.............. OK
+Init local repository...................................................... OK
+Tag post-fix revision...................................................... OK
+Excluding broken/flaky tests............................................... OK
+Excluding broken/flaky tests............................................... OK
+Excluding broken/flaky tests............................................... OK
+Initialize fixed program version........................................... OK
+Apply patch................................................................ OK
+Initialize buggy program version........................................... OK
+Diff 7707b0bb:3eb3573c..................................................... OK
+Apply patch................................................................ OK
+Tag pre-fix revision....................................................... OK
+Check out program version: Math-53f........................................ OK
+Running ant (compile)...................................................... OK
+Creating temporary output directory........................................ OK
+Generating (regression) tests with: evosuite............................... OK
+Creating test suite archive................................................ OK
+Creating output directory.................................................. OK
+Moving test suite archive to /home/liumengjiao/Desktop/CI/Evosuite//Math_53 OK
+cd /home/liumengjiao/Desktop/CI/Benchmark/../bugs/Math_53_fix && /home/liumengjiao/Desktop/defects4j/framework/bin/gen_tests.pl -g evosuite -p Math -v 53f -n 22 -o /home/liumengjiao/Desktop/CI/Evosuite//Math_53 -b 3600 >> evosuite-report-clz/test_gen_fix.log 2>&1
+
+Checking out 7707b0bb to /tmp/gen_tests.pl_3143347_1703328887.............. OK
+Init local repository...................................................... OK
+Tag post-fix revision...................................................... OK
+Excluding broken/flaky tests............................................... OK
+Excluding broken/flaky tests............................................... OK
+Excluding broken/flaky tests............................................... OK
+Initialize fixed program version........................................... OK
+Apply patch................................................................ OK
+Initialize buggy program version........................................... OK
+Diff 7707b0bb:3eb3573c..................................................... OK
+Apply patch................................................................ OK
+Tag pre-fix revision....................................................... OK
+Check out program version: Math-53f........................................ OK
+Running ant (compile)...................................................... OK
+Creating temporary output directory........................................ OK
+Generating (regression) tests with: evosuite............................... OK
+Creating test suite archive................................................ OK
+Creating output directory.................................................. OK
+Moving test suite archive to /home/liumengjiao/Desktop/CI/Evosuite//Math_53 OK
+cd /home/liumengjiao/Desktop/CI/Benchmark/../bugs/Math_53_fix && /home/liumengjiao/Desktop/defects4j/framework/bin/gen_tests.pl -g evosuite -p Math -v 53f -n 23 -o /home/liumengjiao/Desktop/CI/Evosuite//Math_53 -b 3600 >> evosuite-report-clz/test_gen_fix.log 2>&1
+
+Checking out 7707b0bb to /tmp/gen_tests.pl_3144506_1703330703.............. OK
+Init local repository...................................................... OK
+Tag post-fix revision...................................................... OK
+Excluding broken/flaky tests............................................... OK
+Excluding broken/flaky tests............................................... OK
+Excluding broken/flaky tests............................................... OK
+Initialize fixed program version........................................... OK
+Apply patch................................................................ OK
+Initialize buggy program version........................................... OK
+Diff 7707b0bb:3eb3573c..................................................... OK
+Apply patch................................................................ OK
+Tag pre-fix revision....................................................... OK
+Check out program version: Math-53f........................................ OK
+Running ant (compile)...................................................... OK
+Creating temporary output directory........................................ OK
+Generating (regression) tests with: evosuite............................... OK
+Creating test suite archive................................................ OK
+Creating output directory.................................................. OK
+Moving test suite archive to /home/liumengjiao/Desktop/CI/Evosuite//Math_53 OK
+cd /home/liumengjiao/Desktop/CI/Benchmark/../bugs/Math_53_fix && /home/liumengjiao/Desktop/defects4j/framework/bin/gen_tests.pl -g evosuite -p Math -v 53f -n 24 -o /home/liumengjiao/Desktop/CI/Evosuite//Math_53 -b 3600 >> evosuite-report-clz/test_gen_fix.log 2>&1
+
+Checking out 7707b0bb to /tmp/gen_tests.pl_3145682_1703332519.............. OK
+Init local repository...................................................... OK
+Tag post-fix revision...................................................... OK
+Excluding broken/flaky tests............................................... OK
+Excluding broken/flaky tests............................................... OK
+Excluding broken/flaky tests............................................... OK
+Initialize fixed program version........................................... OK
+Apply patch................................................................ OK
+Initialize buggy program version........................................... OK
+Diff 7707b0bb:3eb3573c..................................................... OK
+Apply patch................................................................ OK
+Tag pre-fix revision....................................................... OK
+Check out program version: Math-53f........................................ OK
+Running ant (compile)...................................................... OK
+Creating temporary output directory........................................ OK
+Generating (regression) tests with: evosuite............................... OK
+Creating test suite archive................................................ OK
+Creating output directory.................................................. OK
+Moving test suite archive to /home/liumengjiao/Desktop/CI/Evosuite//Math_53 OK
+cd /home/liumengjiao/Desktop/CI/Benchmark/../bugs/Math_53_fix && /home/liumengjiao/Desktop/defects4j/framework/bin/gen_tests.pl -g evosuite -p Math -v 53f -n 25 -o /home/liumengjiao/Desktop/CI/Evosuite//Math_53 -b 3600 >> evosuite-report-clz/test_gen_fix.log 2>&1
+
+Checking out 7707b0bb to /tmp/gen_tests.pl_3146851_1703334335.............. OK
+Init local repository...................................................... OK
+Tag post-fix revision...................................................... OK
+Excluding broken/flaky tests............................................... OK
+Excluding broken/flaky tests............................................... OK
+Excluding broken/flaky tests............................................... OK
+Initialize fixed program version........................................... OK
+Apply patch................................................................ OK
+Initialize buggy program version........................................... OK
+Diff 7707b0bb:3eb3573c..................................................... OK
+Apply patch................................................................ OK
+Tag pre-fix revision....................................................... OK
+Check out program version: Math-53f........................................ OK
+Running ant (compile)...................................................... OK
+Creating temporary output directory........................................ OK
+Generating (regression) tests with: evosuite............................... OK
+Creating test suite archive................................................ OK
+Creating output directory.................................................. OK
+Moving test suite archive to /home/liumengjiao/Desktop/CI/Evosuite//Math_53 OK
+cd /home/liumengjiao/Desktop/CI/Benchmark/../bugs/Math_53_fix && /home/liumengjiao/Desktop/defects4j/framework/bin/gen_tests.pl -g evosuite -p Math -v 53f -n 26 -o /home/liumengjiao/Desktop/CI/Evosuite//Math_53 -b 3600 >> evosuite-report-clz/test_gen_fix.log 2>&1
+
+Checking out 7707b0bb to /tmp/gen_tests.pl_3148019_1703336157.............. OK
+Init local repository...................................................... OK
+Tag post-fix revision...................................................... OK
+Excluding broken/flaky tests............................................... OK
+Excluding broken/flaky tests............................................... OK
+Excluding broken/flaky tests............................................... OK
+Initialize fixed program version........................................... OK
+Apply patch................................................................ OK
+Initialize buggy program version........................................... OK
+Diff 7707b0bb:3eb3573c..................................................... OK
+Apply patch................................................................ OK
+Tag pre-fix revision....................................................... OK
+Check out program version: Math-53f........................................ OK
+Running ant (compile)...................................................... OK
+Creating temporary output directory........................................ OK
+Generating (regression) tests with: evosuite............................... OK
+Creating test suite archive................................................ OK
+Creating output directory.................................................. OK
+Moving test suite archive to /home/liumengjiao/Desktop/CI/Evosuite//Math_53 OK
+cd /home/liumengjiao/Desktop/CI/Benchmark/../bugs/Math_53_fix && /home/liumengjiao/Desktop/defects4j/framework/bin/gen_tests.pl -g evosuite -p Math -v 53f -n 27 -o /home/liumengjiao/Desktop/CI/Evosuite//Math_53 -b 3600 >> evosuite-report-clz/test_gen_fix.log 2>&1
+
+Checking out 7707b0bb to /tmp/gen_tests.pl_3149199_1703337974.............. OK
+Init local repository...................................................... OK
+Tag post-fix revision...................................................... OK
+Excluding broken/flaky tests............................................... OK
+Excluding broken/flaky tests............................................... OK
+Excluding broken/flaky tests............................................... OK
+Initialize fixed program version........................................... OK
+Apply patch................................................................ OK
+Initialize buggy program version........................................... OK
+Diff 7707b0bb:3eb3573c..................................................... OK
+Apply patch................................................................ OK
+Tag pre-fix revision....................................................... OK
+Check out program version: Math-53f........................................ OK
+Running ant (compile)...................................................... OK
+Creating temporary output directory........................................ OK
+Generating (regression) tests with: evosuite............................... OK
+Creating test suite archive................................................ OK
+Creating output directory.................................................. OK
+Moving test suite archive to /home/liumengjiao/Desktop/CI/Evosuite//Math_53 OK
+cd /home/liumengjiao/Desktop/CI/Benchmark/../bugs/Math_53_fix && /home/liumengjiao/Desktop/defects4j/framework/bin/gen_tests.pl -g evosuite -p Math -v 53f -n 28 -o /home/liumengjiao/Desktop/CI/Evosuite//Math_53 -b 3600 >> evosuite-report-clz/test_gen_fix.log 2>&1
+
+Checking out 7707b0bb to /tmp/gen_tests.pl_3152005_1703339791.............. OK
+Init local repository...................................................... OK
+Tag post-fix revision...................................................... OK
+Excluding broken/flaky tests............................................... OK
+Excluding broken/flaky tests............................................... OK
+Excluding broken/flaky tests............................................... OK
+Initialize fixed program version........................................... OK
+Apply patch................................................................ OK
+Initialize buggy program version........................................... OK
+Diff 7707b0bb:3eb3573c..................................................... OK
+Apply patch................................................................ OK
+Tag pre-fix revision....................................................... OK
+Check out program version: Math-53f........................................ OK
+Running ant (compile)...................................................... OK
+Creating temporary output directory........................................ OK
+Generating (regression) tests with: evosuite............................... OK
+Creating test suite archive................................................ OK
+Creating output directory.................................................. OK
+Moving test suite archive to /home/liumengjiao/Desktop/CI/Evosuite//Math_53 OK
+cd /home/liumengjiao/Desktop/CI/Benchmark/../bugs/Math_53_fix && /home/liumengjiao/Desktop/defects4j/framework/bin/gen_tests.pl -g evosuite -p Math -v 53f -n 29 -o /home/liumengjiao/Desktop/CI/Evosuite//Math_53 -b 3600 >> evosuite-report-clz/test_gen_fix.log 2>&1
+
+Checking out 7707b0bb to /tmp/gen_tests.pl_3156492_1703341610.............. OK
+Init local repository...................................................... OK
+Tag post-fix revision...................................................... OK
+Excluding broken/flaky tests............................................... OK
+Excluding broken/flaky tests............................................... OK
+Excluding broken/flaky tests............................................... OK
+Initialize fixed program version........................................... OK
+Apply patch................................................................ OK
+Initialize buggy program version........................................... OK
+Diff 7707b0bb:3eb3573c..................................................... OK
+Apply patch................................................................ OK
+Tag pre-fix revision....................................................... OK
+Check out program version: Math-53f........................................ OK
+Running ant (compile)...................................................... OK
+Creating temporary output directory........................................ OK
+Generating (regression) tests with: evosuite............................... OK
+Creating test suite archive................................................ OK
+Creating output directory.................................................. OK
+Moving test suite archive to /home/liumengjiao/Desktop/CI/Evosuite//Math_53 OK

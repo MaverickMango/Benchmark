@@ -478,3 +478,692 @@ Creating output directory.................................................. OK
 Executed command: mkdir -p /home/liumengjiao/Desktop/CI/Evosuite/Math_28//Math/evosuite/3
 Moving test suite archive to /home/liumengjiao/Desktop/CI/Evosuite/Math_28/ OK
 Executed command: mv /tmp/gen_tests.pl_503331_1695205078/Math-28f-evosuite.3.tar.bz2 /home/liumengjiao/Desktop/CI/Evosuite/Math_28//Math/evosuite/3
+cd /home/liumengjiao/Desktop/CI/Benchmark/../bugs/Math_28_fix && /home/liumengjiao/Desktop/defects4j/framework/bin/gen_tests.pl -g evosuite -p Math -v 28f -n 0 -o /home/liumengjiao/Desktop/CI/Evosuite//Math_28 -b 3600 >> evosuite-report-clz/test_gen_fix.log 2>&1
+
+Checking out d3fc5af3 to /tmp/gen_tests.pl_3042384_1703183537.............. OK
+Init local repository...................................................... OK
+Tag post-fix revision...................................................... OK
+Excluding broken/flaky tests............................................... OK
+Excluding broken/flaky tests............................................... OK
+Excluding broken/flaky tests............................................... OK
+Initialize fixed program version........................................... OK
+Apply patch................................................................ OK
+Initialize buggy program version........................................... OK
+Diff d3fc5af3:a55c951a..................................................... OK
+Apply patch................................................................ OK
+Tag pre-fix revision....................................................... OK
+Check out program version: Math-28f........................................ OK
+Running ant (compile)...................................................... OK
+Creating temporary output directory........................................ OK
+Generating (regression) tests with: evosuite............................... [MASTER] 10:32:29.795 [logback-2] ERROR TestCluster - Failed to check cache for java.util.function.Function<T, R> : Type points to itself
+[MASTER] 10:32:49.517 [logback-2] ERROR TestCluster - Failed to check cache for java.util.function.Predicate<T> : Type points to itself
+OK
+Creating test suite archive................................................ OK
+Creating output directory.................................................. OK
+Moving test suite archive to /home/liumengjiao/Desktop/CI/Evosuite//Math_28 OK
+cd /home/liumengjiao/Desktop/CI/Benchmark/../bugs/Math_28_fix && /home/liumengjiao/Desktop/defects4j/framework/bin/gen_tests.pl -g evosuite -p Math -v 28f -n 1 -o /home/liumengjiao/Desktop/CI/Evosuite//Math_28 -b 3600 >> evosuite-report-clz/test_gen_fix.log 2>&1
+
+Checking out d3fc5af3 to /tmp/gen_tests.pl_3043588_1703185347.............. OK
+Init local repository...................................................... OK
+Tag post-fix revision...................................................... OK
+Excluding broken/flaky tests............................................... OK
+Excluding broken/flaky tests............................................... OK
+Excluding broken/flaky tests............................................... OK
+Initialize fixed program version........................................... OK
+Apply patch................................................................ OK
+Initialize buggy program version........................................... OK
+Diff d3fc5af3:a55c951a..................................................... OK
+Apply patch................................................................ OK
+Tag pre-fix revision....................................................... OK
+Check out program version: Math-28f........................................ OK
+Running ant (compile)...................................................... OK
+Creating temporary output directory........................................ OK
+Generating (regression) tests with: evosuite............................... [MASTER] 11:02:37.315 [logback-2] ERROR TestCluster - Failed to check cache for java.util.function.Function<T, R> : Type points to itself
+[MASTER] 11:02:42.121 [logback-2] ERROR TestCluster - Failed to check cache for java.util.function.Predicate<T> : Type points to itself
+OK
+Creating test suite archive................................................ OK
+Creating output directory.................................................. OK
+Moving test suite archive to /home/liumengjiao/Desktop/CI/Evosuite//Math_28 OK
+cd /home/liumengjiao/Desktop/CI/Benchmark/../bugs/Math_28_fix && /home/liumengjiao/Desktop/defects4j/framework/bin/gen_tests.pl -g evosuite -p Math -v 28f -n 2 -o /home/liumengjiao/Desktop/CI/Evosuite//Math_28 -b 3600 >> evosuite-report-clz/test_gen_fix.log 2>&1
+
+Checking out d3fc5af3 to /tmp/gen_tests.pl_3044760_1703187156.............. OK
+Init local repository...................................................... OK
+Tag post-fix revision...................................................... OK
+Excluding broken/flaky tests............................................... OK
+Excluding broken/flaky tests............................................... OK
+Excluding broken/flaky tests............................................... OK
+Initialize fixed program version........................................... OK
+Apply patch................................................................ OK
+Initialize buggy program version........................................... OK
+Diff d3fc5af3:a55c951a..................................................... OK
+Apply patch................................................................ OK
+Tag pre-fix revision....................................................... OK
+Check out program version: Math-28f........................................ OK
+Running ant (compile)...................................................... OK
+Creating temporary output directory........................................ OK
+Generating (regression) tests with: evosuite............................... [MASTER] 11:32:45.337 [logback-2] ERROR TestCluster - Failed to check cache for java.util.function.Function<T, R> : Type points to itself
+[MASTER] 11:32:53.912 [logback-2] ERROR TestCluster - Failed to check cache for java.util.function.Predicate<T> : Type points to itself
+OK
+Creating test suite archive................................................ OK
+Creating output directory.................................................. OK
+Moving test suite archive to /home/liumengjiao/Desktop/CI/Evosuite//Math_28 OK
+cd /home/liumengjiao/Desktop/CI/Benchmark/../bugs/Math_28_fix && /home/liumengjiao/Desktop/defects4j/framework/bin/gen_tests.pl -g evosuite -p Math -v 28f -n 3 -o /home/liumengjiao/Desktop/CI/Evosuite//Math_28 -b 3600 >> evosuite-report-clz/test_gen_fix.log 2>&1
+
+Checking out d3fc5af3 to /tmp/gen_tests.pl_3045917_1703188966.............. OK
+Init local repository...................................................... OK
+Tag post-fix revision...................................................... OK
+Excluding broken/flaky tests............................................... OK
+Excluding broken/flaky tests............................................... OK
+Excluding broken/flaky tests............................................... OK
+Initialize fixed program version........................................... OK
+Apply patch................................................................ OK
+Initialize buggy program version........................................... OK
+Diff d3fc5af3:a55c951a..................................................... OK
+Apply patch................................................................ OK
+Tag pre-fix revision....................................................... OK
+Check out program version: Math-28f........................................ OK
+Running ant (compile)...................................................... OK
+Creating temporary output directory........................................ OK
+Generating (regression) tests with: evosuite............................... [MASTER] 12:02:54.673 [logback-2] ERROR TestCluster - Failed to check cache for java.util.function.Function<T, R> : Type points to itself
+[MASTER] 12:03:20.968 [logback-2] ERROR TestCluster - Failed to check cache for java.util.function.Predicate<T> : Type points to itself
+OK
+Creating test suite archive................................................ OK
+Creating output directory.................................................. OK
+Moving test suite archive to /home/liumengjiao/Desktop/CI/Evosuite//Math_28 OK
+cd /home/liumengjiao/Desktop/CI/Benchmark/../bugs/Math_28_fix && /home/liumengjiao/Desktop/defects4j/framework/bin/gen_tests.pl -g evosuite -p Math -v 28f -n 4 -o /home/liumengjiao/Desktop/CI/Evosuite//Math_28 -b 3600 >> evosuite-report-clz/test_gen_fix.log 2>&1
+
+Checking out d3fc5af3 to /tmp/gen_tests.pl_3047106_1703190776.............. OK
+Init local repository...................................................... OK
+Tag post-fix revision...................................................... OK
+Excluding broken/flaky tests............................................... OK
+Excluding broken/flaky tests............................................... OK
+Excluding broken/flaky tests............................................... OK
+Initialize fixed program version........................................... OK
+Apply patch................................................................ OK
+Initialize buggy program version........................................... OK
+Diff d3fc5af3:a55c951a..................................................... OK
+Apply patch................................................................ OK
+Tag pre-fix revision....................................................... OK
+Check out program version: Math-28f........................................ OK
+Running ant (compile)...................................................... OK
+Creating temporary output directory........................................ OK
+Generating (regression) tests with: evosuite............................... [MASTER] 12:33:09.916 [logback-2] ERROR TestCluster - Failed to check cache for java.util.function.Predicate<T> : Type points to itself
+[MASTER] 12:33:22.561 [logback-2] ERROR TestCluster - Failed to check cache for java.util.function.Function<T, R> : Type points to itself
+OK
+Creating test suite archive................................................ OK
+Creating output directory.................................................. OK
+Moving test suite archive to /home/liumengjiao/Desktop/CI/Evosuite//Math_28 OK
+cd /home/liumengjiao/Desktop/CI/Benchmark/../bugs/Math_28_fix && /home/liumengjiao/Desktop/defects4j/framework/bin/gen_tests.pl -g evosuite -p Math -v 28f -n 5 -o /home/liumengjiao/Desktop/CI/Evosuite//Math_28 -b 3600 >> evosuite-report-clz/test_gen_fix.log 2>&1
+
+Checking out d3fc5af3 to /tmp/gen_tests.pl_3048268_1703192585.............. OK
+Init local repository...................................................... OK
+Tag post-fix revision...................................................... OK
+Excluding broken/flaky tests............................................... OK
+Excluding broken/flaky tests............................................... OK
+Excluding broken/flaky tests............................................... OK
+Initialize fixed program version........................................... OK
+Apply patch................................................................ OK
+Initialize buggy program version........................................... OK
+Diff d3fc5af3:a55c951a..................................................... OK
+Apply patch................................................................ OK
+Tag pre-fix revision....................................................... OK
+Check out program version: Math-28f........................................ OK
+Running ant (compile)...................................................... OK
+Creating temporary output directory........................................ OK
+Generating (regression) tests with: evosuite............................... [MASTER] 13:03:24.403 [logback-2] ERROR TestCluster - Failed to check cache for java.util.function.Predicate<T> : Type points to itself
+[MASTER] 13:03:35.339 [logback-2] ERROR TestCluster - Failed to check cache for java.util.function.Function<T, R> : Type points to itself
+OK
+Creating test suite archive................................................ OK
+Creating output directory.................................................. OK
+Moving test suite archive to /home/liumengjiao/Desktop/CI/Evosuite//Math_28 OK
+cd /home/liumengjiao/Desktop/CI/Benchmark/../bugs/Math_28_fix && /home/liumengjiao/Desktop/defects4j/framework/bin/gen_tests.pl -g evosuite -p Math -v 28f -n 6 -o /home/liumengjiao/Desktop/CI/Evosuite//Math_28 -b 3600 >> evosuite-report-clz/test_gen_fix.log 2>&1
+
+Checking out d3fc5af3 to /tmp/gen_tests.pl_3049443_1703194395.............. OK
+Init local repository...................................................... OK
+Tag post-fix revision...................................................... OK
+Excluding broken/flaky tests............................................... OK
+Excluding broken/flaky tests............................................... OK
+Excluding broken/flaky tests............................................... OK
+Initialize fixed program version........................................... OK
+Apply patch................................................................ OK
+Initialize buggy program version........................................... OK
+Diff d3fc5af3:a55c951a..................................................... OK
+Apply patch................................................................ OK
+Tag pre-fix revision....................................................... OK
+Check out program version: Math-28f........................................ OK
+Running ant (compile)...................................................... OK
+Creating temporary output directory........................................ OK
+Generating (regression) tests with: evosuite............................... [MASTER] 13:33:30.020 [logback-2] ERROR TestCluster - Failed to check cache for java.util.function.Predicate<T> : Type points to itself
+[MASTER] 13:33:41.499 [logback-2] ERROR TestCluster - Failed to check cache for java.util.function.Function<T, R> : Type points to itself
+OK
+Creating test suite archive................................................ OK
+Creating output directory.................................................. OK
+Moving test suite archive to /home/liumengjiao/Desktop/CI/Evosuite//Math_28 OK
+cd /home/liumengjiao/Desktop/CI/Benchmark/../bugs/Math_28_fix && /home/liumengjiao/Desktop/defects4j/framework/bin/gen_tests.pl -g evosuite -p Math -v 28f -n 7 -o /home/liumengjiao/Desktop/CI/Evosuite//Math_28 -b 3600 >> evosuite-report-clz/test_gen_fix.log 2>&1
+
+Checking out d3fc5af3 to /tmp/gen_tests.pl_3050600_1703196205.............. OK
+Init local repository...................................................... OK
+Tag post-fix revision...................................................... OK
+Excluding broken/flaky tests............................................... OK
+Excluding broken/flaky tests............................................... OK
+Excluding broken/flaky tests............................................... OK
+Initialize fixed program version........................................... OK
+Apply patch................................................................ OK
+Initialize buggy program version........................................... OK
+Diff d3fc5af3:a55c951a..................................................... OK
+Apply patch................................................................ OK
+Tag pre-fix revision....................................................... OK
+Check out program version: Math-28f........................................ OK
+Running ant (compile)...................................................... OK
+Creating temporary output directory........................................ OK
+Generating (regression) tests with: evosuite............................... [MASTER] 14:03:42.463 [logback-2] ERROR TestCluster - Failed to check cache for java.util.function.Predicate<T> : Type points to itself
+[MASTER] 14:03:57.874 [logback-2] ERROR TestCluster - Failed to check cache for java.util.function.Function<T, R> : Type points to itself
+OK
+Creating test suite archive................................................ OK
+Creating output directory.................................................. OK
+Moving test suite archive to /home/liumengjiao/Desktop/CI/Evosuite//Math_28 OK
+cd /home/liumengjiao/Desktop/CI/Benchmark/../bugs/Math_28_fix && /home/liumengjiao/Desktop/defects4j/framework/bin/gen_tests.pl -g evosuite -p Math -v 28f -n 8 -o /home/liumengjiao/Desktop/CI/Evosuite//Math_28 -b 3600 >> evosuite-report-clz/test_gen_fix.log 2>&1
+
+Checking out d3fc5af3 to /tmp/gen_tests.pl_3051842_1703198014.............. OK
+Init local repository...................................................... OK
+Tag post-fix revision...................................................... OK
+Excluding broken/flaky tests............................................... OK
+Excluding broken/flaky tests............................................... OK
+Excluding broken/flaky tests............................................... OK
+Initialize fixed program version........................................... OK
+Apply patch................................................................ OK
+Initialize buggy program version........................................... OK
+Diff d3fc5af3:a55c951a..................................................... OK
+Apply patch................................................................ OK
+Tag pre-fix revision....................................................... OK
+Check out program version: Math-28f........................................ OK
+Running ant (compile)...................................................... OK
+Creating temporary output directory........................................ OK
+Generating (regression) tests with: evosuite............................... [MASTER] 14:33:55.207 [logback-2] ERROR TestCluster - Failed to check cache for java.util.function.Predicate<T> : Type points to itself
+[MASTER] 14:34:14.833 [logback-2] ERROR TestCluster - Failed to check cache for java.util.function.Function<T, R> : Type points to itself
+OK
+Creating test suite archive................................................ OK
+Creating output directory.................................................. OK
+Moving test suite archive to /home/liumengjiao/Desktop/CI/Evosuite//Math_28 OK
+cd /home/liumengjiao/Desktop/CI/Benchmark/../bugs/Math_28_fix && /home/liumengjiao/Desktop/defects4j/framework/bin/gen_tests.pl -g evosuite -p Math -v 28f -n 9 -o /home/liumengjiao/Desktop/CI/Evosuite//Math_28 -b 3600 >> evosuite-report-clz/test_gen_fix.log 2>&1
+
+Checking out d3fc5af3 to /tmp/gen_tests.pl_3052994_1703199824.............. OK
+Init local repository...................................................... OK
+Tag post-fix revision...................................................... OK
+Excluding broken/flaky tests............................................... OK
+Excluding broken/flaky tests............................................... OK
+Excluding broken/flaky tests............................................... OK
+Initialize fixed program version........................................... OK
+Apply patch................................................................ OK
+Initialize buggy program version........................................... OK
+Diff d3fc5af3:a55c951a..................................................... OK
+Apply patch................................................................ OK
+Tag pre-fix revision....................................................... OK
+Check out program version: Math-28f........................................ OK
+Running ant (compile)...................................................... OK
+Creating temporary output directory........................................ OK
+Generating (regression) tests with: evosuite............................... [MASTER] 15:04:15.343 [logback-2] ERROR TestCluster - Failed to check cache for java.util.function.Predicate<T> : Type points to itself
+[MASTER] 15:04:36.198 [logback-2] ERROR TestCluster - Failed to check cache for java.util.function.Function<T, R> : Type points to itself
+OK
+Creating test suite archive................................................ OK
+Creating output directory.................................................. OK
+Moving test suite archive to /home/liumengjiao/Desktop/CI/Evosuite//Math_28 OK
+cd /home/liumengjiao/Desktop/CI/Benchmark/../bugs/Math_28_fix && /home/liumengjiao/Desktop/defects4j/framework/bin/gen_tests.pl -g evosuite -p Math -v 28f -n 10 -o /home/liumengjiao/Desktop/CI/Evosuite//Math_28 -b 3600 >> evosuite-report-clz/test_gen_fix.log 2>&1
+
+Checking out d3fc5af3 to /tmp/gen_tests.pl_3054177_1703201634.............. OK
+Init local repository...................................................... OK
+Tag post-fix revision...................................................... OK
+Excluding broken/flaky tests............................................... OK
+Excluding broken/flaky tests............................................... OK
+Excluding broken/flaky tests............................................... OK
+Initialize fixed program version........................................... OK
+Apply patch................................................................ OK
+Initialize buggy program version........................................... OK
+Diff d3fc5af3:a55c951a..................................................... OK
+Apply patch................................................................ OK
+Tag pre-fix revision....................................................... OK
+Check out program version: Math-28f........................................ OK
+Running ant (compile)...................................................... OK
+Creating temporary output directory........................................ OK
+Generating (regression) tests with: evosuite............................... [MASTER] 15:34:03.899 [logback-2] ERROR TestCluster - Failed to check cache for java.util.function.Function<T, R> : Type points to itself
+[MASTER] 15:34:13.988 [logback-2] ERROR TestCluster - Failed to check cache for java.util.function.Predicate<T> : Type points to itself
+OK
+Creating test suite archive................................................ OK
+Creating output directory.................................................. OK
+Moving test suite archive to /home/liumengjiao/Desktop/CI/Evosuite//Math_28 OK
+cd /home/liumengjiao/Desktop/CI/Benchmark/../bugs/Math_28_fix && /home/liumengjiao/Desktop/defects4j/framework/bin/gen_tests.pl -g evosuite -p Math -v 28f -n 11 -o /home/liumengjiao/Desktop/CI/Evosuite//Math_28 -b 3600 >> evosuite-report-clz/test_gen_fix.log 2>&1
+
+Checking out d3fc5af3 to /tmp/gen_tests.pl_3055427_1703203444.............. OK
+Init local repository...................................................... OK
+Tag post-fix revision...................................................... OK
+Excluding broken/flaky tests............................................... OK
+Excluding broken/flaky tests............................................... OK
+Excluding broken/flaky tests............................................... OK
+Initialize fixed program version........................................... OK
+Apply patch................................................................ OK
+Initialize buggy program version........................................... OK
+Diff d3fc5af3:a55c951a..................................................... OK
+Apply patch................................................................ OK
+Tag pre-fix revision....................................................... OK
+Check out program version: Math-28f........................................ OK
+Running ant (compile)...................................................... OK
+Creating temporary output directory........................................ OK
+Generating (regression) tests with: evosuite............................... [MASTER] 16:04:12.938 [logback-2] ERROR TestCluster - Failed to check cache for java.util.function.Function<T, R> : Type points to itself
+[MASTER] 16:04:24.517 [logback-2] ERROR TestCluster - Failed to check cache for java.util.function.Predicate<T> : Type points to itself
+OK
+Creating test suite archive................................................ OK
+Creating output directory.................................................. OK
+Moving test suite archive to /home/liumengjiao/Desktop/CI/Evosuite//Math_28 OK
+cd /home/liumengjiao/Desktop/CI/Benchmark/../bugs/Math_28_fix && /home/liumengjiao/Desktop/defects4j/framework/bin/gen_tests.pl -g evosuite -p Math -v 28f -n 12 -o /home/liumengjiao/Desktop/CI/Evosuite//Math_28 -b 3600 >> evosuite-report-clz/test_gen_fix.log 2>&1
+
+Checking out d3fc5af3 to /tmp/gen_tests.pl_3056627_1703205253.............. OK
+Init local repository...................................................... OK
+Tag post-fix revision...................................................... OK
+Excluding broken/flaky tests............................................... OK
+Excluding broken/flaky tests............................................... OK
+Excluding broken/flaky tests............................................... OK
+Initialize fixed program version........................................... OK
+Apply patch................................................................ OK
+Initialize buggy program version........................................... OK
+Diff d3fc5af3:a55c951a..................................................... OK
+Apply patch................................................................ OK
+Tag pre-fix revision....................................................... OK
+Check out program version: Math-28f........................................ OK
+Running ant (compile)...................................................... OK
+Creating temporary output directory........................................ OK
+Generating (regression) tests with: evosuite............................... [MASTER] 16:34:23.047 [logback-2] ERROR TestCluster - Failed to check cache for java.util.function.Function<T, R> : Type points to itself
+[MASTER] 16:34:33.937 [logback-2] ERROR TestCluster - Failed to check cache for java.util.function.Predicate<T> : Type points to itself
+OK
+Creating test suite archive................................................ OK
+Creating output directory.................................................. OK
+Moving test suite archive to /home/liumengjiao/Desktop/CI/Evosuite//Math_28 OK
+cd /home/liumengjiao/Desktop/CI/Benchmark/../bugs/Math_28_fix && /home/liumengjiao/Desktop/defects4j/framework/bin/gen_tests.pl -g evosuite -p Math -v 28f -n 13 -o /home/liumengjiao/Desktop/CI/Evosuite//Math_28 -b 3600 >> evosuite-report-clz/test_gen_fix.log 2>&1
+
+Checking out d3fc5af3 to /tmp/gen_tests.pl_3057804_1703207063.............. OK
+Init local repository...................................................... OK
+Tag post-fix revision...................................................... OK
+Excluding broken/flaky tests............................................... OK
+Excluding broken/flaky tests............................................... OK
+Excluding broken/flaky tests............................................... OK
+Initialize fixed program version........................................... OK
+Apply patch................................................................ OK
+Initialize buggy program version........................................... OK
+Diff d3fc5af3:a55c951a..................................................... OK
+Apply patch................................................................ OK
+Tag pre-fix revision....................................................... OK
+Check out program version: Math-28f........................................ OK
+Running ant (compile)...................................................... OK
+Creating temporary output directory........................................ OK
+Generating (regression) tests with: evosuite............................... [MASTER] 17:04:38.477 [logback-2] ERROR TestCluster - Failed to check cache for java.util.function.Predicate<T> : Type points to itself
+OK
+Creating test suite archive................................................ OK
+Creating output directory.................................................. OK
+Moving test suite archive to /home/liumengjiao/Desktop/CI/Evosuite//Math_28 OK
+cd /home/liumengjiao/Desktop/CI/Benchmark/../bugs/Math_28_fix && /home/liumengjiao/Desktop/defects4j/framework/bin/gen_tests.pl -g evosuite -p Math -v 28f -n 14 -o /home/liumengjiao/Desktop/CI/Evosuite//Math_28 -b 3600 >> evosuite-report-clz/test_gen_fix.log 2>&1
+
+Checking out d3fc5af3 to /tmp/gen_tests.pl_3058174_1703207108.............. OK
+Init local repository...................................................... OK
+Tag post-fix revision...................................................... OK
+Excluding broken/flaky tests............................................... OK
+Excluding broken/flaky tests............................................... OK
+Excluding broken/flaky tests............................................... OK
+Initialize fixed program version........................................... OK
+Apply patch................................................................ OK
+Initialize buggy program version........................................... OK
+Diff d3fc5af3:a55c951a..................................................... OK
+Apply patch................................................................ OK
+Tag pre-fix revision....................................................... OK
+Check out program version: Math-28f........................................ OK
+Running ant (compile)...................................................... OK
+Creating temporary output directory........................................ OK
+Generating (regression) tests with: evosuite............................... [MASTER] 17:05:45.231 [logback-2] ERROR TestCluster - Failed to check cache for java.util.function.Function<T, R> : Type points to itself
+[MASTER] 17:05:58.658 [logback-2] ERROR TestCluster - Failed to check cache for java.util.function.Predicate<T> : Type points to itself
+OK
+Creating test suite archive................................................ OK
+Creating output directory.................................................. OK
+Moving test suite archive to /home/liumengjiao/Desktop/CI/Evosuite//Math_28 OK
+cd /home/liumengjiao/Desktop/CI/Benchmark/../bugs/Math_28_fix && /home/liumengjiao/Desktop/defects4j/framework/bin/gen_tests.pl -g evosuite -p Math -v 28f -n 15 -o /home/liumengjiao/Desktop/CI/Evosuite//Math_28 -b 3600 >> evosuite-report-clz/test_gen_fix.log 2>&1
+
+Checking out d3fc5af3 to /tmp/gen_tests.pl_3059365_1703208918.............. OK
+Init local repository...................................................... OK
+Tag post-fix revision...................................................... OK
+Excluding broken/flaky tests............................................... OK
+Excluding broken/flaky tests............................................... OK
+Excluding broken/flaky tests............................................... OK
+Initialize fixed program version........................................... OK
+Apply patch................................................................ OK
+Initialize buggy program version........................................... OK
+Diff d3fc5af3:a55c951a..................................................... OK
+Apply patch................................................................ OK
+Tag pre-fix revision....................................................... OK
+Check out program version: Math-28f........................................ OK
+Running ant (compile)...................................................... OK
+Creating temporary output directory........................................ OK
+Generating (regression) tests with: evosuite............................... [MASTER] 17:35:38.104 [logback-2] ERROR TestCluster - Failed to check cache for java.util.function.Function<T, R> : Type points to itself
+[MASTER] 17:35:48.452 [logback-2] ERROR TestCluster - Failed to check cache for java.util.function.Predicate<T> : Type points to itself
+OK
+Creating test suite archive................................................ OK
+Creating output directory.................................................. OK
+Moving test suite archive to /home/liumengjiao/Desktop/CI/Evosuite//Math_28 OK
+cd /home/liumengjiao/Desktop/CI/Benchmark/../bugs/Math_28_fix && /home/liumengjiao/Desktop/defects4j/framework/bin/gen_tests.pl -g evosuite -p Math -v 28f -n 16 -o /home/liumengjiao/Desktop/CI/Evosuite//Math_28 -b 3600 >> evosuite-report-clz/test_gen_fix.log 2>&1
+
+Checking out d3fc5af3 to /tmp/gen_tests.pl_3061172_1703210728.............. OK
+Init local repository...................................................... OK
+Tag post-fix revision...................................................... OK
+Excluding broken/flaky tests............................................... OK
+Excluding broken/flaky tests............................................... OK
+Excluding broken/flaky tests............................................... OK
+Initialize fixed program version........................................... OK
+Apply patch................................................................ OK
+Initialize buggy program version........................................... OK
+Diff d3fc5af3:a55c951a..................................................... OK
+Apply patch................................................................ OK
+Tag pre-fix revision....................................................... OK
+Check out program version: Math-28f........................................ OK
+Running ant (compile)...................................................... OK
+Creating temporary output directory........................................ OK
+Generating (regression) tests with: evosuite............................... [MASTER] 18:05:42.354 [logback-2] ERROR TestCluster - Failed to check cache for java.util.function.Predicate<T> : Type points to itself
+[MASTER] 18:05:47.309 [logback-2] ERROR TestCluster - Failed to check cache for java.util.function.Function<T, R> : Type points to itself
+OK
+Creating test suite archive................................................ OK
+Creating output directory.................................................. OK
+Moving test suite archive to /home/liumengjiao/Desktop/CI/Evosuite//Math_28 OK
+cd /home/liumengjiao/Desktop/CI/Benchmark/../bugs/Math_28_fix && /home/liumengjiao/Desktop/defects4j/framework/bin/gen_tests.pl -g evosuite -p Math -v 28f -n 17 -o /home/liumengjiao/Desktop/CI/Evosuite//Math_28 -b 3600 >> evosuite-report-clz/test_gen_fix.log 2>&1
+
+Checking out d3fc5af3 to /tmp/gen_tests.pl_3062441_1703212538.............. OK
+Init local repository...................................................... OK
+Tag post-fix revision...................................................... OK
+Excluding broken/flaky tests............................................... OK
+Excluding broken/flaky tests............................................... OK
+Excluding broken/flaky tests............................................... OK
+Initialize fixed program version........................................... OK
+Apply patch................................................................ OK
+Initialize buggy program version........................................... OK
+Diff d3fc5af3:a55c951a..................................................... OK
+Apply patch................................................................ OK
+Tag pre-fix revision....................................................... OK
+Check out program version: Math-28f........................................ OK
+Running ant (compile)...................................................... OK
+Creating temporary output directory........................................ OK
+Generating (regression) tests with: evosuite............................... [MASTER] 18:35:51.765 [logback-2] ERROR TestCluster - Failed to check cache for java.util.function.Predicate<T> : Type points to itself
+[MASTER] 18:36:01.202 [logback-2] ERROR TestCluster - Failed to check cache for java.util.function.Function<T, R> : Type points to itself
+OK
+Creating test suite archive................................................ OK
+Creating output directory.................................................. OK
+Moving test suite archive to /home/liumengjiao/Desktop/CI/Evosuite//Math_28 OK
+cd /home/liumengjiao/Desktop/CI/Benchmark/../bugs/Math_28_fix && /home/liumengjiao/Desktop/defects4j/framework/bin/gen_tests.pl -g evosuite -p Math -v 28f -n 18 -o /home/liumengjiao/Desktop/CI/Evosuite//Math_28 -b 3600 >> evosuite-report-clz/test_gen_fix.log 2>&1
+
+Checking out d3fc5af3 to /tmp/gen_tests.pl_3063607_1703214348.............. OK
+Init local repository...................................................... OK
+Tag post-fix revision...................................................... OK
+Excluding broken/flaky tests............................................... OK
+Excluding broken/flaky tests............................................... OK
+Excluding broken/flaky tests............................................... OK
+Initialize fixed program version........................................... OK
+Apply patch................................................................ OK
+Initialize buggy program version........................................... OK
+Diff d3fc5af3:a55c951a..................................................... OK
+Apply patch................................................................ OK
+Tag pre-fix revision....................................................... OK
+Check out program version: Math-28f........................................ OK
+Running ant (compile)...................................................... OK
+Creating temporary output directory........................................ OK
+Generating (regression) tests with: evosuite............................... [MASTER] 19:05:59.707 [logback-2] ERROR TestCluster - Failed to check cache for java.util.function.Predicate<T> : Type points to itself
+[MASTER] 19:06:05.478 [logback-2] ERROR TestCluster - Failed to check cache for java.util.function.Function<T, R> : Type points to itself
+OK
+Creating test suite archive................................................ OK
+Creating output directory.................................................. OK
+Moving test suite archive to /home/liumengjiao/Desktop/CI/Evosuite//Math_28 OK
+cd /home/liumengjiao/Desktop/CI/Benchmark/../bugs/Math_28_fix && /home/liumengjiao/Desktop/defects4j/framework/bin/gen_tests.pl -g evosuite -p Math -v 28f -n 19 -o /home/liumengjiao/Desktop/CI/Evosuite//Math_28 -b 3600 >> evosuite-report-clz/test_gen_fix.log 2>&1
+
+Checking out d3fc5af3 to /tmp/gen_tests.pl_3064824_1703216158.............. OK
+Init local repository...................................................... OK
+Tag post-fix revision...................................................... OK
+Excluding broken/flaky tests............................................... OK
+Excluding broken/flaky tests............................................... OK
+Excluding broken/flaky tests............................................... OK
+Initialize fixed program version........................................... OK
+Apply patch................................................................ OK
+Initialize buggy program version........................................... OK
+Diff d3fc5af3:a55c951a..................................................... OK
+Apply patch................................................................ OK
+Tag pre-fix revision....................................................... OK
+Check out program version: Math-28f........................................ OK
+Running ant (compile)...................................................... OK
+Creating temporary output directory........................................ OK
+Generating (regression) tests with: evosuite............................... [MASTER] 19:36:14.312 [logback-2] ERROR TestCluster - Failed to check cache for java.util.function.Predicate<T> : Type points to itself
+[MASTER] 19:36:37.972 [logback-2] ERROR TestCluster - Failed to check cache for java.util.function.Function<T, R> : Type points to itself
+OK
+Creating test suite archive................................................ OK
+Creating output directory.................................................. OK
+Moving test suite archive to /home/liumengjiao/Desktop/CI/Evosuite//Math_28 OK
+cd /home/liumengjiao/Desktop/CI/Benchmark/../bugs/Math_28_fix && /home/liumengjiao/Desktop/defects4j/framework/bin/gen_tests.pl -g evosuite -p Math -v 28f -n 20 -o /home/liumengjiao/Desktop/CI/Evosuite//Math_28 -b 3600 >> evosuite-report-clz/test_gen_fix.log 2>&1
+
+Checking out d3fc5af3 to /tmp/gen_tests.pl_3066003_1703217968.............. OK
+Init local repository...................................................... OK
+Tag post-fix revision...................................................... OK
+Excluding broken/flaky tests............................................... OK
+Excluding broken/flaky tests............................................... OK
+Excluding broken/flaky tests............................................... OK
+Initialize fixed program version........................................... OK
+Apply patch................................................................ OK
+Initialize buggy program version........................................... OK
+Diff d3fc5af3:a55c951a..................................................... OK
+Apply patch................................................................ OK
+Tag pre-fix revision....................................................... OK
+Check out program version: Math-28f........................................ OK
+Running ant (compile)...................................................... OK
+Creating temporary output directory........................................ OK
+Generating (regression) tests with: evosuite............................... [MASTER] 20:06:28.911 [logback-2] ERROR TestCluster - Failed to check cache for java.util.function.Predicate<T> : Type points to itself
+[MASTER] 20:06:37.117 [logback-2] ERROR TestCluster - Failed to check cache for java.util.function.Function<T, R> : Type points to itself
+OK
+Creating test suite archive................................................ OK
+Creating output directory.................................................. OK
+Moving test suite archive to /home/liumengjiao/Desktop/CI/Evosuite//Math_28 OK
+cd /home/liumengjiao/Desktop/CI/Benchmark/../bugs/Math_28_fix && /home/liumengjiao/Desktop/defects4j/framework/bin/gen_tests.pl -g evosuite -p Math -v 28f -n 21 -o /home/liumengjiao/Desktop/CI/Evosuite//Math_28 -b 3600 >> evosuite-report-clz/test_gen_fix.log 2>&1
+
+Checking out d3fc5af3 to /tmp/gen_tests.pl_3067185_1703219778.............. OK
+Init local repository...................................................... OK
+Tag post-fix revision...................................................... OK
+Excluding broken/flaky tests............................................... OK
+Excluding broken/flaky tests............................................... OK
+Excluding broken/flaky tests............................................... OK
+Initialize fixed program version........................................... OK
+Apply patch................................................................ OK
+Initialize buggy program version........................................... OK
+Diff d3fc5af3:a55c951a..................................................... OK
+Apply patch................................................................ OK
+Tag pre-fix revision....................................................... OK
+Check out program version: Math-28f........................................ OK
+Running ant (compile)...................................................... OK
+Creating temporary output directory........................................ OK
+Generating (regression) tests with: evosuite............................... [MASTER] 20:36:33.790 [logback-2] ERROR TestCluster - Failed to check cache for java.util.function.Function<T, R> : Type points to itself
+[MASTER] 20:36:54.394 [logback-2] ERROR TestCluster - Failed to check cache for java.util.function.Predicate<T> : Type points to itself
+OK
+Creating test suite archive................................................ OK
+Creating output directory.................................................. OK
+Moving test suite archive to /home/liumengjiao/Desktop/CI/Evosuite//Math_28 OK
+cd /home/liumengjiao/Desktop/CI/Benchmark/../bugs/Math_28_fix && /home/liumengjiao/Desktop/defects4j/framework/bin/gen_tests.pl -g evosuite -p Math -v 28f -n 22 -o /home/liumengjiao/Desktop/CI/Evosuite//Math_28 -b 3600 >> evosuite-report-clz/test_gen_fix.log 2>&1
+
+Checking out d3fc5af3 to /tmp/gen_tests.pl_3068353_1703221588.............. OK
+Init local repository...................................................... OK
+Tag post-fix revision...................................................... OK
+Excluding broken/flaky tests............................................... OK
+Excluding broken/flaky tests............................................... OK
+Excluding broken/flaky tests............................................... OK
+Initialize fixed program version........................................... OK
+Apply patch................................................................ OK
+Initialize buggy program version........................................... OK
+Diff d3fc5af3:a55c951a..................................................... OK
+Apply patch................................................................ OK
+Tag pre-fix revision....................................................... OK
+Check out program version: Math-28f........................................ OK
+Running ant (compile)...................................................... OK
+Creating temporary output directory........................................ OK
+Generating (regression) tests with: evosuite............................... [MASTER] 21:06:38.641 [logback-2] ERROR TestCluster - Failed to check cache for java.util.function.Function<T, R> : Type points to itself
+[MASTER] 21:06:50.995 [logback-2] ERROR TestCluster - Failed to check cache for java.util.function.Predicate<T> : Type points to itself
+OK
+Creating test suite archive................................................ OK
+Creating output directory.................................................. OK
+Moving test suite archive to /home/liumengjiao/Desktop/CI/Evosuite//Math_28 OK
+cd /home/liumengjiao/Desktop/CI/Benchmark/../bugs/Math_28_fix && /home/liumengjiao/Desktop/defects4j/framework/bin/gen_tests.pl -g evosuite -p Math -v 28f -n 23 -o /home/liumengjiao/Desktop/CI/Evosuite//Math_28 -b 3600 >> evosuite-report-clz/test_gen_fix.log 2>&1
+
+Checking out d3fc5af3 to /tmp/gen_tests.pl_3069523_1703223398.............. OK
+Init local repository...................................................... OK
+Tag post-fix revision...................................................... OK
+Excluding broken/flaky tests............................................... OK
+Excluding broken/flaky tests............................................... OK
+Excluding broken/flaky tests............................................... OK
+Initialize fixed program version........................................... OK
+Apply patch................................................................ OK
+Initialize buggy program version........................................... OK
+Diff d3fc5af3:a55c951a..................................................... OK
+Apply patch................................................................ OK
+Tag pre-fix revision....................................................... OK
+Check out program version: Math-28f........................................ OK
+Running ant (compile)...................................................... OK
+Creating temporary output directory........................................ OK
+Generating (regression) tests with: evosuite............................... [MASTER] 21:36:50.325 [logback-2] ERROR TestCluster - Failed to check cache for java.util.function.Predicate<T> : Type points to itself
+[MASTER] 21:37:05.332 [logback-2] ERROR TestCluster - Failed to check cache for java.util.function.Function<T, R> : Type points to itself
+OK
+Creating test suite archive................................................ OK
+Creating output directory.................................................. OK
+Moving test suite archive to /home/liumengjiao/Desktop/CI/Evosuite//Math_28 OK
+cd /home/liumengjiao/Desktop/CI/Benchmark/../bugs/Math_28_fix && /home/liumengjiao/Desktop/defects4j/framework/bin/gen_tests.pl -g evosuite -p Math -v 28f -n 24 -o /home/liumengjiao/Desktop/CI/Evosuite//Math_28 -b 3600 >> evosuite-report-clz/test_gen_fix.log 2>&1
+
+Checking out d3fc5af3 to /tmp/gen_tests.pl_3070678_1703225208.............. OK
+Init local repository...................................................... OK
+Tag post-fix revision...................................................... OK
+Excluding broken/flaky tests............................................... OK
+Excluding broken/flaky tests............................................... OK
+Excluding broken/flaky tests............................................... OK
+Initialize fixed program version........................................... OK
+Apply patch................................................................ OK
+Initialize buggy program version........................................... OK
+Diff d3fc5af3:a55c951a..................................................... OK
+Apply patch................................................................ OK
+Tag pre-fix revision....................................................... OK
+Check out program version: Math-28f........................................ OK
+Running ant (compile)...................................................... OK
+Creating temporary output directory........................................ OK
+Generating (regression) tests with: evosuite............................... [MASTER] 22:07:29.727 [logback-2] ERROR TestCluster - Failed to check cache for java.util.function.Predicate<T> : Type points to itself
+[MASTER] 22:07:30.240 [logback-2] ERROR TestCluster - Failed to check cache for java.util.function.Function<T, R> : Type points to itself
+OK
+Creating test suite archive................................................ OK
+Creating output directory.................................................. OK
+Moving test suite archive to /home/liumengjiao/Desktop/CI/Evosuite//Math_28 OK
+cd /home/liumengjiao/Desktop/CI/Benchmark/../bugs/Math_28_fix && /home/liumengjiao/Desktop/defects4j/framework/bin/gen_tests.pl -g evosuite -p Math -v 28f -n 25 -o /home/liumengjiao/Desktop/CI/Evosuite//Math_28 -b 3600 >> evosuite-report-clz/test_gen_fix.log 2>&1
+
+Checking out d3fc5af3 to /tmp/gen_tests.pl_3071038_1703225253.............. OK
+Init local repository...................................................... OK
+Tag post-fix revision...................................................... OK
+Excluding broken/flaky tests............................................... OK
+Excluding broken/flaky tests............................................... OK
+Excluding broken/flaky tests............................................... OK
+Initialize fixed program version........................................... OK
+Apply patch................................................................ OK
+Initialize buggy program version........................................... OK
+Diff d3fc5af3:a55c951a..................................................... OK
+Apply patch................................................................ OK
+Tag pre-fix revision....................................................... OK
+Check out program version: Math-28f........................................ OK
+Running ant (compile)...................................................... OK
+Creating temporary output directory........................................ OK
+Generating (regression) tests with: evosuite............................... [MASTER] 22:07:48.978 [logback-2] ERROR TestCluster - Failed to check cache for java.util.function.Predicate<T> : Type points to itself
+[MASTER] 22:07:52.590 [logback-2] ERROR TestCluster - Failed to check cache for java.util.function.Function<T, R> : Type points to itself
+OK
+Creating test suite archive................................................ OK
+Creating output directory.................................................. OK
+Moving test suite archive to /home/liumengjiao/Desktop/CI/Evosuite//Math_28 OK
+cd /home/liumengjiao/Desktop/CI/Benchmark/../bugs/Math_28_fix && /home/liumengjiao/Desktop/defects4j/framework/bin/gen_tests.pl -g evosuite -p Math -v 28f -n 26 -o /home/liumengjiao/Desktop/CI/Evosuite//Math_28 -b 3600 >> evosuite-report-clz/test_gen_fix.log 2>&1
+
+Checking out d3fc5af3 to /tmp/gen_tests.pl_3073358_1703227062.............. OK
+Init local repository...................................................... OK
+Tag post-fix revision...................................................... OK
+Excluding broken/flaky tests............................................... OK
+Excluding broken/flaky tests............................................... OK
+Excluding broken/flaky tests............................................... OK
+Initialize fixed program version........................................... OK
+Apply patch................................................................ OK
+Initialize buggy program version........................................... OK
+Diff d3fc5af3:a55c951a..................................................... OK
+Apply patch................................................................ OK
+Tag pre-fix revision....................................................... OK
+Check out program version: Math-28f........................................ OK
+Running ant (compile)...................................................... OK
+Creating temporary output directory........................................ OK
+Generating (regression) tests with: evosuite............................... [MASTER] 22:38:13.207 [logback-2] ERROR TestCluster - Failed to check cache for java.util.function.Function<T, R> : Type points to itself
+[MASTER] 22:38:27.979 [logback-2] ERROR TestCluster - Failed to check cache for java.util.function.Predicate<T> : Type points to itself
+OK
+Creating test suite archive................................................ OK
+Creating output directory.................................................. OK
+Moving test suite archive to /home/liumengjiao/Desktop/CI/Evosuite//Math_28 OK
+cd /home/liumengjiao/Desktop/CI/Benchmark/../bugs/Math_28_fix && /home/liumengjiao/Desktop/defects4j/framework/bin/gen_tests.pl -g evosuite -p Math -v 28f -n 27 -o /home/liumengjiao/Desktop/CI/Evosuite//Math_28 -b 3600 >> evosuite-report-clz/test_gen_fix.log 2>&1
+
+Checking out d3fc5af3 to /tmp/gen_tests.pl_3074510_1703228872.............. OK
+Init local repository...................................................... OK
+Tag post-fix revision...................................................... OK
+Excluding broken/flaky tests............................................... OK
+Excluding broken/flaky tests............................................... OK
+Excluding broken/flaky tests............................................... OK
+Initialize fixed program version........................................... OK
+Apply patch................................................................ OK
+Initialize buggy program version........................................... OK
+Diff d3fc5af3:a55c951a..................................................... OK
+Apply patch................................................................ OK
+Tag pre-fix revision....................................................... OK
+Check out program version: Math-28f........................................ OK
+Running ant (compile)...................................................... OK
+Creating temporary output directory........................................ OK
+Generating (regression) tests with: evosuite............................... [MASTER] 23:08:19.847 [logback-2] ERROR TestCluster - Failed to check cache for java.util.function.Predicate<T> : Type points to itself
+[MASTER] 23:08:49.753 [logback-2] ERROR TestCluster - Failed to check cache for java.util.function.Function<T, R> : Type points to itself
+OK
+Creating test suite archive................................................ OK
+Creating output directory.................................................. OK
+Moving test suite archive to /home/liumengjiao/Desktop/CI/Evosuite//Math_28 OK
+cd /home/liumengjiao/Desktop/CI/Benchmark/../bugs/Math_28_fix && /home/liumengjiao/Desktop/defects4j/framework/bin/gen_tests.pl -g evosuite -p Math -v 28f -n 28 -o /home/liumengjiao/Desktop/CI/Evosuite//Math_28 -b 3600 >> evosuite-report-clz/test_gen_fix.log 2>&1
+
+Checking out d3fc5af3 to /tmp/gen_tests.pl_3075691_1703230682.............. OK
+Init local repository...................................................... OK
+Tag post-fix revision...................................................... OK
+Excluding broken/flaky tests............................................... OK
+Excluding broken/flaky tests............................................... OK
+Excluding broken/flaky tests............................................... OK
+Initialize fixed program version........................................... OK
+Apply patch................................................................ OK
+Initialize buggy program version........................................... OK
+Diff d3fc5af3:a55c951a..................................................... OK
+Apply patch................................................................ OK
+Tag pre-fix revision....................................................... OK
+Check out program version: Math-28f........................................ OK
+Running ant (compile)...................................................... OK
+Creating temporary output directory........................................ OK
+Generating (regression) tests with: evosuite............................... [MASTER] 23:38:25.930 [logback-2] ERROR TestCluster - Failed to check cache for java.util.function.Predicate<T> : Type points to itself
+[MASTER] 23:38:42.340 [logback-2] ERROR TestCluster - Failed to check cache for java.util.function.Function<T, R> : Type points to itself
+OK
+Creating test suite archive................................................ OK
+Creating output directory.................................................. OK
+Moving test suite archive to /home/liumengjiao/Desktop/CI/Evosuite//Math_28 OK
+cd /home/liumengjiao/Desktop/CI/Benchmark/../bugs/Math_28_fix && /home/liumengjiao/Desktop/defects4j/framework/bin/gen_tests.pl -g evosuite -p Math -v 28f -n 29 -o /home/liumengjiao/Desktop/CI/Evosuite//Math_28 -b 3600 >> evosuite-report-clz/test_gen_fix.log 2>&1
+
+Checking out d3fc5af3 to /tmp/gen_tests.pl_3076841_1703232492.............. OK
+Init local repository...................................................... OK
+Tag post-fix revision...................................................... OK
+Excluding broken/flaky tests............................................... OK
+Excluding broken/flaky tests............................................... OK
+Excluding broken/flaky tests............................................... OK
+Initialize fixed program version........................................... OK
+Apply patch................................................................ OK
+Initialize buggy program version........................................... OK
+Diff d3fc5af3:a55c951a..................................................... OK
+Apply patch................................................................ OK
+Tag pre-fix revision....................................................... OK
+Check out program version: Math-28f........................................ OK
+Running ant (compile)...................................................... OK
+Creating temporary output directory........................................ OK
+Generating (regression) tests with: evosuite............................... [MASTER] 00:08:43.101 [logback-2] ERROR TestCluster - Failed to check cache for java.util.function.Predicate<T> : Type points to itself
+[MASTER] 00:08:56.378 [logback-2] ERROR TestCluster - Failed to check cache for java.util.function.Function<T, R> : Type points to itself
+OK
+Creating test suite archive................................................ OK
+Creating output directory.................................................. OK
+Moving test suite archive to /home/liumengjiao/Desktop/CI/Evosuite//Math_28 OK

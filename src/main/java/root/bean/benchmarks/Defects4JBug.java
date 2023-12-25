@@ -454,7 +454,7 @@ public class Defects4JBug extends CIBug implements GitAccess {
             String all_tests = dataDir + proj + "_" + id + "/properties/all_tests/" + version;
             String failing_tests = dataDir + proj + "_" + id + "/properties/failing_tests/" + version;
             if (true) {//FileUtils.notExists(failing_tests)
-                if (FileUtils.notExists(all_tests)) {//
+                if (true) {//FileUtils.notExists(all_tests)
                     logger.info("Execute original tests...");
                     if (res) {
                         logger.info("Writing all_tests info...");

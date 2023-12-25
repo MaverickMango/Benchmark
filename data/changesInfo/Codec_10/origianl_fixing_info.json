@@ -16,8 +16,8 @@
   "id": "10",
   "workingDir": "../bugs/Codec_10_buggy",
   "buggyCommit": "2a8fd84f1f380fc472ecf415b771cb5fd789719b",
-  "inducingCommit": "7882213ce2fde3ef9b990c494f47aeae7b6f6946",
-  "originalCommit": "de10106801ea43d169a5b58285a9235ff382981c",
+  "inducingCommit": "66555de56715ccb185dee4dd2b25b1e93cc5c73e",
+  "originalCommit": "f6336648d893f0ad455d53ab85f82128937fa41c",
   "bug_name": "Codec_10",
   "derive": "defects4j",
   "original_fixing_commit": "41c68e9ef470696009d72133c7f05a20e2728e34",
@@ -156,7 +156,7 @@
       "assertion_line": "335",
       "exception": "junit.framework.ComparisonFailure",
       "message": "Source: mbmb expected:\u003cM[PM]1111111\u003e but was:\u003cM[MP]1111111\u003e"
-    }
+    } 
   ],
   "fixing_changes": [
     {
