@@ -4,14 +4,14 @@
     "name": "root.bean.benchmarks.Defects4JBug"
   },
   "d4jCmd": "/home/liumengjiao/Desktop/defects4j/framework/bin/defects4j",
-  "dataDir": "data/changesInfo/",
+  "dataDir": "/home/liumengjiao/Desktop/CI/Benchmark/data/changesInfo/",
   "properties": {
     "trigger.tests": "org.apache.commons.math.stat.FrequencyTest::testPcts",
     "test.dir": "src/test/java",
     "clz.modified": "org.apache.commons.math.stat.Frequency",
     "src.dir": "src/main/java"
   },
-  "timeoutSecond": 300,
+  "timeoutSecond": 100,
   "proj": "Math",
   "id": "75",
   "workingDir": "../bugs/Math_75_buggy",
@@ -34,31 +34,31 @@
         {
           "qualified_names": [
             "org.apache.commons.math.stat.Frequency:getSumFreq:[]:long",
-            "org.apache.commons.math.stat.Frequency:equals:[Object obj]:boolean",
-            "org.apache.commons.math.stat.Frequency:getCount:[Object v]:long",
             "org.apache.commons.math.stat.Frequency:Frequency:[Comparator comparator]:null",
-            "org.apache.commons.math.stat.Frequency:toString:[]:String",
-            "org.apache.commons.math.stat.Frequency:getPct:[Object v]:double",
             "org.apache.commons.math.stat.Frequency:getCumFreq:[Object v]:long",
             "org.apache.commons.math.stat.Frequency:getCumPct:[Object v]:double",
-            "org.apache.commons.math.stat.Frequency\\$NaturalComparator:compare:[Object o1, Object o2]:int"
+            "org.apache.commons.math.stat.Frequency\\$NaturalComparator:compare:[Object o1, Object o2]:int",
+            "org.apache.commons.math.stat.Frequency:getPct:[Object v]:double",
+            "org.apache.commons.math.stat.Frequency:toString:[]:String",
+            "org.apache.commons.math.stat.Frequency:getCount:[Object v]:long",
+            "org.apache.commons.math.stat.Frequency:equals:[Object obj]:boolean"
           ],
           "num": 9
         },
         {
           "qualified_names": [
-            "org.apache.commons.math.stat.Frequency:getCount:[Comparable\u003c?\u003e v]:long",
-            "org.apache.commons.math.stat.Frequency:Frequency:[Comparator\u003c?\u003e comparator]:null",
-            "org.apache.commons.math.stat.Frequency\\$NaturalComparator:compare:[Comparable\u003cT\u003e o1, Comparable\u003cT\u003e o2]:int",
+            "org.apache.commons.math.stat.Frequency:getCumPct:[Object v]:double",
+            "org.apache.commons.math.stat.Frequency:getCumPct:[Comparable\u003c?\u003e v]:double",
             "org.apache.commons.math.stat.Frequency:getCount:[Object v]:long",
-            "org.apache.commons.math.stat.Frequency:getPct:[Object v]:double",
+            "org.apache.commons.math.stat.Frequency:getCount:[Comparable\u003c?\u003e v]:long",
+            "org.apache.commons.math.stat.Frequency:getCumFreq:[Comparable\u003c?\u003e v]:long",
+            "org.apache.commons.math.stat.Frequency\\$NaturalComparator:compare:[Comparable\u003cT\u003e o1, Comparable\u003cT\u003e o2]:int",
+            "org.apache.commons.math.stat.Frequency:toString:[]:String",
+            "org.apache.commons.math.stat.Frequency:getSumFreq:[]:long",
             "org.apache.commons.math.stat.Frequency:getPct:[Comparable\u003c?\u003e v]:double",
             "org.apache.commons.math.stat.Frequency:getCumFreq:[Object v]:long",
-            "org.apache.commons.math.stat.Frequency:getSumFreq:[]:long",
-            "org.apache.commons.math.stat.Frequency:getCumFreq:[Comparable\u003c?\u003e v]:long",
-            "org.apache.commons.math.stat.Frequency:getCumPct:[Comparable\u003c?\u003e v]:double",
-            "org.apache.commons.math.stat.Frequency:getCumPct:[Object v]:double",
-            "org.apache.commons.math.stat.Frequency:toString:[]:String"
+            "org.apache.commons.math.stat.Frequency:Frequency:[Comparator\u003c?\u003e comparator]:null",
+            "org.apache.commons.math.stat.Frequency:getPct:[Object v]:double"
           ],
           "num": 12
         }
@@ -650,8 +650,8 @@
       "qualified_names": [
         "org.apache.commons.math.stat.Frequency:getPct:[Comparable\u003c?\u003e v]:double",
         "org.apache.commons.math.stat.Frequency\\$NaturalComparator:compare:[Comparable\u003cT\u003e o1, Comparable\u003cT\u003e o2]:int",
-        "org.apache.commons.math.stat.Frequency:Frequency:[Comparator\u003c?\u003e comparator]:null",
         "org.apache.commons.math.stat.Frequency:getCumPct:[Comparable\u003c?\u003e v]:double",
+        "org.apache.commons.math.stat.Frequency:Frequency:[Comparator\u003c?\u003e comparator]:null",
         "org.apache.commons.math.stat.Frequency:getCount:[Comparable\u003c?\u003e v]:long",
         "org.apache.commons.math.stat.Frequency:getCumFreq:[Comparable\u003c?\u003e v]:long"
       ],

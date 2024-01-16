@@ -4,14 +4,14 @@
     "name": "root.bean.benchmarks.Defects4JBug"
   },
   "d4jCmd": "/home/liumengjiao/Desktop/defects4j/framework/bin/defects4j",
-  "dataDir": "data/changesInfo/",
+  "dataDir": "/home/liumengjiao/Desktop/CI/Benchmark/data/changesInfo/",
   "properties": {
     "trigger.tests": "org.apache.commons.math.optimization.linear.SimplexSolverTest::testMath272",
     "test.dir": "src/test",
     "clz.modified": "org.apache.commons.math.optimization.linear.SimplexTableau",
     "src.dir": "src/java"
   },
-  "timeoutSecond": 300,
+  "timeoutSecond": 100,
   "proj": "Math",
   "id": "88",
   "workingDir": "../bugs/Math_88_buggy",
@@ -21,7 +21,7 @@
   "bug_name": "Math_88",
   "derive": "defects4j",
   "original_fixing_commit": "24a6a2692e942969f5c39bd88d3d12ac0f0bf0d9",
-  "buildFiles_changed": false,
+  "buildFiles_changed": true,
   "regression": true,
   "inducing_changes": [
     {
@@ -33,8 +33,8 @@
       "changed_functions": [
         {
           "qualified_names": [
-            "org.apache.commons.math.optimization.linear.SimplexTableau:setEntry:[final int row, final int column, final double value]:void",
-            "org.apache.commons.math.optimization.linear.SimplexTableau:getDecisionVariableValue:[final int decisionVariable]:double"
+            "org.apache.commons.math.optimization.linear.SimplexTableau:getDecisionVariableValue:[final int decisionVariable]:double",
+            "org.apache.commons.math.optimization.linear.SimplexTableau:setEntry:[final int row, final int column, final double value]:void"
           ],
           "num": 2
         },

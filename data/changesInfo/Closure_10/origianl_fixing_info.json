@@ -4,14 +4,14 @@
     "name": "root.bean.benchmarks.Defects4JBug"
   },
   "d4jCmd": "/home/liumengjiao/Desktop/defects4j/framework/bin/defects4j",
-  "dataDir": "data/changesInfo/",
+  "dataDir": "/home/liumengjiao/Desktop/CI/Benchmark/data/changesInfo/",
   "properties": {
     "trigger.tests": "com.google.javascript.jscomp.PeepholeFoldConstantsTest::testIssue821",
     "test.dir": "test",
     "clz.modified": "com.google.javascript.jscomp.NodeUtil",
     "src.dir": "src"
   },
-  "timeoutSecond": 300,
+  "timeoutSecond": 100,
   "proj": "Closure",
   "id": "10",
   "workingDir": "../bugs/Closure_10_buggy",
@@ -40,16 +40,16 @@
         {
           "qualified_names": [
             "com.google.javascript.jscomp.NodeUtil\\$NumbericResultPredicate:apply:[Node n]:boolean",
-            "com.google.javascript.jscomp.NodeUtil:isBooleanResult:[Node n]:boolean",
-            "com.google.javascript.jscomp.NodeUtil\\$BooleanResultPredicate:apply:[Node n]:boolean",
-            "com.google.javascript.jscomp.NodeUtil:mayBeString:[Node n]:boolean",
-            "com.google.javascript.jscomp.NodeUtil:valueCheck:[Node n, Predicate\u003cNode\u003e p]:boolean",
-            "com.google.javascript.jscomp.NodeUtil:isNumericResultHelper:[Node n]:boolean",
-            "com.google.javascript.jscomp.NodeUtil:mayBeStringHelper:[Node n]:boolean",
-            "com.google.javascript.jscomp.NodeUtil:mayBeString:[Node n, boolean recurse]:boolean",
             "com.google.javascript.jscomp.NodeUtil:isBooleanResultHelper:[Node n]:boolean",
             "com.google.javascript.jscomp.NodeUtil\\$MayBeStringResultPredicate:apply:[Node n]:boolean",
-            "com.google.javascript.jscomp.NodeUtil:isNumericResult:[Node n]:boolean"
+            "com.google.javascript.jscomp.NodeUtil:valueCheck:[Node n, Predicate\u003cNode\u003e p]:boolean",
+            "com.google.javascript.jscomp.NodeUtil:mayBeString:[Node n]:boolean",
+            "com.google.javascript.jscomp.NodeUtil\\$BooleanResultPredicate:apply:[Node n]:boolean",
+            "com.google.javascript.jscomp.NodeUtil:isBooleanResult:[Node n]:boolean",
+            "com.google.javascript.jscomp.NodeUtil:isNumericResult:[Node n]:boolean",
+            "com.google.javascript.jscomp.NodeUtil:isNumericResultHelper:[Node n]:boolean",
+            "com.google.javascript.jscomp.NodeUtil:mayBeStringHelper:[Node n]:boolean",
+            "com.google.javascript.jscomp.NodeUtil:mayBeString:[Node n, boolean recurse]:boolean"
           ],
           "num": 11
         }
@@ -554,21 +554,21 @@
       "changed_functions": [
         {
           "qualified_names": [
+            "com.google.javascript.jscomp.PeepholeFoldConstants:tryFoldAdd:[Node node, Node left, Node right]:Node",
             "com.google.javascript.jscomp.PeepholeFoldConstants:performArithmeticOp:[int opType, Node left, Node right]:Node",
-            "com.google.javascript.jscomp.PeepholeFoldConstants:tryFoldAddConstant:[Node n, Node left, Node right]:Node",
             "com.google.javascript.jscomp.PeepholeFoldConstants:tryFoldLeftChildAdd:[Node n, Node left, Node right]:Node",
             "com.google.javascript.jscomp.PeepholeFoldConstants:tryFoldLeftChildOp:[Node n, Node left, Node right]:Node",
-            "com.google.javascript.jscomp.PeepholeFoldConstants:tryFoldAdd:[Node node, Node left, Node right]:Node"
+            "com.google.javascript.jscomp.PeepholeFoldConstants:tryFoldAddConstant:[Node n, Node left, Node right]:Node"
           ],
           "num": 5
         },
         {
           "qualified_names": [
             "com.google.javascript.jscomp.PeepholeFoldConstants:performArithmeticOp:[int opType, Node left, Node right]:Node",
-            "com.google.javascript.jscomp.PeepholeFoldConstants:tryFoldAdd:[Node node, Node left, Node right]:Node",
+            "com.google.javascript.jscomp.PeepholeFoldConstants:tryFoldLeftChildOp:[Node n, Node left, Node right]:Node",
             "com.google.javascript.jscomp.PeepholeFoldConstants:tryFoldChildAddString:[Node n, Node left, Node right]:Node",
             "com.google.javascript.jscomp.PeepholeFoldConstants:tryFoldAddConstantString:[Node n, Node left, Node right]:Node",
-            "com.google.javascript.jscomp.PeepholeFoldConstants:tryFoldLeftChildOp:[Node n, Node left, Node right]:Node"
+            "com.google.javascript.jscomp.PeepholeFoldConstants:tryFoldAdd:[Node node, Node left, Node right]:Node"
           ],
           "num": 5
         }
@@ -960,8 +960,8 @@
     },
     "delete_functions": {
       "qualified_names": [
-        "com.google.javascript.jscomp.PeepholeFoldConstants:tryFoldAddConstant:[Node n, Node left, Node right]:Node",
-        "com.google.javascript.jscomp.PeepholeFoldConstants:tryFoldLeftChildAdd:[Node n, Node left, Node right]:Node"
+        "com.google.javascript.jscomp.PeepholeFoldConstants:tryFoldLeftChildAdd:[Node n, Node left, Node right]:Node",
+        "com.google.javascript.jscomp.PeepholeFoldConstants:tryFoldAddConstant:[Node n, Node left, Node right]:Node"
       ],
       "num": 2
     }
@@ -985,19 +985,19 @@
       "changed_functions": [
         {
           "qualified_names": [
-            "com.google.javascript.jscomp.NodeUtil:mayBeString:[Node n, boolean recurse]:boolean",
             "com.google.javascript.jscomp.NodeUtil:valueCheck:[Node n, Predicate\u003cNode\u003e p]:boolean",
-            "com.google.javascript.jscomp.NodeUtil:isBooleanResult:[Node n]:boolean",
-            "com.google.javascript.jscomp.NodeUtil:isNumericResult:[Node n]:boolean"
+            "com.google.javascript.jscomp.NodeUtil:isNumericResult:[Node n]:boolean",
+            "com.google.javascript.jscomp.NodeUtil:mayBeString:[Node n, boolean recurse]:boolean",
+            "com.google.javascript.jscomp.NodeUtil:isBooleanResult:[Node n]:boolean"
           ],
           "num": 4
         },
         {
           "qualified_names": [
-            "com.google.javascript.jscomp.NodeUtil:isBooleanResult:[Node n]:boolean",
             "com.google.javascript.jscomp.NodeUtil:isNumericResult:[Node n]:boolean",
-            "com.google.javascript.jscomp.NodeUtil:allResultsMatch:[Node n, Predicate\u003cNode\u003e p]:boolean",
             "com.google.javascript.jscomp.NodeUtil:anyResultsMatch:[Node n, Predicate\u003cNode\u003e p]:boolean",
+            "com.google.javascript.jscomp.NodeUtil:allResultsMatch:[Node n, Predicate\u003cNode\u003e p]:boolean",
+            "com.google.javascript.jscomp.NodeUtil:isBooleanResult:[Node n]:boolean",
             "com.google.javascript.jscomp.NodeUtil:mayBeString:[Node n, boolean recurse]:boolean"
           ],
           "num": 5

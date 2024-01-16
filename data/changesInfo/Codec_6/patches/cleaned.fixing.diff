@@ -1,6 +1,6 @@
 diff -u -r data/changesInfo//Codec_6/properties/modified_classes/inducing/src/java/org/apache/commons/codec/binary/Base64InputStream.java data/changesInfo//Codec_6/cleaned/fixing/src/java/org/apache/commons/codec/binary/Base64InputStream.java
---- data/changesInfo//Codec_6/properties/modified_classes/inducing/src/java/org/apache/commons/codec/binary/Base64InputStream.java	2023-07-26 19:28:26.506278648 +0800
-+++ data/changesInfo//Codec_6/cleaned/fixing/src/java/org/apache/commons/codec/binary/Base64InputStream.java	2023-07-26 19:40:17.161485008 +0800
+--- data/changesInfo//Codec_6/properties/modified_classes/inducing/src/java/org/apache/commons/codec/binary/Base64InputStream.java	2023-07-26 04:28:26.506278648 -0700
++++ data/changesInfo//Codec_6/cleaned/fixing/src/java/org/apache/commons/codec/binary/Base64InputStream.java	2023-07-26 04:40:17.161485008 -0700
 @@ -117,30 +117,34 @@
      public int read(byte b[], int offset, int len) throws IOException {
          if (b == null) {

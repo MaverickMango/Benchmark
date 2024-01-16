@@ -4,14 +4,14 @@
     "name": "root.bean.benchmarks.Defects4JBug"
   },
   "d4jCmd": "/home/liumengjiao/Desktop/defects4j/framework/bin/defects4j",
-  "dataDir": "data/changesInfo/",
+  "dataDir": "/home/liumengjiao/Desktop/CI/Benchmark/data/changesInfo/",
   "properties": {
     "trigger.tests": "com.google.javascript.jscomp.FlowSensitiveInlineVariablesTest::testIssue794b",
     "test.dir": "test",
     "clz.modified": "com.google.javascript.jscomp.MaybeReachingVariableUse",
     "src.dir": "src"
   },
-  "timeoutSecond": 300,
+  "timeoutSecond": 100,
   "proj": "Closure",
   "id": "12",
   "workingDir": "../bugs/Closure_12_buggy",
@@ -114,8 +114,8 @@
         },
         {
           "qualified_names": [
-            "com.google.javascript.jscomp.MaybeReachingVariableUse:flowThrough:[Node n, ReachingUses input]:ReachingUses",
-            "com.google.javascript.jscomp.MaybeReachingVariableUse:hasExceptionHandler:[Node cfgNode]:boolean"
+            "com.google.javascript.jscomp.MaybeReachingVariableUse:hasExceptionHandler:[Node cfgNode]:boolean",
+            "com.google.javascript.jscomp.MaybeReachingVariableUse:flowThrough:[Node n, ReachingUses input]:ReachingUses"
           ],
           "num": 2
         }

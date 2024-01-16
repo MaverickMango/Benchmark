@@ -4,14 +4,14 @@
     "name": "root.bean.benchmarks.Defects4JBug"
   },
   "d4jCmd": "/home/liumengjiao/Desktop/defects4j/framework/bin/defects4j",
-  "dataDir": "data/changesInfo/",
+  "dataDir": "/home/liumengjiao/Desktop/CI/Benchmark/data/changesInfo/",
   "properties": {
     "trigger.tests": "com.google.javascript.jscomp.NormalizeTest::testDuplicateVarInExterns,com.google.javascript.jscomp.NormalizeTest::testMakeLocalNamesUnique",
     "test.dir": "test",
     "clz.modified": "com.google.javascript.jscomp.Normalize,com.google.javascript.jscomp.SyntacticScopeCreator",
     "src.dir": "src"
   },
-  "timeoutSecond": 300,
+  "timeoutSecond": 100,
   "proj": "Closure",
   "id": "153",
   "workingDir": "../bugs/Closure_153_buggy",
@@ -33,15 +33,15 @@
       "changed_functions": [
         {
           "qualified_names": [
-            "com.google.javascript.jscomp.Normalize:removeDuplicateDeclarations:[Node root]:void",
-            "com.google.javascript.jscomp.Normalize:process:[Node externs, Node root]:void"
+            "com.google.javascript.jscomp.Normalize:process:[Node externs, Node root]:void",
+            "com.google.javascript.jscomp.Normalize:removeDuplicateDeclarations:[Node root]:void"
           ],
           "num": 2
         },
         {
           "qualified_names": [
-            "com.google.javascript.jscomp.Normalize:removeDuplicateDeclarations:[Node externs, Node root]:void",
-            "com.google.javascript.jscomp.Normalize:process:[Node externs, Node root]:void"
+            "com.google.javascript.jscomp.Normalize:process:[Node externs, Node root]:void",
+            "com.google.javascript.jscomp.Normalize:removeDuplicateDeclarations:[Node externs, Node root]:void"
           ],
           "num": 2
         }
@@ -452,20 +452,20 @@
       "changed_functions": [
         {
           "qualified_names": [
+            "com.google.javascript.jscomp.SyntacticScopeCreator\\$DefaultRedeclarationHandler:onRedeclaration:[Scope s, String name, Node n, Node parent, Node gramps, Node nodeWithLineNumber]:void",
             "com.google.javascript.jscomp.SyntacticScopeCreator:scanRoot:[Node n, Scope parent]:void",
-            "com.google.javascript.jscomp.SyntacticScopeCreator\\$RedeclarationHandler:onRedeclaration:[Scope s, String name, Node n, Node parent, Node gramps, Node nodeWithLineNumber]:void",
             "com.google.javascript.jscomp.SyntacticScopeCreator:scanVars:[Node n, Node parent]:void",
             "com.google.javascript.jscomp.SyntacticScopeCreator:declareVar:[String name, Node n, Node parent, Node gramps, JSType declaredType, Node nodeWithLineNumber]:void",
-            "com.google.javascript.jscomp.SyntacticScopeCreator\\$DefaultRedeclarationHandler:onRedeclaration:[Scope s, String name, Node n, Node parent, Node gramps, Node nodeWithLineNumber]:void"
+            "com.google.javascript.jscomp.SyntacticScopeCreator\\$RedeclarationHandler:onRedeclaration:[Scope s, String name, Node n, Node parent, Node gramps, Node nodeWithLineNumber]:void"
           ],
           "num": 5
         },
         {
           "qualified_names": [
-            "com.google.javascript.jscomp.SyntacticScopeCreator:scanRoot:[Node n, Scope parent]:void",
             "com.google.javascript.jscomp.SyntacticScopeCreator:scanVars:[Node n, Node parent]:void",
-            "com.google.javascript.jscomp.SyntacticScopeCreator\\$RedeclarationHandler:onRedeclaration:[Scope s, String name, Node n, CompilerInput input]:void",
             "com.google.javascript.jscomp.SyntacticScopeCreator\\$DefaultRedeclarationHandler:onRedeclaration:[Scope s, String name, Node n, CompilerInput input]:void",
+            "com.google.javascript.jscomp.SyntacticScopeCreator:scanRoot:[Node n, Scope parent]:void",
+            "com.google.javascript.jscomp.SyntacticScopeCreator\\$RedeclarationHandler:onRedeclaration:[Scope s, String name, Node n, CompilerInput input]:void",
             "com.google.javascript.jscomp.SyntacticScopeCreator:declareVar:[Node n]:void"
           ],
           "num": 5

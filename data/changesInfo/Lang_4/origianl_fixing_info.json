@@ -4,14 +4,14 @@
     "name": "root.bean.benchmarks.Defects4JBug"
   },
   "d4jCmd": "/home/liumengjiao/Desktop/defects4j/framework/bin/defects4j",
-  "dataDir": "data/changesInfo/",
+  "dataDir": "/home/liumengjiao/Desktop/CI/Benchmark/data/changesInfo/",
   "properties": {
     "trigger.tests": "org.apache.commons.lang3.text.translate.LookupTranslatorTest::testLang882",
     "test.dir": "src/test/java",
     "clz.modified": "org.apache.commons.lang3.text.translate.LookupTranslator",
     "src.dir": "src/main/java"
   },
-  "timeoutSecond": 300,
+  "timeoutSecond": 100,
   "proj": "Lang",
   "id": "4",
   "workingDir": "../bugs/Lang_4_buggy",
@@ -21,7 +21,7 @@
   "bug_name": "Lang_4",
   "derive": "defects4j",
   "original_fixing_commit": "fb47b96ab635d7cc6e9edefdddc46f1baf63b117",
-  "buildFiles_changed": false,
+  "buildFiles_changed": true,
   "regression": false,
   "inducing_changes": [
     {
@@ -33,15 +33,15 @@
       "changed_functions": [
         {
           "qualified_names": [
-            "org.apache.commons.lang.text.translate.LookupTranslator:translate:[CharSequence input, int index, Writer out]:int",
-            "org.apache.commons.lang.text.translate.LookupTranslator:LookupTranslator:[CharSequence[][] lookup]:null"
+            "org.apache.commons.lang.text.translate.LookupTranslator:LookupTranslator:[CharSequence[][] lookup]:null",
+            "org.apache.commons.lang.text.translate.LookupTranslator:translate:[CharSequence input, int index, Writer out]:int"
           ],
           "num": 2
         },
         {
           "qualified_names": [
-            "org.apache.commons.lang.text.translate.LookupTranslator:LookupTranslator:[CharSequence[][] lookup]:null",
-            "org.apache.commons.lang.text.translate.LookupTranslator:translate:[CharSequence input, int index, Writer out]:int"
+            "org.apache.commons.lang.text.translate.LookupTranslator:translate:[CharSequence input, int index, Writer out]:int",
+            "org.apache.commons.lang.text.translate.LookupTranslator:LookupTranslator:[CharSequence[][] lookup]:null"
           ],
           "num": 2
         }
@@ -381,8 +381,8 @@
         },
         {
           "qualified_names": [
-            "org.apache.commons.lang3.text.translate.LookupTranslator:LookupTranslator:[final CharSequence[]... lookup]:null",
-            "org.apache.commons.lang3.text.translate.LookupTranslator:translate:[final CharSequence input, final int index, final Writer out]:int"
+            "org.apache.commons.lang3.text.translate.LookupTranslator:translate:[final CharSequence input, final int index, final Writer out]:int",
+            "org.apache.commons.lang3.text.translate.LookupTranslator:LookupTranslator:[final CharSequence[]... lookup]:null"
           ],
           "num": 2
         }

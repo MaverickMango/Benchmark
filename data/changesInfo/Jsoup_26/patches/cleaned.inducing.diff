@@ -2,8 +2,8 @@ Only in data/changesInfo//Jsoup_26/properties/modified_classes/inducing/src: mai
 Only in data/changesInfo//Jsoup_26/properties/modified_classes/inducing/src/test/java/org/jsoup: nodes
 Only in data/changesInfo//Jsoup_26/properties/modified_classes/inducing/src/test/java/org/jsoup: parser
 diff -u -r data/changesInfo//Jsoup_26/properties/modified_classes/inducing/src/test/java/org/jsoup/safety/CleanerTest.java data/changesInfo//Jsoup_26/cleaned/inducing/src/test/java/org/jsoup/safety/CleanerTest.java
---- data/changesInfo//Jsoup_26/properties/modified_classes/inducing/src/test/java/org/jsoup/safety/CleanerTest.java	2023-08-25 14:15:48.183724109 +0800
-+++ data/changesInfo//Jsoup_26/cleaned/inducing/src/test/java/org/jsoup/safety/CleanerTest.java	2023-08-03 19:19:34.324156456 +0800
+--- data/changesInfo//Jsoup_26/properties/modified_classes/inducing/src/test/java/org/jsoup/safety/CleanerTest.java	2023-12-27 22:51:35.561908910 -0800
++++ data/changesInfo//Jsoup_26/cleaned/inducing/src/test/java/org/jsoup/safety/CleanerTest.java	2023-08-03 04:19:34.324156456 -0700
 @@ -4,6 +4,7 @@
  import org.jsoup.TextUtil;
  import org.jsoup.safety.Whitelist;

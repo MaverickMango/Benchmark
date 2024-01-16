@@ -4,14 +4,14 @@
     "name": "root.bean.benchmarks.Defects4JBug"
   },
   "d4jCmd": "/home/liumengjiao/Desktop/defects4j/framework/bin/defects4j",
-  "dataDir": "data/changesInfo/",
+  "dataDir": "/home/liumengjiao/Desktop/CI/Benchmark/data/changesInfo/",
   "properties": {
     "trigger.tests": "org.apache.commons.lang.LocaleUtilsTest::testAvailableLocaleSet,org.apache.commons.lang.LocaleUtilsTest::testIsAvailableLocale,org.apache.commons.lang.LocaleUtilsTest::testAvailableLocaleList,org.apache.commons.lang.LocaleUtilsTest::testCountriesByLanguage,org.apache.commons.lang.LocaleUtilsTest::testLocaleLookupList_LocaleLocale,org.apache.commons.lang.LocaleUtilsTest::testLanguagesByCountry,org.apache.commons.lang.LocaleUtilsTest::testToLocale_1Part,org.apache.commons.lang.LocaleUtilsTest::testToLocale_2Part,org.apache.commons.lang.LocaleUtilsTest::testToLocale_3Part,org.apache.commons.lang.LocaleUtilsTest::testLocaleLookupList_Locale,org.apache.commons.lang.LocaleUtilsTest::testConstructor",
     "test.dir": "src/test",
     "clz.modified": "org.apache.commons.lang.LocaleUtils",
     "src.dir": "src/java"
   },
-  "timeoutSecond": 300,
+  "timeoutSecond": 100,
   "proj": "Lang",
   "id": "57",
   "workingDir": "../bugs/Lang_57_buggy",
@@ -33,24 +33,24 @@
       "changed_functions": [
         {
           "qualified_names": [
-            "org.apache.commons.lang.LocaleUtils:localeLookupList:[Locale locale, Locale defaultLocale]:List",
-            "org.apache.commons.lang.LocaleUtils:toLocale:[String str]:Locale",
             "org.apache.commons.lang.LocaleUtils:localeLookupList:[Locale locale]:List",
+            "org.apache.commons.lang.LocaleUtils:languagesByCountry:[String countryCode]:Set",
             "org.apache.commons.lang.LocaleUtils:countriesByLanguage:[String languageCode]:Set",
-            "org.apache.commons.lang.LocaleUtils:languagesByCountry:[String countryCode]:Set"
+            "org.apache.commons.lang.LocaleUtils:toLocale:[String str]:Locale",
+            "org.apache.commons.lang.LocaleUtils:localeLookupList:[Locale locale, Locale defaultLocale]:List"
           ],
           "num": 5
         },
         {
           "qualified_names": [
-            "org.apache.commons.lang.LocaleUtils:availableLocaleList:[]:List",
             "org.apache.commons.lang.LocaleUtils:localeLookupList:[Locale locale]:List",
+            "org.apache.commons.lang.LocaleUtils:countriesByLanguage:[String languageCode]:List",
             "org.apache.commons.lang.LocaleUtils:languagesByCountry:[String countryCode]:List",
+            "org.apache.commons.lang.LocaleUtils:localeLookupList:[Locale locale, Locale defaultLocale]:List",
             "org.apache.commons.lang.LocaleUtils:availableLocaleSet:[]:Set",
             "org.apache.commons.lang.LocaleUtils:toLocale:[String str]:Locale",
-            "org.apache.commons.lang.LocaleUtils:localeLookupList:[Locale locale, Locale defaultLocale]:List",
-            "org.apache.commons.lang.LocaleUtils:isAvailableLocale:[Locale locale]:boolean",
-            "org.apache.commons.lang.LocaleUtils:countriesByLanguage:[String languageCode]:List"
+            "org.apache.commons.lang.LocaleUtils:availableLocaleList:[]:List",
+            "org.apache.commons.lang.LocaleUtils:isAvailableLocale:[Locale locale]:boolean"
           ],
           "num": 8
         }

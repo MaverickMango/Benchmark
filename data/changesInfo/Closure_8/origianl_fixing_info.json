@@ -4,14 +4,14 @@
     "name": "root.bean.benchmarks.Defects4JBug"
   },
   "d4jCmd": "/home/liumengjiao/Desktop/defects4j/framework/bin/defects4j",
-  "dataDir": "data/changesInfo/",
+  "dataDir": "/home/liumengjiao/Desktop/CI/Benchmark/data/changesInfo/",
   "properties": {
     "trigger.tests": "com.google.javascript.jscomp.CollapseVariableDeclarationsTest::testIssue820",
     "test.dir": "test",
     "clz.modified": "com.google.javascript.jscomp.CollapseVariableDeclarations",
     "src.dir": "src"
   },
-  "timeoutSecond": 300,
+  "timeoutSecond": 100,
   "proj": "Closure",
   "id": "8",
   "workingDir": "../bugs/Closure_8_buggy",
@@ -42,9 +42,9 @@
         {
           "qualified_names": [
             "com.google.javascript.jscomp.CollapseVariableDeclarations:applyCollapses:[]:void",
-            "com.google.javascript.jscomp.CollapseVariableDeclarations\\$Collapse:Collapse:[Node startNode, Node endNode, Node parent]:null",
             "com.google.javascript.jscomp.CollapseVariableDeclarations:canBeRedeclared:[Node n, Scope s]:boolean",
-            "com.google.javascript.jscomp.CollapseVariableDeclarations\\$GatherCollapses:visit:[NodeTraversal t, Node n, Node parent]:void"
+            "com.google.javascript.jscomp.CollapseVariableDeclarations\\$GatherCollapses:visit:[NodeTraversal t, Node n, Node parent]:void",
+            "com.google.javascript.jscomp.CollapseVariableDeclarations\\$Collapse:Collapse:[Node startNode, Node endNode, Node parent]:null"
           ],
           "num": 4
         }

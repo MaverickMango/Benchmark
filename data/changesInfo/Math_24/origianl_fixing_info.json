@@ -4,14 +4,14 @@
     "name": "root.bean.benchmarks.Defects4JBug"
   },
   "d4jCmd": "/home/liumengjiao/Desktop/defects4j/framework/bin/defects4j",
-  "dataDir": "data/changesInfo/",
+  "dataDir": "/home/liumengjiao/Desktop/CI/Benchmark/data/changesInfo/",
   "properties": {
     "trigger.tests": "org.apache.commons.math3.optimization.univariate.BrentOptimizerTest::testMath855",
     "test.dir": "src/test/java",
     "clz.modified": "org.apache.commons.math3.optimization.univariate.BrentOptimizer",
     "src.dir": "src/main/java"
   },
-  "timeoutSecond": 300,
+  "timeoutSecond": 100,
   "proj": "Math",
   "id": "24",
   "workingDir": "../bugs/Math_24_buggy",
@@ -23,7 +23,64 @@
   "original_fixing_commit": "d5ff460ba69e4261f066d7856e2f90b886924513",
   "buildFiles_changed": false,
   "regression": true,
-  "inducing_changes": [],
+  "inducing_changes": [
+    {
+      "changed_type": "UPDATE",
+      "changed_class": [
+        "src/main/java/org/apache/commons/math3/optimization/univariate/BrentOptimizer.java",
+        "src/main/java/org/apache/commons/math3/optimization/univariate/BrentOptimizer.java"
+      ],
+      "changed_functions": [
+        {
+          "qualified_names": [
+            "org.apache.commons.math3.optimization.univariate.BrentOptimizer:doOptimize:[]:UnivariatePointValuePair"
+          ],
+          "num": 1
+        },
+        {
+          "qualified_names": [
+            "org.apache.commons.math3.optimization.univariate.BrentOptimizer:doOptimize:[]:UnivariatePointValuePair"
+          ],
+          "num": 1
+        }
+      ],
+      "changed_lines": [
+        {
+          "qualified_names": [
+            "222",
+            "236",
+            "237",
+            "238",
+            "239",
+            "240",
+            "241",
+            "242",
+            "243",
+            "244",
+            "245"
+          ],
+          "num": 11
+        },
+        {
+          "qualified_names": [
+            "223",
+            "224",
+            "225",
+            "226",
+            "227",
+            "228",
+            "229",
+            "230",
+            "231",
+            "232"
+          ],
+          "num": 10
+        }
+      ],
+      "diff": "diff --git a/src/main/java/org/apache/commons/math3/optimization/univariate/BrentOptimizer.java b/src/main/java/org/apache/commons/math3/optimization/univariate/BrentOptimizer.java\nindex 15a498c..ee2227c 100644\n--- a/src/main/java/org/apache/commons/math3/optimization/univariate/BrentOptimizer.java\n+++ b/src/main/java/org/apache/commons/math3/optimization/univariate/BrentOptimizer.java\n@@ -220,6 +220,16 @@\n                     fu \u003d -fu;\n                 }\n \n+                // User-defined convergence checker.\n+                previous \u003d current;\n+                current \u003d new UnivariatePointValuePair(u, isMinim ? fu : -fu);\n+\n+                if (checker !\u003d null) {\n+                    if (checker.converged(iter, previous, current)) {\n+                        return current;\n+                    }\n+                }\n+\n                 // Update a, b, v, w and x.\n                 if (fu \u003c\u003d fx) {\n                     if (u \u003c x) {\n@@ -233,16 +243,6 @@\n                     fw \u003d fx;\n                     x \u003d u;\n                     fx \u003d fu;\n-\n-                    // User-defined convergence checker.\n-                    previous \u003d current;\n-                    current \u003d new UnivariatePointValuePair(x, isMinim ? fx : -fx);\n-\n-                    if (checker !\u003d null) {\n-                        if (checker.converged(iter, previous, current)) {\n-                            return current;\n-                        }\n-                    }\n                 } else {\n                     if (u \u003c x) {\n                         a \u003d u;\n",
+      "operations": []
+    }
+  ],
   "inducing_type": {
     "add_classes": {
       "qualified_names": [],
@@ -61,17 +118,17 @@
       "changed_functions": [
         {
           "qualified_names": [
-            "org.apache.commons.math3.optimization.univariate.BrentOptimizer:BrentOptimizer:[double rel, double abs]:null",
-            "org.apache.commons.math3.optimization.univariate.BrentOptimizer:doOptimize:[]:UnivariatePointValuePair"
+            "org.apache.commons.math3.optimization.univariate.BrentOptimizer:doOptimize:[]:UnivariatePointValuePair",
+            "org.apache.commons.math3.optimization.univariate.BrentOptimizer:BrentOptimizer:[double rel, double abs]:null"
           ],
           "num": 2
         },
         {
           "qualified_names": [
-            "org.apache.commons.math3.optimization.univariate.BrentOptimizer:BrentOptimizer:[double rel, double abs, ConvergenceChecker\u003cUnivariatePointValuePair\u003e checker]:null",
+            "org.apache.commons.math3.optimization.univariate.BrentOptimizer:doOptimize:[]:UnivariatePointValuePair",
             "org.apache.commons.math3.optimization.univariate.BrentOptimizer:best:[UnivariatePointValuePair a, UnivariatePointValuePair b, boolean isMinim]:UnivariatePointValuePair",
-            "org.apache.commons.math3.optimization.univariate.BrentOptimizer:BrentOptimizer:[double rel, double abs]:null",
-            "org.apache.commons.math3.optimization.univariate.BrentOptimizer:doOptimize:[]:UnivariatePointValuePair"
+            "org.apache.commons.math3.optimization.univariate.BrentOptimizer:BrentOptimizer:[double rel, double abs, ConvergenceChecker\u003cUnivariatePointValuePair\u003e checker]:null",
+            "org.apache.commons.math3.optimization.univariate.BrentOptimizer:BrentOptimizer:[double rel, double abs]:null"
           ],
           "num": 4
         }

@@ -4,14 +4,14 @@
     "name": "root.bean.benchmarks.Defects4JBug"
   },
   "d4jCmd": "/home/liumengjiao/Desktop/defects4j/framework/bin/defects4j",
-  "dataDir": "data/changesInfo/",
+  "dataDir": "/home/liumengjiao/Desktop/CI/Benchmark/data/changesInfo/",
   "properties": {
     "trigger.tests": "org.mockito.internal.util.reflection.GenericMasterTest::shouldDealWithNestedGenerics,org.mockitousage.annotation.CaptorAnnotationBasicTest::shouldUseAnnotatedCaptor,org.mockitousage.annotation.CaptorAnnotationBasicTest::shouldUseCaptorInOrdinaryWay,org.mockitousage.annotation.CaptorAnnotationBasicTest::shouldCaptureGenericList,org.mockitousage.annotation.CaptorAnnotationBasicTest::shouldUseGenericlessAnnotatedCaptor,org.mockitousage.annotation.CaptorAnnotationTest::shouldScreamWhenWrongTypeForCaptor,org.mockitousage.annotation.CaptorAnnotationTest::testNormalUsage,org.mockitousage.annotation.CaptorAnnotationTest::shouldScreamWhenMoreThanOneMockitoAnnotaton,org.mockitousage.annotation.CaptorAnnotationTest::shouldScreamWhenInitializingCaptorsForNullClass,org.mockitousage.annotation.CaptorAnnotationTest::shouldLookForAnnotatedCaptorsInSuperClasses",
     "test.dir": "test",
     "clz.modified": "org.mockito.internal.util.reflection.GenericMaster",
     "src.dir": "src"
   },
-  "timeoutSecond": 300,
+  "timeoutSecond": 100,
   "proj": "Mockito",
   "id": "12",
   "workingDir": "../bugs/Mockito_12_buggy",
@@ -33,8 +33,8 @@
       "changed_functions": [
         {
           "qualified_names": [
-            "org.mockito.internal.configuration.DefaultAnnotationEngine:processAnnotationOn:[Captor annotation, Field field]:Object",
-            "org.mockito.internal.configuration.DefaultAnnotationEngine:typeToClass:[Type actual]:Class"
+            "org.mockito.internal.configuration.DefaultAnnotationEngine:typeToClass:[Type actual]:Class",
+            "org.mockito.internal.configuration.DefaultAnnotationEngine:processAnnotationOn:[Captor annotation, Field field]:Object"
           ],
           "num": 2
         },
@@ -159,7 +159,21 @@
       "num": 1
     }
   },
-  "trigger_tests": [],
+  "trigger_tests": [
+    {
+      "test_class": "org.mockito.internal.util.reflection.GenericMasterTest",
+      "test_function": "shouldDealWithNestedGenerics",
+      "assertion_line": "38",
+      "exception": "java.lang.ClassCastException",
+      "message": "sun.reflect.generics.reflectiveObjects.ParameterizedTypeImpl cannot be cast to java.lang.Class"
+    },
+    {
+      "test_class": "org.mockitousage.annotation.CaptorAnnotationBasicTest",
+      "test_function": "shouldUseAnnotatedCaptor",
+      "exception": "java.lang.ClassCastException",
+      "message": "sun.reflect.generics.reflectiveObjects.ParameterizedTypeImpl cannot be cast to java.lang.Class"
+    }
+  ],
   "fixing_changes": [
     {
       "changed_type": "UPDATE",

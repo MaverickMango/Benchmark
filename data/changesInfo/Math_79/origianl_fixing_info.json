@@ -4,14 +4,14 @@
     "name": "root.bean.benchmarks.Defects4JBug"
   },
   "d4jCmd": "/home/liumengjiao/Desktop/defects4j/framework/bin/defects4j",
-  "dataDir": "data/changesInfo/",
+  "dataDir": "/home/liumengjiao/Desktop/CI/Benchmark/data/changesInfo/",
   "properties": {
     "trigger.tests": "org.apache.commons.math.stat.clustering.KMeansPlusPlusClustererTest::testPerformClusterAnalysisDegenerate",
     "test.dir": "src/test/java",
     "clz.modified": "org.apache.commons.math.util.MathUtils",
     "src.dir": "src/main/java"
   },
-  "timeoutSecond": 300,
+  "timeoutSecond": 100,
   "proj": "Math",
   "id": "79",
   "workingDir": "../bugs/Math_79_buggy",
@@ -37,12 +37,12 @@
         },
         {
           "qualified_names": [
-            "org.apache.commons.math.util.MathUtils:distanceInf:[double[] p1, double[] p2]:double",
             "org.apache.commons.math.util.MathUtils:distance:[double[] p1, double[] p2]:double",
-            "org.apache.commons.math.util.MathUtils:distanceInf:[int[] p1, int[] p2]:int",
             "org.apache.commons.math.util.MathUtils:distance:[int[] p1, int[] p2]:double",
+            "org.apache.commons.math.util.MathUtils:distanceInf:[double[] p1, double[] p2]:double",
             "org.apache.commons.math.util.MathUtils:distance1:[double[] p1, double[] p2]:double",
-            "org.apache.commons.math.util.MathUtils:distance1:[int[] p1, int[] p2]:int"
+            "org.apache.commons.math.util.MathUtils:distance1:[int[] p1, int[] p2]:int",
+            "org.apache.commons.math.util.MathUtils:distanceInf:[int[] p1, int[] p2]:int"
           ],
           "num": 6
         }

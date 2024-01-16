@@ -150,3 +150,148 @@ Time: 0.189
 
 OK (4 tests)
 
+cd /home/liumengjiao/Desktop/CI/Benchmark/../bugs/Math_70_fix && timeout 300000 defects4j test -s /home/liumengjiao/Desktop/CI/Evosuite//Math_70/Math/evosuite/0/Math-70f-evosuite.0.tar.bz >> evosuite-report-clz/test_run_fix.log 2>&1
+
+Test suite archive not found: /home/liumengjiao/Desktop/CI/Evosuite//Math_70/Math/evosuite/0/Math-70f-evosuite.0.tar.bz
+Died at /home/liumengjiao/Desktop/defects4j/framework/bin/d4j/d4j-test line 125.
+Compilation failed in require at /home/liumengjiao/Desktop/defects4j/framework/bin/defects4j line 195.
+cd /home/liumengjiao/Desktop/CI/Benchmark/../bugs/Math_70_fix && timeout 300000 defects4j test -s /home/liumengjiao/Desktop/CI/Evosuite//Math_70/Math/evosuite/1/Math-70f-evosuite.1.tar.bz >> evosuite-report-clz/test_run_fix.log 2>&1
+
+Test suite archive not found: /home/liumengjiao/Desktop/CI/Evosuite//Math_70/Math/evosuite/1/Math-70f-evosuite.1.tar.bz
+Died at /home/liumengjiao/Desktop/defects4j/framework/bin/d4j/d4j-test line 125.
+Compilation failed in require at /home/liumengjiao/Desktop/defects4j/framework/bin/defects4j line 195.
+cd /home/liumengjiao/Desktop/CI/Benchmark/../bugs/Math_70_fix && timeout 300000 defects4j test -s /home/liumengjiao/Desktop/CI/Evosuite//Math_70/Math/evosuite/2/Math-70f-evosuite.2.tar.bz >> evosuite-report-clz/test_run_fix.log 2>&1
+
+Test suite archive not found: /home/liumengjiao/Desktop/CI/Evosuite//Math_70/Math/evosuite/2/Math-70f-evosuite.2.tar.bz
+Died at /home/liumengjiao/Desktop/defects4j/framework/bin/d4j/d4j-test line 125.
+Compilation failed in require at /home/liumengjiao/Desktop/defects4j/framework/bin/defects4j line 195.
+cd /home/liumengjiao/Desktop/CI/Benchmark/../bugs/Math_70_fix && timeout 300000 defects4j test -s /home/liumengjiao/Desktop/CI/Evosuite//Math_70/Math/evosuite/3/Math-70f-evosuite.3.tar.bz >> evosuite-report-clz/test_run_fix.log 2>&1
+
+Test suite archive not found: /home/liumengjiao/Desktop/CI/Evosuite//Math_70/Math/evosuite/3/Math-70f-evosuite.3.tar.bz
+Died at /home/liumengjiao/Desktop/defects4j/framework/bin/d4j/d4j-test line 125.
+Compilation failed in require at /home/liumengjiao/Desktop/defects4j/framework/bin/defects4j line 195.
+cd /home/liumengjiao/Desktop/CI/Benchmark/../bugs/Math_70_fix && timeout 300000 defects4j test -s /home/liumengjiao/Desktop/CI/Evosuite//Math_70/Math/evosuite/4/Math-70f-evosuite.4.tar.bz >> evosuite-report-clz/test_run_fix.log 2>&1
+
+Test suite archive not found: /home/liumengjiao/Desktop/CI/Evosuite//Math_70/Math/evosuite/4/Math-70f-evosuite.4.tar.bz
+Died at /home/liumengjiao/Desktop/defects4j/framework/bin/d4j/d4j-test line 125.
+Compilation failed in require at /home/liumengjiao/Desktop/defects4j/framework/bin/defects4j line 195.
+cd /home/liumengjiao/Desktop/CI/Benchmark/../bugs/Math_70_fix && timeout 300000 defects4j test -s /home/liumengjiao/Desktop/CI/Evosuite//Math_70/Math/evosuite/5/Math-70f-evosuite.5.tar.bz >> evosuite-report-clz/test_run_fix.log 2>&1
+
+Test suite archive not found: /home/liumengjiao/Desktop/CI/Evosuite//Math_70/Math/evosuite/5/Math-70f-evosuite.5.tar.bz
+Died at /home/liumengjiao/Desktop/defects4j/framework/bin/d4j/d4j-test line 125.
+Compilation failed in require at /home/liumengjiao/Desktop/defects4j/framework/bin/defects4j line 195.
+cd /home/liumengjiao/Desktop/CI/Benchmark/../bugs/Math_70_fix && timeout 300000 defects4j test -s /home/liumengjiao/Desktop/CI/Evosuite//Math_70/Math/evosuite/6/Math-70f-evosuite.6.tar.bz >> evosuite-report-clz/test_run_fix.log 2>&1
+
+Test suite archive not found: /home/liumengjiao/Desktop/CI/Evosuite//Math_70/Math/evosuite/6/Math-70f-evosuite.6.tar.bz
+Died at /home/liumengjiao/Desktop/defects4j/framework/bin/d4j/d4j-test line 125.
+Compilation failed in require at /home/liumengjiao/Desktop/defects4j/framework/bin/defects4j line 195.
+cd /home/liumengjiao/Desktop/CI/Benchmark/../bugs/Math_70_fix && timeout 300000 defects4j test -s /home/liumengjiao/Desktop/CI/Evosuite//Math_70/Math/evosuite/7/Math-70f-evosuite.7.tar.bz >> evosuite-report-clz/test_run_fix.log 2>&1
+
+Test suite archive not found: /home/liumengjiao/Desktop/CI/Evosuite//Math_70/Math/evosuite/7/Math-70f-evosuite.7.tar.bz
+Died at /home/liumengjiao/Desktop/defects4j/framework/bin/d4j/d4j-test line 125.
+Compilation failed in require at /home/liumengjiao/Desktop/defects4j/framework/bin/defects4j line 195.
+cd /home/liumengjiao/Desktop/CI/Benchmark/../bugs/Math_70_fix && timeout 300000 defects4j test -s /home/liumengjiao/Desktop/CI/Evosuite//Math_70/Math/evosuite/8/Math-70f-evosuite.8.tar.bz >> evosuite-report-clz/test_run_fix.log 2>&1
+
+Test suite archive not found: /home/liumengjiao/Desktop/CI/Evosuite//Math_70/Math/evosuite/8/Math-70f-evosuite.8.tar.bz
+Died at /home/liumengjiao/Desktop/defects4j/framework/bin/d4j/d4j-test line 125.
+Compilation failed in require at /home/liumengjiao/Desktop/defects4j/framework/bin/defects4j line 195.
+cd /home/liumengjiao/Desktop/CI/Benchmark/../bugs/Math_70_fix && timeout 300000 defects4j test -s /home/liumengjiao/Desktop/CI/Evosuite//Math_70/Math/evosuite/9/Math-70f-evosuite.9.tar.bz >> evosuite-report-clz/test_run_fix.log 2>&1
+
+Test suite archive not found: /home/liumengjiao/Desktop/CI/Evosuite//Math_70/Math/evosuite/9/Math-70f-evosuite.9.tar.bz
+Died at /home/liumengjiao/Desktop/defects4j/framework/bin/d4j/d4j-test line 125.
+Compilation failed in require at /home/liumengjiao/Desktop/defects4j/framework/bin/defects4j line 195.
+cd /home/liumengjiao/Desktop/CI/Benchmark/../bugs/Math_70_fix && timeout 300000 defects4j test -s /home/liumengjiao/Desktop/CI/Evosuite//Math_70/Math/evosuite/10/Math-70f-evosuite.10.tar.bz >> evosuite-report-clz/test_run_fix.log 2>&1
+
+Test suite archive not found: /home/liumengjiao/Desktop/CI/Evosuite//Math_70/Math/evosuite/10/Math-70f-evosuite.10.tar.bz
+Died at /home/liumengjiao/Desktop/defects4j/framework/bin/d4j/d4j-test line 125.
+Compilation failed in require at /home/liumengjiao/Desktop/defects4j/framework/bin/defects4j line 195.
+cd /home/liumengjiao/Desktop/CI/Benchmark/../bugs/Math_70_fix && timeout 300000 defects4j test -s /home/liumengjiao/Desktop/CI/Evosuite//Math_70/Math/evosuite/11/Math-70f-evosuite.11.tar.bz >> evosuite-report-clz/test_run_fix.log 2>&1
+
+Test suite archive not found: /home/liumengjiao/Desktop/CI/Evosuite//Math_70/Math/evosuite/11/Math-70f-evosuite.11.tar.bz
+Died at /home/liumengjiao/Desktop/defects4j/framework/bin/d4j/d4j-test line 125.
+Compilation failed in require at /home/liumengjiao/Desktop/defects4j/framework/bin/defects4j line 195.
+cd /home/liumengjiao/Desktop/CI/Benchmark/../bugs/Math_70_fix && timeout 300000 defects4j test -s /home/liumengjiao/Desktop/CI/Evosuite//Math_70/Math/evosuite/12/Math-70f-evosuite.12.tar.bz >> evosuite-report-clz/test_run_fix.log 2>&1
+
+Test suite archive not found: /home/liumengjiao/Desktop/CI/Evosuite//Math_70/Math/evosuite/12/Math-70f-evosuite.12.tar.bz
+Died at /home/liumengjiao/Desktop/defects4j/framework/bin/d4j/d4j-test line 125.
+Compilation failed in require at /home/liumengjiao/Desktop/defects4j/framework/bin/defects4j line 195.
+cd /home/liumengjiao/Desktop/CI/Benchmark/../bugs/Math_70_fix && timeout 300000 defects4j test -s /home/liumengjiao/Desktop/CI/Evosuite//Math_70/Math/evosuite/13/Math-70f-evosuite.13.tar.bz >> evosuite-report-clz/test_run_fix.log 2>&1
+
+Test suite archive not found: /home/liumengjiao/Desktop/CI/Evosuite//Math_70/Math/evosuite/13/Math-70f-evosuite.13.tar.bz
+Died at /home/liumengjiao/Desktop/defects4j/framework/bin/d4j/d4j-test line 125.
+Compilation failed in require at /home/liumengjiao/Desktop/defects4j/framework/bin/defects4j line 195.
+cd /home/liumengjiao/Desktop/CI/Benchmark/../bugs/Math_70_fix && timeout 300000 defects4j test -s /home/liumengjiao/Desktop/CI/Evosuite//Math_70/Math/evosuite/14/Math-70f-evosuite.14.tar.bz >> evosuite-report-clz/test_run_fix.log 2>&1
+
+Test suite archive not found: /home/liumengjiao/Desktop/CI/Evosuite//Math_70/Math/evosuite/14/Math-70f-evosuite.14.tar.bz
+Died at /home/liumengjiao/Desktop/defects4j/framework/bin/d4j/d4j-test line 125.
+Compilation failed in require at /home/liumengjiao/Desktop/defects4j/framework/bin/defects4j line 195.
+cd /home/liumengjiao/Desktop/CI/Benchmark/../bugs/Math_70_fix && timeout 300000 defects4j test -s /home/liumengjiao/Desktop/CI/Evosuite//Math_70/Math/evosuite/15/Math-70f-evosuite.15.tar.bz >> evosuite-report-clz/test_run_fix.log 2>&1
+
+Test suite archive not found: /home/liumengjiao/Desktop/CI/Evosuite//Math_70/Math/evosuite/15/Math-70f-evosuite.15.tar.bz
+Died at /home/liumengjiao/Desktop/defects4j/framework/bin/d4j/d4j-test line 125.
+Compilation failed in require at /home/liumengjiao/Desktop/defects4j/framework/bin/defects4j line 195.
+cd /home/liumengjiao/Desktop/CI/Benchmark/../bugs/Math_70_fix && timeout 300000 defects4j test -s /home/liumengjiao/Desktop/CI/Evosuite//Math_70/Math/evosuite/16/Math-70f-evosuite.16.tar.bz >> evosuite-report-clz/test_run_fix.log 2>&1
+
+Test suite archive not found: /home/liumengjiao/Desktop/CI/Evosuite//Math_70/Math/evosuite/16/Math-70f-evosuite.16.tar.bz
+Died at /home/liumengjiao/Desktop/defects4j/framework/bin/d4j/d4j-test line 125.
+Compilation failed in require at /home/liumengjiao/Desktop/defects4j/framework/bin/defects4j line 195.
+cd /home/liumengjiao/Desktop/CI/Benchmark/../bugs/Math_70_fix && timeout 300000 defects4j test -s /home/liumengjiao/Desktop/CI/Evosuite//Math_70/Math/evosuite/17/Math-70f-evosuite.17.tar.bz >> evosuite-report-clz/test_run_fix.log 2>&1
+
+Test suite archive not found: /home/liumengjiao/Desktop/CI/Evosuite//Math_70/Math/evosuite/17/Math-70f-evosuite.17.tar.bz
+Died at /home/liumengjiao/Desktop/defects4j/framework/bin/d4j/d4j-test line 125.
+Compilation failed in require at /home/liumengjiao/Desktop/defects4j/framework/bin/defects4j line 195.
+cd /home/liumengjiao/Desktop/CI/Benchmark/../bugs/Math_70_fix && timeout 300000 defects4j test -s /home/liumengjiao/Desktop/CI/Evosuite//Math_70/Math/evosuite/18/Math-70f-evosuite.18.tar.bz >> evosuite-report-clz/test_run_fix.log 2>&1
+
+Test suite archive not found: /home/liumengjiao/Desktop/CI/Evosuite//Math_70/Math/evosuite/18/Math-70f-evosuite.18.tar.bz
+Died at /home/liumengjiao/Desktop/defects4j/framework/bin/d4j/d4j-test line 125.
+Compilation failed in require at /home/liumengjiao/Desktop/defects4j/framework/bin/defects4j line 195.
+cd /home/liumengjiao/Desktop/CI/Benchmark/../bugs/Math_70_fix && timeout 300000 defects4j test -s /home/liumengjiao/Desktop/CI/Evosuite//Math_70/Math/evosuite/19/Math-70f-evosuite.19.tar.bz >> evosuite-report-clz/test_run_fix.log 2>&1
+
+Test suite archive not found: /home/liumengjiao/Desktop/CI/Evosuite//Math_70/Math/evosuite/19/Math-70f-evosuite.19.tar.bz
+Died at /home/liumengjiao/Desktop/defects4j/framework/bin/d4j/d4j-test line 125.
+Compilation failed in require at /home/liumengjiao/Desktop/defects4j/framework/bin/defects4j line 195.
+cd /home/liumengjiao/Desktop/CI/Benchmark/../bugs/Math_70_fix && timeout 300000 defects4j test -s /home/liumengjiao/Desktop/CI/Evosuite//Math_70/Math/evosuite/20/Math-70f-evosuite.20.tar.bz >> evosuite-report-clz/test_run_fix.log 2>&1
+
+Test suite archive not found: /home/liumengjiao/Desktop/CI/Evosuite//Math_70/Math/evosuite/20/Math-70f-evosuite.20.tar.bz
+Died at /home/liumengjiao/Desktop/defects4j/framework/bin/d4j/d4j-test line 125.
+Compilation failed in require at /home/liumengjiao/Desktop/defects4j/framework/bin/defects4j line 195.
+cd /home/liumengjiao/Desktop/CI/Benchmark/../bugs/Math_70_fix && timeout 300000 defects4j test -s /home/liumengjiao/Desktop/CI/Evosuite//Math_70/Math/evosuite/21/Math-70f-evosuite.21.tar.bz >> evosuite-report-clz/test_run_fix.log 2>&1
+
+Test suite archive not found: /home/liumengjiao/Desktop/CI/Evosuite//Math_70/Math/evosuite/21/Math-70f-evosuite.21.tar.bz
+Died at /home/liumengjiao/Desktop/defects4j/framework/bin/d4j/d4j-test line 125.
+Compilation failed in require at /home/liumengjiao/Desktop/defects4j/framework/bin/defects4j line 195.
+cd /home/liumengjiao/Desktop/CI/Benchmark/../bugs/Math_70_fix && timeout 300000 defects4j test -s /home/liumengjiao/Desktop/CI/Evosuite//Math_70/Math/evosuite/22/Math-70f-evosuite.22.tar.bz >> evosuite-report-clz/test_run_fix.log 2>&1
+
+Test suite archive not found: /home/liumengjiao/Desktop/CI/Evosuite//Math_70/Math/evosuite/22/Math-70f-evosuite.22.tar.bz
+Died at /home/liumengjiao/Desktop/defects4j/framework/bin/d4j/d4j-test line 125.
+Compilation failed in require at /home/liumengjiao/Desktop/defects4j/framework/bin/defects4j line 195.
+cd /home/liumengjiao/Desktop/CI/Benchmark/../bugs/Math_70_fix && timeout 300000 defects4j test -s /home/liumengjiao/Desktop/CI/Evosuite//Math_70/Math/evosuite/23/Math-70f-evosuite.23.tar.bz >> evosuite-report-clz/test_run_fix.log 2>&1
+
+Test suite archive not found: /home/liumengjiao/Desktop/CI/Evosuite//Math_70/Math/evosuite/23/Math-70f-evosuite.23.tar.bz
+Died at /home/liumengjiao/Desktop/defects4j/framework/bin/d4j/d4j-test line 125.
+Compilation failed in require at /home/liumengjiao/Desktop/defects4j/framework/bin/defects4j line 195.
+cd /home/liumengjiao/Desktop/CI/Benchmark/../bugs/Math_70_fix && timeout 300000 defects4j test -s /home/liumengjiao/Desktop/CI/Evosuite//Math_70/Math/evosuite/24/Math-70f-evosuite.24.tar.bz >> evosuite-report-clz/test_run_fix.log 2>&1
+
+Test suite archive not found: /home/liumengjiao/Desktop/CI/Evosuite//Math_70/Math/evosuite/24/Math-70f-evosuite.24.tar.bz
+Died at /home/liumengjiao/Desktop/defects4j/framework/bin/d4j/d4j-test line 125.
+Compilation failed in require at /home/liumengjiao/Desktop/defects4j/framework/bin/defects4j line 195.
+cd /home/liumengjiao/Desktop/CI/Benchmark/../bugs/Math_70_fix && timeout 300000 defects4j test -s /home/liumengjiao/Desktop/CI/Evosuite//Math_70/Math/evosuite/25/Math-70f-evosuite.25.tar.bz >> evosuite-report-clz/test_run_fix.log 2>&1
+
+Test suite archive not found: /home/liumengjiao/Desktop/CI/Evosuite//Math_70/Math/evosuite/25/Math-70f-evosuite.25.tar.bz
+Died at /home/liumengjiao/Desktop/defects4j/framework/bin/d4j/d4j-test line 125.
+Compilation failed in require at /home/liumengjiao/Desktop/defects4j/framework/bin/defects4j line 195.
+cd /home/liumengjiao/Desktop/CI/Benchmark/../bugs/Math_70_fix && timeout 300000 defects4j test -s /home/liumengjiao/Desktop/CI/Evosuite//Math_70/Math/evosuite/26/Math-70f-evosuite.26.tar.bz >> evosuite-report-clz/test_run_fix.log 2>&1
+
+Test suite archive not found: /home/liumengjiao/Desktop/CI/Evosuite//Math_70/Math/evosuite/26/Math-70f-evosuite.26.tar.bz
+Died at /home/liumengjiao/Desktop/defects4j/framework/bin/d4j/d4j-test line 125.
+Compilation failed in require at /home/liumengjiao/Desktop/defects4j/framework/bin/defects4j line 195.
+cd /home/liumengjiao/Desktop/CI/Benchmark/../bugs/Math_70_fix && timeout 300000 defects4j test -s /home/liumengjiao/Desktop/CI/Evosuite//Math_70/Math/evosuite/27/Math-70f-evosuite.27.tar.bz >> evosuite-report-clz/test_run_fix.log 2>&1
+
+Test suite archive not found: /home/liumengjiao/Desktop/CI/Evosuite//Math_70/Math/evosuite/27/Math-70f-evosuite.27.tar.bz
+Died at /home/liumengjiao/Desktop/defects4j/framework/bin/d4j/d4j-test line 125.
+Compilation failed in require at /home/liumengjiao/Desktop/defects4j/framework/bin/defects4j line 195.
+cd /home/liumengjiao/Desktop/CI/Benchmark/../bugs/Math_70_fix && timeout 300000 defects4j test -s /home/liumengjiao/Desktop/CI/Evosuite//Math_70/Math/evosuite/28/Math-70f-evosuite.28.tar.bz >> evosuite-report-clz/test_run_fix.log 2>&1
+
+Test suite archive not found: /home/liumengjiao/Desktop/CI/Evosuite//Math_70/Math/evosuite/28/Math-70f-evosuite.28.tar.bz
+Died at /home/liumengjiao/Desktop/defects4j/framework/bin/d4j/d4j-test line 125.
+Compilation failed in require at /home/liumengjiao/Desktop/defects4j/framework/bin/defects4j line 195.

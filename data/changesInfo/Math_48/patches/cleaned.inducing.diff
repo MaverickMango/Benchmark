@@ -3,8 +3,8 @@ Only in data/changesInfo//Math_48/properties/modified_classes/inducing/src/test/
 Only in data/changesInfo//Math_48/properties/modified_classes/inducing/src/test/java/org/apache/commons/math/analysis/solvers: IllinoisSolverTest.java
 Only in data/changesInfo//Math_48/properties/modified_classes/inducing/src/test/java/org/apache/commons/math/analysis/solvers: PegasusSolverTest.java
 diff -u -r data/changesInfo//Math_48/properties/modified_classes/inducing/src/test/java/org/apache/commons/math/analysis/solvers/RegulaFalsiSolverTest.java data/changesInfo//Math_48/cleaned/inducing/src/test/java/org/apache/commons/math/analysis/solvers/RegulaFalsiSolverTest.java
---- data/changesInfo//Math_48/properties/modified_classes/inducing/src/test/java/org/apache/commons/math/analysis/solvers/RegulaFalsiSolverTest.java	2023-08-25 13:58:28.841417064 +0800
-+++ data/changesInfo//Math_48/cleaned/inducing/src/test/java/org/apache/commons/math/analysis/solvers/RegulaFalsiSolverTest.java	2023-08-02 21:52:32.828000000 +0800
+--- data/changesInfo//Math_48/properties/modified_classes/inducing/src/test/java/org/apache/commons/math/analysis/solvers/RegulaFalsiSolverTest.java	2023-12-27 22:47:26.637080501 -0800
++++ data/changesInfo//Math_48/cleaned/inducing/src/test/java/org/apache/commons/math/analysis/solvers/RegulaFalsiSolverTest.java	2023-08-02 06:52:32.828000000 -0700
 @@ -17,6 +17,10 @@
  
  package org.apache.commons.math.analysis.solvers;

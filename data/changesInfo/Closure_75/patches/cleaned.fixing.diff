@@ -1,6 +1,6 @@
 diff -u -r data/changesInfo//Closure_75/properties/modified_classes/inducing/src/com/google/javascript/jscomp/NodeUtil.java data/changesInfo//Closure_75/cleaned/fixing/src/com/google/javascript/jscomp/NodeUtil.java
---- data/changesInfo//Closure_75/properties/modified_classes/inducing/src/com/google/javascript/jscomp/NodeUtil.java	2023-08-02 17:22:01.601932618 +0800
-+++ data/changesInfo//Closure_75/cleaned/fixing/src/com/google/javascript/jscomp/NodeUtil.java	2023-06-27 15:36:32.111790390 +0800
+--- data/changesInfo//Closure_75/properties/modified_classes/inducing/src/com/google/javascript/jscomp/NodeUtil.java	2023-08-02 02:22:01.601932618 -0700
++++ data/changesInfo//Closure_75/cleaned/fixing/src/com/google/javascript/jscomp/NodeUtil.java	2023-06-27 00:36:32.111790390 -0700
 @@ -229,6 +229,10 @@
          return null;
  

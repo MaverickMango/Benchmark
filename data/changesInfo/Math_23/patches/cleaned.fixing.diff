@@ -1,6 +1,6 @@
 diff -u -r data/changesInfo//Math_23/properties/modified_classes/inducing/src/main/java/org/apache/commons/math3/optimization/univariate/BrentOptimizer.java data/changesInfo//Math_23/cleaned/fixing/src/main/java/org/apache/commons/math3/optimization/univariate/BrentOptimizer.java
---- data/changesInfo//Math_23/properties/modified_classes/inducing/src/main/java/org/apache/commons/math3/optimization/univariate/BrentOptimizer.java	2023-07-25 20:54:35.739488399 +0800
-+++ data/changesInfo//Math_23/cleaned/fixing/src/main/java/org/apache/commons/math3/optimization/univariate/BrentOptimizer.java	2023-07-25 20:57:01.041923685 +0800
+--- data/changesInfo//Math_23/properties/modified_classes/inducing/src/main/java/org/apache/commons/math3/optimization/univariate/BrentOptimizer.java	2023-07-25 05:54:35.739488399 -0700
++++ data/changesInfo//Math_23/cleaned/fixing/src/main/java/org/apache/commons/math3/optimization/univariate/BrentOptimizer.java	2023-07-25 05:57:01.041923685 -0700
 @@ -140,6 +140,7 @@
          UnivariatePointValuePair previous = null;
          UnivariatePointValuePair current

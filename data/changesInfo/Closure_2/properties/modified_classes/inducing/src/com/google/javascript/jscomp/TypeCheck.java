@@ -238,11 +238,6 @@ public class TypeCheck implements NodeTraversal.Callback, CompilerPass {
                              "Cannot add a property to a struct instance " +
                              "after it is constructed.");
 
-  static final DiagnosticType ILLEGAL_OBJLIT_KEY =
-      DiagnosticType.warning(
-          "ILLEGAL_OBJLIT_KEY",
-          "Illegal key, the object literal is a {0}");
-
   static final DiagnosticGroup ALL_DIAGNOSTICS = new DiagnosticGroup(
       DETERMINISTIC_TEST,
       DETERMINISTIC_TEST_NO_RESULT,
@@ -274,7 +269,6 @@ public class TypeCheck implements NodeTraversal.Callback, CompilerPass {
       EXPECTED_THIS_TYPE,
       IN_USED_WITH_STRUCT,
       ILLEGAL_PROPERTY_CREATION,
-      ILLEGAL_OBJLIT_KEY,
       RhinoErrorReporter.TYPE_PARSE_ERROR,
       TypedScopeCreator.UNKNOWN_LENDS,
       TypedScopeCreator.LENDS_ON_NON_OBJECT,
@@ -482,19 +476,6 @@ public class TypeCheck implements NodeTraversal.Callback, CompilerPass {
     boolean typeable = true;
 
     switch (n.getType()) {
-      case Token.CAST:
-        Node expr = n.getFirstChild();
-        ensureTyped(t, n, getJSType(expr));
-
-        // If the cast, tightens the type apply it, so it is available post
-        // normalization.
-        JSType castType = getJSType(n);
-        JSType exprType = getJSType(expr);
-        if (castType.isSubtype(exprType)) {
-          expr.setJSType(castType);
-        }
-        break;
-
       case Token.NAME:
         typeable = visitName(t, n, parent);
         break;
@@ -829,9 +810,8 @@ public class TypeCheck implements NodeTraversal.Callback, CompilerPass {
           }
         }
         if (n.isObjectLit()) {
-          JSType typ = getJSType(n);
           for (Node key : n.children()) {
-            visitObjLitKey(t, key, n, typ);
+            visitObjLitKey(t, key, n);
           }
         }
         break;
@@ -1055,20 +1035,12 @@ public class TypeCheck implements NodeTraversal.Callback, CompilerPass {
    * @param t the traversal
    * @param key the assign node
    */
-  private void visitObjLitKey(
-      NodeTraversal t, Node key, Node objlit, JSType litType) {
+  private void visitObjLitKey(NodeTraversal t, Node key, Node objlit) {
     // Do not validate object lit value types in externs. We don't really care,
     // and it makes it easier to generate externs.
     if (objlit.isFromExterns()) {
       ensureTyped(t, key);
       return;
-    }
-
-    // Structs must have unquoted keys and dicts must have quoted keys
-    if (litType.isStruct() && key.isQuotedString()) {
-      report(t, key, ILLEGAL_OBJLIT_KEY, "struct");
-    } else if (litType.isDict() && !key.isQuotedString()) {
-      report(t, key, ILLEGAL_OBJLIT_KEY, "dict");
     }
 
     // TODO(johnlenz): Validate get and set function declarations are valid
@@ -1964,11 +1936,8 @@ public class TypeCheck implements NodeTraversal.Callback, CompilerPass {
     JSDocInfo info = n.getJSDocInfo();
     if (info != null) {
       if (info.hasType()) {
-        // TODO(johnlenz): Change this so that we only look for casts on CAST
-        // nodes one the misplaced type annotation warning is on by default and
-        // people have been given a chance to fix them.  As is, this is here
-        // simply for legacy casts.
         JSType infoType = info.getType().evaluate(t.getScope(), typeRegistry);
+        // remove cast check here.
         validator.expectCanCast(t, n, infoType, type);
         type = infoType;
       }

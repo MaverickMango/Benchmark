@@ -4,14 +4,14 @@
     "name": "root.bean.benchmarks.Defects4JBug"
   },
   "d4jCmd": "/home/liumengjiao/Desktop/defects4j/framework/bin/defects4j",
-  "dataDir": "data/changesInfo/",
+  "dataDir": "/home/liumengjiao/Desktop/CI/Benchmark/data/changesInfo/",
   "properties": {
     "trigger.tests": "com.google.javascript.jscomp.PeepholeFoldConstantsTest::testIEString",
     "test.dir": "test",
     "clz.modified": "com.google.javascript.jscomp.NodeUtil",
     "src.dir": "src"
   },
-  "timeoutSecond": 300,
+  "timeoutSecond": 100,
   "proj": "Closure",
   "id": "75",
   "workingDir": "../bugs/Closure_75_buggy",
@@ -33,27 +33,27 @@
       "changed_functions": [
         {
           "qualified_names": [
-            "com.google.javascript.jscomp.PeepholeFoldConstants:tryFoldUnaryOperator:[Node n]:Node",
-            "com.google.javascript.jscomp.PeepholeFoldConstants:tryFoldArithmeticOp:[Node n, Node left, Node right]:Node",
-            "com.google.javascript.jscomp.PeepholeFoldConstants:optimizeSubtree:[Node subtree]:Node",
-            "com.google.javascript.jscomp.PeepholeFoldConstants:isValidInt:[double val]:boolean",
-            "com.google.javascript.jscomp.PeepholeFoldConstants:performArithmeticOp:[int opType, Node left, Node right]:Node",
             "com.google.javascript.jscomp.PeepholeFoldConstants:tryFoldLeftChildOp:[Node n, Node left, Node right]:Node",
-            "com.google.javascript.jscomp.PeepholeFoldConstants:areValidInts:[double val1, double val2]:boolean"
+            "com.google.javascript.jscomp.PeepholeFoldConstants:areValidInts:[double val1, double val2]:boolean",
+            "com.google.javascript.jscomp.PeepholeFoldConstants:tryFoldArithmeticOp:[Node n, Node left, Node right]:Node",
+            "com.google.javascript.jscomp.PeepholeFoldConstants:performArithmeticOp:[int opType, Node left, Node right]:Node",
+            "com.google.javascript.jscomp.PeepholeFoldConstants:isValidInt:[double val]:boolean",
+            "com.google.javascript.jscomp.PeepholeFoldConstants:optimizeSubtree:[Node subtree]:Node",
+            "com.google.javascript.jscomp.PeepholeFoldConstants:tryFoldUnaryOperator:[Node n]:Node"
           ],
           "num": 7
         },
         {
           "qualified_names": [
             "com.google.javascript.jscomp.PeepholeFoldConstants:performArithmeticOp:[int opType, Node left, Node right]:Node",
-            "com.google.javascript.jscomp.PeepholeFoldConstants:tryFoldAndOr:[Node n, Node left, Node right]:Node",
             "com.google.javascript.jscomp.PeepholeFoldConstants:tryReduceOperandsForOp:[Node n]:void",
-            "com.google.javascript.jscomp.PeepholeFoldConstants:tryFoldArithmeticOp:[Node n, Node left, Node right]:Node",
-            "com.google.javascript.jscomp.PeepholeFoldConstants:tryConvertToNumber:[Node n]:void",
-            "com.google.javascript.jscomp.PeepholeFoldConstants:tryFoldLeftChildOp:[Node n, Node left, Node right]:Node",
             "com.google.javascript.jscomp.PeepholeFoldConstants:tryFoldUnaryOperator:[Node n]:Node",
+            "com.google.javascript.jscomp.PeepholeFoldConstants:tryConvertToNumber:[Node n]:void",
+            "com.google.javascript.jscomp.PeepholeFoldConstants:tryFoldAndOr:[Node n, Node left, Node right]:Node",
+            "com.google.javascript.jscomp.PeepholeFoldConstants:tryFoldLeftChildOp:[Node n, Node left, Node right]:Node",
             "com.google.javascript.jscomp.PeepholeFoldConstants:optimizeSubtree:[Node subtree]:Node",
-            "com.google.javascript.jscomp.PeepholeFoldConstants:tryConvertOperandsToNumber:[Node n]:void"
+            "com.google.javascript.jscomp.PeepholeFoldConstants:tryConvertOperandsToNumber:[Node n]:void",
+            "com.google.javascript.jscomp.PeepholeFoldConstants:tryFoldArithmeticOp:[Node n, Node left, Node right]:Node"
           ],
           "num": 9
         }
@@ -725,17 +725,17 @@
       "changed_functions": [
         {
           "qualified_names": [
-            "com.google.javascript.jscomp.NodeUtil:isStrWhiteSpaceChar:[int c]:boolean",
             "com.google.javascript.jscomp.NodeUtil:trimJsWhiteSpace:[String s]:String",
-            "com.google.javascript.jscomp.NodeUtil:getStringNumberValue:[String rawJsString]:Double"
+            "com.google.javascript.jscomp.NodeUtil:getStringNumberValue:[String rawJsString]:Double",
+            "com.google.javascript.jscomp.NodeUtil:isStrWhiteSpaceChar:[int c]:boolean"
           ],
           "num": 3
         },
         {
           "qualified_names": [
-            "com.google.javascript.jscomp.NodeUtil:trimJsWhiteSpace:[String s]:String",
+            "com.google.javascript.jscomp.NodeUtil:getStringNumberValue:[String rawJsString]:Double",
             "com.google.javascript.jscomp.NodeUtil:isStrWhiteSpaceChar:[int c]:TernaryValue",
-            "com.google.javascript.jscomp.NodeUtil:getStringNumberValue:[String rawJsString]:Double"
+            "com.google.javascript.jscomp.NodeUtil:trimJsWhiteSpace:[String s]:String"
           ],
           "num": 3
         }

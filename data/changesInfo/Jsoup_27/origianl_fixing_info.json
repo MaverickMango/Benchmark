@@ -4,14 +4,14 @@
     "name": "root.bean.benchmarks.Defects4JBug"
   },
   "d4jCmd": "/home/liumengjiao/Desktop/defects4j/framework/bin/defects4j",
-  "dataDir": "data/changesInfo/",
+  "dataDir": "/home/liumengjiao/Desktop/CI/Benchmark/data/changesInfo/",
   "properties": {
     "trigger.tests": "org.jsoup.helper.DataUtilTest::testCharset,org.jsoup.helper.DataUtilTest::testQuotedCharset",
     "test.dir": "src/test/java",
     "clz.modified": "org.jsoup.helper.DataUtil",
     "src.dir": "src/main/java"
   },
-  "timeoutSecond": 300,
+  "timeoutSecond": 100,
   "proj": "Jsoup",
   "id": "27",
   "workingDir": "../bugs/Jsoup_27_buggy",
@@ -41,8 +41,8 @@
         {
           "qualified_names": [
             "org.jsoup.DataUtil:load:[URL url, int timeoutMillis]:String",
-            "org.jsoup.DataUtil:readInputStream:[InputStream inStream, String charsetName]:String",
-            "org.jsoup.DataUtil:getCharsetFromContentType:[String contentType]:String"
+            "org.jsoup.DataUtil:getCharsetFromContentType:[String contentType]:String",
+            "org.jsoup.DataUtil:readInputStream:[InputStream inStream, String charsetName]:String"
           ],
           "num": 3
         }
@@ -301,9 +301,9 @@
       "changed_functions": [
         {
           "qualified_names": [
-            "org.jsoup.Jsoup:parse:[File in, String charsetName, String baseUri]:Document",
             "org.jsoup.Jsoup:parse:[File in, String charsetName]:Document",
-            "org.jsoup.Jsoup:parse:[URL url, int timeoutMillis]:Document"
+            "org.jsoup.Jsoup:parse:[URL url, int timeoutMillis]:Document",
+            "org.jsoup.Jsoup:parse:[File in, String charsetName, String baseUri]:Document"
           ],
           "num": 3
         },

@@ -4,14 +4,14 @@
     "name": "root.bean.benchmarks.Defects4JBug"
   },
   "d4jCmd": "/home/liumengjiao/Desktop/defects4j/framework/bin/defects4j",
-  "dataDir": "data/changesInfo/",
+  "dataDir": "/home/liumengjiao/Desktop/CI/Benchmark/data/changesInfo/",
   "properties": {
     "trigger.tests": "org.apache.commons.math3.dfp.DfpTest::testMultiply",
     "test.dir": "src/test/java",
     "clz.modified": "org.apache.commons.math3.dfp.Dfp",
     "src.dir": "src/main/java"
   },
-  "timeoutSecond": 300,
+  "timeoutSecond": 100,
   "proj": "Math",
   "id": "17",
   "workingDir": "../bugs/Math_17_buggy",
@@ -72,8 +72,8 @@
         },
         {
           "qualified_names": [
-            "org.apache.commons.math3.dfp.Dfp:multiply:[final int x]:Dfp",
-            "org.apache.commons.math3.dfp.Dfp:multiplyFast:[final int x]:Dfp"
+            "org.apache.commons.math3.dfp.Dfp:multiplyFast:[final int x]:Dfp",
+            "org.apache.commons.math3.dfp.Dfp:multiply:[final int x]:Dfp"
           ],
           "num": 2
         }

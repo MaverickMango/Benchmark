@@ -1,6 +1,6 @@
 diff -u -r data/changesInfo//Math_10/properties/modified_classes/inducing/src/main/java/org/apache/commons/math3/analysis/differentiation/DSCompiler.java data/changesInfo//Math_10/cleaned/fixing/src/main/java/org/apache/commons/math3/analysis/differentiation/DSCompiler.java
---- data/changesInfo//Math_10/properties/modified_classes/inducing/src/main/java/org/apache/commons/math3/analysis/differentiation/DSCompiler.java	2023-08-25 13:41:04.642613117 +0800
-+++ data/changesInfo//Math_10/cleaned/fixing/src/main/java/org/apache/commons/math3/analysis/differentiation/DSCompiler.java	2023-06-20 22:12:52.998069643 +0800
+--- data/changesInfo//Math_10/properties/modified_classes/inducing/src/main/java/org/apache/commons/math3/analysis/differentiation/DSCompiler.java	2023-12-27 22:46:11.663973462 -0800
++++ data/changesInfo//Math_10/cleaned/fixing/src/main/java/org/apache/commons/math3/analysis/differentiation/DSCompiler.java	2023-06-20 07:12:52.998069643 -0700
 @@ -1317,7 +1317,8 @@
              }
  

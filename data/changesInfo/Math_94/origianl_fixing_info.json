@@ -4,14 +4,14 @@
     "name": "root.bean.benchmarks.Defects4JBug"
   },
   "d4jCmd": "/home/liumengjiao/Desktop/defects4j/framework/bin/defects4j",
-  "dataDir": "data/changesInfo/",
+  "dataDir": "/home/liumengjiao/Desktop/CI/Benchmark/data/changesInfo/",
   "properties": {
     "trigger.tests": "org.apache.commons.math.util.MathUtilsTest::testGcd",
     "test.dir": "src/test",
     "clz.modified": "org.apache.commons.math.util.MathUtils",
     "src.dir": "src/java"
   },
-  "timeoutSecond": 300,
+  "timeoutSecond": 100,
   "proj": "Math",
   "id": "94",
   "workingDir": "../bugs/Math_94_buggy",
@@ -33,27 +33,27 @@
       "changed_functions": [
         {
           "qualified_names": [
+            "org.apache.commons.math.fraction.Fraction:Fraction:[int num, int den]:null",
             "org.apache.commons.math.fraction.Fraction:add:[Fraction rhs]:Fraction",
             "org.apache.commons.math.fraction.Fraction:negate:[]:Fraction",
-            "org.apache.commons.math.fraction.Fraction:compareTo:[Object object]:int",
-            "org.apache.commons.math.fraction.Fraction:subtract:[Fraction rhs]:Fraction",
             "org.apache.commons.math.fraction.Fraction:divide:[Fraction rhs]:Fraction",
-            "org.apache.commons.math.fraction.Fraction:Fraction:[int num, int den]:null",
-            "org.apache.commons.math.fraction.Fraction:multiply:[Fraction rhs]:Fraction"
+            "org.apache.commons.math.fraction.Fraction:multiply:[Fraction rhs]:Fraction",
+            "org.apache.commons.math.fraction.Fraction:compareTo:[Object object]:int",
+            "org.apache.commons.math.fraction.Fraction:subtract:[Fraction rhs]:Fraction"
           ],
           "num": 7
         },
         {
           "qualified_names": [
             "org.apache.commons.math.fraction.Fraction:negate:[]:Fraction",
-            "org.apache.commons.math.fraction.Fraction:subtract:[Fraction fraction]:Fraction",
-            "org.apache.commons.math.fraction.Fraction:divide:[Fraction fraction]:Fraction",
             "org.apache.commons.math.fraction.Fraction:getReducedFraction:[int numerator, int denominator]:Fraction",
+            "org.apache.commons.math.fraction.Fraction:add:[Fraction fraction]:Fraction",
             "org.apache.commons.math.fraction.Fraction:addSub:[Fraction fraction, boolean isAdd]:Fraction",
             "org.apache.commons.math.fraction.Fraction:Fraction:[int num, int den]:null",
+            "org.apache.commons.math.fraction.Fraction:multiply:[Fraction fraction]:Fraction",
             "org.apache.commons.math.fraction.Fraction:doubleValue:[]:double",
-            "org.apache.commons.math.fraction.Fraction:add:[Fraction fraction]:Fraction",
-            "org.apache.commons.math.fraction.Fraction:multiply:[Fraction fraction]:Fraction"
+            "org.apache.commons.math.fraction.Fraction:divide:[Fraction fraction]:Fraction",
+            "org.apache.commons.math.fraction.Fraction:subtract:[Fraction fraction]:Fraction"
           ],
           "num": 9
         }
@@ -498,9 +498,9 @@
         },
         {
           "qualified_names": [
-            "org.apache.commons.math.util.MathUtils:gcd:[int u, int v]:int",
             "org.apache.commons.math.util.MathUtils:mulAndCheck:[int x, int y]:int",
             "org.apache.commons.math.util.MathUtils:addAndCheck:[int x, int y]:int",
+            "org.apache.commons.math.util.MathUtils:gcd:[int u, int v]:int",
             "org.apache.commons.math.util.MathUtils:subAndCheck:[int x, int y]:int"
           ],
           "num": 4
@@ -947,8 +947,8 @@
         "org.apache.commons.math.util.MathUtils:gcd:[int u, int v]:int",
         "org.apache.commons.math.fraction.Fraction:multiply:[Fraction fraction]:Fraction",
         "org.apache.commons.math.util.MathUtils:mulAndCheck:[int x, int y]:int",
-        "org.apache.commons.math.fraction.Fraction:subtract:[Fraction fraction]:Fraction",
         "org.apache.commons.math.fraction.Fraction:addSub:[Fraction fraction, boolean isAdd]:Fraction",
+        "org.apache.commons.math.fraction.Fraction:subtract:[Fraction fraction]:Fraction",
         "org.apache.commons.math.util.MathUtils:subAndCheck:[int x, int y]:int",
         "org.apache.commons.math.util.MathUtils:addAndCheck:[int x, int y]:int",
         "org.apache.commons.math.fraction.Fraction:divide:[Fraction fraction]:Fraction"
@@ -958,8 +958,8 @@
     "delete_functions": {
       "qualified_names": [
         "org.apache.commons.math.util.MathUtils:gcd:[int a, int b]:int",
-        "org.apache.commons.math.fraction.Fraction:compareTo:[Object object]:int",
         "org.apache.commons.math.fraction.Fraction:multiply:[Fraction rhs]:Fraction",
+        "org.apache.commons.math.fraction.Fraction:compareTo:[Object object]:int",
         "org.apache.commons.math.fraction.Fraction:add:[Fraction rhs]:Fraction",
         "org.apache.commons.math.fraction.Fraction:subtract:[Fraction rhs]:Fraction",
         "org.apache.commons.math.fraction.Fraction:divide:[Fraction rhs]:Fraction"
@@ -1034,19 +1034,9 @@
           "to": "ParenthesizedExpression [13885,13893]"
         },
         {
-          "type": "move-tree",
-          "from": "",
-          "to": ""
-        },
-        {
           "type": "insert-node",
           "from": "",
-          "to": "InfixExpression [13886,13892]"
-        },
-        {
-          "type": "move-tree",
-          "from": "",
-          "to": ""
+          "to": "InfixExpression [13874,13880]"
         },
         {
           "type": "move-tree",
@@ -1054,14 +1044,24 @@
           "to": ""
         },
         {
-          "type": "insert-node",
+          "type": "move-tree",
           "from": "",
-          "to": "INFIX_EXPRESSION_OPERATOR: \u003d\u003d [13888,13890]"
+          "to": ""
         },
         {
           "type": "insert-node",
           "from": "",
-          "to": "NumberLiteral: 0 [13891,13892]"
+          "to": "INFIX_EXPRESSION_OPERATOR: \u003d\u003d [13876,13878]"
+        },
+        {
+          "type": "insert-node",
+          "from": "",
+          "to": "NumberLiteral: 0 [13879,13880]"
+        },
+        {
+          "type": "move-tree",
+          "from": "",
+          "to": ""
         },
         {
           "type": "delete-node",

@@ -4,14 +4,14 @@
     "name": "root.bean.benchmarks.Defects4JBug"
   },
   "d4jCmd": "/home/liumengjiao/Desktop/defects4j/framework/bin/defects4j",
-  "dataDir": "data/changesInfo/",
+  "dataDir": "/home/liumengjiao/Desktop/CI/Benchmark/data/changesInfo/",
   "properties": {
     "trigger.tests": "com.google.javascript.jscomp.CommandLineRunnerTest::testIssue504,com.google.javascript.jscomp.NodeUtilTest::testGetBooleanValue",
     "test.dir": "test",
     "clz.modified": "com.google.javascript.jscomp.NodeUtil",
     "src.dir": "src"
   },
-  "timeoutSecond": 300,
+  "timeoutSecond": 100,
   "proj": "Closure",
   "id": "60",
   "workingDir": "../bugs/Closure_60_buggy",
@@ -132,48 +132,48 @@
       "changed_functions": [
         {
           "qualified_names": [
-            "com.google.javascript.jscomp.PureFunctionIdentifier\\$FunctionAnalyzer:visitAssignmentOrUnaryOperator:[FunctionInformation sideEffectInfo, Scope scope, Node op, Node lhs, Node rhs]:void",
-            "com.google.javascript.jscomp.PureFunctionIdentifier:isKnownLocalValue:[Node value]:boolean",
-            "com.google.javascript.jscomp.PureFunctionIdentifier\\$FunctionAnalyzer:exitScope:[NodeTraversal t]:void",
             "com.google.javascript.jscomp.PureFunctionIdentifier\\$FunctionAnalyzer:enterScope:[NodeTraversal t]:void",
-            "com.google.javascript.jscomp.PureFunctionIdentifier\\$FunctionAnalyzer:visitThrow:[FunctionInformation sideEffectInfo]:void",
-            "com.google.javascript.jscomp.PureFunctionIdentifier\\$FunctionAnalyzer:visitCall:[FunctionInformation sideEffectInfo, Node node]:void",
+            "com.google.javascript.jscomp.PureFunctionIdentifier\\$FunctionAnalyzer:exitScope:[NodeTraversal t]:void",
             "com.google.javascript.jscomp.PureFunctionIdentifier:markPureFunctionCalls:[]:void",
             "com.google.javascript.jscomp.PureFunctionIdentifier\\$FunctionAnalyzer:visit:[NodeTraversal traversal, Node node, Node parent]:void",
-            "com.google.javascript.jscomp.PureFunctionIdentifier\\$FunctionAnalyzer:hasNoSideEffectsAnnotation:[Node node, Node parent, Node gramp]:boolean",
-            "com.google.javascript.jscomp.PureFunctionIdentifier\\$FunctionAnalyzer:visitFunction:[NodeTraversal traversal, Node node, Node parent, Node gramp]:void"
+            "com.google.javascript.jscomp.PureFunctionIdentifier\\$FunctionAnalyzer:visitCall:[FunctionInformation sideEffectInfo, Node node]:void",
+            "com.google.javascript.jscomp.PureFunctionIdentifier\\$FunctionAnalyzer:visitThrow:[FunctionInformation sideEffectInfo]:void",
+            "com.google.javascript.jscomp.PureFunctionIdentifier:isKnownLocalValue:[Node value]:boolean",
+            "com.google.javascript.jscomp.PureFunctionIdentifier\\$FunctionAnalyzer:visitAssignmentOrUnaryOperator:[FunctionInformation sideEffectInfo, Scope scope, Node op, Node lhs, Node rhs]:void",
+            "com.google.javascript.jscomp.PureFunctionIdentifier\\$FunctionAnalyzer:visitFunction:[NodeTraversal traversal, Node node, Node parent, Node gramp]:void",
+            "com.google.javascript.jscomp.PureFunctionIdentifier\\$FunctionAnalyzer:hasNoSideEffectsAnnotation:[Node node, Node parent, Node gramp]:boolean"
           ],
           "num": 10
         },
         {
           "qualified_names": [
-            "com.google.javascript.jscomp.PureFunctionIdentifier\\$FunctionAnalyzer:visit:[NodeTraversal traversal, Node node, Node parent]:void",
-            "com.google.javascript.jscomp.PureFunctionIdentifier\\$FunctionAnalyzer:exitScope:[NodeTraversal t]:void",
-            "com.google.javascript.jscomp.PureFunctionIdentifier\\$SideEffectFlags:setAllFlags:[]:void",
-            "com.google.javascript.jscomp.PureFunctionIdentifier\\$SideEffectFlags:removeFlag:[int flag]:void",
-            "com.google.javascript.jscomp.PureFunctionIdentifier\\$SideEffectFlags:clearAllFlags:[]:void",
-            "com.google.javascript.jscomp.PureFunctionIdentifier\\$SideEffectFlags:setMutatesArguments:[]:void",
-            "com.google.javascript.jscomp.PureFunctionIdentifier:getCallThisObject:[Node callSite]:Node",
-            "com.google.javascript.jscomp.PureFunctionIdentifier\\$SideEffectFlags:valueOf:[]:int",
             "com.google.javascript.jscomp.PureFunctionIdentifier:isKnownLocalValue:[Node value]:boolean",
-            "com.google.javascript.jscomp.PureFunctionIdentifier\\$FunctionInformation:isExtern:[]:boolean",
-            "com.google.javascript.jscomp.PureFunctionIdentifier\\$FunctionAnalyzer:visitAssignmentOrUnaryOperator:[FunctionInformation sideEffectInfo, Scope scope, Node op, Node lhs, Node rhs]:void",
-            "com.google.javascript.jscomp.PureFunctionIdentifier\\$SideEffectFlags:setReturnsTainted:[]:void",
+            "com.google.javascript.jscomp.PureFunctionIdentifier:markPureFunctionCalls:[]:void",
+            "com.google.javascript.jscomp.PureFunctionIdentifier\\$FunctionAnalyzer:enterScope:[NodeTraversal t]:void",
             "com.google.javascript.jscomp.PureFunctionIdentifier\\$FunctionInformation:addTaintedLocalObject:[Var var]:void",
             "com.google.javascript.jscomp.PureFunctionIdentifier\\$SideEffectFlags:clearSideEffectFlags:[]:void",
-            "com.google.javascript.jscomp.PureFunctionIdentifier\\$SideEffectPropagationCallback:traverseEdge:[FunctionInformation callee, Node callSite, FunctionInformation caller]:boolean",
-            "com.google.javascript.jscomp.PureFunctionIdentifier\\$FunctionInformation:resetLocalVars:[]:void",
             "com.google.javascript.jscomp.PureFunctionIdentifier:isIncDec:[Node n]:boolean",
-            "com.google.javascript.jscomp.PureFunctionIdentifier\\$SideEffectFlags:setMutatesGlobalState:[]:void",
-            "com.google.javascript.jscomp.PureFunctionIdentifier:isCallOrApply:[Node callSite]:boolean",
-            "com.google.javascript.jscomp.PureFunctionIdentifier\\$FunctionInformation:mutatesGlobalState:[]:boolean",
-            "com.google.javascript.jscomp.PureFunctionIdentifier\\$SideEffectFlags:setThrows:[]:void",
-            "com.google.javascript.jscomp.PureFunctionIdentifier\\$FunctionInformation:blacklistLocal:[Var var]:void",
-            "com.google.javascript.jscomp.PureFunctionIdentifier\\$FunctionAnalyzer:enterScope:[NodeTraversal t]:void",
-            "com.google.javascript.jscomp.PureFunctionIdentifier\\$FunctionInformation:setTaintsReturn:[]:void",
             "com.google.javascript.jscomp.PureFunctionIdentifier\\$SideEffectFlags:areAllFlagsSet:[]:boolean",
+            "com.google.javascript.jscomp.PureFunctionIdentifier:isCallOrApply:[Node callSite]:boolean",
+            "com.google.javascript.jscomp.PureFunctionIdentifier\\$SideEffectFlags:valueOf:[]:int",
+            "com.google.javascript.jscomp.PureFunctionIdentifier\\$SideEffectFlags:clearAllFlags:[]:void",
+            "com.google.javascript.jscomp.PureFunctionIdentifier\\$SideEffectFlags:setThrows:[]:void",
+            "com.google.javascript.jscomp.PureFunctionIdentifier\\$SideEffectFlags:setAllFlags:[]:void",
+            "com.google.javascript.jscomp.PureFunctionIdentifier\\$FunctionInformation:setTaintsReturn:[]:void",
+            "com.google.javascript.jscomp.PureFunctionIdentifier\\$SideEffectFlags:setMutatesArguments:[]:void",
+            "com.google.javascript.jscomp.PureFunctionIdentifier\\$FunctionInformation:mutatesGlobalState:[]:boolean",
+            "com.google.javascript.jscomp.PureFunctionIdentifier\\$SideEffectFlags:setReturnsTainted:[]:void",
+            "com.google.javascript.jscomp.PureFunctionIdentifier\\$FunctionAnalyzer:exitScope:[NodeTraversal t]:void",
             "com.google.javascript.jscomp.PureFunctionIdentifier\\$SideEffectFlags:setMutatesThis:[]:void",
-            "com.google.javascript.jscomp.PureFunctionIdentifier:markPureFunctionCalls:[]:void"
+            "com.google.javascript.jscomp.PureFunctionIdentifier\\$FunctionInformation:resetLocalVars:[]:void",
+            "com.google.javascript.jscomp.PureFunctionIdentifier\\$FunctionAnalyzer:visit:[NodeTraversal traversal, Node node, Node parent]:void",
+            "com.google.javascript.jscomp.PureFunctionIdentifier\\$FunctionAnalyzer:visitAssignmentOrUnaryOperator:[FunctionInformation sideEffectInfo, Scope scope, Node op, Node lhs, Node rhs]:void",
+            "com.google.javascript.jscomp.PureFunctionIdentifier\\$FunctionInformation:blacklistLocal:[Var var]:void",
+            "com.google.javascript.jscomp.PureFunctionIdentifier\\$SideEffectFlags:removeFlag:[int flag]:void",
+            "com.google.javascript.jscomp.PureFunctionIdentifier:getCallThisObject:[Node callSite]:Node",
+            "com.google.javascript.jscomp.PureFunctionIdentifier\\$SideEffectFlags:setMutatesGlobalState:[]:void",
+            "com.google.javascript.jscomp.PureFunctionIdentifier\\$FunctionInformation:isExtern:[]:boolean",
+            "com.google.javascript.jscomp.PureFunctionIdentifier\\$SideEffectPropagationCallback:traverseEdge:[FunctionInformation callee, Node callSite, FunctionInformation caller]:boolean"
           ],
           "num": 27
         }
@@ -754,24 +754,24 @@
       "changed_functions": [
         {
           "qualified_names": [
-            "com.google.javascript.rhino.Node:propToString:[int propType]:String",
-            "com.google.javascript.rhino.Node:setIsNoSideEffectsCall:[]:void",
-            "com.google.javascript.rhino.Node:setQuotedString:[]:void",
+            "com.google.javascript.rhino.Node:isNoSideEffectsCall:[]:boolean",
             "com.google.javascript.rhino.Node:isQuotedString:[]:boolean",
-            "com.google.javascript.rhino.Node:isNoSideEffectsCall:[]:boolean"
+            "com.google.javascript.rhino.Node:setIsNoSideEffectsCall:[]:void",
+            "com.google.javascript.rhino.Node:propToString:[int propType]:String",
+            "com.google.javascript.rhino.Node:setQuotedString:[]:void"
           ],
           "num": 5
         },
         {
           "qualified_names": [
-            "com.google.javascript.rhino.Node:isLocalResultCall:[]:boolean",
-            "com.google.javascript.rhino.Node:setQuotedString:[]:void",
-            "com.google.javascript.rhino.Node:setSideEffectFlags:[int flags]:void",
             "com.google.javascript.rhino.Node:getSideEffectFlags:[]:int",
             "com.google.javascript.rhino.Node:areBitFlagsSet:[int value, int flags]:boolean",
+            "com.google.javascript.rhino.Node:setQuotedString:[]:void",
+            "com.google.javascript.rhino.Node:setSideEffectFlags:[int flags]:void",
+            "com.google.javascript.rhino.Node:isQuotedString:[]:boolean",
             "com.google.javascript.rhino.Node:isNoSideEffectsCall:[]:boolean",
-            "com.google.javascript.rhino.Node:propToString:[int propType]:String",
-            "com.google.javascript.rhino.Node:isQuotedString:[]:boolean"
+            "com.google.javascript.rhino.Node:isLocalResultCall:[]:boolean",
+            "com.google.javascript.rhino.Node:propToString:[int propType]:String"
           ],
           "num": 8
         }
@@ -998,8 +998,8 @@
     },
     "add_functions": {
       "qualified_names": [
-        "com.google.javascript.jscomp.PureFunctionIdentifier\\$SideEffectFlags:clearAllFlags:[]:void",
         "com.google.javascript.jscomp.PureFunctionIdentifier\\$SideEffectFlags:areAllFlagsSet:[]:boolean",
+        "com.google.javascript.jscomp.PureFunctionIdentifier\\$SideEffectFlags:clearAllFlags:[]:void",
         "com.google.javascript.jscomp.PureFunctionIdentifier\\$FunctionInformation:setTaintsReturn:[]:void",
         "com.google.javascript.rhino.Node:isLocalResultCall:[]:boolean",
         "com.google.javascript.jscomp.PureFunctionIdentifier\\$SideEffectFlags:setMutatesThis:[]:void",
@@ -1064,8 +1064,8 @@
       "changed_functions": [
         {
           "qualified_names": [
-            "com.google.javascript.jscomp.NodeUtil:getPureBooleanValue:[Node n]:TernaryValue",
-            "com.google.javascript.jscomp.NodeUtil:getImpureBooleanValue:[Node n]:TernaryValue"
+            "com.google.javascript.jscomp.NodeUtil:getImpureBooleanValue:[Node n]:TernaryValue",
+            "com.google.javascript.jscomp.NodeUtil:getPureBooleanValue:[Node n]:TernaryValue"
           ],
           "num": 2
         },
@@ -1145,21 +1145,21 @@
       "changed_functions": [
         {
           "qualified_names": [
-            "com.google.javascript.jscomp.PeepholeRemoveDeadCode:trySimpilifyUnusedResult:[Node n, boolean removeUnused]:Node",
-            "com.google.javascript.jscomp.PeepholeRemoveDeadCode:trySimpilifyUnusedResult:[Node n]:Node",
-            "com.google.javascript.jscomp.PeepholeRemoveDeadCode:tryFoldComma:[Node n]:Node",
+            "com.google.javascript.jscomp.PeepholeRemoveDeadCode:tryFoldExpr:[Node subtree]:Node",
             "com.google.javascript.jscomp.PeepholeRemoveDeadCode:tryFoldFor:[Node n]:Node",
-            "com.google.javascript.jscomp.PeepholeRemoveDeadCode:tryFoldExpr:[Node subtree]:Node"
+            "com.google.javascript.jscomp.PeepholeRemoveDeadCode:trySimpilifyUnusedResult:[Node n]:Node",
+            "com.google.javascript.jscomp.PeepholeRemoveDeadCode:trySimpilifyUnusedResult:[Node n, boolean removeUnused]:Node",
+            "com.google.javascript.jscomp.PeepholeRemoveDeadCode:tryFoldComma:[Node n]:Node"
           ],
           "num": 5
         },
         {
           "qualified_names": [
+            "com.google.javascript.jscomp.PeepholeRemoveDeadCode:tryFoldExpr:[Node subtree]:Node",
+            "com.google.javascript.jscomp.PeepholeRemoveDeadCode:tryFoldComma:[Node n]:Node",
             "com.google.javascript.jscomp.PeepholeRemoveDeadCode:tryFoldFor:[Node n]:Node",
             "com.google.javascript.jscomp.PeepholeRemoveDeadCode:trySimplifyUnusedResult:[Node n, boolean removeUnused]:Node",
-            "com.google.javascript.jscomp.PeepholeRemoveDeadCode:tryFoldComma:[Node n]:Node",
-            "com.google.javascript.jscomp.PeepholeRemoveDeadCode:trySimplifyUnusedResult:[Node n]:Node",
-            "com.google.javascript.jscomp.PeepholeRemoveDeadCode:tryFoldExpr:[Node subtree]:Node"
+            "com.google.javascript.jscomp.PeepholeRemoveDeadCode:trySimplifyUnusedResult:[Node n]:Node"
           ],
           "num": 5
         }

@@ -1,6 +1,6 @@
 diff -u -r data/changesInfo//Closure_125/properties/modified_classes/inducing/src/com/google/javascript/jscomp/TypeCheck.java data/changesInfo//Closure_125/cleaned/fixing/src/com/google/javascript/jscomp/TypeCheck.java
---- data/changesInfo//Closure_125/properties/modified_classes/inducing/src/com/google/javascript/jscomp/TypeCheck.java	2023-07-25 19:05:36.599519943 +0800
-+++ data/changesInfo//Closure_125/cleaned/fixing/src/com/google/javascript/jscomp/TypeCheck.java	2023-07-27 20:34:52.297021578 +0800
+--- data/changesInfo//Closure_125/properties/modified_classes/inducing/src/com/google/javascript/jscomp/TypeCheck.java	2023-07-25 04:05:36.599519943 -0700
++++ data/changesInfo//Closure_125/cleaned/fixing/src/com/google/javascript/jscomp/TypeCheck.java	2023-07-27 05:34:52.297021578 -0700
 @@ -1284,9 +1284,11 @@
    private void visitNew(NodeTraversal t, Node n) {
      Node constructor = n.getFirstChild();

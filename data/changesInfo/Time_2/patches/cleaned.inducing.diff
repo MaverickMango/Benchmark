@@ -1,7 +1,7 @@
 Only in data/changesInfo//Time_2/properties/modified_classes/inducing/src: main
 diff -u -r data/changesInfo//Time_2/properties/modified_classes/inducing/src/test/java/org/joda/time/TestPartial_Basics.java data/changesInfo//Time_2/cleaned/inducing/src/test/java/org/joda/time/TestPartial_Basics.java
---- data/changesInfo//Time_2/properties/modified_classes/inducing/src/test/java/org/joda/time/TestPartial_Basics.java	2023-08-25 14:11:55.932745288 +0800
-+++ data/changesInfo//Time_2/cleaned/inducing/src/test/java/org/joda/time/TestPartial_Basics.java	2023-06-24 17:47:36.462589976 +0800
+--- data/changesInfo//Time_2/properties/modified_classes/inducing/src/test/java/org/joda/time/TestPartial_Basics.java	2023-12-27 22:48:40.154986901 -0800
++++ data/changesInfo//Time_2/cleaned/inducing/src/test/java/org/joda/time/TestPartial_Basics.java	2023-06-24 02:47:36.462589976 -0700
 @@ -448,6 +448,14 @@
          assertSame(test, result);
      }

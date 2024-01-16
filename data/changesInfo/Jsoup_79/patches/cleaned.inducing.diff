@@ -3,8 +3,8 @@ Only in data/changesInfo//Jsoup_79/properties/modified_classes/inducing/src/test
 Only in data/changesInfo//Jsoup_79/properties/modified_classes/inducing/src/test/java/org/jsoup/nodes: DocumentTypeTest.java
 Only in data/changesInfo//Jsoup_79/properties/modified_classes/inducing/src/test/java/org/jsoup/nodes: ElementTest.java
 diff -u -r data/changesInfo//Jsoup_79/properties/modified_classes/inducing/src/test/java/org/jsoup/nodes/TextNodeTest.java data/changesInfo//Jsoup_79/cleaned/inducing/src/test/java/org/jsoup/nodes/TextNodeTest.java
---- data/changesInfo//Jsoup_79/properties/modified_classes/inducing/src/test/java/org/jsoup/nodes/TextNodeTest.java	2023-08-25 14:16:17.763649050 +0800
-+++ data/changesInfo//Jsoup_79/cleaned/inducing/src/test/java/org/jsoup/nodes/TextNodeTest.java	2023-07-27 17:59:34.558000000 +0800
+--- data/changesInfo//Jsoup_79/properties/modified_classes/inducing/src/test/java/org/jsoup/nodes/TextNodeTest.java	2023-12-27 22:52:01.498834427 -0800
++++ data/changesInfo//Jsoup_79/cleaned/inducing/src/test/java/org/jsoup/nodes/TextNodeTest.java	2023-07-27 02:59:34.558000000 -0700
 @@ -4,6 +4,7 @@
  import org.jsoup.TextUtil;
  import org.junit.Test;

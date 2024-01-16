@@ -1,9 +1,10 @@
 package org.jsoup.nodes;
 
+import org.jsoup.parser.TokenQueue;
+
 import java.util.HashMap;
 import java.util.Map;
-import java.util.regex.Pattern;
-import java.util.regex.Matcher;
+import java.nio.charset.Charset;
 import java.nio.charset.CharsetEncoder;
 
 /**
@@ -22,7 +23,6 @@ class Entities {
     private static final Map<String, Character> full;
     private static final Map<Character, String> baseByVal;
     private static final Map<Character, String> fullByVal;
-    private static final Pattern unescapePattern = Pattern.compile("&(#(x|X)?([0-9a-fA-F]+)|[a-zA-Z]+);?");
 
     static String escape(String string, CharsetEncoder encoder, EscapeMode escapeMode) {
         StringBuilder accum = new StringBuilder(string.length() * 2);
@@ -45,32 +45,52 @@ class Entities {
         if (!string.contains("&"))
             return string;
 
-        Matcher m = unescapePattern.matcher(string); // &(#(x|X)?([0-9a-fA-F]+)|[a-zA-Z]+);?
-        StringBuffer accum = new StringBuffer(string.length()); // pity matcher can't use stringbuilder, avoid syncs
+        StringBuilder accum = new StringBuilder(string.length());
+        TokenQueue cq = new TokenQueue(string);
 
-        while (m.find()) {
+        // formats dealt with: [&amp] (no semi), [&amp;], [&#123;] (int), &#
+        while (!cq.isEmpty()) {
+            accum.append(cq.consumeTo("&"));
+            if (!cq.matches("&")) { // ran to end
+                accum.append(cq.remainder());
+                break;
+            }
+            cq.advance(); // past &
+            String val;
             int charval = -1;
-            String num = m.group(3);
-            if (num != null) {
-                try {
-                    int base = m.group(2) != null ? 16 : 10; // 2 is hex indicator
-                    charval = Integer.valueOf(num, base);
-                } catch (NumberFormatException e) {
-                } // skip
-            } else {
-                String name = m.group(1).toLowerCase();
-                if (full.containsKey(name))
-                    charval = full.get(name);
-            }
 
-            if (charval != -1 || charval > 0xFFFF) { // out of range
-                String c = Character.toString((char) charval);
-                m.appendReplacement(accum, c);
-            } else {
-                m.appendReplacement(accum, m.group(0)); // replace with original string
+            boolean isNum = false;
+            if (cq.matches("#")) {
+                isNum = true;
+                cq.consume();
             }
+            val = cq.consumeWord(); // and num!
+            if (val.length() == 0) {
+                accum.append("&");
+                continue;
+            }
+            if (cq.matches(";"))
+                cq.advance();
+
+            if (isNum) {
+                try {
+                    if (val.charAt(0) == 'x' || val.charAt(0) == 'X')
+                        charval = Integer.valueOf(val.substring(1), 16);
+                    else
+                        charval = Integer.valueOf(val, 10);
+                } catch (NumberFormatException e) {
+                    // skip
+                }
+            } else {
+                if (full.containsKey(val.toLowerCase()))
+                    charval = full.get(val.toLowerCase());
+            }
+            if (charval == -1 || charval > 0xFFFF) // out of range
+                accum.append("&").append(val).append(";");
+            else
+                accum.append((char) charval);
         }
-        m.appendTail(accum);
+
         return accum.toString();
     }
 

@@ -2,8 +2,8 @@ Only in data/changesInfo//Closure_64/properties/modified_classes/inducing/: src
 Only in data/changesInfo//Closure_64/properties/modified_classes/inducing/test/com/google/javascript/jscomp: AmbiguatePropertiesTest.java
 Only in data/changesInfo//Closure_64/properties/modified_classes/inducing/test/com/google/javascript/jscomp: CodePrinterTest.java
 diff -u -r data/changesInfo//Closure_64/properties/modified_classes/inducing/test/com/google/javascript/jscomp/CommandLineRunnerTest.java data/changesInfo//Closure_64/cleaned/inducing/test/com/google/javascript/jscomp/CommandLineRunnerTest.java
---- data/changesInfo//Closure_64/properties/modified_classes/inducing/test/com/google/javascript/jscomp/CommandLineRunnerTest.java	2023-08-10 19:24:03.397238655 +0800
-+++ data/changesInfo//Closure_64/cleaned/inducing/test/com/google/javascript/jscomp/CommandLineRunnerTest.java	2023-08-02 16:55:42.043000000 +0800
+--- data/changesInfo//Closure_64/properties/modified_classes/inducing/test/com/google/javascript/jscomp/CommandLineRunnerTest.java	2023-08-10 04:24:03.397238655 -0700
++++ data/changesInfo//Closure_64/cleaned/inducing/test/com/google/javascript/jscomp/CommandLineRunnerTest.java	2023-08-02 01:55:42.043000000 -0700
 @@ -18,12 +18,10 @@
  
  import com.google.common.base.Function;

@@ -4,14 +4,14 @@
     "name": "root.bean.benchmarks.Defects4JBug"
   },
   "d4jCmd": "/home/liumengjiao/Desktop/defects4j/framework/bin/defects4j",
-  "dataDir": "data/changesInfo/",
+  "dataDir": "/home/liumengjiao/Desktop/CI/Benchmark/data/changesInfo/",
   "properties": {
     "trigger.tests": "org.apache.commons.compress.archivers.zip.ZipArchiveEntryTest::testNotEquals",
     "test.dir": "src/test/java",
     "clz.modified": "org.apache.commons.compress.archivers.zip.ZipArchiveEntry",
     "src.dir": "src/main/java"
   },
-  "timeoutSecond": 300,
+  "timeoutSecond": 100,
   "proj": "Compress",
   "id": "6",
   "workingDir": "../bugs/Compress_6_buggy",
@@ -358,17 +358,17 @@
       "changed_functions": [
         {
           "qualified_names": [
-            "org.apache.commons.compress.archivers.zip.ZipArchiveEntry:ZipArchiveEntry:[]:null",
             "org.apache.commons.compress.archivers.zip.ZipArchiveEntry:equals:[Object obj]:boolean",
-            "org.apache.commons.compress.archivers.zip.ZipArchiveEntry:ZipArchiveEntry:[String name]:null"
+            "org.apache.commons.compress.archivers.zip.ZipArchiveEntry:ZipArchiveEntry:[String name]:null",
+            "org.apache.commons.compress.archivers.zip.ZipArchiveEntry:ZipArchiveEntry:[]:null"
           ],
           "num": 3
         },
         {
           "qualified_names": [
-            "org.apache.commons.compress.archivers.zip.ZipArchiveEntry:equals:[Object obj]:boolean",
             "org.apache.commons.compress.archivers.zip.ZipArchiveEntry:ZipArchiveEntry:[String name]:null",
-            "org.apache.commons.compress.archivers.zip.ZipArchiveEntry:ZipArchiveEntry:[]:null"
+            "org.apache.commons.compress.archivers.zip.ZipArchiveEntry:ZipArchiveEntry:[]:null",
+            "org.apache.commons.compress.archivers.zip.ZipArchiveEntry:equals:[Object obj]:boolean"
           ],
           "num": 3
         }

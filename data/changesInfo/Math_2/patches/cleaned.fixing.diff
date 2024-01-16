@@ -1,8 +1,8 @@
 Only in data/changesInfo//Math_2/properties/modified_classes/inducing/src/main/java/org/apache/commons/math/distribution: AbstractIntegerDistribution.java
 Only in data/changesInfo//Math_2/properties/modified_classes/inducing/src/main/java/org/apache/commons/math/distribution: BinomialDistribution.java
 diff -u -r data/changesInfo//Math_2/properties/modified_classes/inducing/src/main/java/org/apache/commons/math/distribution/HypergeometricDistribution.java data/changesInfo//Math_2/cleaned/fixing/src/main/java/org/apache/commons/math/distribution/HypergeometricDistribution.java
---- data/changesInfo//Math_2/properties/modified_classes/inducing/src/main/java/org/apache/commons/math/distribution/HypergeometricDistribution.java	2023-08-25 13:40:57.342439850 +0800
-+++ data/changesInfo//Math_2/cleaned/fixing/src/main/java/org/apache/commons/math/distribution/HypergeometricDistribution.java	2023-06-20 22:07:10.875931352 +0800
+--- data/changesInfo//Math_2/properties/modified_classes/inducing/src/main/java/org/apache/commons/math/distribution/HypergeometricDistribution.java	2023-12-27 22:46:02.847843276 -0800
++++ data/changesInfo//Math_2/cleaned/fixing/src/main/java/org/apache/commons/math/distribution/HypergeometricDistribution.java	2023-06-20 07:07:10.875931352 -0700
 @@ -268,7 +268,7 @@
       * size {@code n}, the mean is {@code n * m / N}.
       */

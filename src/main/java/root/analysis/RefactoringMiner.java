@@ -1,6 +1,7 @@
 package root.analysis;
 
 import gr.uom.java.xmi.UMLModel;
+import gr.uom.java.xmi.diff.MoveSourceFolderRefactoring;
 import gr.uom.java.xmi.diff.UMLModelDiff;
 import org.eclipse.jgit.diff.DiffEntry;
 import org.eclipse.jgit.diff.RenameDetector;
@@ -19,6 +20,7 @@ import org.slf4j.LoggerFactory;
 import root.util.*;
 
 import java.io.File;
+import java.io.IOException;
 import java.util.*;
 
 public class RefactoringMiner extends GitHistoryRefactoringMinerImpl implements GitAccess {
@@ -40,6 +42,42 @@ public class RefactoringMiner extends GitHistoryRefactoringMinerImpl implements 
                 System.out.println(astDiff);
             }
         }
+    }
+
+    private void populateDirs(String path, Set<String> repositoryDirectories) {
+        String directory = new String(path);
+        while(directory.contains("/")) {
+            directory = directory.substring(0, directory.lastIndexOf("/"));
+            repositoryDirectories.add(directory);
+        }
+    }
+
+    public Set<ASTDiff> diffBetweenContents(Repository repository, String srcPath, String dstPath, String srcContents, String dstContents) {
+        Set<ASTDiff> diffSet = new LinkedHashSet<>();
+        Set<String> repositoryDirectoriesBefore = new LinkedHashSet<String>();
+        Set<String> repositoryDirectoriesCurrent = new LinkedHashSet<String>();
+        Map<String, String> fileContentsBefore = new LinkedHashMap<String, String>();
+        fileContentsBefore.put(srcPath, srcContents);
+        Map<String, String> fileContentsCurrent = new LinkedHashMap<String, String>();
+        fileContentsCurrent.put(dstPath, dstContents);
+        populateDirs(srcPath, repositoryDirectoriesBefore);
+        populateDirs(dstPath, repositoryDirectoriesCurrent);
+        try {
+            List<MoveSourceFolderRefactoring> moveSourceFolderRefactorings = processIdenticalFiles(fileContentsBefore, fileContentsCurrent, Collections.emptyMap());
+            UMLModel parentUMLModel = createModelForASTDiff(fileContentsBefore, repositoryDirectoriesBefore);
+            UMLModel currentUMLModel = createModelForASTDiff(fileContentsCurrent, repositoryDirectoriesCurrent);
+            UMLModelDiff modelDiff = parentUMLModel.diff(currentUMLModel);
+            ProjectASTDiffer differ = null;
+                differ = new ProjectASTDiffer(modelDiff);
+            for(ASTDiff diff : differ.getDiffSet()) {
+                diff.setSrcContents(fileContentsBefore.get(diff.getSrcPath()));
+                diff.setDstContents(fileContentsCurrent.get(diff.getDstPath()));
+                diffSet.add(diff);
+            }
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+        return diffSet;
     }
 
     public Set<ASTDiff> diffAtCommit(Repository repository, String oldCommitId, String currentCommitId) {

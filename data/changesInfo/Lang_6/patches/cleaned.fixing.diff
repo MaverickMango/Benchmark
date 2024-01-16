@@ -1,6 +1,6 @@
 diff -u -r data/changesInfo//Lang_6/properties/modified_classes/inducing/src/main/java/org/apache/commons/lang3/text/translate/CharSequenceTranslator.java data/changesInfo//Lang_6/cleaned/fixing/src/main/java/org/apache/commons/lang3/text/translate/CharSequenceTranslator.java
---- data/changesInfo//Lang_6/properties/modified_classes/inducing/src/main/java/org/apache/commons/lang3/text/translate/CharSequenceTranslator.java	2023-08-25 13:39:04.435737872 +0800
-+++ data/changesInfo//Lang_6/cleaned/fixing/src/main/java/org/apache/commons/lang3/text/translate/CharSequenceTranslator.java	2023-06-20 21:44:54.871258097 +0800
+--- data/changesInfo//Lang_6/properties/modified_classes/inducing/src/main/java/org/apache/commons/lang3/text/translate/CharSequenceTranslator.java	2023-12-27 22:45:40.667515732 -0800
++++ data/changesInfo//Lang_6/cleaned/fixing/src/main/java/org/apache/commons/lang3/text/translate/CharSequenceTranslator.java	2023-06-20 06:44:54.871258097 -0700
 @@ -92,7 +92,7 @@
  //          // contract with translators is that they have to understand codepoints 
  //          // and they just took care of a surrogate pair

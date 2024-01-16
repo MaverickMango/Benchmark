@@ -2,8 +2,8 @@ Only in data/changesInfo//Compress_6/properties/modified_classes/inducing/src/ma
 Only in data/changesInfo//Compress_6/properties/modified_classes/inducing/src/main/java/org/apache/commons/compress/archivers: cpio
 Only in data/changesInfo//Compress_6/properties/modified_classes/inducing/src/main/java/org/apache/commons/compress/archivers: jar
 diff -u -r data/changesInfo//Compress_6/properties/modified_classes/inducing/src/main/java/org/apache/commons/compress/archivers/zip/ZipArchiveEntry.java data/changesInfo//Compress_6/cleaned/fixing/src/main/java/org/apache/commons/compress/archivers/zip/ZipArchiveEntry.java
---- data/changesInfo//Compress_6/properties/modified_classes/inducing/src/main/java/org/apache/commons/compress/archivers/zip/ZipArchiveEntry.java	2023-08-25 14:15:34.255763161 +0800
-+++ data/changesInfo//Compress_6/cleaned/fixing/src/main/java/org/apache/commons/compress/archivers/zip/ZipArchiveEntry.java	2023-07-27 14:28:56.599121142 +0800
+--- data/changesInfo//Compress_6/properties/modified_classes/inducing/src/main/java/org/apache/commons/compress/archivers/zip/ZipArchiveEntry.java	2023-12-27 22:51:21.065381759 -0800
++++ data/changesInfo//Compress_6/cleaned/fixing/src/main/java/org/apache/commons/compress/archivers/zip/ZipArchiveEntry.java	2023-07-26 23:28:56.599121142 -0700
 @@ -402,11 +402,13 @@
              return false;
          }

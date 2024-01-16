@@ -4,14 +4,14 @@
     "name": "root.bean.benchmarks.Defects4JBug"
   },
   "d4jCmd": "/home/liumengjiao/Desktop/defects4j/framework/bin/defects4j",
-  "dataDir": "data/changesInfo/",
+  "dataDir": "/home/liumengjiao/Desktop/CI/Benchmark/data/changesInfo/",
   "properties": {
     "trigger.tests": "com.google.javascript.jscomp.InlineFunctionsTest::testBug4944818,com.google.javascript.jscomp.InlineFunctionsTest::testDoubleInlining1,com.google.javascript.jscomp.InlineFunctionsTest::testNoInlineIfParametersModified8,com.google.javascript.jscomp.InlineFunctionsTest::testNoInlineIfParametersModified9,com.google.javascript.jscomp.InlineFunctionsTest::testInlineFunctions6",
     "test.dir": "test",
     "clz.modified": "com.google.javascript.jscomp.FunctionInjector",
     "src.dir": "src"
   },
-  "timeoutSecond": 300,
+  "timeoutSecond": 100,
   "proj": "Closure",
   "id": "115",
   "workingDir": "../bugs/Closure_115_buggy",

@@ -1,8 +1,8 @@
 Only in data/changesInfo//Closure_59/properties/modified_classes/inducing/: src
 Only in data/changesInfo//Closure_59/properties/modified_classes/inducing/test/com/google/javascript/jscomp: CheckGlobalThisTest.java
 diff -u -r data/changesInfo//Closure_59/properties/modified_classes/inducing/test/com/google/javascript/jscomp/CommandLineRunnerTest.java data/changesInfo//Closure_59/cleaned/inducing/test/com/google/javascript/jscomp/CommandLineRunnerTest.java
---- data/changesInfo//Closure_59/properties/modified_classes/inducing/test/com/google/javascript/jscomp/CommandLineRunnerTest.java	2023-08-25 13:11:33.305231265 +0800
-+++ data/changesInfo//Closure_59/cleaned/inducing/test/com/google/javascript/jscomp/CommandLineRunnerTest.java	2023-06-28 15:24:31.405000000 +0800
+--- data/changesInfo//Closure_59/properties/modified_classes/inducing/test/com/google/javascript/jscomp/CommandLineRunnerTest.java	2023-12-27 22:38:36.313245583 -0800
++++ data/changesInfo//Closure_59/cleaned/inducing/test/com/google/javascript/jscomp/CommandLineRunnerTest.java	2023-06-28 00:24:31.405000000 -0700
 @@ -114,20 +114,12 @@
      super.tearDown();
    }

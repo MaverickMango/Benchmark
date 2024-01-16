@@ -1,7 +1,7 @@
 Only in data/changesInfo//Lang_13/properties/modified_classes/inducing/src: main
 diff -u -r data/changesInfo//Lang_13/properties/modified_classes/inducing/src/test/java/org/apache/commons/lang3/SerializationUtilsTest.java data/changesInfo//Lang_13/cleaned/inducing/src/test/java/org/apache/commons/lang3/SerializationUtilsTest.java
---- data/changesInfo//Lang_13/properties/modified_classes/inducing/src/test/java/org/apache/commons/lang3/SerializationUtilsTest.java	2023-06-12 11:40:35.826288031 +0800
-+++ data/changesInfo//Lang_13/cleaned/inducing/src/test/java/org/apache/commons/lang3/SerializationUtilsTest.java	2023-06-15 21:55:57.464217032 +0800
+--- data/changesInfo//Lang_13/properties/modified_classes/inducing/src/test/java/org/apache/commons/lang3/SerializationUtilsTest.java	2023-06-11 20:40:35.826288031 -0700
++++ data/changesInfo//Lang_13/cleaned/inducing/src/test/java/org/apache/commons/lang3/SerializationUtilsTest.java	2023-06-15 06:55:57.464217032 -0700
 @@ -365,6 +365,16 @@
          fail();
      }

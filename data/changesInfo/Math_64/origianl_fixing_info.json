@@ -4,14 +4,14 @@
     "name": "root.bean.benchmarks.Defects4JBug"
   },
   "d4jCmd": "/home/liumengjiao/Desktop/defects4j/framework/bin/defects4j",
-  "dataDir": "data/changesInfo/",
+  "dataDir": "/home/liumengjiao/Desktop/CI/Benchmark/data/changesInfo/",
   "properties": {
     "trigger.tests": "org.apache.commons.math.optimization.general.MinpackTest::testMinpackJennrichSampson,org.apache.commons.math.optimization.general.MinpackTest::testMinpackFreudensteinRoth",
     "test.dir": "src/test/java",
     "clz.modified": "org.apache.commons.math.optimization.general.LevenbergMarquardtOptimizer",
     "src.dir": "src/main/java"
   },
-  "timeoutSecond": 300,
+  "timeoutSecond": 100,
   "proj": "Math",
   "id": "64",
   "workingDir": "../bugs/Math_64_buggy",
@@ -33,21 +33,21 @@
       "changed_functions": [
         {
           "qualified_names": [
+            "org.apache.commons.math.optimization.general.LevenbergMarquardtOptimizer:setParRelativeTolerance:[double parRelativeTolerance]:void",
+            "org.apache.commons.math.optimization.general.LevenbergMarquardtOptimizer:setCostRelativeTolerance:[double costRelativeTolerance]:void",
             "org.apache.commons.math.optimization.general.LevenbergMarquardtOptimizer:LevenbergMarquardtOptimizer:[]:null",
             "org.apache.commons.math.optimization.general.LevenbergMarquardtOptimizer:setOrthoTolerance:[double orthoTolerance]:void",
-            "org.apache.commons.math.optimization.general.LevenbergMarquardtOptimizer:doOptimize:[]:VectorialPointValuePair",
-            "org.apache.commons.math.optimization.general.LevenbergMarquardtOptimizer:setCostRelativeTolerance:[double costRelativeTolerance]:void",
-            "org.apache.commons.math.optimization.general.LevenbergMarquardtOptimizer:setParRelativeTolerance:[double parRelativeTolerance]:void"
+            "org.apache.commons.math.optimization.general.LevenbergMarquardtOptimizer:doOptimize:[]:VectorialPointValuePair"
           ],
           "num": 5
         },
         {
           "qualified_names": [
-            "org.apache.commons.math.optimization.general.LevenbergMarquardtOptimizer:setCostRelativeTolerance:[double costRelativeTolerance]:void",
             "org.apache.commons.math.optimization.general.LevenbergMarquardtOptimizer:setParRelativeTolerance:[double parRelativeTolerance]:void",
-            "org.apache.commons.math.optimization.general.LevenbergMarquardtOptimizer:setOrthoTolerance:[double orthoTolerance]:void",
             "org.apache.commons.math.optimization.general.LevenbergMarquardtOptimizer:LevenbergMarquardtOptimizer:[]:null",
-            "org.apache.commons.math.optimization.general.LevenbergMarquardtOptimizer:doOptimize:[]:VectorialPointValuePair"
+            "org.apache.commons.math.optimization.general.LevenbergMarquardtOptimizer:setCostRelativeTolerance:[double costRelativeTolerance]:void",
+            "org.apache.commons.math.optimization.general.LevenbergMarquardtOptimizer:doOptimize:[]:VectorialPointValuePair",
+            "org.apache.commons.math.optimization.general.LevenbergMarquardtOptimizer:setOrthoTolerance:[double orthoTolerance]:void"
           ],
           "num": 5
         }

@@ -4,14 +4,14 @@
     "name": "root.bean.benchmarks.Defects4JBug"
   },
   "d4jCmd": "/home/liumengjiao/Desktop/defects4j/framework/bin/defects4j",
-  "dataDir": "data/changesInfo/",
+  "dataDir": "/home/liumengjiao/Desktop/CI/Benchmark/data/changesInfo/",
   "properties": {
     "trigger.tests": "com.google.javascript.jscomp.CommandLineRunnerTest::testCheckGlobalThisOff",
     "test.dir": "test",
     "clz.modified": "com.google.javascript.jscomp.Compiler",
     "src.dir": "src"
   },
-  "timeoutSecond": 300,
+  "timeoutSecond": 100,
   "proj": "Closure",
   "id": "59",
   "workingDir": "../bugs/Closure_59_buggy",
@@ -105,20 +105,20 @@
       "changed_functions": [
         {
           "qualified_names": [
-            "com.google.javascript.jscomp.Compiler:toSource:[Node n]:String",
             "com.google.javascript.jscomp.Compiler:isIdeMode:[]:boolean",
-            "com.google.javascript.jscomp.Compiler:initOptions:[CompilerOptions options]:void",
-            "com.google.javascript.jscomp.Compiler:reportCodeChange:[]:void"
+            "com.google.javascript.jscomp.Compiler:reportCodeChange:[]:void",
+            "com.google.javascript.jscomp.Compiler:toSource:[Node n]:String",
+            "com.google.javascript.jscomp.Compiler:initOptions:[CompilerOptions options]:void"
           ],
           "num": 4
         },
         {
           "qualified_names": [
-            "com.google.javascript.jscomp.Compiler:languageMode:[]:LanguageMode",
+            "com.google.javascript.jscomp.Compiler:acceptEcmaScript5:[]:boolean",
             "com.google.javascript.jscomp.Compiler:getParserConfig:[]:Config",
-            "com.google.javascript.jscomp.Compiler:toSource:[Node n, SourceMap sourceMap]:String",
+            "com.google.javascript.jscomp.Compiler:languageMode:[]:LanguageMode",
             "com.google.javascript.jscomp.Compiler:initOptions:[CompilerOptions options]:void",
-            "com.google.javascript.jscomp.Compiler:acceptEcmaScript5:[]:boolean"
+            "com.google.javascript.jscomp.Compiler:toSource:[Node n, SourceMap sourceMap]:String"
           ],
           "num": 5
         }
@@ -207,17 +207,17 @@
       "changed_functions": [
         {
           "qualified_names": [
+            "com.google.javascript.jscomp.DefaultPassConfig:getChecks:[]:List\u003cPassFactory\u003e",
             "com.google.javascript.jscomp.DefaultPassConfig:getMainOptimizationLoop:[]:List\u003cPassFactory\u003e",
-            "com.google.javascript.jscomp.DefaultPassConfig:getOptimizations:[]:List\u003cPassFactory\u003e",
-            "com.google.javascript.jscomp.DefaultPassConfig:getChecks:[]:List\u003cPassFactory\u003e"
+            "com.google.javascript.jscomp.DefaultPassConfig:getOptimizations:[]:List\u003cPassFactory\u003e"
           ],
           "num": 3
         },
         {
           "qualified_names": [
-            "com.google.javascript.jscomp.DefaultPassConfig:getChecks:[]:List\u003cPassFactory\u003e",
+            "com.google.javascript.jscomp.DefaultPassConfig:getMainOptimizationLoop:[]:List\u003cPassFactory\u003e",
             "com.google.javascript.jscomp.DefaultPassConfig:getOptimizations:[]:List\u003cPassFactory\u003e",
-            "com.google.javascript.jscomp.DefaultPassConfig:getMainOptimizationLoop:[]:List\u003cPassFactory\u003e"
+            "com.google.javascript.jscomp.DefaultPassConfig:getChecks:[]:List\u003cPassFactory\u003e"
           ],
           "num": 3
         }
@@ -519,8 +519,8 @@
       "qualified_names": [
         "com.google.javascript.jscomp.Compiler:toSource:[Node n, SourceMap sourceMap]:String",
         "com.google.javascript.jscomp.Compiler:languageMode:[]:LanguageMode",
-        "com.google.javascript.jscomp.Compiler:getParserConfig:[]:Config",
         "com.google.javascript.jscomp.Compiler:acceptEcmaScript5:[]:boolean",
+        "com.google.javascript.jscomp.Compiler:getParserConfig:[]:Config",
         "com.google.javascript.jscomp.CheckGlobalThis:CheckGlobalThis:[AbstractCompiler compiler]:null"
       ],
       "num": 5
@@ -529,8 +529,8 @@
       "qualified_names": [
         "com.google.javascript.jscomp.CheckGlobalThis:CheckGlobalThis:[AbstractCompiler compiler, CheckLevel level]:null",
         "com.google.javascript.jscomp.Compiler:isIdeMode:[]:boolean",
-        "com.google.javascript.jscomp.Compiler:toSource:[Node n]:String",
-        "com.google.javascript.jscomp.Compiler:reportCodeChange:[]:void"
+        "com.google.javascript.jscomp.Compiler:reportCodeChange:[]:void",
+        "com.google.javascript.jscomp.Compiler:toSource:[Node n]:String"
       ],
       "num": 4
     }

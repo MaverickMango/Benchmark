@@ -1,6 +1,6 @@
 diff -u -r data/changesInfo//Math_89/properties/modified_classes/inducing/src/java/org/apache/commons/math/stat/Frequency.java data/changesInfo//Math_89/cleaned/fixing/src/java/org/apache/commons/math/stat/Frequency.java
---- data/changesInfo//Math_89/properties/modified_classes/inducing/src/java/org/apache/commons/math/stat/Frequency.java	2023-08-25 14:11:21.036979036 +0800
-+++ data/changesInfo//Math_89/cleaned/fixing/src/java/org/apache/commons/math/stat/Frequency.java	2023-06-24 16:37:12.227942507 +0800
+--- data/changesInfo//Math_89/properties/modified_classes/inducing/src/java/org/apache/commons/math/stat/Frequency.java	2023-12-27 22:48:22.302207699 -0800
++++ data/changesInfo//Math_89/cleaned/fixing/src/java/org/apache/commons/math/stat/Frequency.java	2023-06-24 01:37:12.227942507 -0700
 @@ -107,7 +107,11 @@
       */
      @Deprecated

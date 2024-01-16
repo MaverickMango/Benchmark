@@ -4,14 +4,14 @@
     "name": "root.bean.benchmarks.Defects4JBug"
   },
   "d4jCmd": "/home/liumengjiao/Desktop/defects4j/framework/bin/defects4j",
-  "dataDir": "data/changesInfo/",
+  "dataDir": "/home/liumengjiao/Desktop/CI/Benchmark/data/changesInfo/",
   "properties": {
     "trigger.tests": "org.apache.commons.math3.optimization.fitting.HarmonicFitterTest::testMath844",
     "test.dir": "src/test/java",
     "clz.modified": "org.apache.commons.math3.optimization.fitting.HarmonicFitter",
     "src.dir": "src/main/java"
   },
-  "timeoutSecond": 300,
+  "timeoutSecond": 100,
   "proj": "Math",
   "id": "25",
   "workingDir": "../bugs/Math_25_buggy",
@@ -33,25 +33,25 @@
       "changed_functions": [
         {
           "qualified_names": [
-            "org.apache.commons.math.optimization.fitting.HarmonicFitter:fit:[]:HarmonicFunction",
-            "org.apache.commons.math.optimization.fitting.HarmonicFitter:addObservedPoint:[double weight, double x, double y]:void",
+            "org.apache.commons.math.optimization.fitting.HarmonicFitter:HarmonicFitter:[final DifferentiableMultivariateVectorialOptimizer optimizer]:null",
+            "org.apache.commons.math.optimization.fitting.HarmonicFitter:HarmonicFitter:[final DifferentiableMultivariateVectorialOptimizer optimizer, final double[] initialGuess]:null",
             "org.apache.commons.math.optimization.fitting.HarmonicFitter\\$ParametricHarmonicFunction:value:[double x, double[] parameters]:double",
             "org.apache.commons.math.optimization.fitting.HarmonicFitter\\$ParametricHarmonicFunction:gradient:[double x, double[] parameters]:double[]",
-            "org.apache.commons.math.optimization.fitting.HarmonicFitter:HarmonicFitter:[final DifferentiableMultivariateVectorialOptimizer optimizer]:null",
-            "org.apache.commons.math.optimization.fitting.HarmonicFitter:HarmonicFitter:[final DifferentiableMultivariateVectorialOptimizer optimizer, final double[] initialGuess]:null"
+            "org.apache.commons.math.optimization.fitting.HarmonicFitter:fit:[]:HarmonicFunction",
+            "org.apache.commons.math.optimization.fitting.HarmonicFitter:addObservedPoint:[double weight, double x, double y]:void"
           ],
           "num": 6
         },
         {
           "qualified_names": [
-            "org.apache.commons.math.optimization.fitting.HarmonicFitter\\$ParameterGuesser:ParameterGuesser:[WeightedObservedPoint[] observations]:null",
-            "org.apache.commons.math.optimization.fitting.HarmonicFitter\\$ParameterGuesser:guessPhi:[]:void",
             "org.apache.commons.math.optimization.fitting.HarmonicFitter\\$ParameterGuesser:guessAOmega:[]:void",
-            "org.apache.commons.math.optimization.fitting.HarmonicFitter:HarmonicFitter:[final DifferentiableMultivariateVectorialOptimizer optimizer]:null",
             "org.apache.commons.math.optimization.fitting.HarmonicFitter:fit:[]:double[]",
-            "org.apache.commons.math.optimization.fitting.HarmonicFitter\\$ParameterGuesser:sortObservations:[]:void",
+            "org.apache.commons.math.optimization.fitting.HarmonicFitter:HarmonicFitter:[final DifferentiableMultivariateVectorialOptimizer optimizer]:null",
+            "org.apache.commons.math.optimization.fitting.HarmonicFitter\\$ParameterGuesser:ParameterGuesser:[WeightedObservedPoint[] observations]:null",
             "org.apache.commons.math.optimization.fitting.HarmonicFitter:fit:[double[] initialGuess]:double[]",
-            "org.apache.commons.math.optimization.fitting.HarmonicFitter\\$ParameterGuesser:guess:[]:double[]"
+            "org.apache.commons.math.optimization.fitting.HarmonicFitter\\$ParameterGuesser:guess:[]:double[]",
+            "org.apache.commons.math.optimization.fitting.HarmonicFitter\\$ParameterGuesser:sortObservations:[]:void",
+            "org.apache.commons.math.optimization.fitting.HarmonicFitter\\$ParameterGuesser:guessPhi:[]:void"
           ],
           "num": 8
         }
@@ -1043,9 +1043,9 @@
       "qualified_names": [
         "org.apache.commons.math.optimization.fitting.HarmonicFitter:fit:[]:double[]",
         "org.apache.commons.math.optimization.fitting.HarmonicFitter\\$ParameterGuesser:ParameterGuesser:[WeightedObservedPoint[] observations]:null",
-        "org.apache.commons.math.optimization.fitting.HarmonicFitter\\$ParameterGuesser:guessPhi:[]:void",
         "org.apache.commons.math.optimization.fitting.HarmonicFitter\\$ParameterGuesser:guessAOmega:[]:void",
         "org.apache.commons.math.optimization.fitting.HarmonicFitter:fit:[double[] initialGuess]:double[]",
+        "org.apache.commons.math.optimization.fitting.HarmonicFitter\\$ParameterGuesser:guessPhi:[]:void",
         "org.apache.commons.math.optimization.fitting.HarmonicFitter\\$ParameterGuesser:guess:[]:double[]",
         "org.apache.commons.math.optimization.fitting.HarmonicFitter\\$ParameterGuesser:sortObservations:[]:void"
       ],
@@ -1056,8 +1056,8 @@
         "org.apache.commons.math.optimization.fitting.HarmonicFitter:addObservedPoint:[double weight, double x, double y]:void",
         "org.apache.commons.math.optimization.fitting.HarmonicFitter:HarmonicFitter:[final DifferentiableMultivariateVectorialOptimizer optimizer, final double[] initialGuess]:null",
         "org.apache.commons.math.optimization.fitting.HarmonicFitter\\$ParametricHarmonicFunction:gradient:[double x, double[] parameters]:double[]",
-        "org.apache.commons.math.optimization.fitting.HarmonicFitter:fit:[]:HarmonicFunction",
-        "org.apache.commons.math.optimization.fitting.HarmonicFitter\\$ParametricHarmonicFunction:value:[double x, double[] parameters]:double"
+        "org.apache.commons.math.optimization.fitting.HarmonicFitter\\$ParametricHarmonicFunction:value:[double x, double[] parameters]:double",
+        "org.apache.commons.math.optimization.fitting.HarmonicFitter:fit:[]:HarmonicFunction"
       ],
       "num": 5
     }

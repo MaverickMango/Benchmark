@@ -4,14 +4,14 @@
     "name": "root.bean.benchmarks.Defects4JBug"
   },
   "d4jCmd": "/home/liumengjiao/Desktop/defects4j/framework/bin/defects4j",
-  "dataDir": "data/changesInfo/",
+  "dataDir": "/home/liumengjiao/Desktop/CI/Benchmark/data/changesInfo/",
   "properties": {
     "trigger.tests": "org.apache.commons.math.analysis.solvers.BisectionSolverTest::testMath369",
     "test.dir": "src/test/java",
     "clz.modified": "org.apache.commons.math.analysis.solvers.BisectionSolver",
     "src.dir": "src/main/java"
   },
-  "timeoutSecond": 300,
+  "timeoutSecond": 100,
   "proj": "Math",
   "id": "70",
   "workingDir": "../bugs/Math_70_buggy",
@@ -106,12 +106,12 @@
         },
         {
           "qualified_names": [
-            "org.apache.commons.math.analysis.BisectionSolver:solve:[double min, double max, double initial]:double",
-            "org.apache.commons.math.analysis.BisectionSolver:BisectionSolver:[UnivariateRealFunction f]:null",
-            "org.apache.commons.math.analysis.BisectionSolver:solve:[final UnivariateRealFunction f, double min, double max]:double",
             "org.apache.commons.math.analysis.BisectionSolver:BisectionSolver:[]:null",
+            "org.apache.commons.math.analysis.BisectionSolver:solve:[final UnivariateRealFunction f, double min, double max, double initial]:double",
             "org.apache.commons.math.analysis.BisectionSolver:solve:[double min, double max]:double",
-            "org.apache.commons.math.analysis.BisectionSolver:solve:[final UnivariateRealFunction f, double min, double max, double initial]:double"
+            "org.apache.commons.math.analysis.BisectionSolver:solve:[final UnivariateRealFunction f, double min, double max]:double",
+            "org.apache.commons.math.analysis.BisectionSolver:BisectionSolver:[UnivariateRealFunction f]:null",
+            "org.apache.commons.math.analysis.BisectionSolver:solve:[double min, double max, double initial]:double"
           ],
           "num": 6
         }
@@ -378,21 +378,21 @@
       "changed_functions": [
         {
           "qualified_names": [
-            "org.apache.commons.math.analysis.BrentSolver:solve:[double min, double max, double initial]:double",
+            "org.apache.commons.math.analysis.BrentSolver:solve:[double x0, double y0, double x1, double y1, double x2, double y2]:double",
             "org.apache.commons.math.analysis.BrentSolver:solve:[double min, double max]:double",
-            "org.apache.commons.math.analysis.BrentSolver:solve:[double x0, double y0, double x1, double y1, double x2, double y2]:double"
+            "org.apache.commons.math.analysis.BrentSolver:solve:[double min, double max, double initial]:double"
           ],
           "num": 3
         },
         {
           "qualified_names": [
             "org.apache.commons.math.analysis.BrentSolver:BrentSolver:[UnivariateRealFunction f]:null",
-            "org.apache.commons.math.analysis.BrentSolver:solve:[double min, double max, double initial]:double",
-            "org.apache.commons.math.analysis.BrentSolver:solve:[final UnivariateRealFunction f, final double min, final double max, final double initial]:double",
-            "org.apache.commons.math.analysis.BrentSolver:solve:[final UnivariateRealFunction f, final double min, final double max]:double",
             "org.apache.commons.math.analysis.BrentSolver:solve:[final UnivariateRealFunction f, double x0, double y0, double x1, double y1, double x2, double y2]:double",
-            "org.apache.commons.math.analysis.BrentSolver:solve:[double min, double max]:double",
-            "org.apache.commons.math.analysis.BrentSolver:BrentSolver:[]:null"
+            "org.apache.commons.math.analysis.BrentSolver:solve:[final UnivariateRealFunction f, final double min, final double max, final double initial]:double",
+            "org.apache.commons.math.analysis.BrentSolver:solve:[double min, double max, double initial]:double",
+            "org.apache.commons.math.analysis.BrentSolver:BrentSolver:[]:null",
+            "org.apache.commons.math.analysis.BrentSolver:solve:[final UnivariateRealFunction f, final double min, final double max]:double",
+            "org.apache.commons.math.analysis.BrentSolver:solve:[double min, double max]:double"
           ],
           "num": 7
         }
@@ -797,20 +797,20 @@
         {
           "qualified_names": [
             "org.apache.commons.math.analysis.LaguerreSolver:LaguerreSolver:[UnivariateRealFunction f]:null",
-            "org.apache.commons.math.analysis.LaguerreSolver:solve:[double min, double max]:double",
-            "org.apache.commons.math.analysis.LaguerreSolver:solve:[double min, double max, double initial]:double"
+            "org.apache.commons.math.analysis.LaguerreSolver:solve:[double min, double max, double initial]:double",
+            "org.apache.commons.math.analysis.LaguerreSolver:solve:[double min, double max]:double"
           ],
           "num": 3
         },
         {
           "qualified_names": [
-            "org.apache.commons.math.analysis.LaguerreSolver:getPolynomialFunction:[]:PolynomialFunction",
             "org.apache.commons.math.analysis.LaguerreSolver:LaguerreSolver:[]:null",
-            "org.apache.commons.math.analysis.LaguerreSolver:solve:[final double min, final double max]:double",
-            "org.apache.commons.math.analysis.LaguerreSolver:solve:[final UnivariateRealFunction f, final double min, final double max, final double initial]:double",
-            "org.apache.commons.math.analysis.LaguerreSolver:solve:[final double min, final double max, final double initial]:double",
+            "org.apache.commons.math.analysis.LaguerreSolver:solve:[final UnivariateRealFunction f, final double min, final double max]:double",
             "org.apache.commons.math.analysis.LaguerreSolver:LaguerreSolver:[UnivariateRealFunction f]:null",
-            "org.apache.commons.math.analysis.LaguerreSolver:solve:[final UnivariateRealFunction f, final double min, final double max]:double"
+            "org.apache.commons.math.analysis.LaguerreSolver:getPolynomialFunction:[]:PolynomialFunction",
+            "org.apache.commons.math.analysis.LaguerreSolver:solve:[final double min, final double max, final double initial]:double",
+            "org.apache.commons.math.analysis.LaguerreSolver:solve:[final double min, final double max]:double",
+            "org.apache.commons.math.analysis.LaguerreSolver:solve:[final UnivariateRealFunction f, final double min, final double max, final double initial]:double"
           ],
           "num": 7
         }
@@ -1431,22 +1431,22 @@
       "changed_functions": [
         {
           "qualified_names": [
-            "org.apache.commons.math.analysis.MullerSolver:solve:[double min, double max, double initial]:double",
             "org.apache.commons.math.analysis.MullerSolver:solve:[double min, double max]:double",
+            "org.apache.commons.math.analysis.MullerSolver:solve:[double min, double max, double initial]:double",
             "org.apache.commons.math.analysis.MullerSolver:solve2:[double min, double max]:double"
           ],
           "num": 3
         },
         {
           "qualified_names": [
-            "org.apache.commons.math.analysis.MullerSolver:solve:[final UnivariateRealFunction f, final double min, final double max, final double initial]:double",
-            "org.apache.commons.math.analysis.MullerSolver:solve:[final double min, final double max]:double",
-            "org.apache.commons.math.analysis.MullerSolver:MullerSolver:[]:null",
+            "org.apache.commons.math.analysis.MullerSolver:solve:[final UnivariateRealFunction f, final double min, final double max]:double",
             "org.apache.commons.math.analysis.MullerSolver:MullerSolver:[UnivariateRealFunction f]:null",
-            "org.apache.commons.math.analysis.MullerSolver:solve2:[final UnivariateRealFunction f, final double min, final double max]:double",
             "org.apache.commons.math.analysis.MullerSolver:solve:[final double min, final double max, final double initial]:double",
-            "org.apache.commons.math.analysis.MullerSolver:solve2:[final double min, final double max]:double",
-            "org.apache.commons.math.analysis.MullerSolver:solve:[final UnivariateRealFunction f, final double min, final double max]:double"
+            "org.apache.commons.math.analysis.MullerSolver:MullerSolver:[]:null",
+            "org.apache.commons.math.analysis.MullerSolver:solve:[final UnivariateRealFunction f, final double min, final double max, final double initial]:double",
+            "org.apache.commons.math.analysis.MullerSolver:solve2:[final UnivariateRealFunction f, final double min, final double max]:double",
+            "org.apache.commons.math.analysis.MullerSolver:solve:[final double min, final double max]:double",
+            "org.apache.commons.math.analysis.MullerSolver:solve2:[final double min, final double max]:double"
           ],
           "num": 8
         }
@@ -2081,21 +2081,21 @@
       "changed_functions": [
         {
           "qualified_names": [
-            "org.apache.commons.math.analysis.NewtonSolver:readObject:[java.io.ObjectInputStream in]:void",
-            "org.apache.commons.math.analysis.NewtonSolver:solve:[double min, double max, double startValue]:double",
+            "org.apache.commons.math.analysis.NewtonSolver:NewtonSolver:[DifferentiableUnivariateRealFunction f]:null",
             "org.apache.commons.math.analysis.NewtonSolver:solve:[double min, double max]:double",
-            "org.apache.commons.math.analysis.NewtonSolver:NewtonSolver:[DifferentiableUnivariateRealFunction f]:null"
+            "org.apache.commons.math.analysis.NewtonSolver:readObject:[java.io.ObjectInputStream in]:void",
+            "org.apache.commons.math.analysis.NewtonSolver:solve:[double min, double max, double startValue]:double"
           ],
           "num": 4
         },
         {
           "qualified_names": [
-            "org.apache.commons.math.analysis.NewtonSolver:solve:[final double min, final double max, final double startValue]:double",
+            "org.apache.commons.math.analysis.NewtonSolver:solve:[final double min, final double max]:double",
+            "org.apache.commons.math.analysis.NewtonSolver:solve:[final UnivariateRealFunction f, final double min, final double max]:double",
             "org.apache.commons.math.analysis.NewtonSolver:NewtonSolver:[DifferentiableUnivariateRealFunction f]:null",
             "org.apache.commons.math.analysis.NewtonSolver:solve:[final UnivariateRealFunction f, final double min, final double max, final double startValue]:double",
-            "org.apache.commons.math.analysis.NewtonSolver:NewtonSolver:[]:null",
-            "org.apache.commons.math.analysis.NewtonSolver:solve:[final UnivariateRealFunction f, final double min, final double max]:double",
-            "org.apache.commons.math.analysis.NewtonSolver:solve:[final double min, final double max]:double"
+            "org.apache.commons.math.analysis.NewtonSolver:solve:[final double min, final double max, final double startValue]:double",
+            "org.apache.commons.math.analysis.NewtonSolver:NewtonSolver:[]:null"
           ],
           "num": 6
         }
@@ -2541,19 +2541,19 @@
       "changed_functions": [
         {
           "qualified_names": [
-            "org.apache.commons.math.analysis.RiddersSolver:solve:[double min, double max, double initial]:double",
-            "org.apache.commons.math.analysis.RiddersSolver:solve:[double min, double max]:double"
+            "org.apache.commons.math.analysis.RiddersSolver:solve:[double min, double max]:double",
+            "org.apache.commons.math.analysis.RiddersSolver:solve:[double min, double max, double initial]:double"
           ],
           "num": 2
         },
         {
           "qualified_names": [
-            "org.apache.commons.math.analysis.RiddersSolver:RiddersSolver:[UnivariateRealFunction f]:null",
-            "org.apache.commons.math.analysis.RiddersSolver:RiddersSolver:[]:null",
-            "org.apache.commons.math.analysis.RiddersSolver:solve:[final UnivariateRealFunction f, final double min, final double max, final double initial]:double",
+            "org.apache.commons.math.analysis.RiddersSolver:solve:[final double min, final double max, final double initial]:double",
             "org.apache.commons.math.analysis.RiddersSolver:solve:[final UnivariateRealFunction f, final double min, final double max]:double",
+            "org.apache.commons.math.analysis.RiddersSolver:solve:[final UnivariateRealFunction f, final double min, final double max, final double initial]:double",
+            "org.apache.commons.math.analysis.RiddersSolver:RiddersSolver:[]:null",
             "org.apache.commons.math.analysis.RiddersSolver:solve:[final double min, final double max]:double",
-            "org.apache.commons.math.analysis.RiddersSolver:solve:[final double min, final double max, final double initial]:double"
+            "org.apache.commons.math.analysis.RiddersSolver:RiddersSolver:[UnivariateRealFunction f]:null"
           ],
           "num": 6
         }
@@ -2980,19 +2980,19 @@
       "changed_functions": [
         {
           "qualified_names": [
-            "org.apache.commons.math.analysis.SecantSolver:solve:[double min, double max, double initial]:double",
-            "org.apache.commons.math.analysis.SecantSolver:solve:[double min, double max]:double"
+            "org.apache.commons.math.analysis.SecantSolver:solve:[double min, double max]:double",
+            "org.apache.commons.math.analysis.SecantSolver:solve:[double min, double max, double initial]:double"
           ],
           "num": 2
         },
         {
           "qualified_names": [
-            "org.apache.commons.math.analysis.SecantSolver:solve:[final UnivariateRealFunction f, final double min, final double max]:double",
-            "org.apache.commons.math.analysis.SecantSolver:solve:[final UnivariateRealFunction f, final double min, final double max, final double initial]:double",
-            "org.apache.commons.math.analysis.SecantSolver:SecantSolver:[UnivariateRealFunction f]:null",
             "org.apache.commons.math.analysis.SecantSolver:solve:[final double min, final double max]:double",
-            "org.apache.commons.math.analysis.SecantSolver:SecantSolver:[]:null",
-            "org.apache.commons.math.analysis.SecantSolver:solve:[final double min, final double max, final double initial]:double"
+            "org.apache.commons.math.analysis.SecantSolver:solve:[final UnivariateRealFunction f, final double min, final double max, final double initial]:double",
+            "org.apache.commons.math.analysis.SecantSolver:solve:[final UnivariateRealFunction f, final double min, final double max]:double",
+            "org.apache.commons.math.analysis.SecantSolver:solve:[final double min, final double max, final double initial]:double",
+            "org.apache.commons.math.analysis.SecantSolver:SecantSolver:[UnivariateRealFunction f]:null",
+            "org.apache.commons.math.analysis.SecantSolver:SecantSolver:[]:null"
           ],
           "num": 6
         }
@@ -3397,11 +3397,11 @@
         },
         {
           "qualified_names": [
-            "org.apache.commons.math.analysis.UnivariateRealSolver:getResult:[]:double",
-            "org.apache.commons.math.analysis.UnivariateRealSolver:solve:[UnivariateRealFunction f, double min, double max]:double",
-            "org.apache.commons.math.analysis.UnivariateRealSolver:solve:[double min, double max, double startValue]:double",
             "org.apache.commons.math.analysis.UnivariateRealSolver:solve:[UnivariateRealFunction f, double min, double max, double startValue]:double",
-            "org.apache.commons.math.analysis.UnivariateRealSolver:solve:[double min, double max]:double"
+            "org.apache.commons.math.analysis.UnivariateRealSolver:solve:[double min, double max]:double",
+            "org.apache.commons.math.analysis.UnivariateRealSolver:solve:[double min, double max, double startValue]:double",
+            "org.apache.commons.math.analysis.UnivariateRealSolver:solve:[UnivariateRealFunction f, double min, double max]:double",
+            "org.apache.commons.math.analysis.UnivariateRealSolver:getResult:[]:double"
           ],
           "num": 5
         }
@@ -3509,9 +3509,9 @@
       "changed_functions": [
         {
           "qualified_names": [
-            "org.apache.commons.math.analysis.UnivariateRealSolverFactory:newBisectionSolver:[UnivariateRealFunction f]:UnivariateRealSolver",
             "org.apache.commons.math.analysis.UnivariateRealSolverFactory:newDefaultSolver:[UnivariateRealFunction f]:UnivariateRealSolver",
             "org.apache.commons.math.analysis.UnivariateRealSolverFactory:newNewtonSolver:[DifferentiableUnivariateRealFunction f]:UnivariateRealSolver",
+            "org.apache.commons.math.analysis.UnivariateRealSolverFactory:newBisectionSolver:[UnivariateRealFunction f]:UnivariateRealSolver",
             "org.apache.commons.math.analysis.UnivariateRealSolverFactory:newSecantSolver:[UnivariateRealFunction f]:UnivariateRealSolver",
             "org.apache.commons.math.analysis.UnivariateRealSolverFactory:newBrentSolver:[UnivariateRealFunction f]:UnivariateRealSolver"
           ],
@@ -3519,11 +3519,11 @@
         },
         {
           "qualified_names": [
-            "org.apache.commons.math.analysis.UnivariateRealSolverFactory:newDefaultSolver:[]:UnivariateRealSolver",
             "org.apache.commons.math.analysis.UnivariateRealSolverFactory:newNewtonSolver:[]:UnivariateRealSolver",
+            "org.apache.commons.math.analysis.UnivariateRealSolverFactory:newSecantSolver:[]:UnivariateRealSolver",
+            "org.apache.commons.math.analysis.UnivariateRealSolverFactory:newDefaultSolver:[]:UnivariateRealSolver",
             "org.apache.commons.math.analysis.UnivariateRealSolverFactory:newBrentSolver:[]:UnivariateRealSolver",
-            "org.apache.commons.math.analysis.UnivariateRealSolverFactory:newBisectionSolver:[]:UnivariateRealSolver",
-            "org.apache.commons.math.analysis.UnivariateRealSolverFactory:newSecantSolver:[]:UnivariateRealSolver"
+            "org.apache.commons.math.analysis.UnivariateRealSolverFactory:newBisectionSolver:[]:UnivariateRealSolver"
           ],
           "num": 5
         }
@@ -3648,21 +3648,21 @@
       "changed_functions": [
         {
           "qualified_names": [
-            "org.apache.commons.math.analysis.UnivariateRealSolverFactoryImpl:newBisectionSolver:[UnivariateRealFunction f]:UnivariateRealSolver",
+            "org.apache.commons.math.analysis.UnivariateRealSolverFactoryImpl:newBrentSolver:[UnivariateRealFunction f]:UnivariateRealSolver",
             "org.apache.commons.math.analysis.UnivariateRealSolverFactoryImpl:newSecantSolver:[UnivariateRealFunction f]:UnivariateRealSolver",
             "org.apache.commons.math.analysis.UnivariateRealSolverFactoryImpl:newDefaultSolver:[UnivariateRealFunction f]:UnivariateRealSolver",
-            "org.apache.commons.math.analysis.UnivariateRealSolverFactoryImpl:newBrentSolver:[UnivariateRealFunction f]:UnivariateRealSolver",
-            "org.apache.commons.math.analysis.UnivariateRealSolverFactoryImpl:newNewtonSolver:[DifferentiableUnivariateRealFunction f]:UnivariateRealSolver"
+            "org.apache.commons.math.analysis.UnivariateRealSolverFactoryImpl:newNewtonSolver:[DifferentiableUnivariateRealFunction f]:UnivariateRealSolver",
+            "org.apache.commons.math.analysis.UnivariateRealSolverFactoryImpl:newBisectionSolver:[UnivariateRealFunction f]:UnivariateRealSolver"
           ],
           "num": 5
         },
         {
           "qualified_names": [
-            "org.apache.commons.math.analysis.UnivariateRealSolverFactoryImpl:newNewtonSolver:[]:UnivariateRealSolver",
-            "org.apache.commons.math.analysis.UnivariateRealSolverFactoryImpl:newDefaultSolver:[]:UnivariateRealSolver",
             "org.apache.commons.math.analysis.UnivariateRealSolverFactoryImpl:newBrentSolver:[]:UnivariateRealSolver",
+            "org.apache.commons.math.analysis.UnivariateRealSolverFactoryImpl:newSecantSolver:[]:UnivariateRealSolver",
+            "org.apache.commons.math.analysis.UnivariateRealSolverFactoryImpl:newDefaultSolver:[]:UnivariateRealSolver",
             "org.apache.commons.math.analysis.UnivariateRealSolverFactoryImpl:newBisectionSolver:[]:UnivariateRealSolver",
-            "org.apache.commons.math.analysis.UnivariateRealSolverFactoryImpl:newSecantSolver:[]:UnivariateRealSolver"
+            "org.apache.commons.math.analysis.UnivariateRealSolverFactoryImpl:newNewtonSolver:[]:UnivariateRealSolver"
           ],
           "num": 5
         }
@@ -4072,14 +4072,14 @@
         "org.apache.commons.math.analysis.UnivariateRealSolverFactoryImpl:newSecantSolver:[]:UnivariateRealSolver",
         "org.apache.commons.math.analysis.UnivariateRealSolverFactoryImpl:newNewtonSolver:[]:UnivariateRealSolver",
         "org.apache.commons.math.analysis.BisectionSolver:BisectionSolver:[UnivariateRealFunction f]:null",
-        "org.apache.commons.math.analysis.BrentSolver:solve:[final UnivariateRealFunction f, final double min, final double max]:double",
         "org.apache.commons.math.analysis.BrentSolver:BrentSolver:[]:null",
+        "org.apache.commons.math.analysis.BrentSolver:solve:[final UnivariateRealFunction f, final double min, final double max]:double",
         "org.apache.commons.math.analysis.SecantSolver:solve:[final UnivariateRealFunction f, final double min, final double max]:double",
         "org.apache.commons.math.analysis.MullerSolver:solve:[final UnivariateRealFunction f, final double min, final double max, final double initial]:double",
         "org.apache.commons.math.analysis.MullerSolver:solve:[final UnivariateRealFunction f, final double min, final double max]:double",
         "org.apache.commons.math.analysis.BisectionSolver:solve:[final UnivariateRealFunction f, double min, double max, double initial]:double",
-        "org.apache.commons.math.analysis.RiddersSolver:solve:[final UnivariateRealFunction f, final double min, final double max]:double",
         "org.apache.commons.math.analysis.RiddersSolver:solve:[final double min, final double max, final double initial]:double",
+        "org.apache.commons.math.analysis.RiddersSolver:solve:[final UnivariateRealFunction f, final double min, final double max]:double",
         "org.apache.commons.math.analysis.SecantSolver:solve:[final double min, final double max, final double initial]:double",
         "org.apache.commons.math.analysis.BrentSolver:solve:[final UnivariateRealFunction f, double x0, double y0, double x1, double y1, double x2, double y2]:double",
         "org.apache.commons.math.analysis.LaguerreSolver:getPolynomialFunction:[]:PolynomialFunction",

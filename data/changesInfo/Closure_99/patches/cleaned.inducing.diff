@@ -1,7 +1,7 @@
 Only in data/changesInfo//Closure_99/properties/modified_classes/inducing/: src
 diff -u -r data/changesInfo//Closure_99/properties/modified_classes/inducing/test/com/google/javascript/jscomp/CheckGlobalThisTest.java data/changesInfo//Closure_99/cleaned/inducing/test/com/google/javascript/jscomp/CheckGlobalThisTest.java
---- data/changesInfo//Closure_99/properties/modified_classes/inducing/test/com/google/javascript/jscomp/CheckGlobalThisTest.java	2023-08-25 13:26:05.854903590 +0800
-+++ data/changesInfo//Closure_99/cleaned/inducing/test/com/google/javascript/jscomp/CheckGlobalThisTest.java	2023-06-15 14:38:30.668439495 +0800
+--- data/changesInfo//Closure_99/properties/modified_classes/inducing/test/com/google/javascript/jscomp/CheckGlobalThisTest.java	2023-12-27 22:42:44.716916864 -0800
++++ data/changesInfo//Closure_99/cleaned/inducing/test/com/google/javascript/jscomp/CheckGlobalThisTest.java	2023-06-14 23:38:30.668439495 -0700
 @@ -35,7 +35,7 @@
    private void testFailure(String js) {
      test(js, null, CheckGlobalThis.GLOBAL_THIS);

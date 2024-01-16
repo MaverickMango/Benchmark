@@ -517,3 +517,603 @@ Creating output directory.................................................. OK
 Executed command: mkdir -p /home/liumengjiao/Desktop/CI/Evosuite/Math_97//Math/evosuite/3
 Moving test suite archive to /home/liumengjiao/Desktop/CI/Evosuite/Math_97/ OK
 Executed command: mv /tmp/gen_tests.pl_892470_1695300809/Math-97f-evosuite.3.tar.bz2 /home/liumengjiao/Desktop/CI/Evosuite/Math_97//Math/evosuite/3
+cd /home/liumengjiao/Desktop/CI/Benchmark/../bugs/Math_97_fix && /home/liumengjiao/Desktop/defects4j/framework/bin/gen_tests.pl -g evosuite -p Math -v 97f -n 0 -o /home/liumengjiao/Desktop/CI/Evosuite//Math_97 -b 3600 >> evosuite-report-clz/test_gen_fix.log 2>&1
+
+Checking out ed492bd0 to /tmp/gen_tests.pl_3600847_1703789252.............. OK
+Init local repository...................................................... OK
+Tag post-fix revision...................................................... OK
+Excluding broken/flaky tests............................................... OK
+Excluding broken/flaky tests............................................... OK
+Initialize fixed program version........................................... OK
+Apply patch................................................................ OK
+Initialize buggy program version........................................... OK
+Diff ed492bd0:7cf0c980..................................................... OK
+Apply patch................................................................ OK
+Tag pre-fix revision....................................................... OK
+Check out program version: Math-97f........................................ OK
+Running ant (compile)...................................................... OK
+Creating temporary output directory........................................ OK
+Generating (regression) tests with: evosuite............................... OK
+Creating test suite archive................................................ OK
+Creating output directory.................................................. OK
+Moving test suite archive to /home/liumengjiao/Desktop/CI/Evosuite//Math_97 OK
+cd /home/liumengjiao/Desktop/CI/Benchmark/../bugs/Math_97_fix && /home/liumengjiao/Desktop/defects4j/framework/bin/gen_tests.pl -g evosuite -p Math -v 97f -n 1 -o /home/liumengjiao/Desktop/CI/Evosuite//Math_97 -b 3600 >> evosuite-report-clz/test_gen_fix.log 2>&1
+
+Checking out ed492bd0 to /tmp/gen_tests.pl_3601158_1703789263.............. OK
+Init local repository...................................................... OK
+Tag post-fix revision...................................................... OK
+Excluding broken/flaky tests............................................... OK
+Excluding broken/flaky tests............................................... OK
+Initialize fixed program version........................................... OK
+Apply patch................................................................ OK
+Initialize buggy program version........................................... OK
+Diff ed492bd0:7cf0c980..................................................... OK
+Apply patch................................................................ OK
+Tag pre-fix revision....................................................... OK
+Check out program version: Math-97f........................................ OK
+Running ant (compile)...................................................... OK
+Creating temporary output directory........................................ OK
+Generating (regression) tests with: evosuite............................... OK
+Creating test suite archive................................................ OK
+Creating output directory.................................................. OK
+Moving test suite archive to /home/liumengjiao/Desktop/CI/Evosuite//Math_97 OK
+cd /home/liumengjiao/Desktop/CI/Benchmark/../bugs/Math_97_fix && /home/liumengjiao/Desktop/defects4j/framework/bin/gen_tests.pl -g evosuite -p Math -v 97f -n 2 -o /home/liumengjiao/Desktop/CI/Evosuite//Math_97 -b 3600 >> evosuite-report-clz/test_gen_fix.log 2>&1
+
+Checking out ed492bd0 to /tmp/gen_tests.pl_3601477_1703789277.............. OK
+Init local repository...................................................... OK
+Tag post-fix revision...................................................... OK
+Excluding broken/flaky tests............................................... OK
+Excluding broken/flaky tests............................................... OK
+Initialize fixed program version........................................... OK
+Apply patch................................................................ OK
+Initialize buggy program version........................................... OK
+Diff ed492bd0:7cf0c980..................................................... OK
+Apply patch................................................................ OK
+Tag pre-fix revision....................................................... OK
+Check out program version: Math-97f........................................ OK
+Running ant (compile)...................................................... OK
+Creating temporary output directory........................................ OK
+Generating (regression) tests with: evosuite............................... OK
+Creating test suite archive................................................ OK
+Creating output directory.................................................. OK
+Moving test suite archive to /home/liumengjiao/Desktop/CI/Evosuite//Math_97 OK
+cd /home/liumengjiao/Desktop/CI/Benchmark/../bugs/Math_97_fix && /home/liumengjiao/Desktop/defects4j/framework/bin/gen_tests.pl -g evosuite -p Math -v 97f -n 3 -o /home/liumengjiao/Desktop/CI/Evosuite//Math_97 -b 3600 >> evosuite-report-clz/test_gen_fix.log 2>&1
+
+Checking out ed492bd0 to /tmp/gen_tests.pl_3601791_1703789287.............. OK
+Init local repository...................................................... OK
+Tag post-fix revision...................................................... OK
+Excluding broken/flaky tests............................................... OK
+Excluding broken/flaky tests............................................... OK
+Initialize fixed program version........................................... OK
+Apply patch................................................................ OK
+Initialize buggy program version........................................... OK
+Diff ed492bd0:7cf0c980..................................................... OK
+Apply patch................................................................ OK
+Tag pre-fix revision....................................................... OK
+Check out program version: Math-97f........................................ OK
+Running ant (compile)...................................................... OK
+Creating temporary output directory........................................ OK
+Generating (regression) tests with: evosuite............................... OK
+Creating test suite archive................................................ OK
+Creating output directory.................................................. OK
+Moving test suite archive to /home/liumengjiao/Desktop/CI/Evosuite//Math_97 OK
+cd /home/liumengjiao/Desktop/CI/Benchmark/../bugs/Math_97_fix && /home/liumengjiao/Desktop/defects4j/framework/bin/gen_tests.pl -g evosuite -p Math -v 97f -n 4 -o /home/liumengjiao/Desktop/CI/Evosuite//Math_97 -b 3600 >> evosuite-report-clz/test_gen_fix.log 2>&1
+
+Checking out ed492bd0 to /tmp/gen_tests.pl_3602117_1703789300.............. OK
+Init local repository...................................................... OK
+Tag post-fix revision...................................................... OK
+Excluding broken/flaky tests............................................... OK
+Excluding broken/flaky tests............................................... OK
+Initialize fixed program version........................................... OK
+Apply patch................................................................ OK
+Initialize buggy program version........................................... OK
+Diff ed492bd0:7cf0c980..................................................... OK
+Apply patch................................................................ OK
+Tag pre-fix revision....................................................... OK
+Check out program version: Math-97f........................................ OK
+Running ant (compile)...................................................... OK
+Creating temporary output directory........................................ OK
+Generating (regression) tests with: evosuite............................... OK
+Creating test suite archive................................................ OK
+Creating output directory.................................................. OK
+Moving test suite archive to /home/liumengjiao/Desktop/CI/Evosuite//Math_97 OK
+cd /home/liumengjiao/Desktop/CI/Benchmark/../bugs/Math_97_fix && /home/liumengjiao/Desktop/defects4j/framework/bin/gen_tests.pl -g evosuite -p Math -v 97f -n 5 -o /home/liumengjiao/Desktop/CI/Evosuite//Math_97 -b 3600 >> evosuite-report-clz/test_gen_fix.log 2>&1
+
+Checking out ed492bd0 to /tmp/gen_tests.pl_3602437_1703789310.............. OK
+Init local repository...................................................... OK
+Tag post-fix revision...................................................... OK
+Excluding broken/flaky tests............................................... OK
+Excluding broken/flaky tests............................................... OK
+Initialize fixed program version........................................... OK
+Apply patch................................................................ OK
+Initialize buggy program version........................................... OK
+Diff ed492bd0:7cf0c980..................................................... OK
+Apply patch................................................................ OK
+Tag pre-fix revision....................................................... OK
+Check out program version: Math-97f........................................ OK
+Running ant (compile)...................................................... OK
+Creating temporary output directory........................................ OK
+Generating (regression) tests with: evosuite............................... OK
+Creating test suite archive................................................ OK
+Creating output directory.................................................. OK
+Moving test suite archive to /home/liumengjiao/Desktop/CI/Evosuite//Math_97 OK
+cd /home/liumengjiao/Desktop/CI/Benchmark/../bugs/Math_97_fix && /home/liumengjiao/Desktop/defects4j/framework/bin/gen_tests.pl -g evosuite -p Math -v 97f -n 6 -o /home/liumengjiao/Desktop/CI/Evosuite//Math_97 -b 3600 >> evosuite-report-clz/test_gen_fix.log 2>&1
+
+Checking out ed492bd0 to /tmp/gen_tests.pl_3602753_1703789323.............. OK
+Init local repository...................................................... OK
+Tag post-fix revision...................................................... OK
+Excluding broken/flaky tests............................................... OK
+Excluding broken/flaky tests............................................... OK
+Initialize fixed program version........................................... OK
+Apply patch................................................................ OK
+Initialize buggy program version........................................... OK
+Diff ed492bd0:7cf0c980..................................................... OK
+Apply patch................................................................ OK
+Tag pre-fix revision....................................................... OK
+Check out program version: Math-97f........................................ OK
+Running ant (compile)...................................................... OK
+Creating temporary output directory........................................ OK
+Generating (regression) tests with: evosuite............................... OK
+Creating test suite archive................................................ OK
+Creating output directory.................................................. OK
+Moving test suite archive to /home/liumengjiao/Desktop/CI/Evosuite//Math_97 OK
+cd /home/liumengjiao/Desktop/CI/Benchmark/../bugs/Math_97_fix && /home/liumengjiao/Desktop/defects4j/framework/bin/gen_tests.pl -g evosuite -p Math -v 97f -n 7 -o /home/liumengjiao/Desktop/CI/Evosuite//Math_97 -b 3600 >> evosuite-report-clz/test_gen_fix.log 2>&1
+
+Checking out ed492bd0 to /tmp/gen_tests.pl_3603072_1703789334.............. OK
+Init local repository...................................................... OK
+Tag post-fix revision...................................................... OK
+Excluding broken/flaky tests............................................... OK
+Excluding broken/flaky tests............................................... OK
+Initialize fixed program version........................................... OK
+Apply patch................................................................ OK
+Initialize buggy program version........................................... OK
+Diff ed492bd0:7cf0c980..................................................... OK
+Apply patch................................................................ OK
+Tag pre-fix revision....................................................... OK
+Check out program version: Math-97f........................................ OK
+Running ant (compile)...................................................... OK
+Creating temporary output directory........................................ OK
+Generating (regression) tests with: evosuite............................... OK
+Creating test suite archive................................................ OK
+Creating output directory.................................................. OK
+Moving test suite archive to /home/liumengjiao/Desktop/CI/Evosuite//Math_97 OK
+cd /home/liumengjiao/Desktop/CI/Benchmark/../bugs/Math_97_fix && /home/liumengjiao/Desktop/defects4j/framework/bin/gen_tests.pl -g evosuite -p Math -v 97f -n 8 -o /home/liumengjiao/Desktop/CI/Evosuite//Math_97 -b 3600 >> evosuite-report-clz/test_gen_fix.log 2>&1
+
+Checking out ed492bd0 to /tmp/gen_tests.pl_3603400_1703789348.............. OK
+Init local repository...................................................... OK
+Tag post-fix revision...................................................... OK
+Excluding broken/flaky tests............................................... OK
+Excluding broken/flaky tests............................................... OK
+Initialize fixed program version........................................... OK
+Apply patch................................................................ OK
+Initialize buggy program version........................................... OK
+Diff ed492bd0:7cf0c980..................................................... OK
+Apply patch................................................................ OK
+Tag pre-fix revision....................................................... OK
+Check out program version: Math-97f........................................ OK
+Running ant (compile)...................................................... OK
+Creating temporary output directory........................................ OK
+Generating (regression) tests with: evosuite............................... OK
+Creating test suite archive................................................ OK
+Creating output directory.................................................. OK
+Moving test suite archive to /home/liumengjiao/Desktop/CI/Evosuite//Math_97 OK
+cd /home/liumengjiao/Desktop/CI/Benchmark/../bugs/Math_97_fix && /home/liumengjiao/Desktop/defects4j/framework/bin/gen_tests.pl -g evosuite -p Math -v 97f -n 9 -o /home/liumengjiao/Desktop/CI/Evosuite//Math_97 -b 3600 >> evosuite-report-clz/test_gen_fix.log 2>&1
+
+Checking out ed492bd0 to /tmp/gen_tests.pl_3603712_1703789359.............. OK
+Init local repository...................................................... OK
+Tag post-fix revision...................................................... OK
+Excluding broken/flaky tests............................................... OK
+Excluding broken/flaky tests............................................... OK
+Initialize fixed program version........................................... OK
+Apply patch................................................................ OK
+Initialize buggy program version........................................... OK
+Diff ed492bd0:7cf0c980..................................................... OK
+Apply patch................................................................ OK
+Tag pre-fix revision....................................................... OK
+Check out program version: Math-97f........................................ OK
+Running ant (compile)...................................................... OK
+Creating temporary output directory........................................ OK
+Generating (regression) tests with: evosuite............................... OK
+Creating test suite archive................................................ OK
+Creating output directory.................................................. OK
+Moving test suite archive to /home/liumengjiao/Desktop/CI/Evosuite//Math_97 OK
+cd /home/liumengjiao/Desktop/CI/Benchmark/../bugs/Math_97_fix && /home/liumengjiao/Desktop/defects4j/framework/bin/gen_tests.pl -g evosuite -p Math -v 97f -n 10 -o /home/liumengjiao/Desktop/CI/Evosuite//Math_97 -b 3600 >> evosuite-report-clz/test_gen_fix.log 2>&1
+
+Checking out ed492bd0 to /tmp/gen_tests.pl_3604032_1703789369.............. OK
+Init local repository...................................................... OK
+Tag post-fix revision...................................................... OK
+Excluding broken/flaky tests............................................... OK
+Excluding broken/flaky tests............................................... OK
+Initialize fixed program version........................................... OK
+Apply patch................................................................ OK
+Initialize buggy program version........................................... OK
+Diff ed492bd0:7cf0c980..................................................... OK
+Apply patch................................................................ OK
+Tag pre-fix revision....................................................... OK
+Check out program version: Math-97f........................................ OK
+Running ant (compile)...................................................... OK
+Creating temporary output directory........................................ OK
+Generating (regression) tests with: evosuite............................... OK
+Creating test suite archive................................................ OK
+Creating output directory.................................................. OK
+Moving test suite archive to /home/liumengjiao/Desktop/CI/Evosuite//Math_97 OK
+cd /home/liumengjiao/Desktop/CI/Benchmark/../bugs/Math_97_fix && /home/liumengjiao/Desktop/defects4j/framework/bin/gen_tests.pl -g evosuite -p Math -v 97f -n 11 -o /home/liumengjiao/Desktop/CI/Evosuite//Math_97 -b 3600 >> evosuite-report-clz/test_gen_fix.log 2>&1
+
+Checking out ed492bd0 to /tmp/gen_tests.pl_3604345_1703789384.............. OK
+Init local repository...................................................... OK
+Tag post-fix revision...................................................... OK
+Excluding broken/flaky tests............................................... OK
+Excluding broken/flaky tests............................................... OK
+Initialize fixed program version........................................... OK
+Apply patch................................................................ OK
+Initialize buggy program version........................................... OK
+Diff ed492bd0:7cf0c980..................................................... OK
+Apply patch................................................................ OK
+Tag pre-fix revision....................................................... OK
+Check out program version: Math-97f........................................ OK
+Running ant (compile)...................................................... OK
+Creating temporary output directory........................................ OK
+Generating (regression) tests with: evosuite............................... OK
+Creating test suite archive................................................ OK
+Creating output directory.................................................. OK
+Moving test suite archive to /home/liumengjiao/Desktop/CI/Evosuite//Math_97 OK
+cd /home/liumengjiao/Desktop/CI/Benchmark/../bugs/Math_97_fix && /home/liumengjiao/Desktop/defects4j/framework/bin/gen_tests.pl -g evosuite -p Math -v 97f -n 12 -o /home/liumengjiao/Desktop/CI/Evosuite//Math_97 -b 3600 >> evosuite-report-clz/test_gen_fix.log 2>&1
+
+Checking out ed492bd0 to /tmp/gen_tests.pl_3604667_1703789395.............. OK
+Init local repository...................................................... OK
+Tag post-fix revision...................................................... OK
+Excluding broken/flaky tests............................................... OK
+Excluding broken/flaky tests............................................... OK
+Initialize fixed program version........................................... OK
+Apply patch................................................................ OK
+Initialize buggy program version........................................... OK
+Diff ed492bd0:7cf0c980..................................................... OK
+Apply patch................................................................ OK
+Tag pre-fix revision....................................................... OK
+Check out program version: Math-97f........................................ OK
+Running ant (compile)...................................................... OK
+Creating temporary output directory........................................ OK
+Generating (regression) tests with: evosuite............................... OK
+Creating test suite archive................................................ OK
+Creating output directory.................................................. OK
+Moving test suite archive to /home/liumengjiao/Desktop/CI/Evosuite//Math_97 OK
+cd /home/liumengjiao/Desktop/CI/Benchmark/../bugs/Math_97_fix && /home/liumengjiao/Desktop/defects4j/framework/bin/gen_tests.pl -g evosuite -p Math -v 97f -n 13 -o /home/liumengjiao/Desktop/CI/Evosuite//Math_97 -b 3600 >> evosuite-report-clz/test_gen_fix.log 2>&1
+
+Checking out ed492bd0 to /tmp/gen_tests.pl_3604978_1703789405.............. OK
+Init local repository...................................................... OK
+Tag post-fix revision...................................................... OK
+Excluding broken/flaky tests............................................... OK
+Excluding broken/flaky tests............................................... OK
+Initialize fixed program version........................................... OK
+Apply patch................................................................ OK
+Initialize buggy program version........................................... OK
+Diff ed492bd0:7cf0c980..................................................... OK
+Apply patch................................................................ OK
+Tag pre-fix revision....................................................... OK
+Check out program version: Math-97f........................................ OK
+Running ant (compile)...................................................... OK
+Creating temporary output directory........................................ OK
+Generating (regression) tests with: evosuite............................... OK
+Creating test suite archive................................................ OK
+Creating output directory.................................................. OK
+Moving test suite archive to /home/liumengjiao/Desktop/CI/Evosuite//Math_97 OK
+cd /home/liumengjiao/Desktop/CI/Benchmark/../bugs/Math_97_fix && /home/liumengjiao/Desktop/defects4j/framework/bin/gen_tests.pl -g evosuite -p Math -v 97f -n 14 -o /home/liumengjiao/Desktop/CI/Evosuite//Math_97 -b 3600 >> evosuite-report-clz/test_gen_fix.log 2>&1
+
+Checking out ed492bd0 to /tmp/gen_tests.pl_3605290_1703789415.............. OK
+Init local repository...................................................... OK
+Tag post-fix revision...................................................... OK
+Excluding broken/flaky tests............................................... OK
+Excluding broken/flaky tests............................................... OK
+Initialize fixed program version........................................... OK
+Apply patch................................................................ OK
+Initialize buggy program version........................................... OK
+Diff ed492bd0:7cf0c980..................................................... OK
+Apply patch................................................................ OK
+Tag pre-fix revision....................................................... OK
+Check out program version: Math-97f........................................ OK
+Running ant (compile)...................................................... OK
+Creating temporary output directory........................................ OK
+Generating (regression) tests with: evosuite............................... OK
+Creating test suite archive................................................ OK
+Creating output directory.................................................. OK
+Moving test suite archive to /home/liumengjiao/Desktop/CI/Evosuite//Math_97 OK
+cd /home/liumengjiao/Desktop/CI/Benchmark/../bugs/Math_97_fix && /home/liumengjiao/Desktop/defects4j/framework/bin/gen_tests.pl -g evosuite -p Math -v 97f -n 15 -o /home/liumengjiao/Desktop/CI/Evosuite//Math_97 -b 3600 >> evosuite-report-clz/test_gen_fix.log 2>&1
+
+Checking out ed492bd0 to /tmp/gen_tests.pl_3605610_1703789426.............. OK
+Init local repository...................................................... OK
+Tag post-fix revision...................................................... OK
+Excluding broken/flaky tests............................................... OK
+Excluding broken/flaky tests............................................... OK
+Initialize fixed program version........................................... OK
+Apply patch................................................................ OK
+Initialize buggy program version........................................... OK
+Diff ed492bd0:7cf0c980..................................................... OK
+Apply patch................................................................ OK
+Tag pre-fix revision....................................................... OK
+Check out program version: Math-97f........................................ OK
+Running ant (compile)...................................................... OK
+Creating temporary output directory........................................ OK
+Generating (regression) tests with: evosuite............................... OK
+Creating test suite archive................................................ OK
+Creating output directory.................................................. OK
+Moving test suite archive to /home/liumengjiao/Desktop/CI/Evosuite//Math_97 OK
+cd /home/liumengjiao/Desktop/CI/Benchmark/../bugs/Math_97_fix && /home/liumengjiao/Desktop/defects4j/framework/bin/gen_tests.pl -g evosuite -p Math -v 97f -n 16 -o /home/liumengjiao/Desktop/CI/Evosuite//Math_97 -b 3600 >> evosuite-report-clz/test_gen_fix.log 2>&1
+
+Checking out ed492bd0 to /tmp/gen_tests.pl_3605929_1703789436.............. OK
+Init local repository...................................................... OK
+Tag post-fix revision...................................................... OK
+Excluding broken/flaky tests............................................... OK
+Excluding broken/flaky tests............................................... OK
+Initialize fixed program version........................................... OK
+Apply patch................................................................ OK
+Initialize buggy program version........................................... OK
+Diff ed492bd0:7cf0c980..................................................... OK
+Apply patch................................................................ OK
+Tag pre-fix revision....................................................... OK
+Check out program version: Math-97f........................................ OK
+Running ant (compile)...................................................... OK
+Creating temporary output directory........................................ OK
+Generating (regression) tests with: evosuite............................... OK
+Creating test suite archive................................................ OK
+Creating output directory.................................................. OK
+Moving test suite archive to /home/liumengjiao/Desktop/CI/Evosuite//Math_97 OK
+cd /home/liumengjiao/Desktop/CI/Benchmark/../bugs/Math_97_fix && /home/liumengjiao/Desktop/defects4j/framework/bin/gen_tests.pl -g evosuite -p Math -v 97f -n 17 -o /home/liumengjiao/Desktop/CI/Evosuite//Math_97 -b 3600 >> evosuite-report-clz/test_gen_fix.log 2>&1
+
+Checking out ed492bd0 to /tmp/gen_tests.pl_3606241_1703789446.............. OK
+Init local repository...................................................... OK
+Tag post-fix revision...................................................... OK
+Excluding broken/flaky tests............................................... OK
+Excluding broken/flaky tests............................................... OK
+Initialize fixed program version........................................... OK
+Apply patch................................................................ OK
+Initialize buggy program version........................................... OK
+Diff ed492bd0:7cf0c980..................................................... OK
+Apply patch................................................................ OK
+Tag pre-fix revision....................................................... OK
+Check out program version: Math-97f........................................ OK
+Running ant (compile)...................................................... OK
+Creating temporary output directory........................................ OK
+Generating (regression) tests with: evosuite............................... OK
+Creating test suite archive................................................ OK
+Creating output directory.................................................. OK
+Moving test suite archive to /home/liumengjiao/Desktop/CI/Evosuite//Math_97 OK
+cd /home/liumengjiao/Desktop/CI/Benchmark/../bugs/Math_97_fix && /home/liumengjiao/Desktop/defects4j/framework/bin/gen_tests.pl -g evosuite -p Math -v 97f -n 18 -o /home/liumengjiao/Desktop/CI/Evosuite//Math_97 -b 3600 >> evosuite-report-clz/test_gen_fix.log 2>&1
+
+Checking out ed492bd0 to /tmp/gen_tests.pl_3606561_1703789456.............. OK
+Init local repository...................................................... OK
+Tag post-fix revision...................................................... OK
+Excluding broken/flaky tests............................................... OK
+Excluding broken/flaky tests............................................... OK
+Initialize fixed program version........................................... OK
+Apply patch................................................................ OK
+Initialize buggy program version........................................... OK
+Diff ed492bd0:7cf0c980..................................................... OK
+Apply patch................................................................ OK
+Tag pre-fix revision....................................................... OK
+Check out program version: Math-97f........................................ OK
+Running ant (compile)...................................................... OK
+Creating temporary output directory........................................ OK
+Generating (regression) tests with: evosuite............................... OK
+Creating test suite archive................................................ OK
+Creating output directory.................................................. OK
+Moving test suite archive to /home/liumengjiao/Desktop/CI/Evosuite//Math_97 OK
+cd /home/liumengjiao/Desktop/CI/Benchmark/../bugs/Math_97_fix && /home/liumengjiao/Desktop/defects4j/framework/bin/gen_tests.pl -g evosuite -p Math -v 97f -n 19 -o /home/liumengjiao/Desktop/CI/Evosuite//Math_97 -b 3600 >> evosuite-report-clz/test_gen_fix.log 2>&1
+
+Checking out ed492bd0 to /tmp/gen_tests.pl_3606875_1703789471.............. OK
+Init local repository...................................................... OK
+Tag post-fix revision...................................................... OK
+Excluding broken/flaky tests............................................... OK
+Excluding broken/flaky tests............................................... OK
+Initialize fixed program version........................................... OK
+Apply patch................................................................ OK
+Initialize buggy program version........................................... OK
+Diff ed492bd0:7cf0c980..................................................... OK
+Apply patch................................................................ OK
+Tag pre-fix revision....................................................... OK
+Check out program version: Math-97f........................................ OK
+Running ant (compile)...................................................... OK
+Creating temporary output directory........................................ OK
+Generating (regression) tests with: evosuite............................... OK
+Creating test suite archive................................................ OK
+Creating output directory.................................................. OK
+Moving test suite archive to /home/liumengjiao/Desktop/CI/Evosuite//Math_97 OK
+cd /home/liumengjiao/Desktop/CI/Benchmark/../bugs/Math_97_fix && /home/liumengjiao/Desktop/defects4j/framework/bin/gen_tests.pl -g evosuite -p Math -v 97f -n 20 -o /home/liumengjiao/Desktop/CI/Evosuite//Math_97 -b 3600 >> evosuite-report-clz/test_gen_fix.log 2>&1
+
+Checking out ed492bd0 to /tmp/gen_tests.pl_3607186_1703789480.............. OK
+Init local repository...................................................... OK
+Tag post-fix revision...................................................... OK
+Excluding broken/flaky tests............................................... OK
+Excluding broken/flaky tests............................................... OK
+Initialize fixed program version........................................... OK
+Apply patch................................................................ OK
+Initialize buggy program version........................................... OK
+Diff ed492bd0:7cf0c980..................................................... OK
+Apply patch................................................................ OK
+Tag pre-fix revision....................................................... OK
+Check out program version: Math-97f........................................ OK
+Running ant (compile)...................................................... OK
+Creating temporary output directory........................................ OK
+Generating (regression) tests with: evosuite............................... OK
+Creating test suite archive................................................ OK
+Creating output directory.................................................. OK
+Moving test suite archive to /home/liumengjiao/Desktop/CI/Evosuite//Math_97 OK
+cd /home/liumengjiao/Desktop/CI/Benchmark/../bugs/Math_97_fix && /home/liumengjiao/Desktop/defects4j/framework/bin/gen_tests.pl -g evosuite -p Math -v 97f -n 21 -o /home/liumengjiao/Desktop/CI/Evosuite//Math_97 -b 3600 >> evosuite-report-clz/test_gen_fix.log 2>&1
+
+Checking out ed492bd0 to /tmp/gen_tests.pl_3607505_1703789492.............. OK
+Init local repository...................................................... OK
+Tag post-fix revision...................................................... OK
+Excluding broken/flaky tests............................................... OK
+Excluding broken/flaky tests............................................... OK
+Initialize fixed program version........................................... OK
+Apply patch................................................................ OK
+Initialize buggy program version........................................... OK
+Diff ed492bd0:7cf0c980..................................................... OK
+Apply patch................................................................ OK
+Tag pre-fix revision....................................................... OK
+Check out program version: Math-97f........................................ OK
+Running ant (compile)...................................................... OK
+Creating temporary output directory........................................ OK
+Generating (regression) tests with: evosuite............................... OK
+Creating test suite archive................................................ OK
+Creating output directory.................................................. OK
+Moving test suite archive to /home/liumengjiao/Desktop/CI/Evosuite//Math_97 OK
+cd /home/liumengjiao/Desktop/CI/Benchmark/../bugs/Math_97_fix && /home/liumengjiao/Desktop/defects4j/framework/bin/gen_tests.pl -g evosuite -p Math -v 97f -n 22 -o /home/liumengjiao/Desktop/CI/Evosuite//Math_97 -b 3600 >> evosuite-report-clz/test_gen_fix.log 2>&1
+
+Checking out ed492bd0 to /tmp/gen_tests.pl_3607817_1703789503.............. OK
+Init local repository...................................................... OK
+Tag post-fix revision...................................................... OK
+Excluding broken/flaky tests............................................... OK
+Excluding broken/flaky tests............................................... OK
+Initialize fixed program version........................................... OK
+Apply patch................................................................ OK
+Initialize buggy program version........................................... OK
+Diff ed492bd0:7cf0c980..................................................... OK
+Apply patch................................................................ OK
+Tag pre-fix revision....................................................... OK
+Check out program version: Math-97f........................................ OK
+Running ant (compile)...................................................... OK
+Creating temporary output directory........................................ OK
+Generating (regression) tests with: evosuite............................... OK
+Creating test suite archive................................................ OK
+Creating output directory.................................................. OK
+Moving test suite archive to /home/liumengjiao/Desktop/CI/Evosuite//Math_97 OK
+cd /home/liumengjiao/Desktop/CI/Benchmark/../bugs/Math_97_fix && /home/liumengjiao/Desktop/defects4j/framework/bin/gen_tests.pl -g evosuite -p Math -v 97f -n 23 -o /home/liumengjiao/Desktop/CI/Evosuite//Math_97 -b 3600 >> evosuite-report-clz/test_gen_fix.log 2>&1
+
+Checking out ed492bd0 to /tmp/gen_tests.pl_3608130_1703789512.............. OK
+Init local repository...................................................... OK
+Tag post-fix revision...................................................... OK
+Excluding broken/flaky tests............................................... OK
+Excluding broken/flaky tests............................................... OK
+Initialize fixed program version........................................... OK
+Apply patch................................................................ OK
+Initialize buggy program version........................................... OK
+Diff ed492bd0:7cf0c980..................................................... OK
+Apply patch................................................................ OK
+Tag pre-fix revision....................................................... OK
+Check out program version: Math-97f........................................ OK
+Running ant (compile)...................................................... OK
+Creating temporary output directory........................................ OK
+Generating (regression) tests with: evosuite............................... OK
+Creating test suite archive................................................ OK
+Creating output directory.................................................. OK
+Moving test suite archive to /home/liumengjiao/Desktop/CI/Evosuite//Math_97 OK
+cd /home/liumengjiao/Desktop/CI/Benchmark/../bugs/Math_97_fix && /home/liumengjiao/Desktop/defects4j/framework/bin/gen_tests.pl -g evosuite -p Math -v 97f -n 24 -o /home/liumengjiao/Desktop/CI/Evosuite//Math_97 -b 3600 >> evosuite-report-clz/test_gen_fix.log 2>&1
+
+Checking out ed492bd0 to /tmp/gen_tests.pl_3608455_1703789522.............. OK
+Init local repository...................................................... OK
+Tag post-fix revision...................................................... OK
+Excluding broken/flaky tests............................................... OK
+Excluding broken/flaky tests............................................... OK
+Initialize fixed program version........................................... OK
+Apply patch................................................................ OK
+Initialize buggy program version........................................... OK
+Diff ed492bd0:7cf0c980..................................................... OK
+Apply patch................................................................ OK
+Tag pre-fix revision....................................................... OK
+Check out program version: Math-97f........................................ OK
+Running ant (compile)...................................................... OK
+Creating temporary output directory........................................ OK
+Generating (regression) tests with: evosuite............................... OK
+Creating test suite archive................................................ OK
+Creating output directory.................................................. OK
+Moving test suite archive to /home/liumengjiao/Desktop/CI/Evosuite//Math_97 OK
+cd /home/liumengjiao/Desktop/CI/Benchmark/../bugs/Math_97_fix && /home/liumengjiao/Desktop/defects4j/framework/bin/gen_tests.pl -g evosuite -p Math -v 97f -n 25 -o /home/liumengjiao/Desktop/CI/Evosuite//Math_97 -b 3600 >> evosuite-report-clz/test_gen_fix.log 2>&1
+
+Checking out ed492bd0 to /tmp/gen_tests.pl_3608766_1703789536.............. OK
+Init local repository...................................................... OK
+Tag post-fix revision...................................................... OK
+Excluding broken/flaky tests............................................... OK
+Excluding broken/flaky tests............................................... OK
+Initialize fixed program version........................................... OK
+Apply patch................................................................ OK
+Initialize buggy program version........................................... OK
+Diff ed492bd0:7cf0c980..................................................... OK
+Apply patch................................................................ OK
+Tag pre-fix revision....................................................... OK
+Check out program version: Math-97f........................................ OK
+Running ant (compile)...................................................... OK
+Creating temporary output directory........................................ OK
+Generating (regression) tests with: evosuite............................... OK
+Creating test suite archive................................................ OK
+Creating output directory.................................................. OK
+Moving test suite archive to /home/liumengjiao/Desktop/CI/Evosuite//Math_97 OK
+cd /home/liumengjiao/Desktop/CI/Benchmark/../bugs/Math_97_fix && /home/liumengjiao/Desktop/defects4j/framework/bin/gen_tests.pl -g evosuite -p Math -v 97f -n 26 -o /home/liumengjiao/Desktop/CI/Evosuite//Math_97 -b 3600 >> evosuite-report-clz/test_gen_fix.log 2>&1
+
+Checking out ed492bd0 to /tmp/gen_tests.pl_3609086_1703789546.............. OK
+Init local repository...................................................... OK
+Tag post-fix revision...................................................... OK
+Excluding broken/flaky tests............................................... OK
+Excluding broken/flaky tests............................................... OK
+Initialize fixed program version........................................... OK
+Apply patch................................................................ OK
+Initialize buggy program version........................................... OK
+Diff ed492bd0:7cf0c980..................................................... OK
+Apply patch................................................................ OK
+Tag pre-fix revision....................................................... OK
+Check out program version: Math-97f........................................ OK
+Running ant (compile)...................................................... OK
+Creating temporary output directory........................................ OK
+Generating (regression) tests with: evosuite............................... OK
+Creating test suite archive................................................ OK
+Creating output directory.................................................. OK
+Moving test suite archive to /home/liumengjiao/Desktop/CI/Evosuite//Math_97 OK
+cd /home/liumengjiao/Desktop/CI/Benchmark/../bugs/Math_97_fix && /home/liumengjiao/Desktop/defects4j/framework/bin/gen_tests.pl -g evosuite -p Math -v 97f -n 27 -o /home/liumengjiao/Desktop/CI/Evosuite//Math_97 -b 3600 >> evosuite-report-clz/test_gen_fix.log 2>&1
+
+Checking out ed492bd0 to /tmp/gen_tests.pl_3609399_1703789558.............. OK
+Init local repository...................................................... OK
+Tag post-fix revision...................................................... OK
+Excluding broken/flaky tests............................................... OK
+Excluding broken/flaky tests............................................... OK
+Initialize fixed program version........................................... OK
+Apply patch................................................................ OK
+Initialize buggy program version........................................... OK
+Diff ed492bd0:7cf0c980..................................................... OK
+Apply patch................................................................ OK
+Tag pre-fix revision....................................................... OK
+Check out program version: Math-97f........................................ OK
+Running ant (compile)...................................................... OK
+Creating temporary output directory........................................ OK
+Generating (regression) tests with: evosuite............................... OK
+Creating test suite archive................................................ OK
+Creating output directory.................................................. OK
+Moving test suite archive to /home/liumengjiao/Desktop/CI/Evosuite//Math_97 OK
+cd /home/liumengjiao/Desktop/CI/Benchmark/../bugs/Math_97_fix && /home/liumengjiao/Desktop/defects4j/framework/bin/gen_tests.pl -g evosuite -p Math -v 97f -n 28 -o /home/liumengjiao/Desktop/CI/Evosuite//Math_97 -b 3600 >> evosuite-report-clz/test_gen_fix.log 2>&1
+
+Checking out ed492bd0 to /tmp/gen_tests.pl_3609730_1703789583.............. OK
+Init local repository...................................................... OK
+Tag post-fix revision...................................................... OK
+Excluding broken/flaky tests............................................... OK
+Excluding broken/flaky tests............................................... OK
+Initialize fixed program version........................................... OK
+Apply patch................................................................ OK
+Initialize buggy program version........................................... OK
+Diff ed492bd0:7cf0c980..................................................... OK
+Apply patch................................................................ OK
+Tag pre-fix revision....................................................... OK
+Check out program version: Math-97f........................................ OK
+Running ant (compile)...................................................... OK
+Creating temporary output directory........................................ OK
+Generating (regression) tests with: evosuite............................... OK
+Creating test suite archive................................................ OK
+Creating output directory.................................................. OK
+Moving test suite archive to /home/liumengjiao/Desktop/CI/Evosuite//Math_97 OK
+cd /home/liumengjiao/Desktop/CI/Benchmark/../bugs/Math_97_fix && /home/liumengjiao/Desktop/defects4j/framework/bin/gen_tests.pl -g evosuite -p Math -v 97f -n 29 -o /home/liumengjiao/Desktop/CI/Evosuite//Math_97 -b 3600 >> evosuite-report-clz/test_gen_fix.log 2>&1
+
+Checking out ed492bd0 to /tmp/gen_tests.pl_3610041_1703789593.............. OK
+Init local repository...................................................... OK
+Tag post-fix revision...................................................... OK
+Excluding broken/flaky tests............................................... OK
+Excluding broken/flaky tests............................................... OK
+Initialize fixed program version........................................... OK
+Apply patch................................................................ OK
+Initialize buggy program version........................................... OK
+Diff ed492bd0:7cf0c980..................................................... OK
+Apply patch................................................................ OK
+Tag pre-fix revision....................................................... OK
+Check out program version: Math-97f........................................ OK
+Running ant (compile)...................................................... OK
+Creating temporary output directory........................................ OK
+Generating (regression) tests with: evosuite............................... OK
+Creating test suite archive................................................ OK
+Creating output directory.................................................. OK
+Moving test suite archive to /home/liumengjiao/Desktop/CI/Evosuite//Math_97 OK

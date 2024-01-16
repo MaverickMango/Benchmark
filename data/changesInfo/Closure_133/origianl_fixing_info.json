@@ -4,14 +4,14 @@
     "name": "root.bean.benchmarks.Defects4JBug"
   },
   "d4jCmd": "/home/liumengjiao/Desktop/defects4j/framework/bin/defects4j",
-  "dataDir": "data/changesInfo/",
+  "dataDir": "/home/liumengjiao/Desktop/CI/Benchmark/data/changesInfo/",
   "properties": {
     "trigger.tests": "com.google.javascript.jscomp.parsing.JsDocInfoParserTest::testTextExtents",
     "test.dir": "test",
     "clz.modified": "com.google.javascript.jscomp.parsing.JsDocInfoParser",
     "src.dir": "src"
   },
-  "timeoutSecond": 300,
+  "timeoutSecond": 100,
   "proj": "Closure",
   "id": "133",
   "workingDir": "../bugs/Closure_133_buggy",
@@ -757,19 +757,19 @@
       "changed_functions": [
         {
           "qualified_names": [
-            "com.google.javascript.jscomp.parsing.JsDocInfoParser:extractSingleLineBlock:[]:ExtractionInfo",
-            "com.google.javascript.jscomp.parsing.JsDocInfoParser:hasParsedFileOverviewDocInfo:[]:boolean",
+            "com.google.javascript.jscomp.parsing.JsDocInfoParser:extractMultilineTextualBlock:[JsDocToken token, WhitespaceOption option]:ExtractionInfo",
             "com.google.javascript.jscomp.parsing.JsDocInfoParser:extractBlockComment:[JsDocToken token]:ExtractionInfo",
-            "com.google.javascript.jscomp.parsing.JsDocInfoParser:extractMultilineTextualBlock:[JsDocToken token, WhitespaceOption option]:ExtractionInfo"
+            "com.google.javascript.jscomp.parsing.JsDocInfoParser:extractSingleLineBlock:[]:ExtractionInfo",
+            "com.google.javascript.jscomp.parsing.JsDocInfoParser:hasParsedFileOverviewDocInfo:[]:boolean"
           ],
           "num": 4
         },
         {
           "qualified_names": [
-            "com.google.javascript.jscomp.parsing.JsDocInfoParser:hasParsedFileOverviewDocInfo:[]:boolean",
-            "com.google.javascript.jscomp.parsing.JsDocInfoParser:extractMultilineTextualBlock:[JsDocToken token, WhitespaceOption option]:ExtractionInfo",
             "com.google.javascript.jscomp.parsing.JsDocInfoParser:extractBlockComment:[JsDocToken token]:ExtractionInfo",
+            "com.google.javascript.jscomp.parsing.JsDocInfoParser:extractMultilineTextualBlock:[JsDocToken token, WhitespaceOption option]:ExtractionInfo",
             "com.google.javascript.jscomp.parsing.JsDocInfoParser:getRemainingJSDocLine:[]:String",
+            "com.google.javascript.jscomp.parsing.JsDocInfoParser:hasParsedFileOverviewDocInfo:[]:boolean",
             "com.google.javascript.jscomp.parsing.JsDocInfoParser:extractSingleLineBlock:[]:ExtractionInfo"
           ],
           "num": 5

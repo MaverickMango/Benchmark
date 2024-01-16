@@ -1,7 +1,7 @@
-Only in tmp/changesInfo/Closure_2/properties/modified_classes/inducing: src
-diff -u -r tmp/changesInfo/Closure_2/properties/modified_classes/inducing/test/com/google/javascript/jscomp/TypeCheckTest.java tmp/changesInfo/Closure_2/cleaned/inducing/test/com/google/javascript/jscomp/TypeCheckTest.java
---- tmp/changesInfo/Closure_2/properties/modified_classes/inducing/test/com/google/javascript/jscomp/TypeCheckTest.java	2023-06-20 15:58:05.449473579 +0800
-+++ tmp/changesInfo/Closure_2/cleaned/inducing/test/com/google/javascript/jscomp/TypeCheckTest.java	2023-06-20 15:59:11.973370293 +0800
+Only in data/changesInfo//Closure_2/properties/modified_classes/inducing/: src
+diff -u -r data/changesInfo//Closure_2/properties/modified_classes/inducing/test/com/google/javascript/jscomp/TypeCheckTest.java data/changesInfo//Closure_2/cleaned/inducing/test/com/google/javascript/jscomp/TypeCheckTest.java
+--- data/changesInfo//Closure_2/properties/modified_classes/inducing/test/com/google/javascript/jscomp/TypeCheckTest.java	2023-06-20 00:58:05.449473579 -0700
++++ data/changesInfo//Closure_2/cleaned/inducing/test/com/google/javascript/jscomp/TypeCheckTest.java	2023-06-20 00:59:11.973370293 -0700
 @@ -11450,6 +11450,18 @@
      }
    }
@@ -21,3 +21,4 @@ diff -u -r tmp/changesInfo/Closure_2/properties/modified_classes/inducing/test/c
    /**
     * Parses and type checks the JavaScript code.
     */
+Only in data/changesInfo//Closure_2/properties/modified_classes/inducing/test/com/google/javascript: rhino

@@ -1,6 +1,6 @@
 diff -u -r data/changesInfo//Closure_115/properties/modified_classes/inducing/src/com/google/javascript/jscomp/FunctionInjector.java data/changesInfo//Closure_115/cleaned/fixing/src/com/google/javascript/jscomp/FunctionInjector.java
---- data/changesInfo//Closure_115/properties/modified_classes/inducing/src/com/google/javascript/jscomp/FunctionInjector.java	2023-08-25 13:32:02.557104031 +0800
-+++ data/changesInfo//Closure_115/cleaned/fixing/src/com/google/javascript/jscomp/FunctionInjector.java	2023-06-15 18:28:42.009285394 +0800
+--- data/changesInfo//Closure_115/properties/modified_classes/inducing/src/com/google/javascript/jscomp/FunctionInjector.java	2023-12-27 22:43:49.061867393 -0800
++++ data/changesInfo//Closure_115/cleaned/fixing/src/com/google/javascript/jscomp/FunctionInjector.java	2023-06-15 03:28:42.009285394 -0700
 @@ -694,16 +694,6 @@
  
      Node block = fnNode.getLastChild();

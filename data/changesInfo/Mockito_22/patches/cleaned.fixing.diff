@@ -1,6 +1,6 @@
 diff -u -r data/changesInfo//Mockito_22/properties/modified_classes/inducing/src/org/mockito/internal/matchers/Equality.java data/changesInfo//Mockito_22/cleaned/fixing/src/org/mockito/internal/matchers/Equality.java
---- data/changesInfo//Mockito_22/properties/modified_classes/inducing/src/org/mockito/internal/matchers/Equality.java	2023-07-24 16:12:09.343269272 +0800
-+++ data/changesInfo//Mockito_22/cleaned/fixing/src/org/mockito/internal/matchers/Equality.java	2023-07-24 17:15:18.919959224 +0800
+--- data/changesInfo//Mockito_22/properties/modified_classes/inducing/src/org/mockito/internal/matchers/Equality.java	2023-07-24 01:12:09.343269272 -0700
++++ data/changesInfo//Mockito_22/cleaned/fixing/src/org/mockito/internal/matchers/Equality.java	2023-07-24 02:15:18.919959224 -0700
 @@ -6,6 +6,8 @@
  public class Equality {
  

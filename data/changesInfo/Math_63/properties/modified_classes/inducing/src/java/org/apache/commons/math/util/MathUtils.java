@@ -1,12 +1,18 @@
 /*
- * Copyright 2003-2005 The Apache Software Foundation. Licensed under the Apache
- * License, Version 2.0 (the "License"); you may not use this file except in
- * compliance with the License. You may obtain a copy of the License at
- * http://www.apache.org/licenses/LICENSE-2.0 Unless required by applicable law
- * or agreed to in writing, software distributed under the License is
- * distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
- * KIND, either express or implied. See the License for the specific language
- * governing permissions and limitations under the License.
+ * Licensed to the Apache Software Foundation (ASF) under one or more
+ * contributor license agreements.  See the NOTICE file distributed with
+ * this work for additional information regarding copyright ownership.
+ * The ASF licenses this file to You under the Apache License, Version 2.0
+ * (the "License"); you may not use this file except in compliance with
+ * the License.  You may obtain a copy of the License at
+ *
+ *      http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
  */
 
 package org.apache.commons.math.util;
@@ -15,9 +21,7 @@ import java.math.BigDecimal;
 
 /**
  * Some useful additions to the built-in functions in {@link Math}.
- * 
- * @version $Revision$ $Date: 2005-07-30 02:25:26 -0500 (Sat, 30 Jul
- *          2005) $
+ * @version $Revision$ $Date$
  */
 public final class MathUtils {
 
@@ -65,6 +69,66 @@ public final class MathUtils {
     }
 
     /**
+     * Add two long integers, checking for overflow.
+     * 
+     * @param a an addend
+     * @param b an addend
+     * @return the sum <code>a+b</code>
+     * @throws ArithmeticException if the result can not be represented as an
+     *         long
+     * @since 1.2
+     */
+    public static long addAndCheck(long a, long b) {
+        return addAndCheck(a, b, "overflow: add");
+    }
+    
+    /**
+     * Add two long integers, checking for overflow.
+     * 
+     * @param a an addend
+     * @param b an addend
+     * @param msg the message to use for any thrown exception.
+     * @return the sum <code>a+b</code>
+     * @throws ArithmeticException if the result can not be represented as an
+     *         long
+     * @since 1.2
+     */
+    private static long addAndCheck(long a, long b, String msg) {
+        long ret;
+        if (a > b) {
+            // use symmetry to reduce boundry cases
+            ret = addAndCheck(b, a, msg);
+        } else {
+            // assert a <= b
+            
+            if (a < 0) {
+                if (b < 0) {
+                    // check for negative overflow
+                    if (Long.MIN_VALUE - b <= a) {
+                        ret = a + b;
+                    } else {
+                        throw new ArithmeticException(msg);
+                    }
+                } else {
+                    // oppisite sign addition is always safe
+                    ret = a + b;
+                }
+            } else {
+                // assert a >= 0
+                // assert b >= 0
+
+                // check for positive overflow
+                if (a <= Long.MAX_VALUE - b) {
+                    ret = a + b;
+                } else {
+                    throw new ArithmeticException(msg);
+                }
+            }
+        }
+        return ret;
+    }
+    
+    /**
      * Returns an exact representation of the <a
      * href="http://mathworld.wolfram.com/BinomialCoefficient.html"> Binomial
      * Coefficient</a>, "<code>n choose k</code>", the number of
@@ -81,7 +145,7 @@ public final class MathUtils {
      * <code>Long.MAX_VALUE</code> an <code>ArithMeticException
      *      </code> is
      * thrown.</li>
-     * </ul>
+     * </ul></p>
      * 
      * @param n the size of the set
      * @param k the size of the subsets to be counted
@@ -129,7 +193,7 @@ public final class MathUtils {
      * largest value of <code>n</code> for which all coefficients are <
      * Double.MAX_VALUE is 1029. If the computed value exceeds Double.MAX_VALUE,
      * Double.POSITIVE_INFINITY is returned</li>
-     * </ul>
+     * </ul></p>
      * 
      * @param n the size of the set
      * @param k the size of the subsets to be counted
@@ -139,7 +203,7 @@ public final class MathUtils {
     public static double binomialCoefficientDouble(final int n, final int k) {
         return Math.floor(Math.exp(binomialCoefficientLog(n, k)) + 0.5);
     }
-
+    
     /**
      * Returns the natural <code>log</code> of the <a
      * href="http://mathworld.wolfram.com/BinomialCoefficient.html"> Binomial
@@ -151,7 +215,7 @@ public final class MathUtils {
      * <ul>
      * <li> <code>0 <= k <= n </code> (otherwise
      * <code>IllegalArgumentException</code> is thrown)</li>
-     * </ul>
+     * </ul></p>
      * 
      * @param n the size of the set
      * @param k the size of the subsets to be counted
@@ -187,7 +251,7 @@ public final class MathUtils {
 
         return logSum;
     }
-
+    
     /**
      * Returns the <a href="http://mathworld.wolfram.com/HyperbolicCosine.html">
      * hyperbolic cosine</a> of x.
@@ -198,7 +262,7 @@ public final class MathUtils {
     public static double cosh(double x) {
         return (Math.exp(x) + Math.exp(-x)) / 2.0;
     }
-
+    
     /**
      * Returns true iff both arguments are NaN or neither is NaN and they are
      * equal
@@ -209,6 +273,30 @@ public final class MathUtils {
      */
     public static boolean equals(double x, double y) {
         return ((Double.isNaN(x) && Double.isNaN(y)) || x == y);
+    }
+
+    /**
+     * Returns true iff both arguments aren null or have same dimensions
+     * and all their elements are {@link #equals(double,double) equals}
+     * 
+     * @param x first array
+     * @param y second array
+     * @return true if the values are both null or have same dimension
+     * and equal elements
+     */
+    public static boolean equals(double[] x, double[] y) {
+        if ((x == null) || (y == null)) {
+            return !((x == null) ^ (y == null));
+        }
+        if (x.length != y.length) {
+            return false;
+        }
+        for (int i = 0; i < x.length; ++i) {
+            if (!equals(x[i], y[i])) {
+                return false;
+            }
+        }
+        return true;
     }
 
     /**
@@ -276,7 +364,7 @@ public final class MathUtils {
      * <ul>
      * <li> <code>n >= 0</code> (otherwise
      * <code>IllegalArgumentException</code> is thrown)</li>
-     * </ul>
+     * </ul></p>
      * 
      * @param n argument
      * @return <code>n!</code>
@@ -369,6 +457,23 @@ public final class MathUtils {
     }
 
     /**
+     * Returns an integer hash code representing the given double array value.
+     * 
+     * @param value the value to be hashed (may be null)
+     * @return the hash code
+     */
+    public static int hash(double[] value) {
+        if (value == null) {
+            return 0;
+        }
+        int result = value.length;
+        for (int i = 0; i < value.length; ++i) {
+            result = result * 31 + hash(value[i]);
+        }
+        return result;
+    }
+
+    /**
      * For a byte value x, this method returns (byte)(+1) if x >= 0 and
      * (byte)(-1) if x < 0.
      * 
@@ -452,6 +557,25 @@ public final class MathUtils {
         return Math.abs(mulAndCheck(a / gcd(a, b), b));
     }
 
+    /** 
+     * <p>Returns the 
+     * <a href="http://mathworld.wolfram.com/Logarithm.html">logarithm</a>
+     * for base <code>b</code> of <code>x</code>.
+     * </p>
+     * <p>Returns <code>NaN<code> if either argument is negative.  If 
+     * <code>base</code> is 0 and <code>x</code> is positive, 0 is returned.
+     * If <code>base</code> is positive and <code>x</code> is 0, 
+     * <code>Double.NEGATIVE_INFINITY</code> is returned.  If both arguments
+     * are 0, the result is <code>NaN</code>.</p>
+     * 
+     * @param base the base of the logarithm, must be greater than 0
+     * @param x argument, must be greater than 0
+     * @return the value of the logarithm - the number y such that base^y = x.
+     */ 
+    public static double log(double base, double x) {
+        return Math.log(x)/Math.log(base);
+    }
+
     /**
      * Multiply two integers, checking for overflow.
      * 
@@ -468,6 +592,117 @@ public final class MathUtils {
             throw new ArithmeticException("overflow: mul");
         }
         return (int)m;
+    }
+
+    /**
+     * Multiply two long integers, checking for overflow.
+     * 
+     * @param a first value
+     * @param b second value
+     * @return the product <code>a * b</code>
+     * @throws ArithmeticException if the result can not be represented as an
+     *         long
+     * @since 1.2
+     */
+    public static long mulAndCheck(long a, long b) {
+        long ret;
+        String msg = "overflow: multiply";
+        if (a > b) {
+            // use symmetry to reduce boundry cases
+            ret = mulAndCheck(b, a);
+        } else {
+            if (a < 0) {
+                if (b < 0) {
+                    // check for positive overflow with negative a, negative b
+                    if (a >= Long.MAX_VALUE / b) {
+                        ret = a * b;
+                    } else {
+                        throw new ArithmeticException(msg);
+                    }
+                } else if (b > 0) {
+                    // check for negative overflow with negative a, positive b
+                    if (Long.MIN_VALUE / b <= a) {
+                        ret = a * b;
+                    } else {
+                        throw new ArithmeticException(msg);
+                        
+                    }
+                } else {
+                    // assert b == 0
+                    ret = 0;
+                }
+            } else if (a > 0) {
+                // assert a > 0
+                // assert b > 0
+                
+                // check for positive overflow with positive a, positive b
+                if (a <= Long.MAX_VALUE / b) {
+                    ret = a * b;
+                } else {
+                    throw new ArithmeticException(msg);
+                }
+            } else {
+                // assert a == 0
+                ret = 0;
+            }
+        }
+        return ret;
+    }
+
+    /**
+     * Get the next machine representable number after a number, moving
+     * in the direction of another number.
+     * <p>
+     * If <code>direction</code> is greater than or equal to<code>d</code>,
+     * the smallest machine representable number strictly greater than
+     * <code>d</code> is returned; otherwise the largest representable number
+     * strictly less than <code>d</code> is returned.</p>
+     * <p>
+     * If <code>d</code> is NaN or Infinite, it is returned unchanged.</p>
+     * 
+     * @param d base number
+     * @param direction (the only important thing is whether
+     * direction is greater or smaller than d)
+     * @return the next machine representable number in the specified direction
+     */
+    public static double nextAfter(double d, double direction) {
+
+        // handling of some important special cases
+        if (Double.isNaN(d) || Double.isInfinite(d)) {
+                return d;
+        } else if (d == 0) {
+                return (direction < 0) ? -Double.MIN_VALUE : Double.MIN_VALUE;
+        }
+        // special cases MAX_VALUE to infinity and  MIN_VALUE to 0
+        // are handled just as normal numbers
+
+        // split the double in raw components
+        long bits     = Double.doubleToLongBits(d);
+        long sign     = bits & 0x8000000000000000L;
+        long exponent = bits & 0x7ff0000000000000L;
+        long mantissa = bits & 0x000fffffffffffffL;
+
+        if (d * (direction - d) >= 0) {
+                // we should increase the mantissa
+                if (mantissa == 0x000fffffffffffffL) {
+                        return Double.longBitsToDouble(sign |
+                                        (exponent + 0x0010000000000000L));
+                } else {
+                        return Double.longBitsToDouble(sign |
+                                        exponent | (mantissa + 1));
+                }
+        } else {
+                // we should decrease the mantissa
+                if (mantissa == 0L) {
+                        return Double.longBitsToDouble(sign |
+                                        (exponent - 0x0010000000000000L) |
+                                        0x000fffffffffffffL);
+                } else {
+                        return Double.longBitsToDouble(sign |
+                                        exponent | (mantissa - 1));
+                }
+        }
+
     }
 
     /**
@@ -496,9 +731,18 @@ public final class MathUtils {
      * @since 1.1
      */
     public static double round(double x, int scale, int roundingMethod) {
-        double sign = sign(x);
-        double factor = Math.pow(10.0, scale) * sign;
-        return roundUnscaled(x * factor, sign, roundingMethod) / factor;
+        try {
+            return (new BigDecimal
+                   (Double.toString(x))
+                   .setScale(scale, roundingMethod))
+                   .doubleValue();
+        } catch (NumberFormatException ex) {
+            if (Double.isInfinite(x)) {
+                return x;          
+            } else {
+                return Double.NaN;
+            }
+        }
     }
 
     /**
@@ -527,7 +771,7 @@ public final class MathUtils {
      * @since 1.1
      */
     public static float round(float x, int scale, int roundingMethod) {
-        float sign = sign(x);
+        float sign = indicator(x);
         float factor = (float)Math.pow(10.0f, scale) * sign;
         return (float)roundUnscaled(x * factor, sign, roundingMethod) / factor;
     }
@@ -549,23 +793,24 @@ public final class MathUtils {
         switch (roundingMethod) {
         case BigDecimal.ROUND_CEILING :
             if (sign == -1) {
-                unscaled = Math.floor(unscaled);
+                unscaled = Math.floor(nextAfter(unscaled, Double.NEGATIVE_INFINITY));
             } else {
-                unscaled = Math.ceil(unscaled);
+                unscaled = Math.ceil(nextAfter(unscaled, Double.POSITIVE_INFINITY));
             }
             break;
         case BigDecimal.ROUND_DOWN :
-            unscaled = Math.floor(unscaled);
+            unscaled = Math.floor(nextAfter(unscaled, Double.NEGATIVE_INFINITY));
             break;
         case BigDecimal.ROUND_FLOOR :
             if (sign == -1) {
-                unscaled = Math.ceil(unscaled);
+                unscaled = Math.ceil(nextAfter(unscaled, Double.POSITIVE_INFINITY));
             } else {
-                unscaled = Math.floor(unscaled);
+                unscaled = Math.floor(nextAfter(unscaled, Double.NEGATIVE_INFINITY));
             }
             break;
         case BigDecimal.ROUND_HALF_DOWN : {
-            double fraction = Math.abs(unscaled - Math.floor(unscaled));
+            unscaled = nextAfter(unscaled, Double.NEGATIVE_INFINITY);
+            double fraction = unscaled - Math.floor(unscaled);
             if (fraction > 0.5) {
                 unscaled = Math.ceil(unscaled);
             } else {
@@ -574,12 +819,13 @@ public final class MathUtils {
             break;
         }
         case BigDecimal.ROUND_HALF_EVEN : {
-            double fraction = Math.abs(unscaled - Math.floor(unscaled));
+            double fraction = unscaled - Math.floor(unscaled);
             if (fraction > 0.5) {
                 unscaled = Math.ceil(unscaled);
             } else if (fraction < 0.5) {
                 unscaled = Math.floor(unscaled);
             } else {
+                // The following equality test is intentional and needed for rounding purposes
                 if (Math.floor(unscaled) / 2.0 == Math.floor(Math
                     .floor(unscaled) / 2.0)) { // even
                     unscaled = Math.floor(unscaled);
@@ -590,7 +836,8 @@ public final class MathUtils {
             break;
         }
         case BigDecimal.ROUND_HALF_UP : {
-            double fraction = Math.abs(unscaled - Math.floor(unscaled));
+            unscaled = nextAfter(unscaled, Double.POSITIVE_INFINITY);
+            double fraction = unscaled - Math.floor(unscaled);
             if (fraction >= 0.5) {
                 unscaled = Math.ceil(unscaled);
             } else {
@@ -604,7 +851,7 @@ public final class MathUtils {
             }
             break;
         case BigDecimal.ROUND_UP :
-            unscaled = Math.ceil(unscaled);
+            unscaled = Math.ceil(nextAfter(unscaled,  Double.POSITIVE_INFINITY));
             break;
         default :
             throw new IllegalArgumentException("Invalid rounding method.");
@@ -617,7 +864,7 @@ public final class MathUtils {
      * for byte value <code>x</code>.
      * <p>
      * For a byte value x, this method returns (byte)(+1) if x > 0, (byte)(0) if
-     * x = 0, and (byte)(-1) if x < 0.
+     * x = 0, and (byte)(-1) if x < 0.</p>
      * 
      * @param x the value, a byte
      * @return (byte)(+1), (byte)(0), or (byte)(-1), depending on the sign of x
@@ -633,7 +880,7 @@ public final class MathUtils {
      * For a double value <code>x</code>, this method returns
      * <code>+1.0</code> if <code>x > 0</code>, <code>0.0</code> if
      * <code>x = 0.0</code>, and <code>-1.0</code> if <code>x < 0</code>.
-     * Returns <code>NaN</code> if <code>x</code> is <code>NaN</code>.
+     * Returns <code>NaN</code> if <code>x</code> is <code>NaN</code>.</p>
      * 
      * @param x the value, a double
      * @return +1.0, 0.0, or -1.0, depending on the sign of x
@@ -651,7 +898,7 @@ public final class MathUtils {
      * <p>
      * For a float value x, this method returns +1.0F if x > 0, 0.0F if x =
      * 0.0F, and -1.0F if x < 0. Returns <code>NaN</code> if <code>x</code>
-     * is <code>NaN</code>.
+     * is <code>NaN</code>.</p>
      * 
      * @param x the value, a float
      * @return +1.0F, 0.0F, or -1.0F, depending on the sign of x
@@ -668,7 +915,7 @@ public final class MathUtils {
      * for int value <code>x</code>.
      * <p>
      * For an int value x, this method returns +1 if x > 0, 0 if x = 0, and -1
-     * if x < 0.
+     * if x < 0.</p>
      * 
      * @param x the value, an int
      * @return +1, 0, or -1, depending on the sign of x
@@ -682,7 +929,7 @@ public final class MathUtils {
      * for long value <code>x</code>.
      * <p>
      * For a long value x, this method returns +1L if x > 0, 0L if x = 0, and
-     * -1L if x < 0.
+     * -1L if x < 0.</p>
      * 
      * @param x the value, a long
      * @return +1L, 0L, or -1L, depending on the sign of x
@@ -696,7 +943,7 @@ public final class MathUtils {
      * for short value <code>x</code>.
      * <p>
      * For a short value x, this method returns (short)(+1) if x > 0, (short)(0)
-     * if x = 0, and (short)(-1) if x < 0.
+     * if x = 0, and (short)(-1) if x < 0.</p>
      * 
      * @param x the value, a short
      * @return (short)(+1), (short)(0), or (short)(-1), depending on the sign of
@@ -730,8 +977,34 @@ public final class MathUtils {
     public static int subAndCheck(int x, int y) {
         long s = (long)x - (long)y;
         if (s < Integer.MIN_VALUE || s > Integer.MAX_VALUE) {
-            throw new ArithmeticException("overflow: add");
+            throw new ArithmeticException("overflow: subtract");
         }
         return (int)s;
+    }
+
+    /**
+     * Subtract two long integers, checking for overflow.
+     * 
+     * @param a first value
+     * @param b second value
+     * @return the difference <code>a-b</code>
+     * @throws ArithmeticException if the result can not be represented as an
+     *         long
+     * @since 1.2
+     */
+    public static long subAndCheck(long a, long b) {
+        long ret;
+        String msg = "overflow: subtract";
+        if (b == Long.MIN_VALUE) {
+            if (a < 0) {
+                ret = a - b;
+            } else {
+                throw new ArithmeticException(msg);
+            }
+        } else {
+            // use additive inverse
+            ret = addAndCheck(a, -b, msg);
+        }
+        return ret;
     }
 }

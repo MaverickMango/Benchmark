@@ -1,7 +1,7 @@
 Only in data/changesInfo//Math_94/properties/modified_classes/inducing/src/java/org/apache/commons/math: fraction
 diff -u -r data/changesInfo//Math_94/properties/modified_classes/inducing/src/java/org/apache/commons/math/util/MathUtils.java data/changesInfo//Math_94/cleaned/fixing/src/java/org/apache/commons/math/util/MathUtils.java
---- data/changesInfo//Math_94/properties/modified_classes/inducing/src/java/org/apache/commons/math/util/MathUtils.java	2023-08-25 14:11:33.148895117 +0800
-+++ data/changesInfo//Math_94/cleaned/fixing/src/java/org/apache/commons/math/util/MathUtils.java	2023-06-24 16:49:50.897631713 +0800
+--- data/changesInfo//Math_94/properties/modified_classes/inducing/src/java/org/apache/commons/math/util/MathUtils.java	2023-12-27 22:48:27.830450646 -0800
++++ data/changesInfo//Math_94/cleaned/fixing/src/java/org/apache/commons/math/util/MathUtils.java	2023-06-24 01:49:50.897631713 -0700
 @@ -545,7 +545,7 @@
       * @return the greatest common divisor, never zero
       */

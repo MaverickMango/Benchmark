@@ -3,8 +3,8 @@ Only in data/changesInfo//Closure_31/properties/modified_classes/inducing/src/co
 Only in data/changesInfo//Closure_31/properties/modified_classes/inducing/src/com/google/javascript/jscomp: CompilationLevel.java
 Only in data/changesInfo//Closure_31/properties/modified_classes/inducing/src/com/google/javascript/jscomp: CompilerInput.java
 diff -u -r data/changesInfo//Closure_31/properties/modified_classes/inducing/src/com/google/javascript/jscomp/Compiler.java data/changesInfo//Closure_31/cleaned/fixing/src/com/google/javascript/jscomp/Compiler.java
---- data/changesInfo//Closure_31/properties/modified_classes/inducing/src/com/google/javascript/jscomp/Compiler.java	2023-08-25 13:08:15.508994163 +0800
-+++ data/changesInfo//Closure_31/cleaned/fixing/src/com/google/javascript/jscomp/Compiler.java	2023-06-20 20:06:45.887488690 +0800
+--- data/changesInfo//Closure_31/properties/modified_classes/inducing/src/com/google/javascript/jscomp/Compiler.java	2023-12-27 22:37:23.340166392 -0800
++++ data/changesInfo//Closure_31/cleaned/fixing/src/com/google/javascript/jscomp/Compiler.java	2023-06-20 05:06:45.887488690 -0700
 @@ -1278,7 +1278,6 @@
  
        // Check if the sources need to be re-ordered.

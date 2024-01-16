@@ -1,7 +1,7 @@
 Only in data/changesInfo//Closure_17/properties/modified_classes/inducing/: src
 diff -u -r data/changesInfo//Closure_17/properties/modified_classes/inducing/test/com/google/javascript/jscomp/TypeCheckTest.java data/changesInfo//Closure_17/cleaned/inducing/test/com/google/javascript/jscomp/TypeCheckTest.java
---- data/changesInfo//Closure_17/properties/modified_classes/inducing/test/com/google/javascript/jscomp/TypeCheckTest.java	2023-08-25 13:06:02.838049916 +0800
-+++ data/changesInfo//Closure_17/cleaned/inducing/test/com/google/javascript/jscomp/TypeCheckTest.java	2023-06-20 19:35:20.742822536 +0800
+--- data/changesInfo//Closure_17/properties/modified_classes/inducing/test/com/google/javascript/jscomp/TypeCheckTest.java	2023-12-27 22:36:41.287544300 -0800
++++ data/changesInfo//Closure_17/cleaned/inducing/test/com/google/javascript/jscomp/TypeCheckTest.java	2023-06-20 04:35:20.742822536 -0700
 @@ -5388,6 +5388,25 @@
      assertTrue(node.getJSType().isNumber());
    }

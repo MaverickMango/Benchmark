@@ -4,14 +4,14 @@
     "name": "root.bean.benchmarks.Defects4JBug"
   },
   "d4jCmd": "/home/liumengjiao/Desktop/defects4j/framework/bin/defects4j",
-  "dataDir": "data/changesInfo/",
+  "dataDir": "/home/liumengjiao/Desktop/CI/Benchmark/data/changesInfo/",
   "properties": {
     "trigger.tests": "com.google.javascript.jscomp.ProcessClosurePrimitivesTest::testProvideInIndependentModules4",
     "test.dir": "test",
     "clz.modified": "com.google.javascript.jscomp.ProcessClosurePrimitives",
     "src.dir": "src"
   },
-  "timeoutSecond": 300,
+  "timeoutSecond": 100,
   "proj": "Closure",
   "id": "92",
   "workingDir": "../bugs/Closure_92_buggy",
@@ -39,9 +39,9 @@
         },
         {
           "qualified_names": [
+            "com.google.javascript.jscomp.FunctionTypeBuilder\\$ExtendedTypeValidator:apply:[JSType type]:boolean",
             "com.google.javascript.jscomp.FunctionTypeBuilder\\$ImplementedTypeValidator:apply:[JSType type]:boolean",
-            "com.google.javascript.jscomp.FunctionTypeBuilder:inferInheritance:[@Nullable JSDocInfo info]:FunctionTypeBuilder",
-            "com.google.javascript.jscomp.FunctionTypeBuilder\\$ExtendedTypeValidator:apply:[JSType type]:boolean"
+            "com.google.javascript.jscomp.FunctionTypeBuilder:inferInheritance:[@Nullable JSDocInfo info]:FunctionTypeBuilder"
           ],
           "num": 3
         }
@@ -476,17 +476,17 @@
       "changed_functions": [
         {
           "qualified_names": [
-            "com.google.javascript.rhino.jstype.NamedType:getTypedefType:[ErrorReporter t, StaticSlot\u003cJSType\u003e slot, String name]:JSType",
             "com.google.javascript.rhino.jstype.NamedType:setReferencedAndResolvedType:[JSType type, ErrorReporter t, StaticScope\u003cJSType\u003e enclosing]:void",
-            "com.google.javascript.rhino.jstype.NamedType:handleUnresolvedType:[ErrorReporter t, boolean ignoreForwardReferencedTypes]:void"
+            "com.google.javascript.rhino.jstype.NamedType:handleUnresolvedType:[ErrorReporter t, boolean ignoreForwardReferencedTypes]:void",
+            "com.google.javascript.rhino.jstype.NamedType:getTypedefType:[ErrorReporter t, StaticSlot\u003cJSType\u003e slot, String name]:JSType"
           ],
           "num": 3
         },
         {
           "qualified_names": [
-            "com.google.javascript.rhino.jstype.NamedType:setReferencedAndResolvedType:[JSType type, ErrorReporter t, StaticScope\u003cJSType\u003e enclosing]:void",
+            "com.google.javascript.rhino.jstype.NamedType:handleUnresolvedType:[ErrorReporter t, boolean ignoreForwardReferencedTypes]:void",
             "com.google.javascript.rhino.jstype.NamedType:setValidator:[Predicate\u003cJSType\u003e validator]:boolean",
-            "com.google.javascript.rhino.jstype.NamedType:handleUnresolvedType:[ErrorReporter t, boolean ignoreForwardReferencedTypes]:void"
+            "com.google.javascript.rhino.jstype.NamedType:setReferencedAndResolvedType:[JSType type, ErrorReporter t, StaticScope\u003cJSType\u003e enclosing]:void"
           ],
           "num": 3
         }

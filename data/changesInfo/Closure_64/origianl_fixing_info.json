@@ -4,14 +4,14 @@
     "name": "root.bean.benchmarks.Defects4JBug"
   },
   "d4jCmd": "/home/liumengjiao/Desktop/defects4j/framework/bin/defects4j",
-  "dataDir": "data/changesInfo/",
+  "dataDir": "/home/liumengjiao/Desktop/CI/Benchmark/data/changesInfo/",
   "properties": {
     "trigger.tests": "com.google.javascript.jscomp.CommandLineRunnerTest::testES5StrictUseStrictMultipleInputs",
     "test.dir": "test",
     "clz.modified": "com.google.javascript.jscomp.Compiler",
     "src.dir": "src"
   },
-  "timeoutSecond": 300,
+  "timeoutSecond": 100,
   "proj": "Closure",
   "id": "64",
   "workingDir": "../bugs/Closure_64_buggy",
@@ -152,16 +152,16 @@
       "changed_functions": [
         {
           "qualified_names": [
-            "com.google.javascript.jscomp.CodePrinter\\$Builder:build:[]:String",
-            "com.google.javascript.jscomp.CodePrinter:toSource:[Node root, Format outputFormat, boolean lineBreak, int lineLengthThreshold, SourceMap sourceMap, SourceMap.DetailLevel sourceMapDetailLevel, Charset outputCharset]:String"
+            "com.google.javascript.jscomp.CodePrinter:toSource:[Node root, Format outputFormat, boolean lineBreak, int lineLengthThreshold, SourceMap sourceMap, SourceMap.DetailLevel sourceMapDetailLevel, Charset outputCharset]:String",
+            "com.google.javascript.jscomp.CodePrinter\\$Builder:build:[]:String"
           ],
           "num": 2
         },
         {
           "qualified_names": [
-            "com.google.javascript.jscomp.CodePrinter:toSource:[Node root, Format outputFormat, boolean lineBreak, int lineLengthThreshold, SourceMap sourceMap, SourceMap.DetailLevel sourceMapDetailLevel, Charset outputCharset, boolean tagAsStrict]:String",
             "com.google.javascript.jscomp.CodePrinter\\$Builder:setTagAsStrict:[boolean tagAsStrict]:Builder",
-            "com.google.javascript.jscomp.CodePrinter\\$Builder:build:[]:String"
+            "com.google.javascript.jscomp.CodePrinter\\$Builder:build:[]:String",
+            "com.google.javascript.jscomp.CodePrinter:toSource:[Node root, Format outputFormat, boolean lineBreak, int lineLengthThreshold, SourceMap sourceMap, SourceMap.DetailLevel sourceMapDetailLevel, Charset outputCharset, boolean tagAsStrict]:String"
           ],
           "num": 3
         }
@@ -238,9 +238,9 @@
       "changed_functions": [
         {
           "qualified_names": [
+            "com.google.javascript.jscomp.Compiler:getParserConfig:[]:Config",
             "com.google.javascript.jscomp.Compiler:acceptEcmaScript5:[]:boolean",
             "com.google.javascript.jscomp.Compiler:LanguageMode:[]:LanguageMode",
-            "com.google.javascript.jscomp.Compiler:getParserConfig:[]:Config",
             "com.google.javascript.jscomp.Compiler:toSource:[Node n, SourceMap sourceMap]:String"
           ],
           "num": 4
@@ -249,8 +249,8 @@
           "qualified_names": [
             "com.google.javascript.jscomp.Compiler:toSource:[Node n, SourceMap sourceMap]:String",
             "com.google.javascript.jscomp.Compiler:languageMode:[]:LanguageMode",
-            "com.google.javascript.jscomp.Compiler:acceptEcmaScript5:[]:boolean",
-            "com.google.javascript.jscomp.Compiler:getParserConfig:[]:Config"
+            "com.google.javascript.jscomp.Compiler:getParserConfig:[]:Config",
+            "com.google.javascript.jscomp.Compiler:acceptEcmaScript5:[]:boolean"
           ],
           "num": 4
         }
@@ -337,10 +337,10 @@
         },
         {
           "qualified_names": [
-            "com.google.javascript.jscomp.CompilerOptions:getLanguageIn:[]:LanguageMode",
-            "com.google.javascript.jscomp.CompilerOptions:getLanguageOut:[]:LanguageMode",
             "com.google.javascript.jscomp.CompilerOptions:setLanguageIn:[LanguageMode languageIn]:void",
-            "com.google.javascript.jscomp.CompilerOptions:setLooseTypes:[boolean looseTypes]:void"
+            "com.google.javascript.jscomp.CompilerOptions:setLooseTypes:[boolean looseTypes]:void",
+            "com.google.javascript.jscomp.CompilerOptions:getLanguageOut:[]:LanguageMode",
+            "com.google.javascript.jscomp.CompilerOptions:getLanguageIn:[]:LanguageMode"
           ],
           "num": 4
         }
@@ -506,17 +506,17 @@
       "changed_functions": [
         {
           "qualified_names": [
-            "com.google.javascript.jscomp.Compiler:toSource:[final CodeBuilder cb, final int inputSeqNum, final Node root]:void",
             "com.google.javascript.jscomp.Compiler:toSource:[Node n, SourceMap sourceMap]:String",
+            "com.google.javascript.jscomp.Compiler:toSource:[final CodeBuilder cb, final int inputSeqNum, final Node root]:void",
             "com.google.javascript.jscomp.Compiler:toSource:[Node n]:String"
           ],
           "num": 3
         },
         {
           "qualified_names": [
-            "com.google.javascript.jscomp.Compiler:toSource:[Node n, SourceMap sourceMap, boolean firstOutput]:String",
             "com.google.javascript.jscomp.Compiler:toSource:[final CodeBuilder cb, final int inputSeqNum, final Node root]:void",
-            "com.google.javascript.jscomp.Compiler:toSource:[Node n]:String"
+            "com.google.javascript.jscomp.Compiler:toSource:[Node n]:String",
+            "com.google.javascript.jscomp.Compiler:toSource:[Node n, SourceMap sourceMap, boolean firstOutput]:String"
           ],
           "num": 3
         }

@@ -4,14 +4,14 @@
     "name": "root.bean.benchmarks.Defects4JBug"
   },
   "d4jCmd": "/home/liumengjiao/Desktop/defects4j/framework/bin/defects4j",
-  "dataDir": "data/changesInfo/",
+  "dataDir": "/home/liumengjiao/Desktop/CI/Benchmark/data/changesInfo/",
   "properties": {
     "trigger.tests": "org.apache.commons.math3.analysis.differentiation.DerivativeStructureTest::testAtan2SpecialCases",
     "test.dir": "src/test/java",
     "clz.modified": "org.apache.commons.math3.analysis.differentiation.DSCompiler",
     "src.dir": "src/main/java"
   },
-  "timeoutSecond": 300,
+  "timeoutSecond": 100,
   "proj": "Math",
   "id": "10",
   "workingDir": "../bugs/Math_10_buggy",

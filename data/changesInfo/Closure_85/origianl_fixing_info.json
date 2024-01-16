@@ -4,14 +4,14 @@
     "name": "root.bean.benchmarks.Defects4JBug"
   },
   "d4jCmd": "/home/liumengjiao/Desktop/defects4j/framework/bin/defects4j",
-  "dataDir": "data/changesInfo/",
+  "dataDir": "/home/liumengjiao/Desktop/CI/Benchmark/data/changesInfo/",
   "properties": {
     "trigger.tests": "com.google.javascript.jscomp.UnreachableCodeEliminationTest::testCascadedRemovalOfUnlessUnconditonalJumps,com.google.javascript.jscomp.UnreachableCodeEliminationTest::testIssue311",
     "test.dir": "test",
     "clz.modified": "com.google.javascript.jscomp.UnreachableCodeElimination",
     "src.dir": "src"
   },
-  "timeoutSecond": 300,
+  "timeoutSecond": 100,
   "proj": "Closure",
   "id": "85",
   "workingDir": "../bugs/Closure_85_buggy",
@@ -37,13 +37,13 @@
         },
         {
           "qualified_names": [
-            "com.google.javascript.jscomp.UnreachableCodeElimination:process:[Node externs, Node root]:void",
+            "com.google.javascript.jscomp.UnreachableCodeElimination:UnreachableCodeElimination:[AbstractCompiler compiler, boolean removeNoOpStatements]:null",
             "com.google.javascript.jscomp.UnreachableCodeElimination:enterScope:[NodeTraversal t]:void",
-            "com.google.javascript.jscomp.UnreachableCodeElimination:exitScope:[NodeTraversal t]:void",
-            "com.google.javascript.jscomp.UnreachableCodeElimination:tryRemoveUnconditionalBranching:[Node n]:Node",
             "com.google.javascript.jscomp.UnreachableCodeElimination:removeDeadExprStatementSafely:[Node n]:void",
+            "com.google.javascript.jscomp.UnreachableCodeElimination:exitScope:[NodeTraversal t]:void",
+            "com.google.javascript.jscomp.UnreachableCodeElimination:process:[Node externs, Node root]:void",
             "com.google.javascript.jscomp.UnreachableCodeElimination:visit:[NodeTraversal t, Node n, Node parent]:void",
-            "com.google.javascript.jscomp.UnreachableCodeElimination:UnreachableCodeElimination:[AbstractCompiler compiler, boolean removeNoOpStatements]:null"
+            "com.google.javascript.jscomp.UnreachableCodeElimination:tryRemoveUnconditionalBranching:[Node n]:Node"
           ],
           "num": 7
         }
@@ -827,8 +827,8 @@
     },
     "add_functions": {
       "qualified_names": [
-        "com.google.javascript.jscomp.UnreachableCodeElimination:removeDeadExprStatementSafely:[Node n]:void",
         "com.google.javascript.jscomp.UnreachableCodeElimination:UnreachableCodeElimination:[AbstractCompiler compiler, boolean removeNoOpStatements]:null",
+        "com.google.javascript.jscomp.UnreachableCodeElimination:removeDeadExprStatementSafely:[Node n]:void",
         "com.google.javascript.jscomp.UnreachableCodeElimination:process:[Node externs, Node root]:void",
         "com.google.javascript.jscomp.UnreachableCodeElimination:exitScope:[NodeTraversal t]:void",
         "com.google.javascript.jscomp.UnreachableCodeElimination:enterScope:[NodeTraversal t]:void",

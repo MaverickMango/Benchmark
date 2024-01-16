@@ -4,14 +4,14 @@
     "name": "root.bean.benchmarks.Defects4JBug"
   },
   "d4jCmd": "/home/liumengjiao/Desktop/defects4j/framework/bin/defects4j",
-  "dataDir": "data/changesInfo/",
+  "dataDir": "/home/liumengjiao/Desktop/CI/Benchmark/data/changesInfo/",
   "properties": {
     "trigger.tests": "org.apache.commons.lang.BooleanUtilsTest::test_toBoolean_String",
     "test.dir": "src/test",
     "clz.modified": "org.apache.commons.lang.BooleanUtils",
     "src.dir": "src/java"
   },
-  "timeoutSecond": 300,
+  "timeoutSecond": 100,
   "proj": "Lang",
   "id": "51",
   "workingDir": "../bugs/Lang_51_buggy",
@@ -33,15 +33,15 @@
       "changed_functions": [
         {
           "qualified_names": [
-            "org.apache.commons.lang.BooleanUtils:toBooleanObject:[String str]:Boolean",
-            "org.apache.commons.lang.BooleanUtils:toBoolean:[String str]:boolean"
+            "org.apache.commons.lang.BooleanUtils:toBoolean:[String str]:boolean",
+            "org.apache.commons.lang.BooleanUtils:toBooleanObject:[String str]:Boolean"
           ],
           "num": 2
         },
         {
           "qualified_names": [
-            "org.apache.commons.lang.BooleanUtils:toBoolean:[String str]:boolean",
-            "org.apache.commons.lang.BooleanUtils:toBooleanObject:[String str]:Boolean"
+            "org.apache.commons.lang.BooleanUtils:toBooleanObject:[String str]:Boolean",
+            "org.apache.commons.lang.BooleanUtils:toBoolean:[String str]:boolean"
           ],
           "num": 2
         }

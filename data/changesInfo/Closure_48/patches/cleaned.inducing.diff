@@ -1,7 +1,7 @@
 Only in data/changesInfo//Closure_48/properties/modified_classes/inducing/: src
 diff -u -r data/changesInfo//Closure_48/properties/modified_classes/inducing/test/com/google/javascript/jscomp/TypeCheckTest.java data/changesInfo//Closure_48/cleaned/inducing/test/com/google/javascript/jscomp/TypeCheckTest.java
---- data/changesInfo//Closure_48/properties/modified_classes/inducing/test/com/google/javascript/jscomp/TypeCheckTest.java	2023-06-12 11:40:21.198959075 +0800
-+++ data/changesInfo//Closure_48/cleaned/inducing/test/com/google/javascript/jscomp/TypeCheckTest.java	2023-06-14 13:27:35.888652807 +0800
+--- data/changesInfo//Closure_48/properties/modified_classes/inducing/test/com/google/javascript/jscomp/TypeCheckTest.java	2023-06-11 20:40:21.198959075 -0700
++++ data/changesInfo//Closure_48/cleaned/inducing/test/com/google/javascript/jscomp/TypeCheckTest.java	2023-06-13 22:27:35.888652807 -0700
 @@ -4473,6 +4473,21 @@
          "right: null");
    }

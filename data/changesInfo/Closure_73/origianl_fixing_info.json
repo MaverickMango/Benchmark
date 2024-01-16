@@ -4,14 +4,14 @@
     "name": "root.bean.benchmarks.Defects4JBug"
   },
   "d4jCmd": "/home/liumengjiao/Desktop/defects4j/framework/bin/defects4j",
-  "dataDir": "data/changesInfo/",
+  "dataDir": "/home/liumengjiao/Desktop/CI/Benchmark/data/changesInfo/",
   "properties": {
     "trigger.tests": "com.google.javascript.jscomp.CodePrinterTest::testUnicode",
     "test.dir": "test",
     "clz.modified": "com.google.javascript.jscomp.CodeGenerator",
     "src.dir": "src"
   },
-  "timeoutSecond": 300,
+  "timeoutSecond": 100,
   "proj": "Closure",
   "id": "73",
   "workingDir": "../bugs/Closure_73_buggy",
@@ -33,10 +33,10 @@
       "changed_functions": [
         {
           "qualified_names": [
+            "com.google.javascript.jscomp.AbstractCompilerRunner:createInputs:[List\u003cString\u003e files, boolean allowStdIn]:List\u003cJSSourceFile\u003e",
             "com.google.javascript.jscomp.AbstractCompilerRunner:doRun:[]:int",
             "com.google.javascript.jscomp.AbstractCompilerRunner:setRunOptions:[B options]:void",
-            "com.google.javascript.jscomp.AbstractCompilerRunner:openSourceMapStream:[B options, String path, String module]:PrintStream",
-            "com.google.javascript.jscomp.AbstractCompilerRunner:createInputs:[List\u003cString\u003e files, boolean allowStdIn]:List\u003cJSSourceFile\u003e"
+            "com.google.javascript.jscomp.AbstractCompilerRunner:openSourceMapStream:[B options, String path, String module]:PrintStream"
           ],
           "num": 4
         },
@@ -45,8 +45,8 @@
             "com.google.javascript.jscomp.AbstractCompilerRunner:createInputs:[List\u003cString\u003e files, boolean allowStdIn]:List\u003cJSSourceFile\u003e",
             "com.google.javascript.jscomp.AbstractCompilerRunner:getInputCharset:[]:Charset",
             "com.google.javascript.jscomp.AbstractCompilerRunner:doRun:[]:int",
-            "com.google.javascript.jscomp.AbstractCompilerRunner:openSourceMapStream:[B options, String path, String module]:PrintStream",
-            "com.google.javascript.jscomp.AbstractCompilerRunner:setRunOptions:[B options]:void"
+            "com.google.javascript.jscomp.AbstractCompilerRunner:setRunOptions:[B options]:void",
+            "com.google.javascript.jscomp.AbstractCompilerRunner:openSourceMapStream:[B options, String path, String module]:PrintStream"
           ],
           "num": 5
         }
@@ -276,25 +276,25 @@
       "changed_functions": [
         {
           "qualified_names": [
-            "com.google.javascript.jscomp.CodeGenerator:add:[Node n, Context context]:void",
+            "com.google.javascript.jscomp.CodeGenerator:jsString:[String s]:String",
             "com.google.javascript.jscomp.CodeGenerator:strEscape:[String s, char quote, String doublequoteEscape, String singlequoteEscape, String backslashEscape]:String",
             "com.google.javascript.jscomp.CodeGenerator:identifierEscape:[String s]:String",
-            "com.google.javascript.jscomp.CodeGenerator:jsString:[String s]:String",
-            "com.google.javascript.jscomp.CodeGenerator:CodeGenerator:[CodeConsumer consumer]:null",
-            "com.google.javascript.jscomp.CodeGenerator:regexpEscape:[String s]:String"
+            "com.google.javascript.jscomp.CodeGenerator:regexpEscape:[String s]:String",
+            "com.google.javascript.jscomp.CodeGenerator:add:[Node n, Context context]:void",
+            "com.google.javascript.jscomp.CodeGenerator:CodeGenerator:[CodeConsumer consumer]:null"
           ],
           "num": 6
         },
         {
           "qualified_names": [
+            "com.google.javascript.jscomp.CodeGenerator:CodeGenerator:[CodeConsumer consumer, Charset outputCharset]:null",
+            "com.google.javascript.jscomp.CodeGenerator:add:[Node n, Context context]:void",
             "com.google.javascript.jscomp.CodeGenerator:strEscape:[String s, char quote, String doublequoteEscape, String singlequoteEscape, String backslashEscape, CharsetEncoder outputCharsetEncoder]:String",
-            "com.google.javascript.jscomp.CodeGenerator:identifierEscape:[String s]:String",
+            "com.google.javascript.jscomp.CodeGenerator:regexpEscape:[String s, CharsetEncoder outputCharsetEncoder]:String",
+            "com.google.javascript.jscomp.CodeGenerator:jsString:[String s, CharsetEncoder outputCharsetEncoder]:String",
             "com.google.javascript.jscomp.CodeGenerator:CodeGenerator:[CodeConsumer consumer]:null",
             "com.google.javascript.jscomp.CodeGenerator:regexpEscape:[String s]:String",
-            "com.google.javascript.jscomp.CodeGenerator:CodeGenerator:[CodeConsumer consumer, Charset outputCharset]:null",
-            "com.google.javascript.jscomp.CodeGenerator:regexpEscape:[String s, CharsetEncoder outputCharsetEncoder]:String",
-            "com.google.javascript.jscomp.CodeGenerator:add:[Node n, Context context]:void",
-            "com.google.javascript.jscomp.CodeGenerator:jsString:[String s, CharsetEncoder outputCharsetEncoder]:String"
+            "com.google.javascript.jscomp.CodeGenerator:identifierEscape:[String s]:String"
           ],
           "num": 8
         }
@@ -565,9 +565,9 @@
         },
         {
           "qualified_names": [
-            "com.google.javascript.jscomp.CodePrinter\\$Builder:build:[]:String",
+            "com.google.javascript.jscomp.CodePrinter:toSource:[Node root, Format outputFormat, boolean lineBreak, int lineLengthThreshold, SourceMap sourceMap, Charset outputCharset]:String",
             "com.google.javascript.jscomp.CodePrinter\\$Builder:setOutputCharset:[Charset outCharset]:Builder",
-            "com.google.javascript.jscomp.CodePrinter:toSource:[Node root, Format outputFormat, boolean lineBreak, int lineLengthThreshold, SourceMap sourceMap, Charset outputCharset]:String"
+            "com.google.javascript.jscomp.CodePrinter\\$Builder:build:[]:String"
           ],
           "num": 3
         }
@@ -653,22 +653,22 @@
       "changed_functions": [
         {
           "qualified_names": [
+            "com.google.javascript.jscomp.Compiler:parseInputs:[]:Node",
             "com.google.javascript.jscomp.Compiler:compileInternal:[]:void",
             "com.google.javascript.jscomp.Compiler:maybeSanityCheck:[String passName]:void",
-            "com.google.javascript.jscomp.Compiler:parseInputs:[]:Node",
-            "com.google.javascript.jscomp.Compiler:endPass:[]:void",
-            "com.google.javascript.jscomp.Compiler:toSource:[Node n]:String"
+            "com.google.javascript.jscomp.Compiler:toSource:[Node n]:String",
+            "com.google.javascript.jscomp.Compiler:endPass:[]:void"
           ],
           "num": 5
         },
         {
           "qualified_names": [
-            "com.google.javascript.jscomp.Compiler:maybeSanityCheck:[]:void",
+            "com.google.javascript.jscomp.Compiler:runSanityCheck:[]:void",
             "com.google.javascript.jscomp.Compiler:parseInputs:[]:Node",
-            "com.google.javascript.jscomp.Compiler:toSource:[Node n]:String",
-            "com.google.javascript.jscomp.Compiler:compileInternal:[]:void",
             "com.google.javascript.jscomp.Compiler:endPass:[]:void",
-            "com.google.javascript.jscomp.Compiler:runSanityCheck:[]:void"
+            "com.google.javascript.jscomp.Compiler:maybeSanityCheck:[]:void",
+            "com.google.javascript.jscomp.Compiler:compileInternal:[]:void",
+            "com.google.javascript.jscomp.Compiler:toSource:[Node n]:String"
           ],
           "num": 6
         }
@@ -1088,17 +1088,17 @@
       "changed_functions": [
         {
           "qualified_names": [
-            "com.google.javascript.jscomp.JSSourceFile:fromFile:[File file]:JSSourceFile",
-            "com.google.javascript.jscomp.JSSourceFile:fromFile:[String fileName]:JSSourceFile"
+            "com.google.javascript.jscomp.JSSourceFile:fromFile:[String fileName]:JSSourceFile",
+            "com.google.javascript.jscomp.JSSourceFile:fromFile:[File file]:JSSourceFile"
           ],
           "num": 2
         },
         {
           "qualified_names": [
-            "com.google.javascript.jscomp.JSSourceFile:fromFile:[String fileName, Charset charSet]:JSSourceFile",
-            "com.google.javascript.jscomp.JSSourceFile:fromFile:[String fileName]:JSSourceFile",
             "com.google.javascript.jscomp.JSSourceFile:fromFile:[File file]:JSSourceFile",
-            "com.google.javascript.jscomp.JSSourceFile:fromFile:[File file, Charset charSet]:JSSourceFile"
+            "com.google.javascript.jscomp.JSSourceFile:fromFile:[File file, Charset charSet]:JSSourceFile",
+            "com.google.javascript.jscomp.JSSourceFile:fromFile:[String fileName]:JSSourceFile",
+            "com.google.javascript.jscomp.JSSourceFile:fromFile:[String fileName, Charset charSet]:JSSourceFile"
           ],
           "num": 4
         }
@@ -1637,20 +1637,20 @@
         {
           "qualified_names": [
             "com.google.javascript.jscomp.SourceFile\\$OnDisk:OnDisk:[File file]:null",
-            "com.google.javascript.jscomp.SourceFile\\$OnDisk:getCode:[]:String",
-            "com.google.javascript.jscomp.SourceFile\\$OnDisk:clearCachedSource:[]:void"
+            "com.google.javascript.jscomp.SourceFile\\$OnDisk:clearCachedSource:[]:void",
+            "com.google.javascript.jscomp.SourceFile\\$OnDisk:getCode:[]:String"
           ],
           "num": 3
         },
         {
           "qualified_names": [
-            "com.google.javascript.jscomp.SourceFile\\$OnDisk:getCode:[]:String",
-            "com.google.javascript.jscomp.SourceFile\\$OnDisk:getCharset:[]:Charset",
-            "com.google.javascript.jscomp.SourceFile\\$OnDisk:setCharset:[Charset c]:void",
-            "com.google.javascript.jscomp.SourceFile:fromFile:[File file, Charset c]:SourceFile",
             "com.google.javascript.jscomp.SourceFile:fromFile:[String fileName, Charset c]:SourceFile",
             "com.google.javascript.jscomp.SourceFile\\$OnDisk:OnDisk:[File file, Charset c]:null",
-            "com.google.javascript.jscomp.SourceFile\\$OnDisk:OnDisk:[File file]:null"
+            "com.google.javascript.jscomp.SourceFile\\$OnDisk:OnDisk:[File file]:null",
+            "com.google.javascript.jscomp.SourceFile:fromFile:[File file, Charset c]:SourceFile",
+            "com.google.javascript.jscomp.SourceFile\\$OnDisk:getCode:[]:String",
+            "com.google.javascript.jscomp.SourceFile\\$OnDisk:getCharset:[]:Charset",
+            "com.google.javascript.jscomp.SourceFile\\$OnDisk:setCharset:[Charset c]:void"
           ],
           "num": 7
         }
@@ -1878,10 +1878,10 @@
         },
         {
           "qualified_names": [
-            "com.google.javascript.jscomp.parsing.IRFactory\\$TransformDispatcher:parseDirectives:[Node node]:void",
-            "com.google.javascript.jscomp.parsing.IRFactory\\$TransformDispatcher:processFunctionNode:[FunctionNode functionNode]:Node",
+            "com.google.javascript.jscomp.parsing.IRFactory\\$TransformDispatcher:isDirective:[Node n]:boolean",
             "com.google.javascript.jscomp.parsing.IRFactory\\$TransformDispatcher:processAstRoot:[AstRoot rootNode]:Node",
-            "com.google.javascript.jscomp.parsing.IRFactory\\$TransformDispatcher:isDirective:[Node n]:boolean"
+            "com.google.javascript.jscomp.parsing.IRFactory\\$TransformDispatcher:processFunctionNode:[FunctionNode functionNode]:Node",
+            "com.google.javascript.jscomp.parsing.IRFactory\\$TransformDispatcher:parseDirectives:[Node node]:void"
           ],
           "num": 4
         }
@@ -2074,9 +2074,9 @@
         },
         {
           "qualified_names": [
+            "com.google.javascript.rhino.Node:getDirectives:[]:Set\u003cString\u003e",
             "com.google.javascript.rhino.Node:setDirectives:[Set\u003cString\u003e val]:void",
-            "com.google.javascript.rhino.Node:setWasEmptyNode:[boolean val]:void",
-            "com.google.javascript.rhino.Node:getDirectives:[]:Set\u003cString\u003e"
+            "com.google.javascript.rhino.Node:setWasEmptyNode:[boolean val]:void"
           ],
           "num": 3
         }

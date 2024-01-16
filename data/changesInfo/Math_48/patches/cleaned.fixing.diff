@@ -1,6 +1,6 @@
 diff -u -r data/changesInfo//Math_48/properties/modified_classes/inducing/src/main/java/org/apache/commons/math/analysis/solvers/BaseSecantSolver.java data/changesInfo//Math_48/cleaned/fixing/src/main/java/org/apache/commons/math/analysis/solvers/BaseSecantSolver.java
---- data/changesInfo//Math_48/properties/modified_classes/inducing/src/main/java/org/apache/commons/math/analysis/solvers/BaseSecantSolver.java	2023-08-25 13:58:28.841417064 +0800
-+++ data/changesInfo//Math_48/cleaned/fixing/src/main/java/org/apache/commons/math/analysis/solvers/BaseSecantSolver.java	2023-07-25 23:10:08.918583162 +0800
+--- data/changesInfo//Math_48/properties/modified_classes/inducing/src/main/java/org/apache/commons/math/analysis/solvers/BaseSecantSolver.java	2023-12-27 22:47:26.641080561 -0800
++++ data/changesInfo//Math_48/cleaned/fixing/src/main/java/org/apache/commons/math/analysis/solvers/BaseSecantSolver.java	2023-07-25 08:10:08.918583162 -0700
 @@ -18,14 +18,15 @@
  package org.apache.commons.math.analysis.solvers;
  

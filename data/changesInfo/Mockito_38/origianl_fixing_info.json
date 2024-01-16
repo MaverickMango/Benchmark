@@ -4,14 +4,14 @@
     "name": "root.bean.benchmarks.Defects4JBug"
   },
   "d4jCmd": "/home/liumengjiao/Desktop/defects4j/framework/bin/defects4j",
-  "dataDir": "data/changesInfo/",
+  "dataDir": "/home/liumengjiao/Desktop/CI/Benchmark/data/changesInfo/",
   "properties": {
     "trigger.tests": "org.mockito.internal.verification.argumentmatching.ArgumentMatchingToolTest::shouldWorkFineWhenGivenArgIsNull,org.mockitousage.bugs.ActualInvocationHasNullArgumentNPEBugTest::shouldAllowPassingNullArgument",
     "test.dir": "test",
     "clz.modified": "org.mockito.internal.verification.argumentmatching.ArgumentMatchingTool",
     "src.dir": "src"
   },
-  "timeoutSecond": 300,
+  "timeoutSecond": 100,
   "proj": "Mockito",
   "id": "38",
   "workingDir": "../bugs/Mockito_38_buggy",
@@ -89,16 +89,16 @@
         {
           "qualified_names": [
             "org.mockito.internal.reporting.PrintSettings:verboseMatchers:[Matcher... verboselyPrinted]:PrintSettings",
-            "org.mockito.internal.reporting.PrintSettings:setMatchersToBePrintedVerbosely:[Matcher[] toBePrintedVerbosely]:void",
-            "org.mockito.internal.reporting.PrintSettings:printsVerbosely:[Matcher matcher]:boolean"
+            "org.mockito.internal.reporting.PrintSettings:printsVerbosely:[Matcher matcher]:boolean",
+            "org.mockito.internal.reporting.PrintSettings:setMatchersToBePrintedVerbosely:[Matcher[] toBePrintedVerbosely]:void"
           ],
           "num": 3
         },
         {
           "qualified_names": [
-            "org.mockito.internal.reporting.PrintSettings:setMatchersToBePrintedVerbosely:[Integer[] toBePrintedVerbosely]:void",
             "org.mockito.internal.reporting.PrintSettings:printsVerbosely:[int argumentIndex]:boolean",
-            "org.mockito.internal.reporting.PrintSettings:verboseMatchers:[Integer... verboselyPrinted]:PrintSettings"
+            "org.mockito.internal.reporting.PrintSettings:verboseMatchers:[Integer... verboselyPrinted]:PrintSettings",
+            "org.mockito.internal.reporting.PrintSettings:setMatchersToBePrintedVerbosely:[Integer[] toBePrintedVerbosely]:void"
           ],
           "num": 3
         }

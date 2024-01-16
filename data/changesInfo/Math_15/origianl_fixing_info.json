@@ -4,14 +4,14 @@
     "name": "root.bean.benchmarks.Defects4JBug"
   },
   "d4jCmd": "/home/liumengjiao/Desktop/defects4j/framework/bin/defects4j",
-  "dataDir": "data/changesInfo/",
+  "dataDir": "/home/liumengjiao/Desktop/CI/Benchmark/data/changesInfo/",
   "properties": {
     "trigger.tests": "org.apache.commons.math3.util.FastMathTest::testMath904",
     "test.dir": "src/test/java",
     "clz.modified": "org.apache.commons.math3.util.FastMath",
     "src.dir": "src/main/java"
   },
-  "timeoutSecond": 300,
+  "timeoutSecond": 100,
   "proj": "Math",
   "id": "15",
   "workingDir": "../bugs/Math_15_buggy",
@@ -33,32 +33,32 @@
       "changed_functions": [
         {
           "qualified_names": [
-            "org.apache.commons.math.util.FastMath:ceil:[double x]:double",
-            "org.apache.commons.math.util.FastMath:exp:[double x, double extra, double[] hiPrec]:double",
-            "org.apache.commons.math.util.FastMath:atan2:[double y, double x]:double",
             "org.apache.commons.math.util.FastMath:acos:[final double a]:double",
-            "org.apache.commons.math.util.FastMath:atan:[double xa, double xb, boolean leftPlane]:double",
-            "org.apache.commons.math.util.FastMath:floor:[double x]:double",
             "org.apache.commons.math.util.FastMath:tan:[double x]:double",
+            "org.apache.commons.math.util.FastMath:pow:[double x, double y]:double",
+            "org.apache.commons.math.util.FastMath:atan:[double xa, double xb, boolean leftPlane]:double",
+            "org.apache.commons.math.util.FastMath:atan2:[double y, double x]:double",
             "org.apache.commons.math.util.FastMath:asin:[final double a]:double",
+            "org.apache.commons.math.util.FastMath:exp:[double x, double extra, double[] hiPrec]:double",
+            "org.apache.commons.math.util.FastMath:floor:[double x]:double",
             "org.apache.commons.math.util.FastMath:log1p:[final double x]:double",
-            "org.apache.commons.math.util.FastMath:pow:[double x, double y]:double"
+            "org.apache.commons.math.util.FastMath:ceil:[double x]:double"
           ],
           "num": 10
         },
         {
           "qualified_names": [
-            "org.apache.commons.math.util.FastMath:tan:[double x]:double",
-            "org.apache.commons.math.util.FastMath:floor:[double x]:double",
             "org.apache.commons.math.util.FastMath:pow:[double x, double y]:double",
             "org.apache.commons.math.util.FastMath:asin:[double x]:double",
+            "org.apache.commons.math.util.FastMath:tan:[double x]:double",
+            "org.apache.commons.math.util.FastMath:exp:[double x, double extra, double[] hiPrec]:double",
             "org.apache.commons.math.util.FastMath:log1p:[final double x]:double",
             "org.apache.commons.math.util.FastMath:cos:[double x]:double",
-            "org.apache.commons.math.util.FastMath:atan2:[double y, double x]:double",
+            "org.apache.commons.math.util.FastMath:floor:[double x]:double",
             "org.apache.commons.math.util.FastMath:acos:[double x]:double",
-            "org.apache.commons.math.util.FastMath:exp:[double x, double extra, double[] hiPrec]:double",
-            "org.apache.commons.math.util.FastMath:atan:[double xa, double xb, boolean leftPlane]:double",
-            "org.apache.commons.math.util.FastMath:ceil:[double x]:double"
+            "org.apache.commons.math.util.FastMath:atan2:[double y, double x]:double",
+            "org.apache.commons.math.util.FastMath:ceil:[double x]:double",
+            "org.apache.commons.math.util.FastMath:atan:[double xa, double xb, boolean leftPlane]:double"
           ],
           "num": 11
         }

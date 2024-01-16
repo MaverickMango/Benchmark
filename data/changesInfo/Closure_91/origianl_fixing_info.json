@@ -4,14 +4,14 @@
     "name": "root.bean.benchmarks.Defects4JBug"
   },
   "d4jCmd": "/home/liumengjiao/Desktop/defects4j/framework/bin/defects4j",
-  "dataDir": "data/changesInfo/",
+  "dataDir": "/home/liumengjiao/Desktop/CI/Benchmark/data/changesInfo/",
   "properties": {
     "trigger.tests": "com.google.javascript.jscomp.CheckGlobalThisTest::testLendsAnnotation3",
     "test.dir": "test",
     "clz.modified": "com.google.javascript.jscomp.CheckGlobalThis",
     "src.dir": "src"
   },
-  "timeoutSecond": 300,
+  "timeoutSecond": 100,
   "proj": "Closure",
   "id": "91",
   "workingDir": "../bugs/Closure_91_buggy",
@@ -33,29 +33,29 @@
       "changed_functions": [
         {
           "qualified_names": [
-            "com.google.javascript.jscomp.AbstractCommandLineRunner:toPrintStream:[String fileName]:PrintStream",
-            "com.google.javascript.jscomp.AbstractCommandLineRunner:doRun:[]:int",
-            "com.google.javascript.jscomp.AbstractCommandLineRunner:toPrintStream:[String fileName, String charSet]:PrintStream",
+            "com.google.javascript.jscomp.AbstractCommandLineRunner:openExternExportsStream:[B options, String path]:PrintStream",
             "com.google.javascript.jscomp.AbstractCommandLineRunner:outputManifest:[]:void",
             "com.google.javascript.jscomp.AbstractCommandLineRunner\\$RunTimeStats:outputBestPhaseOrdering:[]:void",
             "com.google.javascript.jscomp.AbstractCommandLineRunner:writeOutput:[PrintStream out, Compiler compiler, String code, String wrapper, String codePlaceholder]:void",
-            "com.google.javascript.jscomp.AbstractCommandLineRunner:openExternExportsStream:[B options, String path]:PrintStream",
+            "com.google.javascript.jscomp.AbstractCommandLineRunner:processResults:[Result result, JSModule[] modules, B options]:int",
             "com.google.javascript.jscomp.AbstractCommandLineRunner:outputSourceMap:[B options]:void",
-            "com.google.javascript.jscomp.AbstractCommandLineRunner:processResults:[Result result, JSModule[] modules, B options]:int"
+            "com.google.javascript.jscomp.AbstractCommandLineRunner:toPrintStream:[String fileName]:PrintStream",
+            "com.google.javascript.jscomp.AbstractCommandLineRunner:doRun:[]:int",
+            "com.google.javascript.jscomp.AbstractCommandLineRunner:toPrintStream:[String fileName, String charSet]:PrintStream"
           ],
           "num": 9
         },
         {
           "qualified_names": [
-            "com.google.javascript.jscomp.AbstractCommandLineRunner:toWriter:[String fileName]:Writer",
-            "com.google.javascript.jscomp.AbstractCommandLineRunner:outputManifest:[]:void",
-            "com.google.javascript.jscomp.AbstractCommandLineRunner:toWriter:[String fileName, String charSet]:Writer",
-            "com.google.javascript.jscomp.AbstractCommandLineRunner:processResults:[Result result, JSModule[] modules, B options]:int",
             "com.google.javascript.jscomp.AbstractCommandLineRunner:doRun:[]:int",
+            "com.google.javascript.jscomp.AbstractCommandLineRunner:processResults:[Result result, JSModule[] modules, B options]:int",
+            "com.google.javascript.jscomp.AbstractCommandLineRunner:outputManifest:[]:void",
             "com.google.javascript.jscomp.AbstractCommandLineRunner:openExternExportsStream:[B options, String path]:Writer",
+            "com.google.javascript.jscomp.AbstractCommandLineRunner:outputSourceMap:[B options]:void",
             "com.google.javascript.jscomp.AbstractCommandLineRunner:writeOutput:[Appendable out, Compiler compiler, String code, String wrapper, String codePlaceholder]:void",
-            "com.google.javascript.jscomp.AbstractCommandLineRunner\\$RunTimeStats:outputBestPhaseOrdering:[]:void",
-            "com.google.javascript.jscomp.AbstractCommandLineRunner:outputSourceMap:[B options]:void"
+            "com.google.javascript.jscomp.AbstractCommandLineRunner:toWriter:[String fileName]:Writer",
+            "com.google.javascript.jscomp.AbstractCommandLineRunner:toWriter:[String fileName, String charSet]:Writer",
+            "com.google.javascript.jscomp.AbstractCommandLineRunner\\$RunTimeStats:outputBestPhaseOrdering:[]:void"
           ],
           "num": 9
         }

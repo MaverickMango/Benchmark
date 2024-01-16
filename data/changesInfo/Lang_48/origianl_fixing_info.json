@@ -4,14 +4,14 @@
     "name": "root.bean.benchmarks.Defects4JBug"
   },
   "d4jCmd": "/home/liumengjiao/Desktop/defects4j/framework/bin/defects4j",
-  "dataDir": "data/changesInfo/",
+  "dataDir": "/home/liumengjiao/Desktop/CI/Benchmark/data/changesInfo/",
   "properties": {
     "trigger.tests": "org.apache.commons.lang.builder.EqualsBuilderTest::testBigDecimal",
     "test.dir": "src/test",
     "clz.modified": "org.apache.commons.lang.builder.EqualsBuilder",
     "src.dir": "src/java"
   },
-  "timeoutSecond": 300,
+  "timeoutSecond": 100,
   "proj": "Lang",
   "id": "48",
   "workingDir": "../bugs/Lang_48_buggy",

@@ -4,14 +4,14 @@
     "name": "root.bean.benchmarks.Defects4JBug"
   },
   "d4jCmd": "/home/liumengjiao/Desktop/defects4j/framework/bin/defects4j",
-  "dataDir": "data/changesInfo/",
+  "dataDir": "/home/liumengjiao/Desktop/CI/Benchmark/data/changesInfo/",
   "properties": {
     "trigger.tests": "com.fasterxml.jackson.core.io.TestIOContext::testAllocations",
     "test.dir": "src/test/java",
     "clz.modified": "com.fasterxml.jackson.core.io.IOContext",
     "src.dir": "src/main/java"
   },
-  "timeoutSecond": 300,
+  "timeoutSecond": 100,
   "proj": "JacksonCore",
   "id": "14",
   "workingDir": "../bugs/JacksonCore_14_buggy",
@@ -21,7 +21,7 @@
   "bug_name": "JacksonCore_14",
   "derive": "defects4j",
   "original_fixing_commit": "3c2c9610b6c76e2b348eb057d0a8268681d573a6",
-  "buildFiles_changed": false,
+  "buildFiles_changed": true,
   "regression": true,
   "inducing_changes": [
     {
@@ -34,19 +34,19 @@
         {
           "qualified_names": [
             "com.fasterxml.jackson.core.io.IOContext:_verifyRelease:[Object toRelease, Object src]:void",
-            "com.fasterxml.jackson.core.io.IOContext:_verifyAlloc:[Object buffer]:void",
             "com.fasterxml.jackson.core.io.IOContext:releaseNameCopyBuffer:[char[] buf]:void",
-            "com.fasterxml.jackson.core.io.IOContext:releaseConcatBuffer:[char[] buf]:void"
+            "com.fasterxml.jackson.core.io.IOContext:releaseConcatBuffer:[char[] buf]:void",
+            "com.fasterxml.jackson.core.io.IOContext:_verifyAlloc:[Object buffer]:void"
           ],
           "num": 4
         },
         {
           "qualified_names": [
-            "com.fasterxml.jackson.core.io.IOContext:_verifyAlloc:[Object buffer]:void",
-            "com.fasterxml.jackson.core.io.IOContext:releaseNameCopyBuffer:[char[] buf]:void",
-            "com.fasterxml.jackson.core.io.IOContext:wrongBuf:[]:IllegalArgumentException",
             "com.fasterxml.jackson.core.io.IOContext:releaseConcatBuffer:[char[] buf]:void",
             "com.fasterxml.jackson.core.io.IOContext:_verifyRelease:[char[] toRelease, char[] src]:void",
+            "com.fasterxml.jackson.core.io.IOContext:releaseNameCopyBuffer:[char[] buf]:void",
+            "com.fasterxml.jackson.core.io.IOContext:wrongBuf:[]:IllegalArgumentException",
+            "com.fasterxml.jackson.core.io.IOContext:_verifyAlloc:[Object buffer]:void",
             "com.fasterxml.jackson.core.io.IOContext:_verifyRelease:[byte[] toRelease, byte[] src]:void"
           ],
           "num": 6
@@ -152,17 +152,17 @@
       "changed_functions": [
         {
           "qualified_names": [
-            "com.fasterxml.jackson.core.io.IOContext:wrongBuf:[]:IllegalArgumentException",
             "com.fasterxml.jackson.core.io.IOContext:_verifyRelease:[char[] toRelease, char[] src]:void",
-            "com.fasterxml.jackson.core.io.IOContext:_verifyRelease:[byte[] toRelease, byte[] src]:void"
+            "com.fasterxml.jackson.core.io.IOContext:_verifyRelease:[byte[] toRelease, byte[] src]:void",
+            "com.fasterxml.jackson.core.io.IOContext:wrongBuf:[]:IllegalArgumentException"
           ],
           "num": 3
         },
         {
           "qualified_names": [
             "com.fasterxml.jackson.core.io.IOContext:_verifyRelease:[char[] toRelease, char[] src]:void",
-            "com.fasterxml.jackson.core.io.IOContext:wrongBuf:[]:IllegalArgumentException",
-            "com.fasterxml.jackson.core.io.IOContext:_verifyRelease:[byte[] toRelease, byte[] src]:void"
+            "com.fasterxml.jackson.core.io.IOContext:_verifyRelease:[byte[] toRelease, byte[] src]:void",
+            "com.fasterxml.jackson.core.io.IOContext:wrongBuf:[]:IllegalArgumentException"
           ],
           "num": 3
         }

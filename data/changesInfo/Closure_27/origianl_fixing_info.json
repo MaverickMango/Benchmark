@@ -4,14 +4,14 @@
     "name": "root.bean.benchmarks.Defects4JBug"
   },
   "d4jCmd": "/home/liumengjiao/Desktop/defects4j/framework/bin/defects4j",
-  "dataDir": "data/changesInfo/",
+  "dataDir": "/home/liumengjiao/Desktop/CI/Benchmark/data/changesInfo/",
   "properties": {
     "trigger.tests": "com.google.javascript.rhino.IRTest::testIssue727_1,com.google.javascript.rhino.IRTest::testIssue727_2,com.google.javascript.rhino.IRTest::testIssue727_3",
     "test.dir": "test",
     "clz.modified": "com.google.javascript.rhino.IR",
     "src.dir": "src"
   },
-  "timeoutSecond": 300,
+  "timeoutSecond": 100,
   "proj": "Closure",
   "id": "27",
   "workingDir": "../bugs/Closure_27_buggy",
@@ -77,18 +77,18 @@
       "changed_functions": [
         {
           "qualified_names": [
+            "com.google.javascript.rhino.IR:tryCatchFinally:[Node tryBody, Node catchNode, Node finallyBody]:Node",
             "com.google.javascript.rhino.IR:tryFinally:[Node tryBody, Node finallyBody]:Node",
-            "com.google.javascript.rhino.IR:tryCatch:[Node tryBody, Node catchNode]:Node",
-            "com.google.javascript.rhino.IR:tryCatchFinally:[Node tryBody, Node catchNode, Node finallyBody]:Node"
+            "com.google.javascript.rhino.IR:tryCatch:[Node tryBody, Node catchNode]:Node"
           ],
           "num": 3
         },
         {
           "qualified_names": [
-            "com.google.javascript.rhino.IR:tryCatch:[Node tryBody, Node catchNode]:Node",
-            "com.google.javascript.rhino.IR:tryFinally:[Node tryBody, Node finallyBody]:Node",
             "com.google.javascript.rhino.IR:blockUnchecked:[Node stmt]:Node",
-            "com.google.javascript.rhino.IR:tryCatchFinally:[Node tryBody, Node catchNode, Node finallyBody]:Node"
+            "com.google.javascript.rhino.IR:tryCatchFinally:[Node tryBody, Node catchNode, Node finallyBody]:Node",
+            "com.google.javascript.rhino.IR:tryFinally:[Node tryBody, Node finallyBody]:Node",
+            "com.google.javascript.rhino.IR:tryCatch:[Node tryBody, Node catchNode]:Node"
           ],
           "num": 4
         }

@@ -4,14 +4,14 @@
     "name": "root.bean.benchmarks.Defects4JBug"
   },
   "d4jCmd": "/home/liumengjiao/Desktop/defects4j/framework/bin/defects4j",
-  "dataDir": "data/changesInfo/",
+  "dataDir": "/home/liumengjiao/Desktop/CI/Benchmark/data/changesInfo/",
   "properties": {
     "trigger.tests": "org.apache.commons.compress.utils.IOUtilsTest::skipUsingRead,org.apache.commons.compress.utils.IOUtilsTest::skipUsingSkipAndRead",
     "test.dir": "src/test/java",
     "clz.modified": "org.apache.commons.compress.utils.IOUtils",
     "src.dir": "src/main/java"
   },
-  "timeoutSecond": 300,
+  "timeoutSecond": 100,
   "proj": "Compress",
   "id": "26",
   "workingDir": "../bugs/Compress_26_buggy",
@@ -33,45 +33,45 @@
       "changed_functions": [
         {
           "qualified_names": [
+            "org.apache.commons.compress.archivers.tar.TarArchiveInputStream:TarArchiveInputStream:[InputStream is, int blockSize]:null",
             "org.apache.commons.compress.archivers.tar.TarArchiveInputStream:close:[]:void",
-            "org.apache.commons.compress.archivers.tar.TarArchiveInputStream:TarArchiveInputStream:[InputStream is, int blockSize, int recordSize]:null",
-            "org.apache.commons.compress.archivers.tar.TarArchiveInputStream:TarArchiveInputStream:[InputStream is, int blockSize, String encoding]:null",
-            "org.apache.commons.compress.archivers.tar.TarArchiveInputStream:matches:[byte[] signature, int length]:boolean",
-            "org.apache.commons.compress.archivers.tar.TarArchiveInputStream:TarArchiveInputStream:[InputStream is]:null",
+            "org.apache.commons.compress.archivers.tar.TarArchiveInputStream:getNextTarEntry:[]:TarArchiveEntry",
             "org.apache.commons.compress.archivers.tar.TarArchiveInputStream:TarArchiveInputStream:[InputStream is, String encoding]:null",
             "org.apache.commons.compress.archivers.tar.TarArchiveInputStream:getRecordSize:[]:int",
-            "org.apache.commons.compress.archivers.tar.TarArchiveInputStream:getCurrentEntry:[]:TarArchiveEntry",
-            "org.apache.commons.compress.archivers.tar.TarArchiveInputStream:getRecord:[]:byte[]",
             "org.apache.commons.compress.archivers.tar.TarArchiveInputStream:skip:[long numToSkip]:long",
-            "org.apache.commons.compress.archivers.tar.TarArchiveInputStream:getNextTarEntry:[]:TarArchiveEntry",
+            "org.apache.commons.compress.archivers.tar.TarArchiveInputStream:TarArchiveInputStream:[InputStream is]:null",
             "org.apache.commons.compress.archivers.tar.TarArchiveInputStream:read:[byte[] buf, int offset, int numToRead]:int",
+            "org.apache.commons.compress.archivers.tar.TarArchiveInputStream:matches:[byte[] signature, int length]:boolean",
+            "org.apache.commons.compress.archivers.tar.TarArchiveInputStream:TarArchiveInputStream:[InputStream is, int blockSize, String encoding]:null",
+            "org.apache.commons.compress.archivers.tar.TarArchiveInputStream:TarArchiveInputStream:[InputStream is, int blockSize, int recordSize]:null",
+            "org.apache.commons.compress.archivers.tar.TarArchiveInputStream:getCurrentEntry:[]:TarArchiveEntry",
             "org.apache.commons.compress.archivers.tar.TarArchiveInputStream:TarArchiveInputStream:[InputStream is, int blockSize, int recordSize, String encoding]:null",
-            "org.apache.commons.compress.archivers.tar.TarArchiveInputStream:TarArchiveInputStream:[InputStream is, int blockSize]:null"
+            "org.apache.commons.compress.archivers.tar.TarArchiveInputStream:getRecord:[]:byte[]"
           ],
           "num": 14
         },
         {
           "qualified_names": [
-            "org.apache.commons.compress.archivers.tar.TarArchiveInputStream:TarArchiveInputStream:[InputStream is, int blockSize, int recordSize]:null",
-            "org.apache.commons.compress.archivers.tar.TarArchiveInputStream:close:[]:void",
-            "org.apache.commons.compress.archivers.tar.TarArchiveInputStream:readRecord:[]:byte[]",
-            "org.apache.commons.compress.archivers.tar.TarArchiveInputStream:getRecordSize:[]:int",
-            "org.apache.commons.compress.archivers.tar.TarArchiveInputStream:TarArchiveInputStream:[InputStream is, int blockSize]:null",
-            "org.apache.commons.compress.archivers.tar.TarArchiveInputStream:getNextTarEntry:[]:TarArchiveEntry",
-            "org.apache.commons.compress.archivers.tar.TarArchiveInputStream:matches:[byte[] signature, int length]:boolean",
-            "org.apache.commons.compress.archivers.tar.TarArchiveInputStream:TarArchiveInputStream:[InputStream is, int blockSize, String encoding]:null",
+            "org.apache.commons.compress.archivers.tar.TarArchiveInputStream:TarArchiveInputStream:[InputStream is]:null",
             "org.apache.commons.compress.archivers.tar.TarArchiveInputStream:consumeRemainderOfLastBlock:[]:void",
-            "org.apache.commons.compress.archivers.tar.TarArchiveInputStream:TarArchiveInputStream:[InputStream is, int blockSize, int recordSize, String encoding]:null",
-            "org.apache.commons.compress.archivers.tar.TarArchiveInputStream:tryToConsumeSecondEOFRecord:[]:void",
-            "org.apache.commons.compress.archivers.tar.TarArchiveInputStream:read:[byte[] buf, int offset, int numToRead]:int",
-            "org.apache.commons.compress.archivers.tar.TarArchiveInputStream:getCurrentEntry:[]:ArchiveEntry",
             "org.apache.commons.compress.archivers.tar.TarArchiveInputStream:isEOFRecord:[byte[] record]:boolean",
+            "org.apache.commons.compress.archivers.tar.TarArchiveInputStream:getCurrentEntry:[]:ArchiveEntry",
+            "org.apache.commons.compress.archivers.tar.TarArchiveInputStream:getRecordSize:[]:int",
+            "org.apache.commons.compress.archivers.tar.TarArchiveInputStream:TarArchiveInputStream:[InputStream is, int blockSize, String encoding]:null",
+            "org.apache.commons.compress.archivers.tar.TarArchiveInputStream:matches:[byte[] signature, int length]:boolean",
             "org.apache.commons.compress.archivers.tar.TarArchiveInputStream:getNextEntry:[]:ArchiveEntry",
+            "org.apache.commons.compress.archivers.tar.TarArchiveInputStream:close:[]:void",
+            "org.apache.commons.compress.archivers.tar.TarArchiveInputStream:read:[byte[] buf, int offset, int numToRead]:int",
+            "org.apache.commons.compress.archivers.tar.TarArchiveInputStream:readRecord:[]:byte[]",
+            "org.apache.commons.compress.archivers.tar.TarArchiveInputStream:TarArchiveInputStream:[InputStream is, int blockSize]:null",
+            "org.apache.commons.compress.archivers.tar.TarArchiveInputStream:TarArchiveInputStream:[InputStream is, String encoding]:null",
+            "org.apache.commons.compress.archivers.tar.TarArchiveInputStream:TarArchiveInputStream:[InputStream is, int blockSize, int recordSize, String encoding]:null",
             "org.apache.commons.compress.archivers.tar.TarArchiveInputStream:skipRecordPadding:[]:void",
             "org.apache.commons.compress.archivers.tar.TarArchiveInputStream:getRecord:[]:byte[]",
-            "org.apache.commons.compress.archivers.tar.TarArchiveInputStream:TarArchiveInputStream:[InputStream is]:null",
-            "org.apache.commons.compress.archivers.tar.TarArchiveInputStream:TarArchiveInputStream:[InputStream is, String encoding]:null",
-            "org.apache.commons.compress.archivers.tar.TarArchiveInputStream:skip:[long numToSkip]:long"
+            "org.apache.commons.compress.archivers.tar.TarArchiveInputStream:tryToConsumeSecondEOFRecord:[]:void",
+            "org.apache.commons.compress.archivers.tar.TarArchiveInputStream:skip:[long numToSkip]:long",
+            "org.apache.commons.compress.archivers.tar.TarArchiveInputStream:getNextTarEntry:[]:TarArchiveEntry",
+            "org.apache.commons.compress.archivers.tar.TarArchiveInputStream:TarArchiveInputStream:[InputStream is, int blockSize, int recordSize]:null"
           ],
           "num": 20
         }
@@ -1023,39 +1023,39 @@
       "changed_functions": [
         {
           "qualified_names": [
-            "org.apache.commons.compress.archivers.tar.TarArchiveOutputStream:close:[]:void",
-            "org.apache.commons.compress.archivers.tar.TarArchiveOutputStream:TarArchiveOutputStream:[OutputStream os, String encoding]:null",
             "org.apache.commons.compress.archivers.tar.TarArchiveOutputStream:closeArchiveEntry:[]:void",
             "org.apache.commons.compress.archivers.tar.TarArchiveOutputStream:TarArchiveOutputStream:[OutputStream os, int blockSize, String encoding]:null",
-            "org.apache.commons.compress.archivers.tar.TarArchiveOutputStream:write:[byte[] wBuf, int wOffset, int numToWrite]:void",
-            "org.apache.commons.compress.archivers.tar.TarArchiveOutputStream:TarArchiveOutputStream:[OutputStream os]:null",
-            "org.apache.commons.compress.archivers.tar.TarArchiveOutputStream:TarArchiveOutputStream:[OutputStream os, int blockSize, int recordSize, String encoding]:null",
             "org.apache.commons.compress.archivers.tar.TarArchiveOutputStream:TarArchiveOutputStream:[OutputStream os, int blockSize]:null",
-            "org.apache.commons.compress.archivers.tar.TarArchiveOutputStream:writeEOFRecord:[]:void",
-            "org.apache.commons.compress.archivers.tar.TarArchiveOutputStream:getRecordSize:[]:int",
-            "org.apache.commons.compress.archivers.tar.TarArchiveOutputStream:finish:[]:void",
             "org.apache.commons.compress.archivers.tar.TarArchiveOutputStream:putArchiveEntry:[ArchiveEntry archiveEntry]:void",
-            "org.apache.commons.compress.archivers.tar.TarArchiveOutputStream:createArchiveEntry:[File inputFile, String entryName]:ArchiveEntry"
+            "org.apache.commons.compress.archivers.tar.TarArchiveOutputStream:TarArchiveOutputStream:[OutputStream os, int blockSize, int recordSize, String encoding]:null",
+            "org.apache.commons.compress.archivers.tar.TarArchiveOutputStream:finish:[]:void",
+            "org.apache.commons.compress.archivers.tar.TarArchiveOutputStream:write:[byte[] wBuf, int wOffset, int numToWrite]:void",
+            "org.apache.commons.compress.archivers.tar.TarArchiveOutputStream:getRecordSize:[]:int",
+            "org.apache.commons.compress.archivers.tar.TarArchiveOutputStream:writeEOFRecord:[]:void",
+            "org.apache.commons.compress.archivers.tar.TarArchiveOutputStream:TarArchiveOutputStream:[OutputStream os, String encoding]:null",
+            "org.apache.commons.compress.archivers.tar.TarArchiveOutputStream:createArchiveEntry:[File inputFile, String entryName]:ArchiveEntry",
+            "org.apache.commons.compress.archivers.tar.TarArchiveOutputStream:close:[]:void",
+            "org.apache.commons.compress.archivers.tar.TarArchiveOutputStream:TarArchiveOutputStream:[OutputStream os]:null"
           ],
           "num": 13
         },
         {
           "qualified_names": [
-            "org.apache.commons.compress.archivers.tar.TarArchiveOutputStream:close:[]:void",
-            "org.apache.commons.compress.archivers.tar.TarArchiveOutputStream:getRecordSize:[]:int",
-            "org.apache.commons.compress.archivers.tar.TarArchiveOutputStream:TarArchiveOutputStream:[OutputStream os]:null",
-            "org.apache.commons.compress.archivers.tar.TarArchiveOutputStream:TarArchiveOutputStream:[OutputStream os, int blockSize, int recordSize, String encoding]:null",
-            "org.apache.commons.compress.archivers.tar.TarArchiveOutputStream:finish:[]:void",
-            "org.apache.commons.compress.archivers.tar.TarArchiveOutputStream:write:[byte[] wBuf, int wOffset, int numToWrite]:void",
-            "org.apache.commons.compress.archivers.tar.TarArchiveOutputStream:padAsNeeded:[]:void",
-            "org.apache.commons.compress.archivers.tar.TarArchiveOutputStream:writeEOFRecord:[]:void",
-            "org.apache.commons.compress.archivers.tar.TarArchiveOutputStream:closeArchiveEntry:[]:void",
-            "org.apache.commons.compress.archivers.tar.TarArchiveOutputStream:writeRecord:[byte[] buf, int offset]:void",
             "org.apache.commons.compress.archivers.tar.TarArchiveOutputStream:putArchiveEntry:[ArchiveEntry archiveEntry]:void",
+            "org.apache.commons.compress.archivers.tar.TarArchiveOutputStream:closeArchiveEntry:[]:void",
+            "org.apache.commons.compress.archivers.tar.TarArchiveOutputStream:writeEOFRecord:[]:void",
+            "org.apache.commons.compress.archivers.tar.TarArchiveOutputStream:getRecordSize:[]:int",
+            "org.apache.commons.compress.archivers.tar.TarArchiveOutputStream:TarArchiveOutputStream:[OutputStream os, int blockSize]:null",
+            "org.apache.commons.compress.archivers.tar.TarArchiveOutputStream:writeRecord:[byte[] record]:void",
+            "org.apache.commons.compress.archivers.tar.TarArchiveOutputStream:close:[]:void",
+            "org.apache.commons.compress.archivers.tar.TarArchiveOutputStream:TarArchiveOutputStream:[OutputStream os]:null",
+            "org.apache.commons.compress.archivers.tar.TarArchiveOutputStream:padAsNeeded:[]:void",
+            "org.apache.commons.compress.archivers.tar.TarArchiveOutputStream:TarArchiveOutputStream:[OutputStream os, int blockSize, int recordSize, String encoding]:null",
+            "org.apache.commons.compress.archivers.tar.TarArchiveOutputStream:write:[byte[] wBuf, int wOffset, int numToWrite]:void",
+            "org.apache.commons.compress.archivers.tar.TarArchiveOutputStream:writeRecord:[byte[] buf, int offset]:void",
             "org.apache.commons.compress.archivers.tar.TarArchiveOutputStream:TarArchiveOutputStream:[OutputStream os, String encoding]:null",
             "org.apache.commons.compress.archivers.tar.TarArchiveOutputStream:TarArchiveOutputStream:[OutputStream os, int blockSize, String encoding]:null",
-            "org.apache.commons.compress.archivers.tar.TarArchiveOutputStream:writeRecord:[byte[] record]:void",
-            "org.apache.commons.compress.archivers.tar.TarArchiveOutputStream:TarArchiveOutputStream:[OutputStream os, int blockSize]:null"
+            "org.apache.commons.compress.archivers.tar.TarArchiveOutputStream:finish:[]:void"
           ],
           "num": 15
         }
@@ -1560,8 +1560,8 @@
       "changed_functions": [
         {
           "qualified_names": [
-            "org.apache.commons.compress.utils.IOUtils:copy:[final InputStream input, final OutputStream output]:long",
-            "org.apache.commons.compress.utils.IOUtils:skip:[InputStream input, long numToSkip]:long"
+            "org.apache.commons.compress.utils.IOUtils:skip:[InputStream input, long numToSkip]:long",
+            "org.apache.commons.compress.utils.IOUtils:copy:[final InputStream input, final OutputStream output]:long"
           ],
           "num": 2
         },

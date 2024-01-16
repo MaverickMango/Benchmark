@@ -4,14 +4,14 @@
     "name": "root.bean.benchmarks.Defects4JBug"
   },
   "d4jCmd": "/home/liumengjiao/Desktop/defects4j/framework/bin/defects4j",
-  "dataDir": "data/changesInfo/",
+  "dataDir": "/home/liumengjiao/Desktop/CI/Benchmark/data/changesInfo/",
   "properties": {
     "trigger.tests": "org.mockito.internal.creation.DelegatingMethodTest::equals_should_return_true_when_equal,org.mockito.internal.creation.DelegatingMethodTest::equals_should_return_true_when_self",
     "test.dir": "test",
     "clz.modified": "org.mockito.internal.creation.DelegatingMethod",
     "src.dir": "src"
   },
-  "timeoutSecond": 300,
+  "timeoutSecond": 100,
   "proj": "Mockito",
   "id": "11",
   "workingDir": "../bugs/Mockito_11_buggy",
@@ -40,8 +40,8 @@
         },
         {
           "qualified_names": [
-            "org.mockito.internal.creation.MethodInterceptorFilter:intercept:[Object proxy, Method method, Object[] args, MethodProxy methodProxy]:Object",
-            "org.mockito.internal.creation.MethodInterceptorFilter:createMockitoMethod:[Method method]:MockitoMethod"
+            "org.mockito.internal.creation.MethodInterceptorFilter:createMockitoMethod:[Method method]:MockitoMethod",
+            "org.mockito.internal.creation.MethodInterceptorFilter:intercept:[Object proxy, Method method, Object[] args, MethodProxy methodProxy]:Object"
           ],
           "num": 2
         }
@@ -399,8 +399,8 @@
       "changed_functions": [
         {
           "qualified_names": [
-            "org.mockito.internal.creation.DelegatingMethod:equals:[Object obj]:boolean",
-            "org.mockito.internal.creation.DelegatingMethod:hashCode:[]:int"
+            "org.mockito.internal.creation.DelegatingMethod:hashCode:[]:int",
+            "org.mockito.internal.creation.DelegatingMethod:equals:[Object obj]:boolean"
           ],
           "num": 2
         },

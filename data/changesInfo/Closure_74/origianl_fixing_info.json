@@ -4,14 +4,14 @@
     "name": "root.bean.benchmarks.Defects4JBug"
   },
   "d4jCmd": "/home/liumengjiao/Desktop/defects4j/framework/bin/defects4j",
-  "dataDir": "data/changesInfo/",
+  "dataDir": "/home/liumengjiao/Desktop/CI/Benchmark/data/changesInfo/",
   "properties": {
     "trigger.tests": "com.google.javascript.jscomp.PeepholeFoldConstantsTest::testFoldComparison3,com.google.javascript.jscomp.PeepholeFoldConstantsTest::testInvertibleOperators,com.google.javascript.jscomp.PeepholeFoldConstantsTest::testCommutativeOperators",
     "test.dir": "test",
     "clz.modified": "com.google.javascript.jscomp.PeepholeFoldConstants",
     "src.dir": "src"
   },
-  "timeoutSecond": 300,
+  "timeoutSecond": 100,
   "proj": "Closure",
   "id": "74",
   "workingDir": "../bugs/Closure_74_buggy",
@@ -380,8 +380,8 @@
         },
         {
           "qualified_names": [
-            "com.google.javascript.jscomp.PeepholeFoldConstants:getNormalizedNodeType:[Node n]:int",
             "com.google.javascript.jscomp.PeepholeFoldConstants:compareAsNumbers:[int op, Node left, Node right]:Boolean",
+            "com.google.javascript.jscomp.PeepholeFoldConstants:getNormalizedNodeType:[Node n]:int",
             "com.google.javascript.jscomp.PeepholeFoldConstants:tryFoldComparison:[Node n, Node left, Node right]:Node"
           ],
           "num": 3

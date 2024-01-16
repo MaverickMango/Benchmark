@@ -1,7 +1,7 @@
 Only in data/changesInfo//Math_88/properties/modified_classes/inducing/src: java
 diff -u -r data/changesInfo//Math_88/properties/modified_classes/inducing/src/test/org/apache/commons/math/optimization/linear/SimplexSolverTest.java data/changesInfo//Math_88/cleaned/inducing/src/test/org/apache/commons/math/optimization/linear/SimplexSolverTest.java
---- data/changesInfo//Math_88/properties/modified_classes/inducing/src/test/org/apache/commons/math/optimization/linear/SimplexSolverTest.java	2023-08-25 14:01:19.603028935 +0800
-+++ data/changesInfo//Math_88/cleaned/inducing/src/test/org/apache/commons/math/optimization/linear/SimplexSolverTest.java	2023-06-24 16:24:23.167000000 +0800
+--- data/changesInfo//Math_88/properties/modified_classes/inducing/src/test/org/apache/commons/math/optimization/linear/SimplexSolverTest.java	2023-12-27 22:48:16.909969275 -0800
++++ data/changesInfo//Math_88/cleaned/inducing/src/test/org/apache/commons/math/optimization/linear/SimplexSolverTest.java	2023-06-24 01:24:23.167000000 -0700
 @@ -30,6 +30,22 @@
  
  public class SimplexSolverTest extends TestCase {

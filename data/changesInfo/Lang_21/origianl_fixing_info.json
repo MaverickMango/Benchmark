@@ -4,14 +4,14 @@
     "name": "root.bean.benchmarks.Defects4JBug"
   },
   "d4jCmd": "/home/liumengjiao/Desktop/defects4j/framework/bin/defects4j",
-  "dataDir": "data/changesInfo/",
+  "dataDir": "/home/liumengjiao/Desktop/CI/Benchmark/data/changesInfo/",
   "properties": {
     "trigger.tests": "org.apache.commons.lang3.time.DateUtilsTest::testIsSameLocalTime_Cal",
     "test.dir": "src/test/java",
     "clz.modified": "org.apache.commons.lang3.time.DateUtils",
     "src.dir": "src/main/java"
   },
-  "timeoutSecond": 300,
+  "timeoutSecond": 100,
   "proj": "Lang",
   "id": "21",
   "workingDir": "../bugs/Lang_21_buggy",
@@ -33,20 +33,20 @@
       "changed_functions": [
         {
           "qualified_names": [
-            "org.apache.commons.lang.time.DateUtils:round:[Date date, int field]:Date",
             "org.apache.commons.lang.time.DateUtils:isSameDay:[Date date1, Date date2]:boolean",
-            "org.apache.commons.lang.time.DateUtils:isSameDay:[Calendar cal1, Calendar cal2]:boolean"
+            "org.apache.commons.lang.time.DateUtils:isSameDay:[Calendar cal1, Calendar cal2]:boolean",
+            "org.apache.commons.lang.time.DateUtils:round:[Date date, int field]:Date"
           ],
           "num": 3
         },
         {
           "qualified_names": [
-            "org.apache.commons.lang.time.DateUtils:isSameDay:[Calendar cal1, Calendar cal2]:boolean",
-            "org.apache.commons.lang.time.DateUtils:isSameDay:[Date date1, Date date2]:boolean",
             "org.apache.commons.lang.time.DateUtils:isSameInstant:[Date date1, Date date2]:boolean",
-            "org.apache.commons.lang.time.DateUtils:round:[Date date, int field]:Date",
+            "org.apache.commons.lang.time.DateUtils:isSameDay:[Calendar cal1, Calendar cal2]:boolean",
+            "org.apache.commons.lang.time.DateUtils:isSameLocalTime:[Calendar cal1, Calendar cal2]:boolean",
+            "org.apache.commons.lang.time.DateUtils:isSameDay:[Date date1, Date date2]:boolean",
             "org.apache.commons.lang.time.DateUtils:isSameInstant:[Calendar cal1, Calendar cal2]:boolean",
-            "org.apache.commons.lang.time.DateUtils:isSameLocalTime:[Calendar cal1, Calendar cal2]:boolean"
+            "org.apache.commons.lang.time.DateUtils:round:[Date date, int field]:Date"
           ],
           "num": 6
         }

@@ -1,8 +1,8 @@
 Only in data/changesInfo//Lang_6/properties/modified_classes/inducing/src: main
 Only in data/changesInfo//Lang_6/properties/modified_classes/inducing/src/test/java/org/apache/commons/lang3: StringEscapeUtilsTest.java
 diff -u -r data/changesInfo//Lang_6/properties/modified_classes/inducing/src/test/java/org/apache/commons/lang3/StringUtilsTest.java data/changesInfo//Lang_6/cleaned/inducing/src/test/java/org/apache/commons/lang3/StringUtilsTest.java
---- data/changesInfo//Lang_6/properties/modified_classes/inducing/src/test/java/org/apache/commons/lang3/StringUtilsTest.java	2023-06-12 11:40:35.514302119 +0800
-+++ data/changesInfo//Lang_6/cleaned/inducing/src/test/java/org/apache/commons/lang3/StringUtilsTest.java	2023-06-15 21:41:47.378556329 +0800
+--- data/changesInfo//Lang_6/properties/modified_classes/inducing/src/test/java/org/apache/commons/lang3/StringUtilsTest.java	2023-06-11 20:40:35.514302119 -0700
++++ data/changesInfo//Lang_6/cleaned/inducing/src/test/java/org/apache/commons/lang3/StringUtilsTest.java	2023-06-15 06:41:47.378556329 -0700
 @@ -28,6 +28,9 @@
  import junit.framework.TestCase;
  

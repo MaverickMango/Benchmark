@@ -1,15 +1,16 @@
 package root.util;
 
-import org.eclipse.jgit.lib.AnyObjectId;
+import org.eclipse.jgit.lib.*;
+import org.eclipse.jgit.revwalk.RevTree;
+import org.eclipse.jgit.treewalk.TreeWalk;
+import org.eclipse.jgit.treewalk.filter.PathFilter;
 import root.analysis.StringFilter;
-import root.bean.otherdataset.BugFixCommit;
-import root.bean.otherdataset.CommitInfo;
-import root.bean.otherdataset.RepositoryInfo;
+import root.entity.otherdataset.BugFixCommit;
+import root.entity.otherdataset.CommitInfo;
+import root.entity.otherdataset.RepositoryInfo;
 import org.eclipse.jgit.api.Git;
 import org.eclipse.jgit.diff.DiffEntry;
 import org.eclipse.jgit.diff.DiffFormatter;
-import org.eclipse.jgit.lib.Ref;
-import org.eclipse.jgit.lib.Repository;
 import org.eclipse.jgit.revwalk.RevCommit;
 import org.eclipse.jgit.revwalk.RevWalk;
 import org.eclipse.jgit.storage.file.FileRepositoryBuilder;
@@ -98,6 +99,15 @@ public class GitTool extends GitServiceImpl {
         FileUtils.writeToFile(FileUtils.getStrOfIterable(res, "\n").toString(), outputFile, false);
     }
 
+    public List<String> getFileStatDiffBetweenCommits(String workingDIr, String srcCommitId, String dsrCommitId) {
+        CommandSummary cs = new CommandSummary();
+        cs.append("/bin/bash", "-c");
+        cs.append("cd " + workingDIr + " && git diff --name-status " + srcCommitId + " " + dsrCommitId + " --", null);
+        String[] cmd = cs.flat();
+        List<String> res = FileUtils.executeCommand(cmd);
+        return res;
+    }
+
     public String getRepositoryURL(String repoName) {
         return githubPrefix + repoName + githubSuffix;
     }
@@ -141,6 +151,25 @@ public class GitTool extends GitServiceImpl {
             return revCommits;
         } catch (Exception e) {
             logger.error("Repository " + repository.getIdentifier() + " is not a Git repository or ERRORS occurred when walk its commits: " + e.getMessage());
+        }
+        return null;
+    }
+
+    public String getFileAtCommit(Repository repository, String commit, String filePath) {
+        RevCommit commit1 = getCommit(repository, commit);
+        RevTree tree = commit1.getTree();
+        try(TreeWalk treeWalk = new TreeWalk(repository)) {
+            treeWalk.addTree(tree);
+            treeWalk.setRecursive(true);
+            treeWalk.setFilter(PathFilter.create(filePath));
+            if (treeWalk.next()) {
+                ObjectId objectId = treeWalk.getObjectId(0);
+                ObjectLoader loader = repository.open(objectId);
+                String fileContent = new String(loader.getBytes());
+                return fileContent;
+            }
+        } catch (IOException e) {
+            throw new RuntimeException(e);
         }
         return null;
     }

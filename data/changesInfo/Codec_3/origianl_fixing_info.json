@@ -4,14 +4,14 @@
     "name": "root.bean.benchmarks.Defects4JBug"
   },
   "d4jCmd": "/home/liumengjiao/Desktop/defects4j/framework/bin/defects4j",
-  "dataDir": "data/changesInfo/",
+  "dataDir": "/home/liumengjiao/Desktop/CI/Benchmark/data/changesInfo/",
   "properties": {
     "trigger.tests": "org.apache.commons.codec.language.DoubleMetaphone2Test::testDoubleMetaphoneAlternate",
     "test.dir": "src/test",
     "clz.modified": "org.apache.commons.codec.language.DoubleMetaphone",
     "src.dir": "src/java"
   },
-  "timeoutSecond": 300,
+  "timeoutSecond": 100,
   "proj": "Codec",
   "id": "3",
   "workingDir": "../bugs/Codec_3_buggy",
@@ -63,19 +63,19 @@
       "changed_functions": [
         {
           "qualified_names": [
+            "org.apache.commons.codec.language.DoubleMetaphone:handleL:[String value, DoubleMetaphoneResult result, int index]:int",
             "org.apache.commons.codec.language.DoubleMetaphone:conditionL0:[String value, int index]:boolean",
-            "org.apache.commons.codec.language.DoubleMetaphone:contains:[String value, int start, int length, String[] criteria]:boolean",
             "org.apache.commons.codec.language.DoubleMetaphone:handleG:[String value, DoubleMetaphoneResult result, int index, boolean slavoGermanic]:int",
-            "org.apache.commons.codec.language.DoubleMetaphone:handleL:[String value, DoubleMetaphoneResult result, int index]:int"
+            "org.apache.commons.codec.language.DoubleMetaphone:contains:[String value, int start, int length, String[] criteria]:boolean"
           ],
           "num": 4
         },
         {
           "qualified_names": [
-            "org.apache.commons.codec.language.DoubleMetaphone:handleL:[String value, DoubleMetaphoneResult result, int index]:int",
-            "org.apache.commons.codec.language.DoubleMetaphone:conditionL0:[String value, int index]:boolean",
             "org.apache.commons.codec.language.DoubleMetaphone:handleG:[String value, DoubleMetaphoneResult result, int index, boolean slavoGermanic]:int",
-            "org.apache.commons.codec.language.DoubleMetaphone:contains:[String value, int start, int length, String[] criteria]:boolean"
+            "org.apache.commons.codec.language.DoubleMetaphone:conditionL0:[String value, int index]:boolean",
+            "org.apache.commons.codec.language.DoubleMetaphone:contains:[String value, int start, int length, String[] criteria]:boolean",
+            "org.apache.commons.codec.language.DoubleMetaphone:handleL:[String value, DoubleMetaphoneResult result, int index]:int"
           ],
           "num": 4
         }

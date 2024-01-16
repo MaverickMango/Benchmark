@@ -1,5 +1,5 @@
 /*
- * Copyright 2004 The Closure Compiler Authors.
+ * Copyright 2004 Google Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -42,8 +42,6 @@ import javax.annotation.Nullable;
  *
  */
 public final class NodeUtil {
-
-  final static String JSC_PROPERTY_NAME_FN = "JSCompiler_renameProperty";
 
   // TODO(user): Eliminate this class and make all of the static methods
   // instance methods of com.google.javascript.rhino.Node.
@@ -149,17 +147,9 @@ public final class NodeUtil {
   static String getStringValue(Node n) {
     // TODO(user): Convert constant array, object, and regex literals as well.
     switch (n.getType()) {
+      case Token.NAME:
       case Token.STRING:
         return n.getString();
-
-      case Token.NAME:
-        String name = n.getString();
-        if ("undefined".equals(name)
-            || "Infinity".equals(name)
-            || "NaN".equals(name)) {
-          return name;
-        }
-        break;
 
       case Token.NUMBER:
         double value = n.getDouble();
@@ -180,76 +170,6 @@ public final class NodeUtil {
       case Token.VOID:
         return "undefined";
     }
-    return null;
-  }
-
-  /**
-   * Gets the value of a node as a Number, or null if it cannot be converted.
-   * When it returns a non-null Double, this method effectively emulates the
-   * <code>Number()</code> JavaScript cast function.
-   */
-  static Double getNumberValue(Node n) {
-    switch (n.getType()) {
-      case Token.TRUE:
-        return 1.0;
-
-      case Token.FALSE:
-      case Token.NULL:
-        return 0.0;
-
-      case Token.NUMBER:
-        return n.getDouble();
-
-      case Token.VOID:
-        return Double.NaN;
-
-      case Token.NAME:
-        String name = n.getString();
-        if (name.equals("undefined")) {
-          return Double.NaN;
-        }
-        if (name.equals("NaN")) {
-          return Double.NaN;
-        }
-        if (name.equals("Infinity")) {
-          return Double.POSITIVE_INFINITY;
-        }
-        return null;
-
-      case Token.NEG:
-        if (n.getChildCount() == 1 && n.getFirstChild().getType() == Token.NAME
-            && n.getFirstChild().getString().equals("Infinity")) {
-          return Double.NEGATIVE_INFINITY;
-        }
-        return null;
-
-      case Token.STRING:
-        // TODO(johnlenz): handle less common string conversion cases:
-        // '-infinity', etc.
-        String s = n.getString();
-
-        if (s.length() == 0) {
-          return 0.0;
-        }
-
-        if (s.length() > 2
-            && s.charAt(0) == '0'
-            && (s.charAt(1) == 'x' || s.charAt(1) == 'X')) {
-            // Attempt to convert hex numbers.
-          try {
-            return Double.valueOf(Integer.parseInt(s.substring(2), 16));
-          } catch (NumberFormatException e) {
-            return null;
-          }
-        }
-
-        try {
-          return Double.parseDouble(s);
-        } catch (NumberFormatException e) {
-          return null;
-        }
-    }
-
     return null;
   }
 
@@ -291,8 +211,8 @@ public final class NodeUtil {
   /**
    * Gets the function's name. This method recognizes the forms:
    * <ul>
-   * <li>{@code &#123;'name': function() ...&#125;}</li>
-   * <li>{@code &#123;name: function() ...&#125;}</li>
+   * <li>{@code {'name': function() ...}}</li>
+   * <li>{@code {name: function() ...}}</li>
    * <li>{@code function name() ...}</li>
    * <li>{@code var name = function() ...}</li>
    * <li>{@code qualified.name = function() ...}</li>
@@ -312,9 +232,9 @@ public final class NodeUtil {
     // Check for the form { 'x' : function() { } }
     Node parent = n.getParent();
     switch (parent.getType()) {
-      case Token.STRING:
+      case Token.OBJECTLIT:
         // Return the name of the literal's key.
-        return getStringValue(parent);
+        return getStringValue(parent.getFirstChild());
     }
 
     return null;
@@ -372,21 +292,12 @@ public final class NodeUtil {
   static boolean isLiteralValue(Node n, boolean includeFunctions) {
     switch (n.getType()) {
       case Token.ARRAYLIT:
+      case Token.OBJECTLIT:
       case Token.REGEXP:
         // Return true only if all children are const.
         for (Node child = n.getFirstChild(); child != null;
              child = child.getNext()) {
           if (!isLiteralValue(child, includeFunctions)) {
-            return false;
-          }
-        }
-        return true;
-
-      case Token.OBJECTLIT:
-        // Return true only if all values are const.
-        for (Node child = n.getFirstChild(); child != null;
-             child = child.getNext()) {
-          if (!isLiteralValue(child.getFirstChild(), includeFunctions)) {
             return false;
           }
         }
@@ -414,34 +325,13 @@ public final class NodeUtil {
       case Token.FALSE:
         return true;
 
-      // Binary operators are only valid if both children are valid.
-      case Token.ADD:
+      // Single operators are valid if the child is valid.
       case Token.BITAND:
       case Token.BITNOT:
       case Token.BITOR:
       case Token.BITXOR:
-      case Token.DIV:
-      case Token.EQ:
-      case Token.GE:
-      case Token.GT:
-      case Token.LE:
-      case Token.LSH:
-      case Token.LT:
-      case Token.MOD:
-      case Token.MUL:
-      case Token.NE:
-      case Token.RSH:
-      case Token.SHEQ:
-      case Token.SHNE:
-      case Token.SUB:
-      case Token.URSH:
-        return isValidDefineValue(val.getFirstChild(), defines)
-            && isValidDefineValue(val.getLastChild(), defines);
-
-      // Uniary operators are valid if the child is valid.
       case Token.NOT:
       case Token.NEG:
-      case Token.POS:
         return isValidDefineValue(val.getFirstChild(), defines);
 
       // Names are valid if and only if they are defines themselves.
@@ -592,17 +482,6 @@ public final class NodeUtil {
         return true;
 
       case Token.OBJECTLIT:
-        if (checkForNewObjects) {
-          return true;
-        }
-        for (Node c = n.getFirstChild(); c != null; c = c.getNext()) {
-          if (checkForStateChangeHelper(
-                  c.getFirstChild(), checkForNewObjects, compiler)) {
-            return true;
-          }
-        }
-        return false;
-
       case Token.ARRAYLIT:
       case Token.REGEXP:
         if (checkForNewObjects) {
@@ -718,10 +597,9 @@ public final class NodeUtil {
 
   static boolean constructorCallHasSideEffects(
       Node callNode, AbstractCompiler compiler) {
-    if (callNode.getType() != Token.NEW) {
-      throw new IllegalStateException(
-          "Expected NEW node, got " + Token.name(callNode.getType()));
-    }
+    Preconditions.checkArgument(
+        callNode.getType() == Token.NEW,
+        "Expected NEW node, got " + Token.name(callNode.getType()));
 
     if (callNode.isNoSideEffectsCall()) {
       return false;
@@ -742,8 +620,6 @@ public final class NodeUtil {
   private static final Set<String> BUILTIN_FUNCTIONS_WITHOUT_SIDEEFFECTS =
       ImmutableSet.of(
           "Object", "Array", "String", "Number", "Boolean", "RegExp", "Error");
-  private static final Set<String> OBJECT_METHODS_WITHOUT_SIDEEFFECTS =
-      ImmutableSet.of("toString", "valueOf");
   private static final Set<String> REGEXP_METHODS =
       ImmutableSet.of("test", "exec");
   private static final Set<String> STRING_REGEXP_METHODS =
@@ -754,7 +630,8 @@ public final class NodeUtil {
    *
    * @param callNode - function call node
    */
-  static boolean functionCallHasSideEffects(Node callNode) {
+  static boolean functionCallHasSideEffects(
+      Node callNode) {
     return functionCallHasSideEffects(callNode, null);
   }
 
@@ -767,10 +644,9 @@ public final class NodeUtil {
    */
   static boolean functionCallHasSideEffects(
       Node callNode, @Nullable AbstractCompiler compiler) {
-    if (callNode.getType() != Token.CALL) {
-      throw new IllegalStateException(
-          "Expected CALL node, got " + Token.name(callNode.getType()));
-    }
+    Preconditions.checkArgument(
+        callNode.getType() == Token.CALL,
+        "Expected CALL node, got " + Token.name(callNode.getType()));
 
     if (callNode.isNoSideEffectsCall()) {
       return false;
@@ -785,12 +661,6 @@ public final class NodeUtil {
         return false;
       }
     } else if (nameNode.getType() == Token.GETPROP) {
-      if (callNode.hasOneChild()
-          && OBJECT_METHODS_WITHOUT_SIDEEFFECTS.contains(
-                nameNode.getLastChild().getString())) {
-        return false;
-      }
-
       if (callNode.isOnlyModifiesThisCall()
           && evaluatesToLocalValue(nameNode.getFirstChild())) {
         return false;
@@ -829,14 +699,6 @@ public final class NodeUtil {
   static boolean callHasLocalResult(Node n) {
     Preconditions.checkState(n.getType() == Token.CALL);
     return (n.getSideEffectFlags() & Node.FLAG_LOCAL_RESULTS) > 0;
-  }
-
-  /**
-   * @return Whether the new has a local result.
-   */
-  static boolean newHasLocalResult(Node n) {
-    Preconditions.checkState(n.getType() == Token.NEW);
-    return n.isOnlyModifiesThisCall();
   }
 
   /**
@@ -1017,99 +879,9 @@ public final class NodeUtil {
   }
 
   /**
-   * Returns true if the result of node evaluation is always a number
-   */
-  static boolean isNumericResult(Node n) {
-    switch (n.getType()) {
-      // NOTE: ADD is deliberately excluded as it may produce
-      // a string.
-      case Token.BITNOT:
-      case Token.BITOR:
-      case Token.BITXOR:
-      case Token.BITAND:
-      case Token.LSH:
-      case Token.RSH:
-      case Token.URSH:
-      case Token.SUB:
-      case Token.MUL:
-      case Token.MOD:
-      case Token.DIV:
-      case Token.INC:
-      case Token.DEC:
-      case Token.POS:
-      case Token.NEG:
-      case Token.NUMBER:
-        return true;
-      case Token.NAME:
-        String name = n.getString();
-        if (name.equals("NaN")) {
-          return true;
-        }
-        if (name.equals("Infinity")) {
-          return true;
-        }
-        return false;
-      default:
-        return false;
-    }
-  }
-
-  /**
-   * @return Whether the result of node evaluation is always a boolean
-   */
-  static boolean isBooleanResult(Node n) {
-    // TODO(johnlenz): Add a recursive option to recurse into
-    // AND, OR, HOOK, COMMA and ASSIGN, like "getExpressionBooleanValue".
-    switch (n.getType()) {
-      // Primitives
-      case Token.TRUE:
-      case Token.FALSE:
-      // Comparisons
-      case Token.EQ:
-      case Token.NE:
-      case Token.SHEQ:
-      case Token.SHNE:
-      case Token.LT:
-      case Token.GT:
-      case Token.LE:
-      case Token.GE:
-      // Queryies
-      case Token.IN:
-      case Token.INSTANCEOF:
-      // Inversion
-      case Token.NOT:
-        return true;
-      default:
-        return false;
-    }
-  }
-
-  static boolean isUndefined(Node n) {
-    switch (n.getType()) {
-      case Token.VOID:
-        return true;
-      case Token.NAME:
-        return n.getString().equals("undefined");
-    }
-    return false;
-  }
-
-  static boolean isNull(Node n) {
-    return n.getType() == Token.NULL;
-  }
-
-  /**
-   * @returns Whether the results is possibly a string.
-   */
-  static boolean mayBeString(Node n) {
-    return !isNumericResult(n) && !isBooleanResult(n)
-        && !isUndefined(n) && !isNull(n);
-  }
-
-  /**
    * Returns true if the operator is associative.
    * e.g. (a * b) * c = a * (b * c)
-   * Note: "+" is not associative because it is also the concatenation
+   * Note: "+" is not associative because it is also the concatentation
    * for strings. e.g. "a" + (1 + 2) is not "a" + 1 + 2
    */
   static boolean isAssociative(int type) {
@@ -1117,24 +889,6 @@ public final class NodeUtil {
       case Token.MUL:
       case Token.AND:
       case Token.OR:
-      case Token.BITOR:
-      case Token.BITAND:
-        return true;
-      default:
-        return false;
-    }
-  }
-
-  /**
-   * Returns true if the operator is commutative.
-   * e.g. (a * b) * c = c * (b * a)
-   * Note 1: "+" is not commutative because it is also the concatenation
-   * for strings. e.g. "a" + (1 + 2) is not "a" + 1 + 2
-   * Note 2: only operations on literals and pure functions are commutative.
-   */
-  static boolean isCommutative(int type) {
-    switch (type) {
-      case Token.MUL:
       case Token.BITOR:
       case Token.BITAND:
         return true;
@@ -1495,40 +1249,12 @@ public final class NodeUtil {
         && child == parent.getLastChild();
   }
 
-  /** Whether the node is a CATCH container BLOCK. */
-  static boolean isTryCatchNodeContainer(Node n) {
-    Node parent = n.getParent();
-    return parent.getType() == Token.TRY
-        && parent.getFirstChild().getNext() == n;
-  }
-
   /** Safely remove children while maintaining a valid node structure. */
   static void removeChild(Node parent, Node node) {
-    if (isTryFinallyNode(parent, node)) {
-      if (NodeUtil.hasCatchHandler(getCatchBlock(parent))) {
-        // A finally can only be removed if there is a catch.
-        parent.removeChild(node);
-      } else {
-        // Otherwise only its children can be removed.
-        node.detachChildren();
-      }
-    } else if (node.getType() == Token.CATCH) {
-      // The CATCH can can only be removed if there is a finally clause.
-      Node tryNode = node.getParent().getParent();
-      Preconditions.checkState(NodeUtil.hasFinally(tryNode));
-      node.detachFromParent();
-    } else if (isTryCatchNodeContainer(node)) {
-      // The container node itself can't be removed, but the contained CATCH
-      // can if there is a 'finally' clause
-      Node tryNode = node.getParent();
-      Preconditions.checkState(NodeUtil.hasFinally(tryNode));
-      node.detachChildren();
-    } else if (node.getType() == Token.BLOCK) {
-      // Simply empty the block.  This maintains source location and
-      // "synthetic"-ness.
-      node.detachChildren();
-    } else if (isStatementBlock(parent)
-        || isSwitchCase(node)) {
+    // Node parent = node.getParent();
+    if (isStatementBlock(parent)
+        || isSwitchCase(node)
+        || isTryFinallyNode(parent, node)) {
       // A statement in a block can simply be removed.
       parent.removeChild(node);
     } else if (parent.getType() == Token.VAR) {
@@ -1540,6 +1266,10 @@ public final class NodeUtil {
         // This would leave an empty VAR, remove the VAR itself.
         removeChild(parent.getParent(), parent);
       }
+    } else if (node.getType() == Token.BLOCK) {
+      // Simply empty the block.  This maintains source location and
+      // "synthetic"-ness.
+      node.detachChildren();
     } else if (parent.getType() == Token.LABEL
         && node == parent.getLastChild()) {
       // Remove the node from the parent, so it can be reused.
@@ -1555,17 +1285,6 @@ public final class NodeUtil {
     } else {
       throw new IllegalStateException("Invalid attempt to remove node: " +
           node.toString() + " of "+ parent.toString());
-    }
-  }
-
-  /**
-   * Add a finally block if one does not exist.
-   */
-  static void maybeAddFinally(Node tryNode) {
-    Preconditions.checkState(tryNode.getType() == Token.TRY);
-    if (!NodeUtil.hasFinally(tryNode)) {
-      tryNode.addChildrenToBack(new Node(Token.BLOCK)
-          .copyInformationFrom(tryNode));
     }
   }
 
@@ -1597,14 +1316,6 @@ public final class NodeUtil {
    */
   static boolean isCall(Node n) {
     return n.getType() == Token.CALL;
-  }
-
-  /**
-   * @param node A node
-   * @return Whether the call is a NEW or CALL node.
-   */
-  static boolean isCallOrNew(Node node) {
-    return NodeUtil.isCall(node) || NodeUtil.isNew(node);
   }
 
   /**
@@ -1745,18 +1456,6 @@ public final class NodeUtil {
 
   /**
    * @return Whether the callNode represents an expression in the form of:
-   *    x.apply(...)
-   *    x['apply'](...)
-   *  or
-   *    x.call(...)
-   *    x['call'](...)
-   */
-  static boolean isFunctionObjectCallOrApply(Node callNode) {
-    return isFunctionObjectCall(callNode) || isFunctionObjectApply(callNode);
-  }
-
-  /**
-   * @return Whether the callNode represents an expression in the form of:
    *    x.call(...)
    *    x['call'](...)
    * where x is a NAME node.
@@ -1793,28 +1492,16 @@ public final class NodeUtil {
    * @param parent The node's parent
    */
   static boolean isObjectLitKey(Node node, Node parent) {
-    switch (node.getType()) {
-      case Token.NUMBER:
-      case Token.STRING:
-        return parent.getType() == Token.OBJECTLIT;
-      case Token.GET:
-      case Token.SET:
-        return true;
-    }
-    return false;
-  }
-
-  /**
-   * Determines whether a node represents an object literal get or set key
-   * (e.g. key1 in {get key1() {}, set key2(a){}).
-   *
-   * @param node A node
-   */
-  static boolean isGetOrSetKey(Node node) {
-    switch (node.getType()) {
-      case Token.GET:
-      case Token.SET:
-        return true;
+    if (node.getType() == Token.STRING && parent.getType() == Token.OBJECTLIT) {
+      int index = 0;
+      for (Node current = parent.getFirstChild();
+           current != null;
+           current = current.getNext()) {
+        if (current == node) {
+          return index % 2 == 0;
+        }
+        index++;
+      }
     }
     return false;
   }
@@ -1991,14 +1678,13 @@ public final class NodeUtil {
    * @param charno The source character offset from start of the line.
    * @return A NAME or GETPROP node
    */
-  public static Node newQualifiedNameNode(
-      CodingConvention convention, String name, int lineno, int charno) {
+  public static Node newQualifiedNameNode(String name, int lineno, int charno) {
     int endPos = name.indexOf('.');
     if (endPos == -1) {
-      return newName(convention, name, lineno, charno);
+      return Node.newString(Token.NAME, name, lineno, charno);
     }
-    Node node = newName(
-        convention, name.substring(0, endPos), lineno, charno);
+    Node node = Node.newString(Token.NAME, name.substring(0, endPos),
+                               lineno, charno);
     int startPos;
     do {
       startPos = endPos + 1;
@@ -2006,11 +1692,9 @@ public final class NodeUtil {
       String part = (endPos == -1
                      ? name.substring(startPos)
                      : name.substring(startPos, endPos));
-      Node propNode = Node.newString(Token.STRING, part, lineno, charno);
-      if (convention.isConstantKey(part)) {
-        propNode.putBooleanProp(Node.IS_CONSTANT_NAME, true);
-      }
-      node = new Node(Token.GETPROP, node, propNode, lineno, charno);
+      node = new Node(Token.GETPROP, node,
+                      Node.newString(Token.STRING, part, lineno, charno),
+                      lineno, charno);
     } while (endPos != -1);
 
     return node;
@@ -2029,10 +1713,9 @@ public final class NodeUtil {
    *
    * @return A NAME or GETPROP node
    */
-  static Node newQualifiedNameNode(
-      CodingConvention convention, String name, Node basisNode,
+  static Node newQualifiedNameNode(String name, Node basisNode,
       String originalName) {
-    Node node = newQualifiedNameNode(convention, name, -1, -1);
+    Node node = newQualifiedNameNode(name, -1, -1);
     setDebugInformation(node, basisNode, originalName);
     return node;
   }
@@ -2065,15 +1748,6 @@ public final class NodeUtil {
     node.putProp(Node.ORIGINALNAME_PROP, originalName);
   }
 
-  private static Node newName(
-      CodingConvention convention, String name, int lineno, int charno) {
-    Node nameNode = Node.newString(Token.NAME, name, lineno, charno);
-    if (convention.isConstant(name)) {
-      nameNode.putBooleanProp(Node.IS_CONSTANT_NAME, true);
-    }
-    return nameNode;
-  }
-
   /**
    * Creates a new node representing an *existing* name, copying over the source
    * location information from the basis node.
@@ -2084,12 +1758,8 @@ public final class NodeUtil {
    *
    * @return The node created.
    */
-  static Node newName(
-      CodingConvention convention, String name, Node basisNode) {
+  static Node newName(String name, Node basisNode) {
     Node nameNode = Node.newString(Token.NAME, name);
-    if (convention.isConstantKey(name)) {
-      nameNode.putBooleanProp(Node.IS_CONSTANT_NAME, true);
-    }
     nameNode.copyInformationFrom(basisNode);
     return nameNode;
   }
@@ -2107,10 +1777,8 @@ public final class NodeUtil {
    *
    * @return The node created.
    */
-  static Node newName(
-      CodingConvention convention, String name,
-      Node basisNode, String originalName) {
-    Node nameNode = newName(convention, name, basisNode);
+  static Node newName(String name, Node basisNode, String originalName) {
+    Node nameNode = newName(name, basisNode);
     nameNode.putProp(Node.ORIGINALNAME_PROP, originalName);
     return nameNode;
   }
@@ -2622,12 +2290,9 @@ public final class NodeUtil {
         // There is no information about the locality of object properties.
         return locals.apply(value);
       case Token.CALL:
-        return callHasLocalResult(value)
-            || isToStringMethodCall(value)
-            || locals.apply(value);
+        return callHasLocalResult(value) || locals.apply(value);
       case Token.NEW:
-        return newHasLocalResult(value)
-               || locals.apply(value);
+        return true;
       case Token.FUNCTION:
       case Token.REGEXP:
       case Token.ARRAYLIT:
@@ -2651,48 +2316,5 @@ public final class NodeUtil {
             "Unexpected expression node" + value +
             "\n parent:" + value.getParent());
     }
-  }
-
-  /**
-   * Given the first sibling, this returns the nth
-   * sibling or null if no such sibling exists.
-   * This is like "getChildAtIndex" but returns null for non-existent indexes.
-   */
-  private static Node getNthSibling(Node first, int index) {
-    Node sibling = first;
-    while (index != 0 && sibling != null) {
-      sibling = sibling.getNext();
-      index--;
-    }
-    return sibling;
-  }
-
-  /**
-   * Given the function, this returns the nth
-   * argument or null if no such parameter exists.
-   */
-  static Node getArgumentForFunction(Node function, int index) {
-    Preconditions.checkState(isFunction(function));
-    return getNthSibling(
-        function.getFirstChild().getNext().getFirstChild(), index);
-  }
-
-  /**
-   * Given the new or call, this returns the nth
-   * argument of the call or null if no such argument exists.
-   */
-  static Node getArgumentForCallOrNew(Node call, int index) {
-    Preconditions.checkState(isCallOrNew(call));
-    return getNthSibling(
-      call.getFirstChild().getNext(), index);
-  }
-
-  private static boolean isToStringMethodCall(Node call) {
-    Node getNode = call.getFirstChild();
-    if (isGet(getNode)) {
-      Node propNode = getNode.getLastChild();
-      return isString(propNode) && "toString".equals(propNode.getString());
-    }
-    return false;
   }
 }

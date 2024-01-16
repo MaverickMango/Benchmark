@@ -4,14 +4,14 @@
     "name": "root.bean.benchmarks.Defects4JBug"
   },
   "d4jCmd": "/home/liumengjiao/Desktop/defects4j/framework/bin/defects4j",
-  "dataDir": "data/changesInfo/",
+  "dataDir": "/home/liumengjiao/Desktop/CI/Benchmark/data/changesInfo/",
   "properties": {
     "trigger.tests": "org.joda.time.tz.TestCompiler::testDateTimeZoneBuilder",
     "test.dir": "src/test/java",
     "clz.modified": "org.joda.time.tz.ZoneInfoCompiler",
     "src.dir": "src/main/java"
   },
-  "timeoutSecond": 300,
+  "timeoutSecond": 100,
   "proj": "Time",
   "id": "11",
   "workingDir": "../bugs/Time_11_buggy",
@@ -130,18 +130,18 @@
       "changed_functions": [
         {
           "qualified_names": [
-            "org.joda.time.tz.ZoneInfoCompiler:printUsage:[]:void",
+            "org.joda.time.tz.ZoneInfoCompiler:main:[String[] args]:void",
             "org.joda.time.tz.ZoneInfoCompiler:compile:[File outputDir, File[] sources]:Map\u003cString,DateTimeZone\u003e",
-            "org.joda.time.tz.ZoneInfoCompiler:main:[String[] args]:void"
+            "org.joda.time.tz.ZoneInfoCompiler:printUsage:[]:void"
           ],
           "num": 3
         },
         {
           "qualified_names": [
-            "org.joda.time.tz.ZoneInfoCompiler:main:[String[] args]:void",
-            "org.joda.time.tz.ZoneInfoCompiler:compile:[File outputDir, File[] sources]:Map\u003cString,DateTimeZone\u003e",
+            "org.joda.time.tz.ZoneInfoCompiler:verbose:[]:boolean",
             "org.joda.time.tz.ZoneInfoCompiler:printUsage:[]:void",
-            "org.joda.time.tz.ZoneInfoCompiler:verbose:[]:boolean"
+            "org.joda.time.tz.ZoneInfoCompiler:compile:[File outputDir, File[] sources]:Map\u003cString,DateTimeZone\u003e",
+            "org.joda.time.tz.ZoneInfoCompiler:main:[String[] args]:void"
           ],
           "num": 4
         }

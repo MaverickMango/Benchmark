@@ -1,7 +1,7 @@
 Only in data/changesInfo//Codec_6/properties/modified_classes/inducing/src: java
 diff -u -r data/changesInfo//Codec_6/properties/modified_classes/inducing/src/test/org/apache/commons/codec/binary/Base64InputStreamTest.java data/changesInfo//Codec_6/cleaned/inducing/src/test/org/apache/commons/codec/binary/Base64InputStreamTest.java
---- data/changesInfo//Codec_6/properties/modified_classes/inducing/src/test/org/apache/commons/codec/binary/Base64InputStreamTest.java	2023-07-26 19:28:26.506278648 +0800
-+++ data/changesInfo//Codec_6/cleaned/inducing/src/test/org/apache/commons/codec/binary/Base64InputStreamTest.java	2023-07-26 19:25:51.851000000 +0800
+--- data/changesInfo//Codec_6/properties/modified_classes/inducing/src/test/org/apache/commons/codec/binary/Base64InputStreamTest.java	2023-07-26 04:28:26.506278648 -0700
++++ data/changesInfo//Codec_6/cleaned/inducing/src/test/org/apache/commons/codec/binary/Base64InputStreamTest.java	2023-07-26 04:25:51.851000000 -0700
 @@ -43,6 +43,24 @@
      }
  

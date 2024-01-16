@@ -1,6 +1,6 @@
 diff -u -r data/changesInfo//Codec_3/properties/modified_classes/inducing/src/java/org/apache/commons/codec/language/DoubleMetaphone.java data/changesInfo//Codec_3/cleaned/fixing/src/java/org/apache/commons/codec/language/DoubleMetaphone.java
---- data/changesInfo//Codec_3/properties/modified_classes/inducing/src/java/org/apache/commons/codec/language/DoubleMetaphone.java	2023-07-26 17:09:14.951645272 +0800
-+++ data/changesInfo//Codec_3/cleaned/fixing/src/java/org/apache/commons/codec/language/DoubleMetaphone.java	2023-07-26 17:18:21.643026316 +0800
+--- data/changesInfo//Codec_3/properties/modified_classes/inducing/src/java/org/apache/commons/codec/language/DoubleMetaphone.java	2023-07-26 02:09:14.951645272 -0700
++++ data/changesInfo//Codec_3/cleaned/fixing/src/java/org/apache/commons/codec/language/DoubleMetaphone.java	2023-07-26 02:18:21.643026316 -0700
 @@ -451,7 +451,7 @@
                  contains(value, index + 1, 2, "ET")) {
                  //-- obvious germanic --//

@@ -1,7 +1,7 @@
 Only in data/changesInfo//Lang_53/properties/modified_classes/inducing/src: java
 diff -u -r data/changesInfo//Lang_53/properties/modified_classes/inducing/src/test/org/apache/commons/lang/time/DateUtilsTest.java data/changesInfo//Lang_53/cleaned/inducing/src/test/org/apache/commons/lang/time/DateUtilsTest.java
---- data/changesInfo//Lang_53/properties/modified_classes/inducing/src/test/org/apache/commons/lang/time/DateUtilsTest.java	2023-08-25 13:40:36.905953927 +0800
-+++ data/changesInfo//Lang_53/cleaned/inducing/src/test/org/apache/commons/lang/time/DateUtilsTest.java	2023-06-20 22:01:41.297435162 +0800
+--- data/changesInfo//Lang_53/properties/modified_classes/inducing/src/test/org/apache/commons/lang/time/DateUtilsTest.java	2023-12-27 22:45:58.147773870 -0800
++++ data/changesInfo//Lang_53/cleaned/inducing/src/test/org/apache/commons/lang/time/DateUtilsTest.java	2023-06-20 07:01:41.297435162 -0700
 @@ -692,6 +692,69 @@
      }
  

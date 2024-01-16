@@ -3,8 +3,8 @@ Only in data/changesInfo//Closure_121/properties/modified_classes/inducing/test/
 Only in data/changesInfo//Closure_121/properties/modified_classes/inducing/test/com/google/javascript/jscomp: FunctionInjectorTest.java
 Only in data/changesInfo//Closure_121/properties/modified_classes/inducing/test/com/google/javascript/jscomp: InlineVariablesConstantsTest.java
 diff -u -r data/changesInfo//Closure_121/properties/modified_classes/inducing/test/com/google/javascript/jscomp/InlineVariablesTest.java data/changesInfo//Closure_121/cleaned/inducing/test/com/google/javascript/jscomp/InlineVariablesTest.java
---- data/changesInfo//Closure_121/properties/modified_classes/inducing/test/com/google/javascript/jscomp/InlineVariablesTest.java	2023-08-25 13:35:37.498650879 +0800
-+++ data/changesInfo//Closure_121/cleaned/inducing/test/com/google/javascript/jscomp/InlineVariablesTest.java	2023-06-20 21:25:08.106599870 +0800
+--- data/changesInfo//Closure_121/properties/modified_classes/inducing/test/com/google/javascript/jscomp/InlineVariablesTest.java	2023-12-27 22:44:17.594288836 -0800
++++ data/changesInfo//Closure_121/cleaned/inducing/test/com/google/javascript/jscomp/InlineVariablesTest.java	2023-06-20 06:25:08.106599870 -0700
 @@ -749,4 +749,9 @@
        "}"
        );

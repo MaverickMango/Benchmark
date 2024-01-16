@@ -4,14 +4,14 @@
     "name": "root.bean.benchmarks.Defects4JBug"
   },
   "d4jCmd": "/home/liumengjiao/Desktop/defects4j/framework/bin/defects4j",
-  "dataDir": "data/changesInfo/",
+  "dataDir": "/home/liumengjiao/Desktop/CI/Benchmark/data/changesInfo/",
   "properties": {
     "trigger.tests": "org.jsoup.nodes.ElementTest::testChainedRemoveAttributes",
     "test.dir": "src/test/java",
     "clz.modified": "org.jsoup.nodes.Attributes",
     "src.dir": "src/main/java"
   },
-  "timeoutSecond": 300,
+  "timeoutSecond": 100,
   "proj": "Jsoup",
   "id": "57",
   "workingDir": "../bugs/Jsoup_57_buggy",
@@ -40,8 +40,8 @@
         },
         {
           "qualified_names": [
-            "org.jsoup.nodes.Attribute:setKey:[String key]:void",
-            "org.jsoup.nodes.Attribute:Attribute:[String key, String value]:null"
+            "org.jsoup.nodes.Attribute:Attribute:[String key, String value]:null",
+            "org.jsoup.nodes.Attribute:setKey:[String key]:void"
           ],
           "num": 2
         }
@@ -129,25 +129,25 @@
       "changed_functions": [
         {
           "qualified_names": [
-            "org.jsoup.nodes.Attributes:remove:[String key]:void",
-            "org.jsoup.nodes.Attributes:html:[Appendable accum, Document.OutputSettings out]:void",
             "org.jsoup.nodes.Attributes:get:[String key]:String",
             "org.jsoup.nodes.Attributes:hasKey:[String key]:boolean",
-            "org.jsoup.nodes.Attributes:equals:[Object o]:boolean"
+            "org.jsoup.nodes.Attributes:equals:[Object o]:boolean",
+            "org.jsoup.nodes.Attributes:remove:[String key]:void",
+            "org.jsoup.nodes.Attributes:html:[Appendable accum, Document.OutputSettings out]:void"
           ],
           "num": 5
         },
         {
           "qualified_names": [
-            "org.jsoup.nodes.Attributes:put:[String key, String value]:void",
-            "org.jsoup.nodes.Attributes:removeIgnoreCase:[String key]:void",
-            "org.jsoup.nodes.Attributes:remove:[String key]:void",
             "org.jsoup.nodes.Attributes:hasKeyIgnoreCase:[String key]:boolean",
-            "org.jsoup.nodes.Attributes:get:[String key]:String",
+            "org.jsoup.nodes.Attributes:removeIgnoreCase:[String key]:void",
+            "org.jsoup.nodes.Attributes:html:[Appendable accum, Document.OutputSettings out]:void",
+            "org.jsoup.nodes.Attributes:remove:[String key]:void",
             "org.jsoup.nodes.Attributes:hasKey:[String key]:boolean",
-            "org.jsoup.nodes.Attributes:equals:[Object o]:boolean",
             "org.jsoup.nodes.Attributes:getIgnoreCase:[String key]:String",
-            "org.jsoup.nodes.Attributes:html:[Appendable accum, Document.OutputSettings out]:void"
+            "org.jsoup.nodes.Attributes:equals:[Object o]:boolean",
+            "org.jsoup.nodes.Attributes:get:[String key]:String",
+            "org.jsoup.nodes.Attributes:put:[String key, String value]:void"
           ],
           "num": 9
         }
@@ -470,15 +470,15 @@
       "changed_functions": [
         {
           "qualified_names": [
-            "org.jsoup.nodes.Document:Document:[String baseUri]:null",
-            "org.jsoup.nodes.Document:createElement:[String tagName]:Element"
+            "org.jsoup.nodes.Document:createElement:[String tagName]:Element",
+            "org.jsoup.nodes.Document:Document:[String baseUri]:null"
           ],
           "num": 2
         },
         {
           "qualified_names": [
-            "org.jsoup.nodes.Document:createElement:[String tagName]:Element",
-            "org.jsoup.nodes.Document:Document:[String baseUri]:null"
+            "org.jsoup.nodes.Document:Document:[String baseUri]:null",
+            "org.jsoup.nodes.Document:createElement:[String tagName]:Element"
           ],
           "num": 2
         }
@@ -529,21 +529,21 @@
       "changed_functions": [
         {
           "qualified_names": [
-            "org.jsoup.nodes.Element:id:[]:String",
+            "org.jsoup.nodes.Element:tagName:[String tagName]:Element",
             "org.jsoup.nodes.Element:Element:[Tag tag, String baseUri]:null",
-            "org.jsoup.nodes.Element:getElementsByAttributeStarting:[String keyPrefix]:Elements",
+            "org.jsoup.nodes.Element:id:[]:String",
             "org.jsoup.nodes.Element:getElementsByAttribute:[String key]:Elements",
-            "org.jsoup.nodes.Element:tagName:[String tagName]:Element"
+            "org.jsoup.nodes.Element:getElementsByAttributeStarting:[String keyPrefix]:Elements"
           ],
           "num": 5
         },
         {
           "qualified_names": [
-            "org.jsoup.nodes.Element:Element:[Tag tag, String baseUri]:null",
-            "org.jsoup.nodes.Element:getElementsByAttribute:[String key]:Elements",
+            "org.jsoup.nodes.Element:id:[]:String",
             "org.jsoup.nodes.Element:tagName:[String tagName]:Element",
             "org.jsoup.nodes.Element:getElementsByAttributeStarting:[String keyPrefix]:Elements",
-            "org.jsoup.nodes.Element:id:[]:String"
+            "org.jsoup.nodes.Element:getElementsByAttribute:[String key]:Elements",
+            "org.jsoup.nodes.Element:Element:[Tag tag, String baseUri]:null"
           ],
           "num": 5
         }
@@ -645,9 +645,9 @@
       "changed_functions": [
         {
           "qualified_names": [
-            "org.jsoup.nodes.Node:hasAttr:[String attributeKey]:boolean",
+            "org.jsoup.nodes.Node:removeAttr:[String attributeKey]:Node",
             "org.jsoup.nodes.Node:attr:[String attributeKey]:String",
-            "org.jsoup.nodes.Node:removeAttr:[String attributeKey]:Node"
+            "org.jsoup.nodes.Node:hasAttr:[String attributeKey]:boolean"
           ],
           "num": 3
         },
@@ -775,24 +775,24 @@
       "changed_functions": [
         {
           "qualified_names": [
+            "org.jsoup.parser.HtmlTreeBuilder:insertForm:[Token.StartTag startTag, boolean onStack]:FormElement",
             "org.jsoup.parser.HtmlTreeBuilder:insertStartTag:[String startTagName]:Element",
+            "org.jsoup.parser.HtmlTreeBuilder:parseFragment:[String inputFragment, Element context, String baseUri, ParseErrorList errors]:List\u003cNode\u003e",
             "org.jsoup.parser.HtmlTreeBuilder:parse:[String input, String baseUri, ParseErrorList errors]:Document",
             "org.jsoup.parser.HtmlTreeBuilder:insert:[Token.StartTag startTag]:Element",
-            "org.jsoup.parser.HtmlTreeBuilder:parseFragment:[String inputFragment, Element context, String baseUri, ParseErrorList errors]:List\u003cNode\u003e",
-            "org.jsoup.parser.HtmlTreeBuilder:insertForm:[Token.StartTag startTag, boolean onStack]:FormElement",
             "org.jsoup.parser.HtmlTreeBuilder:insertEmpty:[Token.StartTag startTag]:Element"
           ],
           "num": 6
         },
         {
           "qualified_names": [
-            "org.jsoup.parser.HtmlTreeBuilder:parse:[String input, String baseUri, ParseErrorList errors, ParseSettings settings]:Document",
-            "org.jsoup.parser.HtmlTreeBuilder:parseFragment:[String inputFragment, Element context, String baseUri, ParseErrorList errors, ParseSettings settings]:List\u003cNode\u003e",
-            "org.jsoup.parser.HtmlTreeBuilder:insertEmpty:[Token.StartTag startTag]:Element",
+            "org.jsoup.parser.HtmlTreeBuilder:defaultSettings:[]:ParseSettings",
+            "org.jsoup.parser.HtmlTreeBuilder:insertForm:[Token.StartTag startTag, boolean onStack]:FormElement",
             "org.jsoup.parser.HtmlTreeBuilder:insert:[Token.StartTag startTag]:Element",
             "org.jsoup.parser.HtmlTreeBuilder:insertStartTag:[String startTagName]:Element",
-            "org.jsoup.parser.HtmlTreeBuilder:defaultSettings:[]:ParseSettings",
-            "org.jsoup.parser.HtmlTreeBuilder:insertForm:[Token.StartTag startTag, boolean onStack]:FormElement"
+            "org.jsoup.parser.HtmlTreeBuilder:parse:[String input, String baseUri, ParseErrorList errors, ParseSettings settings]:Document",
+            "org.jsoup.parser.HtmlTreeBuilder:insertEmpty:[Token.StartTag startTag]:Element",
+            "org.jsoup.parser.HtmlTreeBuilder:parseFragment:[String inputFragment, Element context, String baseUri, ParseErrorList errors, ParseSettings settings]:List\u003cNode\u003e"
           ],
           "num": 7
         }
@@ -1467,10 +1467,10 @@
       "changed_functions": [
         {
           "qualified_names": [
-            "org.jsoup.parser.Parser:parseFragment:[String fragmentHtml, Element context, String baseUri]:List\u003cNode\u003e",
+            "org.jsoup.parser.Parser:parse:[String html, String baseUri]:Document",
             "org.jsoup.parser.Parser:parseXmlFragment:[String fragmentXml, String baseUri]:List\u003cNode\u003e",
-            "org.jsoup.parser.Parser:parseInput:[String html, String baseUri]:Document",
-            "org.jsoup.parser.Parser:parse:[String html, String baseUri]:Document"
+            "org.jsoup.parser.Parser:parseFragment:[String fragmentHtml, Element context, String baseUri]:List\u003cNode\u003e",
+            "org.jsoup.parser.Parser:parseInput:[String html, String baseUri]:Document"
           ],
           "num": 4
         },
@@ -1478,11 +1478,11 @@
           "qualified_names": [
             "org.jsoup.parser.Parser:parseXmlFragment:[String fragmentXml, String baseUri]:List\u003cNode\u003e",
             "org.jsoup.parser.Parser:parse:[String html, String baseUri]:Document",
-            "org.jsoup.parser.Parser:settings:[]:ParseSettings",
-            "org.jsoup.parser.Parser:Parser:[TreeBuilder treeBuilder]:null",
             "org.jsoup.parser.Parser:settings:[ParseSettings settings]:Parser",
+            "org.jsoup.parser.Parser:parseFragment:[String fragmentHtml, Element context, String baseUri]:List\u003cNode\u003e",
             "org.jsoup.parser.Parser:parseInput:[String html, String baseUri]:Document",
-            "org.jsoup.parser.Parser:parseFragment:[String fragmentHtml, Element context, String baseUri]:List\u003cNode\u003e"
+            "org.jsoup.parser.Parser:settings:[]:ParseSettings",
+            "org.jsoup.parser.Parser:Parser:[TreeBuilder treeBuilder]:null"
           ],
           "num": 7
         }
@@ -1582,9 +1582,9 @@
         {
           "qualified_names": [
             "org.jsoup.parser.Tag:valueOf:[String tagName]:Tag",
-            "org.jsoup.parser.Tag:isBlock:[]:boolean",
             "org.jsoup.parser.Tag:valueOf:[String tagName, ParseSettings settings]:Tag",
-            "org.jsoup.parser.Tag:Tag:[String tagName]:null"
+            "org.jsoup.parser.Tag:Tag:[String tagName]:null",
+            "org.jsoup.parser.Tag:isBlock:[]:boolean"
           ],
           "num": 4
         }
@@ -1755,8 +1755,8 @@
       "changed_functions": [
         {
           "qualified_names": [
-            "org.jsoup.parser.Token\\$Tag:name:[]:String",
             "org.jsoup.parser.Token\\$Tag:reset:[]:Tag",
+            "org.jsoup.parser.Token\\$Tag:name:[]:String",
             "org.jsoup.parser.Token\\$Tag:appendTagName:[String append]:void",
             "org.jsoup.parser.Token\\$StartTag:nameAttr:[String name, Attributes attributes]:StartTag"
           ],
@@ -1764,11 +1764,11 @@
         },
         {
           "qualified_names": [
-            "org.jsoup.parser.Token\\$Tag:name:[]:String",
-            "org.jsoup.parser.Token\\$Tag:name:[String name]:Tag",
-            "org.jsoup.parser.Token\\$Tag:reset:[]:Tag",
             "org.jsoup.parser.Token\\$Tag:appendTagName:[String append]:void",
+            "org.jsoup.parser.Token\\$Tag:reset:[]:Tag",
             "org.jsoup.parser.Token\\$Tag:normalName:[]:String",
+            "org.jsoup.parser.Token\\$Tag:name:[String name]:Tag",
+            "org.jsoup.parser.Token\\$Tag:name:[]:String",
             "org.jsoup.parser.Token\\$StartTag:nameAttr:[String name, Attributes attributes]:StartTag"
           ],
           "num": 6
@@ -2223,8 +2223,8 @@
       "changed_functions": [
         {
           "qualified_names": [
-            "org.jsoup.parser.TreeBuilder:initialiseParse:[String input, String baseUri, ParseErrorList errors]:void",
             "org.jsoup.parser.TreeBuilder:parse:[String input, String baseUri, ParseErrorList errors]:Document",
+            "org.jsoup.parser.TreeBuilder:initialiseParse:[String input, String baseUri, ParseErrorList errors]:void",
             "org.jsoup.parser.TreeBuilder:parse:[String input, String baseUri]:Document"
           ],
           "num": 3
@@ -2312,23 +2312,23 @@
       "changed_functions": [
         {
           "qualified_names": [
-            "org.jsoup.parser.XmlTreeBuilder:insert:[Token.Doctype d]:void",
             "org.jsoup.parser.XmlTreeBuilder:insert:[Token.Comment commentToken]:void",
-            "org.jsoup.parser.XmlTreeBuilder:initialiseParse:[String input, String baseUri, ParseErrorList errors]:void",
             "org.jsoup.parser.XmlTreeBuilder:insert:[Token.StartTag startTag]:Element",
-            "org.jsoup.parser.XmlTreeBuilder:parseFragment:[String inputFragment, String baseUri, ParseErrorList errors]:List\u003cNode\u003e"
+            "org.jsoup.parser.XmlTreeBuilder:parseFragment:[String inputFragment, String baseUri, ParseErrorList errors]:List\u003cNode\u003e",
+            "org.jsoup.parser.XmlTreeBuilder:initialiseParse:[String input, String baseUri, ParseErrorList errors]:void",
+            "org.jsoup.parser.XmlTreeBuilder:insert:[Token.Doctype d]:void"
           ],
           "num": 5
         },
         {
           "qualified_names": [
-            "org.jsoup.parser.XmlTreeBuilder:insert:[Token.Doctype d]:void",
+            "org.jsoup.parser.XmlTreeBuilder:insert:[Token.StartTag startTag]:Element",
             "org.jsoup.parser.XmlTreeBuilder:parse:[String input, String baseUri]:Document",
             "org.jsoup.parser.XmlTreeBuilder:defaultSettings:[]:ParseSettings",
-            "org.jsoup.parser.XmlTreeBuilder:insert:[Token.StartTag startTag]:Element",
-            "org.jsoup.parser.XmlTreeBuilder:insert:[Token.Comment commentToken]:void",
+            "org.jsoup.parser.XmlTreeBuilder:insert:[Token.Doctype d]:void",
             "org.jsoup.parser.XmlTreeBuilder:parseFragment:[String inputFragment, String baseUri, ParseErrorList errors, ParseSettings settings]:List\u003cNode\u003e",
-            "org.jsoup.parser.XmlTreeBuilder:initialiseParse:[String input, String baseUri, ParseErrorList errors, ParseSettings settings]:void"
+            "org.jsoup.parser.XmlTreeBuilder:initialiseParse:[String input, String baseUri, ParseErrorList errors, ParseSettings settings]:void",
+            "org.jsoup.parser.XmlTreeBuilder:insert:[Token.Comment commentToken]:void"
           ],
           "num": 7
         }
@@ -2554,8 +2554,8 @@
       "changed_functions": [
         {
           "qualified_names": [
-            "org.jsoup.select.QueryParser:byTag:[]:void",
-            "org.jsoup.select.QueryParser:byClass:[]:void"
+            "org.jsoup.select.QueryParser:byClass:[]:void",
+            "org.jsoup.select.QueryParser:byTag:[]:void"
           ],
           "num": 2
         },

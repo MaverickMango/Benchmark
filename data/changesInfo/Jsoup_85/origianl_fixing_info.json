@@ -4,14 +4,14 @@
     "name": "root.bean.benchmarks.Defects4JBug"
   },
   "d4jCmd": "/home/liumengjiao/Desktop/defects4j/framework/bin/defects4j",
-  "dataDir": "data/changesInfo/",
+  "dataDir": "/home/liumengjiao/Desktop/CI/Benchmark/data/changesInfo/",
   "properties": {
     "trigger.tests": "org.jsoup.nodes.AttributeTest::validatesKeysNotEmpty",
     "test.dir": "src/test/java",
     "clz.modified": "org.jsoup.nodes.Attribute",
     "src.dir": "src/main/java"
   },
-  "timeoutSecond": 300, 
+  "timeoutSecond": 100,
   "proj": "Jsoup",
   "id": "85",
   "workingDir": "../bugs/Jsoup_85_buggy",
@@ -21,147 +21,324 @@
   "bug_name": "Jsoup_85",
   "derive": "defects4j",
   "original_fixing_commit": "25ba713e1d1a97ebfee38c0df3e7e6d4d9615f97",
-  "buildFiles_changed": false,
+  "buildFiles_changed": true,
   "regression": true,
   "inducing_changes": [
     {
       "changed_type": "UPDATE",
       "changed_class": [
-        "src/main/java/org/jsoup/nodes/Attribute.java",
-        "src/main/java/org/jsoup/nodes/Attribute.java"
+        "src/main/java/org/jsoup/nodes/Attributes.java",
+        "src/main/java/org/jsoup/nodes/Attributes.java"
       ],
       "changed_functions": [
         {
-          "qualified_names": [
-            "org.jsoup.nodes.Attribute:Attribute:[String key, String value]:null"
-          ],
-          "num": 1
+          "qualified_names": [],
+          "num": 0
         },
         {
           "qualified_names": [
-            "org.jsoup.nodes.Attribute:Attribute:[String key, String value]:null"
+            "org.jsoup.nodes.Attributes:get:[String key]:String",
+            "org.jsoup.nodes.Attributes:remove:[String key]:void",
+            "org.jsoup.nodes.Attributes:put:[Attribute attribute]:void",
+            "org.jsoup.nodes.Attributes:size:[]:int",
+            "org.jsoup.nodes.Attributes:put:[String key, String value]:void"
           ],
-          "num": 1
+          "num": 5
         }
       ],
       "changed_lines": [
         {
           "qualified_names": [
-            "32"
+            "2"
           ],
           "num": 1
         },
         {
           "qualified_names": [
+            "3",
+            "4",
+            "5",
+            "6",
+            "12",
+            "13",
+            "14",
+            "15",
+            "16",
+            "17",
+            "18",
+            "19",
+            "20",
+            "21",
+            "22",
+            "23",
+            "24",
+            "25",
+            "26",
+            "27",
+            "28",
+            "29",
+            "30",
+            "31",
             "32",
-            "35"
+            "33",
+            "34",
+            "35",
+            "36",
+            "37",
+            "38",
+            "39",
+            "40",
+            "41"
           ],
-          "num": 2
+          "num": 34
         }
       ],
-      "diff": "diff --git a/src/main/java/org/jsoup/nodes/Attribute.java b/src/main/java/org/jsoup/nodes/Attribute.java\nindex 8a879ea..38be823 100644\n--- a/src/main/java/org/jsoup/nodes/Attribute.java\n+++ b/src/main/java/org/jsoup/nodes/Attribute.java\n@@ -29,9 +29,10 @@\n      * @see #createFromEncoded\n      */\n     public Attribute(String key, String value) {\n-        Validate.notEmpty(key);\n+        Validate.notNull(key);\n         Validate.notNull(value);\n         this.key \u003d key.trim();\n+        Validate.notEmpty(key); // trimming could potentially make empty, so validate here\n         this.value \u003d value;\n     }\n \n",
+      "diff": "diff --git a/src/main/java/org/jsoup/nodes/Attributes.java b/src/main/java/org/jsoup/nodes/Attributes.java\nindex cf95f98..f4cf759 100644\n--- a/src/main/java/org/jsoup/nodes/Attributes.java\n+++ b/src/main/java/org/jsoup/nodes/Attributes.java\n@@ -1,8 +1,42 @@\n package org.jsoup.nodes;\n \n+import org.apache.commons.lang.Validate;\n+\n+import java.util.LinkedHashMap;\n+\n /**\n  Element attribute list.\n \n  @author Jonathan Hedley, jonathan@hedley.net */\n public class Attributes {\n+    private LinkedHashMap\u003cString, String\u003e attributes \u003d new LinkedHashMap\u003cString, String\u003e(); // linked hash map to preserve insertion order.\n+\n+    public String get(String key) {\n+        Validate.notEmpty(key);\n+        return attributes.get(key.toLowerCase());\n+    }\n+\n+    public void put(String key, String value) {\n+        Validate.notEmpty(key);\n+        Validate.notNull(value);\n+        attributes.put(key.toLowerCase(), value);\n+    }\n+\n+    public void put(Attribute attribute) {\n+        Validate.notNull(attribute);\n+        put(attribute.getKey(), attribute.getValue());\n+    }\n+\n+    public void remove(String key) {\n+        Validate.notEmpty(key);\n+        attributes.remove(key.toLowerCase());\n+    }\n+\n+    public int size() {\n+        return attributes.size();\n+    }\n+\n+    // todo: toString, list (as List\u003cAttribute\u003e)\n+\n+\n }\n",
       "operations": [
         {
-          "type": "move-tree",
+          "type": "insert-tree",
           "from": "",
-          "to": ""
+          "to": "ImportDeclaration [26,66]"
         },
         {
           "type": "insert-tree",
           "from": "",
-          "to": "ExpressionStatement [1159,1181]"
+          "to": "ImportDeclaration [68,99]"
+        },
+        {
+          "type": "insert-tree",
+          "from": "",
+          "to": "FieldDeclaration [210,297]"
+        },
+        {
+          "type": "insert-tree",
+          "from": "",
+          "to": "MethodDeclaration [351,470]"
+        },
+        {
+          "type": "insert-tree",
+          "from": "",
+          "to": "MethodDeclaration [476,640]"
+        },
+        {
+          "type": "insert-tree",
+          "from": "",
+          "to": "MethodDeclaration [646,782]"
+        },
+        {
+          "type": "insert-tree",
+          "from": "",
+          "to": "MethodDeclaration [788,904]"
+        },
+        {
+          "type": "insert-tree",
+          "from": "",
+          "to": "MethodDeclaration [910,969]"
         }
       ]
     },
     {
       "changed_type": "UPDATE",
       "changed_class": [
-        "src/main/java/org/jsoup/parser/Token.java",
-        "src/main/java/org/jsoup/parser/Token.java"
+        "src/main/java/org/jsoup/parser/AttributeParser.java",
+        "src/main/java/org/jsoup/parser/AttributeParser.java"
       ],
       "changed_functions": [
         {
           "qualified_names": [
-            "org.jsoup.parser.Token\\$Tag:newAttribute:[]:void"
+            "org.jsoup.parser.AttributeParser:parse:[String attributeString]:Attributes"
           ],
           "num": 1
         },
         {
           "qualified_names": [
-            "org.jsoup.parser.Token\\$Tag:newAttribute:[]:void"
+            "org.jsoup.parser.AttributeParser:parse:[String attributeString]:Attributes",
+            "org.jsoup.parser.AttributeParser:nextAttribute:[Queue\u003cCharacter\u003e chars]:Attribute"
           ],
-          "num": 1
+          "num": 2
         }
       ],
       "changed_lines": [
         {
           "qualified_names": [
-            "105",
-            "106",
-            "107",
-            "108",
-            "109",
-            "110",
-            "111",
-            "112",
-            "113"
+            "12",
+            "13"
           ],
-          "num": 9
+          "num": 2
         },
         {
           "qualified_names": [
-            "105",
-            "106",
-            "107",
-            "108",
-            "109",
-            "110",
-            "111",
-            "112",
-            "113",
-            "114",
-            "115",
-            "116",
-            "117"
+            "3",
+            "6",
+            "7",
+            "8",
+            "9",
+            "15",
+            "16",
+            "17",
+            "18",
+            "19",
+            "22",
+            "23",
+            "24",
+            "25",
+            "26",
+            "27",
+            "28",
+            "29",
+            "30",
+            "31",
+            "32",
+            "33",
+            "34",
+            "35",
+            "36",
+            "37",
+            "38",
+            "39",
+            "40",
+            "41",
+            "42",
+            "43",
+            "44",
+            "45",
+            "46",
+            "47",
+            "48",
+            "49",
+            "50",
+            "51",
+            "52",
+            "53",
+            "54",
+            "55",
+            "56",
+            "57",
+            "58",
+            "59",
+            "60",
+            "61",
+            "62",
+            "63",
+            "64",
+            "65",
+            "66",
+            "67",
+            "68",
+            "69",
+            "70",
+            "71",
+            "72",
+            "73",
+            "74",
+            "75",
+            "76",
+            "77",
+            "78",
+            "79",
+            "80",
+            "81",
+            "82",
+            "83",
+            "84",
+            "85",
+            "86",
+            "87",
+            "88"
           ],
-          "num": 13
+          "num": 77
         }
       ],
-      "diff": "diff --git a/src/main/java/org/jsoup/parser/Token.java b/src/main/java/org/jsoup/parser/Token.java\nindex 34baf19..af51432 100644\n--- a/src/main/java/org/jsoup/parser/Token.java\n+++ b/src/main/java/org/jsoup/parser/Token.java\n@@ -102,15 +102,19 @@\n                 attributes \u003d new Attributes();\n \n             if (pendingAttributeName !\u003d null) {\n-                Attribute attribute;\n-                if (hasPendingAttributeValue)\n-                    attribute \u003d new Attribute(pendingAttributeName,\n-                        pendingAttributeValue.length() \u003e 0 ? pendingAttributeValue.toString() : pendingAttributeValueS);\n-                else if (hasEmptyAttributeValue)\n-                    attribute \u003d new Attribute(pendingAttributeName, \"\");\n-                else\n-                    attribute \u003d new BooleanAttribute(pendingAttributeName);\n-                attributes.put(attribute);\n+                // the tokeniser has skipped whitespace control chars, but trimming could collapse to empty for other control codes, so verify here\n+                pendingAttributeName \u003d pendingAttributeName.trim();\n+                if (pendingAttributeName.length() \u003e 0) {\n+                    Attribute attribute;\n+                    if (hasPendingAttributeValue)\n+                        attribute \u003d new Attribute(pendingAttributeName,\n+                            pendingAttributeValue.length() \u003e 0 ? pendingAttributeValue.toString() : pendingAttributeValueS);\n+                    else if (hasEmptyAttributeValue)\n+                        attribute \u003d new Attribute(pendingAttributeName, \"\");\n+                    else\n+                        attribute \u003d new BooleanAttribute(pendingAttributeName);\n+                    attributes.put(attribute);\n+                }\n             }\n             pendingAttributeName \u003d null;\n             hasEmptyAttributeValue \u003d false;\n",
+      "diff": "diff --git a/src/main/java/org/jsoup/parser/AttributeParser.java b/src/main/java/org/jsoup/parser/AttributeParser.java\nindex 6135aca..f5a7bb2 100644\n--- a/src/main/java/org/jsoup/parser/AttributeParser.java\n+++ b/src/main/java/org/jsoup/parser/AttributeParser.java\n@@ -1,15 +1,90 @@\n package org.jsoup.parser;\n \n+import org.jsoup.nodes.Attribute;\n import org.jsoup.nodes.Attributes;\n \n+import java.util.LinkedList;\n+import java.util.Queue;\n+import java.util.regex.Pattern;\n+\n /**\n  Parse attribute strings into attributes.\n \n  @author Jonathan Hedley, jonathan@hedley.net */\n public class AttributeParser {\n+    private static final char SQ \u003d \u0027\\\u0027\u0027;\n+    private static final char DQ \u003d \u0027\"\u0027;\n+    private static final char EQ \u003d \u0027\u003d\u0027;\n+    private static final Pattern keyOk \u003d Pattern.compile(\"[^\\\\s\u0027\\\"\u003d]\");\n+    private static final Pattern space \u003d Pattern.compile(\"[\\\\s]\");\n \n     public Attributes parse(String attributeString) {\n-        return null;\n-        // TODO: implement\n+        Attributes attributes \u003d new Attributes();\n+        if (attributeString \u003d\u003d null || attributeString.trim().isEmpty())\n+            return attributes;\n+\n+        char[] charArray \u003d attributeString.trim().toCharArray();\n+        Queue\u003cCharacter\u003e chars \u003d new LinkedList\u003cCharacter\u003e();\n+        for (char c : charArray) {\n+            chars.add(c);\n+        }\n+\n+        while (chars.size() \u003e 0) {\n+            Attribute attribute \u003d nextAttribute(chars);\n+            if (attribute !\u003d null)\n+                attributes.put(attribute);\n+        }\n+        return attributes;\n+    }\n+\n+    private Attribute nextAttribute(Queue\u003cCharacter\u003e chars) {\n+        StringBuilder key \u003d new StringBuilder();\n+        StringBuilder value \u003d new StringBuilder();\n+        boolean seenEquals \u003d false;\n+        Character quoteChar \u003d null;\n+\n+        // From: foo\u003d\"bar\" foo \u003d \u0027bar \"qux\" zap\u0027 foo \u003d bar foo foo foo\u003d\"data \u003d something\"\n+        // To: \u003cfoo\u003dbar\u003e, \u003cfoo\u003dbar \"qux\" zap\u003e, \u003cfoo\u003dbar\u003e, \u003cfoo\u003d\u003e, \u003cfoo\u003d\u003e, \u003cfoo\u003ddata \u003d something\u003e\n+        while (chars.size() \u003e 0) {\n+            Character c \u003d chars.remove();\n+            String s \u003d c.toString();\n+\n+            // this is a bit gnarly. ideas on rewrite with expect + consume. Doesn\u0027t seem like a regular expression though.\n+\n+            if (!seenEquals \u0026\u0026 keyOk.matcher(s).matches()) {\n+                // accum the key\n+                key.append(s);\n+            } else if (!seenEquals \u0026\u0026 key.length() \u003e 0 \u0026\u0026 space.matcher(s).matches()) {\n+                // if we have a key, then a run of space, then a key-like char: that\u0027s a new key and we need to break before\n+                Character nextC \u003d chars.peek();\n+                if (nextC !\u003d null \u0026\u0026 keyOk.matcher(nextC.toString()).matches())\n+                    break;\n+            } else if (!seenEquals \u0026\u0026 c \u003d\u003d EQ) { //\n+                seenEquals \u003d true;\n+            } else if (seenEquals) {\n+                // working on the value\n+                if (quoteChar \u003d\u003d null \u0026\u0026 (c \u003d\u003d SQ || c \u003d\u003d DQ)) {\n+                    // match until closing quote\n+                    quoteChar \u003d c;\n+                } else if (c \u003d\u003d quoteChar) {\n+                    // closing quote\n+                    break;\n+                } else if (quoteChar \u003d\u003d null \u0026\u0026 value.length() \u003e 0 \u0026\u0026 space.matcher(s).matches()) {\n+                    // we have found a space in a naked value (foo\u003dbar): end of the line\n+                    break;\n+                } else {\n+                    // accum the value\n+                    value.append(s);\n+                }\n+            }\n+        }\n+\n+        // TODO[must] de-entify / unescape attribute values (and keys too I guess)\n+\n+        // return an attribute if we have a key (val can be empty)\n+        if (key.length() \u003e 0)\n+            return new Attribute(key.toString().trim(), value.toString().trim());\n+        else\n+            return null;\n     }\n }\n",
       "operations": [
         {
           "type": "insert-tree",
           "from": "",
-          "to": "ExpressionStatement [3399,3450]"
-        },
-        {
-          "type": "insert-node",
-          "from": "",
-          "to": "IfStatement [3467,4095]"
+          "to": "ImportDeclaration [27,60]"
         },
         {
           "type": "insert-tree",
           "from": "",
-          "to": "InfixExpression [3471,3504]"
+          "to": "ImportDeclaration [97,125]"
+        },
+        {
+          "type": "insert-tree",
+          "from": "",
+          "to": "ImportDeclaration [126,149]"
+        },
+        {
+          "type": "insert-tree",
+          "from": "",
+          "to": "ImportDeclaration [150,181]"
+        },
+        {
+          "type": "insert-tree",
+          "from": "",
+          "to": "FieldDeclaration [314,350]"
+        },
+        {
+          "type": "insert-tree",
+          "from": "",
+          "to": "FieldDeclaration [355,390]"
+        },
+        {
+          "type": "insert-tree",
+          "from": "",
+          "to": "FieldDeclaration [395,430]"
+        },
+        {
+          "type": "insert-tree",
+          "from": "",
+          "to": "FieldDeclaration [435,502]"
+        },
+        {
+          "type": "insert-tree",
+          "from": "",
+          "to": "FieldDeclaration [507,569]"
+        },
+        {
+          "type": "insert-tree",
+          "from": "",
+          "to": "MethodDeclaration [1196,3435]"
+        },
+        {
+          "type": "insert-tree",
+          "from": "",
+          "to": "VariableDeclarationStatement [633,674]"
+        },
+        {
+          "type": "insert-tree",
+          "from": "",
+          "to": "IfStatement [683,778]"
+        },
+        {
+          "type": "insert-tree",
+          "from": "",
+          "to": "VariableDeclarationStatement [788,844]"
+        },
+        {
+          "type": "insert-tree",
+          "from": "",
+          "to": "VariableDeclarationStatement [853,906]"
+        },
+        {
+          "type": "insert-tree",
+          "from": "",
+          "to": "EnhancedForStatement [915,977]"
+        },
+        {
+          "type": "insert-tree",
+          "from": "",
+          "to": "WhileStatement [987,1157]"
         },
         {
           "type": "insert-node",
           "from": "",
-          "to": "Block [3506,4095]"
+          "to": "SimpleName: attributes [1173,1183]"
         },
         {
-          "type": "move-tree",
-          "from": "",
-          "to": ""
-        },
-        {
-          "type": "move-tree",
-          "from": "",
-          "to": ""
-        },
-        {
-          "type": "move-tree",
-          "from": "",
+          "type": "delete-node",
+          "from": "NullLiteral [260,264]",
           "to": ""
         }
       ]
@@ -169,16 +346,25 @@
   ],
   "inducing_type": {
     "add_classes": {
-      "qualified_names": [],
-      "num": 0
+      "qualified_names": [
+        "src/main/java/org/jsoup/nodes/Attribute.java"
+      ],
+      "num": 1
     },
     "delete_classes": {
       "qualified_names": [],
       "num": 0
     },
     "add_functions": {
-      "qualified_names": [],
-      "num": 0
+      "qualified_names": [
+        "org.jsoup.nodes.Attributes:size:[]:int",
+        "org.jsoup.nodes.Attributes:put:[Attribute attribute]:void",
+        "org.jsoup.parser.AttributeParser:nextAttribute:[Queue\u003cCharacter\u003e chars]:Attribute",
+        "org.jsoup.nodes.Attributes:put:[String key, String value]:void",
+        "org.jsoup.nodes.Attributes:remove:[String key]:void",
+        "org.jsoup.nodes.Attributes:get:[String key]:String"
+      ],
+      "num": 6
     },
     "delete_functions": {
       "qualified_names": [],

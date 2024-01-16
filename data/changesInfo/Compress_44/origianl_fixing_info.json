@@ -4,14 +4,14 @@
     "name": "root.bean.benchmarks.Defects4JBug"
   },
   "d4jCmd": "/home/liumengjiao/Desktop/defects4j/framework/bin/defects4j",
-  "dataDir": "data/changesInfo/",
+  "dataDir": "/home/liumengjiao/Desktop/CI/Benchmark/data/changesInfo/",
   "properties": {
     "trigger.tests": "org.apache.commons.compress.utils.ChecksumCalculatingInputStreamTest::testClassInstantiationWithParameterBeingNullThrowsNullPointerExceptionOne,org.apache.commons.compress.utils.ChecksumCalculatingInputStreamTest::testClassInstantiationWithParameterBeingNullThrowsNullPointerExceptionTwo,org.apache.commons.compress.utils.ChecksumCalculatingInputStreamTest::testClassInstantiationWithParameterBeingNullThrowsNullPointerExceptionThree",
     "test.dir": "src/test/java",
     "clz.modified": "org.apache.commons.compress.utils.ChecksumCalculatingInputStream",
     "src.dir": "src/main/java"
   },
-  "timeoutSecond": 300,
+  "timeoutSecond": 100,
   "proj": "Compress",
   "id": "44",
   "workingDir": "../bugs/Compress_44_buggy",
@@ -33,18 +33,18 @@
       "changed_functions": [
         {
           "qualified_names": [
-            "org.apache.commons.compress.compressors.lz4.FramedLZ4CompressorInputStream:nextBlock:[]:void",
             "org.apache.commons.compress.compressors.lz4.FramedLZ4CompressorInputStream:maybeFinishCurrentBlock:[]:void",
-            "org.apache.commons.compress.compressors.lz4.FramedLZ4CompressorInputStream:verifyContentChecksum:[]:void"
+            "org.apache.commons.compress.compressors.lz4.FramedLZ4CompressorInputStream:verifyContentChecksum:[]:void",
+            "org.apache.commons.compress.compressors.lz4.FramedLZ4CompressorInputStream:nextBlock:[]:void"
           ],
           "num": 3
         },
         {
           "qualified_names": [
             "org.apache.commons.compress.compressors.lz4.FramedLZ4CompressorInputStream:verifyContentChecksum:[]:void",
-            "org.apache.commons.compress.compressors.lz4.FramedLZ4CompressorInputStream:nextBlock:[]:void",
+            "org.apache.commons.compress.compressors.lz4.FramedLZ4CompressorInputStream:verifyChecksum:[XXHash32 hash, String kind]:void",
             "org.apache.commons.compress.compressors.lz4.FramedLZ4CompressorInputStream:maybeFinishCurrentBlock:[]:void",
-            "org.apache.commons.compress.compressors.lz4.FramedLZ4CompressorInputStream:verifyChecksum:[XXHash32 hash, String kind]:void"
+            "org.apache.commons.compress.compressors.lz4.FramedLZ4CompressorInputStream:nextBlock:[]:void"
           ],
           "num": 4
         }

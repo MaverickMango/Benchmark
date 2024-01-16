@@ -1,7 +1,7 @@
 Only in data/changesInfo//Closure_52/properties/modified_classes/inducing/: src
 diff -u -r data/changesInfo//Closure_52/properties/modified_classes/inducing/test/com/google/javascript/jscomp/CodePrinterTest.java data/changesInfo//Closure_52/cleaned/inducing/test/com/google/javascript/jscomp/CodePrinterTest.java
---- data/changesInfo//Closure_52/properties/modified_classes/inducing/test/com/google/javascript/jscomp/CodePrinterTest.java	2023-08-25 13:11:23.197018305 +0800
-+++ data/changesInfo//Closure_52/cleaned/inducing/test/com/google/javascript/jscomp/CodePrinterTest.java	2023-06-28 15:17:55.921000000 +0800
+--- data/changesInfo//Closure_52/properties/modified_classes/inducing/test/com/google/javascript/jscomp/CodePrinterTest.java	2023-12-27 22:38:19.797001359 -0800
++++ data/changesInfo//Closure_52/cleaned/inducing/test/com/google/javascript/jscomp/CodePrinterTest.java	2023-06-28 00:17:55.921000000 -0700
 @@ -30,8 +30,7 @@
    static Node parse(String js, boolean checkTypes) {
      Compiler compiler = new Compiler();

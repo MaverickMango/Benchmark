@@ -4,14 +4,14 @@
     "name": "root.bean.benchmarks.Defects4JBug"
   },
   "d4jCmd": "/home/liumengjiao/Desktop/defects4j/framework/bin/defects4j",
-  "dataDir": "data/changesInfo/",
+  "dataDir": "/home/liumengjiao/Desktop/CI/Benchmark/data/changesInfo/",
   "properties": {
     "trigger.tests": "org.apache.commons.codec.language.bm.PhoneticEngineRegressionTest::testCompatibilityWithOriginalVersion",
     "test.dir": "src/test/java",
     "clz.modified": "org.apache.commons.codec.language.bm.Lang,org.apache.commons.codec.language.bm.PhoneticEngine,org.apache.commons.codec.language.bm.Rule,src.main.resources.org.apache.commons.codec.language.bm.ash_lang.txt,src.main.resources.org.apache.commons.codec.language.bm.gen_lang.txt,src.main.resources.org.apache.commons.codec.language.bm.sep_lang.txt",
     "src.dir": "src/main/java"
   },
-  "timeoutSecond": 300,
+  "timeoutSecond": 100,
   "proj": "Codec",
   "id": "14",
   "workingDir": "../bugs/Codec_14_buggy",
@@ -21,28 +21,22 @@
   "bug_name": "Codec_14",
   "derive": "defects4j",
   "original_fixing_commit": "39d5df29fb768fd257f9d328b99f00bc69ec864a",
-  "buildFiles_changed": false, 
+  "buildFiles_changed": false,
   "regression": true,
   "inducing_changes": [],
   "inducing_type": {
     "add_classes": {
       "qualified_names": [
-        "src/java/org/apache/commons/codec/BinaryDecoder.java",
-        "src/java/org/apache/commons/codec/BinaryEncoder.java",
-        "src/java/org/apache/commons/codec/Decoder.java",
-        "src/java/org/apache/commons/codec/DecoderException.java",
-        "src/java/org/apache/commons/codec/Encoder.java",
-        "src/java/org/apache/commons/codec/EncoderException.java",
-        "src/java/org/apache/commons/codec/StringEncoder.java",
-        "src/java/org/apache/commons/codec/StringEncoderComparator.java",
-        "src/java/org/apache/commons/codec/base64/Base64.java",
-        "src/java/org/apache/commons/codec/binary/Base64.java",
-        "src/java/org/apache/commons/codec/binary/Hex.java",
-        "src/java/org/apache/commons/codec/language/Metaphone.java",
-        "src/java/org/apache/commons/codec/language/RefinedSoundex.java",
-        "src/java/org/apache/commons/codec/language/Soundex.java"
+        "src/java/org/apache/commons/codec/language/bm/BeiderMorseEncoder.java",
+        "src/java/org/apache/commons/codec/language/bm/Lang.java",
+        "src/java/org/apache/commons/codec/language/bm/Languages.java",
+        "src/java/org/apache/commons/codec/language/bm/NameType.java",
+        "src/java/org/apache/commons/codec/language/bm/PhoneticEngine.java",
+        "src/java/org/apache/commons/codec/language/bm/ResourceConstants.java",
+        "src/java/org/apache/commons/codec/language/bm/Rule.java",
+        "src/java/org/apache/commons/codec/language/bm/RuleType.java"
       ],
-      "num": 14
+      "num": 8
     },
     "delete_classes": {
       "qualified_names": [],
@@ -203,16 +197,16 @@
       "changed_functions": [
         {
           "qualified_names": [
-            "org.apache.commons.codec.language.bm.Languages\\$SomeLanguages:toString:[]:String",
-            "org.apache.commons.codec.language.bm.Languages\\$LanguageSet:restrictTo:[LanguageSet other]:LanguageSet"
+            "org.apache.commons.codec.language.bm.Languages\\$LanguageSet:restrictTo:[LanguageSet other]:LanguageSet",
+            "org.apache.commons.codec.language.bm.Languages\\$SomeLanguages:toString:[]:String"
           ],
           "num": 2
         },
         {
           "qualified_names": [
+            "org.apache.commons.codec.language.bm.Languages\\$SomeLanguages:toString:[]:String",
             "org.apache.commons.codec.language.bm.Languages\\$LanguageSet:merge:[LanguageSet other]:LanguageSet",
-            "org.apache.commons.codec.language.bm.Languages\\$SomeLanguages:merge:[final LanguageSet other]:LanguageSet",
-            "org.apache.commons.codec.language.bm.Languages\\$SomeLanguages:toString:[]:String"
+            "org.apache.commons.codec.language.bm.Languages\\$SomeLanguages:merge:[final LanguageSet other]:LanguageSet"
           ],
           "num": 3
         }
@@ -410,16 +404,16 @@
       "changed_functions": [
         {
           "qualified_names": [
-            "org.apache.commons.codec.language.bm.Rule:parseRules:[final Scanner scanner, final String location]:Map\u003cString,List\u003cRule\u003e\u003e",
-            "org.apache.commons.codec.language.bm.Rule\\$Phoneme:join:[final Phoneme right]:Phoneme"
+            "org.apache.commons.codec.language.bm.Rule\\$Phoneme:join:[final Phoneme right]:Phoneme",
+            "org.apache.commons.codec.language.bm.Rule:parseRules:[final Scanner scanner, final String location]:Map\u003cString,List\u003cRule\u003e\u003e"
           ],
           "num": 2
         },
         {
           "qualified_names": [
-            "org.apache.commons.codec.language.bm.Rule:parseRules:[final Scanner scanner, final String location]:Map\u003cString,List\u003cRule\u003e\u003e",
+            "org.apache.commons.codec.language.bm.Rule\\$Phoneme:toString:[]:String",
             "org.apache.commons.codec.language.bm.Rule\\$Phoneme:mergeWithLanguage:[final LanguageSet lang]:Phoneme",
-            "org.apache.commons.codec.language.bm.Rule\\$Phoneme:toString:[]:String"
+            "org.apache.commons.codec.language.bm.Rule:parseRules:[final Scanner scanner, final String location]:Map\u003cString,List\u003cRule\u003e\u003e"
           ],
           "num": 3
         }

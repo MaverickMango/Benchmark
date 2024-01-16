@@ -4,14 +4,14 @@
     "name": "root.bean.benchmarks.Defects4JBug"
   },
   "d4jCmd": "/home/liumengjiao/Desktop/defects4j/framework/bin/defects4j",
-  "dataDir": "data/changesInfo/",
+  "dataDir": "/home/liumengjiao/Desktop/CI/Benchmark/data/changesInfo/",
   "properties": {
     "trigger.tests": "org.apache.commons.codec.binary.StringUtilsTest::testEqualsCS1,org.apache.commons.codec.binary.StringUtilsTest::testEqualsCS2",
     "test.dir": "src/test/java",
     "clz.modified": "org.apache.commons.codec.binary.StringUtils",
     "src.dir": "src/main/java"
   },
-  "timeoutSecond": 300,
+  "timeoutSecond": 100,
   "proj": "Codec",
   "id": "18",
   "workingDir": "../bugs/Codec_18_buggy",
@@ -39,8 +39,8 @@
         },
         {
           "qualified_names": [
-            "org.apache.commons.codec.binary.StringUtils:getBytes:[final String string, final Charset charset]:byte[]",
-            "org.apache.commons.codec.binary.StringUtils:equals:[final CharSequence cs1, final CharSequence cs2]:boolean"
+            "org.apache.commons.codec.binary.StringUtils:equals:[final CharSequence cs1, final CharSequence cs2]:boolean",
+            "org.apache.commons.codec.binary.StringUtils:getBytes:[final String string, final Charset charset]:byte[]"
           ],
           "num": 2
         }

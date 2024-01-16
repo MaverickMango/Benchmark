@@ -1,7 +1,7 @@
 Only in data/changesInfo//Closure_73/properties/modified_classes/inducing/src/com/google/javascript/jscomp: AbstractCompilerRunner.java
 diff -u -r data/changesInfo//Closure_73/properties/modified_classes/inducing/src/com/google/javascript/jscomp/CodeGenerator.java data/changesInfo//Closure_73/cleaned/fixing/src/com/google/javascript/jscomp/CodeGenerator.java
---- data/changesInfo//Closure_73/properties/modified_classes/inducing/src/com/google/javascript/jscomp/CodeGenerator.java	2023-08-25 13:18:51.239164703 +0800
-+++ data/changesInfo//Closure_73/cleaned/fixing/src/com/google/javascript/jscomp/CodeGenerator.java	2023-06-20 20:39:55.057543086 +0800
+--- data/changesInfo//Closure_73/properties/modified_classes/inducing/src/com/google/javascript/jscomp/CodeGenerator.java	2023-12-27 22:41:14.031576941 -0800
++++ data/changesInfo//Closure_73/cleaned/fixing/src/com/google/javascript/jscomp/CodeGenerator.java	2023-06-20 05:39:55.057543086 -0700
 @@ -838,7 +838,7 @@
              // No charsetEncoder provided - pass straight latin characters
              // through, and escape the rest.  Doing the explicit character

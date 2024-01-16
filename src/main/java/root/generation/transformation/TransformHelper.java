@@ -6,12 +6,12 @@ import com.github.javaparser.ast.expr.Expression;
 import com.github.javaparser.utils.Pair;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import root.bean.BugRepository;
-import root.bean.benchmarks.Defects4JBug;
+import root.entity.BugRepository;
+import root.entity.benchmarks.Defects4JBug;
 import root.generation.entity.Input;
 import root.generation.entity.Skeleton;
 import root.generation.helper.MutatorHelper;
-import root.generation.parser.AbstractASTParser;
+import root.parser.AbstractASTParser;
 import root.generation.transformation.extractor.InputExtractor;
 import root.util.ConfigurationProperties;
 import root.util.FileUtils;
@@ -29,8 +29,10 @@ public class TransformHelper {
     public static BugRepository bugRepository;
 
     public static void initialize(String proj, String id, String workingDir, String originalCommit, AbstractASTParser parser) {
-        Defects4JBug defects4JBug = new Defects4JBug(proj, id, workingDir, originalCommit);
-        bugRepository = new BugRepository(defects4JBug);
+        if (proj != null) {
+            Defects4JBug defects4JBug = new Defects4JBug(proj, id, workingDir, originalCommit);
+            bugRepository = new BugRepository(defects4JBug);
+        }
         inputTransformer = new InputTransformer();
         inputExtractor = new InputExtractor(parser);
     }

@@ -1,7 +1,7 @@
 Only in data/changesInfo//Closure_60/properties/modified_classes/inducing/: src
 diff -u -r data/changesInfo//Closure_60/properties/modified_classes/inducing/test/com/google/javascript/jscomp/CommandLineRunnerTest.java data/changesInfo//Closure_60/cleaned/inducing/test/com/google/javascript/jscomp/CommandLineRunnerTest.java
---- data/changesInfo//Closure_60/properties/modified_classes/inducing/test/com/google/javascript/jscomp/CommandLineRunnerTest.java	2023-08-10 20:44:45.320551148 +0800
-+++ data/changesInfo//Closure_60/cleaned/inducing/test/com/google/javascript/jscomp/CommandLineRunnerTest.java	2023-06-27 14:19:58.727000000 +0800
+--- data/changesInfo//Closure_60/properties/modified_classes/inducing/test/com/google/javascript/jscomp/CommandLineRunnerTest.java	2023-08-10 05:44:45.320551148 -0700
++++ data/changesInfo//Closure_60/cleaned/inducing/test/com/google/javascript/jscomp/CommandLineRunnerTest.java	2023-06-26 23:19:58.727000000 -0700
 @@ -214,6 +214,16 @@
           "  return arguments[0]; " +
           "}");
@@ -68,8 +68,8 @@ diff -u -r data/changesInfo//Closure_60/properties/modified_classes/inducing/tes
        args.add("--js");
        args.add("/path/to/input" + i + ".js");
 diff -u -r data/changesInfo//Closure_60/properties/modified_classes/inducing/test/com/google/javascript/jscomp/NodeUtilTest.java data/changesInfo//Closure_60/cleaned/inducing/test/com/google/javascript/jscomp/NodeUtilTest.java
---- data/changesInfo//Closure_60/properties/modified_classes/inducing/test/com/google/javascript/jscomp/NodeUtilTest.java	2023-08-10 20:44:45.320551148 +0800
-+++ data/changesInfo//Closure_60/cleaned/inducing/test/com/google/javascript/jscomp/NodeUtilTest.java	2023-06-28 15:27:50.344000000 +0800
+--- data/changesInfo//Closure_60/properties/modified_classes/inducing/test/com/google/javascript/jscomp/NodeUtilTest.java	2023-08-10 05:44:45.320551148 -0700
++++ data/changesInfo//Closure_60/cleaned/inducing/test/com/google/javascript/jscomp/NodeUtilTest.java	2023-06-28 00:27:50.344000000 -0700
 @@ -99,6 +99,9 @@
      assertBooleanFalse("void foo()");
      assertBooleanUnknown("b");

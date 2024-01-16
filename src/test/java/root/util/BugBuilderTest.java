@@ -3,10 +3,10 @@ package root.util;
 import org.junit.Ignore;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import root.bean.benchmarks.Defects4JBug;
-import root.bean.ci.CIBug;
-import root.bean.ci.FailedTest;
-import root.bean.ci.PatchDiff;
+import root.entity.benchmarks.Defects4JBug;
+import root.entity.ci.CIBug;
+import root.entity.ci.FailedTest;
+import root.entity.ci.PatchDiff;
 
 import java.io.File;
 import java.util.List;
@@ -14,16 +14,16 @@ import java.util.Map;
 
 class BugBuilderTest {
 
-    CIBug ciBug = new Defects4JBug("Time", "1", "../bugs/Time_1_buggy");
+    CIBug ciBug = new Defects4JBug("Math", "105", "../bugs/Math_105_buggy");
 
     @BeforeEach
     void setUp() {
         ciBug.setBugName(((Defects4JBug) ciBug).getProj() + "_" + ((Defects4JBug) ciBug).getId());
         ciBug.setDerive("defects4j");
-        ciBug.setOriginalFixingCommit("9a62b06be5d0df8e833ff8583398cca386608cac");
-        ciBug.setInducingCommit("8612f9e5b88c1bea933ef9ab1e431f5db3006b48");
-        ((Defects4JBug) ciBug).setOriginalCommit("8d109fe1a999a11b4557536dd96f9210460a5936");
-        ((Defects4JBug) ciBug).setBuggyCommit("8612f9e5b88c1bea933ef9ab1e431f5db3006b48");
+        ciBug.setOriginalFixingCommit("fc21b26f84312e4f75e8b144238618c73a8b091f");
+        ciBug.setInducingCommit("2b57d6595c2c9095dc09bd42ba40fe1c69df0735");
+        ((Defects4JBug) ciBug).setOriginalCommit("edbc57991142918547aa64e921408d1883cd670c");
+        ((Defects4JBug) ciBug).setBuggyCommit("ab1b9500fd4b6898757e9c74dc2eeae692b25146");
     }
 
     @Test

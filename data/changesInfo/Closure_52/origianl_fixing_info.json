@@ -4,14 +4,14 @@
     "name": "root.bean.benchmarks.Defects4JBug"
   },
   "d4jCmd": "/home/liumengjiao/Desktop/defects4j/framework/bin/defects4j",
-  "dataDir": "data/changesInfo/",
+  "dataDir": "/home/liumengjiao/Desktop/CI/Benchmark/data/changesInfo/",
   "properties": {
     "trigger.tests": "com.google.javascript.jscomp.CodePrinterTest::testNumericKeys",
     "test.dir": "test",
     "clz.modified": "com.google.javascript.jscomp.CodeGenerator",
     "src.dir": "src"
   },
-  "timeoutSecond": 300,
+  "timeoutSecond": 100,
   "proj": "Closure",
   "id": "52",
   "workingDir": "../bugs/Closure_52_buggy",
@@ -33,19 +33,19 @@
       "changed_functions": [
         {
           "qualified_names": [
+            "com.google.javascript.jscomp.CodeGenerator:add:[Node n, Context context]:void",
             "com.google.javascript.jscomp.CodeGenerator:addArrayList:[Node firstInList]:void",
-            "com.google.javascript.jscomp.CodeGenerator:strEscape:[String s, char quote, String doublequoteEscape, String singlequoteEscape, String backslashEscape, CharsetEncoder outputCharsetEncoder]:String",
-            "com.google.javascript.jscomp.CodeGenerator:add:[Node n, Context context]:void"
+            "com.google.javascript.jscomp.CodeGenerator:strEscape:[String s, char quote, String doublequoteEscape, String singlequoteEscape, String backslashEscape, CharsetEncoder outputCharsetEncoder]:String"
           ],
           "num": 3
         },
         {
           "qualified_names": [
+            "com.google.javascript.jscomp.CodeGenerator:getSimpleNumber:[String s]:double",
+            "com.google.javascript.jscomp.CodeGenerator:add:[Node n, Context context]:void",
             "com.google.javascript.jscomp.CodeGenerator:strEscape:[String s, char quote, String doublequoteEscape, String singlequoteEscape, String backslashEscape, CharsetEncoder outputCharsetEncoder]:String",
             "com.google.javascript.jscomp.CodeGenerator:addArrayList:[Node firstInList]:void",
-            "com.google.javascript.jscomp.CodeGenerator:getSimpleNumber:[String s]:double",
             "com.google.javascript.jscomp.CodeGenerator:isSimpleNumber:[String s]:boolean",
-            "com.google.javascript.jscomp.CodeGenerator:add:[Node n, Context context]:void",
             "com.google.javascript.jscomp.CodeGenerator:tagAsStrict:[]:void"
           ],
           "num": 6
@@ -447,35 +447,35 @@
       "changed_functions": [
         {
           "qualified_names": [
-            "com.google.javascript.jscomp.NodeUtil:getNumberValue:[Node n]:Double",
-            "com.google.javascript.jscomp.NodeUtil:trimJsWhiteSpace:[String s]:String",
-            "com.google.javascript.jscomp.NodeUtil:getPureBooleanValue:[Node n]:TernaryValue",
-            "com.google.javascript.jscomp.NodeUtil:isStrWhiteSpaceChar:[int c]:TernaryValue",
-            "com.google.javascript.jscomp.NodeUtil:getStringNumberValue:[String rawJsString]:Double",
-            "com.google.javascript.jscomp.NodeUtil:isLiteralValue:[Node n, boolean includeFunctions]:boolean",
             "com.google.javascript.jscomp.NodeUtil:getImpureBooleanValue:[Node n]:TernaryValue",
-            "com.google.javascript.jscomp.NodeUtil:getFunctionBody:[Node fn]:Node",
-            "com.google.javascript.jscomp.NodeUtil:precedence:[int type]:int",
-            "com.google.javascript.jscomp.NodeUtil:getArrayElementStringValue:[Node n]:String",
-            "com.google.javascript.jscomp.NodeUtil:arrayToString:[Node literal]:String",
+            "com.google.javascript.jscomp.NodeUtil:getPureBooleanValue:[Node n]:TernaryValue",
+            "com.google.javascript.jscomp.NodeUtil:isLiteralValue:[Node n, boolean includeFunctions]:boolean",
             "com.google.javascript.jscomp.NodeUtil:isThis:[Node node]:boolean",
-            "com.google.javascript.jscomp.NodeUtil:getStringValue:[Node n]:String"
+            "com.google.javascript.jscomp.NodeUtil:isStrWhiteSpaceChar:[int c]:TernaryValue",
+            "com.google.javascript.jscomp.NodeUtil:getNumberValue:[Node n]:Double",
+            "com.google.javascript.jscomp.NodeUtil:precedence:[int type]:int",
+            "com.google.javascript.jscomp.NodeUtil:getFunctionBody:[Node fn]:Node",
+            "com.google.javascript.jscomp.NodeUtil:getStringValue:[Node n]:String",
+            "com.google.javascript.jscomp.NodeUtil:getStringNumberValue:[String rawJsString]:Double",
+            "com.google.javascript.jscomp.NodeUtil:trimJsWhiteSpace:[String s]:String",
+            "com.google.javascript.jscomp.NodeUtil:getArrayElementStringValue:[Node n]:String",
+            "com.google.javascript.jscomp.NodeUtil:arrayToString:[Node literal]:String"
           ],
           "num": 13
         },
         {
           "qualified_names": [
-            "com.google.javascript.jscomp.NodeUtil:getStringValue:[Node n]:String",
             "com.google.javascript.jscomp.NodeUtil:getPureBooleanValue:[Node n]:TernaryValue",
+            "com.google.javascript.jscomp.NodeUtil:getStringValue:[Node n]:String",
             "com.google.javascript.jscomp.NodeUtil:isLiteralValue:[Node n, boolean includeFunctions]:boolean",
-            "com.google.javascript.jscomp.NodeUtil:getNumberValue:[Node n]:Double",
+            "com.google.javascript.jscomp.NodeUtil:getImpureBooleanValue:[Node n]:TernaryValue",
             "com.google.javascript.jscomp.NodeUtil:getStringNumberValue:[String rawJsString]:Double",
-            "com.google.javascript.jscomp.NodeUtil:trimJsWhiteSpace:[String s]:String",
+            "com.google.javascript.jscomp.NodeUtil:getNumberValue:[Node n]:Double",
+            "com.google.javascript.jscomp.NodeUtil:getArrayElementStringValue:[Node n]:String",
             "com.google.javascript.jscomp.NodeUtil:getStringValue:[double value]:String",
             "com.google.javascript.jscomp.NodeUtil:precedence:[int type]:int",
-            "com.google.javascript.jscomp.NodeUtil:isStrWhiteSpaceChar:[int c]:TernaryValue",
-            "com.google.javascript.jscomp.NodeUtil:getImpureBooleanValue:[Node n]:TernaryValue",
-            "com.google.javascript.jscomp.NodeUtil:getArrayElementStringValue:[Node n]:String"
+            "com.google.javascript.jscomp.NodeUtil:trimJsWhiteSpace:[String s]:String",
+            "com.google.javascript.jscomp.NodeUtil:isStrWhiteSpaceChar:[int c]:TernaryValue"
           ],
           "num": 11
         }
@@ -713,15 +713,15 @@
       "changed_functions": [
         {
           "qualified_names": [
-            "com.google.javascript.jscomp.RenamePrototypes\\$ProcessProperties:processPrototypeParent:[Node n, CompilerInput input]:void",
-            "com.google.javascript.jscomp.RenamePrototypes\\$ProcessProperties:visit:[NodeTraversal t, Node n, Node parent]:void"
+            "com.google.javascript.jscomp.RenamePrototypes\\$ProcessProperties:visit:[NodeTraversal t, Node n, Node parent]:void",
+            "com.google.javascript.jscomp.RenamePrototypes\\$ProcessProperties:processPrototypeParent:[Node n, CompilerInput input]:void"
           ],
           "num": 2
         },
         {
           "qualified_names": [
-            "com.google.javascript.jscomp.RenamePrototypes\\$ProcessProperties:processPrototypeParent:[Node n, CompilerInput input]:void",
-            "com.google.javascript.jscomp.RenamePrototypes\\$ProcessProperties:visit:[NodeTraversal t, Node n, Node parent]:void"
+            "com.google.javascript.jscomp.RenamePrototypes\\$ProcessProperties:visit:[NodeTraversal t, Node n, Node parent]:void",
+            "com.google.javascript.jscomp.RenamePrototypes\\$ProcessProperties:processPrototypeParent:[Node n, CompilerInput input]:void"
           ],
           "num": 2
         }
@@ -853,27 +853,27 @@
       "changed_functions": [
         {
           "qualified_names": [
+            "com.google.javascript.jscomp.parsing.IRFactory\\$TransformDispatcher:processArrayLiteral:[ArrayLiteral literalNode]:Node",
+            "com.google.javascript.jscomp.parsing.IRFactory\\$TransformDispatcher:processName:[Name nameNode, boolean asString]:Node",
+            "com.google.javascript.jscomp.parsing.IRFactory\\$TransformDispatcher:transformAsString:[AstNode n]:Node",
             "com.google.javascript.jscomp.parsing.IRFactory:setSourceInfo:[Node irNode, AstNode node]:void",
             "com.google.javascript.jscomp.parsing.IRFactory\\$TransformDispatcher:processGeneric:[com.google.javascript.jscomp.mozilla.rhino.Node n]:Node",
             "com.google.javascript.jscomp.parsing.IRFactory:transform:[AstNode node]:Node",
-            "com.google.javascript.jscomp.parsing.IRFactory\\$TransformDispatcher:processArrayLiteral:[ArrayLiteral literalNode]:Node",
-            "com.google.javascript.jscomp.parsing.IRFactory\\$TransformDispatcher:processName:[Name nameNode, boolean asString]:Node",
-            "com.google.javascript.jscomp.parsing.IRFactory\\$TransformDispatcher:processName:[Name nameNode]:Node",
-            "com.google.javascript.jscomp.parsing.IRFactory\\$TransformDispatcher:transformAsString:[AstNode n]:Node"
+            "com.google.javascript.jscomp.parsing.IRFactory\\$TransformDispatcher:processName:[Name nameNode]:Node"
           ],
           "num": 7
         },
         {
           "qualified_names": [
-            "com.google.javascript.jscomp.parsing.IRFactory:transformNameAsString:[Name node]:Node",
-            "com.google.javascript.jscomp.parsing.IRFactory\\$TransformDispatcher:transformAsString:[AstNode n]:Node",
-            "com.google.javascript.jscomp.parsing.IRFactory:transformNumberAsString:[NumberLiteral literalNode]:Node",
-            "com.google.javascript.jscomp.parsing.IRFactory:transform:[AstNode node]:Node",
             "com.google.javascript.jscomp.parsing.IRFactory:createJsDocInfoParser:[Comment node]:JsDocInfoParser",
-            "com.google.javascript.jscomp.parsing.IRFactory:getStringValue:[double value]:String",
+            "com.google.javascript.jscomp.parsing.IRFactory:transform:[AstNode node]:Node",
+            "com.google.javascript.jscomp.parsing.IRFactory:transformNumberAsString:[NumberLiteral literalNode]:Node",
+            "com.google.javascript.jscomp.parsing.IRFactory\\$TransformDispatcher:processName:[Name nameNode, boolean asString]:Node",
             "com.google.javascript.jscomp.parsing.IRFactory:setSourceInfo:[Node irNode, AstNode node]:void",
+            "com.google.javascript.jscomp.parsing.IRFactory:transformNameAsString:[Name node]:Node",
             "com.google.javascript.jscomp.parsing.IRFactory\\$TransformDispatcher:processName:[Name nameNode]:Node",
-            "com.google.javascript.jscomp.parsing.IRFactory\\$TransformDispatcher:processName:[Name nameNode, boolean asString]:Node"
+            "com.google.javascript.jscomp.parsing.IRFactory:getStringValue:[double value]:String",
+            "com.google.javascript.jscomp.parsing.IRFactory\\$TransformDispatcher:transformAsString:[AstNode n]:Node"
           ],
           "num": 9
         }
@@ -1069,8 +1069,8 @@
       "changed_functions": [
         {
           "qualified_names": [
-            "com.google.javascript.rhino.Node:propToString:[int propType]:String",
-            "com.google.javascript.rhino.Node:toString:[StringBuilder sb, boolean printSource, boolean printAnnotations, boolean printType]:void"
+            "com.google.javascript.rhino.Node:toString:[StringBuilder sb, boolean printSource, boolean printAnnotations, boolean printType]:void",
+            "com.google.javascript.rhino.Node:propToString:[int propType]:String"
           ],
           "num": 2
         },

@@ -1,5 +1,5 @@
 /*
- * Copyright 2003-2005 The Apache Software Foundation.
+ * Copyright 2003-2004 The Apache Software Foundation.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -15,6 +15,7 @@
  */
 package org.apache.commons.math.analysis;
 
+import java.io.Serializable;
 
 import org.apache.commons.math.ConvergenceException;
 import org.apache.commons.math.FunctionEvaluationException;
@@ -25,7 +26,7 @@ import org.apache.commons.math.FunctionEvaluationException;
  * <p>
  * The function should be continuous but not necessarily smooth.
  *  
- * @version $Revision$ $Date$
+ * @version $Revision: 1.17 $ $Date: 2004/07/17 21:19:39 $
  */
 public class BrentSolver extends UnivariateRealSolverImpl {
     
@@ -82,7 +83,7 @@ public class BrentSolver extends UnivariateRealSolverImpl {
         FunctionEvaluationException {
         
         clearResult();
-        verifyInterval(min, max);
+        verifyBracketing(min, max, f);
         
         // Index 0 is the old approximation for the root.
         // Index 1 is the last calculated approximation  for the root.
@@ -93,14 +94,6 @@ public class BrentSolver extends UnivariateRealSolverImpl {
         double y1;
         y0 = f.value(x0);
         y1 = f.value(x1);
-        
-        // Verify bracketing
-        if (y0 * y1 >= 0) {
-            throw new IllegalArgumentException
-            ("Function values at endpoints do not have different signs." +
-                    "  Endpoints: [" + min + "," + max + "]" + 
-                    "  Values: [" + y0 + "," + y1 + "]");       
-        }
    
         double x2 = x0;
         double y2 = y0;

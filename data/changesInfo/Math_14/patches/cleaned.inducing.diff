@@ -1,8 +1,8 @@
 Only in data/changesInfo//Math_14/cleaned/inducing/: inducing.diff
 Only in data/changesInfo//Math_14/properties/modified_classes/inducing/src: main
 diff -u -r data/changesInfo//Math_14/properties/modified_classes/inducing/src/test/java/org/apache/commons/math3/fitting/PolynomialFitterTest.java data/changesInfo//Math_14/cleaned/inducing/src/test/java/org/apache/commons/math3/fitting/PolynomialFitterTest.java
---- data/changesInfo//Math_14/properties/modified_classes/inducing/src/test/java/org/apache/commons/math3/fitting/PolynomialFitterTest.java	2023-08-25 13:42:37.332799918 +0800
-+++ data/changesInfo//Math_14/cleaned/inducing/src/test/java/org/apache/commons/math3/fitting/PolynomialFitterTest.java	2023-07-25 19:37:44.493000000 +0800
+--- data/changesInfo//Math_14/properties/modified_classes/inducing/src/test/java/org/apache/commons/math3/fitting/PolynomialFitterTest.java	2023-12-27 22:46:20.076097681 -0800
++++ data/changesInfo//Math_14/cleaned/inducing/src/test/java/org/apache/commons/math3/fitting/PolynomialFitterTest.java	2023-07-25 04:37:44.493000000 -0700
 @@ -220,6 +220,33 @@
          checkUnsolvableProblem(new GaussNewtonOptimizer(true, new SimpleVectorValueChecker(1e-15, 1e-15)), false);
      }

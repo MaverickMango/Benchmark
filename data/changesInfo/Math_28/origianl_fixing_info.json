@@ -4,14 +4,14 @@
     "name": "root.bean.benchmarks.Defects4JBug"
   },
   "d4jCmd": "/home/liumengjiao/Desktop/defects4j/framework/bin/defects4j",
-  "dataDir": "data/changesInfo/",
+  "dataDir": "/home/liumengjiao/Desktop/CI/Benchmark/data/changesInfo/",
   "properties": {
     "trigger.tests": "org.apache.commons.math3.optimization.linear.SimplexSolverTest::testMath828Cycle",
     "test.dir": "src/test/java",
     "clz.modified": "org.apache.commons.math3.optimization.linear.SimplexSolver",
     "src.dir": "src/main/java"
   },
-  "timeoutSecond": 300,
+  "timeoutSecond": 100,
   "proj": "Math",
   "id": "28",
   "workingDir": "../bugs/Math_28_buggy",
@@ -41,9 +41,9 @@
         },
         {
           "qualified_names": [
-            "org.apache.commons.math3.optimization.linear.SimplexSolver:doIteration:[final SimplexTableau tableau]:void",
             "org.apache.commons.math3.optimization.linear.SimplexSolver:getPivotColumn:[SimplexTableau tableau]:Integer",
-            "org.apache.commons.math3.optimization.linear.SimplexSolver:getPivotRow:[SimplexTableau tableau, final int col]:Integer"
+            "org.apache.commons.math3.optimization.linear.SimplexSolver:getPivotRow:[SimplexTableau tableau, final int col]:Integer",
+            "org.apache.commons.math3.optimization.linear.SimplexSolver:doIteration:[final SimplexTableau tableau]:void"
           ],
           "num": 3
         }

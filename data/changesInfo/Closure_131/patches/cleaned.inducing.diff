@@ -4,8 +4,8 @@ Only in data/changesInfo//Closure_131/properties/modified_classes/inducing/test/
 Only in data/changesInfo//Closure_131/properties/modified_classes/inducing/test/com/google/javascript/jscomp: CheckGlobalNamesTest.java
 Only in data/changesInfo//Closure_131/properties/modified_classes/inducing/test/com/google/javascript/jscomp: CompilerTest.java
 diff -u -r data/changesInfo//Closure_131/properties/modified_classes/inducing/test/com/google/javascript/jscomp/ConvertToDottedPropertiesTest.java data/changesInfo//Closure_131/cleaned/inducing/test/com/google/javascript/jscomp/ConvertToDottedPropertiesTest.java
---- data/changesInfo//Closure_131/properties/modified_classes/inducing/test/com/google/javascript/jscomp/ConvertToDottedPropertiesTest.java	2023-08-10 20:44:59.732570128 +0800
-+++ data/changesInfo//Closure_131/cleaned/inducing/test/com/google/javascript/jscomp/ConvertToDottedPropertiesTest.java	2023-06-15 21:18:06.077398746 +0800
+--- data/changesInfo//Closure_131/properties/modified_classes/inducing/test/com/google/javascript/jscomp/ConvertToDottedPropertiesTest.java	2023-08-10 05:44:59.732570128 -0700
++++ data/changesInfo//Closure_131/cleaned/inducing/test/com/google/javascript/jscomp/ConvertToDottedPropertiesTest.java	2023-06-15 06:18:06.077398746 -0700
 @@ -54,6 +54,8 @@
      testSame("a[$]");
      testSame("a[p()]");

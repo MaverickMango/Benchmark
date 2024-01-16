@@ -4,14 +4,14 @@
     "name": "root.bean.benchmarks.Defects4JBug"
   },
   "d4jCmd": "/home/liumengjiao/Desktop/defects4j/framework/bin/defects4j",
-  "dataDir": "data/changesInfo/",
+  "dataDir": "/home/liumengjiao/Desktop/CI/Benchmark/data/changesInfo/",
   "properties": {
     "trigger.tests": "org.jsoup.nodes.EntitiesTest::escape,org.jsoup.nodes.EntitiesTest::caseSensitive",
     "test.dir": "src/test/java",
     "clz.modified": "org.jsoup.nodes.Entities",
     "src.dir": "src/main/java"
   },
-  "timeoutSecond": 300,
+  "timeoutSecond": 100,
   "proj": "Jsoup",
   "id": "4",
   "workingDir": "../bugs/Jsoup_4_buggy",
@@ -39,11 +39,11 @@
         },
         {
           "qualified_names": [
-            "org.jsoup.nodes.Document\\$OutputSettings:escapeMode:[]:Entities.EscapeMode",
             "org.jsoup.nodes.Document\\$OutputSettings:charset:[String charset]:OutputSettings",
             "org.jsoup.nodes.Document\\$OutputSettings:escapeMode:[Entities.EscapeMode escapeMode]:OutputSettings",
-            "org.jsoup.nodes.Document\\$OutputSettings:charset:[]:Charset",
             "org.jsoup.nodes.Document\\$OutputSettings:OutputSettings:[]:null",
+            "org.jsoup.nodes.Document\\$OutputSettings:escapeMode:[]:Entities.EscapeMode",
+            "org.jsoup.nodes.Document\\$OutputSettings:charset:[]:Charset",
             "org.jsoup.nodes.Document\\$OutputSettings:charset:[Charset charset]:OutputSettings"
           ],
           "num": 6
@@ -174,8 +174,8 @@
         },
         {
           "qualified_names": [
-            "org.jsoup.nodes.Entities:unescape:[String string]:String",
-            "org.jsoup.nodes.Entities:escape:[String string, CharsetEncoder encoder, EscapeMode escapeMode]:String"
+            "org.jsoup.nodes.Entities:escape:[String string, CharsetEncoder encoder, EscapeMode escapeMode]:String",
+            "org.jsoup.nodes.Entities:unescape:[String string]:String"
           ],
           "num": 2
         }

@@ -1,6 +1,6 @@
 diff -u -r data/changesInfo//Math_24/properties/modified_classes/inducing/src/main/java/org/apache/commons/math3/optimization/univariate/BrentOptimizer.java data/changesInfo//Math_24/cleaned/fixing/src/main/java/org/apache/commons/math3/optimization/univariate/BrentOptimizer.java
---- data/changesInfo//Math_24/properties/modified_classes/inducing/src/main/java/org/apache/commons/math3/optimization/univariate/BrentOptimizer.java	2023-07-25 21:04:57.417141441 +0800
-+++ data/changesInfo//Math_24/cleaned/fixing/src/main/java/org/apache/commons/math3/optimization/univariate/BrentOptimizer.java	2023-07-25 21:06:59.786878687 +0800
+--- data/changesInfo//Math_24/properties/modified_classes/inducing/src/main/java/org/apache/commons/math3/optimization/univariate/BrentOptimizer.java	2023-07-25 06:04:57.417141441 -0700
++++ data/changesInfo//Math_24/cleaned/fixing/src/main/java/org/apache/commons/math3/optimization/univariate/BrentOptimizer.java	2023-07-25 06:06:59.786878687 -0700
 @@ -226,7 +226,7 @@
  
                  if (checker != null) {

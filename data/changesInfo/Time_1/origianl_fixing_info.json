@@ -4,14 +4,14 @@
     "name": "root.bean.benchmarks.Defects4JBug"
   },
   "d4jCmd": "/home/liumengjiao/Desktop/defects4j/framework/bin/defects4j",
-  "dataDir": "data/changesInfo/",
+  "dataDir": "/home/liumengjiao/Desktop/CI/Benchmark/data/changesInfo/",
   "properties": {
     "trigger.tests": "org.joda.time.TestPartial_Constructors::testConstructorEx7_TypeArray_intArray",
     "test.dir": "src/test/java",
     "clz.modified": "org.joda.time.field.UnsupportedDurationField,org.joda.time.Partial",
     "src.dir": "src/main/java"
   },
-  "timeoutSecond": 300,
+  "timeoutSecond": 100,
   "proj": "Time",
   "id": "1",
   "workingDir": "../bugs/Time_1_buggy",
@@ -40,8 +40,8 @@
         },
         {
           "qualified_names": [
-            "org.joda.time.Partial:Partial:[DateTimeFieldType[] types, int[] values, Chronology chronology]:null",
-            "org.joda.time.Partial:with:[DateTimeFieldType fieldType, int value]:Partial"
+            "org.joda.time.Partial:with:[DateTimeFieldType fieldType, int value]:Partial",
+            "org.joda.time.Partial:Partial:[DateTimeFieldType[] types, int[] values, Chronology chronology]:null"
           ],
           "num": 2
         }

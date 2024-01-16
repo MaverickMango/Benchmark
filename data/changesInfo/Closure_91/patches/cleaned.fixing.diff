@@ -1,7 +1,7 @@
 Only in data/changesInfo//Closure_91/properties/modified_classes/inducing/src/com/google/javascript/jscomp: AbstractCommandLineRunner.java
 diff -u -r data/changesInfo//Closure_91/properties/modified_classes/inducing/src/com/google/javascript/jscomp/CheckGlobalThis.java data/changesInfo//Closure_91/cleaned/fixing/src/com/google/javascript/jscomp/CheckGlobalThis.java
---- data/changesInfo//Closure_91/properties/modified_classes/inducing/src/com/google/javascript/jscomp/CheckGlobalThis.java	2023-08-25 13:24:18.983474433 +0800
-+++ data/changesInfo//Closure_91/cleaned/fixing/src/com/google/javascript/jscomp/CheckGlobalThis.java	2023-06-20 20:49:51.109868557 +0800
+--- data/changesInfo//Closure_91/properties/modified_classes/inducing/src/com/google/javascript/jscomp/CheckGlobalThis.java	2023-12-27 22:42:29.324689461 -0800
++++ data/changesInfo//Closure_91/cleaned/fixing/src/com/google/javascript/jscomp/CheckGlobalThis.java	2023-06-20 05:49:51.109868557 -0700
 @@ -106,9 +106,19 @@
              pType == Token.SCRIPT ||
              pType == Token.NAME ||

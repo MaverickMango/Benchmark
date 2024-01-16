@@ -2,8 +2,8 @@ Only in data/changesInfo//Math_2/properties/modified_classes/inducing/src: main
 Only in data/changesInfo//Math_2/properties/modified_classes/inducing/src/test/java/org/apache/commons/math/distribution: AbtractIntegerDistributionTest.java
 Only in data/changesInfo//Math_2/properties/modified_classes/inducing/src/test/java/org/apache/commons/math/distribution: BinomialDistributionTest.java
 diff -u -r data/changesInfo//Math_2/properties/modified_classes/inducing/src/test/java/org/apache/commons/math/distribution/HypergeometricDistributionTest.java data/changesInfo//Math_2/cleaned/inducing/src/test/java/org/apache/commons/math/distribution/HypergeometricDistributionTest.java
---- data/changesInfo//Math_2/properties/modified_classes/inducing/src/test/java/org/apache/commons/math/distribution/HypergeometricDistributionTest.java	2023-08-25 13:40:57.374440610 +0800
-+++ data/changesInfo//Math_2/cleaned/inducing/src/test/java/org/apache/commons/math/distribution/HypergeometricDistributionTest.java	2023-06-20 22:06:04.978690647 +0800
+--- data/changesInfo//Math_2/properties/modified_classes/inducing/src/test/java/org/apache/commons/math/distribution/HypergeometricDistributionTest.java	2023-12-27 22:46:02.851843334 -0800
++++ data/changesInfo//Math_2/cleaned/inducing/src/test/java/org/apache/commons/math/distribution/HypergeometricDistributionTest.java	2023-06-20 07:06:04.978690647 -0700
 @@ -266,4 +266,18 @@
          Assert.assertEquals(dist.getNumericalMean(), 55d * 200d / 3000d, tol);
          Assert.assertEquals(dist.getNumericalVariance(), ( 200d * 55d * (3000d - 200d) * (3000d - 55d) ) / ( (3000d * 3000d * 2999d) ), tol);

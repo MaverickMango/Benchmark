@@ -1,8 +1,8 @@
 Only in data/changesInfo//Closure_115/properties/modified_classes/inducing/: src
 Only in data/changesInfo//Closure_115/properties/modified_classes/inducing/test/com/google/javascript/jscomp: FunctionInjectorTest.java
 diff -u -r data/changesInfo//Closure_115/properties/modified_classes/inducing/test/com/google/javascript/jscomp/InlineFunctionsTest.java data/changesInfo//Closure_115/cleaned/inducing/test/com/google/javascript/jscomp/InlineFunctionsTest.java
---- data/changesInfo//Closure_115/properties/modified_classes/inducing/test/com/google/javascript/jscomp/InlineFunctionsTest.java	2023-08-25 13:32:02.557104031 +0800
-+++ data/changesInfo//Closure_115/cleaned/inducing/test/com/google/javascript/jscomp/InlineFunctionsTest.java	2023-06-13 15:31:46.651000000 +0800
+--- data/changesInfo//Closure_115/properties/modified_classes/inducing/test/com/google/javascript/jscomp/InlineFunctionsTest.java	2023-12-27 22:43:49.061867393 -0800
++++ data/changesInfo//Closure_115/cleaned/inducing/test/com/google/javascript/jscomp/InlineFunctionsTest.java	2023-06-13 00:31:46.651000000 -0700
 @@ -30,14 +30,9 @@
    boolean assumeStrictThis = false;
    boolean assumeMinimumCapture = false;

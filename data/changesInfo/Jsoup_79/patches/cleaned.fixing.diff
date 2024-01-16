@@ -5,8 +5,8 @@ Only in data/changesInfo//Jsoup_79/properties/modified_classes/inducing/src/main
 Only in data/changesInfo//Jsoup_79/properties/modified_classes/inducing/src/main/java/org/jsoup/nodes: DocumentType.java
 Only in data/changesInfo//Jsoup_79/properties/modified_classes/inducing/src/main/java/org/jsoup/nodes: Element.java
 diff -u -r data/changesInfo//Jsoup_79/properties/modified_classes/inducing/src/main/java/org/jsoup/nodes/LeafNode.java data/changesInfo//Jsoup_79/cleaned/fixing/src/main/java/org/jsoup/nodes/LeafNode.java
---- data/changesInfo//Jsoup_79/properties/modified_classes/inducing/src/main/java/org/jsoup/nodes/LeafNode.java	2023-07-26 13:24:52.356201616 +0800
-+++ data/changesInfo//Jsoup_79/cleaned/fixing/src/main/java/org/jsoup/nodes/LeafNode.java	2023-07-27 18:00:46.895023738 +0800
+--- data/changesInfo//Jsoup_79/properties/modified_classes/inducing/src/main/java/org/jsoup/nodes/LeafNode.java	2023-07-25 22:24:52.356201616 -0700
++++ data/changesInfo//Jsoup_79/cleaned/fixing/src/main/java/org/jsoup/nodes/LeafNode.java	2023-07-27 03:00:46.895023738 -0700
 @@ -3,8 +3,10 @@
  import org.jsoup.helper.Validate;
  

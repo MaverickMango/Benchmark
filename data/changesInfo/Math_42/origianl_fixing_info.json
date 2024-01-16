@@ -4,14 +4,14 @@
     "name": "root.bean.benchmarks.Defects4JBug"
   },
   "d4jCmd": "/home/liumengjiao/Desktop/defects4j/framework/bin/defects4j",
-  "dataDir": "data/changesInfo/",
+  "dataDir": "/home/liumengjiao/Desktop/CI/Benchmark/data/changesInfo/",
   "properties": {
     "trigger.tests": "org.apache.commons.math.optimization.linear.SimplexSolverTest::testMath713NegativeVariable",
     "test.dir": "src/test/java",
     "clz.modified": "org.apache.commons.math.optimization.linear.SimplexTableau",
     "src.dir": "src/main/java"
   },
-  "timeoutSecond": 300,
+  "timeoutSecond": 100,
   "proj": "Math",
   "id": "42",
   "workingDir": "../bugs/Math_42_buggy",
@@ -33,19 +33,19 @@
       "changed_functions": [
         {
           "qualified_names": [
-            "org.apache.commons.math.optimization.linear.SimplexTableau:getBasicRow:[final int col]:Integer",
             "org.apache.commons.math.optimization.linear.SimplexTableau:getSolution:[]:RealPointValuePair",
+            "org.apache.commons.math.optimization.linear.SimplexTableau:getBasicRow:[final int col]:Integer",
             "org.apache.commons.math.optimization.linear.SimplexTableau:getRhsOffset:[]:int"
           ],
           "num": 3
         },
         {
           "qualified_names": [
-            "org.apache.commons.math.optimization.linear.SimplexTableau:getNegativeDecisionVariableOffset:[]:int",
             "org.apache.commons.math.optimization.linear.SimplexTableau:getBasicRowForSolution:[final int col]:Integer",
-            "org.apache.commons.math.optimization.linear.SimplexTableau:getSolution:[]:RealPointValuePair",
             "org.apache.commons.math.optimization.linear.SimplexTableau:getBasicRow:[final int col]:Integer",
-            "org.apache.commons.math.optimization.linear.SimplexTableau:getBasicRow:[final int col, boolean ignoreObjectiveRows]:Integer"
+            "org.apache.commons.math.optimization.linear.SimplexTableau:getBasicRow:[final int col, boolean ignoreObjectiveRows]:Integer",
+            "org.apache.commons.math.optimization.linear.SimplexTableau:getNegativeDecisionVariableOffset:[]:int",
+            "org.apache.commons.math.optimization.linear.SimplexTableau:getSolution:[]:RealPointValuePair"
           ],
           "num": 5
         }

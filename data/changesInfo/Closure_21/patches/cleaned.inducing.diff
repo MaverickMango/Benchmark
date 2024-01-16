@@ -1,7 +1,7 @@
 Only in data/changesInfo//Closure_21/properties/modified_classes/inducing/: src
 diff -u -r data/changesInfo//Closure_21/properties/modified_classes/inducing/test/com/google/javascript/jscomp/CheckSideEffectsTest.java data/changesInfo//Closure_21/cleaned/inducing/test/com/google/javascript/jscomp/CheckSideEffectsTest.java
---- data/changesInfo//Closure_21/properties/modified_classes/inducing/test/com/google/javascript/jscomp/CheckSideEffectsTest.java	2023-08-25 13:06:13.658293800 +0800
-+++ data/changesInfo//Closure_21/cleaned/inducing/test/com/google/javascript/jscomp/CheckSideEffectsTest.java	2023-06-13 15:31:38.407000000 +0800
+--- data/changesInfo//Closure_21/properties/modified_classes/inducing/test/com/google/javascript/jscomp/CheckSideEffectsTest.java	2023-12-27 22:36:55.147749351 -0800
++++ data/changesInfo//Closure_21/cleaned/inducing/test/com/google/javascript/jscomp/CheckSideEffectsTest.java	2023-06-13 00:31:38.407000000 -0700
 @@ -68,6 +68,10 @@
           "var a, b; a = 5, JSCOMPILER_PRESERVE(b == 6)", e);
      test("var a, b; a = (5, 6)",

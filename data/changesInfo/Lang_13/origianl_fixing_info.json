@@ -4,14 +4,14 @@
     "name": "root.bean.benchmarks.Defects4JBug"
   },
   "d4jCmd": "/home/liumengjiao/Desktop/defects4j/framework/bin/defects4j",
-  "dataDir": "data/changesInfo/",
+  "dataDir": "/home/liumengjiao/Desktop/CI/Benchmark/data/changesInfo/",
   "properties": {
     "trigger.tests": "org.apache.commons.lang3.SerializationUtilsTest::testPrimitiveTypeClassSerialization",
     "test.dir": "src/test/java",
     "clz.modified": "org.apache.commons.lang3.SerializationUtils",
     "src.dir": "src/main/java"
   },
-  "timeoutSecond": 300,
+  "timeoutSecond": 100,
   "proj": "Lang",
   "id": "13",
   "workingDir": "../bugs/Lang_13_buggy",
@@ -39,8 +39,8 @@
         },
         {
           "qualified_names": [
-            "org.apache.commons.lang3.SerializationUtils\\$ClassLoaderAwareObjectInputStream:ClassLoaderAwareObjectInputStream:[InputStream in, ClassLoader classLoader]:null",
             "org.apache.commons.lang3.SerializationUtils:clone:[T object]:T",
+            "org.apache.commons.lang3.SerializationUtils\\$ClassLoaderAwareObjectInputStream:ClassLoaderAwareObjectInputStream:[InputStream in, ClassLoader classLoader]:null",
             "org.apache.commons.lang3.SerializationUtils\\$ClassLoaderAwareObjectInputStream:resolveClass:[ObjectStreamClass desc]:Class\u003c?\u003e"
           ],
           "num": 3
@@ -302,8 +302,8 @@
       "changed_functions": [
         {
           "qualified_names": [
-            "org.apache.commons.lang3.SerializationUtils\\$ClassLoaderAwareObjectInputStream:resolveClass:[ObjectStreamClass desc]:Class\u003c?\u003e",
-            "org.apache.commons.lang3.SerializationUtils\\$ClassLoaderAwareObjectInputStream:ClassLoaderAwareObjectInputStream:[InputStream in, ClassLoader classLoader]:null"
+            "org.apache.commons.lang3.SerializationUtils\\$ClassLoaderAwareObjectInputStream:ClassLoaderAwareObjectInputStream:[InputStream in, ClassLoader classLoader]:null",
+            "org.apache.commons.lang3.SerializationUtils\\$ClassLoaderAwareObjectInputStream:resolveClass:[ObjectStreamClass desc]:Class\u003c?\u003e"
           ],
           "num": 2
         },

@@ -4,14 +4,14 @@
     "name": "root.bean.benchmarks.Defects4JBug"
   },
   "d4jCmd": "/home/liumengjiao/Desktop/defects4j/framework/bin/defects4j",
-  "dataDir": "data/changesInfo/",
+  "dataDir": "/home/liumengjiao/Desktop/CI/Benchmark/data/changesInfo/",
   "properties": {
     "trigger.tests": "org.apache.commons.math3.genetics.ElitisticListPopulationTest::testChromosomeListConstructorTooLow,org.apache.commons.math3.genetics.ElitisticListPopulationTest::testConstructorTooHigh,org.apache.commons.math3.genetics.ElitisticListPopulationTest::testConstructorTooLow,org.apache.commons.math3.genetics.ElitisticListPopulationTest::testChromosomeListConstructorTooHigh",
     "test.dir": "src/test/java",
     "clz.modified": "org.apache.commons.math3.genetics.ElitisticListPopulation",
     "src.dir": "src/main/java"
   },
-  "timeoutSecond": 300,
+  "timeoutSecond": 100,
   "proj": "Math",
   "id": "35",
   "workingDir": "../bugs/Math_35_buggy",
@@ -39,11 +39,11 @@
         },
         {
           "qualified_names": [
+            "org.apache.commons.math.genetics.Chromosome:getFitness:[]:double",
+            "org.apache.commons.math.genetics.Chromosome:compareTo:[Chromosome another]:int",
             "org.apache.commons.math.genetics.Chromosome:isSame:[Chromosome another]:boolean",
             "org.apache.commons.math.genetics.Chromosome:findSameChromosome:[Population population]:Chromosome",
-            "org.apache.commons.math.genetics.Chromosome:compareTo:[Chromosome another]:int",
-            "org.apache.commons.math.genetics.Chromosome:searchForFitnessUpdate:[Population population]:void",
-            "org.apache.commons.math.genetics.Chromosome:getFitness:[]:double"
+            "org.apache.commons.math.genetics.Chromosome:searchForFitnessUpdate:[Population population]:void"
           ],
           "num": 5
         }
@@ -257,8 +257,8 @@
       "changed_functions": [
         {
           "qualified_names": [
-            "org.apache.commons.math.genetics.ChromosomePair:getSecond:[]:Chromosome",
-            "org.apache.commons.math.genetics.ChromosomePair:ChromosomePair:[Chromosome c1, Chromosome c2]:null"
+            "org.apache.commons.math.genetics.ChromosomePair:ChromosomePair:[Chromosome c1, Chromosome c2]:null",
+            "org.apache.commons.math.genetics.ChromosomePair:getSecond:[]:Chromosome"
           ],
           "num": 2
         },
@@ -475,31 +475,31 @@
       "changed_functions": [
         {
           "qualified_names": [
-            "org.apache.commons.math.genetics.GeneticAlgorithm:getCrossoverRate:[]:double",
             "org.apache.commons.math.genetics.GeneticAlgorithm:getSelectionPolicy:[]:SelectionPolicy",
-            "org.apache.commons.math.genetics.GeneticAlgorithm:getCrossoverPolicy:[]:CrossoverPolicy",
-            "org.apache.commons.math.genetics.GeneticAlgorithm:setCrossoverRate:[double value]:void",
-            "org.apache.commons.math.genetics.GeneticAlgorithm:getMutationPolicy:[]:MutationPolicy",
             "org.apache.commons.math.genetics.GeneticAlgorithm:setMutationPolicy:[MutationPolicy value]:void",
-            "org.apache.commons.math.genetics.GeneticAlgorithm:nextGeneration:[Population current]:Population",
-            "org.apache.commons.math.genetics.GeneticAlgorithm:setSelectionPolicy:[SelectionPolicy value]:void",
             "org.apache.commons.math.genetics.GeneticAlgorithm:getMutationRate:[]:double",
+            "org.apache.commons.math.genetics.GeneticAlgorithm:nextGeneration:[Population current]:Population",
+            "org.apache.commons.math.genetics.GeneticAlgorithm:getMutationPolicy:[]:MutationPolicy",
+            "org.apache.commons.math.genetics.GeneticAlgorithm:setSelectionPolicy:[SelectionPolicy value]:void",
+            "org.apache.commons.math.genetics.GeneticAlgorithm:getCrossoverPolicy:[]:CrossoverPolicy",
             "org.apache.commons.math.genetics.GeneticAlgorithm:setCrossoverPolicy:[CrossoverPolicy value]:void",
-            "org.apache.commons.math.genetics.GeneticAlgorithm:setMutationRate:[double value]:void"
+            "org.apache.commons.math.genetics.GeneticAlgorithm:setCrossoverRate:[double value]:void",
+            "org.apache.commons.math.genetics.GeneticAlgorithm:setMutationRate:[double value]:void",
+            "org.apache.commons.math.genetics.GeneticAlgorithm:getCrossoverRate:[]:double"
           ],
           "num": 11
         },
         {
           "qualified_names": [
-            "org.apache.commons.math.genetics.GeneticAlgorithm:getMutationPolicy:[]:MutationPolicy",
-            "org.apache.commons.math.genetics.GeneticAlgorithm:getMutationRate:[]:double",
-            "org.apache.commons.math.genetics.GeneticAlgorithm:getCrossoverRate:[]:double",
             "org.apache.commons.math.genetics.GeneticAlgorithm:getSelectionPolicy:[]:SelectionPolicy",
-            "org.apache.commons.math.genetics.GeneticAlgorithm:getCrossoverPolicy:[]:CrossoverPolicy",
+            "org.apache.commons.math.genetics.GeneticAlgorithm:setRandomGenerator:[RandomGenerator random]:void",
+            "org.apache.commons.math.genetics.GeneticAlgorithm:getCrossoverRate:[]:double",
+            "org.apache.commons.math.genetics.GeneticAlgorithm:getMutationRate:[]:double",
             "org.apache.commons.math.genetics.GeneticAlgorithm:getRandomGenerator:[]:RandomGenerator",
             "org.apache.commons.math.genetics.GeneticAlgorithm:GeneticAlgorithm:[CrossoverPolicy crossoverPolicy, double crossoverRate, MutationPolicy mutationPolicy, double mutationRate, SelectionPolicy selectionPolicy]:null",
-            "org.apache.commons.math.genetics.GeneticAlgorithm:setRandomGenerator:[RandomGenerator random]:void",
-            "org.apache.commons.math.genetics.GeneticAlgorithm:nextGeneration:[Population current]:Population"
+            "org.apache.commons.math.genetics.GeneticAlgorithm:getMutationPolicy:[]:MutationPolicy",
+            "org.apache.commons.math.genetics.GeneticAlgorithm:nextGeneration:[Population current]:Population",
+            "org.apache.commons.math.genetics.GeneticAlgorithm:getCrossoverPolicy:[]:CrossoverPolicy"
           ],
           "num": 9
         }

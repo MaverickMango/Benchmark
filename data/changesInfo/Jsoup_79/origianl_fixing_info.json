@@ -4,14 +4,14 @@
     "name": "root.bean.benchmarks.Defects4JBug"
   },
   "d4jCmd": "/home/liumengjiao/Desktop/defects4j/framework/bin/defects4j",
-  "dataDir": "data/changesInfo/",
+  "dataDir": "/home/liumengjiao/Desktop/CI/Benchmark/data/changesInfo/",
   "properties": {
     "trigger.tests": "org.jsoup.nodes.TextNodeTest::testLeadNodesHaveNoChildren",
     "test.dir": "src/test/java",
     "clz.modified": "org.jsoup.nodes.LeafNode",
     "src.dir": "src/main/java"
   },
-  "timeoutSecond": 300,
+  "timeoutSecond": 100,
   "proj": "Jsoup",
   "id": "79",
   "workingDir": "../bugs/Jsoup_79_buggy",
@@ -167,8 +167,8 @@
         {
           "qualified_names": [
             "org.jsoup.nodes.Comment:Comment:[String data]:null",
-            "org.jsoup.nodes.Comment:Comment:[String data, String baseUri]:null",
-            "org.jsoup.nodes.Comment:getData:[]:String"
+            "org.jsoup.nodes.Comment:getData:[]:String",
+            "org.jsoup.nodes.Comment:Comment:[String data, String baseUri]:null"
           ],
           "num": 3
         }
@@ -393,8 +393,8 @@
       "changed_functions": [
         {
           "qualified_names": [
-            "org.jsoup.nodes.Document:findFirstElementByTagName:[String tag, Node node]:Element",
             "org.jsoup.nodes.Document:normaliseStructure:[String tag, Element htmlEl]:void",
+            "org.jsoup.nodes.Document:findFirstElementByTagName:[String tag, Node node]:Element",
             "org.jsoup.nodes.Document:ensureMetaCharsetElement:[]:void",
             "org.jsoup.nodes.Document:normaliseTextNodes:[Element element]:void"
           ],
@@ -402,10 +402,10 @@
         },
         {
           "qualified_names": [
-            "org.jsoup.nodes.Document:normaliseStructure:[String tag, Element htmlEl]:void",
             "org.jsoup.nodes.Document:findFirstElementByTagName:[String tag, Node node]:Element",
-            "org.jsoup.nodes.Document:normaliseTextNodes:[Element element]:void",
-            "org.jsoup.nodes.Document:ensureMetaCharsetElement:[]:void"
+            "org.jsoup.nodes.Document:ensureMetaCharsetElement:[]:void",
+            "org.jsoup.nodes.Document:normaliseStructure:[String tag, Element htmlEl]:void",
+            "org.jsoup.nodes.Document:normaliseTextNodes:[Element element]:void"
           ],
           "num": 4
         }
@@ -513,17 +513,17 @@
       "changed_functions": [
         {
           "qualified_names": [
-            "org.jsoup.nodes.DocumentType:DocumentType:[String name, String publicId, String systemId, String baseUri]:null",
-            "org.jsoup.nodes.DocumentType:DocumentType:[String name, String pubSysKey, String publicId, String systemId, String baseUri]:null"
+            "org.jsoup.nodes.DocumentType:DocumentType:[String name, String pubSysKey, String publicId, String systemId, String baseUri]:null",
+            "org.jsoup.nodes.DocumentType:DocumentType:[String name, String publicId, String systemId, String baseUri]:null"
           ],
           "num": 2
         },
         {
           "qualified_names": [
             "org.jsoup.nodes.DocumentType:DocumentType:[String name, String publicId, String systemId]:null",
-            "org.jsoup.nodes.DocumentType:DocumentType:[String name, String publicId, String systemId, String baseUri]:null",
+            "org.jsoup.nodes.DocumentType:DocumentType:[String name, String pubSysKey, String publicId, String systemId, String baseUri]:null",
             "org.jsoup.nodes.DocumentType:setPubSysKey:[String value]:void",
-            "org.jsoup.nodes.DocumentType:DocumentType:[String name, String pubSysKey, String publicId, String systemId, String baseUri]:null"
+            "org.jsoup.nodes.DocumentType:DocumentType:[String name, String publicId, String systemId, String baseUri]:null"
           ],
           "num": 4
         }
@@ -654,43 +654,43 @@
       "changed_functions": [
         {
           "qualified_names": [
+            "org.jsoup.nodes.Element:text:[String text]:Element",
+            "org.jsoup.nodes.Element:id:[]:String",
             "org.jsoup.nodes.Element:Element:[Tag tag, String baseUri]:null",
+            "org.jsoup.nodes.Element:appendText:[String text]:Element",
+            "org.jsoup.nodes.Element:Element:[Tag tag, String baseUri, Attributes attributes]:null",
+            "org.jsoup.nodes.Element:classNames:[Set\u003cString\u003e classNames]:Element",
             "org.jsoup.nodes.Element:attr:[String attributeKey, boolean attributeValue]:Element",
             "org.jsoup.nodes.Element:prependText:[String text]:Element",
-            "org.jsoup.nodes.Element:appendText:[String text]:Element",
             "org.jsoup.nodes.Element:clone:[]:Element",
-            "org.jsoup.nodes.Element:Element:[Tag tag, String baseUri, Attributes attributes]:null",
-            "org.jsoup.nodes.Element:id:[]:String",
-            "org.jsoup.nodes.Element:text:[String text]:Element",
             "org.jsoup.nodes.Element:dataset:[]:Map\u003cString,String\u003e",
-            "org.jsoup.nodes.Element:classNames:[Set\u003cString\u003e classNames]:Element",
-            "org.jsoup.nodes.Element:hasClass:[String className]:boolean",
-            "org.jsoup.nodes.Element:outerHtmlHead:[Appendable accum, int depth, Document.OutputSettings out]:void"
+            "org.jsoup.nodes.Element:outerHtmlHead:[Appendable accum, int depth, Document.OutputSettings out]:void",
+            "org.jsoup.nodes.Element:hasClass:[String className]:boolean"
           ],
           "num": 12
         },
         {
           "qualified_names": [
-            "org.jsoup.nodes.Element\\$NodeList:NodeList:[int initialCapacity]:null",
-            "org.jsoup.nodes.Element:Element:[Tag tag, String baseUri, Attributes attributes]:null",
-            "org.jsoup.nodes.Element:Element:[Tag tag, String baseUri]:null",
-            "org.jsoup.nodes.Element:classNames:[Set\u003cString\u003e classNames]:Element",
-            "org.jsoup.nodes.Element:outerHtmlHead:[Appendable accum, int depth, Document.OutputSettings out]:void",
-            "org.jsoup.nodes.Element:doClone:[Node parent]:Element",
             "org.jsoup.nodes.Element\\$NodeList:onContentsChanged:[]:void",
-            "org.jsoup.nodes.Element:attr:[String attributeKey, boolean attributeValue]:Element",
-            "org.jsoup.nodes.Element:id:[]:String",
-            "org.jsoup.nodes.Element:dataset:[]:Map\u003cString,String\u003e",
             "org.jsoup.nodes.Element:hasClass:[String className]:boolean",
-            "org.jsoup.nodes.Element:text:[String text]:Element",
-            "org.jsoup.nodes.Element:hasAttributes:[]:boolean",
-            "org.jsoup.nodes.Element:doSetBaseUri:[String baseUri]:void",
-            "org.jsoup.nodes.Element:prependText:[String text]:Element",
-            "org.jsoup.nodes.Element:ensureChildNodes:[]:List\u003cNode\u003e",
-            "org.jsoup.nodes.Element:attributes:[]:Attributes",
+            "org.jsoup.nodes.Element:classNames:[Set\u003cString\u003e classNames]:Element",
             "org.jsoup.nodes.Element:baseUri:[]:String",
+            "org.jsoup.nodes.Element:attr:[String attributeKey, boolean attributeValue]:Element",
+            "org.jsoup.nodes.Element:ensureChildNodes:[]:List\u003cNode\u003e",
+            "org.jsoup.nodes.Element:dataset:[]:Map\u003cString,String\u003e",
+            "org.jsoup.nodes.Element:attributes:[]:Attributes",
             "org.jsoup.nodes.Element:childNodeSize:[]:int",
-            "org.jsoup.nodes.Element:appendText:[String text]:Element"
+            "org.jsoup.nodes.Element\\$NodeList:NodeList:[int initialCapacity]:null",
+            "org.jsoup.nodes.Element:doSetBaseUri:[String baseUri]:void",
+            "org.jsoup.nodes.Element:id:[]:String",
+            "org.jsoup.nodes.Element:prependText:[String text]:Element",
+            "org.jsoup.nodes.Element:doClone:[Node parent]:Element",
+            "org.jsoup.nodes.Element:text:[String text]:Element",
+            "org.jsoup.nodes.Element:Element:[Tag tag, String baseUri, Attributes attributes]:null",
+            "org.jsoup.nodes.Element:appendText:[String text]:Element",
+            "org.jsoup.nodes.Element:outerHtmlHead:[Appendable accum, int depth, Document.OutputSettings out]:void",
+            "org.jsoup.nodes.Element:Element:[Tag tag, String baseUri]:null",
+            "org.jsoup.nodes.Element:hasAttributes:[]:boolean"
           ],
           "num": 20
         }
@@ -1010,74 +1010,74 @@
       "changed_functions": [
         {
           "qualified_names": [
-            "org.jsoup.nodes.Node:childNodesCopy:[]:List\u003cNode\u003e",
-            "org.jsoup.nodes.Node:unwrap:[]:Node",
             "org.jsoup.nodes.Node:addChildren:[Node... children]:void",
-            "org.jsoup.nodes.Node:attributes:[]:Attributes",
-            "org.jsoup.nodes.Node:previousSibling:[]:Node",
-            "org.jsoup.nodes.Node\\$NodeList:NodeList:[int initialCapacity]:null",
-            "org.jsoup.nodes.Node:removeChild:[Node out]:void",
-            "org.jsoup.nodes.Node:doClone:[Node parent]:Node",
-            "org.jsoup.nodes.Node:nextSibling:[]:Node",
-            "org.jsoup.nodes.Node:clone:[]:Node",
-            "org.jsoup.nodes.Node:removeAttr:[String attributeKey]:Node",
-            "org.jsoup.nodes.Node\\$NodeList:onContentsChanged:[]:void",
-            "org.jsoup.nodes.Node:ensureChildNodes:[]:void",
-            "org.jsoup.nodes.Node:absUrl:[String attributeKey]:String",
-            "org.jsoup.nodes.Node:attr:[String attributeKey, String attributeValue]:Node",
-            "org.jsoup.nodes.Node:childNodes:[]:List\u003cNode\u003e",
-            "org.jsoup.nodes.Node:Node:[String baseUri]:null",
             "org.jsoup.nodes.Node:baseUri:[]:String",
+            "org.jsoup.nodes.Node:absUrl:[String attributeKey]:String",
+            "org.jsoup.nodes.Node:replaceChild:[Node out, Node in]:void",
+            "org.jsoup.nodes.Node:Node:[]:null",
+            "org.jsoup.nodes.Node:Node:[String baseUri, Attributes attributes]:null",
+            "org.jsoup.nodes.Node:Node:[String baseUri]:null",
+            "org.jsoup.nodes.Node:setBaseUri:[final String baseUri]:void",
+            "org.jsoup.nodes.Node:attributes:[]:Attributes",
+            "org.jsoup.nodes.Node:ownerDocument:[]:Document",
             "org.jsoup.nodes.Node:hasAttr:[String attributeKey]:boolean",
+            "org.jsoup.nodes.Node:unwrap:[]:Node",
+            "org.jsoup.nodes.Node:ensureChildNodes:[]:void",
+            "org.jsoup.nodes.Node:doClone:[Node parent]:Node",
+            "org.jsoup.nodes.Node:clone:[]:Node",
+            "org.jsoup.nodes.Node\\$NodeList:onContentsChanged:[]:void",
+            "org.jsoup.nodes.Node:attr:[String attributeKey]:String",
+            "org.jsoup.nodes.Node:removeChild:[Node out]:void",
             "org.jsoup.nodes.Node:addChildren:[int index, Node... children]:void",
             "org.jsoup.nodes.Node:clearAttributes:[]:Node",
-            "org.jsoup.nodes.Node:childNode:[int index]:Node",
-            "org.jsoup.nodes.Node:Node:[]:null",
             "org.jsoup.nodes.Node:childNodesAsArray:[]:Node[]",
-            "org.jsoup.nodes.Node:Node:[String baseUri, Attributes attributes]:null",
-            "org.jsoup.nodes.Node:childNodeSize:[]:int",
-            "org.jsoup.nodes.Node:attr:[String attributeKey]:String",
-            "org.jsoup.nodes.Node:ownerDocument:[]:Document",
-            "org.jsoup.nodes.Node:siblingNodes:[]:List\u003cNode\u003e",
+            "org.jsoup.nodes.Node\\$NodeList:NodeList:[int initialCapacity]:null",
+            "org.jsoup.nodes.Node:nextSibling:[]:Node",
             "org.jsoup.nodes.Node:addSiblingHtml:[int index, String html]:void",
-            "org.jsoup.nodes.Node:replaceChild:[Node out, Node in]:void",
-            "org.jsoup.nodes.Node:setBaseUri:[final String baseUri]:void"
+            "org.jsoup.nodes.Node:attr:[String attributeKey, String attributeValue]:Node",
+            "org.jsoup.nodes.Node:childNodes:[]:List\u003cNode\u003e",
+            "org.jsoup.nodes.Node:removeAttr:[String attributeKey]:Node",
+            "org.jsoup.nodes.Node:previousSibling:[]:Node",
+            "org.jsoup.nodes.Node:childNode:[int index]:Node",
+            "org.jsoup.nodes.Node:childNodeSize:[]:int",
+            "org.jsoup.nodes.Node:siblingNodes:[]:List\u003cNode\u003e",
+            "org.jsoup.nodes.Node:childNodesCopy:[]:List\u003cNode\u003e"
           ],
           "num": 32
         },
         {
           "qualified_names": [
+            "org.jsoup.nodes.Node:addSiblingHtml:[int index, String html]:void",
+            "org.jsoup.nodes.Node:clearAttributes:[]:Node",
+            "org.jsoup.nodes.Node:childNode:[int index]:Node",
             "org.jsoup.nodes.Node:addChildren:[Node... children]:void",
-            "org.jsoup.nodes.Node:nextSibling:[]:Node",
-            "org.jsoup.nodes.Node:absUrl:[String attributeKey]:String",
+            "org.jsoup.nodes.Node:setBaseUri:[final String baseUri]:void",
             "org.jsoup.nodes.Node:attr:[String attributeKey]:String",
             "org.jsoup.nodes.Node:hasAttr:[String attributeKey]:boolean",
-            "org.jsoup.nodes.Node:childNodes:[]:List\u003cNode\u003e",
-            "org.jsoup.nodes.Node:clearAttributes:[]:Node",
-            "org.jsoup.nodes.Node:hasParent:[]:boolean",
-            "org.jsoup.nodes.Node:addSiblingHtml:[int index, String html]:void",
-            "org.jsoup.nodes.Node:clone:[]:Node",
-            "org.jsoup.nodes.Node:siblingNodes:[]:List\u003cNode\u003e",
-            "org.jsoup.nodes.Node:removeChild:[Node out]:void",
-            "org.jsoup.nodes.Node:reindexChildren:[int start]:void",
-            "org.jsoup.nodes.Node:ensureChildNodes:[]:List\u003cNode\u003e",
-            "org.jsoup.nodes.Node:attributes:[]:Attributes",
-            "org.jsoup.nodes.Node:removeAttr:[String attributeKey]:Node",
-            "org.jsoup.nodes.Node:doSetBaseUri:[String baseUri]:void",
-            "org.jsoup.nodes.Node:unwrap:[]:Node",
-            "org.jsoup.nodes.Node:addChildren:[int index, Node... children]:void",
-            "org.jsoup.nodes.Node:childNode:[int index]:Node",
             "org.jsoup.nodes.Node:replaceChild:[Node out, Node in]:void",
-            "org.jsoup.nodes.Node:previousSibling:[]:Node",
-            "org.jsoup.nodes.Node:setBaseUri:[final String baseUri]:void",
-            "org.jsoup.nodes.Node:attr:[String attributeKey, String attributeValue]:Node",
             "org.jsoup.nodes.Node:childNodesAsArray:[]:Node[]",
+            "org.jsoup.nodes.Node:ensureChildNodes:[]:List\u003cNode\u003e",
+            "org.jsoup.nodes.Node:childNodeSize:[]:int",
+            "org.jsoup.nodes.Node:doSetBaseUri:[String baseUri]:void",
+            "org.jsoup.nodes.Node:attributes:[]:Attributes",
+            "org.jsoup.nodes.Node:attr:[String attributeKey, String attributeValue]:Node",
+            "org.jsoup.nodes.Node:reindexChildren:[int start]:void",
+            "org.jsoup.nodes.Node:clone:[]:Node",
             "org.jsoup.nodes.Node:childNodesCopy:[]:List\u003cNode\u003e",
-            "org.jsoup.nodes.Node:baseUri:[]:String",
-            "org.jsoup.nodes.Node:ownerDocument:[]:Document",
+            "org.jsoup.nodes.Node:nextSibling:[]:Node",
+            "org.jsoup.nodes.Node:removeChild:[Node out]:void",
+            "org.jsoup.nodes.Node:absUrl:[String attributeKey]:String",
+            "org.jsoup.nodes.Node:siblingNodes:[]:List\u003cNode\u003e",
+            "org.jsoup.nodes.Node:removeAttr:[String attributeKey]:Node",
+            "org.jsoup.nodes.Node:childNodes:[]:List\u003cNode\u003e",
+            "org.jsoup.nodes.Node:hasParent:[]:boolean",
+            "org.jsoup.nodes.Node:unwrap:[]:Node",
+            "org.jsoup.nodes.Node:previousSibling:[]:Node",
             "org.jsoup.nodes.Node\\$OuterHtmlVisitor:head:[Node node, int depth]:void",
+            "org.jsoup.nodes.Node:addChildren:[int index, Node... children]:void",
+            "org.jsoup.nodes.Node:baseUri:[]:String",
             "org.jsoup.nodes.Node:hasAttributes:[]:boolean",
-            "org.jsoup.nodes.Node:childNodeSize:[]:int"
+            "org.jsoup.nodes.Node:ownerDocument:[]:Document"
           ],
           "num": 31
         }
@@ -1904,34 +1904,34 @@
       "changed_functions": [
         {
           "qualified_names": [
-            "org.jsoup.nodes.TextNode:removeAttr:[String attributeKey]:Node",
-            "org.jsoup.nodes.TextNode:hasAttr:[String attributeKey]:boolean",
-            "org.jsoup.nodes.TextNode:outerHtmlHead:[Appendable accum, int depth, Document.OutputSettings out]:void",
-            "org.jsoup.nodes.TextNode:createFromEncoded:[String encodedText, String baseUri]:TextNode",
-            "org.jsoup.nodes.TextNode:text:[String text]:TextNode",
-            "org.jsoup.nodes.TextNode:getWholeText:[]:String",
-            "org.jsoup.nodes.TextNode:isBlank:[]:boolean",
             "org.jsoup.nodes.TextNode:ensureAttributes:[]:void",
-            "org.jsoup.nodes.TextNode:attr:[String attributeKey]:String",
-            "org.jsoup.nodes.TextNode:attr:[String attributeKey, String attributeValue]:Node",
-            "org.jsoup.nodes.TextNode:absUrl:[String attributeKey]:String",
             "org.jsoup.nodes.TextNode:TextNode:[String text, String baseUri]:null",
+            "org.jsoup.nodes.TextNode:attr:[String attributeKey, String attributeValue]:Node",
             "org.jsoup.nodes.TextNode:splitText:[int offset]:TextNode",
-            "org.jsoup.nodes.TextNode:attributes:[]:Attributes"
+            "org.jsoup.nodes.TextNode:hasAttr:[String attributeKey]:boolean",
+            "org.jsoup.nodes.TextNode:getWholeText:[]:String",
+            "org.jsoup.nodes.TextNode:outerHtmlHead:[Appendable accum, int depth, Document.OutputSettings out]:void",
+            "org.jsoup.nodes.TextNode:text:[String text]:TextNode",
+            "org.jsoup.nodes.TextNode:isBlank:[]:boolean",
+            "org.jsoup.nodes.TextNode:attr:[String attributeKey]:String",
+            "org.jsoup.nodes.TextNode:removeAttr:[String attributeKey]:Node",
+            "org.jsoup.nodes.TextNode:createFromEncoded:[String encodedText, String baseUri]:TextNode",
+            "org.jsoup.nodes.TextNode:attributes:[]:Attributes",
+            "org.jsoup.nodes.TextNode:absUrl:[String attributeKey]:String"
           ],
           "num": 14
         },
         {
           "qualified_names": [
-            "org.jsoup.nodes.TextNode:splitText:[int offset]:TextNode",
-            "org.jsoup.nodes.TextNode:createFromEncoded:[String encodedText]:TextNode",
-            "org.jsoup.nodes.TextNode:createFromEncoded:[String encodedText, String baseUri]:TextNode",
             "org.jsoup.nodes.TextNode:getWholeText:[]:String",
-            "org.jsoup.nodes.TextNode:outerHtmlHead:[Appendable accum, int depth, Document.OutputSettings out]:void",
-            "org.jsoup.nodes.TextNode:TextNode:[String text, String baseUri]:null",
+            "org.jsoup.nodes.TextNode:createFromEncoded:[String encodedText]:TextNode",
+            "org.jsoup.nodes.TextNode:isBlank:[]:boolean",
+            "org.jsoup.nodes.TextNode:createFromEncoded:[String encodedText, String baseUri]:TextNode",
             "org.jsoup.nodes.TextNode:TextNode:[String text]:null",
             "org.jsoup.nodes.TextNode:text:[String text]:TextNode",
-            "org.jsoup.nodes.TextNode:isBlank:[]:boolean"
+            "org.jsoup.nodes.TextNode:outerHtmlHead:[Appendable accum, int depth, Document.OutputSettings out]:void",
+            "org.jsoup.nodes.TextNode:splitText:[int offset]:TextNode",
+            "org.jsoup.nodes.TextNode:TextNode:[String text, String baseUri]:null"
           ],
           "num": 9
         }
@@ -2536,23 +2536,23 @@
       "changed_functions": [
         {
           "qualified_names": [
-            "org.jsoup.nodes.XmlDeclaration:outerHtmlTail:[Appendable accum, int depth, Document.OutputSettings out]:void",
             "org.jsoup.nodes.XmlDeclaration:XmlDeclaration:[String name, String baseUri, boolean isProcessingInstruction]:null",
-            "org.jsoup.nodes.XmlDeclaration:getWholeDeclaration:[]:String",
+            "org.jsoup.nodes.XmlDeclaration:name:[]:String",
             "org.jsoup.nodes.XmlDeclaration:outerHtmlHead:[Appendable accum, int depth, Document.OutputSettings out]:void",
-            "org.jsoup.nodes.XmlDeclaration:name:[]:String"
+            "org.jsoup.nodes.XmlDeclaration:getWholeDeclaration:[]:String",
+            "org.jsoup.nodes.XmlDeclaration:outerHtmlTail:[Appendable accum, int depth, Document.OutputSettings out]:void"
           ],
           "num": 5
         },
         {
           "qualified_names": [
-            "org.jsoup.nodes.XmlDeclaration:XmlDeclaration:[String name, boolean isProcessingInstruction]:null",
             "org.jsoup.nodes.XmlDeclaration:XmlDeclaration:[String name, String baseUri, boolean isProcessingInstruction]:null",
             "org.jsoup.nodes.XmlDeclaration:outerHtmlTail:[Appendable accum, int depth, Document.OutputSettings out]:void",
+            "org.jsoup.nodes.XmlDeclaration:outerHtmlHead:[Appendable accum, int depth, Document.OutputSettings out]:void",
             "org.jsoup.nodes.XmlDeclaration:getWholeDeclaration:[]:String",
+            "org.jsoup.nodes.XmlDeclaration:XmlDeclaration:[String name, boolean isProcessingInstruction]:null",
             "org.jsoup.nodes.XmlDeclaration:getWholeDeclaration:[Appendable accum, Document.OutputSettings out]:void",
-            "org.jsoup.nodes.XmlDeclaration:name:[]:String",
-            "org.jsoup.nodes.XmlDeclaration:outerHtmlHead:[Appendable accum, int depth, Document.OutputSettings out]:void"
+            "org.jsoup.nodes.XmlDeclaration:name:[]:String"
           ],
           "num": 7
         }
@@ -2863,8 +2863,8 @@
         },
         {
           "qualified_names": [
-            "org.jsoup.parser.HtmlTreeBuilder:insert:[Token.Comment commentToken]:void",
-            "org.jsoup.parser.HtmlTreeBuilder:insert:[Token.Character characterToken]:void"
+            "org.jsoup.parser.HtmlTreeBuilder:insert:[Token.Character characterToken]:void",
+            "org.jsoup.parser.HtmlTreeBuilder:insert:[Token.Comment commentToken]:void"
           ],
           "num": 2
         }
@@ -2965,9 +2965,9 @@
       "changed_functions": [
         {
           "qualified_names": [
+            "org.jsoup.parser.XmlTreeBuilder:insert:[Token.Doctype d]:void",
             "org.jsoup.parser.XmlTreeBuilder:insert:[Token.Character characterToken]:void",
-            "org.jsoup.parser.XmlTreeBuilder:insert:[Token.Comment commentToken]:void",
-            "org.jsoup.parser.XmlTreeBuilder:insert:[Token.Doctype d]:void"
+            "org.jsoup.parser.XmlTreeBuilder:insert:[Token.Comment commentToken]:void"
           ],
           "num": 3
         },
@@ -3143,8 +3143,8 @@
         "org.jsoup.nodes.Node:doClone:[Node parent]:Node",
         "org.jsoup.nodes.TextNode:hasAttr:[String attributeKey]:boolean",
         "org.jsoup.nodes.TextNode:attributes:[]:Attributes",
-        "org.jsoup.nodes.Node\\$NodeList:NodeList:[int initialCapacity]:null",
         "org.jsoup.nodes.Node:Node:[String baseUri, Attributes attributes]:null",
+        "org.jsoup.nodes.Node\\$NodeList:NodeList:[int initialCapacity]:null",
         "org.jsoup.nodes.TextNode:removeAttr:[String attributeKey]:Node",
         "org.jsoup.nodes.Node\\$NodeList:onContentsChanged:[]:void",
         "org.jsoup.nodes.Node:Node:[String baseUri]:null"

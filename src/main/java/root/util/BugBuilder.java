@@ -11,8 +11,8 @@ import root.analysis.CompilationUnitManipulator;
 import root.analysis.MethodManipulator;
 import root.analysis.RefactoringMiner;
 import root.analysis.StringFilter;
-import root.bean.benchmarks.Defects4JBug;
-import root.bean.ci.*;
+import root.entity.benchmarks.Defects4JBug;
+import root.entity.ci.*;
 
 import java.io.File;
 import java.util.*;
@@ -24,53 +24,6 @@ import java.util.stream.Stream;
 public class BugBuilder implements GitAccess {
 
     private static final Logger logger = LoggerFactory.getLogger(BugBuilder.class);
-
-
-    public static void buildD4JBug(CIBug ciBug, String dataDir) {
-        boolean originalFixing = true;
-        if (!(ciBug instanceof Defects4JBug)) {
-            return;
-        }
-        Repository repository = ((Defects4JBug) ciBug).getGitRepository("b");
-        String fixingCommit = ((Defects4JBug) ciBug).getD4JFix();
-        String buggyCommit = ((Defects4JBug) ciBug).getD4JBuggy();
-
-        List<PatchDiff> patchDiffs = new ArrayList<>();
-        Actions actions = new Actions();
-        //2. extract fixing infos
-        logger.info("extract fixing infos...");
-        patchDiffs = new ArrayList<>();
-        actions = new Actions();
-        try {
-            if (!originalFixing) {
-                //do nothing
-            } else {
-                extractChangesFromCommits(repository, fixingCommit, buggyCommit, patchDiffs, actions);
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        ciBug.setFixingChanges(patchDiffs);
-        ciBug.setFixingType(actions);
-
-        //3. failing test
-        logger.info("extract failing test...");
-        List<FailedTest> failedTests = new ArrayList<>();
-        try {
-            String failing_tests = null;
-            if (!originalFixing) {
-                //do nothing
-            } else {
-                failing_tests = ConfigurationProperties.getProperty("defects4j") + "/framework/projects/"
-                        + ((Defects4JBug) ciBug).getProj() + "/trigger_tests/" + ((Defects4JBug) ciBug).getId();
-            }
-            //extract message
-            failedTests = extractFailedTests(failing_tests);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        ciBug.setTriggerTests(failedTests);
-    }
 
     public static void buildCIBug(CIBug ciBug, String dataDir, boolean originalFixing) {
         if (!(ciBug instanceof Defects4JBug)) {
@@ -85,12 +38,12 @@ public class BugBuilder implements GitAccess {
         //0. extract diff file
         logger.info("extract diff file...");
         String inducingDiffFile = dataDir + "/" + ciBug.getBugName() + "/patches/inducing.diff";
-        if (FileUtils.notExists(inducingDiffFile)) {
+        if (true) {//FileUtils.notExists(inducingDiffFile)
             String inducingDiff = gitAccess.diff(repository, inducingCommit);
             FileUtils.writeToFile(inducingDiff, inducingDiffFile, false);
         }
         String fixingDiffFile = dataDir + "/" + ciBug.getBugName() + "/patches/cleaned.fixing.diff";
-        if (FileUtils.notExists(fixingDiffFile)) {//
+        if (true) {//FileUtils.notExists(fixingDiffFile)
             String modified_classes = dataDir + "/" + ciBug.getBugName() + "/properties/modified_classes/inducing/";
             RefactoringMiner miner = new RefactoringMiner();
             Set<ASTDiff> astDiffs = miner.diffAtCommit(repository, inducingCommit);
@@ -107,7 +60,7 @@ public class BugBuilder implements GitAccess {
         //1. extract inducing infos
         logger.info("extract inducing infos...");
         try {
-            extractChangesFromCommits(repository, originalCommit, inducingCommit, patchDiffs, actions);
+            extractChangesFromCommits(((Defects4JBug) ciBug).getWorkingDir(), repository, originalCommit, inducingCommit, patchDiffs, actions);
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -126,7 +79,7 @@ public class BugBuilder implements GitAccess {
                         new File(fixingDir).getAbsolutePath(), patchDiffs, actions,
                         FileUtils.getStrOfIterable(fixingDiff, "\n").toString());
             } else {
-                extractChangesFromCommits(repository, buggyCommit, fixingCommit, patchDiffs, actions);
+                extractChangesFromCommits(((Defects4JBug) ciBug).getWorkingDir(), repository, buggyCommit, fixingCommit, patchDiffs, actions);
             }
         } catch (Exception e) {
             e.printStackTrace();
@@ -187,21 +140,47 @@ public class BugBuilder implements GitAccess {
         }
     }
 
-    public static void extractChangesFromCommits(Repository repository, String srcCommit, String dstCommit, List<PatchDiff> patchDiffs, Actions actions) throws Exception {
+    public static void extractChangesFromCommits(String workingDir, Repository repository, String srcCommit, String dstCommit, List<PatchDiff> patchDiffs, Actions actions) throws Exception {
         //get changed methods
         Set<String> dst_mths = new HashSet<>();
         Set<String> src_mths = new HashSet<>();
 
-        //extract changed files first, except add and delete classes.
+        Set<String> filePathsBefore = new LinkedHashSet<>();
+        Set<String> filePathsCurrent = new LinkedHashSet<>();
+        Map<String, String> renamedFilesHint = new HashMap<>();
         RefactoringMiner gitHistoryRefactoringMiner = new RefactoringMiner();
-        Set<ASTDiff> astDiffs = gitHistoryRefactoringMiner.diffAtCommit(repository, dstCommit);
-        for (ASTDiff astDiff :astDiffs) {
+        gitHistoryRefactoringMiner.fileTreeDiff(repository, gitAccess.getCommit(repository, srcCommit),
+                gitAccess.getCommit(repository, dstCommit), filePathsBefore, filePathsCurrent, renamedFilesHint);
+
+        //extract changed files first, except add and delete classes.
+        Set<String> intersection = new HashSet<>(filePathsBefore);
+        intersection.retainAll(filePathsCurrent);
+        for (String path :intersection) {
             PatchDiff patchDiff = getInfoFromASTDiff(repository, srcCommit, dstCommit,
-                    src_mths, dst_mths, true, astDiff, null);
+                    src_mths, dst_mths, true, path, path);
             if (patchDiff == null)
                 continue;
             patchDiffs.add(patchDiff);
         }
+//        List<String> changedFiles = gitAccess.getFileStatDiffBetweenCommits(workingDir, srcCommit, dstCommit);
+//        for (String m_p :changedFiles) {
+//            String[] split = m_p.split("\t");
+//            String filePath = split[1];
+//            if (split[0].equals("M")) {
+//            }
+//            if (split[0].startsWith("R")) {
+//
+//            }
+//            if (split[0])
+//        }
+//        Set<ASTDiff> astDiffs = gitHistoryRefactoringMiner.diffAtCommit(repository, dstCommit);
+//        for (ASTDiff astDiff :astDiffs) {
+//            PatchDiff patchDiff = getInfoFromASTDiff(repository, srcCommit, dstCommit,
+//                    src_mths, dst_mths, true, astDiff, null);
+//            if (patchDiff == null)
+//                continue;
+//            patchDiffs.add(patchDiff);
+//        }
         //function actions
         Set<String> addSet = (Set<String>) FileUtils.difference(dst_mths, src_mths);
         actions.setAddFunctions(addSet.stream().collect(Collectors.toList()));
@@ -209,11 +188,6 @@ public class BugBuilder implements GitAccess {
         actions.setDeleteFunctions(deleteSet.stream().collect(Collectors.toList()));
 
         //add and delete classes
-        Set<String> filePathsBefore = new LinkedHashSet<>();
-        Set<String> filePathsCurrent = new LinkedHashSet<>();
-        Map<String, String> renamedFilesHint = new HashMap<>();
-        gitHistoryRefactoringMiner.fileTreeDiff(repository, gitAccess.getCommit(repository, srcCommit),
-                gitAccess.getCommit(repository, dstCommit), filePathsBefore, filePathsCurrent, renamedFilesHint);
         addSet = (Set<String>) FileUtils.difference(filePathsCurrent, filePathsBefore);
         List<String> temp = addSet.stream().filter(n -> !n.contains("test") && !n.endsWith("Test.java")).collect(Collectors.toList());
         actions.setAddClasses(temp);
@@ -248,6 +222,74 @@ public class BugBuilder implements GitAccess {
         List<String> temp = new ArrayList<>();
         actions.setAddClasses(temp);
         actions.setDeleteClasses(temp);
+    }
+    private static PatchDiff getInfoFromASTDiff(Repository repository, String srcCommit, String dstCommit,
+                                                Set<String> src_mths, Set<String> dst_mths,
+                                                boolean onlyJavaSource, String srcPath, String dstPath) {
+        //for each changed files, mapping the line number with methods.
+        boolean srcFlag = srcPath.contains("test") || srcPath.endsWith("Test.java");
+        boolean dstFlag = dstPath.contains("test") || dstPath.endsWith("Test.java");
+        boolean flag = srcFlag || dstFlag;
+        if (onlyJavaSource && flag)// filter changes about test
+            return null;
+        Set<Integer> ori_pos = new HashSet<>();
+        Set<Integer> bic_pos = new HashSet<>();
+        StringFilter filter = new StringFilter(StringFilter.NOT_EQUALS);
+        filter.addPattern(dstPath);
+        String inducingDiff = gitAccess.diffWithFilter(repository, srcCommit, dstCommit, filter);
+        List<String> classes = new ArrayList<>();
+        classes.add(0, srcPath);
+        classes.add(1, dstPath);
+        PatchDiff patchDiff = new PatchDiff("UPDATE", classes);
+        patchDiff.setDiff(inducingDiff);
+
+        Set<MethodDeclaration> methods;
+        //extract changed lines by diff file
+        FileUtils.getPositionsOfDiff(List.of(inducingDiff.split("\n")), ori_pos, bic_pos, true);
+        List<NameList> changed = new ArrayList<>();
+        List<Object> temp = Stream.of(ori_pos.toArray()).sorted().collect(Collectors.toList());
+        List<String> names = temp.stream().map(String::valueOf).collect(Collectors.toList());
+        changed.add(0, new NameList(names));
+        temp = Stream.of(bic_pos.toArray()).sorted().collect(Collectors.toList());
+        names = temp.stream().map(String::valueOf).collect(Collectors.toList());
+        changed.add(1, new NameList(names));
+        patchDiff.setChangedLines(changed);
+
+        changed = new ArrayList<>();
+        CompilationUnitManipulator manipulator = new CompilationUnitManipulator(8);
+        String srcContents = gitAccess.getFileAtCommit(repository, srcCommit, srcPath);
+        methods = manipulator.extractMethodByPos(srcContents.toCharArray(), ori_pos, true);
+        MethodManipulator methodManipulator = new MethodManipulator();
+        List<String> mths_sig = methods.stream().map(methodManipulator::getFunctionSig).collect(Collectors.toList());
+        src_mths.addAll(mths_sig);
+        changed.add(0, new NameList(mths_sig));
+        String dstContents = gitAccess.getFileAtCommit(repository, dstCommit, dstPath);
+        methods = manipulator.extractMethodByPos(dstContents.toCharArray(), bic_pos, true);
+        mths_sig = methods.stream().map(methodManipulator::getFunctionSig).collect(Collectors.toList());
+        dst_mths.addAll(mths_sig);
+        changed.add(1, new NameList(mths_sig));
+        patchDiff.setChangedFunctions(changed);
+
+        List<Operation> operations = new ArrayList<>();
+        RefactoringMiner gitHistoryRefactoringMiner = new RefactoringMiner();
+        Set<ASTDiff> astDiffs = gitHistoryRefactoringMiner.diffBetweenContents(repository, srcPath, dstPath, srcContents, dstContents);
+        for (ASTDiff astDiff: astDiffs) {
+            for (Action action : astDiff.editScript.asList()) {
+                Operation operation = new Operation();
+                Tree tree = action.getNode();
+                String name = action.getName();
+                operation.setType(name);
+                if (name.contains("insert")) {
+                    operation.setTo(tree.toString());
+                }
+                if (name.contains("delete")) {
+                    operation.setFrom(tree.toString());
+                }
+                operations.add(operation);
+            }
+        }
+        patchDiff.setOperations(operations);
+        return patchDiff;
     }
 
     private static PatchDiff getInfoFromASTDiff(Repository repository, String srcCommit, String dstCommit,
@@ -368,17 +410,6 @@ public class BugBuilder implements GitAccess {
             }
         }
         return failedTests;
-    }
-    private static Set<String> intersection(Set<String> one, Set<String> another) {
-        if (another == null)
-            return one;
-        Set<String> inter = new HashSet<>();
-        for (String md :one) {
-            if (another.contains(md)) {
-                inter.add(md);
-            }
-        }
-        return inter;
     }
 
     public static void cleanedOneByOne(String bugName, String dataDir) {

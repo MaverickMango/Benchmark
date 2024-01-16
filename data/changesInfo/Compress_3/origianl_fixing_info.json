@@ -4,14 +4,14 @@
     "name": "root.bean.benchmarks.Defects4JBug"
   },
   "d4jCmd": "/home/liumengjiao/Desktop/defects4j/framework/bin/defects4j",
-  "dataDir": "data/changesInfo/",
+  "dataDir": "/home/liumengjiao/Desktop/CI/Benchmark/data/changesInfo/",
   "properties": {
     "trigger.tests": "org.apache.commons.compress.archivers.ArchiveOutputStreamTest::testFinish",
     "test.dir": "src/test/java",
     "clz.modified": "org.apache.commons.compress.archivers.tar.TarArchiveOutputStream",
     "src.dir": "src/main/java"
   },
-  "timeoutSecond": 300,
+  "timeoutSecond": 100,
   "proj": "Compress",
   "id": "3",
   "workingDir": "../bugs/Compress_3_buggy",
@@ -293,15 +293,15 @@
       "changed_functions": [
         {
           "qualified_names": [
-            "org.apache.commons.compress.archivers.ar.ArArchiveOutputStream:close:[]:void",
-            "org.apache.commons.compress.archivers.ar.ArArchiveOutputStream:finish:[]:void"
+            "org.apache.commons.compress.archivers.ar.ArArchiveOutputStream:finish:[]:void",
+            "org.apache.commons.compress.archivers.ar.ArArchiveOutputStream:close:[]:void"
           ],
           "num": 2
         },
         {
           "qualified_names": [
-            "org.apache.commons.compress.archivers.ar.ArArchiveOutputStream:close:[]:void",
-            "org.apache.commons.compress.archivers.ar.ArArchiveOutputStream:finish:[]:void"
+            "org.apache.commons.compress.archivers.ar.ArArchiveOutputStream:finish:[]:void",
+            "org.apache.commons.compress.archivers.ar.ArArchiveOutputStream:close:[]:void"
           ],
           "num": 2
         }
@@ -395,17 +395,17 @@
       "changed_functions": [
         {
           "qualified_names": [
-            "org.apache.commons.compress.archivers.tar.TarArchiveOutputStream:closeArchiveEntry:[]:void",
             "org.apache.commons.compress.archivers.tar.TarArchiveOutputStream:finish:[]:void",
+            "org.apache.commons.compress.archivers.tar.TarArchiveOutputStream:closeArchiveEntry:[]:void",
             "org.apache.commons.compress.archivers.tar.TarArchiveOutputStream:putArchiveEntry:[ArchiveEntry archiveEntry]:void"
           ],
           "num": 3
         },
         {
           "qualified_names": [
+            "org.apache.commons.compress.archivers.tar.TarArchiveOutputStream:putArchiveEntry:[ArchiveEntry archiveEntry]:void",
             "org.apache.commons.compress.archivers.tar.TarArchiveOutputStream:closeArchiveEntry:[]:void",
-            "org.apache.commons.compress.archivers.tar.TarArchiveOutputStream:finish:[]:void",
-            "org.apache.commons.compress.archivers.tar.TarArchiveOutputStream:putArchiveEntry:[ArchiveEntry archiveEntry]:void"
+            "org.apache.commons.compress.archivers.tar.TarArchiveOutputStream:finish:[]:void"
           ],
           "num": 3
         }

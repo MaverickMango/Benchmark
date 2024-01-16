@@ -4,14 +4,14 @@
     "name": "root.bean.benchmarks.Defects4JBug"
   },
   "d4jCmd": "/home/liumengjiao/Desktop/defects4j/framework/bin/defects4j",
-  "dataDir": "data/changesInfo/",
+  "dataDir": "/home/liumengjiao/Desktop/CI/Benchmark/data/changesInfo/",
   "properties": {
     "trigger.tests": "org.jsoup.nodes.ElementTest::testElementSiblingIndexSameContent,org.jsoup.nodes.ElementTest::testGetSiblingsWithDuplicateContent",
     "test.dir": "src/test/java",
     "clz.modified": "org.jsoup.nodes.Element",
     "src.dir": "src/main/java"
   },
-  "timeoutSecond": 300,
+  "timeoutSecond": 100,
   "proj": "Jsoup",
   "id": "43",
   "workingDir": "../bugs/Jsoup_43_buggy",
@@ -91,18 +91,18 @@
       "changed_functions": [
         {
           "qualified_names": [
-            "org.jsoup.nodes.Element:appendChild:[Node child]:Element",
             "org.jsoup.nodes.Element:equals:[Object o]:boolean",
             "org.jsoup.nodes.Element:hashCode:[]:int",
-            "org.jsoup.nodes.Element:clone:[]:Element"
+            "org.jsoup.nodes.Element:clone:[]:Element",
+            "org.jsoup.nodes.Element:appendChild:[Node child]:Element"
           ],
           "num": 4
         },
         {
           "qualified_names": [
+            "org.jsoup.nodes.Element:appendChild:[Node child]:Element",
             "org.jsoup.nodes.Element:equals:[Object o]:boolean",
-            "org.jsoup.nodes.Element:clone:[]:Element",
-            "org.jsoup.nodes.Element:appendChild:[Node child]:Element"
+            "org.jsoup.nodes.Element:clone:[]:Element"
           ],
           "num": 3
         }
@@ -211,19 +211,19 @@
       "changed_functions": [
         {
           "qualified_names": [
+            "org.jsoup.nodes.Node:after:[Node node]:Node",
             "org.jsoup.nodes.Node:after:[String html]:Node",
             "org.jsoup.nodes.Node:equals:[Object o]:boolean",
-            "org.jsoup.nodes.Node:hashCode:[]:int",
-            "org.jsoup.nodes.Node:after:[Node node]:Node"
+            "org.jsoup.nodes.Node:hashCode:[]:int"
           ],
           "num": 4
         },
         {
           "qualified_names": [
-            "org.jsoup.nodes.Node:after:[Node node]:Node",
-            "org.jsoup.nodes.Node:hashCode:[]:int",
             "org.jsoup.nodes.Node:after:[String html]:Node",
-            "org.jsoup.nodes.Node:equals:[Object o]:boolean"
+            "org.jsoup.nodes.Node:equals:[Object o]:boolean",
+            "org.jsoup.nodes.Node:hashCode:[]:int",
+            "org.jsoup.nodes.Node:after:[Node node]:Node"
           ],
           "num": 4
         }
@@ -415,7 +415,21 @@
       "num": 2
     }
   },
-  "trigger_tests": [],
+  "trigger_tests": [
+    {
+      "test_class": "org.jsoup.nodes.ElementTest",
+      "test_function": "testElementSiblingIndexSameContent",
+      "assertion_line": "156",
+      "exception": "junit.framework.AssertionFailedError",
+      "message": ""
+    },
+    {
+      "test_class": "org.jsoup.nodes.ElementTest",
+      "test_function": "testGetSiblingsWithDuplicateContent",
+      "exception": "junit.framework.AssertionFailedError",
+      "message": "expected:\u003c[]is\u003e but was:\u003c[th]is\u003e"
+    }
+  ],
   "fixing_changes": [
     {
       "changed_type": "UPDATE",

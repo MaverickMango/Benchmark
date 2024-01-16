@@ -4,14 +4,14 @@
     "name": "root.bean.benchmarks.Defects4JBug"
   },
   "d4jCmd": "/home/liumengjiao/Desktop/defects4j/framework/bin/defects4j",
-  "dataDir": "data/changesInfo/",
+  "dataDir": "/home/liumengjiao/Desktop/CI/Benchmark/data/changesInfo/",
   "properties": {
     "trigger.tests": "com.google.javascript.jscomp.TypeCheckTest::testBadInterfaceExtendsNonExistentInterfaces",
     "test.dir": "test",
     "clz.modified": "com.google.javascript.jscomp.TypeCheck",
     "src.dir": "src"
   },
-  "timeoutSecond": 300,
+  "timeoutSecond": 100,
   "proj": "Closure",
   "id": "2",
   "workingDir": "../bugs/Closure_2_buggy",
@@ -153,18 +153,18 @@
         {
           "qualified_names": [
             "com.google.javascript.rhino.jstype.ObjectType\\$Property:getType:[]:JSType",
-            "com.google.javascript.rhino.jstype.ObjectType\\$Property:Property:[String name, JSType type, boolean inferred, Node propertyNode]:null",
-            "com.google.javascript.rhino.jstype.ObjectType\\$Property:getNode:[]:Node",
-            "com.google.javascript.rhino.jstype.ObjectType\\$Property:setType:[JSType type]:void",
-            "com.google.javascript.rhino.jstype.ObjectType\\$Property:getJSDocInfo:[]:JSDocInfo",
             "com.google.javascript.rhino.jstype.ObjectType\\$Property:setNode:[Node n]:void",
-            "com.google.javascript.rhino.jstype.ObjectType\\$Property:setJSDocInfo:[JSDocInfo info]:void",
-            "com.google.javascript.rhino.jstype.ObjectType\\$Property:getName:[]:String",
             "com.google.javascript.rhino.jstype.ObjectType\\$Property:getSourceFile:[]:StaticSourceFile",
-            "com.google.javascript.rhino.jstype.ObjectType\\$Property:isFromExterns:[]:boolean",
+            "com.google.javascript.rhino.jstype.ObjectType\\$Property:getName:[]:String",
+            "com.google.javascript.rhino.jstype.ObjectType\\$Property:getNode:[]:Node",
             "com.google.javascript.rhino.jstype.ObjectType\\$Property:isTypeInferred:[]:boolean",
+            "com.google.javascript.rhino.jstype.ObjectType\\$Property:Property:[String name, JSType type, boolean inferred, Node propertyNode]:null",
+            "com.google.javascript.rhino.jstype.ObjectType\\$Property:setJSDocInfo:[JSDocInfo info]:void",
             "com.google.javascript.rhino.jstype.ObjectType\\$Property:getSymbol:[]:Property",
-            "com.google.javascript.rhino.jstype.ObjectType\\$Property:getDeclaration:[]:Property"
+            "com.google.javascript.rhino.jstype.ObjectType\\$Property:getJSDocInfo:[]:JSDocInfo",
+            "com.google.javascript.rhino.jstype.ObjectType\\$Property:getDeclaration:[]:Property",
+            "com.google.javascript.rhino.jstype.ObjectType\\$Property:isFromExterns:[]:boolean",
+            "com.google.javascript.rhino.jstype.ObjectType\\$Property:setType:[JSType type]:void"
           ],
           "num": 13
         },
@@ -460,36 +460,36 @@
       "changed_functions": [
         {
           "qualified_names": [
-            "com.google.javascript.rhino.jstype.PrototypeObjectType:getOwnPropertyNames:[]:Set\u003cString\u003e",
-            "com.google.javascript.rhino.jstype.PrototypeObjectType:PrototypeObjectType:[JSTypeRegistry registry, String className, ObjectType implicitPrototype, boolean nativeType, ImmutableList\u003cString\u003e templateKeys, ImmutableList\u003cJSType\u003e templatizedTypes]:null",
-            "com.google.javascript.rhino.jstype.PrototypeObjectType:hasOwnProperty:[String propertyName]:boolean",
-            "com.google.javascript.rhino.jstype.PrototypeObjectType:setPropertyJSDocInfo:[String propertyName, JSDocInfo info]:void",
-            "com.google.javascript.rhino.jstype.PrototypeObjectType:isPropertyInExterns:[String propertyName]:boolean",
-            "com.google.javascript.rhino.jstype.PrototypeObjectType:getPropertyNode:[String propertyName]:Node",
-            "com.google.javascript.rhino.jstype.PrototypeObjectType:collectPropertyNames:[Set\u003cString\u003e props]:void",
             "com.google.javascript.rhino.jstype.PrototypeObjectType:removeProperty:[String name]:boolean",
-            "com.google.javascript.rhino.jstype.PrototypeObjectType:getPropertiesCount:[]:int",
-            "com.google.javascript.rhino.jstype.PrototypeObjectType:defineProperty:[String name, JSType type, boolean inferred, Node propertyNode]:boolean",
             "com.google.javascript.rhino.jstype.PrototypeObjectType:getOwnPropertyJSDocInfo:[String propertyName]:JSDocInfo",
-            "com.google.javascript.rhino.jstype.PrototypeObjectType:getSlot:[String name]:Property"
+            "com.google.javascript.rhino.jstype.PrototypeObjectType:hasOwnProperty:[String propertyName]:boolean",
+            "com.google.javascript.rhino.jstype.PrototypeObjectType:PrototypeObjectType:[JSTypeRegistry registry, String className, ObjectType implicitPrototype, boolean nativeType, ImmutableList\u003cString\u003e templateKeys, ImmutableList\u003cJSType\u003e templatizedTypes]:null",
+            "com.google.javascript.rhino.jstype.PrototypeObjectType:getPropertiesCount:[]:int",
+            "com.google.javascript.rhino.jstype.PrototypeObjectType:isPropertyInExterns:[String propertyName]:boolean",
+            "com.google.javascript.rhino.jstype.PrototypeObjectType:setPropertyJSDocInfo:[String propertyName, JSDocInfo info]:void",
+            "com.google.javascript.rhino.jstype.PrototypeObjectType:getOwnPropertyNames:[]:Set\u003cString\u003e",
+            "com.google.javascript.rhino.jstype.PrototypeObjectType:getSlot:[String name]:Property",
+            "com.google.javascript.rhino.jstype.PrototypeObjectType:defineProperty:[String name, JSType type, boolean inferred, Node propertyNode]:boolean",
+            "com.google.javascript.rhino.jstype.PrototypeObjectType:collectPropertyNames:[Set\u003cString\u003e props]:void",
+            "com.google.javascript.rhino.jstype.PrototypeObjectType:getPropertyNode:[String propertyName]:Node"
           ],
           "num": 12
         },
         {
           "qualified_names": [
-            "com.google.javascript.rhino.jstype.PrototypeObjectType:getPropertiesCount:[]:int",
+            "com.google.javascript.rhino.jstype.PrototypeObjectType:getSlot:[String name]:Property",
+            "com.google.javascript.rhino.jstype.PrototypeObjectType:collectPropertyNames:[Set\u003cString\u003e props]:void",
+            "com.google.javascript.rhino.jstype.PrototypeObjectType:getPropertyNode:[String propertyName]:Node",
             "com.google.javascript.rhino.jstype.PrototypeObjectType:getOwnPropertyJSDocInfo:[String propertyName]:JSDocInfo",
             "com.google.javascript.rhino.jstype.PrototypeObjectType:PrototypeObjectType:[JSTypeRegistry registry, String className, ObjectType implicitPrototype, boolean nativeType, ImmutableList\u003cString\u003e templateKeys, ImmutableList\u003cJSType\u003e templatizedTypes]:null",
-            "com.google.javascript.rhino.jstype.PrototypeObjectType:setPropertyJSDocInfo:[String propertyName, JSDocInfo info]:void",
-            "com.google.javascript.rhino.jstype.PrototypeObjectType:collectPropertyNames:[Set\u003cString\u003e props]:void",
-            "com.google.javascript.rhino.jstype.PrototypeObjectType:isPropertyInExterns:[String propertyName]:boolean",
-            "com.google.javascript.rhino.jstype.PrototypeObjectType:getPropertyNode:[String propertyName]:Node",
             "com.google.javascript.rhino.jstype.PrototypeObjectType:hasOwnProperty:[String propertyName]:boolean",
+            "com.google.javascript.rhino.jstype.PrototypeObjectType:isPropertyInExterns:[String propertyName]:boolean",
             "com.google.javascript.rhino.jstype.PrototypeObjectType:getOwnPropertyNames:[]:Set\u003cString\u003e",
-            "com.google.javascript.rhino.jstype.PrototypeObjectType:getPropertyMap:[]:PropertyMap",
+            "com.google.javascript.rhino.jstype.PrototypeObjectType:getPropertiesCount:[]:int",
             "com.google.javascript.rhino.jstype.PrototypeObjectType:removeProperty:[String name]:boolean",
-            "com.google.javascript.rhino.jstype.PrototypeObjectType:defineProperty:[String name, JSType type, boolean inferred, Node propertyNode]:boolean",
-            "com.google.javascript.rhino.jstype.PrototypeObjectType:getSlot:[String name]:Property"
+            "com.google.javascript.rhino.jstype.PrototypeObjectType:setPropertyJSDocInfo:[String propertyName, JSDocInfo info]:void",
+            "com.google.javascript.rhino.jstype.PrototypeObjectType:getPropertyMap:[]:PropertyMap",
+            "com.google.javascript.rhino.jstype.PrototypeObjectType:defineProperty:[String name, JSType type, boolean inferred, Node propertyNode]:boolean"
           ],
           "num": 13
         }
@@ -914,8 +914,8 @@
         },
         {
           "qualified_names": [
-            "com.google.javascript.rhino.jstype.ProxyObjectType:getSlot:[String name]:Property",
-            "com.google.javascript.rhino.jstype.ProxyObjectType:getPropertyMap:[]:PropertyMap"
+            "com.google.javascript.rhino.jstype.ProxyObjectType:getPropertyMap:[]:PropertyMap",
+            "com.google.javascript.rhino.jstype.ProxyObjectType:getSlot:[String name]:Property"
           ],
           "num": 2
         }
@@ -980,8 +980,8 @@
         "com.google.javascript.rhino.jstype.ObjectType\\$Property:getType:[]:JSType",
         "com.google.javascript.rhino.jstype.ObjectType\\$Property:Property:[String name, JSType type, boolean inferred, Node propertyNode]:null",
         "com.google.javascript.rhino.jstype.ObjectType\\$Property:getDeclaration:[]:Property",
-        "com.google.javascript.rhino.jstype.ObjectType\\$Property:getNode:[]:Node",
         "com.google.javascript.rhino.jstype.ObjectType\\$Property:getName:[]:String",
+        "com.google.javascript.rhino.jstype.ObjectType\\$Property:getNode:[]:Node",
         "com.google.javascript.rhino.jstype.ObjectType\\$Property:isFromExterns:[]:boolean",
         "com.google.javascript.rhino.jstype.ObjectType\\$Property:isTypeInferred:[]:boolean",
         "com.google.javascript.rhino.jstype.ObjectType\\$Property:getJSDocInfo:[]:JSDocInfo"

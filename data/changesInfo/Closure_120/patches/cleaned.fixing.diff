@@ -1,7 +1,7 @@
 Only in data/changesInfo//Closure_120/properties/modified_classes/inducing/src/com/google/javascript/jscomp: InlineVariables.java
 diff -u -r data/changesInfo//Closure_120/properties/modified_classes/inducing/src/com/google/javascript/jscomp/ReferenceCollectingCallback.java data/changesInfo//Closure_120/cleaned/fixing/src/com/google/javascript/jscomp/ReferenceCollectingCallback.java
---- data/changesInfo//Closure_120/properties/modified_classes/inducing/src/com/google/javascript/jscomp/ReferenceCollectingCallback.java	2023-08-25 13:33:48.691883710 +0800
-+++ data/changesInfo//Closure_120/cleaned/fixing/src/com/google/javascript/jscomp/ReferenceCollectingCallback.java	2023-06-20 21:27:22.560843023 +0800
+--- data/changesInfo//Closure_120/properties/modified_classes/inducing/src/com/google/javascript/jscomp/ReferenceCollectingCallback.java	2023-12-27 22:44:02.246062135 -0800
++++ data/changesInfo//Closure_120/cleaned/fixing/src/com/google/javascript/jscomp/ReferenceCollectingCallback.java	2023-06-20 06:27:22.560843023 -0700
 @@ -428,6 +428,9 @@
        for (BasicBlock block = ref.getBasicBlock();
             block != null; block = block.getParent()) {

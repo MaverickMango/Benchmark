@@ -9,8 +9,8 @@ import root.generation.execution.ExternalTestExecutor;
 import root.generation.execution.ITestExecutor;
 import root.generation.execution.InternalTestExecutor;
 import root.generation.helper.*;
-import root.generation.parser.ASTJavaParser;
-import root.generation.parser.AbstractASTParser;
+import root.parser.ASTJavaParser;
+import root.parser.AbstractASTParser;
 import root.generation.transformation.TransformHelper;
 import root.util.ConfigurationProperties;
 
@@ -115,7 +115,9 @@ public class ProjectPreparation {
         invokeCompilerOptionInitializer(complianceLevel);
         invokeSourceASTParser(testOnly);
         invokeTransformation();
-        invokePatches(patchesDir);
+        if (patchesDir != null) {
+            invokePatches(patchesDir);
+        }
         invokeProgURLsInitializer();
     }
 

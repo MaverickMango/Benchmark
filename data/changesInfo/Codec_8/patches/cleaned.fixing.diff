@@ -1,6 +1,6 @@
 diff -u -r data/changesInfo//Codec_8/properties/modified_classes/inducing/src/java/org/apache/commons/codec/binary/Base64InputStream.java data/changesInfo//Codec_8/cleaned/fixing/src/java/org/apache/commons/codec/binary/Base64InputStream.java
---- data/changesInfo//Codec_8/properties/modified_classes/inducing/src/java/org/apache/commons/codec/binary/Base64InputStream.java	2023-07-26 20:06:54.400141069 +0800
-+++ data/changesInfo//Codec_8/cleaned/fixing/src/java/org/apache/commons/codec/binary/Base64InputStream.java	2023-07-26 20:07:30.500682143 +0800
+--- data/changesInfo//Codec_8/properties/modified_classes/inducing/src/java/org/apache/commons/codec/binary/Base64InputStream.java	2023-07-26 05:06:54.400141069 -0700
++++ data/changesInfo//Codec_8/cleaned/fixing/src/java/org/apache/commons/codec/binary/Base64InputStream.java	2023-07-26 05:07:30.500682143 -0700
 @@ -128,12 +128,6 @@
                  byte[] buf = new byte[doEncode ? 4096 : 8192];
                  int c = in.read(buf);
@@ -15,8 +15,8 @@ diff -u -r data/changesInfo//Codec_8/properties/modified_classes/inducing/src/ja
                      base64.encode(buf, 0, c);
                  } else {
 diff -u -r data/changesInfo//Codec_8/properties/modified_classes/inducing/src/java/org/apache/commons/codec/binary/Base64.java data/changesInfo//Codec_8/cleaned/fixing/src/java/org/apache/commons/codec/binary/Base64.java
---- data/changesInfo//Codec_8/properties/modified_classes/inducing/src/java/org/apache/commons/codec/binary/Base64.java	2023-08-25 14:15:27.851781940 +0800
-+++ data/changesInfo//Codec_8/cleaned/fixing/src/java/org/apache/commons/codec/binary/Base64.java	2023-07-26 20:31:16.391326544 +0800
+--- data/changesInfo//Codec_8/properties/modified_classes/inducing/src/java/org/apache/commons/codec/binary/Base64.java	2023-12-27 22:51:13.677110278 -0800
++++ data/changesInfo//Codec_8/cleaned/fixing/src/java/org/apache/commons/codec/binary/Base64.java	2023-07-26 05:31:16.391326544 -0700
 @@ -273,15 +273,9 @@
      int readResults(byte[] b, int bPos, int bAvail) {
          if (buf != null) {

@@ -1,7 +1,7 @@
 Only in data/changesInfo//Closure_133/properties/modified_classes/inducing/: src
 diff -u -r data/changesInfo//Closure_133/properties/modified_classes/inducing/test/com/google/javascript/jscomp/parsing/JsDocInfoParserTest.java data/changesInfo//Closure_133/cleaned/inducing/test/com/google/javascript/jscomp/parsing/JsDocInfoParserTest.java
---- data/changesInfo//Closure_133/properties/modified_classes/inducing/test/com/google/javascript/jscomp/parsing/JsDocInfoParserTest.java	2023-08-25 13:38:23.190739288 +0800
-+++ data/changesInfo//Closure_133/cleaned/inducing/test/com/google/javascript/jscomp/parsing/JsDocInfoParserTest.java	2023-07-24 19:54:35.826000000 +0800
+--- data/changesInfo//Closure_133/properties/modified_classes/inducing/test/com/google/javascript/jscomp/parsing/JsDocInfoParserTest.java	2023-12-27 22:45:16.995166140 -0800
++++ data/changesInfo//Closure_133/cleaned/inducing/test/com/google/javascript/jscomp/parsing/JsDocInfoParserTest.java	2023-07-24 04:54:35.826000000 -0700
 @@ -2526,51 +2526,6 @@
            "type annotation incompatible with other annotations");
    }

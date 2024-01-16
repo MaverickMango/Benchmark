@@ -4,7 +4,7 @@ import org.eclipse.jgit.lib.Repository;
 import org.eclipse.jgit.revwalk.RevCommit;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import root.bean.benchmarks.Defects4JBug;
+import root.entity.benchmarks.Defects4JBug;
 import root.util.FileUtils;
 import root.util.GitAccess;
 

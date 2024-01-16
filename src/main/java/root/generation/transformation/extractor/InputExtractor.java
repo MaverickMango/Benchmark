@@ -15,7 +15,7 @@ import root.generation.entity.BasicInput;
 import root.generation.entity.Input;
 import root.generation.entity.ObjectInput;
 import root.generation.helper.Helper;
-import root.generation.parser.AbstractASTParser;
+import root.parser.AbstractASTParser;
 import root.util.FileUtils;
 
 import java.util.ArrayList;

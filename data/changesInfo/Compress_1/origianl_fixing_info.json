@@ -4,14 +4,14 @@
     "name": "root.bean.benchmarks.Defects4JBug"
   },
   "d4jCmd": "/home/liumengjiao/Desktop/defects4j/framework/bin/defects4j",
-  "dataDir": "data/changesInfo/",
+  "dataDir": "/home/liumengjiao/Desktop/CI/Benchmark/data/changesInfo/",
   "properties": {
     "trigger.tests": "org.apache.commons.compress.archivers.CpioTestCase::testCpioUnarchive",
     "test.dir": "src/test/java",
     "clz.modified": "org.apache.commons.compress.archivers.cpio.CpioArchiveOutputStream",
     "src.dir": "src/main/java"
   },
-  "timeoutSecond": 300,
+  "timeoutSecond": 100,
   "proj": "Compress",
   "id": "1",
   "workingDir": "../bugs/Compress_1_buggy",
@@ -33,17 +33,17 @@
       "changed_functions": [
         {
           "qualified_names": [
-            "org.apache.commons.compress.archivers.ArchiveStreamFactory:createArchiveInputStream:[final InputStream input]:ArchiveInputStream",
+            "org.apache.commons.compress.archivers.ArchiveStreamFactory:createArchiveInputStream:[final String archiverName, final InputStream in]:ArchiveInputStream",
             "org.apache.commons.compress.archivers.ArchiveStreamFactory:createArchiveOutputStream:[final String archiverName, final OutputStream out]:ArchiveOutputStream",
-            "org.apache.commons.compress.archivers.ArchiveStreamFactory:createArchiveInputStream:[final String archiverName, final InputStream in]:ArchiveInputStream"
+            "org.apache.commons.compress.archivers.ArchiveStreamFactory:createArchiveInputStream:[final InputStream input]:ArchiveInputStream"
           ],
           "num": 3
         },
         {
           "qualified_names": [
-            "org.apache.commons.compress.archivers.ArchiveStreamFactory:createArchiveInputStream:[final InputStream input]:ArchiveInputStream",
             "org.apache.commons.compress.archivers.ArchiveStreamFactory:createArchiveOutputStream:[final String archiverName, final OutputStream out]:ArchiveOutputStream",
-            "org.apache.commons.compress.archivers.ArchiveStreamFactory:createArchiveInputStream:[final String archiverName, final InputStream in]:ArchiveInputStream"
+            "org.apache.commons.compress.archivers.ArchiveStreamFactory:createArchiveInputStream:[final String archiverName, final InputStream in]:ArchiveInputStream",
+            "org.apache.commons.compress.archivers.ArchiveStreamFactory:createArchiveInputStream:[final InputStream input]:ArchiveInputStream"
           ],
           "num": 3
         }
@@ -221,20 +221,20 @@
         {
           "qualified_names": [
             "org.apache.commons.compress.archivers.cpio.CpioArchiveOutputStream:closeArchiveEntry:[]:void",
-            "org.apache.commons.compress.archivers.cpio.CpioArchiveOutputStream:closeEntry:[]:void",
             "org.apache.commons.compress.archivers.cpio.CpioArchiveOutputStream:finish:[]:void",
+            "org.apache.commons.compress.archivers.cpio.CpioArchiveOutputStream:putNextEntry:[final CpioArchiveEntry e]:void",
             "org.apache.commons.compress.archivers.cpio.CpioArchiveOutputStream:close:[]:void",
-            "org.apache.commons.compress.archivers.cpio.CpioArchiveOutputStream:putNextEntry:[final CpioArchiveEntry e]:void"
+            "org.apache.commons.compress.archivers.cpio.CpioArchiveOutputStream:closeEntry:[]:void"
           ],
           "num": 5
         },
         {
           "qualified_names": [
+            "org.apache.commons.compress.archivers.cpio.CpioArchiveOutputStream:closeArchiveEntry:[]:void",
             "org.apache.commons.compress.archivers.cpio.CpioArchiveOutputStream:putNextEntry:[final CpioArchiveEntry e]:void",
-            "org.apache.commons.compress.archivers.cpio.CpioArchiveOutputStream:close:[]:void",
-            "org.apache.commons.compress.archivers.cpio.CpioArchiveOutputStream:putArchiveEntry:[ArchiveEntry entry]:void",
             "org.apache.commons.compress.archivers.cpio.CpioArchiveOutputStream:finish:[]:void",
-            "org.apache.commons.compress.archivers.cpio.CpioArchiveOutputStream:closeArchiveEntry:[]:void"
+            "org.apache.commons.compress.archivers.cpio.CpioArchiveOutputStream:putArchiveEntry:[ArchiveEntry entry]:void",
+            "org.apache.commons.compress.archivers.cpio.CpioArchiveOutputStream:close:[]:void"
           ],
           "num": 5
         }

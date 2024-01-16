@@ -85,3 +85,148 @@ Time: 0.285
 
 OK (235 tests)
 
+cd /home/liumengjiao/Desktop/CI/Benchmark/../bugs/Lang_61_fix && timeout 300000 defects4j test -s /home/liumengjiao/Desktop/CI/Evosuite//Lang_61/Lang/evosuite/0/Lang-61f-evosuite.0.tar.bz >> evosuite-report-clz/test_run_fix.log 2>&1
+
+Test suite archive not found: /home/liumengjiao/Desktop/CI/Evosuite//Lang_61/Lang/evosuite/0/Lang-61f-evosuite.0.tar.bz
+Died at /home/liumengjiao/Desktop/defects4j/framework/bin/d4j/d4j-test line 125.
+Compilation failed in require at /home/liumengjiao/Desktop/defects4j/framework/bin/defects4j line 195.
+cd /home/liumengjiao/Desktop/CI/Benchmark/../bugs/Lang_61_fix && timeout 300000 defects4j test -s /home/liumengjiao/Desktop/CI/Evosuite//Lang_61/Lang/evosuite/1/Lang-61f-evosuite.1.tar.bz >> evosuite-report-clz/test_run_fix.log 2>&1
+
+Test suite archive not found: /home/liumengjiao/Desktop/CI/Evosuite//Lang_61/Lang/evosuite/1/Lang-61f-evosuite.1.tar.bz
+Died at /home/liumengjiao/Desktop/defects4j/framework/bin/d4j/d4j-test line 125.
+Compilation failed in require at /home/liumengjiao/Desktop/defects4j/framework/bin/defects4j line 195.
+cd /home/liumengjiao/Desktop/CI/Benchmark/../bugs/Lang_61_fix && timeout 300000 defects4j test -s /home/liumengjiao/Desktop/CI/Evosuite//Lang_61/Lang/evosuite/2/Lang-61f-evosuite.2.tar.bz >> evosuite-report-clz/test_run_fix.log 2>&1
+
+Test suite archive not found: /home/liumengjiao/Desktop/CI/Evosuite//Lang_61/Lang/evosuite/2/Lang-61f-evosuite.2.tar.bz
+Died at /home/liumengjiao/Desktop/defects4j/framework/bin/d4j/d4j-test line 125.
+Compilation failed in require at /home/liumengjiao/Desktop/defects4j/framework/bin/defects4j line 195.
+cd /home/liumengjiao/Desktop/CI/Benchmark/../bugs/Lang_61_fix && timeout 300000 defects4j test -s /home/liumengjiao/Desktop/CI/Evosuite//Lang_61/Lang/evosuite/3/Lang-61f-evosuite.3.tar.bz >> evosuite-report-clz/test_run_fix.log 2>&1
+
+Test suite archive not found: /home/liumengjiao/Desktop/CI/Evosuite//Lang_61/Lang/evosuite/3/Lang-61f-evosuite.3.tar.bz
+Died at /home/liumengjiao/Desktop/defects4j/framework/bin/d4j/d4j-test line 125.
+Compilation failed in require at /home/liumengjiao/Desktop/defects4j/framework/bin/defects4j line 195.
+cd /home/liumengjiao/Desktop/CI/Benchmark/../bugs/Lang_61_fix && timeout 300000 defects4j test -s /home/liumengjiao/Desktop/CI/Evosuite//Lang_61/Lang/evosuite/4/Lang-61f-evosuite.4.tar.bz >> evosuite-report-clz/test_run_fix.log 2>&1
+
+Test suite archive not found: /home/liumengjiao/Desktop/CI/Evosuite//Lang_61/Lang/evosuite/4/Lang-61f-evosuite.4.tar.bz
+Died at /home/liumengjiao/Desktop/defects4j/framework/bin/d4j/d4j-test line 125.
+Compilation failed in require at /home/liumengjiao/Desktop/defects4j/framework/bin/defects4j line 195.
+cd /home/liumengjiao/Desktop/CI/Benchmark/../bugs/Lang_61_fix && timeout 300000 defects4j test -s /home/liumengjiao/Desktop/CI/Evosuite//Lang_61/Lang/evosuite/5/Lang-61f-evosuite.5.tar.bz >> evosuite-report-clz/test_run_fix.log 2>&1
+
+Test suite archive not found: /home/liumengjiao/Desktop/CI/Evosuite//Lang_61/Lang/evosuite/5/Lang-61f-evosuite.5.tar.bz
+Died at /home/liumengjiao/Desktop/defects4j/framework/bin/d4j/d4j-test line 125.
+Compilation failed in require at /home/liumengjiao/Desktop/defects4j/framework/bin/defects4j line 195.
+cd /home/liumengjiao/Desktop/CI/Benchmark/../bugs/Lang_61_fix && timeout 300000 defects4j test -s /home/liumengjiao/Desktop/CI/Evosuite//Lang_61/Lang/evosuite/6/Lang-61f-evosuite.6.tar.bz >> evosuite-report-clz/test_run_fix.log 2>&1
+
+Test suite archive not found: /home/liumengjiao/Desktop/CI/Evosuite//Lang_61/Lang/evosuite/6/Lang-61f-evosuite.6.tar.bz
+Died at /home/liumengjiao/Desktop/defects4j/framework/bin/d4j/d4j-test line 125.
+Compilation failed in require at /home/liumengjiao/Desktop/defects4j/framework/bin/defects4j line 195.
+cd /home/liumengjiao/Desktop/CI/Benchmark/../bugs/Lang_61_fix && timeout 300000 defects4j test -s /home/liumengjiao/Desktop/CI/Evosuite//Lang_61/Lang/evosuite/7/Lang-61f-evosuite.7.tar.bz >> evosuite-report-clz/test_run_fix.log 2>&1
+
+Test suite archive not found: /home/liumengjiao/Desktop/CI/Evosuite//Lang_61/Lang/evosuite/7/Lang-61f-evosuite.7.tar.bz
+Died at /home/liumengjiao/Desktop/defects4j/framework/bin/d4j/d4j-test line 125.
+Compilation failed in require at /home/liumengjiao/Desktop/defects4j/framework/bin/defects4j line 195.
+cd /home/liumengjiao/Desktop/CI/Benchmark/../bugs/Lang_61_fix && timeout 300000 defects4j test -s /home/liumengjiao/Desktop/CI/Evosuite//Lang_61/Lang/evosuite/8/Lang-61f-evosuite.8.tar.bz >> evosuite-report-clz/test_run_fix.log 2>&1
+
+Test suite archive not found: /home/liumengjiao/Desktop/CI/Evosuite//Lang_61/Lang/evosuite/8/Lang-61f-evosuite.8.tar.bz
+Died at /home/liumengjiao/Desktop/defects4j/framework/bin/d4j/d4j-test line 125.
+Compilation failed in require at /home/liumengjiao/Desktop/defects4j/framework/bin/defects4j line 195.
+cd /home/liumengjiao/Desktop/CI/Benchmark/../bugs/Lang_61_fix && timeout 300000 defects4j test -s /home/liumengjiao/Desktop/CI/Evosuite//Lang_61/Lang/evosuite/9/Lang-61f-evosuite.9.tar.bz >> evosuite-report-clz/test_run_fix.log 2>&1
+
+Test suite archive not found: /home/liumengjiao/Desktop/CI/Evosuite//Lang_61/Lang/evosuite/9/Lang-61f-evosuite.9.tar.bz
+Died at /home/liumengjiao/Desktop/defects4j/framework/bin/d4j/d4j-test line 125.
+Compilation failed in require at /home/liumengjiao/Desktop/defects4j/framework/bin/defects4j line 195.
+cd /home/liumengjiao/Desktop/CI/Benchmark/../bugs/Lang_61_fix && timeout 300000 defects4j test -s /home/liumengjiao/Desktop/CI/Evosuite//Lang_61/Lang/evosuite/10/Lang-61f-evosuite.10.tar.bz >> evosuite-report-clz/test_run_fix.log 2>&1
+
+Test suite archive not found: /home/liumengjiao/Desktop/CI/Evosuite//Lang_61/Lang/evosuite/10/Lang-61f-evosuite.10.tar.bz
+Died at /home/liumengjiao/Desktop/defects4j/framework/bin/d4j/d4j-test line 125.
+Compilation failed in require at /home/liumengjiao/Desktop/defects4j/framework/bin/defects4j line 195.
+cd /home/liumengjiao/Desktop/CI/Benchmark/../bugs/Lang_61_fix && timeout 300000 defects4j test -s /home/liumengjiao/Desktop/CI/Evosuite//Lang_61/Lang/evosuite/11/Lang-61f-evosuite.11.tar.bz >> evosuite-report-clz/test_run_fix.log 2>&1
+
+Test suite archive not found: /home/liumengjiao/Desktop/CI/Evosuite//Lang_61/Lang/evosuite/11/Lang-61f-evosuite.11.tar.bz
+Died at /home/liumengjiao/Desktop/defects4j/framework/bin/d4j/d4j-test line 125.
+Compilation failed in require at /home/liumengjiao/Desktop/defects4j/framework/bin/defects4j line 195.
+cd /home/liumengjiao/Desktop/CI/Benchmark/../bugs/Lang_61_fix && timeout 300000 defects4j test -s /home/liumengjiao/Desktop/CI/Evosuite//Lang_61/Lang/evosuite/12/Lang-61f-evosuite.12.tar.bz >> evosuite-report-clz/test_run_fix.log 2>&1
+
+Test suite archive not found: /home/liumengjiao/Desktop/CI/Evosuite//Lang_61/Lang/evosuite/12/Lang-61f-evosuite.12.tar.bz
+Died at /home/liumengjiao/Desktop/defects4j/framework/bin/d4j/d4j-test line 125.
+Compilation failed in require at /home/liumengjiao/Desktop/defects4j/framework/bin/defects4j line 195.
+cd /home/liumengjiao/Desktop/CI/Benchmark/../bugs/Lang_61_fix && timeout 300000 defects4j test -s /home/liumengjiao/Desktop/CI/Evosuite//Lang_61/Lang/evosuite/13/Lang-61f-evosuite.13.tar.bz >> evosuite-report-clz/test_run_fix.log 2>&1
+
+Test suite archive not found: /home/liumengjiao/Desktop/CI/Evosuite//Lang_61/Lang/evosuite/13/Lang-61f-evosuite.13.tar.bz
+Died at /home/liumengjiao/Desktop/defects4j/framework/bin/d4j/d4j-test line 125.
+Compilation failed in require at /home/liumengjiao/Desktop/defects4j/framework/bin/defects4j line 195.
+cd /home/liumengjiao/Desktop/CI/Benchmark/../bugs/Lang_61_fix && timeout 300000 defects4j test -s /home/liumengjiao/Desktop/CI/Evosuite//Lang_61/Lang/evosuite/14/Lang-61f-evosuite.14.tar.bz >> evosuite-report-clz/test_run_fix.log 2>&1
+
+Test suite archive not found: /home/liumengjiao/Desktop/CI/Evosuite//Lang_61/Lang/evosuite/14/Lang-61f-evosuite.14.tar.bz
+Died at /home/liumengjiao/Desktop/defects4j/framework/bin/d4j/d4j-test line 125.
+Compilation failed in require at /home/liumengjiao/Desktop/defects4j/framework/bin/defects4j line 195.
+cd /home/liumengjiao/Desktop/CI/Benchmark/../bugs/Lang_61_fix && timeout 300000 defects4j test -s /home/liumengjiao/Desktop/CI/Evosuite//Lang_61/Lang/evosuite/15/Lang-61f-evosuite.15.tar.bz >> evosuite-report-clz/test_run_fix.log 2>&1
+
+Test suite archive not found: /home/liumengjiao/Desktop/CI/Evosuite//Lang_61/Lang/evosuite/15/Lang-61f-evosuite.15.tar.bz
+Died at /home/liumengjiao/Desktop/defects4j/framework/bin/d4j/d4j-test line 125.
+Compilation failed in require at /home/liumengjiao/Desktop/defects4j/framework/bin/defects4j line 195.
+cd /home/liumengjiao/Desktop/CI/Benchmark/../bugs/Lang_61_fix && timeout 300000 defects4j test -s /home/liumengjiao/Desktop/CI/Evosuite//Lang_61/Lang/evosuite/16/Lang-61f-evosuite.16.tar.bz >> evosuite-report-clz/test_run_fix.log 2>&1
+
+Test suite archive not found: /home/liumengjiao/Desktop/CI/Evosuite//Lang_61/Lang/evosuite/16/Lang-61f-evosuite.16.tar.bz
+Died at /home/liumengjiao/Desktop/defects4j/framework/bin/d4j/d4j-test line 125.
+Compilation failed in require at /home/liumengjiao/Desktop/defects4j/framework/bin/defects4j line 195.
+cd /home/liumengjiao/Desktop/CI/Benchmark/../bugs/Lang_61_fix && timeout 300000 defects4j test -s /home/liumengjiao/Desktop/CI/Evosuite//Lang_61/Lang/evosuite/17/Lang-61f-evosuite.17.tar.bz >> evosuite-report-clz/test_run_fix.log 2>&1
+
+Test suite archive not found: /home/liumengjiao/Desktop/CI/Evosuite//Lang_61/Lang/evosuite/17/Lang-61f-evosuite.17.tar.bz
+Died at /home/liumengjiao/Desktop/defects4j/framework/bin/d4j/d4j-test line 125.
+Compilation failed in require at /home/liumengjiao/Desktop/defects4j/framework/bin/defects4j line 195.
+cd /home/liumengjiao/Desktop/CI/Benchmark/../bugs/Lang_61_fix && timeout 300000 defects4j test -s /home/liumengjiao/Desktop/CI/Evosuite//Lang_61/Lang/evosuite/18/Lang-61f-evosuite.18.tar.bz >> evosuite-report-clz/test_run_fix.log 2>&1
+
+Test suite archive not found: /home/liumengjiao/Desktop/CI/Evosuite//Lang_61/Lang/evosuite/18/Lang-61f-evosuite.18.tar.bz
+Died at /home/liumengjiao/Desktop/defects4j/framework/bin/d4j/d4j-test line 125.
+Compilation failed in require at /home/liumengjiao/Desktop/defects4j/framework/bin/defects4j line 195.
+cd /home/liumengjiao/Desktop/CI/Benchmark/../bugs/Lang_61_fix && timeout 300000 defects4j test -s /home/liumengjiao/Desktop/CI/Evosuite//Lang_61/Lang/evosuite/19/Lang-61f-evosuite.19.tar.bz >> evosuite-report-clz/test_run_fix.log 2>&1
+
+Test suite archive not found: /home/liumengjiao/Desktop/CI/Evosuite//Lang_61/Lang/evosuite/19/Lang-61f-evosuite.19.tar.bz
+Died at /home/liumengjiao/Desktop/defects4j/framework/bin/d4j/d4j-test line 125.
+Compilation failed in require at /home/liumengjiao/Desktop/defects4j/framework/bin/defects4j line 195.
+cd /home/liumengjiao/Desktop/CI/Benchmark/../bugs/Lang_61_fix && timeout 300000 defects4j test -s /home/liumengjiao/Desktop/CI/Evosuite//Lang_61/Lang/evosuite/20/Lang-61f-evosuite.20.tar.bz >> evosuite-report-clz/test_run_fix.log 2>&1
+
+Test suite archive not found: /home/liumengjiao/Desktop/CI/Evosuite//Lang_61/Lang/evosuite/20/Lang-61f-evosuite.20.tar.bz
+Died at /home/liumengjiao/Desktop/defects4j/framework/bin/d4j/d4j-test line 125.
+Compilation failed in require at /home/liumengjiao/Desktop/defects4j/framework/bin/defects4j line 195.
+cd /home/liumengjiao/Desktop/CI/Benchmark/../bugs/Lang_61_fix && timeout 300000 defects4j test -s /home/liumengjiao/Desktop/CI/Evosuite//Lang_61/Lang/evosuite/21/Lang-61f-evosuite.21.tar.bz >> evosuite-report-clz/test_run_fix.log 2>&1
+
+Test suite archive not found: /home/liumengjiao/Desktop/CI/Evosuite//Lang_61/Lang/evosuite/21/Lang-61f-evosuite.21.tar.bz
+Died at /home/liumengjiao/Desktop/defects4j/framework/bin/d4j/d4j-test line 125.
+Compilation failed in require at /home/liumengjiao/Desktop/defects4j/framework/bin/defects4j line 195.
+cd /home/liumengjiao/Desktop/CI/Benchmark/../bugs/Lang_61_fix && timeout 300000 defects4j test -s /home/liumengjiao/Desktop/CI/Evosuite//Lang_61/Lang/evosuite/22/Lang-61f-evosuite.22.tar.bz >> evosuite-report-clz/test_run_fix.log 2>&1
+
+Test suite archive not found: /home/liumengjiao/Desktop/CI/Evosuite//Lang_61/Lang/evosuite/22/Lang-61f-evosuite.22.tar.bz
+Died at /home/liumengjiao/Desktop/defects4j/framework/bin/d4j/d4j-test line 125.
+Compilation failed in require at /home/liumengjiao/Desktop/defects4j/framework/bin/defects4j line 195.
+cd /home/liumengjiao/Desktop/CI/Benchmark/../bugs/Lang_61_fix && timeout 300000 defects4j test -s /home/liumengjiao/Desktop/CI/Evosuite//Lang_61/Lang/evosuite/23/Lang-61f-evosuite.23.tar.bz >> evosuite-report-clz/test_run_fix.log 2>&1
+
+Test suite archive not found: /home/liumengjiao/Desktop/CI/Evosuite//Lang_61/Lang/evosuite/23/Lang-61f-evosuite.23.tar.bz
+Died at /home/liumengjiao/Desktop/defects4j/framework/bin/d4j/d4j-test line 125.
+Compilation failed in require at /home/liumengjiao/Desktop/defects4j/framework/bin/defects4j line 195.
+cd /home/liumengjiao/Desktop/CI/Benchmark/../bugs/Lang_61_fix && timeout 300000 defects4j test -s /home/liumengjiao/Desktop/CI/Evosuite//Lang_61/Lang/evosuite/24/Lang-61f-evosuite.24.tar.bz >> evosuite-report-clz/test_run_fix.log 2>&1
+
+Test suite archive not found: /home/liumengjiao/Desktop/CI/Evosuite//Lang_61/Lang/evosuite/24/Lang-61f-evosuite.24.tar.bz
+Died at /home/liumengjiao/Desktop/defects4j/framework/bin/d4j/d4j-test line 125.
+Compilation failed in require at /home/liumengjiao/Desktop/defects4j/framework/bin/defects4j line 195.
+cd /home/liumengjiao/Desktop/CI/Benchmark/../bugs/Lang_61_fix && timeout 300000 defects4j test -s /home/liumengjiao/Desktop/CI/Evosuite//Lang_61/Lang/evosuite/25/Lang-61f-evosuite.25.tar.bz >> evosuite-report-clz/test_run_fix.log 2>&1
+
+Test suite archive not found: /home/liumengjiao/Desktop/CI/Evosuite//Lang_61/Lang/evosuite/25/Lang-61f-evosuite.25.tar.bz
+Died at /home/liumengjiao/Desktop/defects4j/framework/bin/d4j/d4j-test line 125.
+Compilation failed in require at /home/liumengjiao/Desktop/defects4j/framework/bin/defects4j line 195.
+cd /home/liumengjiao/Desktop/CI/Benchmark/../bugs/Lang_61_fix && timeout 300000 defects4j test -s /home/liumengjiao/Desktop/CI/Evosuite//Lang_61/Lang/evosuite/26/Lang-61f-evosuite.26.tar.bz >> evosuite-report-clz/test_run_fix.log 2>&1
+
+Test suite archive not found: /home/liumengjiao/Desktop/CI/Evosuite//Lang_61/Lang/evosuite/26/Lang-61f-evosuite.26.tar.bz
+Died at /home/liumengjiao/Desktop/defects4j/framework/bin/d4j/d4j-test line 125.
+Compilation failed in require at /home/liumengjiao/Desktop/defects4j/framework/bin/defects4j line 195.
+cd /home/liumengjiao/Desktop/CI/Benchmark/../bugs/Lang_61_fix && timeout 300000 defects4j test -s /home/liumengjiao/Desktop/CI/Evosuite//Lang_61/Lang/evosuite/27/Lang-61f-evosuite.27.tar.bz >> evosuite-report-clz/test_run_fix.log 2>&1
+
+Test suite archive not found: /home/liumengjiao/Desktop/CI/Evosuite//Lang_61/Lang/evosuite/27/Lang-61f-evosuite.27.tar.bz
+Died at /home/liumengjiao/Desktop/defects4j/framework/bin/d4j/d4j-test line 125.
+Compilation failed in require at /home/liumengjiao/Desktop/defects4j/framework/bin/defects4j line 195.
+cd /home/liumengjiao/Desktop/CI/Benchmark/../bugs/Lang_61_fix && timeout 300000 defects4j test -s /home/liumengjiao/Desktop/CI/Evosuite//Lang_61/Lang/evosuite/28/Lang-61f-evosuite.28.tar.bz >> evosuite-report-clz/test_run_fix.log 2>&1
+
+Test suite archive not found: /home/liumengjiao/Desktop/CI/Evosuite//Lang_61/Lang/evosuite/28/Lang-61f-evosuite.28.tar.bz
+Died at /home/liumengjiao/Desktop/defects4j/framework/bin/d4j/d4j-test line 125.
+Compilation failed in require at /home/liumengjiao/Desktop/defects4j/framework/bin/defects4j line 195.

@@ -4,14 +4,14 @@
     "name": "root.bean.benchmarks.Defects4JBug"
   },
   "d4jCmd": "/home/liumengjiao/Desktop/defects4j/framework/bin/defects4j",
-  "dataDir": "data/changesInfo/",
+  "dataDir": "/home/liumengjiao/Desktop/CI/Benchmark/data/changesInfo/",
   "properties": {
     "trigger.tests": "org.apache.commons.codec.binary.Base64InputStreamTest::testCodec105",
     "test.dir": "src/test",
     "clz.modified": "org.apache.commons.codec.binary.Base64,org.apache.commons.codec.binary.Base64InputStream",
     "src.dir": "src/java"
   },
-  "timeoutSecond": 300,
+  "timeoutSecond": 100,
   "proj": "Codec",
   "id": "8",
   "workingDir": "../bugs/Codec_8_buggy",
@@ -41,19 +41,19 @@
         },
         {
           "qualified_names": [
-            "org.apache.commons.codec.binary.Base64:encode:[byte[] in, int inPos, int inAvail]:void",
-            "org.apache.commons.codec.binary.Base64:decode:[byte[] in, int inPos, int inAvail]:void",
-            "org.apache.commons.codec.binary.Base64:hasData:[]:boolean",
-            "org.apache.commons.codec.binary.Base64:Base64:[int lineLength, byte[] lineSeparator]:null",
-            "org.apache.commons.codec.binary.Base64:avail:[]:int",
-            "org.apache.commons.codec.binary.Base64:setInitialBuffer:[byte[] out, int outPos, int outAvail]:void",
-            "org.apache.commons.codec.binary.Base64:Base64:[]:null",
-            "org.apache.commons.codec.binary.Base64:isBase64:[byte octect]:boolean",
-            "org.apache.commons.codec.binary.Base64:encodeBase64:[byte[] binaryData, boolean isChunked]:byte[]",
             "org.apache.commons.codec.binary.Base64:decodeBase64:[byte[] base64Data]:byte[]",
-            "org.apache.commons.codec.binary.Base64:resizeBuf:[]:void",
             "org.apache.commons.codec.binary.Base64:readResults:[byte[] b, int bPos, int bAvail]:int",
-            "org.apache.commons.codec.binary.Base64:Base64:[int lineLength]:null"
+            "org.apache.commons.codec.binary.Base64:encodeBase64:[byte[] binaryData, boolean isChunked]:byte[]",
+            "org.apache.commons.codec.binary.Base64:encode:[byte[] in, int inPos, int inAvail]:void",
+            "org.apache.commons.codec.binary.Base64:Base64:[int lineLength]:null",
+            "org.apache.commons.codec.binary.Base64:avail:[]:int",
+            "org.apache.commons.codec.binary.Base64:decode:[byte[] in, int inPos, int inAvail]:void",
+            "org.apache.commons.codec.binary.Base64:resizeBuf:[]:void",
+            "org.apache.commons.codec.binary.Base64:isBase64:[byte octect]:boolean",
+            "org.apache.commons.codec.binary.Base64:setInitialBuffer:[byte[] out, int outPos, int outAvail]:void",
+            "org.apache.commons.codec.binary.Base64:Base64:[int lineLength, byte[] lineSeparator]:null",
+            "org.apache.commons.codec.binary.Base64:Base64:[]:null",
+            "org.apache.commons.codec.binary.Base64:hasData:[]:boolean"
           ],
           "num": 13
         }
@@ -2324,20 +2324,20 @@
       "changed_functions": [
         {
           "qualified_names": [
+            "org.apache.commons.codec.binary.Base64:setInitialBuffer:[byte[] out, int outPos, int outAvail]:void",
             "org.apache.commons.codec.binary.Base64:encode:[byte[] pArray]:byte[]",
-            "org.apache.commons.codec.binary.Base64:encode:[byte[] in, int inPos, int inAvail]:void",
-            "org.apache.commons.codec.binary.Base64:decode:[byte[] pArray]:byte[]",
             "org.apache.commons.codec.binary.Base64:readResults:[byte[] b, int bPos, int bAvail]:int",
-            "org.apache.commons.codec.binary.Base64:setInitialBuffer:[byte[] out, int outPos, int outAvail]:void"
+            "org.apache.commons.codec.binary.Base64:encode:[byte[] in, int inPos, int inAvail]:void",
+            "org.apache.commons.codec.binary.Base64:decode:[byte[] pArray]:byte[]"
           ],
           "num": 5
         },
         {
           "qualified_names": [
-            "org.apache.commons.codec.binary.Base64:encode:[byte[] pArray]:byte[]",
-            "org.apache.commons.codec.binary.Base64:readResults:[byte[] b, int bPos, int bAvail]:int",
             "org.apache.commons.codec.binary.Base64:encodeBase64:[byte[] binaryData, boolean isChunked, boolean urlSafe, int maxResultSize]:byte[]",
-            "org.apache.commons.codec.binary.Base64:encode:[byte[] in, int inPos, int inAvail]:void"
+            "org.apache.commons.codec.binary.Base64:readResults:[byte[] b, int bPos, int bAvail]:int",
+            "org.apache.commons.codec.binary.Base64:encode:[byte[] in, int inPos, int inAvail]:void",
+            "org.apache.commons.codec.binary.Base64:encode:[byte[] pArray]:byte[]"
           ],
           "num": 4
         }

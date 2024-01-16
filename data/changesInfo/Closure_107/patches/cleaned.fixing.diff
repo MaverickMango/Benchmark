@@ -1,6 +1,6 @@
 diff -u -r data/changesInfo//Closure_107/properties/modified_classes/inducing/src/com/google/javascript/jscomp/CommandLineRunner.java data/changesInfo//Closure_107/cleaned/fixing/src/com/google/javascript/jscomp/CommandLineRunner.java
---- data/changesInfo//Closure_107/properties/modified_classes/inducing/src/com/google/javascript/jscomp/CommandLineRunner.java	2023-08-25 13:27:32.613538861 +0800
-+++ data/changesInfo//Closure_107/cleaned/fixing/src/com/google/javascript/jscomp/CommandLineRunner.java	2023-07-25 15:26:14.681019022 +0800
+--- data/changesInfo//Closure_107/properties/modified_classes/inducing/src/com/google/javascript/jscomp/CommandLineRunner.java	2023-12-27 22:43:04.537209676 -0800
++++ data/changesInfo//Closure_107/cleaned/fixing/src/com/google/javascript/jscomp/CommandLineRunner.java	2023-07-25 00:26:14.681019022 -0700
 @@ -666,6 +666,7 @@
        // In ADVANCED mode, goog.getMsg is going to be renamed anyway,
        // so we might as well inline it.
@@ -10,8 +10,8 @@ diff -u -r data/changesInfo//Closure_107/properties/modified_classes/inducing/sr
  
      return options;
 diff -u -r data/changesInfo//Closure_107/properties/modified_classes/inducing/src/com/google/javascript/jscomp/JsMessageVisitor.java data/changesInfo//Closure_107/cleaned/fixing/src/com/google/javascript/jscomp/JsMessageVisitor.java
---- data/changesInfo//Closure_107/properties/modified_classes/inducing/src/com/google/javascript/jscomp/JsMessageVisitor.java	2023-07-25 15:42:16.088454884 +0800
-+++ data/changesInfo//Closure_107/cleaned/fixing/src/com/google/javascript/jscomp/JsMessageVisitor.java	2023-07-25 15:43:56.810894694 +0800
+--- data/changesInfo//Closure_107/properties/modified_classes/inducing/src/com/google/javascript/jscomp/JsMessageVisitor.java	2023-07-25 00:42:16.088454884 -0700
++++ data/changesInfo//Closure_107/cleaned/fixing/src/com/google/javascript/jscomp/JsMessageVisitor.java	2023-07-25 00:43:56.810894694 -0700
 @@ -71,6 +71,20 @@
        DiagnosticType.error("JSC_MSG_NOT_INITIALIZED_USING_NEW_SYNTAX",
            "message not initialized using " + MSG_FUNCTION_NAME);

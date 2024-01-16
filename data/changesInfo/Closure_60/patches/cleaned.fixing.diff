@@ -1,7 +1,7 @@
 Only in data/changesInfo//Closure_60/properties/modified_classes/inducing/src/com/google/javascript/jscomp: MarkNoSideEffectCalls.java
 diff -u -r data/changesInfo//Closure_60/properties/modified_classes/inducing/src/com/google/javascript/jscomp/NodeUtil.java data/changesInfo//Closure_60/cleaned/fixing/src/com/google/javascript/jscomp/NodeUtil.java
---- data/changesInfo//Closure_60/properties/modified_classes/inducing/src/com/google/javascript/jscomp/NodeUtil.java	2023-08-25 13:12:38.914605675 +0800
-+++ data/changesInfo//Closure_60/cleaned/fixing/src/com/google/javascript/jscomp/NodeUtil.java	2023-06-27 15:48:02.937625245 +0800
+--- data/changesInfo//Closure_60/properties/modified_classes/inducing/src/com/google/javascript/jscomp/NodeUtil.java	2023-12-27 22:38:49.993447859 -0800
++++ data/changesInfo//Closure_60/cleaned/fixing/src/com/google/javascript/jscomp/NodeUtil.java	2023-06-27 00:48:02.937625245 -0700
 @@ -94,6 +94,8 @@
            return TernaryValue.UNKNOWN;
          }

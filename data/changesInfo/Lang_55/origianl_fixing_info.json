@@ -4,14 +4,14 @@
     "name": "root.bean.benchmarks.Defects4JBug"
   },
   "d4jCmd": "/home/liumengjiao/Desktop/defects4j/framework/bin/defects4j",
-  "dataDir": "data/changesInfo/",
+  "dataDir": "/home/liumengjiao/Desktop/CI/Benchmark/data/changesInfo/",
   "properties": {
     "trigger.tests": "org.apache.commons.lang.time.StopWatchTest::testLang315",
     "test.dir": "src/test",
     "clz.modified": "org.apache.commons.lang.time.StopWatch",
     "src.dir": "src/java"
   },
-  "timeoutSecond": 300,
+  "timeoutSecond": 100,
   "proj": "Lang",
   "id": "55",
   "workingDir": "../bugs/Lang_55_buggy",
@@ -21,7 +21,7 @@
   "bug_name": "Lang_55",
   "derive": "defects4j",
   "original_fixing_commit": "3ef8a796b5ddf87e3e9afec9ba94aac62681b394",
-  "buildFiles_changed": false,
+  "buildFiles_changed": true,
   "regression": true,
   "inducing_changes": [],
   "inducing_type": {

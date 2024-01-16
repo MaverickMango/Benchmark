@@ -4,14 +4,14 @@
     "name": "root.bean.benchmarks.Defects4JBug"
   },
   "d4jCmd": "/home/liumengjiao/Desktop/defects4j/framework/bin/defects4j",
-  "dataDir": "data/changesInfo/",
+  "dataDir": "/home/liumengjiao/Desktop/CI/Benchmark/data/changesInfo/",
   "properties": {
     "trigger.tests": "org.apache.commons.math.complex.ComplexTest::testAtanI,org.apache.commons.math.complex.ComplexTest::testDivideZero",
     "test.dir": "src/test/java",
     "clz.modified": "org.apache.commons.math.complex.Complex",
     "src.dir": "src/main/java"
   },
-  "timeoutSecond": 300,
+  "timeoutSecond": 100,
   "proj": "Math",
   "id": "46",
   "workingDir": "../bugs/Math_46_buggy",
@@ -33,17 +33,17 @@
       "changed_functions": [
         {
           "qualified_names": [
+            "org.apache.commons.math.complex.Complex:Complex:[double real, double imaginary]:null",
             "org.apache.commons.math.complex.Complex:divide:[Complex divisor]:Complex",
-            "org.apache.commons.math.complex.Complex:divide:[double divisor]:Complex",
-            "org.apache.commons.math.complex.Complex:Complex:[double real, double imaginary]:null"
+            "org.apache.commons.math.complex.Complex:divide:[double divisor]:Complex"
           ],
           "num": 3
         },
         {
           "qualified_names": [
             "org.apache.commons.math.complex.Complex:divide:[Complex divisor]:Complex",
-            "org.apache.commons.math.complex.Complex:Complex:[double real, double imaginary]:null",
-            "org.apache.commons.math.complex.Complex:divide:[double divisor]:Complex"
+            "org.apache.commons.math.complex.Complex:divide:[double divisor]:Complex",
+            "org.apache.commons.math.complex.Complex:Complex:[double real, double imaginary]:null"
           ],
           "num": 3
         }
@@ -267,8 +267,8 @@
         },
         {
           "qualified_names": [
-            "org.apache.commons.math.complex.Complex:divide:[Complex divisor]:Complex",
-            "org.apache.commons.math.complex.Complex:divide:[double divisor]:Complex"
+            "org.apache.commons.math.complex.Complex:divide:[double divisor]:Complex",
+            "org.apache.commons.math.complex.Complex:divide:[Complex divisor]:Complex"
           ],
           "num": 2
         }

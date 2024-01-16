@@ -1,8 +1,8 @@
 Only in data/changesInfo//Time_16/properties/modified_classes/inducing/: JodaTime
 Only in data/changesInfo//Time_16/properties/modified_classes/inducing/src: main
 diff -u -r data/changesInfo//Time_16/properties/modified_classes/inducing/src/test/java/org/joda/time/format/TestDateTimeFormatter.java data/changesInfo//Time_16/cleaned/inducing/src/test/java/org/joda/time/format/TestDateTimeFormatter.java
---- data/changesInfo//Time_16/properties/modified_classes/inducing/src/test/java/org/joda/time/format/TestDateTimeFormatter.java	2023-06-12 11:40:49.129696661 +0800
-+++ data/changesInfo//Time_16/cleaned/inducing/src/test/java/org/joda/time/format/TestDateTimeFormatter.java	2023-06-24 18:51:53.657723155 +0800
+--- data/changesInfo//Time_16/properties/modified_classes/inducing/src/test/java/org/joda/time/format/TestDateTimeFormatter.java	2023-06-11 20:40:49.129696661 -0700
++++ data/changesInfo//Time_16/cleaned/inducing/src/test/java/org/joda/time/format/TestDateTimeFormatter.java	2023-06-24 03:51:53.657723155 -0700
 @@ -836,4 +836,53 @@
          assertEquals("2005-10-30 02:00:01.0 EST", fmt.print(outDST_2));
      }

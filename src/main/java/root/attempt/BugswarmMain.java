@@ -1,7 +1,7 @@
 package root.attempt;
 
 import com.google.gson.JsonElement;
-import root.bean.otherdataset.BugswarmShow;
+import root.entity.otherdataset.BugswarmShow;
 import root.util.FileUtils;
 import root.util.GitAccess;
 

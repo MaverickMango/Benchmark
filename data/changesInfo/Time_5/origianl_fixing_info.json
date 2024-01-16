@@ -4,14 +4,14 @@
     "name": "root.bean.benchmarks.Defects4JBug"
   },
   "d4jCmd": "/home/liumengjiao/Desktop/defects4j/framework/bin/defects4j",
-  "dataDir": "data/changesInfo/",
+  "dataDir": "/home/liumengjiao/Desktop/CI/Benchmark/data/changesInfo/",
   "properties": {
     "trigger.tests": "org.joda.time.TestPeriod_Basics::testNormalizedStandard_periodType_months1,org.joda.time.TestPeriod_Basics::testNormalizedStandard_periodType_months2,org.joda.time.TestPeriod_Basics::testNormalizedStandard_periodType_monthsWeeks",
     "test.dir": "src/test/java",
     "clz.modified": "org.joda.time.Period",
     "src.dir": "src/main/java"
   },
-  "timeoutSecond": 300,
+  "timeoutSecond": 100,
   "proj": "Time",
   "id": "5",
   "workingDir": "../bugs/Time_5_buggy",
@@ -33,17 +33,17 @@
       "changed_functions": [
         {
           "qualified_names": [
-            "org.joda.time.Period:minus:[ReadablePeriod period]:Period",
-            "org.joda.time.Period:plus:[ReadablePeriod period]:Period"
+            "org.joda.time.Period:plus:[ReadablePeriod period]:Period",
+            "org.joda.time.Period:minus:[ReadablePeriod period]:Period"
           ],
           "num": 2
         },
         {
           "qualified_names": [
-            "org.joda.time.Period:minus:[ReadablePeriod period]:Period",
-            "org.joda.time.Period:normalizedStandard:[PeriodType type]:Period",
             "org.joda.time.Period:plus:[ReadablePeriod period]:Period",
-            "org.joda.time.Period:normalizedStandard:[]:Period"
+            "org.joda.time.Period:minus:[ReadablePeriod period]:Period",
+            "org.joda.time.Period:normalizedStandard:[]:Period",
+            "org.joda.time.Period:normalizedStandard:[PeriodType type]:Period"
           ],
           "num": 4
         }
