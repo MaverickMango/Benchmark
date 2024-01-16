@@ -1,7 +1,7 @@
 package attempt;
 
 import root.analysis.RefactoringMiner;
-import root.bean.otherdataset.BugFixCommit;
+import root.entity.otherdataset.BugFixCommit;
 import com.github.gumtreediff.actions.model.Action;
 import org.eclipse.jgit.lib.Repository;
 import org.eclipse.jgit.revwalk.RevCommit;

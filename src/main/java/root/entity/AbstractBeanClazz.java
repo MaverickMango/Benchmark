@@ -1,4 +1,4 @@
-package root.bean;
+package root.entity;
 
 import root.util.FileUtils;
 

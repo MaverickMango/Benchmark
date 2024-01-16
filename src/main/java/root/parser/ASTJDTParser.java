@@ -1,4 +1,4 @@
-package root.generation.parser;
+package root.parser;
 
 import org.eclipse.jdt.core.JavaCore;
 import org.eclipse.jdt.core.dom.AST;

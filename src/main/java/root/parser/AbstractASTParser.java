@@ -1,6 +1,5 @@
-package root.generation.parser;
+package root.parser;
 
-import org.eclipse.jdt.core.dom.ASTParser;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 

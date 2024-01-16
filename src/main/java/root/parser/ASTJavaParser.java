@@ -1,4 +1,4 @@
-package root.generation.parser;
+package root.parser;
 
 import java.io.File;
 import java.io.IOException;

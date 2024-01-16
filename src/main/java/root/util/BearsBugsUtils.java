@@ -1,8 +1,8 @@
 package root.util;
 
-import root.bean.otherdataset.BugFixCommit;
-import root.bean.otherdataset.CommitInfo;
-import root.bean.otherdataset.RepositoryInfo;
+import root.entity.otherdataset.BugFixCommit;
+import root.entity.otherdataset.CommitInfo;
+import root.entity.otherdataset.RepositoryInfo;
 
 import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
