@@ -1,12 +1,11 @@
 package root.analysis.groum.extractor;
 
 import root.analysis.groum.entity.AbstractNode;
-import root.analysis.groum.entity.Groum;
+import root.analysis.groum.entity.IntraGroum;
 import root.analysis.groum.entity.InvolvedVar;
 import root.util.FileUtils;
 
-import java.util.Collection;
-import java.util.Set;
+import java.util.*;
 
 public class MergeHelper {
 
@@ -16,7 +15,7 @@ public class MergeHelper {
      * @param Y: another groum
      * @return
      */
-    public static Groum parallelMerge(Groum X, Groum Y) {
+    public static IntraGroum parallelMerge(IntraGroum X, IntraGroum Y) {
         if (X == Y || X == null) {
             return Y;
         }
@@ -33,13 +32,15 @@ public class MergeHelper {
      * @param Y: a tail groum
      * @return
      */
-    public static Groum sequentialMerge(Groum X, Groum Y) {
+    public static IntraGroum sequentialMerge(IntraGroum X, IntraGroum Y) {
         if (X == Y || X == null) {
             return Y;
         }
         if (Y != null) {
-            for (AbstractNode head : X.getNodes()) {
-                for (AbstractNode tail : Y.getNodes()) {
+            List<AbstractNode> sinkNodes = X.getSinkNodes();
+            List<AbstractNode> sourceNodes = Y.getSourceNodes();
+            for (AbstractNode head : sinkNodes) {
+                for (AbstractNode tail : sourceNodes) {
                     linkNodesWithDataDependency(head, tail);
                 }
             }
@@ -47,20 +48,43 @@ public class MergeHelper {
         return parallelMerge(X, Y);
     }
 
-    public static void linkNodesWithDataDependency(AbstractNode head, AbstractNode tail) {
+    private static void linkNodesWithDataDependency(AbstractNode head, AbstractNode tail) {
         if (head.equals(tail)) {
             //todo:使用 + 压缩，而不是直接省略
             return;
         }
-        Set<InvolvedVar> x = head.getAttributes();
-        Set<InvolvedVar> y = tail.getAttributes();
-        Collection<?> difference = FileUtils.difference(x, y);
         //顺联结构的头尾节点应该具有数据依赖
-        // 如果head和tail具有相同的involved变量，则两者具有数据依赖
-        if (head.isSinkNode() && tail.isSourceNode() ||
-                !difference.isEmpty()) {
-            head.addToEdges(tail);
-            tail.addFromEdges(head);
+        head.addToEdges(tail);
+        tail.addFromEdges(head);
+    }
+
+    public static void buildlFinalGroum(IntraGroum temporary) {
+//        Map<String, List<AbstractNode>> varMap = new HashMap<>();
+//        for (AbstractNode node: temporary.getNodes()) {
+//            Set<InvolvedVar> attributes = node.getAttributes();
+//            for (InvolvedVar attr :attributes) {
+//                if (!varMap.containsKey(attr.toString())) {
+//                    varMap.put(attr.toString(), new ArrayList<>());
+//                }
+//                varMap.get(attr.toString()).add(node);
+//            }
+//        }
+//        for (Map.Entry<String, List<AbstractNode>> entry :varMap.entrySet()) {
+//            
+//        }
+        List<AbstractNode> nodes = temporary.getNodes();
+        for (int i = 0; i < nodes.size(); i++) {
+            AbstractNode one = nodes.get(i);
+            Set<InvolvedVar> oneSet = one.getAttributes();
+            for (int j = i + 1; j < nodes.size(); j++) {
+                AbstractNode another = nodes.get(j);
+                Set<InvolvedVar> anotherSet = another.getAttributes();
+                // 如果head和tail具有相同的involved变量，则两者具有数据依赖
+                Collection<?> intersection = FileUtils.intersection(oneSet, anotherSet);
+                if (!intersection.isEmpty()) {
+                    linkNodesWithDataDependency(one, another);
+                }
+            }
         }
     }
 

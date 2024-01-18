@@ -1,5 +1,7 @@
 package root.analysis.groum.extractor;
 
+import com.github.javaparser.ast.body.MethodDeclaration;
+import com.github.javaparser.ast.body.Parameter;
 import com.github.javaparser.ast.body.VariableDeclarator;
 import com.github.javaparser.ast.expr.*;
 import com.github.javaparser.ast.stmt.ReturnStmt;
@@ -18,6 +20,16 @@ public class ExtractFromJavaParser {
     final static Logger logger = LoggerFactory.getLogger(ExtractFromJavaParser.class);
 
     Map<String, InvolvedVar> varNames = new HashMap<>();
+
+    public InvolvedVar extractVar(Parameter n) {
+        String type = n.getTypeAsString();
+        String name = n.getNameAsString();
+        InvolvedVar involvedVar = new InvolvedVar(type, name);
+        if (!varNames.containsKey(involvedVar.toString())) {
+            varNames.put(involvedVar.toString(), involvedVar);
+        }
+        return varNames.get(involvedVar.toString());
+    }
 
     public InvolvedVar extractVar(NameExpr n) {
         String type = "Unresolved";
@@ -60,11 +72,13 @@ public class ExtractFromJavaParser {
 //        n.getType().accept(this, arg);
 //        n.getTypeArguments().ifPresent(l -> l.forEach(v -> v.accept(this, arg)));
         String name = n.getTypeAsString();
-        StringBuilder stringBuilder = new StringBuilder(name);
-        stringBuilder.append("<");
-        n.getTypeArguments().ifPresent(l -> l.forEach(t -> stringBuilder.append(t.toDescriptor()).append(",")));
-        stringBuilder.replace(stringBuilder.length() - 1, stringBuilder.length(), ">");
-        return new ActionNode(n, stringBuilder.toString(), "<init>");
+        StringBuilder stringBuilder = new StringBuilder();
+        n.getTypeArguments().ifPresent(l -> {
+            stringBuilder.append("<");
+            l.forEach(t -> stringBuilder.append(t.toDescriptor()).append(","));
+            stringBuilder.replace(stringBuilder.length() - 1, stringBuilder.length(), ">");
+        });
+        return new ActionNode(n, name + stringBuilder, "<init>");
     }
 
     public AbstractNode extract(ArrayCreationExpr n) {
@@ -125,5 +139,16 @@ public class ExtractFromJavaParser {
         String name = "<cast>";
         String type = n.getTypeAsString();
         return new ActionNode(n, type, name);
+    }
+
+    public AbstractNode extract(MethodDeclaration n) {
+        String name = n.getNameAsString() + "#<init>";
+        String className = "Unresolved";
+        try {
+            className = n.resolve().getClassName();
+        } catch (Exception e) {
+            logger.debug("Can't resolve the class name of method " + n.toString());
+        }
+        return new ActionNode(n, className, name);
     }
 }

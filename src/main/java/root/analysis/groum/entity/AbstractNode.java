@@ -9,12 +9,12 @@ public abstract class AbstractNode {
     String label;
     Set<InvolvedVar> attributes;//包含所有涉及到的变量
     Node originalNode;
-    List<AbstractNode> toEdges;//each edge means a (temporal) usage order and a data dependency, the list stores the sink nodes.
-    List<AbstractNode> fromEdges;//the list stores the source nodes
+    Set<AbstractNode> toEdges;//each edge means a (temporal) usage order and a data dependency, the list stores the sink nodes.
+    Set<AbstractNode> fromEdges;//the list stores the source nodes
 
     public AbstractNode(Node originalNode) {
-        this.toEdges = new ArrayList<>();
-        this.fromEdges = new ArrayList<>();
+        this.toEdges = new HashSet<>();
+        this.fromEdges = new HashSet<>();
         this.attributes = new HashSet<>();
         this.originalNode = originalNode;
     }
@@ -27,7 +27,7 @@ public abstract class AbstractNode {
         this.label = label;
     }
 
-    public List<AbstractNode> getToEdges() {
+    public Set<AbstractNode> getToEdges() {
         return toEdges;
     }
 
@@ -35,7 +35,7 @@ public abstract class AbstractNode {
         this.toEdges.add(tailNode);
     }
 
-    public List<AbstractNode> getFromEdges() {
+    public Set<AbstractNode> getFromEdges() {
         return fromEdges;
     }
 

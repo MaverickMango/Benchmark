@@ -50,6 +50,22 @@ public class FileUtils {
         return first;
     }
 
+    public static Collection<?> intersection(@NonNull Collection<?> first, @NonNull Collection<?> second) {
+        if (second.isEmpty())
+            return first;
+        try {
+            Collection in = first.getClass().getConstructor().newInstance();
+            for (Object one :first) {
+                if (second.contains(one))
+                    in.add(one);
+            }
+            return in;
+        } catch (Exception e) {
+            logger.error("Error occurred when computing difference set: " + e.getMessage());
+        }
+        return first;
+    }
+
     private static String contains(Collection<String> second, String one) {
         for (String other: second) {
             if (one.contains(other)) {

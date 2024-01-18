@@ -4,14 +4,14 @@ import root.util.FileUtils;
 
 import java.util.*;
 
-public class Groum {
+public class IntraGroum {
     List<AbstractNode> nodes;
 
-    public Groum() {
+    public IntraGroum() {
         this.nodes = new ArrayList<>();
     }
 
-    public Groum(AbstractNode node) {
+    public IntraGroum(AbstractNode node) {
         this.nodes = new ArrayList<>();
         addNode(node);
     }
@@ -50,8 +50,8 @@ public class Groum {
 
     @Override
     public boolean equals(Object obj) {
-        if (obj instanceof Groum) {
-            Groum that = (Groum) obj;
+        if (obj instanceof IntraGroum) {
+            IntraGroum that = (IntraGroum) obj;
             if (this.getNodes().size() != that.getNodes().size())
                 return false;
             Collection<?> difference = FileUtils.difference(this.getNodes(), that.getNodes());

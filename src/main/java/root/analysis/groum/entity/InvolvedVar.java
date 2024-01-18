@@ -33,6 +33,6 @@ public class InvolvedVar {
      */
     @Override
     public String toString() {
-        return className + "." + target;
+        return className + "#" + target;
     }
 }

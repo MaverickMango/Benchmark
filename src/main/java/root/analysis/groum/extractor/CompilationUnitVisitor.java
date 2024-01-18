@@ -3,21 +3,18 @@ package root.analysis.groum.extractor;
 import com.github.javaparser.ast.ImportDeclaration;
 import com.github.javaparser.ast.PackageDeclaration;
 import com.github.javaparser.ast.body.*;
-import com.github.javaparser.ast.expr.ObjectCreationExpr;
 import com.github.javaparser.ast.stmt.LocalClassDeclarationStmt;
-import com.github.javaparser.ast.stmt.LocalRecordDeclarationStmt;
 import com.github.javaparser.ast.visitor.VoidVisitorAdapter;
-import root.analysis.groum.entity.Groum;
+import root.analysis.groum.entity.IntraGroum;
 
-import java.util.ArrayList;
 import java.util.List;
 
-public class CompilationUnitVisitor extends VoidVisitorAdapter<List<Groum>> {
+public class CompilationUnitVisitor extends VoidVisitorAdapter<List<IntraGroum>> {
 
     PreOrderVisitorInMth preOrderVisitorInMth = new PreOrderVisitorInMth();
 
     @Override
-    public void visit(ConstructorDeclaration n, List<Groum> arg) {
+    public void visit(ConstructorDeclaration n, List<IntraGroum> arg) {
 //        //当前节点
 //        List<Groum> current = new ArrayList<>();
 //        n.getBody().accept(preOrderVisitorInMth, current);
@@ -43,37 +40,37 @@ public class CompilationUnitVisitor extends VoidVisitorAdapter<List<Groum>> {
     }
 
     @Override
-    public void visit(EnumDeclaration n, List<Groum> arg) {
+    public void visit(EnumDeclaration n, List<IntraGroum> arg) {
         super.visit(n, arg);
     }
 
     @Override
-    public void visit(InitializerDeclaration n, List<Groum> arg) {
+    public void visit(InitializerDeclaration n, List<IntraGroum> arg) {
         super.visit(n, arg);
     }
 
     @Override
-    public void visit(MethodDeclaration n, List<Groum> arg) {
+    public void visit(MethodDeclaration n, List<IntraGroum> arg) {
         super.visit(n, arg);
     }
 
     @Override
-    public void visit(PackageDeclaration n, List<Groum> arg) {
+    public void visit(PackageDeclaration n, List<IntraGroum> arg) {
         super.visit(n, arg);
     }
 
     @Override
-    public void visit(LocalClassDeclarationStmt n, List<Groum> arg) {
+    public void visit(LocalClassDeclarationStmt n, List<IntraGroum> arg) {
         super.visit(n, arg);
     }
 
     @Override
-    public void visit(ImportDeclaration n, List<Groum> arg) {
+    public void visit(ImportDeclaration n, List<IntraGroum> arg) {
         super.visit(n, arg);
     }
 
     @Override
-    public void visit(FieldDeclaration n, List<Groum> arg) {
+    public void visit(FieldDeclaration n, List<IntraGroum> arg) {
         super.visit(n, arg);
     }
 }
