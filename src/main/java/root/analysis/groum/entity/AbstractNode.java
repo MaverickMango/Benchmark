@@ -43,6 +43,14 @@ public abstract class AbstractNode {
         this.fromEdges.add(headNode);
     }
 
+    public boolean isTerminal() {
+        if (this instanceof ControlNode) {
+            ControlNode controlNode = (ControlNode) this;
+            return controlNode.type.equals(ControlNode.Type.RETURN) || controlNode.type.equals(ControlNode.Type.Throw);
+        }
+        return false;
+    }
+
     public boolean isSinkNode() {
         return toEdges.isEmpty();
     }

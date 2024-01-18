@@ -52,7 +52,7 @@ public class Graphvizer {
     }
 
     public void getGraph(IntraGroum groum) throws IOException {
-        Graph g = graph("groum").directed();
+        Graph g = graph(String.valueOf(i++)).directed();
 
         Map<AbstractNode, Node> map = new HashMap<>();
         for (AbstractNode node :groum.getNodes()) {

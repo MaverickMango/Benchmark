@@ -3,6 +3,7 @@ package root.analysis.groum.entity;
 import root.util.FileUtils;
 
 import java.util.*;
+import java.util.stream.Collectors;
 
 public class IntraGroum {
     List<AbstractNode> nodes;
@@ -46,6 +47,18 @@ public class IntraGroum {
             }
         }
         return sourceNodes;
+    }
+
+    public List<AbstractNode> getTerminals() {
+        List<AbstractNode> nodes = getNodes();
+        List<AbstractNode> returns = nodes.stream().filter(AbstractNode::isTerminal).collect(Collectors.toList());
+        List<AbstractNode> scopes = new ArrayList<>();
+        returns.forEach(n -> {
+            List<AbstractNode> tmp = ((ControlNode) n).getScope();
+            scopes.addAll(tmp);
+        });
+        returns.addAll(scopes);
+        return returns;
     }
 
     @Override

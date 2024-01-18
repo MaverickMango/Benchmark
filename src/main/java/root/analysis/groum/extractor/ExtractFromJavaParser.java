@@ -121,18 +121,18 @@ public class ExtractFromJavaParser {
     }
 
     public AbstractNode extract(ReturnStmt n) {
+        String className = "Void";
         if (n.getExpression().isPresent()) {
             Expression expression = n.getExpression().get();
-            String name = expression.toString();
-            String className = "Unresolved";
+//            String name = expression.toString() + "<return>";
             try {
                 className = expression.calculateResolvedType().describe();
             } catch (Exception e) {
                 logger.debug("Can't resolve the class name of method " + n.toString());
             }
-            return new ActionNode(expression, className, name);
+//            return new ActionNode(n, className, name);
         }
-        return null;
+        return new ActionNode(n, className, "<return>");
     }
 
     public AbstractNode extract(CastExpr n) {

@@ -53,6 +53,9 @@ public class MergeHelper {
             //todo:使用 + 压缩，而不是直接省略
             return;
         }
+        if (head.isTerminal()) {
+            return;
+        }
         //顺联结构的头尾节点应该具有数据依赖
         head.addToEdges(tail);
         tail.addFromEdges(head);
@@ -71,14 +74,19 @@ public class MergeHelper {
 //        }
 //        for (Map.Entry<String, List<AbstractNode>> entry :varMap.entrySet()) {
 //            
-//        }
+//        }=
         List<AbstractNode> nodes = temporary.getNodes();
+        List<AbstractNode> terminals = temporary.getTerminals();
         for (int i = 0; i < nodes.size(); i++) {
             AbstractNode one = nodes.get(i);
             Set<InvolvedVar> oneSet = one.getAttributes();
+            if (terminals.contains(one) || oneSet.isEmpty())
+                continue;
             for (int j = i + 1; j < nodes.size(); j++) {
                 AbstractNode another = nodes.get(j);
                 Set<InvolvedVar> anotherSet = another.getAttributes();
+                if (anotherSet.isEmpty())
+                    continue;
                 // 如果head和tail具有相同的involved变量，则两者具有数据依赖
                 Collection<?> intersection = FileUtils.intersection(oneSet, anotherSet);
                 if (!intersection.isEmpty()) {

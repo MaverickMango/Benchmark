@@ -35,7 +35,9 @@ public class ControlNode extends AbstractNode {
         IF("if"),
         WHILE("while"),
         FOR("for"),
-        TRY("try");
+        TRY("try"),
+        RETURN("return"),
+        Throw("throw");
 
         private final String abbreviation;
 

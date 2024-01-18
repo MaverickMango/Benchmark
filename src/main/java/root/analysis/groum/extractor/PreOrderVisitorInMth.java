@@ -1,5 +1,7 @@
 package root.analysis.groum.extractor;
 
+import com.github.javaparser.ast.Node;
+import com.github.javaparser.ast.NodeList;
 import com.github.javaparser.ast.body.MethodDeclaration;
 import com.github.javaparser.ast.body.VariableDeclarator;
 import com.github.javaparser.ast.expr.*;
@@ -20,6 +22,23 @@ public class PreOrderVisitorInMth extends VoidVisitorAdapter<List<IntraGroum>> {
     ExtractFromJavaParser extractFromJavaParser = new ExtractFromJavaParser();
     AttributeVisitor attributeVisitor = new AttributeVisitor();
 
+//    @Override
+//    public void visit(NodeList n, List<IntraGroum> arg) {
+//        for (Object node : n) {
+//            if (!(node instanceof Statement)) {
+//                super.visit(n, arg);
+//            }
+//
+//            IntraGroum head = arg.isEmpty() ? null : arg.get(0);
+//            arg.clear();
+//
+//            ((Node) node).accept(this, arg);
+//            IntraGroum tmp = arg.isEmpty() ? null : arg.get(0);
+//            head = MergeHelper.sequentialMerge(head, tmp);//每条语句顺连
+//            arg.add(head);
+//        }
+//    }
+
     @Override
     public void visit(MethodDeclaration n, List<IntraGroum> arg) {
         //父节点
@@ -37,12 +56,13 @@ public class PreOrderVisitorInMth extends VoidVisitorAdapter<List<IntraGroum>> {
         //函数body
         AtomicReference<IntraGroum> tail = new AtomicReference<>();
         n.getBody().ifPresent(l -> {
-            l.getStatements().forEach(p -> {
-                p.accept(this, arg);
+            l.accept(this, arg);
+//            l.getStatements().forEach(p -> {
+//                p.accept(this, arg);
 //                IntraGroum tmp = arg.isEmpty() ? null : arg.get(0);
 //                tail.set(MergeHelper.sequentialMerge(tail.get(), tmp));//每条语句顺连
 //                arg.clear();
-            });
+//            });
         });
         tail.set(arg.get(0) == null ? null : arg.get(0));//不单独处理每条语句的写法
         MergeHelper.buildlFinalGroum(tail.get());//添加数据依赖 ***
@@ -678,18 +698,23 @@ public class PreOrderVisitorInMth extends VoidVisitorAdapter<List<IntraGroum>> {
         IntraGroum head0 = arg.isEmpty() ? null : arg.get(0);
         arg.clear();
 
+        //当前节点
+        ControlNode controlNode = new ControlNode(n, ControlNode.Type.RETURN);
+        Set<InvolvedVar> attrs = new HashSet<>();
+        n.accept(attributeVisitor, attrs);
+        controlNode.addAttributes(attrs);//涉及的变量
+        IntraGroum tail = new IntraGroum(controlNode);
+
         //expression节点
         n.getExpression().ifPresent(l -> {
             l.accept(this, arg);
         });
-        IntraGroum tail = arg.isEmpty() ? null : arg.get(0);
-        if (tail == null) {
-            AbstractNode extract = extractFromJavaParser.extract(n);
-            Set<InvolvedVar> attrs = new HashSet<>();
-            n.accept(attributeVisitor, attrs);
-            extract.addAttributes(attrs);//涉及的变量
-            tail = new IntraGroum(extract);
+        IntraGroum head = arg.isEmpty() ? null : arg.get(0);
+        if (head != null) {
+            controlNode.addScope(head.getNodes());
         }
+
+        tail = MergeHelper.sequentialMerge(head, tail);//连接expression和return
 
         IntraGroum merged = MergeHelper.sequentialMerge(head0, tail);//连接父节点和当前节点
         arg.clear();
@@ -699,7 +724,23 @@ public class PreOrderVisitorInMth extends VoidVisitorAdapter<List<IntraGroum>> {
 
     @Override
     public void visit(ThrowStmt n, List<IntraGroum> arg) {
-        super.visit(n, arg);//?
+        n.getExpression().accept(this, arg);
+        IntraGroum head = arg.isEmpty() ? null : arg.get(0);
+        arg.clear();
+
+        //当前节点
+        ControlNode controlNode = new ControlNode(n, ControlNode.Type.Throw);
+        Set<InvolvedVar> attrs = new HashSet<>();
+        n.accept(attributeVisitor, attrs);
+        controlNode.addAttributes(attrs);//涉及的变量
+        IntraGroum tail = new IntraGroum(controlNode);
+        if (head != null) {
+            controlNode.addScope(head.getNodes());
+        }
+
+        IntraGroum merged = MergeHelper.sequentialMerge(head, tail);//连接父节点和当前节点
+        arg.clear();
+        arg.add(merged);
     }
 
     @Override
