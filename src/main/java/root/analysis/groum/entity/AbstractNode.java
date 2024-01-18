@@ -9,12 +9,12 @@ public abstract class AbstractNode {
     String label;
     Set<InvolvedVar> attributes;//包含所有涉及到的变量
     Node originalNode;
-    Set<AbstractNode> toEdges;//each edge means a (temporal) usage order and a data dependency, the list stores the sink nodes.
-    Set<AbstractNode> fromEdges;//the list stores the source nodes
+    Set<AbstractNode> outgoingEdges;//each edge means a (temporal) usage order and a data dependency, the list stores the sink nodes.
+    Set<AbstractNode> incomingEdges;//the list stores the source nodes
 
     public AbstractNode(Node originalNode) {
-        this.toEdges = new HashSet<>();
-        this.fromEdges = new HashSet<>();
+        this.outgoingEdges = new HashSet<>();
+        this.incomingEdges = new HashSet<>();
         this.attributes = new HashSet<>();
         this.originalNode = originalNode;
     }
@@ -27,20 +27,20 @@ public abstract class AbstractNode {
         this.label = label;
     }
 
-    public Set<AbstractNode> getToEdges() {
-        return toEdges;
+    public Set<AbstractNode> getOutgoingEdges() {
+        return outgoingEdges;
     }
 
-    public void addToEdges(AbstractNode tailNode) {
-        this.toEdges.add(tailNode);
+    public void addOutgoingEdges(AbstractNode tailNode) {
+        this.outgoingEdges.add(tailNode);
     }
 
-    public Set<AbstractNode> getFromEdges() {
-        return fromEdges;
+    public Set<AbstractNode> getIncomingEdges() {
+        return incomingEdges;
     }
 
-    public void addFromEdges(AbstractNode headNode) {
-        this.fromEdges.add(headNode);
+    public void addIncomingEdges(AbstractNode headNode) {
+        this.incomingEdges.add(headNode);
     }
 
     public boolean isTerminal() {
@@ -52,11 +52,11 @@ public abstract class AbstractNode {
     }
 
     public boolean isSinkNode() {
-        return toEdges.isEmpty();
+        return outgoingEdges.isEmpty();
     }
 
     public boolean isSourceNode() {
-        return fromEdges.isEmpty();
+        return incomingEdges.isEmpty();
     }
 
     public Set<InvolvedVar> getAttributes() {
@@ -73,17 +73,36 @@ public abstract class AbstractNode {
         this.attributes.addAll(attributes);
     }
 
+//    public String getPQNodeLabel() {
+//        return label + "-" + incomingEdges.size() + "-" + outgoingEdges.size();
+//    }
+//    public String getPQNodeLabel(int incomingSize, int outgoingSize) {
+//        return label + "-" + incomingSize + "-" + outgoingSize;
+//    }
+
     @Override
     public String toString() {
         return getLabel();
     }
 
     @Override
+    public int hashCode() {
+        final int prime = 31;
+        int result = 1;
+        result = prime * result + this.getLabel().hashCode();
+        result = prime * result + this.getAttributes().hashCode();
+        return result;
+    }
+
+    @Override
     public boolean equals(Object obj) {
         if (obj instanceof AbstractNode) {
-            if (!this.getLabel().equals(((AbstractNode) obj).getLabel()))
+            AbstractNode that = (AbstractNode) obj;
+            if (!this.getLabel().equals(that.getLabel()))
                 return false;
-            Collection<?> difference = FileUtils.difference(this.getAttributes(), ((AbstractNode) obj).getAttributes());
+            if (this.getAttributes().size() != that.getAttributes().size())
+                return false;
+            Collection<?> difference = FileUtils.difference(this.getAttributes(), that.getAttributes());
             if (difference.isEmpty())
                 return true;
         }

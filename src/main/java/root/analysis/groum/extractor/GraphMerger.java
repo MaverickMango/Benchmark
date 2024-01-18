@@ -3,11 +3,15 @@ package root.analysis.groum.extractor;
 import root.analysis.groum.entity.AbstractNode;
 import root.analysis.groum.entity.IntraGroum;
 import root.analysis.groum.entity.InvolvedVar;
+import root.analysis.groum.vector.Exaser;
+import root.analysis.groum.vector.Feature;
 import root.util.FileUtils;
 
 import java.util.*;
 
-public class MergeHelper {
+public class GraphMerger {
+
+    Exaser exaser = new Exaser();
 
     /**
      * parallel merge(X V Y) will get a new groum that contains all nodes and edges of X and Y, and there is no edge between any nodes of X and Y.
@@ -15,12 +19,15 @@ public class MergeHelper {
      * @param Y: another groum
      * @return
      */
-    public static IntraGroum parallelMerge(IntraGroum X, IntraGroum Y) {
+    public IntraGroum parallelMerge(IntraGroum X, IntraGroum Y) {
         if (X == Y || X == null) {
             return Y;
         }
         if (Y != null) {
-            X.extendNodes(Y.getNodes());
+            if (X.getNodes().size() == 1) {
+                newNode(X, X.getNodes().get(0));
+            }
+            Y.getNodes().forEach(n -> newNode(X, n));
         }
         return X;
     }
@@ -32,7 +39,7 @@ public class MergeHelper {
      * @param Y: a tail groum
      * @return
      */
-    public static IntraGroum sequentialMerge(IntraGroum X, IntraGroum Y) {
+    public IntraGroum sequentialMerge(IntraGroum X, IntraGroum Y) {
         if (X == Y || X == null) {
             return Y;
         }
@@ -41,14 +48,20 @@ public class MergeHelper {
             List<AbstractNode> sourceNodes = Y.getSourceNodes();
             for (AbstractNode head : sinkNodes) {
                 for (AbstractNode tail : sourceNodes) {
-                    linkNodesWithDataDependency(head, tail);
+                    linkNodesWithDataDependency(X, head, tail);
                 }
             }
+            X.extendNodes(Y.getNodes());
         }
-        return parallelMerge(X, Y);
+        return X;
     }
 
-    private static void linkNodesWithDataDependency(AbstractNode head, AbstractNode tail) {
+    private void newNode(IntraGroum groum, AbstractNode node) {
+        groum.addNode(node);
+        exaser.newNode(node);
+    }
+
+    public void linkNodesWithDataDependency(IntraGroum groum, AbstractNode head, AbstractNode tail) {
         if (head.equals(tail)) {
             //todo:使用 + 压缩，而不是直接省略
             return;
@@ -56,12 +69,16 @@ public class MergeHelper {
         if (head.isTerminal()) {
             return;
         }
+        if (!groum.getNodes().contains(head)) {
+            newNode(groum, head);
+        }
+        exaser.incrVector(groum, head, tail);//提取vector
         //顺联结构的头尾节点应该具有数据依赖
-        head.addToEdges(tail);
-        tail.addFromEdges(head);
+        head.addOutgoingEdges(tail);
+        tail.addIncomingEdges(head);
     }
 
-    public static void buildlFinalGroum(IntraGroum temporary) {
+    public void buildlFinalGroum(IntraGroum temporary) {
 //        Map<String, List<AbstractNode>> varMap = new HashMap<>();
 //        for (AbstractNode node: temporary.getNodes()) {
 //            Set<InvolvedVar> attributes = node.getAttributes();
@@ -90,10 +107,14 @@ public class MergeHelper {
                 // 如果head和tail具有相同的involved变量，则两者具有数据依赖
                 Collection<?> intersection = FileUtils.intersection(oneSet, anotherSet);
                 if (!intersection.isEmpty()) {
-                    linkNodesWithDataDependency(one, another);
+                    linkNodesWithDataDependency(temporary, one, another);
                 }
             }
         }
+    }
+
+    public List<Integer> getVector() {
+        return exaser.getVector();
     }
 
 }

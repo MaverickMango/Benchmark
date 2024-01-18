@@ -1,7 +1,5 @@
 package root.analysis.groum.extractor;
 
-import com.github.javaparser.ast.Node;
-import com.github.javaparser.ast.NodeList;
 import com.github.javaparser.ast.body.MethodDeclaration;
 import com.github.javaparser.ast.body.VariableDeclarator;
 import com.github.javaparser.ast.expr.*;
@@ -21,6 +19,7 @@ public class PreOrderVisitorInMth extends VoidVisitorAdapter<List<IntraGroum>> {
 
     ExtractFromJavaParser extractFromJavaParser = new ExtractFromJavaParser();
     AttributeVisitor attributeVisitor = new AttributeVisitor();
+    GraphMerger graphMerger = new GraphMerger();
 
 //    @Override
 //    public void visit(NodeList n, List<IntraGroum> arg) {
@@ -65,10 +64,10 @@ public class PreOrderVisitorInMth extends VoidVisitorAdapter<List<IntraGroum>> {
 //            });
         });
         tail.set(arg.get(0) == null ? null : arg.get(0));//不单独处理每条语句的写法
-        MergeHelper.buildlFinalGroum(tail.get());//添加数据依赖 ***
+        graphMerger.buildlFinalGroum(tail.get());//添加数据依赖 ***
 
-        IntraGroum merged = MergeHelper.sequentialMerge(head, tail.get());//连接当前节点和函数body
-        merged = MergeHelper.sequentialMerge(head0, merged);
+        IntraGroum merged = graphMerger.sequentialMerge(head, tail.get());//连接当前节点和函数body
+        merged = graphMerger.sequentialMerge(head0, merged);
         arg.clear();
         arg.add(merged);
 //        n.getType().accept(this, arg);
@@ -96,7 +95,7 @@ public class PreOrderVisitorInMth extends VoidVisitorAdapter<List<IntraGroum>> {
             l.accept(this, arg);
         });
         IntraGroum scope = arg.isEmpty() ? null : arg.get(0);
-        head0 = MergeHelper.sequentialMerge(head0, scope);//连接父节点和scope
+        head0 = graphMerger.sequentialMerge(head0, scope);//连接父节点和scope
 
         //函数参数部分
         arg.clear();
@@ -107,13 +106,13 @@ public class PreOrderVisitorInMth extends VoidVisitorAdapter<List<IntraGroum>> {
             if (tmp == null) {
                 p.accept(attributeVisitor, attrs);
             }
-            head.set(MergeHelper.parallelMerge(head.get(), tmp));//参数平行连接
+            head.set(graphMerger.parallelMerge(head.get(), tmp));//参数平行连接
             arg.clear();
         });
         extract.addAttributes(attrs);
-        IntraGroum merged = MergeHelper.sequentialMerge(head0, head.get());//连接scope和函数参数
+        IntraGroum merged = graphMerger.sequentialMerge(head0, head.get());//连接scope和函数参数
 
-        merged = MergeHelper.sequentialMerge(merged, tail);//连接头和当前节点
+        merged = graphMerger.sequentialMerge(merged, tail);//连接头和当前节点
         arg.clear();
         arg.add(merged);
     }
@@ -145,17 +144,17 @@ public class PreOrderVisitorInMth extends VoidVisitorAdapter<List<IntraGroum>> {
                 p.accept(attributeVisitor, attrs);
                 extract.addAttributes(attrs);
             }
-            head.set(MergeHelper.parallelMerge(head.get(), tmp));//参数平行连接
+            head.set(graphMerger.parallelMerge(head.get(), tmp));//参数平行连接
             arg.clear();
         });
         //匿名body
         n.getAnonymousClassBody().ifPresent(l -> l.forEach(v -> v.accept(this, arg)));
         IntraGroum head1 = arg.isEmpty() ? null : arg.get(0);
-        head.set(MergeHelper.parallelMerge(head.get(), head1));//平行？连接参数和匿名body
+        head.set(graphMerger.parallelMerge(head.get(), head1));//平行？连接参数和匿名body
 
-        IntraGroum merged = MergeHelper.sequentialMerge(head.get(), tail);//连接参数和函数调用节点
+        IntraGroum merged = graphMerger.sequentialMerge(head.get(), tail);//连接参数和函数调用节点
 
-        merged = MergeHelper.sequentialMerge(head0, merged);//连接级联调用和当前节点
+        merged = graphMerger.sequentialMerge(head0, merged);//连接级联调用和当前节点
         arg.clear();
         arg.add(merged);
     }
@@ -171,20 +170,20 @@ public class PreOrderVisitorInMth extends VoidVisitorAdapter<List<IntraGroum>> {
         n.getLevels().forEach(p -> {
             p.accept(this, arg);
             IntraGroum tmp = arg.isEmpty() ? null : arg.get(0);
-            head.set(MergeHelper.parallelMerge(head.get(), tmp));//参数平行连接
+            head.set(graphMerger.parallelMerge(head.get(), tmp));//参数平行连接
             arg.clear();
         });
         //初始化
         n.getInitializer().ifPresent(l -> l.accept(this, arg));
         IntraGroum tail = arg.isEmpty() ? null : arg.get(0);
-        head.set(MergeHelper.parallelMerge(head.get(), tail));//平行？连接参数和匿名body
+        head.set(graphMerger.parallelMerge(head.get(), tail));//平行？连接参数和匿名body
 
         //函数调用本身
         AbstractNode extract = extractFromJavaParser.extract(n);
         tail = new IntraGroum(extract);
-        IntraGroum merged = MergeHelper.sequentialMerge(head.get(), tail);//连接参数和函数调用节点
+        IntraGroum merged = graphMerger.sequentialMerge(head.get(), tail);//连接参数和函数调用节点
 
-        merged = MergeHelper.sequentialMerge(head0, merged);//连接级联调用和当前节点
+        merged = graphMerger.sequentialMerge(head0, merged);//连接级联调用和当前节点
         arg.clear();
         arg.add(merged);
     }
@@ -204,7 +203,7 @@ public class PreOrderVisitorInMth extends VoidVisitorAdapter<List<IntraGroum>> {
             sinkNodes.get(0).addAttribute(extractFromJavaParser.extractVar(n));//涉及的变量
         }
 
-        IntraGroum merged = MergeHelper.sequentialMerge(head0, tail);//连接父节点和当前节点
+        IntraGroum merged = graphMerger.sequentialMerge(head0, tail);//连接父节点和当前节点
         arg.clear();
         arg.add(merged);
     }
@@ -225,7 +224,7 @@ public class PreOrderVisitorInMth extends VoidVisitorAdapter<List<IntraGroum>> {
         IntraGroum head = arg.isEmpty() ? null : arg.get(0);
         AbstractNode extract = extractFromJavaParser.extract(n);
         IntraGroum tail = new IntraGroum(extract);
-        IntraGroum merged = MergeHelper.sequentialMerge(head, tail);
+        IntraGroum merged = graphMerger.sequentialMerge(head, tail);
         arg.clear();
         arg.add(merged);
     }
@@ -267,8 +266,8 @@ public class PreOrderVisitorInMth extends VoidVisitorAdapter<List<IntraGroum>> {
             sinkNodes.get(0).addAttributes(attrs);//涉及的变量
         }
 
-        tail = MergeHelper.sequentialMerge(head, tail);//连接左右
-        IntraGroum merged = MergeHelper.sequentialMerge(head0, tail);//连接父节点和当前节点
+        tail = graphMerger.sequentialMerge(head, tail);//连接左右
+        IntraGroum merged = graphMerger.sequentialMerge(head0, tail);//连接父节点和当前节点
         arg.clear();
         arg.add(merged);
     }
@@ -296,7 +295,7 @@ public class PreOrderVisitorInMth extends VoidVisitorAdapter<List<IntraGroum>> {
                     tail = new IntraGroum(extract);
                 }
 
-                IntraGroum merged = MergeHelper.sequentialMerge(head0, tail);//连接父节点和当前节点
+                IntraGroum merged = graphMerger.sequentialMerge(head0, tail);//连接父节点和当前节点
                 arg.clear();
                 arg.add(merged);
                 break;
@@ -327,9 +326,9 @@ public class PreOrderVisitorInMth extends VoidVisitorAdapter<List<IntraGroum>> {
         for (AbstractNode node : nodes) {
             node.addAttributes(attrs);//涉及的变量
         }
-        IntraGroum merged = MergeHelper.parallelMerge(head, tail);
+        IntraGroum merged = graphMerger.parallelMerge(head, tail);
 
-        merged = MergeHelper.sequentialMerge(head0, merged);
+        merged = graphMerger.sequentialMerge(head0, merged);
         arg.clear();
         arg.add(merged);
     }
@@ -357,7 +356,7 @@ public class PreOrderVisitorInMth extends VoidVisitorAdapter<List<IntraGroum>> {
 
         //cast应该有一个顺连结构？
         IntraGroum tail = new IntraGroum(extractFromJavaParser.extract(n));
-        IntraGroum merged = MergeHelper.sequentialMerge(head0, tail);
+        IntraGroum merged = graphMerger.sequentialMerge(head0, tail);
         arg.clear();
         arg.add(merged);
     }
@@ -378,21 +377,21 @@ public class PreOrderVisitorInMth extends VoidVisitorAdapter<List<IntraGroum>> {
 
         n.getTryBlock().accept(this, arg);
         IntraGroum tail = arg.isEmpty() ? null : arg.get(0);
-        head = MergeHelper.sequentialMerge(head, tail);//try的resource到try-block
+        head = graphMerger.sequentialMerge(head, tail);//try的resource到try-block
 
         arg.clear();
         n.getCatchClauses().accept(this, arg);
         tail = arg.isEmpty() ? null : arg.get(0);
-        head = MergeHelper.parallelMerge(head, tail);//try和catch为平行?
+        head = graphMerger.parallelMerge(head, tail);//try和catch为平行?
 
         arg.clear();
         n.getFinallyBlock().ifPresent(blockStmt -> {
             blockStmt.accept(this, arg);
         });
         tail = arg.isEmpty() ? null : arg.get(0);
-        tail = MergeHelper.sequentialMerge(head, tail);//连接try和finally
+        tail = graphMerger.sequentialMerge(head, tail);//连接try和finally
 
-        IntraGroum merged = MergeHelper.sequentialMerge(head0, tail);
+        IntraGroum merged = graphMerger.sequentialMerge(head0, tail);
         arg.clear();
         arg.add(merged);
     }
@@ -416,7 +415,7 @@ public class PreOrderVisitorInMth extends VoidVisitorAdapter<List<IntraGroum>> {
             List<AbstractNode> nodes = head1.getNodes();
             controlNode.addScope(nodes);//添加范围节点
         }
-        head1 = MergeHelper.sequentialMerge(head1, new IntraGroum(controlNode));//连接条件和控制节点
+        head1 = graphMerger.sequentialMerge(head1, new IntraGroum(controlNode));//连接条件和控制节点
 
         arg.clear();
         n.getThenExpr().accept(this, arg);
@@ -430,13 +429,13 @@ public class PreOrderVisitorInMth extends VoidVisitorAdapter<List<IntraGroum>> {
         nodes = tail == null ? null : tail.getNodes();
         controlNode.addScope(nodes);//添加范围节点
 
-        tail = MergeHelper.parallelMerge(head, tail);//连接then和else
-        IntraGroum merged = MergeHelper.sequentialMerge(head1, tail);//连接条件和执行部分
+        tail = graphMerger.parallelMerge(head, tail);//连接then和else
+        IntraGroum merged = graphMerger.sequentialMerge(head1, tail);//连接条件和执行部分
         for (AbstractNode node : controlNode.getScope()) {
             controlNode.addAttributes(node.getAttributes());
         }
 
-        merged = MergeHelper.sequentialMerge(head0, merged);//连接父节点和当前节点
+        merged = graphMerger.sequentialMerge(head0, merged);//连接父节点和当前节点
         arg.clear();
         arg.add(merged);
     }
@@ -460,7 +459,7 @@ public class PreOrderVisitorInMth extends VoidVisitorAdapter<List<IntraGroum>> {
             List<AbstractNode> nodes = head1.getNodes();
             controlNode.addScope(nodes);//添加范围节点
         }
-        head1 = MergeHelper.sequentialMerge(head1, new IntraGroum(controlNode));//连接条件和控制节点
+        head1 = graphMerger.sequentialMerge(head1, new IntraGroum(controlNode));//连接条件和控制节点
 
         arg.clear();
         n.getThenStmt().accept(this, arg);
@@ -474,13 +473,13 @@ public class PreOrderVisitorInMth extends VoidVisitorAdapter<List<IntraGroum>> {
         nodes = tail == null ? null : tail.getNodes();
         controlNode.addScope(nodes);//添加范围节点
 
-        tail = MergeHelper.parallelMerge(head, tail);//连接then和else
-        IntraGroum merged = MergeHelper.sequentialMerge(head1, tail);//连接条件和执行部分
+        tail = graphMerger.parallelMerge(head, tail);//连接then和else
+        IntraGroum merged = graphMerger.sequentialMerge(head1, tail);//连接条件和执行部分
         for (AbstractNode node : controlNode.getScope()) {
             controlNode.addAttributes(node.getAttributes());
         }
 
-        merged = MergeHelper.sequentialMerge(head0, merged);//连接父节点和当前节点
+        merged = graphMerger.sequentialMerge(head0, merged);//连接父节点和当前节点
         arg.clear();
         arg.add(merged);
     }
@@ -504,7 +503,7 @@ public class PreOrderVisitorInMth extends VoidVisitorAdapter<List<IntraGroum>> {
             List<AbstractNode> nodes = head.getNodes();
             controlNode.addScope(nodes);//添加范围节点
         }
-        head = MergeHelper.sequentialMerge(head, new IntraGroum(controlNode));//连接条件和控制节点
+        head = graphMerger.sequentialMerge(head, new IntraGroum(controlNode));//连接条件和控制节点
 
         //body部分
         AtomicReference<IntraGroum> tail = new AtomicReference<>();
@@ -512,11 +511,11 @@ public class PreOrderVisitorInMth extends VoidVisitorAdapter<List<IntraGroum>> {
             arg.clear();
             p.accept(this, arg);
             IntraGroum tmp = arg.isEmpty() ? null : arg.get(0);
-            tail.set(MergeHelper.parallelMerge(tail.get(), tmp));//每个entry平行连接
+            tail.set(graphMerger.parallelMerge(tail.get(), tmp));//每个entry平行连接
         });
-        tail.set(MergeHelper.sequentialMerge(head, tail.get()));
+        tail.set(graphMerger.sequentialMerge(head, tail.get()));
 
-        IntraGroum merged = MergeHelper.sequentialMerge(head0, tail.get());//连接父节点和当前节点
+        IntraGroum merged = graphMerger.sequentialMerge(head0, tail.get());//连接父节点和当前节点
         arg.clear();
         arg.add(merged);
     }
@@ -533,7 +532,7 @@ public class PreOrderVisitorInMth extends VoidVisitorAdapter<List<IntraGroum>> {
         IntraGroum head = arg.isEmpty() ? null : arg.get(0);//body节点
         List<AbstractNode> nodes = head == null ? null : head.getNodes();
         controlNode.addScope(nodes);//添加范围节点
-        head = MergeHelper.sequentialMerge(head, new IntraGroum(controlNode));//连接条件和控制节点
+        head = graphMerger.sequentialMerge(head, new IntraGroum(controlNode));//连接条件和控制节点
 
         //do条件部分
         arg.clear();
@@ -548,12 +547,12 @@ public class PreOrderVisitorInMth extends VoidVisitorAdapter<List<IntraGroum>> {
             controlNode.addScope(nodes);//添加范围节点
         }
 
-        IntraGroum merged = MergeHelper.sequentialMerge(head, tail);//连接条件和执行部分
+        IntraGroum merged = graphMerger.sequentialMerge(head, tail);//连接条件和执行部分
         for (AbstractNode node : controlNode.getScope()) {
             controlNode.addAttributes(node.getAttributes());
         }
 
-        merged = MergeHelper.sequentialMerge(head0, merged);//连接父节点和当前节点
+        merged = graphMerger.sequentialMerge(head0, merged);//连接父节点和当前节点
         arg.clear();
         arg.add(merged);
     }
@@ -577,7 +576,7 @@ public class PreOrderVisitorInMth extends VoidVisitorAdapter<List<IntraGroum>> {
             List<AbstractNode> nodes = head.getNodes();
             controlNode.addScope(nodes);//添加范围节点
         }
-        head = MergeHelper.sequentialMerge(head, new IntraGroum(controlNode));//连接条件和控制节点
+        head = graphMerger.sequentialMerge(head, new IntraGroum(controlNode));//连接条件和控制节点
 
         arg.clear();
         n.getBody().accept(this, arg);
@@ -585,12 +584,12 @@ public class PreOrderVisitorInMth extends VoidVisitorAdapter<List<IntraGroum>> {
         List<AbstractNode> nodes = tail == null ? null : tail.getNodes();
         controlNode.addScope(nodes);//添加范围节点
 
-        IntraGroum merged = MergeHelper.sequentialMerge(head, tail);//连接条件和执行部分
+        IntraGroum merged = graphMerger.sequentialMerge(head, tail);//连接条件和执行部分
         for (AbstractNode node : controlNode.getScope()) {
             controlNode.addAttributes(node.getAttributes());
         }
 
-        merged = MergeHelper.sequentialMerge(head0, merged);//连接父节点和当前节点
+        merged = graphMerger.sequentialMerge(head0, merged);//连接父节点和当前节点
         arg.clear();
         arg.add(merged);
     }
@@ -614,7 +613,7 @@ public class PreOrderVisitorInMth extends VoidVisitorAdapter<List<IntraGroum>> {
             List<AbstractNode> nodes = head.getNodes();
             controlNode.addScope(nodes);//添加范围节点
         }
-        head = MergeHelper.sequentialMerge(head, new IntraGroum(controlNode));//连接迭代变量和控制节点
+        head = graphMerger.sequentialMerge(head, new IntraGroum(controlNode));//连接迭代变量和控制节点
 
         arg.clear();
         n.getBody().accept(this, arg);
@@ -627,12 +626,12 @@ public class PreOrderVisitorInMth extends VoidVisitorAdapter<List<IntraGroum>> {
             }
         }
 
-        IntraGroum merged = MergeHelper.sequentialMerge(head, tail);//连接条件和执行部分
+        IntraGroum merged = graphMerger.sequentialMerge(head, tail);//连接条件和执行部分
         for (AbstractNode node : controlNode.getScope()) {
             controlNode.addAttributes(node.getAttributes());
         }
 
-        merged = MergeHelper.sequentialMerge(head0, merged);//连接父节点和当前节点
+        merged = graphMerger.sequentialMerge(head0, merged);//连接父节点和当前节点
         arg.clear();
         arg.add(merged);
     }
@@ -663,9 +662,9 @@ public class PreOrderVisitorInMth extends VoidVisitorAdapter<List<IntraGroum>> {
             nodes = tail.getNodes();
             controlNode.addScope(nodes);//添加范围节点
         }
-        head = MergeHelper.sequentialMerge(head, tail);//连接变量和条件
+        head = graphMerger.sequentialMerge(head, tail);//连接变量和条件
 
-        head = MergeHelper.sequentialMerge(head, new IntraGroum(controlNode));//连接条件和控制节点
+        head = graphMerger.sequentialMerge(head, new IntraGroum(controlNode));//连接条件和控制节点
 
         //body部分
         arg.clear();
@@ -673,7 +672,7 @@ public class PreOrderVisitorInMth extends VoidVisitorAdapter<List<IntraGroum>> {
         tail = arg.isEmpty() ? null : arg.get(0);
         nodes = tail == null ? null : tail.getNodes();
         controlNode.addScope(nodes);//添加范围节点
-        head = MergeHelper.sequentialMerge(head, tail);//连接条件和body
+        head = graphMerger.sequentialMerge(head, tail);//连接条件和body
 
         //update部分
         arg.clear();
@@ -681,12 +680,12 @@ public class PreOrderVisitorInMth extends VoidVisitorAdapter<List<IntraGroum>> {
         tail = arg.isEmpty() ? null : arg.get(0);//else节点
         nodes = tail == null ? null : tail.getNodes();
         controlNode.addScope(nodes);//添加范围节点
-        tail = MergeHelper.sequentialMerge(head, tail);//连接body和update
+        tail = graphMerger.sequentialMerge(head, tail);//连接body和update
         for (AbstractNode node : controlNode.getScope()) {
             controlNode.addAttributes(node.getAttributes());
         }
 
-        IntraGroum merged = MergeHelper.sequentialMerge(head0, tail);//连接父节点和当前节点
+        IntraGroum merged = graphMerger.sequentialMerge(head0, tail);//连接父节点和当前节点
         arg.clear();
         arg.add(merged);
     }
@@ -714,9 +713,9 @@ public class PreOrderVisitorInMth extends VoidVisitorAdapter<List<IntraGroum>> {
             controlNode.addScope(head.getNodes());
         }
 
-        tail = MergeHelper.sequentialMerge(head, tail);//连接expression和return
+        tail = graphMerger.sequentialMerge(head, tail);//连接expression和return
 
-        IntraGroum merged = MergeHelper.sequentialMerge(head0, tail);//连接父节点和当前节点
+        IntraGroum merged = graphMerger.sequentialMerge(head0, tail);//连接父节点和当前节点
         arg.clear();
         arg.add(merged);
     }
@@ -738,7 +737,7 @@ public class PreOrderVisitorInMth extends VoidVisitorAdapter<List<IntraGroum>> {
             controlNode.addScope(head.getNodes());
         }
 
-        IntraGroum merged = MergeHelper.sequentialMerge(head, tail);//连接父节点和当前节点
+        IntraGroum merged = graphMerger.sequentialMerge(head, tail);//连接父节点和当前节点
         arg.clear();
         arg.add(merged);
     }

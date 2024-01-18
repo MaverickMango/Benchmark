@@ -22,11 +22,15 @@ public class IntraGroum {
     }
 
     public void addNode(AbstractNode node) {
-        this.nodes.add(node);
+        if (!this.nodes.contains(node)) {
+            this.nodes.add(node);
+        }
     }
 
-    public void extendNodes(List<AbstractNode> node) {
-        this.nodes.addAll(node);
+    public void extendNodes(List<AbstractNode> nodes) {
+        for (AbstractNode node: nodes) {
+            addNode(node);
+        }
     }
 
     public List<AbstractNode> getSinkNodes() {
@@ -59,6 +63,14 @@ public class IntraGroum {
         });
         returns.addAll(scopes);
         return returns;
+    }
+
+    @Override
+    public int hashCode() {
+        final int prime = 31;
+        int result = 1;
+        result = prime * result + this.getNodes().hashCode();
+        return result;
     }
 
     @Override

@@ -1,24 +1,20 @@
-package root.analysis.groum.visualizer;
+package root.analysis.groum;
 
 import com.github.javaparser.utils.Pair;
 import guru.nidi.graphviz.attribute.*;
 import guru.nidi.graphviz.engine.Format;
 import guru.nidi.graphviz.engine.Graphviz;
 import guru.nidi.graphviz.model.Graph;
-import guru.nidi.graphviz.model.MutableGraph;
 import guru.nidi.graphviz.model.Node;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import root.analysis.groum.entity.*;
-import root.analysis.groum.extractor.ExtractFromJavaParser;
 
 import java.io.File;
 import java.io.IOException;
 import java.util.*;
 import java.util.stream.Collectors;
 
-import static guru.nidi.graphviz.attribute.Label.Justification.LEFT;
-import static guru.nidi.graphviz.attribute.Label.Justification.MIDDLE;
 import static guru.nidi.graphviz.model.Factory.*;
 
 public class Graphvizer {
@@ -51,13 +47,13 @@ public class Graphvizer {
         return new Pair<>(node, graphNode);
     }
 
-    public void getGraph(IntraGroum groum) throws IOException {
+    public void getGraph(IntraGroum groum, String filePath) throws IOException {
         Graph g = graph(String.valueOf(i++)).directed();
 
         Map<AbstractNode, Node> map = new HashMap<>();
         for (AbstractNode node :groum.getNodes()) {
             Node graphNode = getNode(node, map).b;
-            Set<AbstractNode> toEdges = node.getToEdges();
+            Set<AbstractNode> toEdges = node.getOutgoingEdges();
             List<Node> target = toEdges.stream().map(n -> getNode(n, map).b).collect(Collectors.toList());
             g = g.with(graphNode.link(target));
             if (node instanceof ControlNode) {
@@ -67,7 +63,6 @@ public class Graphvizer {
                 g = g.with(graph(String.valueOf(i++)).cluster().with(tmp));
             }
         }
-        String filePath = "example/groum.svg";
         Graphviz.fromGraph(g).render(Format.SVG).toFile(new File(filePath));
         logger.info("Graph has been stored in " + filePath);
     }

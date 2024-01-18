@@ -8,7 +8,7 @@ import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import root.AbstractMain;
 import root.analysis.groum.entity.IntraGroum;
-import root.analysis.groum.visualizer.Graphvizer;
+import root.analysis.groum.Graphvizer;
 import root.generation.ProjectPreparation;
 import root.parser.ASTJavaParser;
 import root.util.CommandSummary;
@@ -110,9 +110,10 @@ class ExtractFromJavaParserTest {
                     assert arg.size() == 1;
                     p.add(arg.get(0));
                     if (arg.get(0).getNodes().size() > 3) {
+                        String filePath = "example/groum.svg";
                         Graphvizer er = new Graphvizer();
-                        er.getGraph(arg.get(0));
-                        assert false;
+                        er.getGraph(arg.get(0), filePath);
+                        assert true;
                     }
                 }
             }

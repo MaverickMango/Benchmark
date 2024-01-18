@@ -1,4 +1,4 @@
-package root.analysis.groum.visualizer;
+package root.analysis.groum;
 
 import guru.nidi.graphviz.attribute.*;
 import guru.nidi.graphviz.engine.Format;
