@@ -103,9 +103,8 @@ public abstract class AbstractNode {
             if (this.getAttributes().size() != that.getAttributes().size())
                 return false;
             Collection<?> difference = FileUtils.difference(this.getAttributes(), that.getAttributes());
-            if (difference.isEmpty())
-                return true;
+            return difference.isEmpty();
         }
-        return super.equals(obj);
+        return false;
     }
 }

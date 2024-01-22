@@ -80,9 +80,8 @@ public class IntraGroum {
             if (this.getNodes().size() != that.getNodes().size())
                 return false;
             Collection<?> difference = FileUtils.difference(this.getNodes(), that.getNodes());
-            if (difference.isEmpty())
-                return true;
+            return difference.isEmpty();
         }
-        return super.equals(obj);
+        return false;
     }
 }

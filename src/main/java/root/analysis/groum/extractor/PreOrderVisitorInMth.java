@@ -1,5 +1,6 @@
 package root.analysis.groum.extractor;
 
+import com.github.javaparser.ast.Node;
 import com.github.javaparser.ast.body.MethodDeclaration;
 import com.github.javaparser.ast.body.VariableDeclarator;
 import com.github.javaparser.ast.expr.*;
@@ -7,12 +8,10 @@ import com.github.javaparser.ast.stmt.*;
 import com.github.javaparser.ast.type.IntersectionType;
 import com.github.javaparser.ast.visitor.VoidVisitorAdapter;
 import root.analysis.groum.entity.*;
+import root.analysis.groum.vector.Feature;
 import root.util.ConfigurationProperties;
 
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 import java.util.concurrent.atomic.AtomicReference;
 
 public class PreOrderVisitorInMth extends VoidVisitorAdapter<List<IntraGroum>> {
@@ -20,6 +19,10 @@ public class PreOrderVisitorInMth extends VoidVisitorAdapter<List<IntraGroum>> {
     ExtractFromJavaParser extractFromJavaParser = new ExtractFromJavaParser();
     AttributeVisitor attributeVisitor = new AttributeVisitor();
     GraphMerger graphMerger = new GraphMerger();
+
+    public LinkedHashMap<Feature, Integer> getFeatures() {
+        return graphMerger.exaser.getFeatureCounts();
+    }
 
 //    @Override
 //    public void visit(NodeList n, List<IntraGroum> arg) {
@@ -37,6 +40,14 @@ public class PreOrderVisitorInMth extends VoidVisitorAdapter<List<IntraGroum>> {
 //            arg.add(head);
 //        }
 //    }
+
+    public void buildGraph(Node node, List<IntraGroum> arg, boolean isFinal) {
+        node.accept(this, arg);
+        IntraGroum groum = arg.isEmpty() ? null : arg.get(0);
+        if (groum != null && isFinal) {
+            graphMerger.buildlFinalGroum(groum);//添加数据依赖 ***
+        }
+    }
 
     @Override
     public void visit(MethodDeclaration n, List<IntraGroum> arg) {
@@ -64,7 +75,6 @@ public class PreOrderVisitorInMth extends VoidVisitorAdapter<List<IntraGroum>> {
 //            });
         });
         tail.set(arg.get(0) == null ? null : arg.get(0));//不单独处理每条语句的写法
-        graphMerger.buildlFinalGroum(tail.get());//添加数据依赖 ***
 
         IntraGroum merged = graphMerger.sequentialMerge(head, tail.get());//连接当前节点和函数body
         merged = graphMerger.sequentialMerge(head0, merged);
@@ -119,6 +129,9 @@ public class PreOrderVisitorInMth extends VoidVisitorAdapter<List<IntraGroum>> {
 
     @Override
     public void visit(ObjectCreationExpr n, List<IntraGroum> arg) {
+        //父节点
+        IntraGroum head0 = arg.isEmpty() ? null : arg.get(0);
+        arg.clear();
         //函数调用本身
         AbstractNode extract = extractFromJavaParser.extract(n);
         IntraGroum tail = new IntraGroum(extract);
@@ -131,7 +144,7 @@ public class PreOrderVisitorInMth extends VoidVisitorAdapter<List<IntraGroum>> {
                 l.accept(this, arg);
             }
         });
-        IntraGroum head0 = arg.isEmpty() ? null : arg.get(0);
+        IntraGroum before = arg.isEmpty() ? null : arg.get(0);
         arg.clear();
 
         //函数参数部分
@@ -154,7 +167,8 @@ public class PreOrderVisitorInMth extends VoidVisitorAdapter<List<IntraGroum>> {
 
         IntraGroum merged = graphMerger.sequentialMerge(head.get(), tail);//连接参数和函数调用节点
 
-        merged = graphMerger.sequentialMerge(head0, merged);//连接级联调用和当前节点
+        merged = graphMerger.sequentialMerge(before, merged);//连接级联调用和当前节点
+        merged = graphMerger.sequentialMerge(head0, merged);
         arg.clear();
         arg.add(merged);
     }

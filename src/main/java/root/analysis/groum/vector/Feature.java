@@ -25,8 +25,16 @@ public class Feature {
         labelComponents.add(String.valueOf(outgoingSize));
     }
 
+    public AbstractNode getRoot() {
+        return root;
+    }
+
     public void setRoot(AbstractNode root) {
         this.root = root;
+    }
+
+    public boolean isNode() {
+        return isNode;
     }
 
     /**
@@ -41,6 +49,15 @@ public class Feature {
             return;
         labelComponents.remove(idx - 1);
         labelComponents.add(idx - 1, newComponent);
+    }
+
+    public List<Object> getPathNode() {
+        if (isNode)
+            return null;
+        List<Object> list = new ArrayList<>();
+        list.add(root);
+        list.addAll(labelComponents);
+        return list;
     }
 
     public List<Object> getLabelComponents() {
@@ -58,23 +75,21 @@ public class Feature {
     public int getLength() {
         if (isNode)
             return -1;
-        return labelComponents.size();
+        return labelComponents.size() + 1;
     }
 
     public boolean startNodeIs(Object labelComponent) {
         if (isNode)
             return false;
-        if (labelComponents.size() <= 1)
-            return false;
-        return labelComponents.get(0).equals(labelComponent);
+        return root.toString().equals(labelComponent.toString());
     }
 
     public boolean endNodeIs(Object labelComponent) {
         if (isNode)
             return false;
-        if (labelComponents.size() <= 1)
-            return false;
-        return labelComponents.get(labelComponents.size() - 1).equals(labelComponent);
+        if (labelComponents.size() < 1)
+            return root.toString().equals(labelComponent.toString());
+        return labelComponents.get(labelComponents.size() - 1).toString().equals(labelComponent.toString());
     }
 
     @Override

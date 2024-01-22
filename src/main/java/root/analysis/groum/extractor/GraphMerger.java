@@ -21,13 +21,19 @@ public class GraphMerger {
      */
     public IntraGroum parallelMerge(IntraGroum X, IntraGroum Y) {
         if (X == Y || X == null) {
+            if (Y != null && Y.getNodes().size() == 1) {
+                exaser.incrVector(new IntraGroum(), null, Y.getNodes().get(0));//提取vector
+            }
             return Y;
         }
+        if (X.getNodes().size() == 1) {
+            exaser.incrVector(new IntraGroum(), X.getNodes().get(0), null);//提取vector
+        }
         if (Y != null) {
-            if (X.getNodes().size() == 1) {
-                newNode(X, X.getNodes().get(0));
-            }
-            Y.getNodes().forEach(n -> newNode(X, n));
+            Y.getNodes().forEach(n -> {
+                exaser.incrVector(X, null, n);
+                X.addNode(n);
+            });
         }
         return X;
     }
@@ -40,25 +46,44 @@ public class GraphMerger {
      * @return
      */
     public IntraGroum sequentialMerge(IntraGroum X, IntraGroum Y) {
-        if (X == Y || X == null) {
-            return Y;
+        List<AbstractNode> sinkNodes = new ArrayList<>(), sourceNodes = new ArrayList<>();
+        if (X != null) {
+            sinkNodes = X.getSinkNodes();
         }
         if (Y != null) {
-            List<AbstractNode> sinkNodes = X.getSinkNodes();
-            List<AbstractNode> sourceNodes = Y.getSourceNodes();
-            for (AbstractNode head : sinkNodes) {
-                for (AbstractNode tail : sourceNodes) {
-                    linkNodesWithDataDependency(X, head, tail);
-                }
-            }
-            X.extendNodes(Y.getNodes());
+            sourceNodes = Y.getSourceNodes();
         }
-        return X;
-    }
+        IntraGroum merged = parallelMerge(X, Y);
+        if (merged == null) {
+            return merged;
+        }
+        X = merged;
+        for (AbstractNode head : sinkNodes) {
+            for (AbstractNode tail : sourceNodes) {
+                linkNodesWithDataDependency(X, head, tail);
+            }
+        }
 
-    private void newNode(IntraGroum groum, AbstractNode node) {
-        groum.addNode(node);
-        exaser.newNode(node);
+//        if (X == Y || X == null) {
+//            if (Y != null && Y.getNodes().size() == 1) {
+//                exaser.incrVector(new IntraGroum(), null, Y.getNodes().get(0));//提取vector
+//            }
+//            return Y;
+//        }
+//        if (X.getNodes().size() == 1) {
+//            exaser.incrVector(new IntraGroum(), X.getNodes().get(0), null);//提取vector
+//        }
+//        if (Y != null) {
+//            List<AbstractNode> sinkNodes = X.getSinkNodes();
+//            List<AbstractNode> sourceNodes = Y.getSourceNodes();
+//            for (AbstractNode head : sinkNodes) {
+//                for (AbstractNode tail : sourceNodes) {
+//                    linkNodesWithDataDependency(X, head, tail);
+//                }
+//            }
+//            X.extendNodes(Y.getNodes());
+//        }
+        return X;
     }
 
     public void linkNodesWithDataDependency(IntraGroum groum, AbstractNode head, AbstractNode tail) {
@@ -68,9 +93,6 @@ public class GraphMerger {
         }
         if (head.isTerminal()) {
             return;
-        }
-        if (!groum.getNodes().contains(head)) {
-            newNode(groum, head);
         }
         exaser.incrVector(groum, head, tail);//提取vector
         //顺联结构的头尾节点应该具有数据依赖

@@ -32,30 +32,30 @@ class ExtractFromJavaParserTest {
 
     @BeforeAll
     static void beforeAll() {
-//        cs.append("-location", "./");
-//        cs.append("-srcJavaDir", "src/main/java");
-//        cs.append("-srcTestDir", "src/test/java");
-//        cs.append("-binJavaDir", "build/classes/java/main");
-//        cs.append("-binTestDir", "build/classes/java/test");
-//        cs.append("-complianceLevel", "1.8");
-//        AbstractMain main = new AbstractMain();
-//        projectPreparation = main.initialize(cs.flat());
-        setInputs();
+        cs.append("-location", "./");
+        cs.append("-srcJavaDir", "src/main/java");
+        cs.append("-srcTestDir", "src/test/java");
+        cs.append("-binJavaDir", "build/classes/java/main");
+        cs.append("-binTestDir", "build/classes/java/test");
+        cs.append("-complianceLevel", "1.8");
         AbstractMain main = new AbstractMain();
         projectPreparation = main.initialize(cs.flat());
-
-        String testInfos = ConfigurationProperties.getProperty("testInfos");
-        String[] split = testInfos.split("#");
-        if (split.length >= 1) {
-            String triggerTest1 = split[0];
-            String[] split1 = triggerTest1.split(":");
-            filePath = projectPreparation.srcTestDir + File.separator +
-                    split1[0].replaceAll("\\.", File.separator) + ".java";
-            methodName = split1[1];
-            if (split1.length == 3) {
-                lineNumber = Integer.parseInt(split1[2]);
-            }
-        }
+//        setInputs();
+//        AbstractMain main = new AbstractMain();
+//        projectPreparation = main.initialize(cs.flat());
+//
+//        String testInfos = ConfigurationProperties.getProperty("testInfos");
+//        String[] split = testInfos.split("#");
+//        if (split.length >= 1) {
+//            String triggerTest1 = split[0];
+//            String[] split1 = triggerTest1.split(":");
+//            filePath = projectPreparation.srcTestDir + File.separator +
+//                    split1[0].replaceAll("\\.", File.separator) + ".java";
+//            methodName = split1[1];
+//            if (split1.length == 3) {
+//                lineNumber = Integer.parseInt(split1[2]);
+//            }
+//        }
     }
 
     private static void setInputs() {
@@ -90,8 +90,9 @@ class ExtractFromJavaParserTest {
     @Test
     void visit() throws IOException {
         ASTJavaParser parser = (ASTJavaParser) projectPreparation.parser;
+        parser.parseASTs("src/test/java/FileRead.java");
 //        parser.parseASTs("src/main/java/root/generation/transformation/extractor/InputExtractor.java");
-        parser.parseASTs("/home/liumengjiao/Desktop/CI/bugs/Math_50_buggy/src/main/java/org/apache/commons/math/analysis/solvers/BaseSecantSolver.java");
+//        parser.parseASTs("/home/liumengjiao/Desktop/CI/bugs/Math_50_buggy/src/main/java/org/apache/commons/math/analysis/solvers/BaseSecantSolver.java");
         Map<String, Object> asts = parser.getASTs();
         PreOrderVisitorInMth visitor = new PreOrderVisitorInMth();
         ArrayList<IntraGroum> p = new ArrayList<>();
@@ -101,16 +102,16 @@ class ExtractFromJavaParserTest {
             for (BodyDeclaration b :members) {
                 ArrayList<IntraGroum> arg = new ArrayList<>();
                 if (b instanceof MethodDeclaration) {
-                    if (!((MethodDeclaration) b).getNameAsString().equals("doSolve")) {
-                        continue;
-                    }
+//                    if (!((MethodDeclaration) b).getNameAsString().equals("doSolve")) {
+//                        continue;
+//                    }
                     visitor.visit((MethodDeclaration) b, arg);
                     if (arg.isEmpty())
                         continue;
                     assert arg.size() == 1;
                     p.add(arg.get(0));
                     if (arg.get(0).getNodes().size() > 3) {
-                        String filePath = "example/groum.svg";
+                        String filePath = "example/example.svg";
                         Graphvizer er = new Graphvizer();
                         er.getGraph(arg.get(0), filePath);
                         assert true;
