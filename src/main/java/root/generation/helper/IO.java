@@ -13,8 +13,7 @@ import javax.tools.JavaFileObject;
 
 
 import org.apache.commons.io.FileUtils;
-import org.eclipse.jdt.core.dom.Statement;
-import root.generation.compiler.JavaFileObjectImpl;
+import root.compiler.JavaFileObjectImpl;
 
 
 public class IO {

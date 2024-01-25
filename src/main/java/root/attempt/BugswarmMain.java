@@ -6,6 +6,7 @@ import root.util.FileUtils;
 import root.util.GitAccess;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -17,7 +18,7 @@ public class BugswarmMain implements GitAccess {
         String jsonFile = "/home/liumengjiao/Desktop/CI/bugswarm-bugs/bugswarmShow.json";
         JsonElement export = FileUtils.readJsonFile(jsonFile);
         List<String> failed = new ArrayList<>();
-        List<JsonElement> jsonElements = export.getAsJsonArray().asList();
+        List<JsonElement> jsonElements = Collections.singletonList(export.getAsJsonArray());
         List<BugswarmShow> bugswarms
                 = jsonElements.stream().map(e -> FileUtils.json2Bean(e.toString(), BugswarmShow.class)).collect(Collectors.toList());
 //        List<Bugswarm> bugsUseful = bugswarms.stream().filter(bug -> bug.getFailedJob().getNumTestsFailed() >= 1).collect(Collectors.toList());

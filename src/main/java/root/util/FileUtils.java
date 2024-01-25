@@ -226,7 +226,7 @@ public class FileUtils {
 
     public static void copy(File srcFile, File dstFile) {
         if (!srcFile.exists()) {
-            logger.error("srcPath does not exist!");
+            logger.error("srcPath '" + srcFile.getAbsolutePath() + "'does not exist!");
             return;
         }
         if (srcFile.isFile()) {
@@ -408,44 +408,20 @@ public class FileUtils {
         return res == null ? "" : res;
     }
 
-    public static List<File> findAllFiles(String fileDir, String postfix) throws IOException {
-        Path path = Paths.get(fileDir);
-        List<File> files = Files.walk(path)
-                .filter(p -> p.toFile().isFile() && p.toFile().getName().endsWith(postfix))
-                .map(Path::toFile)
-                .collect(Collectors.toList());
-        return files;
-    }
-
     /**
      * read filepath with postfix
      * @param fileDir target file dir to be read
      * @param postfix target postfix of file
      * @return List<String>
      */
-    public static List<String> findAllFilePaths(String fileDir, String postfix) {
-        fileDir = formatSeparator(fileDir);
-        List<String> paths = new ArrayList<>();
-        //读取输入路径的文件
-        File[] list = new File(fileDir).listFiles();
-        if (list == null) {
-            logger.error("Target File directory is empty!");
-            return paths;
-        }
-        for(File file : list)
-        {
-            if(file.isFile())
-            {
-                if (file.getName().endsWith(postfix)) {
-                    paths.add(file.getAbsolutePath());
-                }
-            } else if (file.isDirectory()) {
-                paths.addAll(findAllFilePaths(file.getAbsolutePath(), postfix));
-            }
-        }
-        return paths;
+    public static List<String> findAllFilePaths(String fileDir, String postfix) throws IOException {
+        Path path = Paths.get(fileDir);
+        List<String> files = Files.walk(path)
+                .filter(p -> p.toFile().isFile() && p.toFile().getName().endsWith(postfix))
+                .map(p -> p.toAbsolutePath().toString())
+                .collect(Collectors.toList());
+        return files;
     }
-
 
     public static String findOneFilePath(String fileDir, String postfix) {
         fileDir = formatSeparator(fileDir);
@@ -526,9 +502,9 @@ public class FileUtils {
         try {
             StringBuilder stringBuilder = new StringBuilder("Running command: ");
             stringBuilder.append(String.join(" ", cmd));
-            logger.info(stringBuilder.toString());
+            logger.debug(stringBuilder.toString());
             List<String> message = FileUtils.execute(cmd, null, defaultTimeoutSecond, null);
-            logger.info("Command result:\n" + FileUtils.getStrOfIterable(message, "\n"));
+            logger.debug("Command result:\n" + FileUtils.getStrOfIterable(message, "\n"));
             message.remove(0);
             return message;
         } catch (Exception e) {
@@ -545,9 +521,9 @@ public class FileUtils {
             if (workingDir != null) {
                 stringBuilder.append(" in ").append(workingDir);
             }
-            logger.info(stringBuilder.toString());
+            logger.debug(stringBuilder.toString());
             List<String> message = FileUtils.execute(cmd, workingDir, timeSecond, env);
-            logger.info("Command result:\n" + FileUtils.getStrOfIterable(message, "\n"));
+            logger.debug("Command result:\n" + FileUtils.getStrOfIterable(message, "\n"));
             res = Integer.parseInt(message.get(0));
         } catch (Exception e) {
             e.printStackTrace();

@@ -49,7 +49,7 @@ class ExaserTest {
 
     private ProjectPreparation setting() {
         CommandSummary cs = new CommandSummary();
-        ProjectPreparation projectPreparation;
+        ProjectPreparation projectPreparation = null;
         String filePath;// = "/home/liumengjiao/Desktop/CI/bugs/Closure_10_bug/test/com/google/javascript/jscomp/PeepholeFoldConstantsTest.java";
         String methodName;// = "testIssue821";
         int lineNumber;// = 582;
@@ -60,7 +60,8 @@ class ExaserTest {
         cs.append("-binTestDir", "build/classes/java/test");
         cs.append("-complianceLevel", "1.8");
         AbstractMain main = new AbstractMain();
-        projectPreparation = main.initialize(cs.flat());
+        String[] flat = cs.flat();
+        projectPreparation = main.initialize(flat);
         return projectPreparation;
     }
 
@@ -71,7 +72,8 @@ class ExaserTest {
         PreOrderVisitorInMth visitor = new PreOrderVisitorInMth();
         for (String key :asts.keySet()) {
             CompilationUnit o = (CompilationUnit) asts.get(key);
-            List<BodyDeclaration<?>> collect = o.getType(0).getMembers().stream().filter(b -> b instanceof MethodDeclaration).collect(Collectors.toList());
+            List<BodyDeclaration<?>> collect = o.getType(0).getMembers().stream().filter(b ->
+                    b instanceof MethodDeclaration).collect(Collectors.toList());
             ArrayList<IntraGroum> arg = new ArrayList<>();
             visitor.buildGraph(collect.get(0), arg, isFinal);
             assert arg.size() == 1;

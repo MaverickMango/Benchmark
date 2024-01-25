@@ -7,6 +7,7 @@ import org.eclipse.jdt.core.dom.FileASTRequestor;
 import root.util.ConfigurationProperties;
 import root.util.FileUtils;
 
+import java.io.IOException;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
@@ -37,7 +38,7 @@ public class ASTJDTParser extends AbstractASTParser {
     }
 
     @Override
-    public void parseASTs(String fileDir) {
+    public void parseASTs(String fileDir) throws IOException {
         List<String> allFiles = FileUtils.findAllFilePaths(fileDir, ".java");
         parser.createASTs(allFiles.toArray(new String[allFiles.size()]), null,
                 new String[]{"UTF-8"}, requestor, null);
@@ -70,8 +71,8 @@ public class ASTJDTParser extends AbstractASTParser {
             case "10":
                 level = AST.JLS10;
                 break;
-            case "11":
-                level = AST.JLS11;
+//            case "11":
+//                level = AST.JLS11;
             case "1.8":
             case "8":
             case "1.7":
@@ -108,9 +109,9 @@ public class ASTJDTParser extends AbstractASTParser {
             case "10":
                 level = JavaCore.VERSION_10;
                 break;
-            case "11":
-                level = JavaCore.VERSION_11;
-                break;
+//            case "11":
+//                level = JavaCore.VERSION_11;
+//                break;
             case "1.7":
             case "7":
                 level = JavaCore.VERSION_1_7;

@@ -1,6 +1,5 @@
 package root.generation.transformation;
 
-import com.github.javaparser.ast.CompilationUnit;
 import com.github.javaparser.ast.body.MethodDeclaration;
 import com.github.javaparser.ast.expr.*;
 import com.github.javaparser.ast.stmt.ExpressionStmt;
@@ -11,8 +10,6 @@ import org.slf4j.LoggerFactory;
 import root.generation.entity.Input;
 import root.generation.entity.Skeleton;
 import root.generation.helper.Helper;
-import root.generation.helper.MutatorHelper;
-import root.util.FileUtils;
 
 import java.util.*;
 import java.util.stream.Collectors;
@@ -53,7 +50,7 @@ public class InputTransformer {
         Class<? extends Expression> inputType;
         try {
             String qualifiedName = Helper.getType(basicExpr);
-            inputType = MutatorHelper.INPUTS_BY_TYPE.get(qualifiedName).get(0);
+            inputType = MutateHelper.INPUTS_BY_TYPE.get(qualifiedName).get(0);
         } catch (IllegalStateException e) {
             inputType = basicExpr.getClass();
         }
@@ -122,24 +119,23 @@ public class InputTransformer {
         }
         logger.info("Apply all new inputs, transforming test method...");
         skeleton.applyTransform(newInputs);
-        Map<String, MethodDeclaration> map = new HashMap<>();
         List<Input> collect = newInputs.stream().filter(input -> !input.isCompleted()).collect(Collectors.toList());
         List<Input> collect1 = newInputs.stream().filter(Input::isCompleted).collect(Collectors.toList());
         if (!collect.isEmpty()) {
             logger.info("Getting oracles...");
             Map<String, MethodDeclaration> oracle = skeleton.getOracle(newInputs);//需要oracle的语句则需要先执行一遍
-            // todo 并不能通过参数数量来确定是否需要oracle，还可能是assertrue这种
-            map.putAll(oracle);
+            //todo 并不能通过参数数量来确定是否需要oracle，还可能是assertrue这种
+            skeleton.addGeneratedMethods(oracle);
         }
         if (!collect1.isEmpty()) {
             logger.info("Constructing methods without oracle...");
             Map<Input, MethodDeclaration> methodDeclarationInputMap = skeleton.addStatementsAtLast(collect1);//对于不需要oracle的语句，直接根据input更新method
             for (Map.Entry<Input, MethodDeclaration> entry: methodDeclarationInputMap.entrySet()) {
                 String testNamePrefix = skeleton.getTestNamePrefix(skeleton.getClazz(), entry.getValue().getNameAsString());
-                map.putIfAbsent(testNamePrefix, entry.getValue());
+                skeleton.addGeneratedMethod(testNamePrefix, entry.getValue());//putIfAbsent?
             }
         }
-        return map;
+        return skeleton.getGeneratedMethods();
     }
 
     public Map<String, MethodDeclaration> constructSkeleton(Skeleton skeleton, Input newInput) {

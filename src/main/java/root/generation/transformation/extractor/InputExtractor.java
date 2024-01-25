@@ -56,9 +56,8 @@ public class InputExtractor {
         return compilationUnit;
     }
 
-    public MethodDeclaration extractMethodByName(String classNormalAbsPath, String methodName,
+    public MethodDeclaration extractMethodByName(CompilationUnit compilationUnit, String methodName,
                                                List<ImportDeclaration> targetImports) {
-        CompilationUnit compilationUnit = getCompilationUnit(classNormalAbsPath);
         targetImports.addAll(compilationUnit.getImports());
         List<MethodDeclaration> methodDeclarations = compilationUnit.findAll(MethodDeclaration.class)
                 .stream().filter(m -> m.getName().toString().equals(methodName)).collect(Collectors.toList());
@@ -70,9 +69,9 @@ public class InputExtractor {
         }
     }
 
-    public MethodCallExpr extractMethodCallByLine(String classNormalAbsPath, String methodName, int lineNumber) {
+    public MethodCallExpr extractMethodCallByLine(CompilationUnit compilationUnit, String methodName, int lineNumber) {
         ArrayList<ImportDeclaration> importDeclarations = new ArrayList<>();
-        MethodDeclaration methodDeclaration = extractMethodByName(classNormalAbsPath, methodName, importDeclarations);
+        MethodDeclaration methodDeclaration = extractMethodByName(compilationUnit, methodName, importDeclarations);
         MethodCallExpr methodCallExpr = extractMethodCallByLine(methodDeclaration, lineNumber);
         return methodCallExpr;
     }
@@ -110,8 +109,8 @@ public class InputExtractor {
         throw new IllegalArgumentException("Illegal Argument: " + lineNumber);
     }
 
-    public Input extractInput(String classNormalAbsPath, String methodName, int lineNumber) {
-        MethodCallExpr methodCallExpr = extractMethodCallByLine(classNormalAbsPath, methodName, lineNumber);
+    public Input extractInput(CompilationUnit compilationUnit, String methodName, int lineNumber) {
+        MethodCallExpr methodCallExpr = extractMethodCallByLine(compilationUnit, methodName, lineNumber);
         return extractInput(methodCallExpr);
     }
 

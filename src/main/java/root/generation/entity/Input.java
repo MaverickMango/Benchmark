@@ -7,10 +7,9 @@ import com.github.javaparser.utils.Pair;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import root.generation.helper.Helper;
-import root.generation.helper.MutatorHelper;
+import root.generation.transformation.MutateHelper;
 
 import java.util.List;
-import java.util.Map;
 
 /**
  * <s>test input(method call expression's argument)</s>
@@ -101,7 +100,7 @@ public abstract class Input implements Cloneable{
     }
 
     private void setPrimitive(String type) {
-        isPrimitive = MutatorHelper.isKnownType(type) && !"Object".equals(type) && !"java.lang.Object".equals(type);
+        isPrimitive = MutateHelper.isKnownType(type) && !"Object".equals(type) && !"java.lang.Object".equals(type);
     }
 
     public void setCompleted(boolean completed) {

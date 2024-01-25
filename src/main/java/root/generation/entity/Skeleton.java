@@ -17,7 +17,6 @@ import org.slf4j.LoggerFactory;
 import root.generation.helper.Helper;
 import root.generation.transformation.TransformHelper;
 import root.generation.transformation.visitor.ModifiedVisitor;
-import root.util.ConfigurationProperties;
 import root.util.FileUtils;
 
 import java.io.File;
@@ -33,7 +32,7 @@ public class Skeleton implements Cloneable {
 
     private static final Logger logger = LoggerFactory.getLogger(Skeleton.class);
 
-    String oracleFilePath = ConfigurationProperties.getProperty("location") + File.separator + "generatedOracles.txt";
+    String oracleFilePath;
     String absolutePath;
     CompilationUnit clazz;
     String clazzName;
@@ -41,7 +40,7 @@ public class Skeleton implements Cloneable {
     Map<Input, MethodDeclaration> transformedMethod;//key: input's identifier
     boolean isSplit;//是否完成对多余断言的删除
     List<Input> inputs;
-    Map<Input, MethodDeclaration> generatedMethods;
+    Map<String, MethodDeclaration> generatedMethods;
     int generatedTestsIdx;
     int generatedClazzIdx;
 
@@ -55,6 +54,7 @@ public class Skeleton implements Cloneable {
         this.generatedMethods = new HashMap<>();
         this.generatedTestsIdx = 0;
         this.generatedClazzIdx = 0;
+        this.oracleFilePath = TransformHelper.oracleOutputs;
         File file = new File(oracleFilePath);
         if (file.exists()) {
             file.delete();
@@ -135,10 +135,15 @@ public class Skeleton implements Cloneable {
         return isSplit;
     }
 
-    public MethodDeclaration getGeneratedMethod(Input input) {
-        return generatedMethods.get(input);
+    public void addGeneratedMethod(String testName, MethodDeclaration methodDeclaration) {
+        generatedMethods.put(testName, methodDeclaration);
     }
-    public Map<Input, MethodDeclaration> getGeneratedMethods() {
+
+    public void addGeneratedMethods(Map<String, MethodDeclaration> map) {
+        generatedMethods.putAll(map);
+    }
+
+    public Map<String, MethodDeclaration> getGeneratedMethods() {
         return generatedMethods;
     }
 
@@ -178,7 +183,6 @@ public class Skeleton implements Cloneable {
             BlockStmt blockStmt = new BlockStmt(new NodeList<>());
             blockStmt.getStatements().addLast(stmt);
         }
-        generatedMethods.putIfAbsent(input, clone);
     }
 
     public Map<Input, MethodDeclaration> addStatementsAtLast(List<Input> inputs) {
@@ -337,7 +341,7 @@ public class Skeleton implements Cloneable {
         return oracleWithAssert;
     }
 
-    public List<String> applyPatch(Map<String, MethodDeclaration> map) {
+    public List<String> runGeneratedTests(Map<String, MethodDeclaration> map) {
         logger.info("Transforming test for buggy version, add generated methods.");
         CompilationUnit transformedCompilationUnit = addMethods2CompilationUnit(clazz, map.values());
 

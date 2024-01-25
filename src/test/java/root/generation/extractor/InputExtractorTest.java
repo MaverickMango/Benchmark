@@ -1,5 +1,6 @@
 package root.generation.extractor;
 
+import com.github.javaparser.ast.CompilationUnit;
 import com.github.javaparser.ast.ImportDeclaration;
 import com.github.javaparser.ast.body.MethodDeclaration;
 import com.github.javaparser.ast.expr.MethodCallExpr;
@@ -24,9 +25,10 @@ public class InputExtractorTest extends PreparationTest{
 
     public static MethodDeclaration getMethodDeclaration() {
         List<ImportDeclaration> importDeclarations = new ArrayList<>();
+        CompilationUnit compilationUnit = TransformHelper.inputExtractor.getCompilationUnit(filePath);
         MethodDeclaration extractInput = TransformHelper.inputExtractor
                 .extractMethodByName(
-                        new File(filePath).getAbsolutePath(),
+                        compilationUnit,
                         methodName, importDeclarations);
         return extractInput;
     }
@@ -34,9 +36,10 @@ public class InputExtractorTest extends PreparationTest{
     @Test
     void extractMethodCallByLine() {
         List<ImportDeclaration> importDeclarations = new ArrayList<>();
+        CompilationUnit compilationUnit = TransformHelper.inputExtractor.getCompilationUnit(filePath);
         MethodDeclaration extractInput = TransformHelper.inputExtractor
                 .extractMethodByName(
-                        new File(filePath).getAbsolutePath(),
+                        compilationUnit,
                         methodName, importDeclarations);
         InputExtractor inputExtractor = TransformHelper.inputExtractor;
         MethodCallExpr methodCallExpr = inputExtractor.extractMethodCallByLine(extractInput, lineNumber);

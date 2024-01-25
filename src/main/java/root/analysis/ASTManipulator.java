@@ -2,6 +2,7 @@ package root.analysis;
 
 import org.eclipse.jdt.core.dom.AST;
 import org.eclipse.jdt.core.dom.ASTParser;
+import root.parser.ASTJDTParser;
 
 public abstract class ASTManipulator {
 
@@ -9,10 +10,10 @@ public abstract class ASTManipulator {
 
     public ASTParser getParser(boolean newOne, int complianceLevel) {
         if (parser == null || newOne) {
-            if (complianceLevel == 8)
-                parser = ASTParser.newParser(AST.JLS8);
-            else
-                parser = ASTParser.newParser(AST.getJLSLatest());
+            parser = ASTParser.newParser(AST.JLS8);
+//            if (complianceLevel != 8)
+//            else
+//                parser = ASTParser.newParser(AST.getJLSLatest());
         }
         return parser;
     }

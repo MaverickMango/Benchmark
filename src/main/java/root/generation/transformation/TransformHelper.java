@@ -10,7 +10,6 @@ import root.entity.BugRepository;
 import root.entity.benchmarks.Defects4JBug;
 import root.generation.entity.Input;
 import root.generation.entity.Skeleton;
-import root.generation.helper.MutatorHelper;
 import root.parser.AbstractASTParser;
 import root.generation.transformation.extractor.InputExtractor;
 import root.util.ConfigurationProperties;
@@ -24,6 +23,7 @@ import java.util.Map;
 public class TransformHelper {
 
     private static final Logger logger = LoggerFactory.getLogger(TransformHelper.class);
+    public static final String oracleOutputs = ConfigurationProperties.getProperty("location") + File.separator + "generatedOracles.txt";
     public static InputExtractor inputExtractor;
     public static InputTransformer inputTransformer;
     public static BugRepository bugRepository;
@@ -41,27 +41,18 @@ public class TransformHelper {
         List<Input> newInputs = new ArrayList<>();
         logger.info("Mutating test inputs... Expected num for each: " + mutantsNum + ", total inputs num: " + inputs.size());
         for (Input input :inputs) {
-            logger.info("mutating...");
-            List<Pair<Expression, Object>> inputMutants = MutatorHelper.getInputMutants(input, mutantsNum);
+            logger.info("getting mutants...");
+            List<Pair<Expression, Object>> inputMutants = MutateHelper.getInputMutants(input, mutantsNum);
             logger.info("transforming...");
             List<Input> tmp = inputTransformer.transformInput(input, inputMutants);
             newInputs.addAll(tmp);
             skeleton.addInput(input);
         }
-        logger.info("Building all new inputs...");
+        logger.info("Building new tests...");
         Map<String, MethodDeclaration> map = inputTransformer.buildNewTestByInputs(skeleton, newInputs);
-        return map;
-    }
 
-    public static Map<String, MethodDeclaration> mutateTest(String fileAbsPath, String methodName, int lineNumber, int mutantsNum) {
-        Input input = inputExtractor.extractInput(fileAbsPath, methodName, lineNumber);
-        List<Pair<Expression, Object>> inputMutants = MutatorHelper.getInputMutants(input, mutantsNum);
-        List<Input> newInputs = inputTransformer.transformInput(input, inputMutants);
-        Skeleton skeleton = createASkeleton(fileAbsPath, methodName, input);
-        if (skeleton == null) {
-            return null;
-        }
-        Map<String, MethodDeclaration> map = inputTransformer.buildNewTestByInputs(skeleton, newInputs);
+        logger.info("Saving all new inputs...");
+        //todo
         return map;
     }
 
@@ -104,37 +95,4 @@ public class TransformHelper {
         return tests;
     }
 
-    public static boolean applyPatch(Map<String, Object> patches, Skeleton skeleton, Map<String, MethodDeclaration> map) {
-        //save the generatedOracle file.
-        String bugName = bugRepository.getBug().getBugName();
-        String target = ConfigurationProperties.getProperty("resultOutput") + File.separator
-                + bugName + File.separator + "generatedOracles" + File.separator;
-        FileUtils.copy(new File(skeleton.getOracleFilePath()), new File(target));
-        target = ConfigurationProperties.getProperty("resultOutput") + File.separator
-                + bugName + File.separator + "result";
-        boolean res = false;
-        for (Map.Entry<String, Object> entry: patches.entrySet()) {
-            res = bugRepository.switchToBug();
-            if (!res) {
-                logger.error("Error occurred when switching to buggy version!");
-                return res;
-            }
-            res = false;
-            String patchPath = entry.getKey();
-            logger.info("Applying patch: " + patchPath);
-            CompilationUnit unit = (CompilationUnit) entry.getValue();
-            FileUtils.writeToFile(unit.toString(), patchPath, false);
-            List<String> failed = skeleton.applyPatch(map);
-            if (failed == null) {
-                logger.info("Test execution error in patched version!");
-                continue;
-            }
-            res = failed.isEmpty();//failed为空贼说明没有失败测试，是一个正确的补丁。
-            String correctness = res ? "correct" : "incorrect";
-            logger.info("Patch correctness: " + correctness);
-            String content = patchPath + "#" + correctness + "\n";
-            FileUtils.writeToFile(content, target, true);
-        }
-        return res;
-    }
 }

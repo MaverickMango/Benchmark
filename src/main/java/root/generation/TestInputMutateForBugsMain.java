@@ -2,12 +2,13 @@ package root.generation;
 
 import com.github.javaparser.ast.CompilationUnit;
 import com.github.javaparser.ast.body.MethodDeclaration;
+import heros.solver.Pair;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import root.AbstractMain;
+import root.PatchValidator;
 import root.generation.entity.Input;
 import root.generation.entity.Skeleton;
-import root.generation.helper.MutatorHelper;
 import root.generation.transformation.TransformHelper;
 import root.util.CommandSummary;
 import root.util.ConfigurationProperties;
@@ -35,11 +36,11 @@ public class TestInputMutateForBugsMain extends AbstractMain {
         testInfos = strings.get(5);
         projectCP = strings.get(6);
         originalCommit = strings.get(7);
-        complianceLevel = strings.get(8);
-        cleaned = strings.get(9);
+//        complianceLevel = strings.get(8);
+        cleaned = strings.get(8);
         cs.append("-proj", bugName.split("_")[0]);
         cs.append("-id", bugName.split("_")[1]);
-        cs.append("-location", location + bugName + "_bug");
+        cs.append("-location", location + bugName + "_buggy");
         cs.append("-srcJavaDir", srcJavaDir);
         cs.append("-srcTestDir", srcTestDir);
         cs.append("-binJavaDir", binJavaDir);
@@ -51,34 +52,39 @@ public class TestInputMutateForBugsMain extends AbstractMain {
         return cs;
     }
 
-    public static void main0(String[] args) {
+    public static void main(String[] args) {
         String location = args[0]; // "/home/liumengjiao/Desktop/CI/bugs/";
-        String info = args[1]; // "/home/liumengjiao/Desktop/CI/Benchmark_py/info/patches_inputs.csv";
+        String info = args[1]; // "/home/liumengjiao/Desktop/CI/Benchmark_py/generation/info/patches_inputs.csv";
         String patchesRootDir = args[2];
         List<List<String>> lists = FileUtils.readCsv(info, true);
         CommandSummary cs;
-//        cs.read(args);
-        for (List<String> strings :lists) {
+        for (int i = 1; i < lists.size(); i ++) {
+            List<String> strings  = lists.get(i);
             cs = setInputs(location, strings);
             String patchesDir = getPatchDirByBug(strings.get(0), patchesRootDir);
             cs.append("-patchesDir", patchesDir);
-            boolean res = process(cs);
+            boolean res = mutateTestInputs(cs);
+            break;
         }
     }
 
-    public static void main(String[] args) {
-        CommandSummary cs = new CommandSummary(args);
-        boolean res = process(cs);
-    }
-
-    private static boolean process(CommandSummary cs) {
+    private static boolean mutateTestInputs(CommandSummary cs) {
+        logger.info("Start Initialization.");
         ProjectPreparation projectPreparation = main.initialize(cs.flat());
         if (projectPreparation == null) {
             return false;
         }
-        String testInfos = ConfigurationProperties.getProperty("testInfos");
-        String[] tests = testInfos.split("#");
+        String[] tests = ConfigurationProperties.getProperty("testInfos").split("#");
+        Map<String, List<String>> testsByClazz = getTestInfos(tests);
+        List<Skeleton> mutateRes = testGeneration(projectPreparation, testsByClazz);
+        boolean allCorrect = patchValidation(projectPreparation, mutateRes);
+        logger.info("Finish.");
+        return allCorrect;
+    }
+
+    private static Map<String, List<String>> getTestInfos(String[] tests) {
         Map<String, List<String>> testsByClazz = new HashMap<>();
+        logger.info("Preprocessing --------------------");
         logger.info("Split test one by one...");
         for (String triggerTest : tests) {
             String[] split1 = triggerTest.split(":");
@@ -90,16 +96,21 @@ public class TestInputMutateForBugsMain extends AbstractMain {
             }
             testsByClazz.get(clazzName).add(methodName + ":" + lineNumber);
         }
-        boolean allCorrect = true;
-        logger.info("Processing each Test Classes...");
+        logger.info("End preprocessing --------------------");
+        return testsByClazz;
+    }
+
+    private static List<Skeleton> testGeneration(ProjectPreparation projectPreparation, Map<String, List<String>> testsByClazz) {
+        List<Skeleton> mutateRes = new ArrayList<>();
+        logger.info("Processing new Test generating --------------------");
         for (Map.Entry<String, List<String>> entry :testsByClazz.entrySet()) {
             String clazzName = entry.getKey();
             String filePath = projectPreparation.srcTestDir + File.separator +
                     clazzName + ".java";
             String absolutePath = new File(filePath).getAbsolutePath();
-            logger.info("For Test Class " + absolutePath);
+            logger.info("For Test Class " + absolutePath + " --------------------");
             CompilationUnit compilationUnit = TransformHelper.inputExtractor.getCompilationUnit(absolutePath);
-            logger.info("Creating Skeleton...");
+            logger.info("...Creating Skeleton");
             String[] s = clazzName.split(File.separator);
             Skeleton skeleton = new Skeleton(absolutePath, compilationUnit, s[s.length - 1]);
             List<Input> inputs = new ArrayList<>();
@@ -109,16 +120,22 @@ public class TestInputMutateForBugsMain extends AbstractMain {
                 String methodName = split[0];
                 int lineNumber = split.length == 2 ? Integer.parseInt(split[1]) : 0;
                 logger.info("Extracting test input for test " + methodName);
-                Input input = TransformHelper.inputExtractor.extractInput(absolutePath, methodName, lineNumber);
+                Input input = TransformHelper.inputExtractor.extractInput(compilationUnit, methodName, lineNumber);
                 inputs.add(input);
             }
-            logger.info("Mutating all test inputs...");
             Map<String, MethodDeclaration> compilationUnitMap = TransformHelper.mutateTest(skeleton, inputs, 10);
-            logger.info("Applying patches...");
-            boolean correct = TransformHelper.applyPatch(projectPreparation.patches, skeleton, compilationUnitMap);
-            allCorrect &= correct;
+            logger.info("Finishing one Test Class --------------------");
+            mutateRes.add(skeleton);
         }
-        logger.info("Finish.");
+        logger.info("End new Test generating --------------------");
+        return mutateRes;
+    }
+
+    private static boolean patchValidation(ProjectPreparation projectPreparation, List<Skeleton> mutateRes) {
+        PatchValidator patchValidator = new PatchValidator();
+        logger.info("Processing patches validating --------------------");
+        boolean allCorrect = patchValidator.validate(projectPreparation.patches, mutateRes);
+        logger.info("End patches validating --------------------");
         return allCorrect;
     }
 

@@ -1,18 +1,21 @@
 package root.generation;
 
-import com.github.javaparser.ParseProblemException;
-import org.apache.commons.io.FileUtils;
+import com.github.javaparser.ast.CompilationUnit;
+import com.github.javaparser.utils.Pair;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import root.generation.compiler.JavaJDKCompiler;
+import root.compiler.JavaJDKCompiler;
+import root.generation.entity.Patch;
 import root.generation.execution.ExternalTestExecutor;
 import root.generation.execution.ITestExecutor;
 import root.generation.execution.InternalTestExecutor;
 import root.generation.helper.*;
+import root.generation.transformation.MutateHelper;
 import root.parser.ASTJavaParser;
 import root.parser.AbstractASTParser;
 import root.generation.transformation.TransformHelper;
 import root.util.ConfigurationProperties;
+import root.util.FileUtils;
 
 import javax.management.JMException;
 import javax.tools.JavaFileObject;
@@ -49,7 +52,7 @@ public class ProjectPreparation {
     public Map<String, Object> ASTs;//CompilationUnit
     public List<String> compilerOptions;
     URL[] progURLs;
-    public Map<String, Object> patches;
+    public List<Patch> patches;//patch文件到bug文件
 
     public ProjectPreparation() throws IOException {
         String location = ConfigurationProperties.getProperty("location");
@@ -129,13 +132,13 @@ public class ProjectPreparation {
             binExecuteTestClasses = finder.findBinExecuteTestClasses();
 
         if (javaClassesInfoPath != null)
-            FileUtils.writeLines(new File(javaClassesInfoPath), binJavaClasses);
+            org.apache.commons.io.FileUtils.writeLines(new File(javaClassesInfoPath), binJavaClasses);
         if (testClassesInfoPath != null)
-            FileUtils.writeLines(new File(testClassesInfoPath), binExecuteTestClasses);
+            org.apache.commons.io.FileUtils.writeLines(new File(testClassesInfoPath), binExecuteTestClasses);
     }
 
     private void invokeSourceASTParser(boolean testOnly) throws IOException {
-        logger.info("Invoking source code ast parse...");
+        logger.info("Invoking source code ast parser");
 
         parser = new ASTJavaParser(srcJavaDir, srcTestDir, dependencies, complianceLevel);//resolver是白给的么
 //        parser = new ASTJDTParser(srcJavaDir, srcTestDir, dependencies, new HashMap<>());//很好这两个都没有类型解析啊啊啊
@@ -143,8 +146,7 @@ public class ProjectPreparation {
 //            parser.parseASTs(srcJavaDir);
 //        parser.parseASTs(srcTestDir);
 //        ASTs = parser.getASTs();
-
-        logger.info("AST parsing is finished!");
+//        logger.info("AST parsing is finished!");
     }
 
     void invokeProgURLsInitializer() throws MalformedURLException {
@@ -175,34 +177,44 @@ public class ProjectPreparation {
     }
 
     private void invokeTransformation() {
+        logger.info("Invoking transformerHelper and MutateHelper");
         String proj = ConfigurationProperties.getProperty("proj");
         String id = ConfigurationProperties.getProperty("id");
         String workingDir = ConfigurationProperties.getProperty("location");
         String originalCommit = ConfigurationProperties.getProperty("originalCommit");
         TransformHelper.initialize(proj, id, workingDir, originalCommit, parser);
-        MutatorHelper.initialize();
+        MutateHelper.initialize();
     }
 
     private void invokePatches(String patchesDir) {
+        logger.info("Invoking patches preprocessing");
+        //copy patch directory
+        String workingDir = ConfigurationProperties.getProperty("location");
+        String patchDir = workingDir.replace("_buggy", "_pat");
+        String[] cmd = new String[]{"/bin/bash", "-c", "cp -r "+ workingDir+ " " + patchDir};
+        FileUtils.executeCommand(cmd);
+        ConfigurationProperties.setProperty("patchDir", patchDir);
         try {
-            AbstractASTParser astParser = new ASTJavaParser(srcJavaDir, srcTestDir, dependencies, complianceLevel);
             String[] split = patchesDir.split(File.pathSeparator);
+            List<Patch> patches = new ArrayList<>();
             for (String dir :split) {
-                astParser.parseASTs(dir);
+                List<String> allFiles = FileUtils.findAllFilePaths(dir, ".java");
+                for (String filePath :allFiles) {
+                    String patchHead = filePath.substring(0, filePath.indexOf(ConfigurationProperties.getProperty("srcJavaDir")) - 1);
+                    logger.info("parsing patch " + filePath);
+                    parser.parseASTs(filePath);
+                    CompilationUnit compilationUnit = (CompilationUnit) parser.getASTs().get(filePath);
+                    Patch patch = new Patch(dir, patchHead, compilationUnit);
+                    patches.add(patch);
+                }
             }
-            Map<String, Object> patches = astParser.getASTs();
             if (patches.isEmpty()) {
-                logger.error("No patch file found!");
-                return;
+                throw new IllegalArgumentException("patch file should be '.java' file");
             }
             this.patches = patches;
         } catch (Exception e) {
-            if (e instanceof ParseProblemException) {
-                //when parsing occurred error, it will be treated as a diff file!
-                //TODO: parse the diff file and get the patch file
-            } else {
-                logger.error("Invalid patch file path: " + e.getMessage());
-            }
+            //TODO: parse the diff file and get the patch file
+            logger.error("Invalid patch file path: " + e.getMessage());
         }
     }
 

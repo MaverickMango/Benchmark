@@ -16,13 +16,14 @@ import root.util.FileUtils;
 import root.util.GitAccess;
 
 import java.io.File;
+import java.io.IOException;
 import java.util.*;
 import java.util.stream.Collectors;
 
 public class BugInfoUtilTest implements GitAccess {
 
     @Test
-    public void bugFunctionExtractor() {
+    public void bugFunctionExtractor() throws IOException {
         String bugInfo = "src/test/resources/BugFixInfo_total.csv";
         String total_unfixed ="Jsoup_4,Jsoup_88,Closure_114,Closure_99,Codec_6,Math_55,Math_54,Compress_26,Time_2,Jsoup_26,Time_5,Lang_19,Codec_10,Codec_8,Math_45,Math_26,Compress_8,Closure_27,Mockito_11,Closure_153,Math_17,Closure_170,Jsoup_9,Compress_1,Compress_44,Mockito_12,Time_1,Lang_28,Math_106,Compress_7,Closure_82,Closure_91,Closure_80,Jsoup_79,Compress_39,Math_14,Lang_4,Closure_65,Codec_14,JacksonCore_14,JacksonCore_4,Cli_29,Math_92,Compress_3,Compress_6,Lang_49,Closure_85,JacksonCore_6,Lang_64,Jsoup_27,Jsoup_85,Lang_31,Closure_61,Closure_133,Closure_59,Math_103,Closure_60,Closure_76,Closure_75,Lang_53,Closure_68,Closure_17,Math_23,Math_28,Closure_30,Lang_13,Lang_14,Lang_25,Closure_12,Closure_131,Closure_66,Closure_64,Closure_8,Closure_121,Math_60,Math_42,Time_16";
         List<String> total = List.of(total_unfixed.split(","));
