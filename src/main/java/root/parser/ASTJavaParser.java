@@ -1,6 +1,7 @@
 package root.parser;
 
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.List;
@@ -11,6 +12,7 @@ import com.github.javaparser.ParseProblemException;
 import com.github.javaparser.ParserConfiguration;
 import com.github.javaparser.StaticJavaParser;
 import com.github.javaparser.ast.CompilationUnit;
+import com.github.javaparser.ast.Node;
 import com.github.javaparser.resolution.TypeSolver;
 import com.github.javaparser.symbolsolver.JavaSymbolSolver;
 import com.github.javaparser.symbolsolver.resolution.typesolvers.CombinedTypeSolver;
@@ -93,20 +95,26 @@ public class ASTJavaParser extends AbstractASTParser {
         return level;
     }
 
+    public CompilationUnit getAST(String filePath) {
+        try {
+            CompilationUnit compilationUnit = StaticJavaParser.parse(new File(filePath));
+            asts.put(filePath, compilationUnit);
+            return compilationUnit;
+        } catch (ParseProblemException | FileNotFoundException e) {
+            logger.error("Error occurred when parsing " + filePath + "\n" + e.getMessage());
+        }
+        return null;
+    }
+
     /**
      * parse all ".java" file to CompilationUnit in the fileDir
      * @param fileDir java source code directory
      */
     @Override
-    public void parseASTs(String fileDir) throws IOException, ParseProblemException {
+    public void parseASTs(String fileDir) throws IOException{
         List<String> allFiles = FileUtils.findAllFilePaths(fileDir, ".java");
         for (String filePath : allFiles) {
-            try {
-                CompilationUnit compilationUnit = StaticJavaParser.parse(new File(filePath));
-                asts.put(filePath, compilationUnit);
-            } catch (ParseProblemException e) {
-                logger.error("Error occurred when parsing " + filePath + "\n" + e.getMessage());
-            }
+            parseASTs(filePath);
         }
     }
 

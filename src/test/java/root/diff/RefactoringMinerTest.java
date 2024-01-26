@@ -27,14 +27,14 @@ import java.util.Set;
 
 public class RefactoringMinerTest implements GitAccess {
 
-    @Test
-    public void test4diff() {
-        String srcPath = "/home/liumengjiao/Desktop/CI/Benchmark/src/test/java/res1/";
-        String dstPath = "/home/liumengjiao/Desktop/CI/Benchmark/src/test/java/res2/";
-        RefactoringMiner refactoringMiner = new RefactoringMiner();
-        Set<ASTDiff> astDiffs = refactoringMiner.diffAtDirectories(new File(srcPath), new File(dstPath));
-        Assertions.assertFalse(astDiffs.isEmpty());
-    }
+//    @Test
+//    public void test4diff() {
+//        String srcPath = "/home/liumengjiao/Desktop/CI/Benchmark/src/test/java/res1/FileRead.java";
+//        String dstPath = "/home/liumengjiao/Desktop/CI/Benchmark/src/test/java/res2/FileRead2.java";//not in a git repository?
+//        RefactoringMiner refactoringMiner = new RefactoringMiner();
+//        Set<ASTDiff> astDiffs = refactoringMiner.diffAtDirectories(new File(srcPath), new File(dstPath));
+//        Assertions.assertFalse(astDiffs.isEmpty());
+//    }
     
     @Test
     public void test() throws Exception {

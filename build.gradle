@@ -29,8 +29,6 @@ dependencies {
     testCompileOnly 'junit:junit:4.8.2'
     testRuntimeOnly 'org.junit.vintage:junit-vintage-engine'
 
-//    // https://mvnrepository.com/artifact/org.eclipse.jdt/org.eclipse.jdt.core
-//    implementation group: 'org.eclipse.jdt', name: 'org.eclipse.jdt.core', version: '3.33.0'
     implementation 'com.github.javaparser:javaparser-symbol-solver-core:3.25.5'
 
     implementation 'com.github.tsantalis:refactoring-miner:2.4.0'
@@ -38,7 +36,7 @@ dependencies {
     implementation 'com.github.gumtreediff:core:3.0.0'
     implementation 'com.github.gumtreediff:gen.jdt:3.0.0'
 
-//    implementation 'fr.inria.gforge.spoon.labs:gumtree-spoon-ast-diff:1.69'
+    implementation 'fr.inria.gforge.spoon.labs:gumtree-spoon-ast-diff:1.69'
 
     implementation 'it.unimi.dsi:fastutil:8.3.1'
     implementation 'com.sparkjava:spark-core:2.9.1'
@@ -50,6 +48,9 @@ dependencies {
 //    implementation files('libs/soot-4.4.1-jar-with-dependencies.jar')
 
 //    implementation 'com.github.soot-oss.SootUp:sootup:develop-SNAPSHOT'
+
+//    // https://mvnrepository.com/artifact/org.eclipse.jdt/org.eclipse.jdt.core
+//    implementation group: 'org.eclipse.jdt', name: 'org.eclipse.jdt.core', version: '3.33.0'
     implementation files('libs/sootup.core-1.1.2-SNAPSHOT.jar')
     implementation files('libs/sootup.java.core-1.1.2-SNAPSHOT.jar')
     implementation files('libs/sootup.java.bytecode-1.1.2-SNAPSHOT.jar')

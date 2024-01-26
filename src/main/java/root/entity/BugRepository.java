@@ -21,7 +21,7 @@ public class BugRepository implements GitAccess {
 
     public BugRepository(Defects4JBug bug) {
         this.bug = bug;
-        bug.setBugName(bug.getProj() + "_" + bug.getId());//open an github issue of sootup
+        bug.setBugName(bug.getProj() + "_" + bug.getId());
         this.repository = bug.getGitRepository();
         this.bug.compile();
     }

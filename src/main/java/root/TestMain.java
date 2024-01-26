@@ -2,16 +2,13 @@ package root;
 
 import com.github.javaparser.ast.CompilationUnit;
 import com.github.javaparser.ast.body.MethodDeclaration;
-import org.refactoringminer.astDiff.actions.ASTDiff;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import root.diff.DiffExtractor;
-import root.diff.RefactoringMiner;
 import root.generation.ProjectPreparation;
 import root.generation.entity.Input;
 import root.generation.entity.Patch;
 import root.generation.entity.Skeleton;
-import root.generation.transformation.InputTransformer;
 import root.generation.transformation.TransformHelper;
 import root.util.*;
 
@@ -92,17 +89,12 @@ public class TestMain extends AbstractMain {
     }
 
     private static void diffExtraction(ProjectPreparation projectPreparation) {
-        RefactoringMiner refactoringMiner = new RefactoringMiner();
         DiffExtractor diffExtractor = new DiffExtractor();
         String location = ConfigurationProperties.getProperty("location");
         List<Patch> patches = projectPreparation.patches;
         for (Patch patch :patches) {
             String bugPath = patch.getPatchAbsPath().replace(patch.getPathFromRoot(), location);
-//            diffExtractor.diff(bugPath, patch.getPatchAbsPath());
-            Set<ASTDiff> astDiffs = refactoringMiner.diffAtDirectories(new File(bugPath), new File(patch.getPatchAbsPath()));
-            for (ASTDiff diff :astDiffs) {
-                diff.getMultiMappings();
-            }
+            diffExtractor.diff(bugPath, patch.getPatchAbsPath());
         }
     }
 
@@ -133,7 +125,7 @@ public class TestMain extends AbstractMain {
                     clazzName + ".java";
             String absolutePath = new File(filePath).getAbsolutePath();
             logger.info("For Test Class " + absolutePath + " --------------------");
-            CompilationUnit compilationUnit = TransformHelper.inputExtractor.getCompilationUnit(absolutePath);
+            CompilationUnit compilationUnit = TransformHelper.ASTExtractor.getCompilationUnit(absolutePath);
             logger.info("...Creating Skeleton");
             String[] s = clazzName.split(File.separator);
             Skeleton skeleton = new Skeleton(absolutePath, compilationUnit, s[s.length - 1]);
@@ -144,7 +136,7 @@ public class TestMain extends AbstractMain {
                 String methodName = split[0];
                 int lineNumber = split.length == 2 ? Integer.parseInt(split[1]) : 0;
                 logger.info("Extracting test input for test " + methodName);
-                Input input = TransformHelper.inputExtractor.extractInput(compilationUnit, methodName, lineNumber);
+                Input input = TransformHelper.ASTExtractor.extractInput(compilationUnit, methodName, lineNumber);
                 inputs.add(input);
             }
             Map<String, MethodDeclaration> compilationUnitMap = TransformHelper.mutateTest(skeleton, inputs, 10);

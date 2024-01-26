@@ -11,7 +11,7 @@ import root.entity.benchmarks.Defects4JBug;
 import root.generation.entity.Input;
 import root.generation.entity.Skeleton;
 import root.parser.AbstractASTParser;
-import root.generation.transformation.extractor.InputExtractor;
+import root.extractor.ASTExtractor;
 import root.util.ConfigurationProperties;
 import root.util.FileUtils;
 
@@ -24,7 +24,7 @@ public class TransformHelper {
 
     private static final Logger logger = LoggerFactory.getLogger(TransformHelper.class);
     public static final String oracleOutputs = ConfigurationProperties.getProperty("location") + File.separator + "generatedOracles.txt";
-    public static InputExtractor inputExtractor;
+    public static ASTExtractor ASTExtractor;
     public static InputTransformer inputTransformer;
     public static BugRepository bugRepository;
 
@@ -35,7 +35,7 @@ public class TransformHelper {
             defects4JBug.setInducingCommit(bugRepository);
         }
         inputTransformer = new InputTransformer();
-        inputExtractor = new InputExtractor(parser);
+        ASTExtractor = new ASTExtractor(parser);
     }
 
     public static Map<String, MethodDeclaration> mutateTest(Skeleton skeleton, List<Input> inputs, int mutantsNum) {
@@ -69,7 +69,7 @@ public class TransformHelper {
             logger.error("Error occurred when getting oracle in original commit! May be it cannot be compiled successfully.\n Null will be returned");
             return null;
         }
-        CompilationUnit compilationUnit = inputExtractor.getCompilationUnit(fileAbsPath);
+        CompilationUnit compilationUnit = ASTExtractor.getCompilationUnit(fileAbsPath);
         Skeleton skeleton = new Skeleton(fileAbsPath, compilationUnit, clazzName, inputs);
         return skeleton;
     }
