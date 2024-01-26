@@ -9,7 +9,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import root.analysis.CompilationUnitManipulator;
 import root.analysis.MethodManipulator;
-import root.analysis.RefactoringMiner;
+import root.diff.RefactoringMiner;
 import root.analysis.StringFilter;
 import root.entity.benchmarks.Defects4JBug;
 import root.entity.ci.*;
@@ -272,7 +272,7 @@ public class BugBuilder implements GitAccess {
 
         List<Operation> operations = new ArrayList<>();
         RefactoringMiner gitHistoryRefactoringMiner = new RefactoringMiner();
-        Set<ASTDiff> astDiffs = gitHistoryRefactoringMiner.diffBetweenContents(repository, srcPath, dstPath, srcContents, dstContents);
+        Set<ASTDiff> astDiffs = gitHistoryRefactoringMiner.diffBetweenContents(srcPath, dstPath, srcContents, dstContents);
         for (ASTDiff astDiff: astDiffs) {
             for (Action action : astDiff.editScript.asList()) {
                 Operation operation = new Operation();

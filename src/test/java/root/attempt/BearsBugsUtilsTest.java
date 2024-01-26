@@ -1,6 +1,6 @@
-package attempt;
+package root.attempt;
 
-import root.analysis.RefactoringMiner;
+import root.diff.RefactoringMiner;
 import root.entity.otherdataset.BugFixCommit;
 import com.github.gumtreediff.actions.model.Action;
 import org.eclipse.jgit.lib.Repository;

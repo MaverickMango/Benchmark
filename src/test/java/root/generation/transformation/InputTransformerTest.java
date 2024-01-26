@@ -8,7 +8,6 @@ import com.github.javaparser.ast.expr.MethodCallExpr;
 import com.github.javaparser.utils.Pair;
 import org.junit.Ignore;
 import org.junit.jupiter.api.Test;
-import root.PatchValidator;
 import root.generation.entity.Input;
 import root.generation.entity.Skeleton;
 import root.generation.extractor.InputExtractorTest;

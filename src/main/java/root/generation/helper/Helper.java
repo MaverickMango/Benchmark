@@ -12,7 +12,9 @@ import com.github.javaparser.resolution.UnsolvedSymbolException;
 import com.github.javaparser.resolution.types.ResolvedType;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import root.generation.entity.Patch;
 import root.generation.entity.Skeleton;
+import root.util.ConfigurationProperties;
 import root.util.FileUtils;
 
 import java.io.BufferedOutputStream;

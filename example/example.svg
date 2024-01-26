@@ -15,7 +15,7 @@
 <g id="node1" class="node">
 <title>1</title>
 <ellipse fill="none" stroke="black" cx="321" cy="-1380.84" rx="139.1" ry="35.21"/>
-<text text-anchor="start" x="230.5" y="-1391.64" font-family="Times,serif" font-weight="bold" font-size="14.00">FileRead#read#&lt;init&gt;</text>
+<text text-anchor="start" x="230.5" y="-1391.64" font-family="Times,serif" font-weight="bold" font-size="14.00">res1.FileRead#read#&lt;init&gt;</text>
 <text text-anchor="start" x="290.5" y="-1363.64" font-family="Times,serif" font-size="14.00">File#file</text>
 </g>
 <!-- 2 -->

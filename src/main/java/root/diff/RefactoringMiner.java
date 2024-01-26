@@ -1,4 +1,4 @@
-package root.analysis;
+package root.diff;
 
 import gr.uom.java.xmi.UMLModel;
 import gr.uom.java.xmi.diff.MoveSourceFolderRefactoring;
@@ -52,7 +52,7 @@ public class RefactoringMiner extends GitHistoryRefactoringMinerImpl implements 
         }
     }
 
-    public Set<ASTDiff> diffBetweenContents(Repository repository, String srcPath, String dstPath, String srcContents, String dstContents) {
+    public Set<ASTDiff> diffBetweenContents(String srcPath, String dstPath, String srcContents, String dstContents) {
         Set<ASTDiff> diffSet = new LinkedHashSet<>();
         Set<String> repositoryDirectoriesBefore = new LinkedHashSet<String>();
         Set<String> repositoryDirectoriesCurrent = new LinkedHashSet<String>();

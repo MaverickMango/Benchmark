@@ -1,9 +1,9 @@
 package root.generation;
 
 import com.github.javaparser.ast.CompilationUnit;
-import com.github.javaparser.utils.Pair;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import root.util.PatchHelper;
 import root.compiler.JavaJDKCompiler;
 import root.generation.entity.Patch;
 import root.generation.execution.ExternalTestExecutor;
@@ -112,16 +112,16 @@ public class ProjectPreparation {
     }
 
     public void initialize(boolean sourceOnly, boolean testOnly) throws IOException, ClassNotFoundException {
-        if (!sourceOnly) {
-            invokeClassFinder();//?
-        }
-        invokeCompilerOptionInitializer(complianceLevel);
+//        if (!sourceOnly) {
+//            invokeClassFinder();//?
+//        }
+//        invokeCompilerOptionInitializer(complianceLevel);
         invokeSourceASTParser(testOnly);
         invokeTransformation();
         if (patchesDir != null) {
             invokePatches(patchesDir);
         }
-        invokeProgURLsInitializer();
+//        invokeProgURLsInitializer();
     }
 
     private void invokeClassFinder() throws ClassNotFoundException, IOException {
@@ -188,12 +188,7 @@ public class ProjectPreparation {
 
     private void invokePatches(String patchesDir) {
         logger.info("Invoking patches preprocessing");
-        //copy patch directory
-        String workingDir = ConfigurationProperties.getProperty("location");
-        String patchDir = workingDir.replace("_buggy", "_pat");
-        String[] cmd = new String[]{"/bin/bash", "-c", "cp -r "+ workingDir+ " " + patchDir};
-        FileUtils.executeCommand(cmd);
-        ConfigurationProperties.setProperty("patchDir", patchDir);
+        PatchHelper.initialization();
         try {
             String[] split = patchesDir.split(File.pathSeparator);
             List<Patch> patches = new ArrayList<>();
@@ -202,9 +197,9 @@ public class ProjectPreparation {
                 for (String filePath :allFiles) {
                     String patchHead = filePath.substring(0, filePath.indexOf(ConfigurationProperties.getProperty("srcJavaDir")) - 1);
                     logger.info("parsing patch " + filePath);
-                    parser.parseASTs(filePath);
-                    CompilationUnit compilationUnit = (CompilationUnit) parser.getASTs().get(filePath);
-                    Patch patch = new Patch(dir, patchHead, compilationUnit);
+//                    parser.parseASTs(filePath);
+//                    CompilationUnit compilationUnit = (CompilationUnit) parser.getASTs().get(filePath);
+                    Patch patch = new Patch(filePath, patchHead, null);
                     patches.add(patch);
                 }
             }

@@ -90,7 +90,7 @@ class ExtractFromJavaParserTest {
     @Test
     void visit() throws IOException {
         ASTJavaParser parser = (ASTJavaParser) projectPreparation.parser;
-        parser.parseASTs("src/test/java/FileRead.java");
+        parser.parseASTs("src/test/java/res1.FileRead.java");
 //        parser.parseASTs("src/main/java/root/generation/transformation/extractor/InputExtractor.java");
 //        parser.parseASTs("/home/liumengjiao/Desktop/CI/bugs/Math_50_buggy/src/main/java/org/apache/commons/math/analysis/solvers/BaseSecantSolver.java");
         Map<String, Object> asts = parser.getASTs();

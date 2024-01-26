@@ -1,29 +1,27 @@
-package root.generation;
+package root;
 
 import com.github.javaparser.ast.CompilationUnit;
 import com.github.javaparser.ast.body.MethodDeclaration;
-import heros.solver.Pair;
+import org.refactoringminer.astDiff.actions.ASTDiff;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import root.AbstractMain;
-import root.PatchValidator;
+import root.diff.DiffExtractor;
+import root.diff.RefactoringMiner;
+import root.generation.ProjectPreparation;
 import root.generation.entity.Input;
+import root.generation.entity.Patch;
 import root.generation.entity.Skeleton;
+import root.generation.transformation.InputTransformer;
 import root.generation.transformation.TransformHelper;
-import root.util.CommandSummary;
-import root.util.ConfigurationProperties;
-import root.util.FileUtils;
+import root.util.*;
 
 import java.io.File;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
-public class TestInputMutateForBugsMain extends AbstractMain {
+public class TestMain extends AbstractMain {
 
-    private static final Logger logger = LoggerFactory.getLogger(TestInputMutateForBugsMain.class);
-    static TestInputMutateForBugsMain main = new TestInputMutateForBugsMain();
+    private static final Logger logger = LoggerFactory.getLogger(TestMain.class);
+    static TestMain main = new TestMain();
 
     private static CommandSummary setInputs(String location, List<String> strings) {
         CommandSummary cs = new CommandSummary();
@@ -58,28 +56,54 @@ public class TestInputMutateForBugsMain extends AbstractMain {
         String patchesRootDir = args[2];
         List<List<String>> lists = FileUtils.readCsv(info, true);
         CommandSummary cs;
-        for (int i = 1; i < lists.size(); i ++) {
+        for (int i = 25; i < lists.size(); i ++) {
             List<String> strings  = lists.get(i);
             cs = setInputs(location, strings);
             String patchesDir = getPatchDirByBug(strings.get(0), patchesRootDir);
             cs.append("-patchesDir", patchesDir);
-            boolean res = mutateTestInputs(cs);
+            boolean res = executeMainProcess(cs);
             break;
         }
     }
 
-    private static boolean mutateTestInputs(CommandSummary cs) {
+    private static boolean executeMainProcess(CommandSummary cs) {
         logger.info("Start Initialization.");
         ProjectPreparation projectPreparation = main.initialize(cs.flat());
         if (projectPreparation == null) {
             return false;
         }
+        long initSeconds = TimeUtil.deltaInSeconds(bornTime);
+
+        logger.info("Start diff extraction.");
+        //todo add diffExtraction process
+        diffExtraction(projectPreparation);
+
+        logger.info("Start test generation.");
         String[] tests = ConfigurationProperties.getProperty("testInfos").split("#");
         Map<String, List<String>> testsByClazz = getTestInfos(tests);
-        List<Skeleton> mutateRes = testGeneration(projectPreparation, testsByClazz);
+        List<Skeleton> mutateRes = testMutation(projectPreparation, testsByClazz);
+
+        logger.info("Start patch validation.");
         boolean allCorrect = patchValidation(projectPreparation, mutateRes);
-        logger.info("Finish.");
+
+        long totalSeconds = TimeUtil.deltaInSeconds(bornTime);
+        logger.info("Finish with total running time: " + totalSeconds + "s");
         return allCorrect;
+    }
+
+    private static void diffExtraction(ProjectPreparation projectPreparation) {
+        RefactoringMiner refactoringMiner = new RefactoringMiner();
+        DiffExtractor diffExtractor = new DiffExtractor();
+        String location = ConfigurationProperties.getProperty("location");
+        List<Patch> patches = projectPreparation.patches;
+        for (Patch patch :patches) {
+            String bugPath = patch.getPatchAbsPath().replace(patch.getPathFromRoot(), location);
+//            diffExtractor.diff(bugPath, patch.getPatchAbsPath());
+            Set<ASTDiff> astDiffs = refactoringMiner.diffAtDirectories(new File(bugPath), new File(patch.getPatchAbsPath()));
+            for (ASTDiff diff :astDiffs) {
+                diff.getMultiMappings();
+            }
+        }
     }
 
     private static Map<String, List<String>> getTestInfos(String[] tests) {
@@ -100,7 +124,7 @@ public class TestInputMutateForBugsMain extends AbstractMain {
         return testsByClazz;
     }
 
-    private static List<Skeleton> testGeneration(ProjectPreparation projectPreparation, Map<String, List<String>> testsByClazz) {
+    private static List<Skeleton> testMutation(ProjectPreparation projectPreparation, Map<String, List<String>> testsByClazz) {
         List<Skeleton> mutateRes = new ArrayList<>();
         logger.info("Processing new Test generating --------------------");
         for (Map.Entry<String, List<String>> entry :testsByClazz.entrySet()) {
@@ -132,9 +156,12 @@ public class TestInputMutateForBugsMain extends AbstractMain {
     }
 
     private static boolean patchValidation(ProjectPreparation projectPreparation, List<Skeleton> mutateRes) {
-        PatchValidator patchValidator = new PatchValidator();
         logger.info("Processing patches validating --------------------");
-        boolean allCorrect = patchValidator.validate(projectPreparation.patches, mutateRes);
+        boolean allCorrect = true;
+        for (Patch patch: projectPreparation.patches) {
+            boolean res = PatchHelper.validate(patch, mutateRes);
+            allCorrect &= res;
+        }
         logger.info("End patches validating --------------------");
         return allCorrect;
     }

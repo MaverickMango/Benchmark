@@ -2,25 +2,23 @@ package root.attempt;
 
 import gui.webdiff.WebDiff;
 import org.eclipse.jgit.lib.Repository;
-import org.eclipse.jgit.revwalk.RevCommit;
-import org.refactoringminer.api.GitHistoryRefactoringMiner;
+import org.junit.jupiter.api.Test;
 import org.refactoringminer.api.Refactoring;
 import org.refactoringminer.api.RefactoringHandler;
 import org.refactoringminer.astDiff.actions.ASTDiff;
-import org.refactoringminer.rm1.GitHistoryRefactoringMinerImpl;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import root.analysis.RefactoringMiner;
+import root.diff.RefactoringMiner;
 import root.util.GitAccess;
 
-import java.io.File;
 import java.util.List;
 import java.util.Set;
 
 public class ViewDiffTest implements GitAccess {
     static Logger logger = LoggerFactory.getLogger(ViewDiffTest.class);
 
-    public static void main(String[] args) throws Exception {
+    @Test
+    public void test() throws Exception {
         RefactoringMiner miner = new RefactoringMiner();
 //        File dir1 = new File("data/changes/Closure_48/properties/modified_classes/original/");
 //        File dir2 = new File("data/changes/Closure_48/properties/modified_classes/inducing/");

@@ -9,9 +9,12 @@ import root.util.ConfigurationProperties;
 import java.io.File;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.Date;
 
 public class AbstractMain {
     private static final Logger logger = LoggerFactory.getLogger(AbstractMain.class);
+
+    public static Date bornTime;
 
     protected static Options options = new Options();
 
@@ -40,6 +43,7 @@ public class AbstractMain {
     public static final CommandLineParser parser = new DefaultParser();
 
     public ProjectPreparation initialize(String[] args) {
+        bornTime = new Date();
         boolean res = progressArguments(args);
         if (!res)
             return null;
@@ -48,7 +52,7 @@ public class AbstractMain {
             helper.initialize(true, true);
             return helper;
         } catch (Exception e) {
-            logger.error("Error occurred when MutatorHelper initialization: " + e.getMessage());
+            logger.error("Error occurred when ProjectPreparation initialization: " + e.getMessage());
         }
         return null;
     }

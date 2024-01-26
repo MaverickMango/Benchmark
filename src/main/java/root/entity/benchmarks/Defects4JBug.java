@@ -7,6 +7,7 @@ import org.eclipse.jgit.revwalk.RevCommit;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import root.analysis.CompilationUnitManipulator;
+import root.entity.BugRepository;
 import root.entity.ci.CIBug;
 import root.util.*;
 
@@ -122,6 +123,10 @@ public class Defects4JBug extends CIBug implements GitAccess {
 
     public String getInducingCommit() {
         return inducingCommit;
+    }
+
+    public void setInducingCommit(BugRepository bugRepository) {
+        this.inducingCommit = gitAccess.getNextCommit(bugRepository.getRepository(), originalCommit, true);
     }
 
     public void setInducingCommit(String inducingCommit) {

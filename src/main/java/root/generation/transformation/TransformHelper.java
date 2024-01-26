@@ -32,6 +32,7 @@ public class TransformHelper {
         if (proj != null) {
             Defects4JBug defects4JBug = new Defects4JBug(proj, id, workingDir, originalCommit);
             bugRepository = new BugRepository(defects4JBug);
+            defects4JBug.setInducingCommit(bugRepository);
         }
         inputTransformer = new InputTransformer();
         inputExtractor = new InputExtractor(parser);

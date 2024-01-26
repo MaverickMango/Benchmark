@@ -1,4 +1,4 @@
-package attempt;
+package root.attempt;
 
 import org.junit.Assert;
 import org.junit.Test;

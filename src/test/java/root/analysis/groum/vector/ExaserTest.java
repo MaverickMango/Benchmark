@@ -67,7 +67,7 @@ class ExaserTest {
 
     private LinkedHashMap<Feature, Integer> getExampleRead(boolean isFinal) throws IOException {
         ASTJavaParser parser = (ASTJavaParser) setting().parser;
-        parser.parseASTs("src/test/java/FileRead.java");
+        parser.parseASTs("src/test/java/res1.FileRead.java");
         Map<String, Object> asts = parser.getASTs();
         PreOrderVisitorInMth visitor = new PreOrderVisitorInMth();
         for (String key :asts.keySet()) {

@@ -1,4 +1,4 @@
-package attempt;
+package root.attempt;
 
 import org.eclipse.jgit.lib.Constants;
 import org.eclipse.jgit.lib.Ref;

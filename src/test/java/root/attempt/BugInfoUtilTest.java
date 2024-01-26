@@ -1,4 +1,4 @@
-package attempt;
+package root.attempt;
 
 import org.eclipse.jdt.core.dom.MethodDeclaration;
 import org.eclipse.jgit.lib.Repository;

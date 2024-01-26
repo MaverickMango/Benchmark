@@ -1,4 +1,4 @@
-package attempt;
+package root.diff;
 
 import com.github.gumtreediff.actions.EditScript;
 import com.github.gumtreediff.actions.EditScriptGenerator;
@@ -10,19 +10,33 @@ import com.github.gumtreediff.matchers.Matchers;
 import com.github.gumtreediff.tree.Tree;
 import org.eclipse.jgit.lib.Repository;
 import org.junit.Ignore;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
+//import org.refactoringminer.RefactoringMiner;
 import org.refactoringminer.api.GitHistoryRefactoringMiner;
 import org.refactoringminer.api.Refactoring;
 import org.refactoringminer.api.RefactoringHandler;
 import org.refactoringminer.astDiff.actions.ASTDiff;
 import org.refactoringminer.rm1.GitHistoryRefactoringMinerImpl;
+import root.util.FileUtils;
 import root.util.GitAccess;
 
+import java.io.File;
 import java.util.List;
 import java.util.Set;
 
-public class RefactorMinerTest implements GitAccess {
+public class RefactoringMinerTest implements GitAccess {
+
+    @Test
+    public void test4diff() {
+        String srcPath = "/home/liumengjiao/Desktop/CI/Benchmark/src/test/java/res1/";
+        String dstPath = "/home/liumengjiao/Desktop/CI/Benchmark/src/test/java/res2/";
+        RefactoringMiner refactoringMiner = new RefactoringMiner();
+        Set<ASTDiff> astDiffs = refactoringMiner.diffAtDirectories(new File(srcPath), new File(dstPath));
+        Assertions.assertFalse(astDiffs.isEmpty());
+    }
     
-    @Ignore
+    @Test
     public void test() throws Exception {
         GitHistoryRefactoringMiner miner = new GitHistoryRefactoringMinerImpl();
 //        File dir1 = new File("D:\\IdeaProjects\\BugFixCommits\\tmp1");
@@ -40,25 +54,25 @@ public class RefactorMinerTest implements GitAccess {
                 "data/refactoring-toy-example",
                 "https://github.com/danilofes/refactoring-toy-example.git"
         );
-        miner.detectAll(repo, "master", new RefactoringHandler() {
-            @Override
-            public void handle(String commitId, List<Refactoring> refactorings) {
-                System.out.println("Refactoring at " + commitId);
-                for (Refactoring ref :refactorings) {
-                    System.out.println(ref.toString());
-                }
-            }
-        });
-        miner.detectBetweenCommits(repo, "sha1", "sha2", new RefactoringHandler() {
-            @Override
-            public void handle(String commitId, List<Refactoring> refactorings) {
-                System.out.println("Refactoring at " + commitId);
-                for (Refactoring ref :refactorings) {
-                    System.out.println(ref.toString());
-                }
-            }
-        });
-        String commit = "d4bce13a443cf12da40a77c16c1e591f4f985b47";
+//        miner.detectAll(repo, "master", new RefactoringHandler() {
+//            @Override
+//            public void handle(String commitId, List<Refactoring> refactorings) {
+//                System.out.println("Refactoring at " + commitId);
+//                for (Refactoring ref :refactorings) {
+//                    System.out.println(ref.toString());
+//                }
+//            }
+//        });
+//        miner.detectBetweenCommits(repo, "sha1", "sha2", new RefactoringHandler() {
+//            @Override
+//            public void handle(String commitId, List<Refactoring> refactorings) {
+//                System.out.println("Refactoring at " + commitId);
+//                for (Refactoring ref :refactorings) {
+//                    System.out.println(ref.toString());
+//                }
+//            }
+//        });
+        String commit = gitAccess.getCurrentHeadCommit(repo);
         miner.detectAtCommit(repo, commit, new RefactoringHandler() {
             @Override
             public void handle(String commitId, List<Refactoring> refactorings) {

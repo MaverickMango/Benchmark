@@ -5,6 +5,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import root.entity.benchmarks.Defects4JBug;
 import root.entity.ci.CIBug;
+import root.generation.entity.Patch;
 import root.util.ConfigurationProperties;
 import root.util.FileUtils;
 import root.util.GitAccess;
@@ -23,6 +24,10 @@ public class BugRepository implements GitAccess {
         bug.setBugName(bug.getProj() + "_" + bug.getId());//open an github issue of sootup
         this.repository = bug.getGitRepository();
         this.bug.compile();
+    }
+
+    public Repository getRepository() {
+        return repository;
     }
 
     public CIBug getBug() {
@@ -107,5 +112,18 @@ public class BugRepository implements GitAccess {
             res = false;
         }
         return res;
+    }
+
+    public boolean applyPatch(Patch patch) {
+        boolean res = switchToBug();
+        if (!res) {
+            logger.error("Error occurred when switching " + bug.getBugName() + " to buggy version!");
+            return res;
+        }
+        //todo another better way to apply patch???
+        String patchDir = ConfigurationProperties.getProperty("patchDir") + File.separator;
+        String[] cmd = new String[]{"/bin/bash", "-c", "cp -r "+ patch.getPathFromRoot() + File.separator + "* " + patchDir};
+        int r = FileUtils.executeCommand(cmd, null, 300, null);
+        return r == 0;
     }
 }
