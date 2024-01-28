@@ -2,10 +2,10 @@ package root.util;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import root.entity.BugRepository;
-import root.entity.benchmarks.Defects4JBug;
-import root.generation.entity.Patch;
-import root.generation.entity.Skeleton;
+import root.entities.ci.BugRepository;
+import root.entities.benchmarks.Defects4JBug;
+import root.entities.Patch;
+import root.generation.entities.Skeleton;
 import root.generation.transformation.TransformHelper;
 
 import java.io.File;
@@ -16,7 +16,7 @@ public class PatchHelper {
     private final static Logger logger = LoggerFactory.getLogger(PatchHelper.class);
     private static String target;
     private static String resOutput;
-    private static BugRepository bugRepository;
+    public static BugRepository patchRepository;
 
     public static void initialization() {
         //copy patch directory
@@ -37,13 +37,13 @@ public class PatchHelper {
         Defects4JBug bug = (Defects4JBug) TransformHelper.bugRepository.getBug();
         Defects4JBug pat = new Defects4JBug(bug.getProj(), bug.getId(), patchDir,
                 bug.getFixingCommit(), bug.getBuggyCommit(), bug.getInducingCommit(), bug.getOriginalCommit());
-        bugRepository = new BugRepository(pat);
-        bugRepository.switchToBug();
+        patchRepository = new BugRepository(pat);
+        patchRepository.switchToBug();
     }
 
     public static boolean validate(Patch patch, List<Skeleton> skeletons) {
         logger.info("Applying patch: " + patch);
-        boolean res = bugRepository.applyPatch(patch);
+        boolean res = patchRepository.applyPatch(patch);
         if (!res) {
             logger.error("Error occurred when applying patch " + patch.getName());
             return res;

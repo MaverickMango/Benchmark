@@ -2,7 +2,7 @@ package root.extractor;
 
 
 import com.github.javaparser.ast.CompilationUnit;
-import com.github.javaparser.ast.ImportDeclaration;
+import com.github.javaparser.ast.Node;
 import com.github.javaparser.ast.NodeList;
 import com.github.javaparser.ast.body.MethodDeclaration;
 import com.github.javaparser.ast.expr.Expression;
@@ -11,16 +11,16 @@ import com.github.javaparser.ast.expr.MethodCallExpr;
 import com.github.javaparser.ast.stmt.Statement;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import root.generation.entity.BasicInput;
-import root.generation.entity.Input;
-import root.generation.entity.ObjectInput;
+import root.generation.entities.BasicInput;
+import root.generation.entities.Input;
+import root.generation.entities.ObjectInput;
 import root.generation.helper.Helper;
+import root.generation.transformation.visitor.EqualVisitor;
 import root.parser.AbstractASTParser;
 import root.util.FileUtils;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 import java.util.concurrent.atomic.AtomicReference;
 import java.util.stream.Collectors;
 
@@ -38,37 +38,91 @@ public class ASTExtractor {
         return parser;
     }
 
+    public CompilationUnit getCompilationUnitFromCode(String str) {
+        CompilationUnit compilationUnit = (CompilationUnit) parser.parseASTFromCode(str);
+        if (compilationUnit == null) {
+            throw new IllegalArgumentException("Illegal Argument : " + str);
+        }
+        return compilationUnit;
+    }
+
     public CompilationUnit getCompilationUnit(String classNormalAbsPath) {
         if (FileUtils.notExists(classNormalAbsPath)) {
             logger.error("File " + classNormalAbsPath + " does not exist!");
             throw new IllegalArgumentException("Illegal Argument : " + classNormalAbsPath);
         }
-        CompilationUnit compilationUnit = parser.getAST(classNormalAbsPath);
+        CompilationUnit compilationUnit = (CompilationUnit) parser.getAST(classNormalAbsPath);
         if (compilationUnit == null) {
-            logger.error("File " + classNormalAbsPath + " is not in the initialized directory! CompilationUnit is Null");
             throw new IllegalArgumentException("Illegal Argument : " + classNormalAbsPath);
         }
         return compilationUnit;
     }
 
-    public MethodDeclaration extractMethodByName(CompilationUnit compilationUnit, String methodName) {
+    public MethodDeclaration extractMethodByName(CompilationUnit compilationUnit, String mthQuailifiedName) {
         List<MethodDeclaration> methodDeclarations = compilationUnit.findAll(MethodDeclaration.class)
-                .stream().filter(m -> m.getName().toString().equals(methodName)).collect(Collectors.toList());
+                .stream().filter(m -> m.getName().toString().equals(mthQuailifiedName)).collect(Collectors.toList());
         if (methodDeclarations.size() >= 1) {
             return methodDeclarations.get(0);
         } else {
-            logger.error("Method " + methodName + " is not in the class file!");
-            throw new IllegalArgumentException("Illegal Argument : " + methodName);
+            logger.error("Method " + mthQuailifiedName + " is not in the class file!");
+            return null;
         }
     }
 
-    public MethodCallExpr extractMethodCallByLine(CompilationUnit compilationUnit, String methodName, int lineNumber) {
-        MethodDeclaration methodDeclaration = extractMethodByName(compilationUnit, methodName);
-        MethodCallExpr methodCallExpr = extractMethodCallByLine(methodDeclaration, lineNumber);
-        return methodCallExpr;
+    public MethodDeclaration extractMethodByLine(CompilationUnit compilationUnit, int lineNumber) {
+        List<MethodDeclaration> methodDeclarations = compilationUnit.findAll(MethodDeclaration.class)
+                .stream().filter(m -> m.getBegin().isPresent() && m.getBegin().get().line == lineNumber
+                        ).collect(Collectors.toList());
+        if (methodDeclarations.size() >= 1) {
+            return methodDeclarations.get(0);
+        } else {
+            logger.error("Line " + lineNumber + " is not a methodDeclaration in the class file !");
+            return null;
+        }
     }
 
-    public MethodCallExpr extractMethodCallByLine(MethodDeclaration methodDeclaration, int lineNumber) {
+    public MethodDeclaration extractMethodByLine(CompilationUnit compilationUnit, int start, int end, String mthQualifiedName) {
+        List<MethodDeclaration> methodDeclarations = compilationUnit.findAll(MethodDeclaration.class)
+                .stream().filter(m -> (m.getBegin().isPresent() && m.getBegin().get().line <= start)
+                        && (m.getEnd().isPresent() && m.getEnd().get().line >= end)
+                ).collect(Collectors.toList());
+        if (methodDeclarations.size() >= 1) {
+            return methodDeclarations.get(0);
+        } else {
+            return extractMethodByName(compilationUnit, mthQualifiedName);
+        }
+    }
+    
+    public Node extractExpressionByLabel(CompilationUnit compilationUnit, String label,
+                                               int start, int end) {
+        MethodDeclaration methodDeclaration = extractMethodByLine(compilationUnit, start, end, null);
+        EqualVisitor visitor = new EqualVisitor(label);
+        List<Node> nodes = new ArrayList<>();
+        methodDeclaration.accept(visitor, nodes);
+        if (nodes.isEmpty()) {
+            return null;
+        } else {
+            AtomicReference<Node> node = new AtomicReference<>(nodes.get(0));
+            if (nodes.size() > 1) {
+                nodes.forEach(n -> {
+                    int beginLine = n.getBegin().isPresent() ? n.getBegin().get().line : - 1;
+                    int endLine = n.getEnd().isPresent() ? n.getEnd().get().line : -1;
+                    if (beginLine == start && endLine == end)
+                        node.set(n);
+                });
+            }
+            return node.get();
+        }
+    }
+
+    public MethodCallExpr extractAssertByLine(CompilationUnit compilationUnit, String mthQualifiedName, int lineNumber) {
+        MethodDeclaration methodDeclaration = extractMethodByName(compilationUnit, mthQualifiedName);
+        if (methodDeclaration == null)
+            return null;
+        return extractAssertByLine(methodDeclaration, lineNumber);
+    }
+
+    public MethodCallExpr extractAssertByLine(MethodDeclaration methodDeclaration, int lineNumber) {
         if (methodDeclaration == null) {
             logger.error("Extracted method declaration is null! Process Interrupted.");
             throw new IllegalArgumentException("Illegal Argument: " + methodDeclaration);
@@ -101,8 +155,8 @@ public class ASTExtractor {
         throw new IllegalArgumentException("Illegal Argument: " + lineNumber);
     }
 
-    public Input extractInput(CompilationUnit compilationUnit, String methodName, int lineNumber) {
-        MethodCallExpr methodCallExpr = extractMethodCallByLine(compilationUnit, methodName, lineNumber);
+    public Input extractInput(CompilationUnit compilationUnit, String mthQualifiedName, int lineNumber) {
+        MethodCallExpr methodCallExpr = (MethodCallExpr) extractAssertByLine(compilationUnit, mthQualifiedName, lineNumber);
         return extractInput(methodCallExpr);
     }
 

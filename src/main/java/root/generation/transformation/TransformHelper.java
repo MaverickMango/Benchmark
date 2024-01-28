@@ -1,15 +1,17 @@
 package root.generation.transformation;
 
 import com.github.javaparser.ast.CompilationUnit;
+import com.github.javaparser.ast.Node;
 import com.github.javaparser.ast.body.MethodDeclaration;
 import com.github.javaparser.ast.expr.Expression;
 import com.github.javaparser.utils.Pair;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import root.entity.BugRepository;
-import root.entity.benchmarks.Defects4JBug;
-import root.generation.entity.Input;
-import root.generation.entity.Skeleton;
+import root.entities.Difference;
+import root.entities.ci.BugRepository;
+import root.entities.ci.BugWithHistory;
+import root.generation.entities.Input;
+import root.generation.entities.Skeleton;
 import root.parser.AbstractASTParser;
 import root.extractor.ASTExtractor;
 import root.util.ConfigurationProperties;
@@ -28,22 +30,20 @@ public class TransformHelper {
     public static InputTransformer inputTransformer;
     public static BugRepository bugRepository;
 
-    public static void initialize(String proj, String id, String workingDir, String originalCommit, AbstractASTParser parser) {
-        if (proj != null) {
-            Defects4JBug defects4JBug = new Defects4JBug(proj, id, workingDir, originalCommit);
-            bugRepository = new BugRepository(defects4JBug);
-            defects4JBug.setInducingCommit(bugRepository);
+    public static void initialize(BugWithHistory bug, AbstractASTParser parser) {
+        if (bug != null) {
+            bugRepository = new BugRepository(bug);
         }
         inputTransformer = new InputTransformer();
         ASTExtractor = new ASTExtractor(parser);
     }
 
-    public static Map<String, MethodDeclaration> mutateTest(Skeleton skeleton, List<Input> inputs, int mutantsNum) {
+    public static Map<String, MethodDeclaration> mutateTest(Skeleton skeleton, List<Input> inputs, List<Difference> differences) {
         List<Input> newInputs = new ArrayList<>();
-        logger.info("Mutating test inputs... Expected num for each: " + mutantsNum + ", total inputs num: " + inputs.size());
+        logger.info("Mutating test inputs... total inputs num: " + inputs.size());
         for (Input input :inputs) {
             logger.info("getting mutants...");
-            List<Pair<Expression, Object>> inputMutants = MutateHelper.getInputMutants(input, mutantsNum);
+            List<Pair<Expression, Object>> inputMutants = MutateHelper.getInputMutants(input, differences);
             logger.info("transforming...");
             List<Input> tmp = inputTransformer.transformInput(input, inputMutants);
             newInputs.addAll(tmp);
@@ -94,6 +94,15 @@ public class TransformHelper {
             return null;
         }
         return tests;
+    }
+
+    public static String getIdentifier(Node node) {
+        if (node instanceof MethodDeclaration) {
+            String nameAsString = ((MethodDeclaration) node).getNameAsString();
+            //todo ?
+            return nameAsString;
+        }
+        return node.toString();
     }
 
 }

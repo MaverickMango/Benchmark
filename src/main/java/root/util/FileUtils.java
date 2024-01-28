@@ -273,6 +273,13 @@ public class FileUtils {
         }
     }
 
+    public static void removeFile(String absPath) {
+        File file = new File(absPath);
+        if (file.exists()) {
+            file.deleteOnExit();
+        }
+    }
+
     public static void writeToFile(String content, String filename, boolean append) {
         filename = formatSeparator(filename);
         File file = new File(filename);

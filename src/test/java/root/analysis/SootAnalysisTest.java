@@ -33,7 +33,7 @@ public class SootAnalysisTest {
 //
 ////        Scene.v().addBasicClass("java.lang.StringBuilder");
 //        SootClass c =
-//                Scene.v().forceResolve("res1.FileRead", SootClass.BODIES);
+//                Scene.v().forceResolve("FileRead", SootClass.BODIES);
 //        if (c != null) {
 //            c.setApplicationClass();
 //        }
@@ -41,7 +41,7 @@ public class SootAnalysisTest {
 //
 //        SootMethod method = null;
 //        for (SootClass tmp : Scene.v().getApplicationClasses()) {
-//            if(tmp.getName().equals("res1.FileRead")){
+//            if(tmp.getName().equals("FileRead")){
 //                for (SootMethod m : tmp.getMethods()) {
 ////                    if (!m.hasActiveBody()) {
 ////                        continue;

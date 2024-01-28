@@ -8,8 +8,8 @@ import com.github.javaparser.ast.expr.MethodCallExpr;
 import com.github.javaparser.utils.Pair;
 import org.junit.Ignore;
 import org.junit.jupiter.api.Test;
-import root.generation.entity.Input;
-import root.generation.entity.Skeleton;
+import root.generation.entities.Input;
+import root.generation.entities.Skeleton;
 import root.extractor.ASTExtractorTest;
 import root.generation.helper.PreparationTest;
 import root.extractor.ASTExtractor;
@@ -35,7 +35,7 @@ class InputTransformerTest extends PreparationTest{
     void transformInputs() {
         InputTransformer inputTransformer = TransformHelper.inputTransformer;
         Input input = ASTExtractorTest.getInput();
-        List<Pair<Expression, Object>> inputMutants = MutateHelper.getInputMutants(input, 10);
+        List<Pair<Expression, Object>> inputMutants = MutateHelper.getInputMutants(input, null);
         assertEquals(10, inputMutants.size());
         List<Input> newInputs = inputTransformer.transformInput(input, inputMutants);
         for (Input newInput :newInputs) {
@@ -52,7 +52,7 @@ class InputTransformerTest extends PreparationTest{
     public Skeleton getASkeleton() {
         MethodDeclaration methodDeclaration = ASTExtractorTest.getMethodDeclaration();
         MethodCallExpr methodCallExpr = TransformHelper.ASTExtractor
-                .extractMethodCallByLine(methodDeclaration, lineNumber);
+                .extractAssertByLine(methodDeclaration, lineNumber);
         Input input =  TransformHelper.ASTExtractor.extractInput(methodCallExpr);
         String absolutePath = new File(ASTExtractorTest.filePath).getAbsolutePath();
         Optional<ClassOrInterfaceDeclaration> ancestor = methodDeclaration.findAncestor(ClassOrInterfaceDeclaration.class);
@@ -66,7 +66,7 @@ class InputTransformerTest extends PreparationTest{
         InputTransformer inputTransformer = TransformHelper.inputTransformer;
         MethodDeclaration methodDeclaration = ASTExtractorTest.getMethodDeclaration();
         MethodCallExpr methodCallExpr = TransformHelper.ASTExtractor
-                .extractMethodCallByLine(methodDeclaration, lineNumber);
+                .extractAssertByLine(methodDeclaration, lineNumber);
         Input input =  TransformHelper.ASTExtractor.extractInput(methodCallExpr);
         String absolutePath = new File(ASTExtractorTest.filePath).getAbsolutePath();
         Pair<Expression, Object> inputMutant = MutateHelper.getInputMutant(input);
@@ -84,9 +84,9 @@ class InputTransformerTest extends PreparationTest{
         InputTransformer inputTransformer = TransformHelper.inputTransformer;
         MethodDeclaration methodDeclaration = ASTExtractorTest.getMethodDeclaration();
         MethodCallExpr methodCallExpr = TransformHelper.ASTExtractor
-                .extractMethodCallByLine(methodDeclaration, lineNumber);
+                .extractAssertByLine(methodDeclaration, lineNumber);
         Input input =  TransformHelper.ASTExtractor.extractInput(methodCallExpr);
-        List<Pair<Expression, Object>> inputMutants = MutateHelper.getInputMutants(input, 10);
+        List<Pair<Expression, Object>> inputMutants = MutateHelper.getInputMutants(input, null);
         List<Input> newInputs = inputTransformer.transformInput(input, inputMutants);
         String absolutePath = new File(ASTExtractorTest.filePath).getAbsolutePath();
         Optional<ClassOrInterfaceDeclaration> ancestor = methodDeclaration.findAncestor(ClassOrInterfaceDeclaration.class);
@@ -105,7 +105,7 @@ class InputTransformerTest extends PreparationTest{
         String[] split = testInfos.split("#")[0].split(":")[0].split("\\.");
         Skeleton skeleton = new Skeleton(absolutePath, compilationUnit, split[split.length - 1]);
         Input input = ASTExtractorTest.getInput();
-        Map<String, MethodDeclaration> stringMethodDeclarationMap = TransformHelper.mutateTest(skeleton, Collections.singletonList(input), 10);
+        Map<String, MethodDeclaration> stringMethodDeclarationMap = TransformHelper.mutateTest(skeleton, Collections.singletonList(input), null);
         assertEquals(10, stringMethodDeclarationMap.size());
     }
 
@@ -117,7 +117,7 @@ class InputTransformerTest extends PreparationTest{
         String[] split = testInfos.split("#")[0].split(":")[0].split("\\.");
         Skeleton skeleton = new Skeleton(absolutePath, compilationUnit, split[split.length - 1]);
         Input input = ASTExtractorTest.getInput();
-        Map<String, MethodDeclaration> stringMethodDeclarationMap = TransformHelper.mutateTest(skeleton, Collections.singletonList(input), 10);
+        Map<String, MethodDeclaration> stringMethodDeclarationMap = TransformHelper.mutateTest(skeleton, Collections.singletonList(input), null);
         assertNotNull(stringMethodDeclarationMap);
         //        PatchValidator validator = new PatchValidator();
 //        boolean res = validator.validate(projectPreparation.patches, Collections.singletonList(skeleton));
@@ -130,7 +130,7 @@ class InputTransformerTest extends PreparationTest{
         ASTExtractor ASTExtractor = TransformHelper.ASTExtractor;
         MethodDeclaration methodDeclaration = ASTExtractorTest.getMethodDeclaration();
         MethodCallExpr methodCallExpr = TransformHelper.ASTExtractor
-                .extractMethodCallByLine(methodDeclaration, lineNumber);
+                .extractAssertByLine(methodDeclaration, lineNumber);
         Input input =  TransformHelper.ASTExtractor.extractInput(methodCallExpr);
         String absolutePath = new File(ASTExtractorTest.filePath).getAbsolutePath();
         Pair<Expression, Object> inputMutant = MutateHelper.getInputMutant(input);

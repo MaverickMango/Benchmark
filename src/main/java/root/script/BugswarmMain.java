@@ -1,7 +1,7 @@
 package root.script;
 
 import com.google.gson.JsonElement;
-import root.entity.otherdataset.BugswarmShow;
+import root.entities.otherdataset.BugswarmShow;
 import root.util.FileUtils;
 import root.util.GitAccess;
 

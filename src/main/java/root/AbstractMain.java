@@ -3,18 +3,18 @@ package root;
 import org.apache.commons.cli.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import root.generation.ProjectPreparation;
+import root.entities.Stats;
 import root.util.ConfigurationProperties;
 
 import java.io.File;
-import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.Date;
 
 public class AbstractMain {
     private static final Logger logger = LoggerFactory.getLogger(AbstractMain.class);
 
-    public static Date bornTime;
+    public Date bornTime;
+    public Stats currentStat;
 
     protected static Options options = new Options();
 
@@ -44,6 +44,7 @@ public class AbstractMain {
 
     public ProjectPreparation initialize(String[] args) {
         bornTime = new Date();
+        currentStat = Stats.getCurrentStats();
         boolean res = progressArguments(args);
         if (!res)
             return null;

@@ -95,13 +95,24 @@ public class ASTJavaParser extends AbstractASTParser {
         return level;
     }
 
-    public CompilationUnit getAST(String filePath) {
+    @Override
+    public Object getAST(String filePath) {
         try {
             CompilationUnit compilationUnit = StaticJavaParser.parse(new File(filePath));
             asts.put(filePath, compilationUnit);
             return compilationUnit;
         } catch (ParseProblemException | FileNotFoundException e) {
             logger.error("Error occurred when parsing " + filePath + "\n" + e.getMessage());
+        }
+        return null;
+    }
+
+    @Override
+    public Object parseASTFromCode(String code) {
+        try {
+            return StaticJavaParser.parse(code);
+        } catch (ParseProblemException e) {
+            logger.error("Invalid code to be parsed " + code + "\n" + e.getMessage());
         }
         return null;
     }

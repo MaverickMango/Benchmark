@@ -1,7 +1,7 @@
 package root.script;
 
 import org.eclipse.jgit.lib.Repository;
-import root.entity.benchmarks.Defects4JBug;
+import root.entities.benchmarks.Defects4JBug;
 
 public class Main {
     public static void main(String[] args) {

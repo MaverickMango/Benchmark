@@ -1,10 +1,12 @@
 package root.generation.transformation;
 
 import com.github.javaparser.ast.expr.*;
+import com.github.javaparser.quality.Nullable;
 import com.github.javaparser.utils.Pair;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import root.generation.entity.Input;
+import root.entities.Difference;
+import root.generation.entities.Input;
 import root.generation.helper.Helper;
 import root.generation.transformation.mutator.*;
 
@@ -14,10 +16,12 @@ public class MutateHelper {
 
     private static final Logger logger = LoggerFactory.getLogger(MutateHelper.class);
 
+    private static int MAX_MUTANTS_NUM;
     public static Map<Class<? extends Expression>, AbstractInputMutator> MUTATORS;
     public static Map<String, List<Class<? extends Expression>>> INPUTS_BY_TYPE;
 
     public static void initialize() {
+        MAX_MUTANTS_NUM = 300;
         //todo: whether to collect all values of different types in test file?
         MUTATORS = new HashMap<>();
         MUTATORS.put(BooleanLiteralExpr.class, new BooleanMutator());
@@ -48,17 +52,18 @@ public class MutateHelper {
 
     public static Pair<Expression, Object> getInputMutant(Input oldInput) {
         Random random = new Random(new Date().getTime());
-        List<Pair<Expression, Object>> inputMutants = getInputMutants(oldInput, 1);
+        MAX_MUTANTS_NUM = 1;
+        List<Pair<Expression, Object>> inputMutants = getInputMutants(oldInput, null);
         int idx = random.nextInt(inputMutants.size());
         return inputMutants.get(idx);
     }
 
-    public static List<Pair<Expression, Object>> getInputMutants(Input oldInput, int num){
+    public static List<Pair<Expression, Object>> getInputMutants(Input oldInput, @Nullable List<Difference> differences){
         Random random = new Random(new Date().getTime());
-        List<Expression> basicExprs = oldInput.getBasicExpr();
+        List<Expression> basicExprs = oldInput.getBasicExpr();//todo 重新写变异规则！
         Set<Pair<Expression, Object>> mutants = new HashSet<>();
         AbstractInputMutator mutator;
-        while (mutants.size() < num) {
+        while (mutants.size() < MAX_MUTANTS_NUM) {
             int idx = random.nextInt(basicExprs.size());
             Expression basicExpr = basicExprs.get(idx);
             // check whether type is known class,and apply its mutator to get its mutants.

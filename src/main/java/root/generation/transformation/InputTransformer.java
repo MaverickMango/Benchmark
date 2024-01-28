@@ -7,8 +7,8 @@ import com.github.javaparser.quality.NotNull;
 import com.github.javaparser.utils.Pair;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import root.generation.entity.Input;
-import root.generation.entity.Skeleton;
+import root.generation.entities.Input;
+import root.generation.entities.Skeleton;
 import root.generation.helper.Helper;
 
 import java.util.*;

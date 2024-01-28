@@ -1,6 +1,6 @@
 package root.generation.helper;
 
-import root.compiler.JavaFileObjectImpl;
+import root.execution.compiler.JavaFileObjectImpl;
 
 import java.net.URL;
 import java.net.URLClassLoader;

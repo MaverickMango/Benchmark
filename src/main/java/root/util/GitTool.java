@@ -1,13 +1,14 @@
 package root.util;
 
+import com.github.javaparser.utils.Pair;
 import org.eclipse.jgit.lib.*;
 import org.eclipse.jgit.revwalk.RevTree;
 import org.eclipse.jgit.treewalk.TreeWalk;
 import org.eclipse.jgit.treewalk.filter.PathFilter;
 import root.analysis.StringFilter;
-import root.entity.otherdataset.BugFixCommit;
-import root.entity.otherdataset.CommitInfo;
-import root.entity.otherdataset.RepositoryInfo;
+import root.entities.otherdataset.BugFixCommit;
+import root.entities.otherdataset.CommitInfo;
+import root.entities.otherdataset.RepositoryInfo;
 import org.eclipse.jgit.api.Git;
 import org.eclipse.jgit.diff.DiffEntry;
 import org.eclipse.jgit.diff.DiffFormatter;
@@ -35,6 +36,46 @@ public class GitTool extends GitServiceImpl {
         int res = FileUtils.executeCommand(cmd, new File(workingDir).getAbsolutePath(), timeoutSecond
                 , Map.of("JAVA_HOME", ConfigurationProperties.getProperty("jdk8")));
         return res == 0;
+    }
+
+    public List<Pair<String, String>> getMappedFiles(List<String> mappingFileContents, List<String> beforePaths) {
+        List<Pair<String, String>> beforeAfterPairs = new ArrayList<>();
+        for (String line :mappingFileContents) {
+            String[] split = line.split("\t");
+            if (split.length == 2 && split[0].contains("M")) {
+                if (beforePaths.contains(split[1]))
+                    beforeAfterPairs.add(new Pair<>(split[1], split[1]));
+            }
+            if (split.length == 3 && split[0].contains("R")) {
+                if (beforePaths.contains(split[1]))
+                    beforeAfterPairs.add(new Pair<>(split[1], split[2]));
+            }
+            if (split.length == 2 && split[0].contains("A")) {
+                if (beforePaths.contains(split[1]))
+                    beforeAfterPairs.add(new Pair<>(null, split[1]));
+            }
+            if (split.length == 2 && split[0].contains("D")) {
+                if (beforePaths.contains(split[1]))
+                    beforeAfterPairs.add(new Pair<>(split[1], null));
+            }
+        }
+        return beforeAfterPairs;
+    }
+
+    public List<String> getRelevantFiles(List<String> mappingFileContents, List<String> beforePaths) {
+        List<String> afterPaths = new ArrayList<>();
+        for (String line :mappingFileContents) {
+            String[] split = line.split("\t");
+            if (split.length == 2 && split[0].contains("M")) {
+                if (beforePaths.contains(split[1]))
+                    afterPaths.add(split[1]);
+            }
+            if (split.length == 3 && split[0].contains("R")) {
+                if (beforePaths.contains(split[1]))
+                    afterPaths.add(split[2]);
+            }
+        }
+        return afterPaths;
     }
 
     public String[] getF2i(String mappingFile, String packageName) {

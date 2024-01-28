@@ -9,13 +9,11 @@ import org.junit.jupiter.api.Test;
 import root.AbstractMain;
 import root.analysis.groum.entity.IntraGroum;
 import root.analysis.groum.Graphvizer;
-import root.generation.ProjectPreparation;
+import root.ProjectPreparation;
 import root.parser.ASTJavaParser;
 import root.util.CommandSummary;
-import root.util.ConfigurationProperties;
 import root.util.FileUtils;
 
-import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
@@ -90,7 +88,7 @@ class ExtractFromJavaParserTest {
     @Test
     void visit() throws IOException {
         ASTJavaParser parser = (ASTJavaParser) projectPreparation.parser;
-        parser.parseASTs("src/test/java/res1.FileRead.java");
+        parser.parseASTs("src/test/java/FileRead.java");
 //        parser.parseASTs("src/main/java/root/generation/transformation/extractor/InputExtractor.java");
 //        parser.parseASTs("/home/liumengjiao/Desktop/CI/bugs/Math_50_buggy/src/main/java/org/apache/commons/math/analysis/solvers/BaseSecantSolver.java");
         Map<String, Object> asts = parser.getASTs();

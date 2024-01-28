@@ -1,5 +1,6 @@
 package root.parser;
 
+import com.github.javaparser.ast.CompilationUnit;
 import org.eclipse.jdt.core.JavaCore;
 import org.eclipse.jdt.core.dom.AST;
 import org.eclipse.jdt.core.dom.ASTParser;
@@ -42,6 +43,18 @@ public class ASTJDTParser extends AbstractASTParser {
         List<String> allFiles = FileUtils.findAllFilePaths(fileDir, ".java");
         parser.createASTs(allFiles.toArray(new String[allFiles.size()]), null,
                 new String[]{"UTF-8"}, requestor, null);
+    }
+
+    @Override
+    public CompilationUnit getAST(String filePath) {
+        parser.createASTs(new String[]{filePath}, null,
+                new String[]{"UTF-8"}, requestor, null);
+        return (CompilationUnit) asts.get(filePath);
+    }
+
+    @Override
+    public Object parseASTFromCode(String code) {
+        return null;
     }
 
     @Override

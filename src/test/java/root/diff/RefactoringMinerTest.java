@@ -4,6 +4,7 @@ import com.github.gumtreediff.actions.EditScript;
 import com.github.gumtreediff.actions.EditScriptGenerator;
 import com.github.gumtreediff.actions.SimplifiedChawatheScriptGenerator;
 import com.github.gumtreediff.actions.TreeClassifier;
+import com.github.gumtreediff.matchers.Mapping;
 import com.github.gumtreediff.matchers.MappingStore;
 import com.github.gumtreediff.matchers.Matcher;
 import com.github.gumtreediff.matchers.Matchers;
@@ -17,6 +18,7 @@ import org.refactoringminer.api.GitHistoryRefactoringMiner;
 import org.refactoringminer.api.Refactoring;
 import org.refactoringminer.api.RefactoringHandler;
 import org.refactoringminer.astDiff.actions.ASTDiff;
+import org.refactoringminer.astDiff.matchers.ExtendedMultiMappingStore;
 import org.refactoringminer.rm1.GitHistoryRefactoringMinerImpl;
 import root.util.FileUtils;
 import root.util.GitAccess;
@@ -30,7 +32,7 @@ public class RefactoringMinerTest implements GitAccess {
 //    @Test
 //    public void test4diff() {
 //        String srcPath = "/home/liumengjiao/Desktop/CI/Benchmark/src/test/java/res1/FileRead.java";
-//        String dstPath = "/home/liumengjiao/Desktop/CI/Benchmark/src/test/java/res2/FileRead2.java";//not in a git repository?
+//        String dstPath = "/home/liumengjiao/Desktop/CI/Benchmark/src/test/java/res2/examples.FileRead2.java";//not in a git repository?
 //        RefactoringMiner refactoringMiner = new RefactoringMiner();
 //        Set<ASTDiff> astDiffs = refactoringMiner.diffAtDirectories(new File(srcPath), new File(dstPath));
 //        Assertions.assertFalse(astDiffs.isEmpty());
@@ -87,6 +89,18 @@ public class RefactoringMinerTest implements GitAccess {
         for (ASTDiff astDiff :astDiffs) {
             String srcPath = astDiff.getSrcPath();
             String dstPath = astDiff.getDstPath();
+            //for each changed files, mapping the line number with methods.
+            boolean srcFlag = srcPath.contains("test") || srcPath.endsWith("Test.java");
+            boolean dstFlag = dstPath.contains("test") || dstPath.endsWith("Test.java");
+            boolean flag = srcFlag || dstFlag;
+            if (flag)// filter changes about test
+                break;
+            ExtendedMultiMappingStore multiMappings = astDiff.getMultiMappings();
+            for (Mapping mapping :multiMappings.getMappings()) {
+                Tree first = mapping.first;
+                Tree second = mapping.second;
+                int pos = first.getPos();
+            }
             String dstContents = astDiff.getDstContents();
             String srcContents = astDiff.getSrcContents();
             TreeClassifier rootNodesClassifier = astDiff.createRootNodesClassifier();

@@ -2,7 +2,7 @@ package root.generation.helper;
 
 import org.junit.jupiter.api.BeforeAll;
 import root.AbstractMain;
-import root.generation.ProjectPreparation;
+import root.ProjectPreparation;
 import root.util.CommandSummary;
 import root.util.ConfigurationProperties;
 import root.util.FileUtils;

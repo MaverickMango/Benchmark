@@ -23,7 +23,9 @@ public abstract class AbstractASTParser {
 
     public abstract void parseASTs(String fileDir) throws IOException;
 
-    public abstract CompilationUnit getAST(String filePath);
+    public abstract Object getAST(String filePath);
+
+    public abstract Object parseASTFromCode(String code);
 
     public abstract Map<String, Object> getASTs();
 

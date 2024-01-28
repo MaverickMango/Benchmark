@@ -1,64 +1,142 @@
 package root.diff;
 
-import com.github.gumtreediff.actions.EditScript;
-import com.github.gumtreediff.actions.EditScriptGenerator;
-import com.github.gumtreediff.actions.SimplifiedChawatheScriptGenerator;
-import com.github.gumtreediff.actions.model.Action;
-//import com.github.gumtreediff.gen.jdt.JdtTreeGenerator;
-import com.github.gumtreediff.matchers.MappingStore;
-import com.github.gumtreediff.matchers.Matcher;
-import com.github.gumtreediff.matchers.Matchers;
-import com.github.gumtreediff.tree.Tree;
-//import gumtree.spoon.AstComparator;
-//import gumtree.spoon.diff.Diff;
-//import gumtree.spoon.diff.operations.Operation;
-//import spoon.reflect.cu.SourcePosition;
-//import spoon.reflect.declaration.CtElement;
+import com.github.javaparser.quality.NotNull;
+import com.github.javaparser.quality.Nullable;
+import gumtree.spoon.diff.operations.*;
+
 import com.github.javaparser.ast.CompilationUnit;
-import com.github.javaparser.ast.body.MethodDeclaration;
+import com.github.javaparser.ast.Node;
+import com.github.javaparser.utils.Pair;
+
 import gumtree.spoon.AstComparator;
 import gumtree.spoon.diff.Diff;
-import gumtree.spoon.diff.operations.Operation;
+import root.entities.benchmarks.Defects4JBug;
+import root.util.GitTool;
+import root.util.PatchHelper;
+import spoon.reflect.declaration.CtElement;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import root.extractor.ASTExtractor;
-import root.generation.ProjectPreparation;
-import root.generation.transformation.TransformHelper;
-import spoon.reflect.declaration.CtElement;
-import spoon.reflect.declaration.CtMethod;
-
 import java.io.File;
-import java.util.Collections;
-import java.util.Iterator;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
+import java.util.stream.Collectors;
+
+import root.entities.Difference;
+import root.entities.MultiFilesPatch;
+import root.entities.Patch;
+import root.entities.ci.BugRepository;
+import root.generation.transformation.TransformHelper;
+import root.util.ConfigurationProperties;
 
 public class DiffExtractor {
 
     private static final Logger logger = LoggerFactory.getLogger(DiffExtractor.class);
+
+    Map<String, CompilationUnit> parsedUnit = new HashMap<>();
+
+    private String getLabel(String absPath, String version) {
+        return absPath + "#" + version;
+    }
+
+    private CompilationUnit getParsedUnit(String unitPath, String version) {
+        String label = getLabel(unitPath, version);
+        if (!parsedUnit.containsKey(label)) {
+            CompilationUnit unit = TransformHelper.ASTExtractor.getCompilationUnit(unitPath);
+            parsedUnit.put(label, unit);
+        }
+        return parsedUnit.get(label);
+    }
+
+    private CompilationUnit getParsedUnitFromCode(String unitPath, String code, String version) {
+        String label = getLabel(unitPath, version);
+        if (!parsedUnit.containsKey(label)) {
+            CompilationUnit unit = TransformHelper.ASTExtractor.getCompilationUnitFromCode(code);
+            parsedUnit.put(label, unit);
+        }
+        return parsedUnit.get(label);
+    }
+
+    public Difference getDifferenceForPatch(Patch patch) {
+        Difference difference = new Difference(patch);
+        String location = ConfigurationProperties.getProperty("location");
+        List<Patch> singleFilePatches = new ArrayList<>();
+        if (patch.isSingleFile())
+            singleFilePatches.add(patch);
+        else {
+            singleFilePatches.addAll(((MultiFilesPatch) patch).getAllSingleFiles());
+        }
+        logger.debug("...Mapping buggy version to original version");
+        List<String> fileInOrgMappingToBuggy = getFileInOrgMappingToBuggy(singleFilePatches);
+
+        logger.info("...Difference for file " + patch.getName());
+        for (Patch singleFilePatch :singleFilePatches) {
+            String bugPath = singleFilePatch.getPatchAbsPath().replace(singleFilePatch.getPathFromRoot(), location);
+            List<Pair<Node, Node>> buggyAndPatch = getDifferentPairs(bugPath,
+                    singleFilePatch.getPatchAbsPath(),
+                    null, null,
+                    "buggy", "patch");
+            if (buggyAndPatch == null || buggyAndPatch.isEmpty()) {
+                logger.error("there is no different between patched file " + singleFilePatch.getName() + " and relevant buggy file!");
+                continue;
+            }
+            difference.addDiffBetweenBugAndPatch(buggyAndPatch);//1
+
+            List<Node> bugyNodes = buggyAndPatch.stream().map(d -> d.a).collect(Collectors.toList());
+            List<Pair<Node, Node>> inducingAndOrg = getInducingRelevantDiffNodes(bugyNodes, fileInOrgMappingToBuggy);
+            difference.addDiffBetweenInducingAndOrg(inducingAndOrg);//2
+        }
+        return difference;
+    }
+
+    List<String> diffStatusBetweenBugAndOrg = new ArrayList<>();
+
+    private List<String> getDiffStatusBetweenBugAndOrg() {
+        if (diffStatusBetweenBugAndOrg.isEmpty()) {
+            String location = ConfigurationProperties.getProperty("location");
+            BugRepository bugRepository = TransformHelper.bugRepository;
+            GitTool gitAccess = bugRepository.getGitAccess();
+            String buggyCommit = ((Defects4JBug) bugRepository.getBug()).getD4JBuggy();
+            String originalCommit = ((Defects4JBug) bugRepository.getBug()).getOriginalCommit();
+            diffStatusBetweenBugAndOrg = gitAccess.getFileStatDiffBetweenCommits(location, buggyCommit, originalCommit);
+        }
+        return diffStatusBetweenBugAndOrg;
+    }
+
+    private List<String> getFileInOrgMappingToBuggy(List<Patch> singleFilePatches) {
+        BugRepository bugRepository = TransformHelper.bugRepository;
+        GitTool gitAccess = bugRepository.getGitAccess();
+        List<String> bugPaths = singleFilePatches.stream().map(patch ->
+                patch.getPatchAbsPath().substring(
+                        patch.getPatchAbsPath().lastIndexOf(patch.getPathFromRoot())
+                                + patch.getPathFromRoot().length() + 1
+                )
+        ).collect(Collectors.toList());
+        List<String> fileStatDiffBetweenCommits = getDiffStatusBetweenBugAndOrg();
+        List<String> mappedFiles = gitAccess.getRelevantFiles(fileStatDiffBetweenCommits, bugPaths);
+        return mappedFiles;
+    }
 
     /**
      * compare between two single java files.
      * @param srcPath source java file
      * @param dstPath target java file
      */
-    public List<MethodDeclaration> diff(String srcPath, String dstPath) {
+    public List<Pair<Node, Node>> getDifferentPairs(@NotNull String srcPath, @NotNull String dstPath,
+                                                    @Nullable String srcContent, @Nullable String dstContent,
+                                                    @NotNull String srcVersion, @NotNull String dstVersion) {
         try {
             AstComparator astComparator = new AstComparator();
-            Diff compare = astComparator.compare(new File(srcPath), new File(dstPath));
-            CtElement commonAncestor = compare.commonAncestor();
-            if (commonAncestor instanceof CtMethod) {
-                int line = commonAncestor.getPosition().getLine();
-                String simpleName = ((CtMethod<?>) commonAncestor).getSimpleName();
-                CompilationUnit unit = TransformHelper.ASTExtractor.getCompilationUnit(srcPath);
-                MethodDeclaration methodDeclaration = TransformHelper.ASTExtractor.extractMethodByName(unit, String.valueOf(line));
-                return Collections.singletonList(methodDeclaration);
+            Diff compare;
+            if (srcContent == null || dstContent == null) {
+                logger.debug("getting compare from file path");
+                compare = astComparator.compare(new File(srcPath), new File(dstPath));
+            } else {
+                logger.debug("getting compare from code");
+                compare = astComparator.compare(srcContent, dstContent);//会导致没有sourceFragment
             }
-            for (Operation operation: compare.getRootOperations()) {
-                CtElement srcNode = operation.getSrcNode();
-                int line = srcNode.getPosition().getLine();
-                //todo add each edit's methodParent to a list
-            }
+            return getPairsFromDiff(compare, srcPath, dstPath,
+                    srcContent, dstContent,
+                    srcVersion, dstVersion);
         } catch (Exception e) {
             logger.error("Error occurred when getting diff from gumtree-spoon\n" + e.getMessage());
             e.printStackTrace();
@@ -66,27 +144,138 @@ public class DiffExtractor {
         return null;
     }
 
-    public void diffFromGumtree(String srcPath, String dstPath) {
+    private List<Pair<Node, Node>> getPairsFromDiff(Diff compare,
+                                                    String srcPath, String dstPath,
+                                                    String srcContent, String dstContent,
+                                                    String srcVersion, String dstVersion) {
         try {
-//            JdtTreeGenerator jdtTreeGenerator = new JdtTreeGenerator();
-//            Tree srcTree = jdtTreeGenerator.generateFrom().file(srcPath).getRoot(); // instantiates and applies the JDT generator
-//            Tree dstTree = jdtTreeGenerator.generateFrom().file(dstPath).getRoot();
-//            EditScript actions = compareEditScripts(srcTree, dstTree);
-//            List<Action> l = actions.asList();
-//            for (Action action :l) {
-//                Tree node = action.getNode();
-//                Iterator<Map.Entry<String, Object>> metadata = node.getMetadata();
-//            }
+            CompilationUnit srcUnit = srcContent == null ? getParsedUnit(srcPath, srcVersion) : getParsedUnitFromCode(srcPath, srcContent, srcVersion);
+            CompilationUnit dstUnit = dstContent == null ? getParsedUnit(dstPath, dstVersion) : getParsedUnitFromCode(dstPath, dstContent, dstVersion);
+            List<Pair<Node, Node>> pairs = new ArrayList<>();
+            Map<CtElement, Node> usedNodes = new HashMap<>();
+            List<Operation> rootOperations = compare.getRootOperations();
+            for (int i = 0; i < rootOperations.size(); i ++) {
+                Operation operation = rootOperations.get(i);
+                Pair<Node, Node> nodsFromNodes = getNodsFromNodes(usedNodes, srcUnit, dstUnit, operation);
+                if (nodsFromNodes == null)
+                    continue;
+                pairs.add(nodsFromNodes);
+            }
+            return pairs;
         } catch (Exception e) {
-            logger.error("Error occurred when getting diff from gumtree");
+            logger.error("Error occurred when getting diff from gumtree-spoon\n" + e.getMessage());
+            e.printStackTrace();
         }
+        return null;
     }
 
-    private EditScript compareEditScripts(Tree srcTree, Tree dstTree) {
-        Matcher defaultMatcher = Matchers.getInstance().getMatcher(); // retrieves the default matcher
-        MappingStore mappings = defaultMatcher.match(srcTree, dstTree); // computes the mappings between the trees
-        EditScriptGenerator editScriptGenerator = new SimplifiedChawatheScriptGenerator(); // instantiates the simplified Chawathe script generator
-        EditScript actions = editScriptGenerator.computeActions(mappings); // computes the edit script
-        return actions;
+    private Pair<Node, Node> getNodsFromNodes(Map<CtElement, Node> usedNodes,
+                                              CompilationUnit srcUnit, CompilationUnit dstUnit,
+                                              Operation operation) {
+        if (operation instanceof UpdateOperation) {
+            CtElement srcNode = operation.getSrcNode();
+            CtElement dstNode = operation.getDstNode();
+            Node src = getNodeFromNode(usedNodes, srcNode, srcUnit);
+            Node dst = getNodeFromNode(usedNodes, dstNode, dstUnit);
+            return new Pair<>(src, dst);
+        }
+        if (operation instanceof InsertOperation) {
+            CtElement srcNode = operation.getSrcNode();
+            Node dst = getNodeFromNode(usedNodes, srcNode, dstUnit);
+            return new Pair<>(null, dst);
+        }
+        if (operation instanceof DeleteOperation || operation instanceof MoveOperation) {//move的也算在里面，ab有空的如果对上，涉及的变量就可以删掉。
+            CtElement srcNode = operation.getSrcNode();
+            Node src = getNodeFromNode(usedNodes, srcNode, srcUnit);
+            return new Pair<>(src, null);
+        }
+        return null;
     }
+
+    private Node getNodeFromNode(Map<CtElement, Node> usedNodes, CtElement node, CompilationUnit unit) {
+        if (!usedNodes.containsKey(node)) {
+            int line = node.getPosition().getLine();//position available?
+            int endLine = node.getPosition().getEndLine();
+            String label = getSourceString(node);
+            Node src = TransformHelper.ASTExtractor.extractExpressionByLabel(unit, label, line, endLine);
+            usedNodes.put(node, src);
+        }
+        return usedNodes.get(node);
+    }
+
+    private String getSourceString(CtElement node) {
+        try {
+            String sourceCode = node.getOriginalSourceFragment().getSourceCode();
+            return sourceCode.replaceAll("\\s", "").replaceAll(";", "");
+        } catch (Exception e) {//如果通过字符串parse就没有sourceFragment
+            logger.error("Can not find code element's source code:\n" + node.toString());
+        }
+        return node.toString();
+    }
+
+    private List<String> diffStatusBetweenOrgAndInd = new ArrayList<>();
+
+    private List<String> getDiffStatusBetweenOrgAndInd() {
+        if (diffStatusBetweenOrgAndInd.isEmpty()) {
+            BugRepository bugRepository = TransformHelper.bugRepository;
+            GitTool gitAccess = bugRepository.getGitAccess();
+            String inducingCommit = bugRepository.getBug().getInducingCommit();
+            String originalCommit = ConfigurationProperties.getProperty("originalCommit");
+            String location = ConfigurationProperties.getProperty("location");
+            diffStatusBetweenOrgAndInd = gitAccess.getFileStatDiffBetweenCommits(location, originalCommit, inducingCommit);
+        }
+        return diffStatusBetweenOrgAndInd;
+    }
+
+    public List<Pair<Node, Node>> getInducingRelevantDiffNodes(List<Node> buggyNodes, List<String> fileInOrgMappingToBuggy) {
+        BugRepository bugRepository = TransformHelper.bugRepository;
+        bugRepository.switchToInducing();
+        String inducingDir = ((Defects4JBug) bugRepository.getBug()).getWorkingDir();
+        BugRepository patchRepository = PatchHelper.patchRepository;
+        patchRepository.switchToOrg();
+        String orgDir = ((Defects4JBug) patchRepository.getBug()).getWorkingDir();
+        GitTool gitAccess = bugRepository.getGitAccess();
+        List<Pair<Node, Node>> diffList = new ArrayList<>();//可以是空，空就说明这个补丁修改的文件和历史引入bug的位置不相关。
+        List<String> fileStatDiffBetweenCommits = getDiffStatusBetweenOrgAndInd();
+        List<Pair<String, String>> mappedFiles = gitAccess.getMappedFiles(fileStatDiffBetweenCommits, fileInOrgMappingToBuggy);
+        for (Pair<String, String> org2Inducing :mappedFiles) {
+            if (org2Inducing.a == null || org2Inducing.b == null){
+                logger.info("This bug might not be a intrinsic bug. Inducing changes maybe contain some new files.");
+                continue;
+            }
+            String dstPath = orgDir + File.separator + org2Inducing.a;
+            String srcPath = inducingDir + File.separator + org2Inducing.b;
+            List<Pair<Node, Node>> diffPairs = getDifferentPairs(srcPath, dstPath,
+                    null, null,
+                    "original", "inducing");
+            assert  diffPairs != null;
+            diffList.addAll(diffPairs);
+        }
+        bugRepository.switchToBug();
+        patchRepository.switchToBug();
+//        RefactoringMiner miner = new RefactoringMiner();
+//        Set<ASTDiff> astDiffs = miner.diffAtCommit(bugRepository.getRepository(), originalCommit, inducingCommit);
+//        for (ASTDiff astDiff: astDiffs) {
+//            String srcPath = astDiff.getSrcPath();
+//            String dstPath = astDiff.getDstPath();
+//            boolean flag = fileInOrgMappingToBuggy.stream().anyMatch(srcPath::endsWith);
+//            if (!flag)
+//                continue;
+//            String srcContents = astDiff.getSrcContents();
+//            String dstContents = astDiff.getDstContents();
+//            String srcSavedPath = "." + File.separator + "tmp" + File.separator + srcPath;
+//            String dstSavedPath = "." + File.separator + "tmp" + File.separator + dstPath;
+//            FileUtils.writeToFile(srcContents, srcSavedPath, false);
+//            FileUtils.writeToFile(dstContents, dstSavedPath, false);
+//            List<Pair<Node, Node>> diffPairs = getDifferentPairs(srcSavedPath, dstSavedPath,
+//                    null, null,
+//                    "original", "inducing");
+//            assert  diffPairs != null;
+//            FileUtils.removeFile(srcSavedPath);
+//            FileUtils.removeFile(dstSavedPath);
+//            diffList.addAll(diffPairs);
+//        }
+        return diffList;
+    }
+
 }

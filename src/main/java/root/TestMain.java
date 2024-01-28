@@ -5,10 +5,11 @@ import com.github.javaparser.ast.body.MethodDeclaration;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import root.diff.DiffExtractor;
-import root.generation.ProjectPreparation;
-import root.generation.entity.Input;
-import root.generation.entity.Patch;
-import root.generation.entity.Skeleton;
+import root.entities.Difference;
+import root.entities.Stats;
+import root.generation.entities.Input;
+import root.entities.Patch;
+import root.generation.entities.Skeleton;
 import root.generation.transformation.TransformHelper;
 import root.util.*;
 
@@ -18,9 +19,8 @@ import java.util.*;
 public class TestMain extends AbstractMain {
 
     private static final Logger logger = LoggerFactory.getLogger(TestMain.class);
-    static TestMain main = new TestMain();
 
-    private static CommandSummary setInputs(String location, List<String> strings) {
+    public static CommandSummary setInputs(String location, List<String> strings) {
         CommandSummary cs = new CommandSummary();
         String bugName, srcJavaDir, srcTestDir, binJavaDir, binTestDir, testInfos, projectCP, originalCommit, cleaned, complianceLevel;
         bugName = strings.get(0);
@@ -64,38 +64,43 @@ public class TestMain extends AbstractMain {
     }
 
     private static boolean executeMainProcess(CommandSummary cs) {
+        TestMain main = new TestMain();
         logger.info("Start Initialization.");
         ProjectPreparation projectPreparation = main.initialize(cs.flat());
         if (projectPreparation == null) {
             return false;
         }
-        long initSeconds = TimeUtil.deltaInSeconds(bornTime);
-
-        logger.info("Start diff extraction.");
-        //todo add diffExtraction process
-        diffExtraction(projectPreparation);
-
-        logger.info("Start test generation.");
         String[] tests = ConfigurationProperties.getProperty("testInfos").split("#");
         Map<String, List<String>> testsByClazz = getTestInfos(tests);
-        List<Skeleton> mutateRes = testMutation(projectPreparation, testsByClazz);
+        long seconds = TimeUtil.deltaInSeconds(main.bornTime);
+        main.currentStat.addGeneralStat(Stats.General.INITIALIZATION_TIME, seconds);
+//        logger.info("Initialization end with time cost " + seconds + "s");
+
+        logger.info("Start diff extraction.");
+        Date startDate = new Date();
+        List<Difference> differences = diffExtraction(projectPreparation);
+        seconds = TimeUtil.deltaInSeconds(startDate);
+        main.currentStat.addGeneralStat(Stats.General.DIFF_TIME, seconds);
+//        logger.info("Diff extraction end with time cost " + seconds + "s");
+
+        logger.info("Start test generation.");
+        startDate = new Date();
+        List<Skeleton> mutateRes = testGeneration(projectPreparation, testsByClazz, differences);
+        seconds = TimeUtil.deltaInSeconds(startDate);
+        main.currentStat.addGeneralStat(Stats.General.GENERATION_TIME, seconds);
+//        logger.info("Test generation end with time cost " + seconds + "s");
 
         logger.info("Start patch validation.");
+        startDate = new Date();
         boolean allCorrect = patchValidation(projectPreparation, mutateRes);
+        seconds = TimeUtil.deltaInSeconds(startDate);
+        main.currentStat.addGeneralStat(Stats.General.VALIDATION_TIME, seconds);
+//        logger.info("Patch validation end with time cost " + seconds + "s");
 
-        long totalSeconds = TimeUtil.deltaInSeconds(bornTime);
+        long totalSeconds = TimeUtil.deltaInSeconds(main.bornTime);
+        main.currentStat.addGeneralStat(Stats.General.TOTAL_TIME, seconds);
         logger.info("Finish with total running time: " + totalSeconds + "s");
         return allCorrect;
-    }
-
-    private static void diffExtraction(ProjectPreparation projectPreparation) {
-        DiffExtractor diffExtractor = new DiffExtractor();
-        String location = ConfigurationProperties.getProperty("location");
-        List<Patch> patches = projectPreparation.patches;
-        for (Patch patch :patches) {
-            String bugPath = patch.getPatchAbsPath().replace(patch.getPathFromRoot(), location);
-            diffExtractor.diff(bugPath, patch.getPatchAbsPath());
-        }
     }
 
     private static Map<String, List<String>> getTestInfos(String[] tests) {
@@ -116,9 +121,23 @@ public class TestMain extends AbstractMain {
         return testsByClazz;
     }
 
-    private static List<Skeleton> testMutation(ProjectPreparation projectPreparation, Map<String, List<String>> testsByClazz) {
+    private static List<Difference> diffExtraction(ProjectPreparation projectPreparation) {
+        DiffExtractor diffExtractor = new DiffExtractor();
+        List<Difference> differences = new ArrayList<>();
+        List<Patch> patches = projectPreparation.patches;
+        logger.info("Processing differences extraction --------------------");
+        for (Patch patch :patches) {
+            Difference difference = diffExtractor.getDifferenceForPatch(patch);
+            differences.add(difference);
+        }
+        logger.info("End differences extraction --------------------");
+        return differences;
+    }
+
+    private static List<Skeleton> testGeneration(ProjectPreparation projectPreparation, Map<String, List<String>> testsByClazz,
+                                                 List<Difference> differences) {
         List<Skeleton> mutateRes = new ArrayList<>();
-        logger.info("Processing new Test generating --------------------");
+        logger.info("Processing new Tests generation --------------------");
         for (Map.Entry<String, List<String>> entry :testsByClazz.entrySet()) {
             String clazzName = entry.getKey();
             String filePath = projectPreparation.srcTestDir + File.separator +
@@ -129,32 +148,40 @@ public class TestMain extends AbstractMain {
             logger.info("...Creating Skeleton");
             String[] s = clazzName.split(File.separator);
             Skeleton skeleton = new Skeleton(absolutePath, compilationUnit, s[s.length - 1]);
-            List<Input> inputs = new ArrayList<>();
-            logger.info("Processing each test methods...");
-            for (String testMths : entry.getValue()) {
-                String[] split = testMths.split(":");
-                String methodName = split[0];
-                int lineNumber = split.length == 2 ? Integer.parseInt(split[1]) : 0;
-                logger.info("Extracting test input for test " + methodName);
-                Input input = TransformHelper.ASTExtractor.extractInput(compilationUnit, methodName, lineNumber);
-                inputs.add(input);
-            }
-            Map<String, MethodDeclaration> compilationUnitMap = TransformHelper.mutateTest(skeleton, inputs, 10);
+
+            List<Input> inputs = getOriginalTestsInputs(skeleton, compilationUnit, entry.getValue());
+            Map<String, MethodDeclaration> compilationUnitMap = TransformHelper.mutateTest(skeleton, inputs, differences);
+
             logger.info("Finishing one Test Class --------------------");
             mutateRes.add(skeleton);
         }
-        logger.info("End new Test generating --------------------");
+        logger.info("End new Tests generation --------------------");
         return mutateRes;
     }
 
+    private static List<Input> getOriginalTestsInputs(Skeleton skeleton, CompilationUnit compilationUnit,
+                                                      List<String> testMths) {
+        List<Input> inputs = new ArrayList<>();
+        logger.info("Processing each test methods...");
+        for (String testMth : testMths) {
+            String[] split = testMth.split(":");
+            String methodName = split[0];
+            int lineNumber = split.length == 2 ? Integer.parseInt(split[1]) : 0;
+            logger.info("Extracting test input for test " + methodName);
+            Input input = TransformHelper.ASTExtractor.extractInput(compilationUnit, methodName, lineNumber);
+            inputs.add(input);
+        }
+        return inputs;
+    }
+
     private static boolean patchValidation(ProjectPreparation projectPreparation, List<Skeleton> mutateRes) {
-        logger.info("Processing patches validating --------------------");
+        logger.info("Processing patches validation --------------------");
         boolean allCorrect = true;
         for (Patch patch: projectPreparation.patches) {
             boolean res = PatchHelper.validate(patch, mutateRes);
             allCorrect &= res;
         }
-        logger.info("End patches validating --------------------");
+        logger.info("End patches validation --------------------");
         return allCorrect;
     }
 
