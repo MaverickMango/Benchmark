@@ -21,6 +21,7 @@ import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 public class TransformHelper {
 
@@ -40,6 +41,18 @@ public class TransformHelper {
 
     public static Map<String, MethodDeclaration> mutateTest(Skeleton skeleton, List<Input> inputs, List<Difference> differences) {
         List<Input> newInputs = new ArrayList<>();
+        //todo 如何利用differences
+        /**
+         * 1. 提取differences中的差异变量DiffExprs
+         * 2. 寻找DiffExprs和input之间的关系
+         *      =》a. 首先通过依赖分析寻找inputExpr和DiffExprs之间的关系
+         *        b. ？
+         */
+        for (Difference difference :differences) {
+            Pair<Set<Node>, Set<Node>> minBugAndPat = difference.getDiffExprInBuggy();
+            Pair<Set<Node>, Set<Node>> minInducingAndOrg = difference.getDiffExprInOrg();
+            //todo 根据差异部分分析关系
+        }
         logger.info("Mutating test inputs... total inputs num: " + inputs.size());
         for (Input input :inputs) {
             logger.info("getting mutants...");

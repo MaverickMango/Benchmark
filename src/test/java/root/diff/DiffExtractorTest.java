@@ -9,6 +9,8 @@ import root.parser.ASTJavaParser;
 
 import java.io.IOException;
 import java.util.List;
+import java.util.Set;
+import java.util.stream.Collectors;
 
 class DiffExtractorTest {
 
@@ -24,7 +26,20 @@ class DiffExtractorTest {
     }
 
     @Test
-    void getInducingRelevantDiffNodes() {
+    void minimal() throws IOException {
+        TransformHelper.initialize(null,
+                new ASTJavaParser("src/main/java", "src/test/java", null, "1.8"));
+        String srcPath = "/home/liumengjiao/Desktop/CI/Benchmark/src/test/resources/examples/src/FileRead.java";
+        String dstPath = "/home/liumengjiao/Desktop/CI/Benchmark/src/test/resources/examples/dst/FileRead.java";
+        DiffExtractor extractor = new DiffExtractor();
+        List<Pair<Node, Node>> diffMths = extractor.getDifferentPairs(srcPath, dstPath, null, null,"buggy", "buggy");
+        Set<Node> A = diffMths.stream().map(n -> n.a).collect(Collectors.toSet());
+        DiffExtractor.filterChildNode(A);
+        Set<Node> B = diffMths.stream().map(n -> n.b).collect(Collectors.toSet());
+        DiffExtractor.filterChildNode(B);
+        Pair<Set<Node>, Set<Node>> minimalDiffNodes = DiffExtractor.getMinimalDiffNodes(A, B);
+        Assertions.assertEquals(2, minimalDiffNodes.a.size());
+        Assertions.assertEquals(2, minimalDiffNodes.b.size());
     }
 
 }

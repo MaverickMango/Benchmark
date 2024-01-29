@@ -1,5 +1,6 @@
 package root.diff;
 
+import com.android.tools.r8.internal.Co;
 import com.github.javaparser.quality.NotNull;
 import com.github.javaparser.quality.Nullable;
 import gumtree.spoon.diff.operations.*;
@@ -11,6 +12,7 @@ import com.github.javaparser.utils.Pair;
 import gumtree.spoon.AstComparator;
 import gumtree.spoon.diff.Diff;
 import root.entities.benchmarks.Defects4JBug;
+import root.generation.transformation.visitor.MinimalVisitor;
 import root.util.GitTool;
 import root.util.PatchHelper;
 import spoon.reflect.declaration.CtElement;
@@ -81,8 +83,7 @@ public class DiffExtractor {
             }
             difference.addDiffBetweenBugAndPatch(buggyAndPatch);//1
 
-            List<Node> bugyNodes = buggyAndPatch.stream().map(d -> d.a).collect(Collectors.toList());
-            List<Pair<Node, Node>> inducingAndOrg = getInducingRelevantDiffNodes(bugyNodes, fileInOrgMappingToBuggy);
+            List<Pair<Node, Node>> inducingAndOrg = getInducingRelevantDiffNodes(fileInOrgMappingToBuggy);
             difference.addDiffBetweenInducingAndOrg(inducingAndOrg);//2
         }
         return difference;
@@ -227,7 +228,7 @@ public class DiffExtractor {
         return diffStatusBetweenOrgAndInd;
     }
 
-    public List<Pair<Node, Node>> getInducingRelevantDiffNodes(List<Node> buggyNodes, List<String> fileInOrgMappingToBuggy) {
+    public List<Pair<Node, Node>> getInducingRelevantDiffNodes(List<String> fileInOrgMappingToBuggy) {
         BugRepository bugRepository = TransformHelper.bugRepository;
         bugRepository.switchToInducing();
         String inducingDir = ((Defects4JBug) bugRepository.getBug()).getWorkingDir();
@@ -278,4 +279,51 @@ public class DiffExtractor {
         return diffList;
     }
 
+    public static Pair<Set<Node>, Set<Node>> getMinimalDiffNodes(Set<Node> leftNodes, Set<Node> rightNodes) {
+        leftNodes = leftNodes.stream().filter(Objects::nonNull).collect(Collectors.toSet());
+        rightNodes = rightNodes.stream().filter(Objects::nonNull).collect(Collectors.toSet());
+        Set<Node> minimalLeft = AminusB(leftNodes, rightNodes);
+        Set<Node> minimalRight = AminusB(rightNodes, leftNodes);
+        return new Pair<>(minimalLeft, minimalRight);
+    }
+
+    private static Set<Node> AminusB(Set<Node> A, Set<Node> B) {
+        Set<Node> left = new HashSet<>();
+        for (Node n :A) {
+            List<Node> subNode = minimal(n, B);
+            if (subNode != null)
+                left.addAll(subNode);
+        }
+        return left;
+    }
+
+    private static List<Node> minimal(Node root, Set<Node> target) {//返回root或者null，target会不断减少或者不变
+        Set<Node> minuends = new HashSet<>(target);
+        MinimalVisitor visitor = new MinimalVisitor(root);
+        List<Node> subNode = null;
+        for (Node t :minuends) {
+            //如果minuend中有root节点的一部分，就把对应的minuend从target中删掉
+            List<Node> left = visitor.minimalByTarget(t);
+            subNode = visitor.getSubNode();
+            if (!left.contains(t)) {
+                target.remove(t);
+                target.addAll(left);
+                break;
+            }
+        }
+        return subNode;
+    }
+
+    public static void filterChildNode(Set<Node> nodes) {
+        Set<Node> current = new HashSet<>(nodes);
+        for (Node node :current) {
+            if (node == null)
+                continue;
+            boolean anyMatch = nodes.stream().anyMatch(n -> n.getParentNode().isPresent() &&
+                    n.getParentNode().get().equals(node));
+            if (anyMatch) {
+                nodes.remove(node);
+            }
+        }
+    }
 }
