@@ -6,9 +6,9 @@ plugins {
 group 'edu.tju.liumengjiao'
 version '1.0-SNAPSHOT'
 
-repositories {
-    mavenCentral()
-}
+//repositories {
+//    mavenCentral()
+//}
 
 dependencies {
     // https://mvnrepository.com/artifact/guru.nidi/graphviz-java
@@ -45,19 +45,24 @@ dependencies {
     }
 
     implementation files('libs/DiffBenchmark-1.0-SNAPSHOT.jar')
-//    implementation files('libs/soot-4.4.1-jar-with-dependencies.jar')
-
-//    implementation 'com.github.soot-oss.SootUp:sootup:develop-SNAPSHOT'
-
 //    // https://mvnrepository.com/artifact/org.eclipse.jdt/org.eclipse.jdt.core
+
+    implementation 'com.github.soot-oss.SootUp:sootup.callgraph:develop-SNAPSHOT'
+    implementation 'com.github.soot-oss.SootUp:sootup.analysis:develop-SNAPSHOT'
+    implementation 'com.github.soot-oss.SootUp:sootup.core:develop-SNAPSHOT'
+    implementation 'com.github.soot-oss.SootUp:sootup.java.core:develop-SNAPSHOT'
+    implementation 'com.github.soot-oss.SootUp:sootup.java.bytecode:develop-SNAPSHOT'
+    implementation 'com.github.soot-oss.SootUp:sootup.java.sourcecode:develop-SNAPSHOT'
+
+//    implementation files('libs/soot-4.4.1-jar-with-dependencies.jar')
 //    implementation group: 'org.eclipse.jdt', name: 'org.eclipse.jdt.core', version: '3.33.0'
-    implementation files('libs/sootup.core-1.1.2-SNAPSHOT.jar')
-    implementation files('libs/sootup.java.core-1.1.2-SNAPSHOT.jar')
-    implementation files('libs/sootup.java.bytecode-1.1.2-SNAPSHOT.jar')
-    implementation files('libs/sootup.java.sourcecode-1.1.2-SNAPSHOT.jar')
-    implementation files('libs/sootup.jimple.parser-1.1.2-SNAPSHOT.jar')
-    implementation files('libs/sootup.callgraph-1.1.2-SNAPSHOT.jar')
-    implementation files('libs/sootup.analysis-1.1.2-SNAPSHOT.jar')
+//    implementation files('libs/sootup.core-1.1.2-SNAPSHOT.jar')
+//    implementation files('libs/sootup.java.core-1.1.2-SNAPSHOT.jar')
+//    implementation files('libs/sootup.java.bytecode-1.1.2-SNAPSHOT.jar')
+//    implementation files('libs/sootup.java.sourcecode-1.1.2-SNAPSHOT.jar')
+//    implementation files('libs/sootup.jimple.parser-1.1.2-SNAPSHOT.jar')
+//    implementation files('libs/sootup.callgraph-1.1.2-SNAPSHOT.jar')
+//    implementation files('libs/sootup.analysis-1.1.2-SNAPSHOT.jar')
 }
 
 test {

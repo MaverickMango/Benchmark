@@ -1,23 +1,25 @@
 package root.entities;
 
+import com.github.javaparser.ast.CompilationUnit;
+
 public class Patch {
     String name;
     String patchAbsPath;//whole path to postfix
     String pathFromRoot;//path to root root
-    String content;
+    CompilationUnit unit;
 //    private final String content;
     boolean isSingleFile;
 
-    public Patch(String patchAbsPath, String pathFromRoot, String content) {
+    public Patch(String patchAbsPath, String pathFromRoot, CompilationUnit content) {
         this(null, patchAbsPath, pathFromRoot, content);
     }
 
-    public Patch(String name, String patchAbsPath, String pathFromRoot, String content) {
+    public Patch(String name, String patchAbsPath, String pathFromRoot, CompilationUnit content) {
         this.name = name;
         this.patchAbsPath = patchAbsPath;
 //        this.content = FileUtils.readFileByLines(patchAbsPath);
         this.pathFromRoot = pathFromRoot;
-        this.content = content;
+        this.unit = content;
         this.setSingleFile(true);
     }
 
@@ -44,8 +46,8 @@ public class Patch {
         return pathFromRoot;
     }
 
-    public String getContent() {
-        return content;
+    public CompilationUnit getUnit() {
+        return unit;
     }
 
     @Override

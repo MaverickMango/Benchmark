@@ -16,9 +16,15 @@ import java.util.concurrent.atomic.AtomicReference;
 
 public class PreOrderVisitorInMth extends VoidVisitorAdapter<List<IntraGroum>> {
 
-    ExtractFromJavaParser extractFromJavaParser = new ExtractFromJavaParser();
-    AttributeVisitor attributeVisitor = new AttributeVisitor();
-    GraphMerger graphMerger = new GraphMerger();
+    ExtractFromJavaParser extractFromJavaParser;
+    AttributeVisitor attributeVisitor;
+    GraphMerger graphMerger;
+
+    public PreOrderVisitorInMth(boolean incrVector) {
+        this.extractFromJavaParser = new ExtractFromJavaParser();
+        this.attributeVisitor = new AttributeVisitor();
+        this.graphMerger = new GraphMerger(incrVector);
+    }
 
     public LinkedHashMap<Feature, Integer> getFeatures() {
         return graphMerger.exaser.getFeatureCounts();

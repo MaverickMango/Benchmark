@@ -12,6 +12,11 @@ import java.util.*;
 public class GraphMerger {
 
     Exaser exaser = new Exaser();
+    boolean incrVector;
+
+    public GraphMerger(boolean incrVector) {
+        this.incrVector = incrVector;
+    }
 
     /**
      * parallel merge(X V Y) will get a new groum that contains all nodes and edges of X and Y, and there is no edge between any nodes of X and Y.
@@ -21,17 +26,19 @@ public class GraphMerger {
      */
     public IntraGroum parallelMerge(IntraGroum X, IntraGroum Y) {
         if (X == Y || X == null) {
-            if (Y != null && Y.getNodes().size() == 1) {
+            if (incrVector && Y != null && Y.getNodes().size() == 1) {
                 exaser.incrVector(new IntraGroum(), null, Y.getNodes().get(0));//提取vector
             }
             return Y;
         }
-        if (X.getNodes().size() == 1) {
+        if (incrVector && X.getNodes().size() == 1) {
             exaser.incrVector(new IntraGroum(), X.getNodes().get(0), null);//提取vector
         }
         if (Y != null) {
             Y.getNodes().forEach(n -> {
-                exaser.incrVector(X, null, n);
+                if (incrVector) {
+                    exaser.incrVector(X, null, n);
+                }
                 X.addNode(n);
             });
         }
@@ -63,7 +70,6 @@ public class GraphMerger {
                 linkNodesWithDataDependency(X, head, tail);
             }
         }
-
 //        if (X == Y || X == null) {
 //            if (Y != null && Y.getNodes().size() == 1) {
 //                exaser.incrVector(new IntraGroum(), null, Y.getNodes().get(0));//提取vector
@@ -94,7 +100,9 @@ public class GraphMerger {
         if (head.isTerminal()) {
             return;
         }
-        exaser.incrVector(groum, head, tail);//提取vector
+        if (incrVector) {
+            exaser.incrVector(groum, head, tail);//提取vector
+        }
         //顺联结构的头尾节点应该具有数据依赖
         head.addOutgoingEdges(tail);
         tail.addIncomingEdges(head);

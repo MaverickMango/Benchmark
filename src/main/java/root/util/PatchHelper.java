@@ -2,6 +2,7 @@ package root.util;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import root.analysis.soot.SootUpAnalyzer;
 import root.entities.ci.BugRepository;
 import root.entities.benchmarks.Defects4JBug;
 import root.entities.Patch;
@@ -18,16 +19,7 @@ public class PatchHelper {
     private static String resOutput;
     public static BugRepository patchRepository;
 
-    public static void initialization() {
-        //copy patch directory
-        String workingDir = ConfigurationProperties.getProperty("location");
-        String patchDir = workingDir.replace("_buggy", "_pat");
-        if (!new File(patchDir).exists()) {
-            String[] cmd = new String[]{"/bin/bash", "-c", "cp -r " + workingDir + " " + patchDir};
-            FileUtils.executeCommand(cmd);
-        }
-        ConfigurationProperties.setProperty("patchDir", patchDir);
-
+    public static void initialization(SootUpAnalyzer analyzer) {
         String bugName = TransformHelper.bugRepository.getBug().getBugName();
         //save the generatedOracle file.
         target = ConfigurationProperties.getProperty("resultOutput") + File.separator
@@ -35,10 +27,11 @@ public class PatchHelper {
         resOutput = ConfigurationProperties.getProperty("resultOutput") + File.separator
                 + bugName + File.separator + "result" + File.separator;
         Defects4JBug bug = (Defects4JBug) TransformHelper.bugRepository.getBug();
-        Defects4JBug pat = new Defects4JBug(bug.getProj(), bug.getId(), patchDir,
+        Defects4JBug pat = new Defects4JBug(bug.getProj(), bug.getId(), ConfigurationProperties.getProperty("patchDir"),
                 bug.getFixingCommit(), bug.getBuggyCommit(), bug.getInducingCommit(), bug.getOriginalCommit());
-        patchRepository = new BugRepository(pat);
+        patchRepository = new BugRepository(pat, analyzer);
         patchRepository.switchToBug();
+        patchRepository.compile();
     }
 
     public static boolean validate(Patch patch, List<Skeleton> skeletons) {

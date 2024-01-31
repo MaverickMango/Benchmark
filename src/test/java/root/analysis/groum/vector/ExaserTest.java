@@ -24,7 +24,7 @@ import java.util.Map;
 import java.util.stream.Collectors;
 
 class ExaserTest {
-    GraphMerger graphMerger = new GraphMerger();
+    GraphMerger graphMerger = new GraphMerger(true);
 
     IntraGroum getExampleA() {
         ActionNode node1 = new ActionNode(null, "in", "");
@@ -69,7 +69,7 @@ class ExaserTest {
         ASTJavaParser parser = (ASTJavaParser) setting().parser;
         parser.parseASTs("src/test/java/FileRead.java");
         Map<String, Object> asts = parser.getASTs();
-        PreOrderVisitorInMth visitor = new PreOrderVisitorInMth();
+        PreOrderVisitorInMth visitor = new PreOrderVisitorInMth(true);
         for (String key :asts.keySet()) {
             CompilationUnit o = (CompilationUnit) asts.get(key);
             List<BodyDeclaration<?>> collect = o.getType(0).getMembers().stream().filter(b ->
@@ -80,7 +80,7 @@ class ExaserTest {
             if (arg.get(0).getNodes().size() > 3) {
                 String filePath = "example/example.svg";
                 Graphvizer er = new Graphvizer();
-                er.getGraph(arg.get(0), filePath);
+                er.outputGraph(arg.get(0), filePath);
                 return visitor.getFeatures();
             }
         }
@@ -92,7 +92,7 @@ class ExaserTest {
         IntraGroum groum = getExampleA();
         String filePath = "example/exas.svg";
         Graphvizer er = new Graphvizer();
-        er.getGraph(groum, filePath);
+        er.outputGraph(groum, filePath);
     }
 
     @Test

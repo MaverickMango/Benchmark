@@ -1,7 +1,9 @@
 package root;
 
 import com.github.javaparser.ast.CompilationUnit;
+import com.github.javaparser.ast.Node;
 import com.github.javaparser.ast.body.MethodDeclaration;
+import com.github.javaparser.utils.Pair;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import root.diff.DiffExtractor;
@@ -149,7 +151,7 @@ public class TestMain extends AbstractMain {
             String[] s = clazzName.split(File.separator);
             Skeleton skeleton = new Skeleton(absolutePath, compilationUnit, s[s.length - 1]);
 
-            List<Input> inputs = getOriginalTestsInputs(skeleton, compilationUnit, entry.getValue());
+            List<Input> inputs = getOriginalTestsInputs(skeleton, compilationUnit, entry.getValue(), differences);
             Map<String, MethodDeclaration> compilationUnitMap = TransformHelper.mutateTest(skeleton, inputs, differences);
 
             logger.info("Finishing one Test Class --------------------");
@@ -160,7 +162,7 @@ public class TestMain extends AbstractMain {
     }
 
     private static List<Input> getOriginalTestsInputs(Skeleton skeleton, CompilationUnit compilationUnit,
-                                                      List<String> testMths) {
+                                                      List<String> testMths, List<Difference> differences) {
         List<Input> inputs = new ArrayList<>();
         logger.info("Processing each test methods...");
         for (String testMth : testMths) {
@@ -169,6 +171,19 @@ public class TestMain extends AbstractMain {
             int lineNumber = split.length == 2 ? Integer.parseInt(split[1]) : 0;
             logger.info("Extracting test input for test " + methodName);
             Input input = TransformHelper.ASTExtractor.extractInput(compilationUnit, methodName, lineNumber);
+            //todo 如何利用differences
+            /*
+             * 1. 提取differences中的差异变量DiffExprs
+             * 2. 寻找DiffExprs和input之间的关系
+             *      =》a. 获取调用图
+             *        b. 分析终点入口参数和被修改位置之间的关系?
+             *        c. ???
+             */
+            for (Difference difference :differences) {
+                String testNamePrefix = skeleton.getTestNamePrefix(compilationUnit, methodName);
+                difference.getPathFromTestToChange(testNamePrefix);
+                //todo 根据差异部分分析关系
+            }
             inputs.add(input);
         }
         return inputs;

@@ -92,7 +92,7 @@ class ExtractFromJavaParserTest {
 //        parser.parseASTs("src/main/java/root/generation/transformation/extractor/InputExtractor.java");
 //        parser.parseASTs("/home/liumengjiao/Desktop/CI/bugs/Math_50_buggy/src/main/java/org/apache/commons/math/analysis/solvers/BaseSecantSolver.java");
         Map<String, Object> asts = parser.getASTs();
-        PreOrderVisitorInMth visitor = new PreOrderVisitorInMth();
+        PreOrderVisitorInMth visitor = new PreOrderVisitorInMth(false);
         ArrayList<IntraGroum> p = new ArrayList<>();
         for (String key :asts.keySet()) {
             CompilationUnit o = (CompilationUnit) asts.get(key);
@@ -111,7 +111,7 @@ class ExtractFromJavaParserTest {
                     if (arg.get(0).getNodes().size() > 3) {
                         String filePath = "example/example.svg";
                         Graphvizer er = new Graphvizer();
-                        er.getGraph(arg.get(0), filePath);
+                        er.outputGraph(arg.get(0), filePath);
                         assert true;
                     }
                 }

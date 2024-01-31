@@ -22,7 +22,7 @@ public class Graphvizer {
     final static Logger logger = LoggerFactory.getLogger(Graphvizer.class);
     int i = 0;
 
-    public Pair<AbstractNode, Node> getNode(AbstractNode node, Map<AbstractNode, Node> map) {
+    private Pair<AbstractNode, Node> getNode(AbstractNode node, Map<AbstractNode, Node> map) {
         if (node == null) {
             return null;
         }
@@ -47,7 +47,7 @@ public class Graphvizer {
         return new Pair<>(node, graphNode);
     }
 
-    public void getGraph(IntraGroum groum, String filePath) throws IOException {
+    public void outputGraph(IntraGroum groum, String filePath) throws IOException {
         Graph g = graph(String.valueOf(i++)).directed();
 
         Map<AbstractNode, Node> map = new HashMap<>();
@@ -64,6 +64,11 @@ public class Graphvizer {
             }
         }
         Graphviz.fromGraph(g).render(Format.SVG).toFile(new File(filePath));
+        logger.info("Graph has been stored in " + filePath);
+    }
+
+    public void outputGraph(String dotString, String filePath) throws IOException {
+        Graphviz.fromString(dotString).render(Format.SVG).toFile(new File(filePath));
         logger.info("Graph has been stored in " + filePath);
     }
 }

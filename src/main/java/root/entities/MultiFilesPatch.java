@@ -1,5 +1,7 @@
 package root.entities;
 
+import com.github.javaparser.ast.CompilationUnit;
+
 import java.util.HashSet;
 import java.util.List;
 
@@ -7,18 +9,18 @@ public class MultiFilesPatch extends Patch {
 
     List<SingleFilePatch> allSingleFiles;
 
-    public MultiFilesPatch(String patchAbsPath, String pathFromRoot, String unit) {
+    public MultiFilesPatch(String patchAbsPath, String pathFromRoot, CompilationUnit unit) {
         this(null, patchAbsPath, pathFromRoot, unit);
     }
 
-    public MultiFilesPatch(String name, String patchAbsPath, String pathFromRoot, String unit) {
+    public MultiFilesPatch(String name, String patchAbsPath, String pathFromRoot, CompilationUnit unit) {
         super(name, patchAbsPath, pathFromRoot, unit);
         this.setSingleFile(false);
         SingleFilePatch singleFile = new SingleFilePatch(patchAbsPath, pathFromRoot, unit);
         allSingleFiles.add(singleFile);
     }
 
-    public void addSingleFile(String patchAbsPath, String pathFromRoot, String unit) {
+    public void addSingleFile(String patchAbsPath, String pathFromRoot, CompilationUnit unit) {
         SingleFilePatch singleFile = new SingleFilePatch(patchAbsPath, pathFromRoot, unit);
         allSingleFiles.add(singleFile);
     }

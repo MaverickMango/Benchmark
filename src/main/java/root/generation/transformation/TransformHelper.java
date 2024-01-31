@@ -7,6 +7,7 @@ import com.github.javaparser.ast.expr.Expression;
 import com.github.javaparser.utils.Pair;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import root.analysis.soot.SootUpAnalyzer;
 import root.entities.Difference;
 import root.entities.ci.BugRepository;
 import root.entities.ci.BugWithHistory;
@@ -31,9 +32,9 @@ public class TransformHelper {
     public static InputTransformer inputTransformer;
     public static BugRepository bugRepository;
 
-    public static void initialize(BugWithHistory bug, AbstractASTParser parser) {
+    public static void initialize(BugWithHistory bug, AbstractASTParser parser, SootUpAnalyzer analyzer) {
         if (bug != null) {
-            bugRepository = new BugRepository(bug);
+            bugRepository = new BugRepository(bug, analyzer);
         }
         inputTransformer = new InputTransformer();
         ASTExtractor = new ASTExtractor(parser);
@@ -41,18 +42,6 @@ public class TransformHelper {
 
     public static Map<String, MethodDeclaration> mutateTest(Skeleton skeleton, List<Input> inputs, List<Difference> differences) {
         List<Input> newInputs = new ArrayList<>();
-        //todo 如何利用differences
-        /**
-         * 1. 提取differences中的差异变量DiffExprs
-         * 2. 寻找DiffExprs和input之间的关系
-         *      =》a. 首先通过依赖分析寻找inputExpr和DiffExprs之间的关系
-         *        b. ？
-         */
-        for (Difference difference :differences) {
-            Pair<Set<Node>, Set<Node>> minBugAndPat = difference.getDiffExprInBuggy();
-            Pair<Set<Node>, Set<Node>> minInducingAndOrg = difference.getDiffExprInOrg();
-            //todo 根据差异部分分析关系
-        }
         logger.info("Mutating test inputs... total inputs num: " + inputs.size());
         for (Input input :inputs) {
             logger.info("getting mutants...");

@@ -3,6 +3,7 @@ package root.entities.ci;
 import org.eclipse.jgit.lib.Repository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import root.analysis.soot.SootUpAnalyzer;
 import root.entities.benchmarks.Defects4JBug;
 import root.entities.Patch;
 import root.util.ConfigurationProperties;
@@ -18,12 +19,25 @@ public class BugRepository implements GitAccess {
     private final Logger logger = LoggerFactory.getLogger(BugRepository.class);
     BugWithHistory bug;
     Repository repository;
+    public SootUpAnalyzer analyzer;
 
-    public BugRepository(BugWithHistory bug) {
+    public BugRepository(BugWithHistory bug, SootUpAnalyzer analyzer) {
         this.bug = bug;
 //        bug.setBugName(bug.getProj() + "_" + bug.getId());
         this.repository = bug.getGitRepository();
         this.bug.compile();
+        this.analyzer = analyzer;
+    }
+
+    public void resetAnalyzer(String version) {
+        if (version.startsWith("o")) {
+            switchToOrg();
+        } else if (version.startsWith("i")) {
+            switchToInducing();
+        } else {
+            switchToBug();
+        }
+        analyzer.reset();
     }
 
     public GitTool getGitAccess() {
@@ -54,6 +68,10 @@ public class BugRepository implements GitAccess {
         Defects4JBug defects4JBug = (Defects4JBug) bug;
         res = defects4JBug.specifiedTestWithRes(testName);
         return res;
+    }
+
+    public boolean compile() {
+        return bug.compile();
     }
 
     public boolean switchToBug() {

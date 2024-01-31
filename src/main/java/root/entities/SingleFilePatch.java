@@ -1,12 +1,14 @@
 package root.entities;
 
+import com.github.javaparser.ast.CompilationUnit;
+
 public class SingleFilePatch extends Patch {
 
-    public SingleFilePatch(String patchAbsPath, String pathFromRoot, String unit) {
+    public SingleFilePatch(String patchAbsPath, String pathFromRoot, CompilationUnit unit) {
         super(patchAbsPath, pathFromRoot, unit);
     }
 
-    public SingleFilePatch(String name, String patchAbsPath, String pathFromRoot, String compilationUnit) {
+    public SingleFilePatch(String name, String patchAbsPath, String pathFromRoot, CompilationUnit compilationUnit) {
         super(name, patchAbsPath, pathFromRoot, compilationUnit);
     }
 
@@ -25,7 +27,7 @@ public class SingleFilePatch extends Patch {
         int result = 1;
         result = prime * result + this.patchAbsPath.hashCode();
         result = prime * result + this.pathFromRoot.hashCode();
-        result = prime * result + this.content.hashCode();
+        result = prime * result + this.unit.hashCode();
         return result;
     }
 }

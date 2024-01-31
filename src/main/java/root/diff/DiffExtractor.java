@@ -1,6 +1,5 @@
 package root.diff;
 
-import com.android.tools.r8.internal.Co;
 import com.github.javaparser.quality.NotNull;
 import com.github.javaparser.quality.Nullable;
 import gumtree.spoon.diff.operations.*;
@@ -229,12 +228,19 @@ public class DiffExtractor {
     }
 
     public List<Pair<Node, Node>> getInducingRelevantDiffNodes(List<String> fileInOrgMappingToBuggy) {
+//        Defects4JBug bug = (Defects4JBug) TransformHelper.bugRepository.getBug();
+//        Defects4JBug pat = new Defects4JBug(bug.getProj(), bug.getId(), ConfigurationProperties.getProperty("patchDir"),
+//                bug.getFixingCommit(), bug.getBuggyCommit(), bug.getInducingCommit(), bug.getOriginalCommit());
+//        patchRepository = new BugRepository(pat, analyzer);
+//        patchRepository.switchToBug();
+        //todo 这里的文件提取改为从两个新的文件夹进行，不要改变原本的文件夹
         BugRepository bugRepository = TransformHelper.bugRepository;
         bugRepository.switchToInducing();
         String inducingDir = ((Defects4JBug) bugRepository.getBug()).getWorkingDir();
         BugRepository patchRepository = PatchHelper.patchRepository;
         patchRepository.switchToOrg();
         String orgDir = ((Defects4JBug) patchRepository.getBug()).getWorkingDir();
+
         GitTool gitAccess = bugRepository.getGitAccess();
         List<Pair<Node, Node>> diffList = new ArrayList<>();//可以是空，空就说明这个补丁修改的文件和历史引入bug的位置不相关。
         List<String> fileStatDiffBetweenCommits = getDiffStatusBetweenOrgAndInd();
@@ -252,8 +258,11 @@ public class DiffExtractor {
             assert  diffPairs != null;
             diffList.addAll(diffPairs);
         }
+
         bugRepository.switchToBug();
+        bugRepository.compile();
         patchRepository.switchToBug();
+        patchRepository.compile();
 //        RefactoringMiner miner = new RefactoringMiner();
 //        Set<ASTDiff> astDiffs = miner.diffAtCommit(bugRepository.getRepository(), originalCommit, inducingCommit);
 //        for (ASTDiff astDiff: astDiffs) {
@@ -319,7 +328,7 @@ public class DiffExtractor {
         for (Node node :current) {
             if (node == null)
                 continue;
-            boolean anyMatch = nodes.stream().anyMatch(n -> n.getParentNode().isPresent() &&
+            boolean anyMatch = nodes.stream().anyMatch(n -> n != null && n.getParentNode().isPresent() &&
                     n.getParentNode().get().equals(node));
             if (anyMatch) {
                 nodes.remove(node);

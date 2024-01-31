@@ -1,7 +1,9 @@
 package root;
 
+import com.github.javaparser.ast.CompilationUnit;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import root.analysis.soot.SootUpAnalyzer;
 import root.entities.MultiFilesPatch;
 import root.entities.SingleFilePatch;
 import root.entities.benchmarks.Defects4JBug;
@@ -126,7 +128,8 @@ public class ProjectPreparation {
 //        }
 //        invokeCompilerOptionInitializer(complianceLevel);
         invokeSourceASTParser(testOnly);
-        invokeTransformation();
+        SootUpAnalyzer analyzer = invokeSootAnalysis();
+        invokeTransformation(analyzer);
         if (patchesDir != null) {
             invokePatches(patchesDir);
         }
@@ -184,15 +187,26 @@ public class ProjectPreparation {
         compilerOptions.add(cpStr.toString());
     }
 
-    private void invokeTransformation() {
+    private void invokeTransformation(SootUpAnalyzer analyzer) {
         logger.info("Invoking transformerHelper and MutateHelper");
-        TransformHelper.initialize(bug, parser);
+        TransformHelper.initialize(bug, parser, analyzer);
         MutateHelper.initialize();
     }
 
     private void invokePatches(String patchesDir) {
         logger.info("Invoking patches preprocessing");
-        PatchHelper.initialization();
+        //copy patch directory
+        String workingDir = ConfigurationProperties.getProperty("location");
+        String patchDir = workingDir.replace("_buggy", "_pat");
+        if (!new File(patchDir).exists()) {
+            String[] cmd = new String[]{"/bin/bash", "-c", "cp -r " + workingDir + " " + patchDir};
+            FileUtils.executeCommand(cmd);
+        }
+        ConfigurationProperties.setProperty("patchDir", patchDir);
+        SootUpAnalyzer analyzer = new SootUpAnalyzer(binJavaDir.replace(workingDir, patchDir),
+                binTestDir.replace(workingDir, patchDir),
+                dependencies, complianceLevel);
+        PatchHelper.initialization(analyzer);
         try {
             String[] split = patchesDir.split(File.pathSeparator);
             List<Patch> patches = new ArrayList<>();
@@ -203,7 +217,8 @@ public class ProjectPreparation {
                 String filePath = allFiles.get(0);
                 String patchHead = filePath.substring(0, filePath.indexOf(ConfigurationProperties.getProperty("srcJavaDir")) - 1);
                 if (allFiles.size() == 1) {//single file patch
-                    patch = new SingleFilePatch(filePath, patchHead, null);
+                    CompilationUnit unit = (CompilationUnit) parser.getAST(filePath);
+                    patch = new SingleFilePatch(filePath, patchHead, unit);
                     patches.add(patch);
                     continue;
                 }
@@ -223,12 +238,15 @@ public class ProjectPreparation {
                     String patchAbsPath = paths.get(0);
                     String fileHeader = entry.getKey();
                     if (paths.size() == 1) {
-                        patch = new SingleFilePatch(patchAbsPath, fileHeader, null);
+                        CompilationUnit unit = (CompilationUnit) parser.getAST(patchAbsPath);
+                        patch = new SingleFilePatch(patchAbsPath, fileHeader, unit);
                     } else {
-                        patch = new MultiFilesPatch(patchAbsPath, fileHeader, null);
+                        CompilationUnit unit = (CompilationUnit) parser.getAST(patchAbsPath);
+                        patch = new MultiFilesPatch(patchAbsPath, fileHeader, unit);
                         for (int i = 1; i < paths.size(); i++) {
                             patchAbsPath = paths.get(i);
-                            ((MultiFilesPatch) patch).addSingleFile(patchAbsPath, fileHeader, null);
+                            unit = (CompilationUnit) parser.getAST(patchAbsPath);
+                            ((MultiFilesPatch) patch).addSingleFile(patchAbsPath, fileHeader, unit);
                         }
                     }
                     patches.add(patch);
@@ -242,6 +260,11 @@ public class ProjectPreparation {
             //TODO: parse the diff file and get the patch file
             logger.error("Invalid patch file path: " + e.getMessage());
         }
+    }
+
+    private SootUpAnalyzer invokeSootAnalysis() {
+        SootUpAnalyzer analyzer = new SootUpAnalyzer(binJavaDir, binTestDir, dependencies, complianceLevel);
+        return analyzer;
     }
 
     public Map<String, JavaFileObject> getCompiledClassesForTestExecution(Map<String, String> javaSources) {

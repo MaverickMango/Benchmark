@@ -11,7 +11,7 @@ import java.util.List;
 
 public class CompilationUnitVisitor extends VoidVisitorAdapter<List<IntraGroum>> {
 
-    PreOrderVisitorInMth preOrderVisitorInMth = new PreOrderVisitorInMth();
+    PreOrderVisitorInMth preOrderVisitorInMth = new PreOrderVisitorInMth(false);
 
     @Override
     public void visit(ConstructorDeclaration n, List<IntraGroum> arg) {
