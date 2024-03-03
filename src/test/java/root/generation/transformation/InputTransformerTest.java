@@ -1,6 +1,7 @@
 package root.generation.transformation;
 
 import com.github.javaparser.ast.CompilationUnit;
+import com.github.javaparser.ast.body.CallableDeclaration;
 import com.github.javaparser.ast.body.ClassOrInterfaceDeclaration;
 import com.github.javaparser.ast.body.MethodDeclaration;
 import com.github.javaparser.ast.expr.Expression;
@@ -50,7 +51,7 @@ class InputTransformerTest extends PreparationTest{
     }
 
     public Skeleton getASkeleton() {
-        MethodDeclaration methodDeclaration = ASTExtractorTest.getMethodDeclaration();
+        CallableDeclaration methodDeclaration = ASTExtractorTest.getMethodDeclaration();
         MethodCallExpr methodCallExpr = TransformHelper.ASTExtractor
                 .extractAssertByLine(methodDeclaration, lineNumber);
         Input input =  TransformHelper.ASTExtractor.extractInput(methodCallExpr);
@@ -64,7 +65,7 @@ class InputTransformerTest extends PreparationTest{
     @Test
     void buildNewTestByInput() {
         InputTransformer inputTransformer = TransformHelper.inputTransformer;
-        MethodDeclaration methodDeclaration = ASTExtractorTest.getMethodDeclaration();
+        CallableDeclaration methodDeclaration = ASTExtractorTest.getMethodDeclaration();
         MethodCallExpr methodCallExpr = TransformHelper.ASTExtractor
                 .extractAssertByLine(methodDeclaration, lineNumber);
         Input input =  TransformHelper.ASTExtractor.extractInput(methodCallExpr);
@@ -82,7 +83,7 @@ class InputTransformerTest extends PreparationTest{
     @Test
     void buildNewTestByInputs() {
         InputTransformer inputTransformer = TransformHelper.inputTransformer;
-        MethodDeclaration methodDeclaration = ASTExtractorTest.getMethodDeclaration();
+        CallableDeclaration methodDeclaration = ASTExtractorTest.getMethodDeclaration();
         MethodCallExpr methodCallExpr = TransformHelper.ASTExtractor
                 .extractAssertByLine(methodDeclaration, lineNumber);
         Input input =  TransformHelper.ASTExtractor.extractInput(methodCallExpr);
@@ -128,7 +129,7 @@ class InputTransformerTest extends PreparationTest{
     void getCompiledClassesForTestExecution() {
         InputTransformer inputTransformer = TransformHelper.inputTransformer;
         ASTExtractor ASTExtractor = TransformHelper.ASTExtractor;
-        MethodDeclaration methodDeclaration = ASTExtractorTest.getMethodDeclaration();
+        CallableDeclaration methodDeclaration = ASTExtractorTest.getMethodDeclaration();
         MethodCallExpr methodCallExpr = TransformHelper.ASTExtractor
                 .extractAssertByLine(methodDeclaration, lineNumber);
         Input input =  TransformHelper.ASTExtractor.extractInput(methodCallExpr);

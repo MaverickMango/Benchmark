@@ -4,6 +4,8 @@ package root.extractor;
 import com.github.javaparser.ast.CompilationUnit;
 import com.github.javaparser.ast.Node;
 import com.github.javaparser.ast.NodeList;
+import com.github.javaparser.ast.body.CallableDeclaration;
+import com.github.javaparser.ast.body.ConstructorDeclaration;
 import com.github.javaparser.ast.body.MethodDeclaration;
 import com.github.javaparser.ast.expr.Expression;
 import com.github.javaparser.ast.expr.LiteralExpr;
@@ -58,44 +60,57 @@ public class ASTExtractor {
         return compilationUnit;
     }
 
-    public MethodDeclaration extractMethodByName(CompilationUnit compilationUnit, String mthQuailifiedName) {
-        List<MethodDeclaration> methodDeclarations = compilationUnit.findAll(MethodDeclaration.class)
+    public CallableDeclaration extractMethodByName(CompilationUnit compilationUnit, String mthQuailifiedName) {
+        List<CallableDeclaration> methods = compilationUnit.findAll(CallableDeclaration.class)
                 .stream().filter(m -> m.getName().toString().equals(mthQuailifiedName)).collect(Collectors.toList());
-        if (methodDeclarations.size() >= 1) {
-            return methodDeclarations.get(0);
+        if (!methods.isEmpty()) {
+            return methods.get(0);
         } else {
             logger.error("Method " + mthQuailifiedName + " is not in the class file!");
             return null;
         }
     }
 
-    public MethodDeclaration extractMethodByLine(CompilationUnit compilationUnit, int lineNumber) {
-        List<MethodDeclaration> methodDeclarations = compilationUnit.findAll(MethodDeclaration.class)
-                .stream().filter(m -> m.getBegin().isPresent() && m.getBegin().get().line == lineNumber
+    public CallableDeclaration extractMethodByLine(CompilationUnit compilationUnit, int lineNumber) {
+        List<CallableDeclaration> methodDeclarations = compilationUnit.findAll(MethodDeclaration.class)
+                .stream().filter(m -> m.getBegin().isPresent() && m.getBegin().get().line <= lineNumber
+                        && m.getEnd().isPresent() && m.getEnd().get().line >= lineNumber
                         ).collect(Collectors.toList());
-        if (methodDeclarations.size() >= 1) {
+        if (!methodDeclarations.isEmpty()) {
             return methodDeclarations.get(0);
         } else {
+            methodDeclarations = compilationUnit.findAll(ConstructorDeclaration.class)
+                    .stream().filter(m -> m.getBegin().isPresent() && m.getBegin().get().line <= lineNumber
+                            && m.getEnd().isPresent() && m.getEnd().get().line >= lineNumber
+                    ).collect(Collectors.toList());
+            if (!methodDeclarations.isEmpty())
+                return methodDeclarations.get(0);
             logger.error("Line " + lineNumber + " is not a methodDeclaration in the class file !");
             return null;
         }
     }
 
-    public MethodDeclaration extractMethodByLine(CompilationUnit compilationUnit, int start, int end, String mthQualifiedName) {
-        List<MethodDeclaration> methodDeclarations = compilationUnit.findAll(MethodDeclaration.class)
+    public CallableDeclaration extractMethodByLine(CompilationUnit compilationUnit, int start, int end, String mthQualifiedName) {
+        List<CallableDeclaration> methodDeclarations = compilationUnit.findAll(MethodDeclaration.class)
                 .stream().filter(m -> (m.getBegin().isPresent() && m.getBegin().get().line <= start)
                         && (m.getEnd().isPresent() && m.getEnd().get().line >= end)
                 ).collect(Collectors.toList());
-        if (methodDeclarations.size() >= 1) {
+        if (!methodDeclarations.isEmpty()) {
             return methodDeclarations.get(0);
         } else {
+            methodDeclarations = compilationUnit.findAll(ConstructorDeclaration.class)
+                    .stream().filter(m -> m.getBegin().isPresent() && m.getBegin().get().line <= start
+                            && m.getEnd().isPresent() && m.getEnd().get().line >= end
+                    ).collect(Collectors.toList());
+            if (!methodDeclarations.isEmpty())
+                return methodDeclarations.get(0);
             return extractMethodByName(compilationUnit, mthQualifiedName);
         }
     }
     
     public Node extractExpressionByLabel(CompilationUnit compilationUnit, String label,
                                                int start, int end) {
-        MethodDeclaration methodDeclaration = extractMethodByLine(compilationUnit, start, end, null);
+        CallableDeclaration methodDeclaration = extractMethodByLine(compilationUnit, start, end, null);
         EqualVisitor visitor = new EqualVisitor(label);
         List<Node> nodes = new ArrayList<>();
         methodDeclaration.accept(visitor, nodes);
@@ -116,13 +131,13 @@ public class ASTExtractor {
     }
 
     public MethodCallExpr extractAssertByLine(CompilationUnit compilationUnit, String mthQualifiedName, int lineNumber) {
-        MethodDeclaration methodDeclaration = extractMethodByName(compilationUnit, mthQualifiedName);
+        CallableDeclaration methodDeclaration = extractMethodByName(compilationUnit, mthQualifiedName);
         if (methodDeclaration == null)
             return null;
         return extractAssertByLine(methodDeclaration, lineNumber);
     }
 
-    public MethodCallExpr extractAssertByLine(MethodDeclaration methodDeclaration, int lineNumber) {
+    public MethodCallExpr extractAssertByLine(CallableDeclaration methodDeclaration, int lineNumber) {
         if (methodDeclaration == null) {
             logger.error("Extracted method declaration is null! Process Interrupted.");
             throw new IllegalArgumentException("Illegal Argument: " + methodDeclaration);

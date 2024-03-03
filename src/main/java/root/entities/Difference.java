@@ -8,6 +8,7 @@ import com.github.javaparser.ast.body.ClassOrInterfaceDeclaration;
 import com.github.javaparser.ast.body.MethodDeclaration;
 import com.github.javaparser.ast.body.Parameter;
 import com.github.javaparser.ast.body.ReceiverParameter;
+import com.github.javaparser.ast.type.Type;
 import com.github.javaparser.utils.Pair;
 import root.analysis.groum.entity.IntraGroum;
 import root.analysis.groum.extractor.PreOrderVisitorInMth;
@@ -15,6 +16,8 @@ import root.analysis.groum.vector.Feature;
 import root.analysis.soot.SootUpAnalyzer;
 import root.diff.DiffExtractor;
 import root.generation.transformation.TransformHelper;
+import root.util.ConfigurationProperties;
+import root.util.FileUtils;
 import sootup.core.signatures.MethodSignature;
 
 import java.io.File;
@@ -94,7 +97,9 @@ public class Difference {
         Pair<Set<Node>, Set<Node>> diffExprInBuggy = getDiffExprInBuggy();
         if (!diffExprInBuggy.b.isEmpty()) {
             Set<MethodDeclaration> changed = diffExprInBuggy.b.stream().map(this::getMethodDeclaration).collect(Collectors.toSet());
-            for (MethodDeclaration mth :changed) {
+            //根据测试执行切片来获取经过的函数，然后对每个函数构建图然后分析依赖关系。
+            List<MethodDeclaration> mthInTest = new ArrayList<>();//todo
+            for (MethodDeclaration mth :mthInTest) {
                 IntraGroum groum = innerAnalysis(mth);
                 List<List<MethodSignature>> pathFromEntryToOut = getPath(test, mth, analyzer);
                 //todo 这个依赖怎么联系起来阿aaa
@@ -130,13 +135,19 @@ public class Difference {
     }
 
     public String resolveDescriptor(String descriptor) {
-        assert descriptor.startsWith("L");
-        String substring = descriptor.substring(1, descriptor.length() - 1);
-        return substring.replaceAll(File.separator, ".");
+        if (descriptor.startsWith("L")) {
+            String substring = descriptor.substring(1, descriptor.length() - 1);
+            return substring.replaceAll(File.separator, ".");
+        }
+        return descriptor;//should not be accessed
     }
 
     private String getTypeName(MethodDeclaration mth) {
-        String descriptor = mth.getType().toDescriptor();
+        Type type = mth.getType();
+        if (type.isPrimitiveType()) {
+            return type.toString();
+        }
+        String descriptor = type.toDescriptor();
         return resolveDescriptor(descriptor);
     }
 

@@ -33,7 +33,7 @@ public class DiffExtractor {
 
     private static final Logger logger = LoggerFactory.getLogger(DiffExtractor.class);
 
-    Map<String, CompilationUnit> parsedUnit = new HashMap<>();
+    Map<String, CompilationUnit> parsedUnit = new HashMap<>();//todo 放到全局的parsedUnit里面
 
     private String getLabel(String absPath, String version) {
         return absPath + "#" + version;

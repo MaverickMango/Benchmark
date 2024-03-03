@@ -1,6 +1,7 @@
 package root.extractor;
 
 import com.github.javaparser.ast.CompilationUnit;
+import com.github.javaparser.ast.body.CallableDeclaration;
 import com.github.javaparser.ast.body.MethodDeclaration;
 import com.github.javaparser.ast.expr.MethodCallExpr;
 import org.junit.jupiter.api.Test;
@@ -14,13 +15,13 @@ public class ASTExtractorTest extends PreparationTest{
 
     @Test
     void extractMethodByName() {
-        MethodDeclaration extractInput = getMethodDeclaration();
+        CallableDeclaration extractInput = getMethodDeclaration();
         assertNotNull(extractInput);
     }
 
-    public static MethodDeclaration getMethodDeclaration() {
+    public static CallableDeclaration getMethodDeclaration() {
         CompilationUnit compilationUnit = TransformHelper.ASTExtractor.getCompilationUnit(filePath);
-        MethodDeclaration extractInput = TransformHelper.ASTExtractor
+        CallableDeclaration extractInput = TransformHelper.ASTExtractor
                 .extractMethodByName(
                         compilationUnit,
                         methodName);
@@ -30,7 +31,7 @@ public class ASTExtractorTest extends PreparationTest{
     @Test
     void extractMethodCallByLine() {
         CompilationUnit compilationUnit = TransformHelper.ASTExtractor.getCompilationUnit(filePath);
-        MethodDeclaration extractInput = TransformHelper.ASTExtractor
+        CallableDeclaration extractInput = TransformHelper.ASTExtractor
                 .extractMethodByName(
                         compilationUnit,
                         methodName);
@@ -46,7 +47,7 @@ public class ASTExtractorTest extends PreparationTest{
     }
 
     public static Input getInput() {
-        MethodDeclaration extractInput = getMethodDeclaration();
+        CallableDeclaration extractInput = getMethodDeclaration();
         MethodCallExpr methodCallExpr = TransformHelper.ASTExtractor
                 .extractAssertByLine(extractInput, lineNumber);
         return TransformHelper.ASTExtractor.extractInput(methodCallExpr);

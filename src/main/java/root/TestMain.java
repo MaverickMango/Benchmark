@@ -8,12 +8,14 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import root.diff.DiffExtractor;
 import root.entities.Difference;
+import root.entities.ExecutionPath;
 import root.entities.Stats;
 import root.generation.entities.Input;
 import root.entities.Patch;
 import root.generation.entities.Skeleton;
 import root.generation.transformation.TransformHelper;
 import root.util.*;
+import sootup.core.signatures.MethodSignature;
 
 import java.io.File;
 import java.util.*;
@@ -53,9 +55,10 @@ public class TestMain extends AbstractMain {
         String location = args[0]; // "/home/liumengjiao/Desktop/CI/bugs/";
         String info = args[1]; // "/home/liumengjiao/Desktop/CI/Benchmark_py/generation/info/patches_inputs.csv";
         String patchesRootDir = args[2];
+        String slicerRoot = "/media/liumengjiao/JAZZ/sliceResults_slicer4j/math/50/2/slice.log";//args[3];
         List<List<String>> lists = FileUtils.readCsv(info, true);
         CommandSummary cs;
-        for (int i = 25; i < lists.size(); i ++) {
+        for (int i = 46; i < lists.size(); i ++) {
             List<String> strings  = lists.get(i);
             cs = setInputs(location, strings);
             String patchesDir = getPatchDirByBug(strings.get(0), patchesRootDir);
@@ -145,6 +148,29 @@ public class TestMain extends AbstractMain {
             String filePath = projectPreparation.srcTestDir + File.separator +
                     clazzName + ".java";
             String absolutePath = new File(filePath).getAbsolutePath();
+
+            //todo 找到对应的测试的切片
+            String slicerRoot = "/media/liumengjiao/Desktop/CI/bugs/Math_50_buggy/slice.log";//args[3];
+            List<String> slices = FileUtils.readEachLine(slicerRoot);
+            Map<String, List<Integer>> clz_lines = new TreeMap<>();
+            for (String line: slices) {
+                String clz = line.split(":")[0];
+                clz = clz.replace(".", File.separator);
+                if (clz.contains("$")) {
+                    clz = clz.substring(0, clz.indexOf("$"));
+                }
+                String clzPath = clz.contains("Test") ? filePath : projectPreparation.srcJavaDir + File.separator + clz + ".java" ;
+                String lineno= line.split(":")[1];
+                clz_lines.computeIfAbsent(clzPath, l -> new ArrayList<>());
+                clz_lines.get(clzPath).add(Integer.parseInt(lineno));
+            }
+            List<ExecutionPath> paths = new ArrayList<>();
+            for (Map.Entry<String, List<Integer>> entry1: clz_lines.entrySet()) {
+                CompilationUnit compilationUnit = TransformHelper.ASTExtractor.getCompilationUnit(entry1.getKey());
+                ExecutionPath executionPath = new ExecutionPath(compilationUnit, entry1.getValue());
+                paths.add(executionPath);
+            }
+
             logger.info("For Test Class " + absolutePath + " --------------------");
             CompilationUnit compilationUnit = TransformHelper.ASTExtractor.getCompilationUnit(absolutePath);
             logger.info("...Creating Skeleton");
@@ -181,7 +207,7 @@ public class TestMain extends AbstractMain {
              */
             for (Difference difference :differences) {
                 String testNamePrefix = skeleton.getTestNamePrefix(compilationUnit, methodName);
-                difference.getPathFromTestToChange(testNamePrefix);
+                List<List<List<MethodSignature>>> pathFromTestToChange = difference.getPathFromTestToChange(testNamePrefix);
                 //todo 根据差异部分分析关系
             }
             inputs.add(input);
