@@ -10,6 +10,7 @@ import com.github.javaparser.ast.body.Parameter;
 import com.github.javaparser.ast.body.ReceiverParameter;
 import com.github.javaparser.ast.type.Type;
 import com.github.javaparser.utils.Pair;
+import root.analysis.groum.GroumAnalyzer;
 import root.analysis.groum.entity.IntraGroum;
 import root.analysis.groum.extractor.PreOrderVisitorInMth;
 import root.analysis.groum.vector.Feature;
@@ -88,34 +89,23 @@ public class Difference {
         return minInducingOrg;
     }
 
-    public List<List<List<MethodSignature>>> getPathFromTestToChange(String testNamePrefix) {
+    public List<List<List<MethodSignature>>> getPathFromTestToChange(String clazzName, String testName) {
         SootUpAnalyzer analyzer = TransformHelper.bugRepository.analyzer;
-        String[] split = testNamePrefix.split("::");
-        assert split.length == 2;
         List<List<List<MethodSignature>>> paths = new ArrayList<>();
-        MethodSignature test = analyzer.getMethodSignature(split[0], split[1], "void", new ArrayList<>());
+        MethodSignature test = analyzer.getMethodSignature(clazzName, testName, "void", new ArrayList<>());
         Pair<Set<Node>, Set<Node>> diffExprInBuggy = getDiffExprInBuggy();
         if (!diffExprInBuggy.b.isEmpty()) {
             Set<MethodDeclaration> changed = diffExprInBuggy.b.stream().map(this::getMethodDeclaration).collect(Collectors.toSet());
             //根据测试执行切片来获取经过的函数，然后对每个函数构建图然后分析依赖关系。
             List<MethodDeclaration> mthInTest = new ArrayList<>();//todo
-            for (MethodDeclaration mth :mthInTest) {
-                IntraGroum groum = innerAnalysis(mth);
+            for (MethodDeclaration mth :changed) {
+                IntraGroum groum = GroumAnalyzer.innerAnalysis(mth);
                 List<List<MethodSignature>> pathFromEntryToOut = getPath(test, mth, analyzer);
                 //todo 这个依赖怎么联系起来阿aaa
                 paths.add(pathFromEntryToOut);
             }
         }
         return paths;
-    }
-
-    private IntraGroum innerAnalysis(MethodDeclaration mth) {
-        PreOrderVisitorInMth visitor = new PreOrderVisitorInMth(false);
-        ArrayList<IntraGroum> arg = new ArrayList<>();
-        visitor.buildGraph(mth, arg, true);
-        assert arg.size() == 1;
-        IntraGroum groum = arg.get(0);
-        return groum;
     }
 
     private List<List<MethodSignature>> getPath(MethodSignature entryPoint, MethodDeclaration outerMth, SootUpAnalyzer analyzer) {
@@ -171,7 +161,7 @@ public class Difference {
         return pack.get() + "." + className;
     }
 
-    private MethodDeclaration getMethodDeclaration(Node childNode) {
+    public MethodDeclaration getMethodDeclaration(Node childNode) {
         if (childNode instanceof MethodDeclaration)
             return (MethodDeclaration) childNode;
         Optional<Node> parentNode = childNode.getParentNode();

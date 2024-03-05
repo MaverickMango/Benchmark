@@ -1,24 +1,19 @@
 package root.generation.transformation.visitor;
 
-import com.github.javaparser.ast.ArrayCreationLevel;
-import com.github.javaparser.ast.body.InitializerDeclaration;
-import com.github.javaparser.ast.body.RecordDeclaration;
 import com.github.javaparser.ast.body.VariableDeclarator;
 import com.github.javaparser.ast.expr.*;
 import com.github.javaparser.ast.visitor.VoidVisitorAdapter;
 import com.github.javaparser.quality.NotNull;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
-import java.util.Set;
 
-public class DependencyVisitor extends VoidVisitorAdapter<List<Expression>> {
+public class InputDependencyVisitor extends VoidVisitorAdapter<List<Expression>> {
 
     private final List<String> nameExprs;
     private final VoidVisitorAdapter<List<Expression>> visitor;
 
-    public DependencyVisitor(@NotNull List<String> nameExprs) {
+    public InputDependencyVisitor(@NotNull List<String> nameExprs) {
         this.nameExprs = nameExprs;
         this.visitor = new PrimitiveVisitor();
     }

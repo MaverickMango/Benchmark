@@ -31,6 +31,7 @@ public class AbstractMain {
         options.addOption("originalCommit", true, "");
         options.addOption("dependencies", true, "separated by " + File.pathSeparator);
         options.addOption("patchesDir", true, "patches directory");
+        options.addOption("sliceRoot", true, "slice log root directory");
 
         //optional
         options.addOption("complianceLevel", true, "default 1.8");
@@ -102,6 +103,9 @@ public class AbstractMain {
         }
         if (commandLine.hasOption("patchesDir")) {
             ConfigurationProperties.setProperty("patchesDir", commandLine.getOptionValue("patchesDir"));
+        }
+        if (commandLine.hasOption("sliceRoot")) {
+            ConfigurationProperties.setProperty("sliceRoot", commandLine.getOptionValue("sliceRoot"));
         }
         if (commandLine.hasOption("originalCommit")) {
             ConfigurationProperties.setProperty("originalCommit", commandLine.getOptionValue("originalCommit"));

@@ -1,6 +1,7 @@
 package root.analysis.groum.extractor;
 
 import com.github.javaparser.ast.Node;
+import com.github.javaparser.ast.body.ConstructorDeclaration;
 import com.github.javaparser.ast.body.MethodDeclaration;
 import com.github.javaparser.ast.body.VariableDeclarator;
 import com.github.javaparser.ast.expr.*;
@@ -53,6 +54,37 @@ public class PreOrderVisitorInMth extends VoidVisitorAdapter<List<IntraGroum>> {
         if (groum != null && isFinal) {
             graphMerger.buildlFinalGroum(groum);//添加数据依赖 ***
         }
+    }
+
+    @Override
+    public void visit(ConstructorDeclaration n, List<IntraGroum> arg) {
+        //父节点
+        IntraGroum head0 = arg.isEmpty() ? null : arg.get(0);
+        arg.clear();
+
+        //当前节点
+        AbstractNode extract = extractFromJavaParser.extract(n);
+        n.getParameters().forEach(p -> {
+            InvolvedVar involvedVar = extractFromJavaParser.extractVar(p);
+            extract.addAttribute(involvedVar);//把参数添加作为属性
+        });
+        IntraGroum head = new IntraGroum(extract);
+
+        //函数body
+        AtomicReference<IntraGroum> tail = new AtomicReference<>();
+        n.getBody().accept(this, arg);
+        tail.set(arg.get(0) == null ? null : arg.get(0));//不单独处理每条语句的写法
+
+        IntraGroum merged = graphMerger.sequentialMerge(head, tail.get());//连接当前节点和函数body
+        merged = graphMerger.sequentialMerge(head0, merged);
+        arg.clear();
+        arg.add(merged);
+//        n.getModifiers().forEach(p -> p.accept(this, arg));
+//        n.getName().accept(this, arg);
+//        n.getParameters().forEach(p -> p.accept(this, arg));
+//        n.getReceiverParameter().ifPresent(l -> l.accept(this, arg));
+//        n.getThrownExceptions().forEach(p -> p.accept(this, arg));
+//        n.getTypeParameters().forEach(p -> p.accept(this, arg));
     }
 
     @Override

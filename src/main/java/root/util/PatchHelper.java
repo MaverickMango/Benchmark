@@ -17,6 +17,7 @@ public class PatchHelper {
     private final static Logger logger = LoggerFactory.getLogger(PatchHelper.class);
     private static String target;
     private static String resOutput;
+    private static String testOutput;
     public static BugRepository patchRepository;
 
     public static void initialization(SootUpAnalyzer analyzer) {
@@ -26,6 +27,11 @@ public class PatchHelper {
                 + bugName + File.separator + "generatedOracles" + File.separator;
         resOutput = ConfigurationProperties.getProperty("resultOutput") + File.separator
                 + bugName + File.separator + "result" + File.separator;
+        testOutput = ConfigurationProperties.getProperty("resultOutput") + File.separator
+                + bugName + File.separator + "generatedTests";
+        if (FileUtils.notExists(testOutput)) {
+            FileUtils.mkdirs(testOutput);
+        }
         Defects4JBug bug = (Defects4JBug) TransformHelper.bugRepository.getBug();
         Defects4JBug pat = new Defects4JBug(bug.getProj(), bug.getId(), ConfigurationProperties.getProperty("patchDir"),
                 bug.getFixingCommit(), bug.getBuggyCommit(), bug.getInducingCommit(), bug.getOriginalCommit());
@@ -44,7 +50,7 @@ public class PatchHelper {
         for (Skeleton skeleton :skeletons) {
             //copy oracle file
             FileUtils.copy(new File(skeleton.getOracleFilePath()), new File(target));
-            List<String> failed = skeleton.runGeneratedTests(skeleton.getGeneratedMethods());
+            List<String> failed = skeleton.runGeneratedTests(skeleton.getGeneratedMethods(), testOutput);
             if (failed == null) {
                 logger.info("Test execution error in patched version!");
                 continue;
@@ -52,7 +58,7 @@ public class PatchHelper {
             res &= failed.isEmpty();//failed为空贼说明没有失败测试，是一个正确的补丁。
         }
         String correctness = res ? "correct" : "incorrect";
-        logger.info("Patch correctness for " + patch.getName() + ": " + correctness);
+        logger.info("Patch correctness : " + correctness + " for " + patch.getName());
         String content = patch.getPatchAbsPath() + "#" + correctness + "\n";
         FileUtils.writeToFile(content, resOutput, true);
         return res;

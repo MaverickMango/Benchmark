@@ -98,9 +98,13 @@ public class ASTJavaParser extends AbstractASTParser {
     @Override
     public Object getAST(String filePath) {
         try {
-            CompilationUnit compilationUnit = StaticJavaParser.parse(new File(filePath));
-            asts.put(filePath, compilationUnit);
-            return compilationUnit;
+//            if (asts.get(filePath) == null) {
+//                CompilationUnit compilationUnit = StaticJavaParser.parse(new File(filePath));
+//                asts.put(filePath, compilationUnit);
+//            }
+//            return asts.get(filePath);
+
+            return StaticJavaParser.parse(new File(filePath));
         } catch (ParseProblemException | FileNotFoundException e) {
             logger.error("Error occurred when parsing " + filePath + "\n" + e.getMessage());
         }
@@ -125,7 +129,7 @@ public class ASTJavaParser extends AbstractASTParser {
     public void parseASTs(String fileDir) throws IOException{
         List<String> allFiles = FileUtils.findAllFilePaths(fileDir, ".java");
         for (String filePath : allFiles) {
-            parseASTs(filePath);
+            getAST(filePath);
         }
     }
 

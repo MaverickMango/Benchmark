@@ -5,7 +5,9 @@ import com.github.javaparser.ast.ImportDeclaration;
 import com.github.javaparser.ast.NodeList;
 import com.github.javaparser.ast.PackageDeclaration;
 import com.github.javaparser.ast.body.ClassOrInterfaceDeclaration;
+import com.github.javaparser.ast.body.EnumDeclaration;
 import com.github.javaparser.ast.body.MethodDeclaration;
+import com.github.javaparser.ast.body.TypeDeclaration;
 import com.github.javaparser.ast.comments.LineComment;
 import com.github.javaparser.ast.expr.*;
 import com.github.javaparser.ast.nodeTypes.NodeWithSimpleName;
@@ -340,10 +342,12 @@ public class Skeleton implements Cloneable {
         Map<String, MethodDeclaration> oracleWithAssert = getOracleWithAssert(transformedCompilationUnit, map);
         return oracleWithAssert;
     }
+    int count = 0;
 
-    public List<String> runGeneratedTests(Map<String, MethodDeclaration> map) {
+    public List<String> runGeneratedTests(Map<String, MethodDeclaration> map, String outputDir) {
         logger.info("Transforming test for buggy version, add generated methods.");
         CompilationUnit transformedCompilationUnit = addMethods2CompilationUnit(clazz, map.values());
+        FileUtils.writeToFile(transformedCompilationUnit.toString(), outputDir + File.separator + count ++, false);
 
         StringBuilder testNames = new StringBuilder();
         for (String testName :map.keySet()) {

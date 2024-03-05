@@ -35,7 +35,7 @@ public class SootUpAnalyzer {
         this.binTestDir = binTestDir;
         this.dependencies = dependencies;
         this.complianceLevel = complianceLevel;
-        algorithmName = "CHA";
+        algorithmName = "RTA";
 //        createViewForClassPath(binJavaDir, binTestDir, dependencies, complianceLevel);
     }
 

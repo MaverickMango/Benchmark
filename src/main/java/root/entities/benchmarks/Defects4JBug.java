@@ -53,6 +53,8 @@ public class Defects4JBug extends BugWithHistory implements GitAccess {
         this.repository = getGitRepository();
         writeD4JFiles("b");
         this.properties = getProperties("/defects4j.build.properties");
+        this.setBugName(proj + "_" + id);
+        compile();
     }
 
     public Defects4JBug(String proj, String id, String workingDir, String originalCommit) {
@@ -66,6 +68,7 @@ public class Defects4JBug extends BugWithHistory implements GitAccess {
         setInducingCommit(null);
         writeD4JFiles("b");
         this.properties = getProperties("/defects4j.build.properties");
+        this.setBugName(proj + "_" + id);
         compile();
     }
 
@@ -81,6 +84,8 @@ public class Defects4JBug extends BugWithHistory implements GitAccess {
         this.originalCommit = originalCommit;
         writeD4JFiles("b");
         this.properties = getProperties("/defects4j.build.properties");
+        this.setBugName(proj + "_" + id);
+        compile();
     }
 
     public void setProj(String proj) {

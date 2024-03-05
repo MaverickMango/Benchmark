@@ -103,4 +103,11 @@ public class MutateHelper {
         //?
         return MutateHelper.MUTATORS.get(Expression.class);
     }
+
+    public static Expression getUnsatisfiedCondition(Expression condition) {
+        UnaryExpr unsatisfied = new UnaryExpr();
+        unsatisfied.setOperator(UnaryExpr.Operator.LOGICAL_COMPLEMENT);
+        unsatisfied.setExpression(new EnclosedExpr(condition));
+        return unsatisfied;
+    }
 }

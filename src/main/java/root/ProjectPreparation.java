@@ -42,6 +42,7 @@ public class ProjectPreparation {
     public String binTestDir;
     public Set<String> dependencies;
     public String patchesDir;
+    public String sliceLog;
     public String javaClassesInfoPath;
     public String testClassesInfoPath;
     public String testExecutorName;
@@ -77,14 +78,18 @@ public class ProjectPreparation {
         String tmp = ConfigurationProperties.getProperty("dependencies");
         if (tmp != null) {
             dependencies = new HashSet<>();
+            Path finalPath = path;
             dependencies.addAll(Arrays.stream(tmp.split(File.pathSeparator)).map(
-                    de -> path.resolve(de).normalize().toString()
+                    de -> finalPath.resolve(de).normalize().toString()
             ).collect(Collectors.toList()));
         }
         tmp = ConfigurationProperties.getProperty("patchesDir");
         if (tmp != null) {
             patchesDir = Paths.get(tmp).toAbsolutePath().toString();
         }
+        tmp = ConfigurationProperties.getProperty("sliceRoot");
+        path = Paths.get(tmp).toAbsolutePath();
+        sliceLog = path.resolve(bug.getBugName()).normalize().toString() + File.separator + "slice.log";
 
         tmp = ConfigurationProperties.getProperty("binExecuteTestClasses");
         if (tmp != null) {

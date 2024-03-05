@@ -242,6 +242,14 @@ public class FileUtils {
         }
     }
 
+    public static boolean mkdirs(String filePath) {
+        File file = new File(filePath);
+        if (!file.exists()) {
+            return file.mkdirs();
+        }
+        return true;
+    }
+
     private static void copyFile(File srcFile, File dstFile) {
         if (!dstFile.exists() || dstFile.isDirectory()) {
             boolean res = false;

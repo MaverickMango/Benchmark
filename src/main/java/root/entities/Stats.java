@@ -1,5 +1,7 @@
 package root.entities;
 
+import root.util.FileUtils;
+
 import java.util.HashMap;
 import java.util.Map;
 
@@ -25,5 +27,13 @@ public class Stats {
 
     public void addGeneralStat(General item, Object value) {
         getCurrentStats().generalStats.put(item, value);
+    }
+
+    @Override
+    public String toString() {
+        return "Stats{" +
+                "currentStats=" + currentStats +
+                "generalStats=" + FileUtils.getMap2String(generalStats) +
+                '}';
     }
 }

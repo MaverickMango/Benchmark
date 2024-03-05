@@ -22,6 +22,8 @@ import root.parser.AbstractASTParser;
 import root.util.FileUtils;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.List;
 import java.util.concurrent.atomic.AtomicReference;
 import java.util.stream.Collectors;
@@ -144,14 +146,10 @@ public class ASTExtractor {
         }
         Statement statement = null;
         if (lineNumber == 0) {//如果没有line Number就提取第一个assert？
-            AtomicReference<Statement> atRef = new AtomicReference<>();
-            methodDeclaration.stream().findFirst().ifPresent(node -> {
-                if (node instanceof Statement &&
-                        Helper.isAssertion((Statement) node)) {
-                    atRef.set((Statement) node);
-                }
-            });
-            statement = atRef.get();
+            List<Statement> collect = methodDeclaration.findAll(Statement.class).stream().filter(Helper::isAssertion).collect(Collectors.toList());
+            if (!collect.isEmpty()) {
+                statement = collect.get(0);
+            }
         } else {
             List<Statement> collect = methodDeclaration.findAll(Statement.class).stream().filter(stmt ->
                     stmt.getRange().isPresent() && stmt.getRange().get().begin.line == lineNumber

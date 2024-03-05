@@ -8,7 +8,7 @@ import com.github.javaparser.ast.visitor.VoidVisitorAdapter;
 import com.github.javaparser.quality.NotNull;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import root.generation.transformation.visitor.DependencyVisitor;
+import root.generation.transformation.visitor.InputDependencyVisitor;
 
 import java.util.*;
 import java.util.stream.Collectors;
@@ -35,7 +35,7 @@ public class ObjectInput extends Input{
         List<String> all = getInputExpr().findAll(NameExpr.class).stream().
                 map(nameExpr -> nameExpr.getName().toString()).collect(Collectors.toList());
         List<Expression> collector = new ArrayList<>();
-        visitor = new DependencyVisitor(all);
+        visitor = new InputDependencyVisitor(all);
         visitor.visit(methodDeclaration, collector);
         this.basicExpr = collector;
     }
@@ -44,7 +44,7 @@ public class ObjectInput extends Input{
         List<String> all = inputExpr.findAll(NameExpr.class).stream().
                 map(nameExpr -> nameExpr.getName().toString()).collect(Collectors.toList());
         List<Expression> collector = new ArrayList<>();
-        visitor = new DependencyVisitor(all);
+        visitor = new InputDependencyVisitor(all);
         Optional<MethodDeclaration> ancestor = inputExpr.findAncestor(MethodDeclaration.class);
         if (ancestor.isPresent()) {
             MethodDeclaration methodDeclaration = ancestor.get();

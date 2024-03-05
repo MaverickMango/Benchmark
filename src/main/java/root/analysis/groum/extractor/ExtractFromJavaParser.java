@@ -1,5 +1,6 @@
 package root.analysis.groum.extractor;
 
+import com.github.javaparser.ast.body.ConstructorDeclaration;
 import com.github.javaparser.ast.body.MethodDeclaration;
 import com.github.javaparser.ast.body.Parameter;
 import com.github.javaparser.ast.body.VariableDeclarator;
@@ -142,6 +143,17 @@ public class ExtractFromJavaParser {
     }
 
     public AbstractNode extract(MethodDeclaration n) {
+        String name = n.getNameAsString() + "#<init>";
+        String className = "Unresolved";
+        try {
+            className = n.resolve().getClassName();
+        } catch (Exception e) {
+            logger.debug("Can't resolve the class name of method " + n.toString());
+        }
+        return new ActionNode(n, className, name);
+    }
+
+    public AbstractNode extract(ConstructorDeclaration n) {
         String name = n.getNameAsString() + "#<init>";
         String className = "Unresolved";
         try {
