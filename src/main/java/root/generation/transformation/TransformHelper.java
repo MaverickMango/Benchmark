@@ -9,12 +9,13 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import root.analysis.soot.SootUpAnalyzer;
 import root.entities.Difference;
+import root.entities.benchmarks.Defects4JBug;
 import root.entities.ci.BugRepository;
 import root.entities.ci.BugWithHistory;
 import root.generation.entities.Input;
 import root.generation.entities.Skeleton;
-import root.parser.AbstractASTParser;
-import root.extractor.ASTExtractor;
+import root.analysis.parser.AbstractASTParser;
+import root.analysis.ASTExtractor;
 import root.util.ConfigurationProperties;
 import root.util.FileUtils;
 
@@ -22,7 +23,6 @@ import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
-import java.util.Set;
 
 public class TransformHelper {
 
@@ -31,10 +31,13 @@ public class TransformHelper {
     public static ASTExtractor ASTExtractor;
     public static InputTransformer inputTransformer;
     public static BugRepository bugRepository;
+    public static BugRepository orgRepository;
 
-    public static void initialize(BugWithHistory bug, AbstractASTParser parser, SootUpAnalyzer analyzer) {
-        if (bug != null) {
-            bugRepository = new BugRepository(bug, analyzer);
+    public static void initialize(BugWithHistory buggy, BugWithHistory org, AbstractASTParser parser, SootUpAnalyzer analyzer) {
+        if (buggy != null) {
+            bugRepository = new BugRepository(buggy, analyzer);
+            orgRepository = new BugRepository(org, analyzer);
+            orgRepository.switchToOtgAndClean();
         }
         inputTransformer = new InputTransformer();
         ASTExtractor = new ASTExtractor(parser);

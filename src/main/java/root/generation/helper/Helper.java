@@ -53,37 +53,48 @@ public class Helper {
             ExpressionStmt exprStmt = (ExpressionStmt)stmt;
             if (exprStmt.getExpression() instanceof MethodCallExpr) {
                 MethodCallExpr methodCallExpr = (MethodCallExpr)exprStmt.getExpression();
-                if (methodCallExpr.getNameAsString().equals("assertNotNull") ||
+                return methodCallExpr.getNameAsString().equals("assertNotNull") ||
                         methodCallExpr.getNameAsString().equals("assertTrue") ||
                         methodCallExpr.getNameAsString().equals("assertFalse") ||
                         methodCallExpr.getNameAsString().equals("assertEquals") ||
                         methodCallExpr.getNameAsString().equals("assertNotEquals") ||
                         methodCallExpr.getNameAsString().equals("fail") ||
-                        methodCallExpr.getNameAsString().equals("check")) {
-                    return true;
-                }
+                        methodCallExpr.getNameAsString().equals("check");
             }
         }
 
         return false;
     }
 
-    public static String getType(Expression node) {
+    public static boolean isReferenceType(Expression expr) {
+        ResolvedType resolvedType = getResolvedType(expr);
+        return resolvedType != null && resolvedType.isReferenceType();
+    }
+
+    public static ResolvedType getResolvedType(Expression node) {
         if (node.isUnaryExpr()) {
-            return "Unary";
+            return getResolvedType(node.asUnaryExpr().getExpression());
         }
-        String qualifiedName = "Object";
         try {
-            ResolvedType resolvedType = node.calculateResolvedType();
-            if (resolvedType.isPrimitive()) {
-                qualifiedName = resolvedType.asPrimitive().getBoxTypeQName();
-            } else if (resolvedType.isReferenceType()) {
-                qualifiedName = resolvedType.asReferenceType().getQualifiedName();
-            } else {
-                logger.error("TBD. Unsupported type of node. 'Object' type will be return.");
-            }
+            return node.calculateResolvedType();
         } catch (UnsolvedSymbolException e) {
             logger.error("Dependency lacking! " + e.getMessage() + ", 'Object' type will be returned.");
+        }
+        return null;
+    }
+
+    public static String getType(Expression node) {
+        if (node.isUnaryExpr()) {
+            return getType(node.asUnaryExpr().getExpression());
+        }
+        String qualifiedName = "Object";
+        ResolvedType resolvedType = getResolvedType(node);
+        if (resolvedType == null) {
+            logger.error("TBD. Unsupported type of node. 'Object' type will be return.");
+        } else if (resolvedType.isPrimitive()) {
+            qualifiedName = resolvedType.asPrimitive().getBoxTypeQName();
+        } else if (resolvedType.isReferenceType()) {
+            qualifiedName = resolvedType.asReferenceType().getQualifiedName();
         }
         return qualifiedName;
     }

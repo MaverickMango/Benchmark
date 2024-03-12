@@ -71,6 +71,6 @@ test {
 
 shadowJar {
     manifest {
-        attributes 'Main-Class': 'root.attempt.Main'
+        attributes 'Main-Class': 'root.TestMain'
     }
 }

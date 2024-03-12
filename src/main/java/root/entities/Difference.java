@@ -89,6 +89,7 @@ public class Difference {
         return minInducingOrg;
     }
 
+    @Deprecated
     public List<List<List<MethodSignature>>> getPathFromTestToChange(String clazzName, String testName) {
         SootUpAnalyzer analyzer = TransformHelper.bugRepository.analyzer;
         List<List<List<MethodSignature>>> paths = new ArrayList<>();
@@ -97,11 +98,9 @@ public class Difference {
         if (!diffExprInBuggy.b.isEmpty()) {
             Set<MethodDeclaration> changed = diffExprInBuggy.b.stream().map(this::getMethodDeclaration).collect(Collectors.toSet());
             //根据测试执行切片来获取经过的函数，然后对每个函数构建图然后分析依赖关系。
-            List<MethodDeclaration> mthInTest = new ArrayList<>();//todo
             for (MethodDeclaration mth :changed) {
                 IntraGroum groum = GroumAnalyzer.innerAnalysis(mth);
                 List<List<MethodSignature>> pathFromEntryToOut = getPath(test, mth, analyzer);
-                //todo 这个依赖怎么联系起来阿aaa
                 paths.add(pathFromEntryToOut);
             }
         }

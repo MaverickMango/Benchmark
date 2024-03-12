@@ -1,4 +1,4 @@
-package root.parser;
+package root.analysis.parser;
 
 import org.eclipse.jdt.core.dom.CompilationUnit;
 import org.eclipse.jdt.core.dom.FileASTRequestor;

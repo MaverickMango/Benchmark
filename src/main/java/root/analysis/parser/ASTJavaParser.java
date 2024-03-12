@@ -1,4 +1,4 @@
-package root.parser;
+package root.analysis.parser;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -11,8 +11,6 @@ import java.util.Set;
 import com.github.javaparser.ParseProblemException;
 import com.github.javaparser.ParserConfiguration;
 import com.github.javaparser.StaticJavaParser;
-import com.github.javaparser.ast.CompilationUnit;
-import com.github.javaparser.ast.Node;
 import com.github.javaparser.resolution.TypeSolver;
 import com.github.javaparser.symbolsolver.JavaSymbolSolver;
 import com.github.javaparser.symbolsolver.resolution.typesolvers.CombinedTypeSolver;

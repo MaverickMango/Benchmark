@@ -34,15 +34,17 @@ public class MutateHelper {
 
         INPUTS_BY_TYPE = new HashMap<>();
         INPUTS_BY_TYPE.put("boolean", Collections.singletonList(BooleanLiteralExpr.class));
-        INPUTS_BY_TYPE.put("java.util.Boolean", Collections.singletonList(BooleanLiteralExpr.class));
+        INPUTS_BY_TYPE.put("java.lang.Boolean", Collections.singletonList(BooleanLiteralExpr.class));
         INPUTS_BY_TYPE.put("int", Collections.singletonList(IntegerLiteralExpr.class));
         INPUTS_BY_TYPE.put("java.lang.Integer", Collections.singletonList(IntegerLiteralExpr.class));
         INPUTS_BY_TYPE.put("double", Collections.singletonList(DoubleLiteralExpr.class));
         INPUTS_BY_TYPE.put("java.lang.Double", Collections.singletonList(DoubleLiteralExpr.class));
         INPUTS_BY_TYPE.put("long", Collections.singletonList(LongLiteralExpr.class));
         INPUTS_BY_TYPE.put("java.lang.Long", Collections.singletonList(DoubleLiteralExpr.class));
+        //todo
+        INPUTS_BY_TYPE.put("char", Collections.singletonList(null));
+        INPUTS_BY_TYPE.put("java.lang.Character", Collections.singletonList(null));
         INPUTS_BY_TYPE.put("java.lang.String", Collections.singletonList(StringLiteralExpr.class));
-        INPUTS_BY_TYPE.put("Unary", Collections.singletonList(UnaryExpr.class));
         List<Class<? extends Expression>> list = Arrays.asList(
                 BooleanLiteralExpr.class, IntegerLiteralExpr.class,
                 DoubleLiteralExpr.class, StringLiteralExpr.class);

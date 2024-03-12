@@ -1,4 +1,4 @@
-package root.parser;
+package root.analysis.parser;
 
 import com.github.javaparser.ast.CompilationUnit;
 import org.eclipse.jdt.core.JavaCore;

@@ -2,10 +2,13 @@ package root.util;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import root.analysis.ASTExtractor;
+import root.analysis.parser.AbstractASTParser;
 import root.analysis.soot.SootUpAnalyzer;
 import root.entities.ci.BugRepository;
 import root.entities.benchmarks.Defects4JBug;
 import root.entities.Patch;
+import root.entities.ci.BugWithHistory;
 import root.generation.entities.Skeleton;
 import root.generation.transformation.TransformHelper;
 
@@ -18,9 +21,10 @@ public class PatchHelper {
     private static String target;
     private static String resOutput;
     private static String testOutput;
+    public static root.analysis.ASTExtractor ASTExtractor;
     public static BugRepository patchRepository;
 
-    public static void initialization(SootUpAnalyzer analyzer) {
+    public static void initialization(BugWithHistory pat, AbstractASTParser parser, SootUpAnalyzer analyzer) {
         String bugName = TransformHelper.bugRepository.getBug().getBugName();
         //save the generatedOracle file.
         target = ConfigurationProperties.getProperty("resultOutput") + File.separator
@@ -32,9 +36,7 @@ public class PatchHelper {
         if (FileUtils.notExists(testOutput)) {
             FileUtils.mkdirs(testOutput);
         }
-        Defects4JBug bug = (Defects4JBug) TransformHelper.bugRepository.getBug();
-        Defects4JBug pat = new Defects4JBug(bug.getProj(), bug.getId(), ConfigurationProperties.getProperty("patchDir"),
-                bug.getFixingCommit(), bug.getBuggyCommit(), bug.getInducingCommit(), bug.getOriginalCommit());
+        ASTExtractor = new ASTExtractor(parser);
         patchRepository = new BugRepository(pat, analyzer);
         patchRepository.switchToBug();
         patchRepository.compile();

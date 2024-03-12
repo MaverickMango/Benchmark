@@ -12,6 +12,7 @@ import gumtree.spoon.AstComparator;
 import gumtree.spoon.diff.Diff;
 import root.entities.benchmarks.Defects4JBug;
 import root.generation.transformation.visitor.MinimalVisitor;
+import root.util.FileUtils;
 import root.util.GitTool;
 import root.util.PatchHelper;
 import spoon.reflect.declaration.CtElement;
@@ -69,8 +70,10 @@ public class DiffExtractor {
         logger.debug("...Mapping buggy version to original version");
         List<String> fileInOrgMappingToBuggy = getFileInOrgMappingToBuggy(singleFilePatches);
 
-        logger.info("...Difference for file " + patch.getName());
+        logger.info("...Difference for patch " + patch.getName());
+        List<Pair<Node, Node>> inducingAndOrg = getInducingRelevantDiffNodes(fileInOrgMappingToBuggy);
         for (Patch singleFilePatch :singleFilePatches) {
+            logger.info("...Extracting differences between buggy and patch version.");
             String bugPath = singleFilePatch.getPatchAbsPath().replace(singleFilePatch.getPathFromRoot(), location);
             List<Pair<Node, Node>> buggyAndPatch = getDifferentPairs(bugPath,
                     singleFilePatch.getPatchAbsPath(),
@@ -81,8 +84,6 @@ public class DiffExtractor {
                 continue;
             }
             difference.addDiffBetweenBugAndPatch(buggyAndPatch);//1
-
-            List<Pair<Node, Node>> inducingAndOrg = getInducingRelevantDiffNodes(fileInOrgMappingToBuggy);
             difference.addDiffBetweenInducingAndOrg(inducingAndOrg);//2
         }
         return difference;
@@ -207,7 +208,7 @@ public class DiffExtractor {
         try {
             String sourceCode = node.getOriginalSourceFragment().getSourceCode();
             return sourceCode.replaceAll("\\s", "").replaceAll(";", "");
-        } catch (Exception e) {//如果通过字符串parse就没有sourceFragment
+        } catch (Exception e) {//如果通过字符串parse就没有sourceFragment 或者 CtVirtualElement(Lang_51, move操作但是是添加了完整的函数？
             logger.error("Can not find code element's source code:\n" + node.toString());
         }
         return node.toString();
@@ -228,20 +229,28 @@ public class DiffExtractor {
     }
 
     public List<Pair<Node, Node>> getInducingRelevantDiffNodes(List<String> fileInOrgMappingToBuggy) {
-//        Defects4JBug bug = (Defects4JBug) TransformHelper.bugRepository.getBug();
+//        Defects4JBug bug = (Defects4JBug) TransformHelper.orgRepository.getBug();
 //        Defects4JBug pat = new Defects4JBug(bug.getProj(), bug.getId(), ConfigurationProperties.getProperty("patchDir"),
 //                bug.getFixingCommit(), bug.getBuggyCommit(), bug.getInducingCommit(), bug.getOriginalCommit());
 //        patchRepository = new BugRepository(pat, analyzer);
 //        patchRepository.switchToBug();
-        //todo 这里的文件提取改为从两个新的文件夹进行，不要改变原本的文件夹
-        BugRepository bugRepository = TransformHelper.bugRepository;
-        bugRepository.switchToInducing();
-        String inducingDir = ((Defects4JBug) bugRepository.getBug()).getWorkingDir();
-        BugRepository patchRepository = PatchHelper.patchRepository;
-        patchRepository.switchToOrg();
-        String orgDir = ((Defects4JBug) patchRepository.getBug()).getWorkingDir();
+        logger.info("Extracting differences from inducing changes");
+        //这里的文件提取改为从两个新的文件夹进行，不要改变原本的文件夹
+        logger.info("Copy inducing directory");
+        BugRepository orgRepository = TransformHelper.orgRepository;
+        Defects4JBug defects4JBug = ((Defects4JBug) orgRepository.getBug());
+        String orgDir = defects4JBug.getWorkingDir();
+        String inducingDir = orgDir.replace("_org", "_inducing");
+        if (FileUtils.notExists(inducingDir)) {
+            String[] cmd = new String[]{"/bin/bash", "-c", "cp -r " + orgDir + " " + inducingDir};
+            FileUtils.executeCommand(cmd);
+        }
+        Defects4JBug inducingBug = new Defects4JBug(defects4JBug.getProj(), defects4JBug.getId(), inducingDir,
+                defects4JBug.getFixingCommit(), defects4JBug.getBuggyCommit(), defects4JBug.getInducingCommit(), defects4JBug.getOriginalCommit());
+        inducingBug.switchAndClean(null, inducingBug.getInducingCommit(), "inducing", "D4J_" + inducingBug.getBugName().toUpperCase() + "_INDUCING_VERSION");
 
-        GitTool gitAccess = bugRepository.getGitAccess();
+        logger.info("Get diff pairs");
+        GitTool gitAccess = orgRepository.getGitAccess();
         List<Pair<Node, Node>> diffList = new ArrayList<>();//可以是空，空就说明这个补丁修改的文件和历史引入bug的位置不相关。
         List<String> fileStatDiffBetweenCommits = getDiffStatusBetweenOrgAndInd();
         List<Pair<String, String>> mappedFiles = gitAccess.getMappedFiles(fileStatDiffBetweenCommits, fileInOrgMappingToBuggy);
@@ -259,12 +268,8 @@ public class DiffExtractor {
             diffList.addAll(diffPairs);
         }
 
-        bugRepository.switchToBug();
-        bugRepository.compile();
-        patchRepository.switchToBug();
-        patchRepository.compile();
 //        RefactoringMiner miner = new RefactoringMiner();
-//        Set<ASTDiff> astDiffs = miner.diffAtCommit(bugRepository.getRepository(), originalCommit, inducingCommit);
+//        Set<ASTDiff> astDiffs = miner.diffAtCommit(orgRepository.getRepository(), originalCommit, inducingCommit);
 //        for (ASTDiff astDiff: astDiffs) {
 //            String srcPath = astDiff.getSrcPath();
 //            String dstPath = astDiff.getDstPath();

@@ -601,10 +601,10 @@ public class FileUtils {
         return message;
     }
 
-    private static final Gson gson = new GsonBuilder().create();
+    private static final Gson gson = new GsonBuilder().setPrettyPrinting().disableHtmlEscaping().create();
 
     public static String bean2Json(Object obj) {
-        return gson.toJson(obj);
+        return jsonFormatter(gson.toJson(obj));
     }
 
     public static <T> T json2Bean(String jsonStr, Class<T> objClass) {
@@ -612,7 +612,6 @@ public class FileUtils {
     }
 
     public static String jsonFormatter(String uglyJsonStr) {
-        Gson gson = new GsonBuilder().setPrettyPrinting().create();
         JsonElement je = JsonParser.parseString(uglyJsonStr);
         return gson.toJson(je);
     }

@@ -25,7 +25,7 @@ public class Patch {
 
     public String getName() {
         if (name == null) {
-            this.name = patchAbsPath;
+            this.name = String.valueOf(Stats.counter ++);
         }
         return name;
     }

@@ -14,7 +14,6 @@ public class AbstractMain {
     private static final Logger logger = LoggerFactory.getLogger(AbstractMain.class);
 
     public Date bornTime;
-    public Stats currentStat;
 
     protected static Options options = new Options();
 
@@ -34,6 +33,7 @@ public class AbstractMain {
         options.addOption("sliceRoot", true, "slice log root directory");
 
         //optional
+        options.addOption("purify", true, "true|false, denotes whether to purify the failing test. default true");
         options.addOption("complianceLevel", true, "default 1.8");
         options.addOption("binExecuteTestClasses", true, "");
         options.addOption("javaClassesInfoPath", true, "");
@@ -45,7 +45,7 @@ public class AbstractMain {
 
     public ProjectPreparation initialize(String[] args) {
         bornTime = new Date();
-        currentStat = Stats.getCurrentStats();
+        Stats.getCurrentStats();
         boolean res = progressArguments(args);
         if (!res)
             return null;
@@ -73,55 +73,40 @@ public class AbstractMain {
             help();
             return false;
         }
-        if (commandLine.hasOption("proj")) {
-            ConfigurationProperties.setProperty("proj", commandLine.getOptionValue("proj"));
+        boolean check = true;
+        check &= checkProperty(commandLine, "proj", null);
+        check &= checkProperty(commandLine, "id", null);
+        check &= checkProperty(commandLine, "location", null);
+        check &= checkProperty(commandLine, "srcJavaDir", null);
+        check &= checkProperty(commandLine, "srcTestDir", null);
+        check &= checkProperty(commandLine, "binJavaDir", null);
+        check &= checkProperty(commandLine, "binTestDir", null);
+        check &= checkProperty(commandLine, "testInfos", null);
+        check &= checkProperty(commandLine, "dependencies", null);
+        check &= checkProperty(commandLine, "patchesDir", null);
+        check &= checkProperty(commandLine, "sliceRoot", null);
+        check &= checkProperty(commandLine, "originalCommit", null);
+        check &= checkProperty(commandLine, "complianceLevel", "1.8");
+        check &= checkProperty(commandLine, "purify", "true");
+        check &= checkProperty(commandLine, "resultOutput", Paths.get("./").toAbsolutePath().toString());
+        if (!check) {
+            logger.error("Lack of must-have argument(s)!");
+            help();
+            return false;
         }
-        if (commandLine.hasOption("id")) {
-            ConfigurationProperties.setProperty("id", commandLine.getOptionValue("id"));
-        }
-        if (commandLine.hasOption("location")) {
-            ConfigurationProperties.setProperty("location", commandLine.getOptionValue("location"));
-        }
-        if (commandLine.hasOption("srcJavaDir")) {
-            ConfigurationProperties.setProperty("srcJavaDir", commandLine.getOptionValue("srcJavaDir"));
-        }
-        if (commandLine.hasOption("srcTestDir")) {
-            ConfigurationProperties.setProperty("srcTestDir", commandLine.getOptionValue("srcTestDir"));
-        }
-        if (commandLine.hasOption("binJavaDir")) {
-            ConfigurationProperties.setProperty("binJavaDir", commandLine.getOptionValue("binJavaDir"));
-        }
-        if (commandLine.hasOption("binTestDir")) {
-            ConfigurationProperties.setProperty("binTestDir", commandLine.getOptionValue("binTestDir"));
-        }
-        if (commandLine.hasOption("testInfos")) {
-            ConfigurationProperties.setProperty("testInfos", commandLine.getOptionValue("testInfos"));
-        }
-        if (commandLine.hasOption("dependencies")) {
-            String dependencies = commandLine.getOptionValue("dependencies");
-            ConfigurationProperties.setProperty("dependencies", dependencies);
-        }
-        if (commandLine.hasOption("patchesDir")) {
-            ConfigurationProperties.setProperty("patchesDir", commandLine.getOptionValue("patchesDir"));
-        }
-        if (commandLine.hasOption("sliceRoot")) {
-            ConfigurationProperties.setProperty("sliceRoot", commandLine.getOptionValue("sliceRoot"));
-        }
-        if (commandLine.hasOption("originalCommit")) {
-            ConfigurationProperties.setProperty("originalCommit", commandLine.getOptionValue("originalCommit"));
-        }
-        if (commandLine.hasOption("complianceLevel")) {
-            ConfigurationProperties.setProperty("complianceLevel", commandLine.getOptionValue("complianceLevel"));
-        } else {
-            ConfigurationProperties.setProperty("complianceLevel", "1.8");
-        }
-        if (commandLine.hasOption("resultOutput")) {
-            ConfigurationProperties.setProperty("resultOutput", commandLine.getOptionValue("resultOutput"));
-        } else {
-            ConfigurationProperties.setProperty("resultOutput", Paths.get("./").toAbsolutePath().toString());
-        }
-
         return true;
+    }
+
+    private boolean checkProperty(CommandLine commandLine, String name, String elseValue) {
+        boolean check = true;
+        if (commandLine.hasOption(name)) {
+            ConfigurationProperties.setProperty(name, commandLine.getOptionValue(name));
+        } else if (elseValue != null) {
+            ConfigurationProperties.setProperty(name, elseValue);
+        } else {
+            check = ConfigurationProperties.hasProperty(name);
+        }
+        return check;
     }
 
     private void help() {

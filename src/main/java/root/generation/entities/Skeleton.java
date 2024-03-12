@@ -80,6 +80,7 @@ public class Skeleton implements Cloneable {
         this.generatedMethods = new HashMap<>();
         this.generatedTestsIdx = 0;
         this.generatedClazzIdx = 0;
+        this.oracleFilePath = TransformHelper.oracleOutputs;
         File file = new File(oracleFilePath);
         if (file.exists()) {
             file.delete();

@@ -2,7 +2,6 @@ package root.analysis;
 
 import org.eclipse.jdt.core.dom.AST;
 import org.eclipse.jdt.core.dom.ASTParser;
-import root.parser.ASTJDTParser;
 
 public abstract class ASTManipulator {
 

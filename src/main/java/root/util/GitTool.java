@@ -114,7 +114,7 @@ public class GitTool extends GitServiceImpl {
 
 
     public boolean checkoutf(String workingDir, String commitId){
-        logger.info("Checking out {} {} ...", workingDir, commitId);
+        logger.debug("Forcibly Checking out {} {} ...", workingDir, commitId);
         CommandSummary cs = new CommandSummary();
         cs.append("git", "checkout");
         cs.append("--force", commitId);

@@ -1,10 +1,10 @@
-package root.extractor;
+package root.extraction;
 
 import com.github.javaparser.ast.CompilationUnit;
 import com.github.javaparser.ast.body.CallableDeclaration;
-import com.github.javaparser.ast.body.MethodDeclaration;
 import com.github.javaparser.ast.expr.MethodCallExpr;
 import org.junit.jupiter.api.Test;
+import root.analysis.ASTExtractor;
 import root.generation.entities.Input;
 import root.generation.helper.PreparationTest;
 import root.generation.transformation.TransformHelper;

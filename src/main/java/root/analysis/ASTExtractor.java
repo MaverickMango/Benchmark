@@ -1,4 +1,4 @@
-package root.extractor;
+package root.analysis;
 
 
 import com.github.javaparser.ast.CompilationUnit;
@@ -18,12 +18,10 @@ import root.generation.entities.Input;
 import root.generation.entities.ObjectInput;
 import root.generation.helper.Helper;
 import root.generation.transformation.visitor.EqualVisitor;
-import root.parser.AbstractASTParser;
+import root.analysis.parser.AbstractASTParser;
 import root.util.FileUtils;
 
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Map;
 import java.util.List;
 import java.util.concurrent.atomic.AtomicReference;
 import java.util.stream.Collectors;

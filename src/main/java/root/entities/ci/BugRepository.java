@@ -13,6 +13,7 @@ import root.util.GitTool;
 
 import java.io.File;
 import java.util.List;
+import java.util.Locale;
 
 public class BugRepository implements GitAccess {
 
@@ -27,6 +28,12 @@ public class BugRepository implements GitAccess {
         this.repository = bug.getGitRepository();
         this.bug.compile();
         this.analyzer = analyzer;
+    }
+
+    public BugRepository(BugWithHistory bug) {
+        this.bug = bug;
+//        bug.setBugName(bug.getProj() + "_" + bug.getId());
+        this.repository = bug.getGitRepository();
     }
 
     public void resetAnalyzer(String version) {
@@ -80,7 +87,7 @@ public class BugRepository implements GitAccess {
             return res;
         Defects4JBug defects4JBug = (Defects4JBug) bug;
         try {
-            logger.debug("Switch to commit " + defects4JBug.getD4JBuggy());
+            logger.info("Switch " + defects4JBug.getWorkingDir() + " to buggy commit D4J_" + defects4JBug.getProj() + "_" + defects4JBug.getId() + "_BUGGY_VERSION");
             res = gitAccess.checkoutf(defects4JBug.getWorkingDir(), defects4JBug.getD4JBuggy());
         } catch (Exception e) {
             logger.error(e.getMessage());
@@ -93,7 +100,18 @@ public class BugRepository implements GitAccess {
         if (!(bug instanceof Defects4JBug))
             return res;
         Defects4JBug defects4JBug = (Defects4JBug) bug;
+        logger.debug("Switch to original commit  " + defects4JBug.getOriginalCommit());
         res = defects4JBug.switchTo(repository, defects4JBug.getOriginalCommit(), "org", false);
+        return res;
+    }
+
+    public boolean switchToOtgAndClean() {
+        boolean res = false;
+        if (!(bug instanceof Defects4JBug))
+            return res;
+        Defects4JBug defects4JBug = (Defects4JBug) bug;
+        logger.debug("Switch to original commit and test... in " + defects4JBug.getOriginalCommit());
+        res = defects4JBug.switchAndClean(repository, defects4JBug.getOriginalCommit(), "org", "D4J_" + defects4JBug.getBugName().toUpperCase() + "_ORG_VERSION");
         return res;
     }
 
@@ -102,6 +120,7 @@ public class BugRepository implements GitAccess {
         if (!(bug instanceof Defects4JBug))
             return res;
         Defects4JBug defects4JBug = (Defects4JBug) bug;
+        logger.debug("Switch to inducing commit " + defects4JBug.getInducingCommit());
         res = defects4JBug.switchTo(repository, defects4JBug.getInducingCommit(), "inducing", false);
         return res;
     }

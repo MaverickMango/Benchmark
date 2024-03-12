@@ -29,7 +29,7 @@ class BugBuilderTest {
     @Test
     void buildABug() {
         BugBuilder.buildCIBug(bugWithHistory, "data/changesInfo/", true);
-        FileUtils.writeToFile(FileUtils.jsonFormatter(FileUtils.bean2Json(bugWithHistory)),
+        FileUtils.writeToFile(FileUtils.bean2Json(bugWithHistory),
                 ((Defects4JBug) bugWithHistory).getDataDir() + bugWithHistory.getBugName() + "/original_fixing_info.json", false);
     }
 

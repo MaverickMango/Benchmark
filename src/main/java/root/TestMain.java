@@ -1,24 +1,20 @@
 package root;
 
 import com.github.javaparser.ast.CompilationUnit;
-import com.github.javaparser.ast.Node;
-import com.github.javaparser.ast.body.CallableDeclaration;
 import com.github.javaparser.ast.body.MethodDeclaration;
-import com.github.javaparser.ast.expr.NameExpr;
-import com.github.javaparser.ast.visitor.VoidVisitorAdapter;
-import com.github.javaparser.utils.Pair;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import root.analysis.slicer.Slicer;
 import root.diff.DiffExtractor;
 import root.entities.*;
 import root.generation.entities.Input;
 import root.generation.entities.Skeleton;
 import root.generation.transformation.TransformHelper;
-import root.generation.transformation.visitor.PathVisitor;
-import root.generation.transformation.visitor.VariableVisitor;
 import root.util.*;
 
 import java.io.File;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.*;
 
 public class TestMain extends AbstractMain {
@@ -38,9 +34,11 @@ public class TestMain extends AbstractMain {
         originalCommit = strings.get(7);
 //        complianceLevel = strings.get(8);
         cleaned = strings.get(8);
+        Path path = Paths.get(location).toAbsolutePath();
+        location = path.resolve(bugName.toLowerCase() + "_buggy").normalize().toString();
         cs.append("-proj", bugName.split("_")[0]);
         cs.append("-id", bugName.split("_")[1]);
-        cs.append("-location", location + bugName + "_buggy");
+        cs.append("-location", location);
         cs.append("-srcJavaDir", srcJavaDir);
         cs.append("-srcTestDir", srcTestDir);
         cs.append("-binJavaDir", binJavaDir);
@@ -59,20 +57,19 @@ public class TestMain extends AbstractMain {
         String sliceRoot = args[3];//"/home/liumengjiao/Desktop/CI/Benchmark_py/slice/results/";
         List<List<String>> lists = FileUtils.readCsv(info, true);
         CommandSummary cs;
-        for (int i = 35; i < lists.size(); i ++) {
+        for (int i = 0; i < lists.size(); i ++) {
             List<String> strings  = lists.get(i);
             cs = setInputs(location, strings);
             String patchesDir = getPatchDirByBug(strings.get(0), patchesRootDir);
             cs.append("-patchesDir", patchesDir);
             cs.append("-sliceRoot", sliceRoot);
             boolean res = executeMainProcess(cs);
-            break;
         }
     }
 
     private static boolean executeMainProcess(CommandSummary cs) {
         TestMain main = new TestMain();
-        logger.info("Start Initialization.");
+        logger.info("---------Start Initialization----------");
         ProjectPreparation projectPreparation = main.initialize(cs.flat());
         if (projectPreparation == null) {
             return false;
@@ -80,46 +77,56 @@ public class TestMain extends AbstractMain {
         String[] tests = ConfigurationProperties.getProperty("testInfos").split("#");
         Map<String, List<String>> testsByClazz = getTestInfos(tests);
         long seconds = TimeUtil.deltaInSeconds(main.bornTime);
-        main.currentStat.addGeneralStat(Stats.General.INITIALIZATION_TIME, seconds);
+        Stats.getCurrentStats().addGeneralStat(Stats.General.INITIALIZATION_TIME, seconds);
 //        logger.info("Initialization end with time cost " + seconds + "s");
 
-        logger.info("Start diff extraction.");
+        logger.info("----------Start diff extraction----------");
+        /*
+         * 1. 提取differences中的差异变量DiffExprs
+         * 2. 寻找DiffExprs和input之间的关系
+         *      =》a. <s>获取调用图</s> 获取失败测试的trace
+         *        b. <s>静态分析每个函数内部的依赖关系</s> 根据trace进行切片
+         *        c. 在切片的同时构造其依赖的条件表达式和变量传播关系
+         */
         Date startDate = new Date();
         List<Difference> differences = diffExtraction(projectPreparation);
         seconds = TimeUtil.deltaInSeconds(startDate);
-        main.currentStat.addGeneralStat(Stats.General.DIFF_TIME, seconds);
+        Stats.getCurrentStats().addGeneralStat(Stats.General.DIFF_TIME, seconds);
 //        logger.info("Diff extraction end with time cost " + seconds + "s");
 
-        pathSolver(projectPreparation, testsByClazz, differences);
+        logger.info("----------Start slicing extraction----------");
+        List<PathFlow> pathFlows = constructRestraints(projectPreparation, differences);
 
-        logger.info("Start test generation.");
-        startDate = new Date();
-        List<Skeleton> mutateRes = testGeneration(projectPreparation, testsByClazz, differences);
-        seconds = TimeUtil.deltaInSeconds(startDate);
-        main.currentStat.addGeneralStat(Stats.General.GENERATION_TIME, seconds);
+        boolean allCorrect = false;
+        if (allCorrect) {
+            logger.info("----------Start test generation----------");
+            startDate = new Date();
+            List<Skeleton> mutateRes = testGeneration(projectPreparation, testsByClazz, differences);
+            seconds = TimeUtil.deltaInSeconds(startDate);
+            Stats.getCurrentStats().addGeneralStat(Stats.General.GENERATION_TIME, seconds);
 //        logger.info("Test generation end with time cost " + seconds + "s");
 
-        logger.info("Start patch validation.");
-        startDate = new Date();
-        boolean allCorrect = patchValidation(projectPreparation, mutateRes);
-        seconds = TimeUtil.deltaInSeconds(startDate);
-        main.currentStat.addGeneralStat(Stats.General.VALIDATION_TIME, seconds);
+            logger.info("----------Start patch validation----------");
+            startDate = new Date();
+            allCorrect = patchValidation(projectPreparation, mutateRes);
+            seconds = TimeUtil.deltaInSeconds(startDate);
+            Stats.getCurrentStats().addGeneralStat(Stats.General.VALIDATION_TIME, seconds);
 //        logger.info("Patch validation end with time cost " + seconds + "s");
+        }
 
         long totalSeconds = TimeUtil.deltaInSeconds(main.bornTime);
-        main.currentStat.addGeneralStat(Stats.General.TOTAL_TIME, seconds);
+        Stats.getCurrentStats().addGeneralStat(Stats.General.TOTAL_TIME, seconds);
         logger.info("Finish with total running time: " + totalSeconds + "s");
 
         String resultOutput = ConfigurationProperties.getProperty("resultOutput") + File.separator
                 + projectPreparation.bug.getBugName() + File.separator + "stats";
-        FileUtils.writeToFile(main.currentStat.toString(), resultOutput, false);
+        FileUtils.writeToFile(Stats.getCurrentStats().toString(), resultOutput, false);
         return allCorrect;
     }
 
     private static Map<String, List<String>> getTestInfos(String[] tests) {
         Map<String, List<String>> testsByClazz = new HashMap<>();
-        logger.info("Preprocessing --------------------");
-        logger.info("Split test one by one...");
+        logger.info("...Split test one by one.");
         for (String triggerTest : tests) {
             String[] split1 = triggerTest.split(":");
             String clazzName = split1[0];//.replaceAll("\\.", File.separator);
@@ -130,7 +137,6 @@ public class TestMain extends AbstractMain {
             }
             testsByClazz.get(clazzName).add(methodName + ":" + lineNumber);
         }
-        logger.info("End preprocessing --------------------");
         return testsByClazz;
     }
 
@@ -138,146 +144,30 @@ public class TestMain extends AbstractMain {
         DiffExtractor diffExtractor = new DiffExtractor();
         List<Difference> differences = new ArrayList<>();
         List<Patch> patches = projectPreparation.patches;
-        logger.info("Processing differences extraction --------------------");
         for (Patch patch :patches) {
             Difference difference = diffExtractor.getDifferenceForPatch(patch);
             differences.add(difference);
         }
-        logger.info("End differences extraction --------------------");
         return differences;
     }
 
 
-    private static List<List<ExecutionPathInMth>> pathSolver(ProjectPreparation projectPreparation, Map<String, List<String>> testsByClazz, List<Difference> differences) {
-        List<List<ExecutionPathInMth>> map = new ArrayList<>();//每个测试对应的执行路径
-        for (Map.Entry<String, List<String>> entry :testsByClazz.entrySet()) {
-            String clazzName = entry.getKey();//qualified class name
-            for (String testName: entry.getValue()) {
-                List<ExecutionPathInMth> paths = pathSolver(projectPreparation, projectPreparation.sliceLog);
-//                List<ExecutionPathInMth> paths = pathSolverForSlicer4J(projectPreparation, projectPreparation.sliceLog);//todo 切片存放的路径不对
-                /*
-                 * 1. 提取differences中的差异变量DiffExprs
-                 * 2. 寻找DiffExprs和input之间的关系
-                 *      =》a. 获取调用图
-                 *        b. 分析终点入口参数和被修改位置之间的关系?
-                 *        c. ???
-                 */
-                for (Difference difference: differences) {
-                    List<String> pathConditions = dependencyAnalysis(difference.getDiffExprInBuggy(), paths);
-                }
-            }
+    private static List<PathFlow> constructRestraints(ProjectPreparation projectPreparation, List<Difference> differences) {
+        List<PathFlow> map = new ArrayList<>();
+        Slicer slicer = projectPreparation.slicer;
+        List<ExecutionPathInMth> paths = slicer.traceParser();//每个覆盖函数对应的执行路径
+        for (Difference difference: differences) {
+            PathFlow pathFlow = slicer.dependencyAnalysis(difference.getDiffExprInBuggy(), paths);
+            map.add(pathFlow);
+
+            Stats.getCurrentStats().addPatchStat(difference.getPatch().getName(), Stats.Patch.PATH_FLOW, pathFlow);
         }
         return map;
-    }
-
-    private static List<ExecutionPathInMth> pathSolver(ProjectPreparation projectPreparation, String tracePath) {
-        List<String> trace = FileUtils.readEachLine(tracePath);
-        List<ExecutionPathInMth> paths = new ArrayList<>();
-        String lastMth = "";
-        ExecutionPathInMth lastPath = null;
-        for (String line : trace) {
-            String clz = line.split("#")[0];//todo number identifier, should be transformed to correspond qualifiedName
-            clz = clz.replace(".", File.separator);
-            if (clz.contains("$")) {
-                clz = clz.substring(0, clz.indexOf("$"));
-            }
-            String clzPath = (clz.contains("Test") ? projectPreparation.srcTestDir : projectPreparation.srcJavaDir) + File.separator + clz + ".java";
-            int lineno = Integer.parseInt(line.split(":")[1]);
-            if (lineno < 0)
-                continue;
-            CompilationUnit compilationUnit = TransformHelper.ASTExtractor.getCompilationUnit(clzPath);
-            CallableDeclaration methodDeclaration = TransformHelper.ASTExtractor.extractMethodByLine(compilationUnit, lineno);
-            if (methodDeclaration == null)
-                continue;
-            if (!lastMth.equals(methodDeclaration.toString())) {
-                lastMth = methodDeclaration.toString();
-                ExecutionPathInMth executionPathInMth = new ExecutionPathInMth(methodDeclaration);
-                lastPath = executionPathInMth;
-                paths.add(lastPath);
-            }
-            lastPath.addLine(lineno);
-        }
-        return paths;
-    }
-
-    private static List<ExecutionPathInMth> pathSolverForSlicer4J(ProjectPreparation projectPreparation, String slicePath) {
-        List<String> slices = FileUtils.readEachLine(slicePath);
-        List<ExecutionPathInMth> paths = new ArrayList<>();
-        String lastMth = "";
-        ExecutionPathInMth lastPath = null;
-        for (String line : slices) {
-            String clz = line.split(":")[0];
-            clz = clz.replace(".", File.separator);
-            if (clz.contains("$")) {
-                clz = clz.substring(0, clz.indexOf("$"));
-            }
-            String clzPath = (clz.contains("Test") ? projectPreparation.srcTestDir : projectPreparation.srcJavaDir) + File.separator + clz + ".java";
-            int lineno = Integer.parseInt(line.split(":")[1]);
-            if (lineno < 0)
-                continue;
-            CompilationUnit compilationUnit = TransformHelper.ASTExtractor.getCompilationUnit(clzPath);
-            CallableDeclaration methodDeclaration = TransformHelper.ASTExtractor.extractMethodByLine(compilationUnit, lineno);
-            if (methodDeclaration == null)
-                continue;
-            if (!lastMth.equals(methodDeclaration.toString())) {
-                lastMth = methodDeclaration.toString();
-                ExecutionPathInMth executionPathInMth = new ExecutionPathInMth(methodDeclaration);
-                lastPath = executionPathInMth;
-                paths.add(lastPath);
-            }
-            lastPath.addLine(lineno);
-        }
-        return paths;
-    }
-
-    private static boolean containsInLines(List<Integer> lineno, Set<Node> nodes) {
-        return nodes.stream().anyMatch(n -> n.getBegin().isPresent() && lineno.contains(n.getBegin().get().line));
-    }
-
-    //todo 这里传入的executionPath是buggy的！
-    private static List<String> dependencyAnalysis(Pair<Set<Node>, Set<Node>> diffExprInBuggy, List<ExecutionPathInMth> path) {
-        List<String> pathConditions = new ArrayList<>();
-        PathCondition pathCondition = new PathCondition();
-        if (!diffExprInBuggy.b.isEmpty()) {
-            Set<Node> nodeInPat = diffExprInBuggy.b;
-            nodeInPat.forEach(n -> n.accept(new VariableVisitor(), pathCondition));
-            PathVisitor finalVisitor1 = new PathVisitor();
-//            finalVisitor1.setEntry(true);
-
-            //从最后一个执行到的函数往前找，切片入口是修改位置最早出现的地方。
-            int startMth = path.size() - 1;
-            while (startMth >= 0) {
-                ExecutionPathInMth pathEntry = path.get(startMth);
-                if (containsInLines(pathEntry.getLineno(), nodeInPat)) {
-                    List<Node> nodes = pathEntry.getNodes();
-                    finalVisitor1.setLineno(pathEntry.getLineno());
-                    for (int j = nodes.size() - 1; j >= 0; j --) {
-                        Node n = nodes.get(j);
-                        n.accept(finalVisitor1, pathCondition);
-                    }
-                    break;
-                }
-                startMth --;
-            }
-            //倒着向前直到测试函数
-//            finalVisitor1.setEntry(false);
-            for (int i = startMth - 1; i >= 0; i --) {
-                List<Node> nodes = path.get(i).getNodes();
-                finalVisitor1.setLineno(path.get(i).getLineno());
-                for (int j = nodes.size() - 1; j >= 0; j --) {
-                    Node n = nodes.get(j);
-                    n.accept(finalVisitor1, pathCondition);
-                }
-            }
-            return pathConditions;
-        }
-        return null;
     }
 
     private static List<Skeleton> testGeneration(ProjectPreparation projectPreparation, Map<String, List<String>> testsByClazz,
                                                  List<Difference> differences) {
         List<Skeleton> mutateRes = new ArrayList<>();
-        logger.info("Processing new Tests generation --------------------");
         for (Map.Entry<String, List<String>> entry :testsByClazz.entrySet()) {
             String clazzName = entry.getKey();
             String filePath = projectPreparation.srcTestDir + File.separator +
@@ -295,7 +185,6 @@ public class TestMain extends AbstractMain {
             logger.info("Finishing one Test Class --------------------");
             mutateRes.add(skeleton);
         }
-        logger.info("End new Tests generation --------------------");
         return mutateRes;
     }
 

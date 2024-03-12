@@ -11,9 +11,9 @@ import org.junit.Ignore;
 import org.junit.jupiter.api.Test;
 import root.generation.entities.Input;
 import root.generation.entities.Skeleton;
-import root.extractor.ASTExtractorTest;
+import root.extraction.ASTExtractorTest;
 import root.generation.helper.PreparationTest;
-import root.extractor.ASTExtractor;
+import root.analysis.ASTExtractor;
 import root.util.ConfigurationProperties;
 
 import java.io.File;

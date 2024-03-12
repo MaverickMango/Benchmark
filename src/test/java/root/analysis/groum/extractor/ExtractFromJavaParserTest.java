@@ -10,7 +10,7 @@ import root.AbstractMain;
 import root.analysis.groum.entity.IntraGroum;
 import root.analysis.groum.Graphvizer;
 import root.ProjectPreparation;
-import root.parser.ASTJavaParser;
+import root.analysis.parser.ASTJavaParser;
 import root.util.CommandSummary;
 import root.util.FileUtils;
 
@@ -87,7 +87,7 @@ class ExtractFromJavaParserTest {
 
     @Test
     void visit() throws IOException {
-        ASTJavaParser parser = (ASTJavaParser) projectPreparation.parser;
+        ASTJavaParser parser = (ASTJavaParser) projectPreparation.bugParser;
         parser.parseASTs("src/test/java/FileRead.java");
 //        parser.parseASTs("src/main/java/root/generation/transformation/extractor/InputExtractor.java");
 //        parser.parseASTs("/home/liumengjiao/Desktop/CI/bugs/Math_50_buggy/src/main/java/org/apache/commons/math/analysis/solvers/BaseSecantSolver.java");

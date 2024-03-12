@@ -16,7 +16,6 @@ public class CustomURLClassLoader extends URLClassLoader {
 	public CustomURLClassLoader(URL[] urls, final Map<String, JavaFileObject> classes) {
 		super(urls);
 		this.classes = classes;
-		// TODO Auto-generated constructor stub
 	}
 
 	@Override

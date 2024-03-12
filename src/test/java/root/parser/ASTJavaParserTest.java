@@ -1,12 +1,7 @@
 package root.parser;
 
-import com.github.javaparser.ast.CompilationUnit;
-import com.github.javaparser.ast.NodeList;
-import com.github.javaparser.ast.body.BodyDeclaration;
-import com.github.javaparser.ast.body.MethodDeclaration;
-import com.github.javaparser.ast.stmt.Statement;
 import org.junit.jupiter.api.Test;
-import root.parser.ASTJavaParser;
+import root.analysis.parser.ASTJavaParser;
 
 import java.io.IOException;
 import java.util.Map;

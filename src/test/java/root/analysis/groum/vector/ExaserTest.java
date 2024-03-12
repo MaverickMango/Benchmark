@@ -13,7 +13,7 @@ import root.analysis.groum.entity.InvolvedVar;
 import root.analysis.groum.extractor.GraphMerger;
 import root.analysis.groum.extractor.PreOrderVisitorInMth;
 import root.ProjectPreparation;
-import root.parser.ASTJavaParser;
+import root.analysis.parser.ASTJavaParser;
 import root.util.CommandSummary;
 
 import java.io.IOException;
@@ -66,7 +66,7 @@ class ExaserTest {
     }
 
     private LinkedHashMap<Feature, Integer> getExampleRead(boolean isFinal) throws IOException {
-        ASTJavaParser parser = (ASTJavaParser) setting().parser;
+        ASTJavaParser parser = (ASTJavaParser) setting().bugParser;
         parser.parseASTs("src/test/java/FileRead.java");
         Map<String, Object> asts = parser.getASTs();
         PreOrderVisitorInMth visitor = new PreOrderVisitorInMth(true);

@@ -80,7 +80,7 @@ public class Defects4jBugsMain implements GitAccess {
             String buildFileDir = "data/changesInfo/" + bug_tag + "/buildfiles";
             defects4JBug.setBuildfilesChanged(!FileUtils.notExists(buildFileDir));
             BugBuilder.buildCIBug(defects4JBug, "data/changesInfo/", true);
-            FileUtils.writeToFile(FileUtils.jsonFormatter(FileUtils.bean2Json(defects4JBug)),
+            FileUtils.writeToFile(FileUtils.bean2Json(defects4JBug),
                     ((Defects4JBug) defects4JBug).getDataDir() + defects4JBug.getBugName() + "/origianl_fixing_info.json", false);
         }
     }

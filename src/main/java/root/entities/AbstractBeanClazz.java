@@ -33,6 +33,6 @@ public abstract class AbstractBeanClazz {
 
     @Override
     public String toString() {
-        return FileUtils.jsonFormatter(FileUtils.bean2Json(this));
+        return FileUtils.bean2Json(this);
     }
 }

@@ -5,7 +5,7 @@ import com.github.javaparser.utils.Pair;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import root.generation.transformation.TransformHelper;
-import root.parser.ASTJavaParser;
+import root.analysis.parser.ASTJavaParser;
 
 import java.io.IOException;
 import java.util.List;

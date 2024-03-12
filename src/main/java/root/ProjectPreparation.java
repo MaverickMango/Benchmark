@@ -3,6 +3,7 @@ package root;
 import com.github.javaparser.ast.CompilationUnit;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import root.analysis.slicer.Slicer;
 import root.analysis.soot.SootUpAnalyzer;
 import root.entities.MultiFilesPatch;
 import root.entities.SingleFilePatch;
@@ -16,8 +17,8 @@ import root.execution.ITestExecutor;
 import root.execution.InternalTestExecutor;
 import root.generation.helper.*;
 import root.generation.transformation.MutateHelper;
-import root.parser.ASTJavaParser;
-import root.parser.AbstractASTParser;
+import root.analysis.parser.ASTJavaParser;
+import root.analysis.parser.AbstractASTParser;
 import root.generation.transformation.TransformHelper;
 import root.util.ConfigurationProperties;
 import root.util.FileUtils;
@@ -54,7 +55,8 @@ public class ProjectPreparation {
     int globalID;
     public Set<String> binJavaClasses;
     public Set<String> binExecuteTestClasses;
-    public AbstractASTParser parser;
+    public AbstractASTParser bugParser;
+    public Slicer slicer;
     public Map<String, Object> ASTs;//CompilationUnit
     public List<String> compilerOptions;
     URL[] progURLs;
@@ -89,7 +91,7 @@ public class ProjectPreparation {
         }
         tmp = ConfigurationProperties.getProperty("sliceRoot");
         path = Paths.get(tmp).toAbsolutePath();
-        sliceLog = path.resolve(bug.getBugName()).normalize().toString() + File.separator + "slice.log";
+        sliceLog = path.resolve(proj.toLowerCase()).normalize().toString() + File.separator + bug.getBugName().toLowerCase() + File.separator + "trace.out.mapping";
 
         tmp = ConfigurationProperties.getProperty("binExecuteTestClasses");
         if (tmp != null) {
@@ -133,10 +135,11 @@ public class ProjectPreparation {
 //        }
 //        invokeCompilerOptionInitializer(complianceLevel);
         invokeSourceASTParser(testOnly);
-        SootUpAnalyzer analyzer = invokeSootAnalysis();
-        invokeTransformation(analyzer);
+        invokePurify();
+        invokeTransformer();
+        invokeSlicer();
         if (patchesDir != null) {
-            invokePatches(patchesDir);
+            invokePatches();
         }
 //        invokeProgURLsInitializer();
     }
@@ -152,17 +155,6 @@ public class ProjectPreparation {
             org.apache.commons.io.FileUtils.writeLines(new File(javaClassesInfoPath), binJavaClasses);
         if (testClassesInfoPath != null)
             org.apache.commons.io.FileUtils.writeLines(new File(testClassesInfoPath), binExecuteTestClasses);
-    }
-
-    private void invokeSourceASTParser(boolean testOnly) throws IOException {
-        logger.info("Invoking source code ast parser");
-        parser = new ASTJavaParser(srcJavaDir, srcTestDir, dependencies, complianceLevel);//resolver是白给的么
-//        parser = new ASTJDTParser(srcJavaDir, srcTestDir, dependencies, new HashMap<>());//很好这两个都没有类型解析啊啊啊
-//        if (!testOnly)
-//            parser.parseASTs(srcJavaDir);
-//        parser.parseASTs(srcTestDir);
-//        ASTs = parser.getASTs();
-//        logger.info("AST parsing is finished!");
     }
 
     void invokeProgURLsInitializer() throws MalformedURLException {
@@ -192,18 +184,57 @@ public class ProjectPreparation {
         compilerOptions.add(cpStr.toString());
     }
 
-    private void invokeTransformation(SootUpAnalyzer analyzer) {
+    private void invokeSourceASTParser(boolean testOnly) throws IOException {
+        logger.info("Invoking source code ast parser");
+        bugParser = new ASTJavaParser(srcJavaDir, srcTestDir, dependencies, complianceLevel);//resolver是白给的么
+//        parser = new ASTJDTParser(srcJavaDir, srcTestDir, dependencies, new HashMap<>());//很好这两个都没有类型解析啊啊啊
+//        if (!testOnly)
+//            parser.parseASTs(srcJavaDir);
+//        parser.parseASTs(srcTestDir);
+//        ASTs = parser.getASTs();
+//        logger.info("AST parsing is finished!");
+    }
+
+    private void invokePurify() {
+        logger.info("Invoking purify failing tests");
+        //copy patch directory
+        String purifiedTest = srcTestDir + "_purify";
+        if (!FileUtils.notExists(purifiedTest)) {
+            String[] cmd = new String[]{"/bin/bash", "-c", "cp -r " + purifiedTest + "/* " + srcTestDir};
+            FileUtils.executeCommand(cmd);
+        } else {
+            //todo test purify
+
+        }
+    }
+
+    private void invokeTransformer() {
         logger.info("Invoking transformerHelper and MutateHelper");
-        TransformHelper.initialize(bug, parser, analyzer);
+        SootUpAnalyzer analyzer = invokeSootAnalysis();
+        Defects4JBug defects4JBug = (Defects4JBug) bug;
+        String workingDir = defects4JBug.getWorkingDir();
+        String orgDir = workingDir.replace("_buggy", "_org");
+        if (FileUtils.notExists(orgDir)) {
+            String[] cmd = new String[]{"/bin/bash", "-c", "cp -r " + workingDir + " " + orgDir};
+            FileUtils.executeCommand(cmd);
+        }
+        Defects4JBug org = new Defects4JBug(defects4JBug.getProj(), defects4JBug.getId(), orgDir,
+                defects4JBug.getFixingCommit(), defects4JBug.getBuggyCommit(), defects4JBug.getInducingCommit(), defects4JBug.getOriginalCommit());
+        TransformHelper.initialize(defects4JBug, org, bugParser, analyzer);
         MutateHelper.initialize();
     }
 
-    private void invokePatches(String patchesDir) {
+    private void invokeSlicer() {
+        logger.info("Invoking slicer for analysis");
+        slicer = new Slicer(srcJavaDir, srcTestDir, sliceLog);
+    }
+
+    private void invokePatches() {
         logger.info("Invoking patches preprocessing");
         //copy patch directory
         String workingDir = ConfigurationProperties.getProperty("location");
         String patchDir = workingDir.replace("_buggy", "_pat");
-        if (!new File(patchDir).exists()) {
+        if (FileUtils.notExists(patchDir)) {
             String[] cmd = new String[]{"/bin/bash", "-c", "cp -r " + workingDir + " " + patchDir};
             FileUtils.executeCommand(cmd);
         }
@@ -211,18 +242,21 @@ public class ProjectPreparation {
         SootUpAnalyzer analyzer = new SootUpAnalyzer(binJavaDir.replace(workingDir, patchDir),
                 binTestDir.replace(workingDir, patchDir),
                 dependencies, complianceLevel);
-        PatchHelper.initialization(analyzer);
+        Defects4JBug buggy = (Defects4JBug) bug;
+        Defects4JBug pat = new Defects4JBug(buggy.getProj(), buggy.getId(), ConfigurationProperties.getProperty("patchDir"),
+                buggy.getFixingCommit(), buggy.getBuggyCommit(), buggy.getInducingCommit(), buggy.getOriginalCommit());
+        PatchHelper.initialization(pat, bugParser, analyzer);
         try {
             String[] split = patchesDir.split(File.pathSeparator);
             List<Patch> patches = new ArrayList<>();
             for (String dir :split) {
-                logger.info("parsing patch " + dir);
+                logger.info("...Parsing patches in " + dir);
                 List<String> allFiles = FileUtils.findAllFilePaths(dir, ".java");
                 Patch patch;
                 String filePath = allFiles.get(0);
                 String patchHead = filePath.substring(0, filePath.indexOf(ConfigurationProperties.getProperty("srcJavaDir")) - 1);
                 if (allFiles.size() == 1) {//single file patch
-                    CompilationUnit unit = (CompilationUnit) parser.getAST(filePath);
+                    CompilationUnit unit = PatchHelper.ASTExtractor.getCompilationUnit(filePath);
                     patch = new SingleFilePatch(filePath, patchHead, unit);
                     patches.add(patch);
                     continue;
@@ -243,14 +277,14 @@ public class ProjectPreparation {
                     String patchAbsPath = paths.get(0);
                     String fileHeader = entry.getKey();
                     if (paths.size() == 1) {
-                        CompilationUnit unit = (CompilationUnit) parser.getAST(patchAbsPath);
+                        CompilationUnit unit = PatchHelper.ASTExtractor.getCompilationUnit(patchAbsPath);
                         patch = new SingleFilePatch(patchAbsPath, fileHeader, unit);
                     } else {
-                        CompilationUnit unit = (CompilationUnit) parser.getAST(patchAbsPath);
+                        CompilationUnit unit = PatchHelper.ASTExtractor.getCompilationUnit(patchAbsPath);
                         patch = new MultiFilesPatch(patchAbsPath, fileHeader, unit);
                         for (int i = 1; i < paths.size(); i++) {
                             patchAbsPath = paths.get(i);
-                            unit = (CompilationUnit) parser.getAST(patchAbsPath);
+                            unit = PatchHelper.ASTExtractor.getCompilationUnit(patchAbsPath);
                             ((MultiFilesPatch) patch).addSingleFile(patchAbsPath, fileHeader, unit);
                         }
                     }
