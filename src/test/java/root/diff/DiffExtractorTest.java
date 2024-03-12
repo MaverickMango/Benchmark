@@ -16,7 +16,7 @@ class DiffExtractorTest {
 
     @Test
     void getDiffMths() throws IOException {
-        TransformHelper.initialize(null,
+        TransformHelper.initialize(null,null,
                 new ASTJavaParser("src/main/java", "src/test/java", null, "1.8"),
                 null);
         String srcPath = "/home/liumengjiao/Desktop/CI/Benchmark/src/test/resources/examples/src/FileRead.java";
@@ -28,7 +28,7 @@ class DiffExtractorTest {
 
     @Test
     void minimal() throws IOException {
-        TransformHelper.initialize(null,
+        TransformHelper.initialize(null,null,
                 new ASTJavaParser("src/main/java", "src/test/java", null, "1.8"),
                 null);
         String srcPath = "/home/liumengjiao/Desktop/CI/Benchmark/src/test/resources/examples/src/FileRead.java";
