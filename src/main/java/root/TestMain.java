@@ -34,9 +34,10 @@ public class TestMain extends AbstractMain {
         originalCommit = strings.get(7);
 //        complianceLevel = strings.get(8);
         cleaned = strings.get(8);
+        String proj = bugName.split("_")[0];
         Path path = Paths.get(location).toAbsolutePath();
-        location = path.resolve(bugName.toLowerCase() + "_buggy").normalize().toString();
-        cs.append("-proj", bugName.split("_")[0]);
+        location = path.resolve(proj.toLowerCase() + File.separator + bugName.toLowerCase() + "_buggy").normalize().toString();
+        cs.append("-proj", proj);
         cs.append("-id", bugName.split("_")[1]);
         cs.append("-location", location);
         cs.append("-srcJavaDir", srcJavaDir);
