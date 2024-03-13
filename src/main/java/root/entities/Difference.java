@@ -169,4 +169,18 @@ public class Difference {
         }
         return (MethodDeclaration) parentNode.orElse(null);
     }
+
+    @Override
+    public String toString() {
+        StringBuilder stringBuilder = new StringBuilder("[");
+        for (Pair<Node, Node> pair : diffBetweenBugAndPatch) {
+            stringBuilder.append("{bug: \"").append(pair.a == null ? "null" : pair.a.toString()).append("\",");
+            stringBuilder.append("patch: \"").append(pair.b == null ? "null" : pair.b.toString()).append("\"},");
+        }
+        stringBuilder.replace(stringBuilder.length() - 1, stringBuilder.length(), "]");
+        String s = "{" +
+                "diffBetweenBugAndPatch:" + stringBuilder +
+                '}';
+        return FileUtils.jsonFormatter(s);
+    }
 }

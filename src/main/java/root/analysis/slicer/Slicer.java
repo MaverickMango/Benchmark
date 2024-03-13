@@ -78,9 +78,9 @@ public class Slicer {
             Set<Node> nodeInPat = diffExprInBuggy.b;
             nodeInPat.forEach(n -> {
                 n.accept(new VariableVisitor(), pathFlow);
-                if (isCondition(n)) {//如果pat修改的是条件就应该再加上pat的修改位置
+                if (Helper.isCondition(n)) {//如果pat修改的是条件就应该再加上pat的修改位置
                     pathFlow.addCondition(MutateHelper.getUnsatisfiedCondition((Expression) n).toString());
-                }
+                }//todo 如果是变量声明就加上变量声明
             });//初始化变量为pat修改涉及的变量
 
             //找到修改位置作为切片入口
@@ -137,7 +137,4 @@ public class Slicer {
         return max.get();
     }
 
-    private boolean isCondition(Node n) {
-        return n instanceof Expression && "java.lang.Boolean".equals(Helper.getType((Expression) n));
-    }
 }

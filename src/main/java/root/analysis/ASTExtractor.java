@@ -111,6 +111,9 @@ public class ASTExtractor {
     public Node extractExpressionByLabel(CompilationUnit compilationUnit, String label,
                                                int start, int end) {
         CallableDeclaration methodDeclaration = extractMethodByLine(compilationUnit, start, end, null);
+        if (methodDeclaration == null) {
+            return null;
+        }
         EqualVisitor visitor = new EqualVisitor(label);
         List<Node> nodes = new ArrayList<>();
         methodDeclaration.accept(visitor, nodes);

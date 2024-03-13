@@ -19,7 +19,7 @@ public class ConfigurationProperties {
     protected static void loadPropertiesFromFile() {
         InputStream propFile;
         try {
-            propFile = ConfigurationProperties.class.getClassLoader().getResourceAsStream("default.properties");
+            propFile = ConfigurationProperties.class.getClassLoader().getResourceAsStream("default.properties.local");
             properties.load(propFile);
         } catch (Exception e) {
             e.printStackTrace();

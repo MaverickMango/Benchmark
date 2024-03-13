@@ -17,7 +17,7 @@ public class Stats {
     }
 
     public enum Patch {
-        PATH_FLOW, GENERATED_TESTS
+        DIFF, PATH_FLOW, GENERATED_TESTS
     }
 
     private static Stats currentStats;
@@ -48,15 +48,29 @@ public class Stats {
         stats.addStats(item, value);
     }
 
-    @Override
-    public String toString() {
-        return FileUtils.jsonFormatter("{" +
-                "generalStats: " + FileUtils.bean2Json(generalStats) + "," +
-                "patchStats:" + FileUtils.bean2Json(patchStats) +
-                '}');
+    public Map<General, Object> getGeneralStats() {
+        return generalStats;
     }
 
-    static class PatchStats {
+    public Map<String, PatchStats> getPatchStats() {
+        return patchStats;
+    }
+
+    @Override
+    public String toString() {
+        StringBuilder stringBuilder = new StringBuilder("{");
+        for (Map.Entry<String, PatchStats> entry : patchStats.entrySet()) {
+            stringBuilder.append(entry.getKey()).append(":").append(entry.getValue().toString()).append(",");
+        }
+        stringBuilder.replace(stringBuilder.length() - 1, stringBuilder.length(), "}");
+        String uglyJsonStr = "{" +
+                "generalStats: " + FileUtils.bean2Json(generalStats) + "," +
+                "patchStats:" + stringBuilder +
+                '}';
+        return FileUtils.jsonFormatter(uglyJsonStr);
+    }
+
+    public static class PatchStats {
         String name;
         Map<Patch, Object> stats;
 
@@ -71,7 +85,12 @@ public class Stats {
 
         @Override
         public String toString() {
-            return FileUtils.bean2Json(stats);
+            StringBuilder stringBuilder = new StringBuilder("{");
+            for (Map.Entry<Patch, Object> entry : stats.entrySet()) {
+                stringBuilder.append(entry.getKey()).append(":").append(entry.getValue().toString()).append(",");
+            }
+            stringBuilder.replace(stringBuilder.length() - 1, stringBuilder.length(), "}");
+            return FileUtils.jsonFormatter(stringBuilder.toString());
         }
     }
 }

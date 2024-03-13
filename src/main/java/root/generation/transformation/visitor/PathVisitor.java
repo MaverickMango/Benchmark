@@ -59,14 +59,45 @@ public class PathVisitor extends VoidVisitorAdapter<PathFlow> {
     }
 
     @Override
+    public void visit(VariableDeclarationExpr n, PathFlow arg) {
+        VariableDeclarationExpr cloneVD = new VariableDeclarationExpr();
+        cloneVD.setModifiers(n.getModifiers());
+        n.getVariables().forEach(p -> {
+            p.accept(this, arg);
+            if (arg.getVariables().contains(p.getName().toString())) {
+                NodeList<VariableDeclarator> list = new NodeList<>();
+                VariableDeclarator clone = p.clone();
+                clone.setInitializer((Expression) null);
+                list.add(clone);
+                cloneVD.setVariables(list);
+                arg.addDeclarator(cloneVD.toString());
+            }
+        });
+    }
+
+    @Override
     public void visit(VariableDeclarator n, PathFlow arg) {
         if (arg.getVariables().contains(n.getName().toString())) {
             arg.addDataFlow(n.toString());
             n.getInitializer().ifPresent(l -> {
-                if (Helper.isReferenceType(l)) {
-                    l.accept(this, arg);
-                }
+                l.accept(variableVisitor, arg);
             });
+        }
+    }
+
+    @Override
+    public void visit(UnaryExpr n, PathFlow arg) {
+        switch (n.getOperator()) {
+            case POSTFIX_DECREMENT:
+            case POSTFIX_INCREMENT:
+            case PREFIX_DECREMENT:
+            case PREFIX_INCREMENT:
+                if (arg.getVariables().contains(n.getExpression().toString())) {
+                    arg.addDataFlow(n.toString());
+                }
+                break;
+            default:
+                break;
         }
     }
 
@@ -116,23 +147,24 @@ public class PathVisitor extends VoidVisitorAdapter<PathFlow> {
             if (par instanceof AssignExpr) {
                 Expression target = ((AssignExpr) par).getTarget();
                 mappingReturn(arg, invocation, target.toString());
-            }
-            if (par instanceof VariableDeclarator) {
+            } else if (par instanceof VariableDeclarator) {
                 SimpleName name = ((VariableDeclarator) par).getName();
                 mappingReturn(arg, invocation, name.toString());
-            }
-            if (par instanceof MethodCallExpr) {
+            } else if (par instanceof MethodCallExpr) {
                 mappingReturn(arg, ((MethodCallExpr) par).getNameAsString(), n.toString());
+            } else {
+                mappingReturn(arg, invocation, n.toString());
             }
         });
         for (int i = 0; i < n.getArguments().size(); i++) {
             Expression a = n.getArguments().get(i);
             //建立函数形参和实参的关系
-            mappingArgsAndPars(arg, invocation, String.valueOf(i), a.toString());
+            mappingArgsAndPars(arg, invocation, String.valueOf(i), a.toString());//todo 数组类型的没法解析！
             a.accept(this, arg);
         }
+        //增加scope进variable
+        n.getScope().ifPresent(l -> l.accept(variableVisitor, arg));
 //        n.getName().accept(this, arg);
-//        n.getScope().ifPresent(l -> l.accept(this, arg));
 //        n.getTypeArguments().ifPresent(l -> l.forEach(v -> v.accept(this, arg)));
     }
 
@@ -241,8 +273,8 @@ public class PathVisitor extends VoidVisitorAdapter<PathFlow> {
 
     @Override
     public void visit(NameExpr n, PathFlow arg) {
-        if (arg.getVariables().contains(n.toString())) {
-            arg.addDataFlow(n.toString());
-        }
+//        if (arg.getVariables().contains(n.toString())) {
+//            arg.addDataFlow(n.toString());
+//        }
     }
 }

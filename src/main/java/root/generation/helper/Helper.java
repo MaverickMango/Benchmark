@@ -1,6 +1,7 @@
 package root.generation.helper;
 
 import com.github.javaparser.ast.CompilationUnit;
+import com.github.javaparser.ast.Node;
 import com.github.javaparser.ast.NodeList;
 import com.github.javaparser.ast.body.Parameter;
 import com.github.javaparser.ast.body.VariableDeclarator;
@@ -79,6 +80,8 @@ public class Helper {
             return node.calculateResolvedType();
         } catch (UnsolvedSymbolException e) {
             logger.error("Dependency lacking! " + e.getMessage() + ", 'Object' type will be returned.");
+        } catch (UnsupportedOperationException e) {
+            logger.error(e.getMessage());
         }
         return null;
     }
@@ -97,6 +100,10 @@ public class Helper {
             qualifiedName = resolvedType.asReferenceType().getQualifiedName();
         }
         return qualifiedName;
+    }
+
+    public static boolean isCondition(Node n) {
+        return n instanceof Expression && "java.lang.Boolean".equals(Helper.getType((Expression) n));
     }
 
     public static Statement constructFileOutputStmt2Instr(String filePath, Expression expression) {

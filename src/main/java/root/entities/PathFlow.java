@@ -10,13 +10,18 @@ public class PathFlow {
     List<String> pathConditions;
     @SerializedName("dataFlow")
     List<String> dataFlow;
+    @SerializedName("declarators")
+    Set<String> declarators;
+    @SerializedName("variables")
     Set<String> variables;
-    Map<String, Set<String>> mappingVars;//key should be the invocation name, value should be like: [RETURN#|ARG#{0/1/2...}]#${variable}, ${varibale} is in ${variables}
+    @SerializedName("mappingVars")
+    Map<String, Set<String>> mappingVars;//key should be the invocation name, value should be like: [RETURN#|PAR#{0/1/2...}]#${variable}, ${varibale} is in ${variables}
 
     public PathFlow() {
         pathConditions = new ArrayList<>();
         dataFlow = new ArrayList<>();
         variables = new HashSet<>();
+        declarators = new HashSet<>();
         mappingVars = new HashMap<>();
     }
 
@@ -24,6 +29,7 @@ public class PathFlow {
         pathConditions = new ArrayList<>();
         dataFlow = new ArrayList<>();
         variables = new HashSet<>();
+        declarators = new HashSet<>();
         mappingVars = new HashMap<>();
     }
 
@@ -37,6 +43,10 @@ public class PathFlow {
 
     public void setVariables(Set<String> variables) {
         this.variables = variables;
+    }
+
+    public void setDeclarators(Set<String> declarators) {
+        this.declarators = declarators;
     }
 
     public void setMappingVars(Map<String, Set<String>> mappingVars) {
@@ -74,19 +84,29 @@ public class PathFlow {
         return variables;
     }
 
+    public Set<String> getDeclarators() {
+        return declarators;
+    }
+
     public List<String> getDataFlow() {
         return dataFlow;
     }
 
     public void addCondition(String condition) {
-        this.pathConditions.add(condition);
+        this.pathConditions.add(0, condition);
     }
 
     public void addVariable(String variable) {
         this.variables.add(variable);
     }
 
-    public void addDataFlow(String dataFlow) {this.dataFlow.add(dataFlow);}
+    public void addDeclarator(String declarator) {
+        this.declarators.add(declarator);
+    }
+
+    public void addDataFlow(String dataFlow) {
+        this.dataFlow.add(0, dataFlow);
+    }
 
     @Override
     public String toString() {

@@ -59,6 +59,7 @@ public class ParameterVisitor extends VoidVisitorAdapter<PathFlow> {
                 String name = p.getNameAsString();
                 if (arg.getVariables().contains(name)) {
                     arg.addMappingVars(mth, "PAR#" + i + "#" + name);
+                    arg.addDeclarator(p.toString());
                 }
             }
         }

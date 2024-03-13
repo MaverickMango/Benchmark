@@ -51,26 +51,44 @@ public class TestMain extends AbstractMain {
         return cs;
     }
 
-    public static void main(String[] args) {
+    public static void main0(String[] args) {
         String location = args[0]; // "/home/liumengjiao/Desktop/CI/bugs/";
         String info = args[1]; // "/home/liumengjiao/Desktop/CI/Benchmark_py/generation/info/patches_inputs.csv";
         String patchesRootDir = args[2];
-        String sliceRoot = args[3];//"/home/liumengjiao/Desktop/CI/Benchmark_py/slice/results/";
+        String sliceRoot = args[3];///home/liumengjiao/IdeaProjects/PDA-trace/info/
         List<List<String>> lists = FileUtils.readCsv(info, true);
         CommandSummary cs;
-        for (int i = 0; i < lists.size(); i ++) {
+        for (int i = 35; i < lists.size(); i ++) {
             List<String> strings  = lists.get(i);
             cs = setInputs(location, strings);
             String patchesDir = getPatchDirByBug(strings.get(0), patchesRootDir);
             cs.append("-patchesDir", patchesDir);
             cs.append("-sliceRoot", sliceRoot);
             boolean res = executeMainProcess(cs);
+            break;
         }
     }
 
+    public static void main(String[] args) {
+        String location = args[1]; // "/home/liumengjiao/Desktop/CI/bugs/";
+        System.out.println(location);
+        String patchesRootDir = args[2];
+        System.out.println(patchesRootDir);
+        String sliceRoot = args[3];//"/home/liumengjiao/Desktop/CI/Benchmark_py/slice/results/";
+        System.out.println(sliceRoot);
+        List<String> strings  = Arrays.asList(args);
+        List<String> argList = strings.subList(4, strings.size());
+        System.out.println(FileUtils.getStrOfIterable(argList, " "));
+        CommandSummary cs = setInputs(location, argList);
+        String patchesDir = getPatchDirByBug(argList.get(0), patchesRootDir);
+        cs.append("-patchesDir", patchesDir);
+        cs.append("-sliceRoot", sliceRoot);
+        boolean res = executeMainProcess(cs);
+    }
+
     private static boolean executeMainProcess(CommandSummary cs) {
-        TestMain main = new TestMain();
         logger.info("---------Start Initialization----------");
+        TestMain main = new TestMain();
         ProjectPreparation projectPreparation = main.initialize(cs.flat());
         if (projectPreparation == null) {
             return false;
@@ -96,7 +114,7 @@ public class TestMain extends AbstractMain {
 //        logger.info("Diff extraction end with time cost " + seconds + "s");
 
         logger.info("----------Start slicing extraction----------");
-        List<PathFlow> pathFlows = constructRestraints(projectPreparation, differences);
+        List<PathFlow> pathFlows = constructConstraints(projectPreparation, differences);
 
         boolean allCorrect = false;
         if (allCorrect) {
@@ -148,12 +166,13 @@ public class TestMain extends AbstractMain {
         for (Patch patch :patches) {
             Difference difference = diffExtractor.getDifferenceForPatch(patch);
             differences.add(difference);
+            Stats.getCurrentStats().addPatchStat(patch.getName(), Stats.Patch.DIFF, difference);
         }
         return differences;
     }
 
 
-    private static List<PathFlow> constructRestraints(ProjectPreparation projectPreparation, List<Difference> differences) {
+    private static List<PathFlow> constructConstraints(ProjectPreparation projectPreparation, List<Difference> differences) {
         List<PathFlow> map = new ArrayList<>();
         Slicer slicer = projectPreparation.slicer;
         List<ExecutionPathInMth> paths = slicer.traceParser();//每个覆盖函数对应的执行路径

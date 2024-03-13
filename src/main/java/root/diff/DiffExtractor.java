@@ -1,5 +1,6 @@
 package root.diff;
 
+import com.github.javaparser.ast.expr.BinaryExpr;
 import com.github.javaparser.quality.NotNull;
 import com.github.javaparser.quality.Nullable;
 import gumtree.spoon.diff.operations.*;
@@ -11,6 +12,7 @@ import com.github.javaparser.utils.Pair;
 import gumtree.spoon.AstComparator;
 import gumtree.spoon.diff.Diff;
 import root.entities.benchmarks.Defects4JBug;
+import root.generation.helper.Helper;
 import root.generation.transformation.visitor.MinimalVisitor;
 import root.util.FileUtils;
 import root.util.GitTool;
@@ -294,8 +296,6 @@ public class DiffExtractor {
     }
 
     public static Pair<Set<Node>, Set<Node>> getMinimalDiffNodes(Set<Node> leftNodes, Set<Node> rightNodes) {
-        leftNodes = leftNodes.stream().filter(Objects::nonNull).collect(Collectors.toSet());
-        rightNodes = rightNodes.stream().filter(Objects::nonNull).collect(Collectors.toSet());
         Set<Node> minimalLeft = AminusB(leftNodes, rightNodes);
         Set<Node> minimalRight = AminusB(rightNodes, leftNodes);
         return new Pair<>(minimalLeft, minimalRight);
@@ -315,15 +315,22 @@ public class DiffExtractor {
         Set<Node> minuends = new HashSet<>(target);
         MinimalVisitor visitor = new MinimalVisitor(root);
         List<Node> subNode = null;
+        boolean flag = true;
         for (Node t :minuends) {
-            //如果minuend中有root节点的一部分，就把对应的minuend从target中删掉
-            List<Node> left = visitor.minimalByTarget(t);
-            subNode = visitor.getSubNode();
-            if (!left.contains(t)) {
-                target.remove(t);
-                target.addAll(left);
-                break;
+            if (Helper.isCondition(t)) {//todo 条件缩减还有函数里的stmt也应该缩减？
+                //如果minuend中有root节点的一部分，就把对应的minuend从target中删掉
+                List<Node> left = visitor.minimalByTarget(t);
+                subNode = visitor.getSubNode();
+                if (!left.contains(t)) {
+                    target.remove(t);
+                    target.addAll(left);
+                    break;
+                }
+                flag = false;
             }
+        }
+        if (flag) {
+            subNode = Collections.singletonList(root);
         }
         return subNode;
     }
@@ -331,8 +338,10 @@ public class DiffExtractor {
     public static void filterChildNode(Set<Node> nodes) {
         Set<Node> current = new HashSet<>(nodes);
         for (Node node :current) {
-            if (node == null)
+            if (node == null) {
+                nodes.remove(null);
                 continue;
+            }
             boolean anyMatch = nodes.stream().anyMatch(n -> n != null && n.getParentNode().isPresent() &&
                     n.getParentNode().get().equals(node));
             if (anyMatch) {
