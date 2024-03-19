@@ -7,6 +7,7 @@ import root.analysis.slicer.Slicer;
 import root.analysis.soot.SootUpAnalyzer;
 import root.entities.MultiFilesPatch;
 import root.entities.SingleFilePatch;
+import root.entities.Stats;
 import root.entities.benchmarks.Defects4JBug;
 import root.entities.ci.BugWithHistory;
 import root.util.PatchHelper;
@@ -226,7 +227,20 @@ public class ProjectPreparation {
 
     private void invokeSlicer() {
         logger.info("Invoking slicer for analysis");
-        slicer = new Slicer(srcJavaDir, srcTestDir, sliceLog);
+        String m = ConfigurationProperties.getProperty("slicingMode");
+        Slicer.MODE mode;
+        switch (m.toLowerCase()) {
+            case "all":
+                mode = Slicer.MODE.ALL;
+                break;
+            case "fault":
+                mode = Slicer.MODE.FAULT;
+                break;
+            default:
+                mode = Slicer.MODE.DIFF;
+        }
+        Stats.getCurrentStats().addGeneralStat(Stats.General.SLICING_MODE, mode);
+        slicer = new Slicer(srcJavaDir, srcTestDir, sliceLog, mode);
     }
 
     private void invokePatches() {

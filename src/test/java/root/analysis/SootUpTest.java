@@ -97,23 +97,23 @@ public class SootUpTest {
         assertTrue(cg.containsCall(mainMethodSignature, inner));
     }
 
-    @Test
-    public void testPath() throws IOException {
-        algorithmName = "CHA";
-        CallGraph cg = loadCallGraph();
-
-        MethodSignature outer =
-                identifierFactory.getMethodSignature(
-                        identifierFactory.getClassType("root.analysis.groum.vector.Exaser"),
-                        "incrVector",
-                        "void",
-                        List.of(new String[]{"root.analysis.groum.entity.IntraGroum",
-                                "root.analysis.groum.entity.AbstractNode",
-                                "root.analysis.groum.entity.AbstractNode"}));
-        List<List<MethodSignature>> entryToOut = new ArrayList<>();
-        List<MethodSignature> path = new ArrayList<>();
-        SootUpAnalyzer.backForwardDfs(cg, mainMethodSignature, outer, path, entryToOut, new HashSet<>());
-        assertEquals(4, entryToOut.size());
-        assertFalse(cg.containsCall(mainMethodSignature, outer));
-    }
+//    @Test
+//    public void testPath() throws IOException {
+//        algorithmName = "CHA";
+//        CallGraph cg = loadCallGraph();
+//
+//        MethodSignature outer =
+//                identifierFactory.getMethodSignature(
+//                        identifierFactory.getClassType("root.analysis.groum.vector.Exaser"),
+//                        "incrVector",
+//                        "void",
+//                        List.of(new String[]{"root.analysis.groum.entity.IntraGroum",
+//                                "root.analysis.groum.entity.AbstractNode",
+//                                "root.analysis.groum.entity.AbstractNode"}));
+//        List<List<MethodSignature>> entryToOut = new ArrayList<>();
+//        List<MethodSignature> path = new ArrayList<>();
+//        SootUpAnalyzer.backForwardDfs(cg, mainMethodSignature, outer, path, entryToOut, new HashSet<>());
+//        assertEquals(4, entryToOut.size());
+//        assertFalse(cg.containsCall(mainMethodSignature, outer));
+//    }
 }

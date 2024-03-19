@@ -14,6 +14,11 @@ import root.generation.helper.Helper;
 import java.util.Optional;
 
 public class ParameterVisitor extends VoidVisitorAdapter<PathFlow> {
+    private boolean containsAll = false;
+
+    public void setContainsAll(boolean containsAll) {
+        this.containsAll = containsAll;
+    }
 
     @Override
     public void visit(ConstructorDeclaration n, PathFlow arg) {
@@ -57,7 +62,7 @@ public class ParameterVisitor extends VoidVisitorAdapter<PathFlow> {
             Parameter p = pars.get(i);
             if (p.getType().isReferenceType()) {
                 String name = p.getNameAsString();
-                if (arg.getVariables().contains(name)) {
+                if (containsAll || arg.getVariables().contains(name)) {
                     arg.addMappingVars(mth, "PAR#" + i + "#" + name);
                     arg.addDeclarator(p.toString());
                 }

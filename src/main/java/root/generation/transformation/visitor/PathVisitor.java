@@ -3,7 +3,6 @@ package root.generation.transformation.visitor;
 import com.github.javaparser.ast.Node;
 import com.github.javaparser.ast.NodeList;
 import com.github.javaparser.ast.body.MethodDeclaration;
-import com.github.javaparser.ast.body.Parameter;
 import com.github.javaparser.ast.body.VariableDeclarator;
 import com.github.javaparser.ast.expr.*;
 import com.github.javaparser.ast.stmt.*;
@@ -14,24 +13,24 @@ import root.generation.transformation.MutateHelper;
 import root.util.FileUtils;
 
 import java.util.*;
-import java.util.concurrent.atomic.AtomicReference;
 import java.util.stream.Collectors;
 
 public class PathVisitor extends VoidVisitorAdapter<PathFlow> {
-    boolean isEntry;
-    List<Integer> lineno = null;
+    boolean containsAllVar;
+    List<Integer> lineno;
     VariableVisitor variableVisitor;
 
     public PathVisitor() {
-        isEntry = false;
+        containsAllVar = false;
+        lineno = new ArrayList<>();
         variableVisitor = new VariableVisitor();
     }
-    public void setEntry(boolean isEntry) {
-        this.isEntry = isEntry;
+    public void setContainsAllVar(boolean containsAllVar) {
+        this.containsAllVar = containsAllVar;
     }
 
     public void setLineno(List<Integer> lineno) {//每次换methodDeclaration的时候都应该重新设置lineno list
-        this.lineno = lineno;
+        this.lineno.addAll(lineno);
     }
 
     private boolean isSatisfied(Node n) {
@@ -64,7 +63,7 @@ public class PathVisitor extends VoidVisitorAdapter<PathFlow> {
         cloneVD.setModifiers(n.getModifiers());
         n.getVariables().forEach(p -> {
             p.accept(this, arg);
-            if (arg.getVariables().contains(p.getName().toString())) {
+            if (containsAllVar || arg.getVariables().contains(p.getName().toString())) {
                 NodeList<VariableDeclarator> list = new NodeList<>();
                 VariableDeclarator clone = p.clone();
                 clone.setInitializer((Expression) null);
@@ -77,7 +76,7 @@ public class PathVisitor extends VoidVisitorAdapter<PathFlow> {
 
     @Override
     public void visit(VariableDeclarator n, PathFlow arg) {
-        if (arg.getVariables().contains(n.getName().toString())) {
+        if (containsAllVar || arg.getVariables().contains(n.getName().toString())) {
             arg.addDataFlow(n.toString());
             n.getInitializer().ifPresent(l -> {
                 l.accept(variableVisitor, arg);
@@ -92,7 +91,7 @@ public class PathVisitor extends VoidVisitorAdapter<PathFlow> {
             case POSTFIX_INCREMENT:
             case PREFIX_DECREMENT:
             case PREFIX_INCREMENT:
-                if (arg.getVariables().contains(n.getExpression().toString())) {
+                if (containsAllVar || arg.getVariables().contains(n.getExpression().toString())) {
                     arg.addDataFlow(n.toString());
                 }
                 break;
@@ -103,7 +102,7 @@ public class PathVisitor extends VoidVisitorAdapter<PathFlow> {
 
     @Override
     public void visit(AssignExpr n, PathFlow arg) {
-        if (arg.getVariables().contains(n.getTarget().toString())) {
+        if (containsAllVar || arg.getVariables().contains(n.getTarget().toString())) {
             arg.addDataFlow(n.toString());
             n.getValue().accept(variableVisitor, arg);
             if (Helper.isReferenceType(n)) {
@@ -178,7 +177,7 @@ public class PathVisitor extends VoidVisitorAdapter<PathFlow> {
         Expression iterable = n.getIterable();
         VariableDeclarationExpr variable = n.getVariable();
         for (VariableDeclarator v: variable.getVariables()) {
-            if (arg.getVariables().contains(v.getName().toString())) {
+            if (containsAllVar || arg.getVariables().contains(v.getName().toString())) {
                 iterable.accept(variableVisitor, arg);
             }
         }
@@ -252,6 +251,19 @@ public class PathVisitor extends VoidVisitorAdapter<PathFlow> {
             if (isSatisfied(p)) {
                 //condition = selector == label1 [|| selector == label2 || ...]
                 labels.forEach(l -> subCons.add(condition + " == " + l));
+                if (labels.isEmpty()) {
+                    //case default:
+                    //condition != otherE1 && condition != otherE2 && ...
+                    List<String> otherCons = new ArrayList<>();
+                    for (int j = 0; j < entries.size(); j++) {
+                        if (j == i) continue;
+                        SwitchEntry other = entries.get(j);
+                        List<String> otherLbs = other.getLabels().stream().map(Node::toString).collect(Collectors.toList());
+                        otherLbs.forEach(l -> otherCons.add(condition + " != " + l));
+                    }
+                    String join = "(" + String.join(" && ", otherCons) + ")";
+                    subCons.add(join);
+                }
             }
         }
         StringBuilder strOfIterable = FileUtils.getStrOfIterable(subCons, " || ");
@@ -273,7 +285,7 @@ public class PathVisitor extends VoidVisitorAdapter<PathFlow> {
 
     @Override
     public void visit(NameExpr n, PathFlow arg) {
-//        if (arg.getVariables().contains(n.toString())) {
+//        if (containsAllVar || arg.getVariables().contains(n.toString())) {
 //            arg.addDataFlow(n.toString());
 //        }
     }

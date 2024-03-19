@@ -36,16 +36,16 @@ public class BugRepository implements GitAccess {
         this.repository = bug.getGitRepository();
     }
 
-    public void resetAnalyzer(String version) {
-        if (version.startsWith("o")) {
-            switchToOrg();
-        } else if (version.startsWith("i")) {
-            switchToInducing();
-        } else {
-            switchToBug();
-        }
-        analyzer.reset();
-    }
+//    public void resetAnalyzer(String version) {
+//        if (version.startsWith("o")) {
+//            switchToOrg();
+//        } else if (version.startsWith("i")) {
+//            switchToInducing();
+//        } else {
+//            switchToBug();
+//        }
+//        analyzer.reset();
+//    }
 
     public GitTool getGitAccess() {
         return gitAccess;

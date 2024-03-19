@@ -19,7 +19,6 @@ import root.diff.DiffExtractor;
 import root.generation.transformation.TransformHelper;
 import root.util.ConfigurationProperties;
 import root.util.FileUtils;
-import sootup.core.signatures.MethodSignature;
 
 import java.io.File;
 import java.util.*;
@@ -89,39 +88,39 @@ public class Difference {
         return minInducingOrg;
     }
 
-    @Deprecated
-    public List<List<List<MethodSignature>>> getPathFromTestToChange(String clazzName, String testName) {
-        SootUpAnalyzer analyzer = TransformHelper.bugRepository.analyzer;
-        List<List<List<MethodSignature>>> paths = new ArrayList<>();
-        MethodSignature test = analyzer.getMethodSignature(clazzName, testName, "void", new ArrayList<>());
-        Pair<Set<Node>, Set<Node>> diffExprInBuggy = getDiffExprInBuggy();
-        if (!diffExprInBuggy.b.isEmpty()) {
-            Set<MethodDeclaration> changed = diffExprInBuggy.b.stream().map(this::getMethodDeclaration).collect(Collectors.toSet());
-            //根据测试执行切片来获取经过的函数，然后对每个函数构建图然后分析依赖关系。
-            for (MethodDeclaration mth :changed) {
-                IntraGroum groum = GroumAnalyzer.innerAnalysis(mth);
-                List<List<MethodSignature>> pathFromEntryToOut = getPath(test, mth, analyzer);
-                paths.add(pathFromEntryToOut);
-            }
-        }
-        return paths;
-    }
-
-    private List<List<MethodSignature>> getPath(MethodSignature entryPoint, MethodDeclaration outerMth, SootUpAnalyzer analyzer) {
-        String qualifiedClassName = getQualifiedClassName(outerMth);
-        String mthName = outerMth.getNameAsString();
-        String typeName = getTypeName(outerMth);
-        NodeList<Parameter> parameters = outerMth.getParameters();
-        List<String> parTypes = parameters.stream().map(p -> resolveDescriptor(p.getType().toDescriptor())).collect(Collectors.toList());
-        MethodSignature methodSignature = analyzer.getMethodSignature(qualifiedClassName, mthName, typeName, parTypes);
-        List<List<MethodSignature>> pathFromEntryToOut = analyzer.getPathFromEntryToOut(entryPoint, methodSignature);
-        List<List<MethodSignature>> noVoidMths = pathFromEntryToOut.stream().map(path ->
-                path.stream().filter(mthsig ->
-                        !mthsig.getType().toString().equals("void")
-                ).collect(Collectors.toList())
-        ).collect(Collectors.toList());
-        return pathFromEntryToOut;
-    }
+//    @Deprecated
+//    public List<List<List<MethodSignature>>> getPathFromTestToChange(String clazzName, String testName) {
+//        SootUpAnalyzer analyzer = TransformHelper.bugRepository.analyzer;
+//        List<List<List<MethodSignature>>> paths = new ArrayList<>();
+//        MethodSignature test = analyzer.getMethodSignature(clazzName, testName, "void", new ArrayList<>());
+//        Pair<Set<Node>, Set<Node>> diffExprInBuggy = getDiffExprInBuggy();
+//        if (!diffExprInBuggy.b.isEmpty()) {
+//            Set<MethodDeclaration> changed = diffExprInBuggy.b.stream().map(this::getMethodDeclaration).collect(Collectors.toSet());
+//            //根据测试执行切片来获取经过的函数，然后对每个函数构建图然后分析依赖关系。
+//            for (MethodDeclaration mth :changed) {
+//                IntraGroum groum = GroumAnalyzer.innerAnalysis(mth);
+//                List<List<MethodSignature>> pathFromEntryToOut = getPath(test, mth, analyzer);
+//                paths.add(pathFromEntryToOut);
+//            }
+//        }
+//        return paths;
+//    }
+//
+//    private List<List<MethodSignature>> getPath(MethodSignature entryPoint, MethodDeclaration outerMth, SootUpAnalyzer analyzer) {
+//        String qualifiedClassName = getQualifiedClassName(outerMth);
+//        String mthName = outerMth.getNameAsString();
+//        String typeName = getTypeName(outerMth);
+//        NodeList<Parameter> parameters = outerMth.getParameters();
+//        List<String> parTypes = parameters.stream().map(p -> resolveDescriptor(p.getType().toDescriptor())).collect(Collectors.toList());
+//        MethodSignature methodSignature = analyzer.getMethodSignature(qualifiedClassName, mthName, typeName, parTypes);
+//        List<List<MethodSignature>> pathFromEntryToOut = analyzer.getPathFromEntryToOut(entryPoint, methodSignature);
+//        List<List<MethodSignature>> noVoidMths = pathFromEntryToOut.stream().map(path ->
+//                path.stream().filter(mthsig ->
+//                        !mthsig.getType().toString().equals("void")
+//                ).collect(Collectors.toList())
+//        ).collect(Collectors.toList());
+//        return pathFromEntryToOut;
+//    }
 
     public String resolveDescriptor(String descriptor) {
         if (descriptor.startsWith("L")) {

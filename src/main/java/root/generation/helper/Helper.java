@@ -12,6 +12,8 @@ import com.github.javaparser.resolution.types.ResolvedType;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import root.generation.entities.Skeleton;
+import spoon.reflect.cu.SourcePosition;
+import spoon.reflect.declaration.CtElement;
 
 import java.io.File;
 import java.lang.reflect.Modifier;
@@ -100,6 +102,14 @@ public class Helper {
             qualifiedName = resolvedType.asReferenceType().getQualifiedName();
         }
         return qualifiedName;
+    }
+
+    public static int getLine(CtElement n, boolean isStart) {
+        SourcePosition position = n.getPosition();
+        if (position.isValidPosition()) {
+            return isStart ? position.getLine() : position.getEndLine();
+        }
+        return -1;
     }
 
     public static boolean isCondition(Node n) {

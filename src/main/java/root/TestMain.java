@@ -58,7 +58,7 @@ public class TestMain extends AbstractMain {
         String sliceRoot = args[3];///home/liumengjiao/IdeaProjects/PDA-trace/info/
         List<List<String>> lists = FileUtils.readCsv(info, true);
         CommandSummary cs;
-        for (int i = 35; i < lists.size(); i ++) {
+        for (int i = 31; i < lists.size(); i ++) {//closure133-31,math50-46,math-105-91,lang51-35
             List<String> strings  = lists.get(i);
             cs = setInputs(location, strings);
             String patchesDir = getPatchDirByBug(strings.get(0), patchesRootDir);
@@ -163,6 +163,9 @@ public class TestMain extends AbstractMain {
         DiffExtractor diffExtractor = new DiffExtractor();
         List<Difference> differences = new ArrayList<>();
         List<Patch> patches = projectPreparation.patches;
+        if(patches == null) {
+            return differences;
+        }
         for (Patch patch :patches) {
             Difference difference = diffExtractor.getDifferenceForPatch(patch);
             differences.add(difference);
@@ -173,16 +176,21 @@ public class TestMain extends AbstractMain {
 
 
     private static List<PathFlow> constructConstraints(ProjectPreparation projectPreparation, List<Difference> differences) {
-        List<PathFlow> map = new ArrayList<>();
-        Slicer slicer = projectPreparation.slicer;
-        List<ExecutionPathInMth> paths = slicer.traceParser();//每个覆盖函数对应的执行路径
-        for (Difference difference: differences) {
-            PathFlow pathFlow = slicer.dependencyAnalysis(difference.getDiffExprInBuggy(), paths);
-            map.add(pathFlow);
-
-            Stats.getCurrentStats().addPatchStat(difference.getPatch().getName(), Stats.Patch.PATH_FLOW, pathFlow);
+        if (differences.isEmpty()) {
+            return new ArrayList<>();
         }
-        return map;
+        Slicer slicer = projectPreparation.slicer;
+        try {
+            logger.info("...Parsing test traces");
+            List<ExecutionPathInMth> paths = slicer.traceParser();//每个覆盖函数对应的执行路径
+            logger.info("...Analyse dependencies of traces");
+            List<PathFlow> pathFlows = slicer.dependencyAnalysis(differences, paths);
+            return pathFlows;
+        } catch (Exception e) {
+            logger.error("Error occurred when analyse dependencies! " + e.getMessage());
+            e.printStackTrace();
+        }
+        return  new ArrayList<>();
     }
 
     private static List<Skeleton> testGeneration(ProjectPreparation projectPreparation, Map<String, List<String>> testsByClazz,

@@ -33,7 +33,8 @@ public class AbstractMain {
         options.addOption("sliceRoot", true, "slice log root directory");
 
         //optional
-        options.addOption("purify", true, "true|false, denotes whether to purify the failing test. default true");
+        options.addOption("purify", true, "true|false, denotes whether to purify the failing test. default is 'true'");
+        options.addOption("slicingMode", true, "all|fault|diff, denotes slicer's mode. default is 'all'");
         options.addOption("complianceLevel", true, "default 1.8");
         options.addOption("binExecuteTestClasses", true, "");
         options.addOption("javaClassesInfoPath", true, "");
@@ -87,6 +88,7 @@ public class AbstractMain {
         check &= checkProperty(commandLine, "sliceRoot", null);
         check &= checkProperty(commandLine, "originalCommit", null);
         check &= checkProperty(commandLine, "complianceLevel", "1.8");
+        check &= checkProperty(commandLine, "slicingMode", "all");
         check &= checkProperty(commandLine, "purify", "true");
         check &= checkProperty(commandLine, "resultOutput", Paths.get("./").toAbsolutePath().toString());
         if (!check) {

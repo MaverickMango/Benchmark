@@ -197,8 +197,11 @@ public class DiffExtractor {
 
     private Node getNodeFromNode(Map<CtElement, Node> usedNodes, CtElement node, CompilationUnit unit) {
         if (!usedNodes.containsKey(node)) {
-            int line = node.getPosition().getLine();//position available?
-            int endLine = node.getPosition().getEndLine();
+            int line = Helper.getLine(node, true);//position available?
+            if (line == -1) {
+                return null;
+            }
+            int endLine = Helper.getLine(node, false);
             String label = getSourceString(node);
             Node src = TransformHelper.ASTExtractor.extractExpressionByLabel(unit, label, line, endLine);
             usedNodes.put(node, src);
